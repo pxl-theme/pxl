@@ -1,0 +1,35 @@
+
+.c-footer {
+	/* background-color: color-mod(var(--baseColor) l(-2%)); */
+	background-color: var(--baseColor);
+	font-size: .75em;
+	&__info {
+		display: inline-block;
+	}
+	&.-textOnly {
+		text-align: center;
+		font-size: 1em
+	}
+}
+
+/* Sticky Footer: https://css-tricks.com/snippets/css/sticky-footer/*/
+/* html, body{ */
+/* 	height: 100%; */
+/* } */
+/* .o-wrapperWoStickyFooter{ */
+/* 	min-height: 100%; */
+/* 	margin-bottom: calc(var(--footerHeight)*-1); */
+/* 	&:after { */
+/* 		content: ""; */
+/* 		display: block; */
+/* 	} */
+/* } */
+/* .o-wrapperWoStickyFooter:after,.c-footer.-sticky{ */
+/* 	height: var(--footerHeight); */
+/* } */
+/* .c-footer.-textOnly .c-footer__info { */
+/* 	line-height: var(--footerHeight); */
+/* } */
+
+/*--Sticky Footer*/
+

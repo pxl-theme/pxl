@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	<title>pxl-theme</title>
+	<link rel="stylesheet" href="style.min.css"/>
+	<link rel="icon" href="./img/favicon/main.jpg"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/main.jpg">
+</head>
+<body>
+	<!-- <include src='component/nav.html'></include> -->
+	<!-- <include src='component/nav/side-dropdown.html'></include> -->
+		<!-- <header class="header grid__item"> -->
+		<!-- 	<span class="header__title">Blog title</span> -->
+		<!-- 	<span class="header__description">Blog description</span> -->
+		<!-- </header> -->
+	<include src='component/header.html'></include>
+	<include src='component/nav/tree.html'></include>
+
+	<!-- Available options for main tag:o-grid12 o-masonry -->
+	<!-- <main class="s-cmsContent u-clearFix o-grid12"> -->
+	<!-- 	<include src='layout/loop.html'></include> -->
+	<!-- </main> -->
+
+	<main id="mainContent" class="s-cmsContent u-clearFix o-grid12" aria-label="Content">
+	<!-- <main class="s-cmsContent u-clearFix o-grid12"> -->
+
+		<include src='layout/loop.html'></include>
+		<!-- ^^ Parent element requires "o-grid12" class -->
+
+		<!-- <include src='examples/post.html'></include> -->
+
+		<!-- <include src="layout/masonry.html"></include> -->
+		<!-- ^^ Parent element requires "o-masonry" class -->
+
+
+		<!-- <include src="layout/kitchensink.html"></include> -->
+
+
+		<!------------Pages for Jekyll theme production -->
+		<!-- <include src='compatibility/jekyll/_layouts/default.html'></include> -->
+		<!-- <include src='compatibility/jekyll/_includes/head'></include> -->
+
+	</main>
+
+	<include src="component/frame.html"></include>
+	<!-- <include src="examples/rainbowframes.html"></include> -->
+
+	<!-- <aside class="sidebar"></aside> -->
+	<!-- <include src='component/background.html'></include> -->
+
+
+
+
+	<div id="mainFooter" class="c-frame --typeText">
+		<div class="c-frame__content">
+			<h6 style="text-align: center;font-weight: 400;"><a href="https://github.com/egeesin/pxl">GitHub Repo</a> - <a href="https://egeesin.com/">egeesin.com</a></h6>
+		</div>
+	</div>
+	<!-- <footer class="c-footer -sticky -textOnly"> -->
+	<!-- 	<span class="c-footer__info"><h6 style="font-weight: 400">I have no rights in here, yet. 2008-2018</h6></span> -->
+	<!-- </footer> -->
+
+
+	<script type="text/javascript" src="vendor.js"></script>
+	<script type="text/javascript" src="script.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+.s-cmsContent.o-grid12{
+	padding: 1em;
+	grid-gap: 1em 0;
+	@media (--desk) {
+		grid-template-columns: auto repeat(12, 106px) auto;
+	}
+}
+.o-grid12 {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	/* grid-column-gap: 1em; */
+	/* grid-template-rows: auto; */
+	/*opinionated!*/
+	/* justify-items: center; */
+	/*--opinionated!*/
+	& &__onePage {
+		grid-column: 1 / span 12;
+		@media (--palm) {
+			grid-column: 3 / span 8;
+		}
+		@media (--desk) {
+			grid-column: 4 / span 8;
+		}
+	}
+	&__col12{
+		grid-column: 1 / span 12;
+	}
+	&__col1-2 {
+		grid-column: span 6;
+	}
+	&__col1-3 {
+		grid-column: span 4;
+	}
+	&__col2-3 {
+		grid-column: span 8;
+	}
+	&__col1-4 {
+		grid-column: span 3;
+	}
+	&__col3-4 {
+		grid-column: span 9;
+	}
+	&__col1-6 {
+		grid-column: span 2;
+	}
+	&__col5-6 {
+		grid-column: span 10;
+	}
+	&__col7-12 {
+		grid-column: span 7;
+	}
+	&__col5-12 {
+		grid-column: span 5;
+	}
+	&__col1-12 {
+		grid-column: span 1;
+	}
+	hr {
+		grid-column: 1 / span 12;
+		width: 100%
+	}
+
+	&.c-frame {
+		@media (--wall) {
+			padding-left: calc( ( 100vw - var(--maxContentWidth) ) / 2 );
+			grid-template-columns: repeat(12, calc( var(--maxContentWidth) / 12) );
+		}
+
+	}
+}
+
+/*TODO: Dynamic columns with media breakpoints etc: .o-grid12__col1-2\@lap*/

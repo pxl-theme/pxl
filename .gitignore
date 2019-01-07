@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log
+
+session.vim
+
+reports/
+dist/
+template/

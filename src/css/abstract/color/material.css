@@ -1,0 +1,34 @@
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700'); */
+:root{
+	--mainFont: "Roboto";
+
+	--red:     #ff5252;
+	--orange:  #ff9100;
+	--yellow:  #ffd740;
+	--green:   #b2ff59;
+	--cyan:    #18ffff;
+	--blue:    #40c4ff;
+	--violet:  #e040fb;
+	--magenta: #ff4081;
+
+	--baseColor: #263238;
+	--textColor: #a1b0b8;
+	--textColorBolder: #eceff1;
+	--backColor: #102027;
+	--deepColor: #000a12;
+
+	--accentColor: var(--blue);
+
+	--foreColor: color-mod( var(--baseColor) l(+3%));
+	--foreColorBrighter: color-mod( var(--baseColor) l(+5%));
+
+	--accentColorBrighter: color-mod(var(--accentColor) lightness(+20%));
+	--accentColorBrighterTranslucent: color-mod(var(--accentColor) lightness(+20%) a(60%));
+
+	--textColorTranslucent: color-mod(var(--textColor) a(.4));
+	--textColorTransparent: color-mod(var(--textColor) a(.2));
+
+	--linkColorVisited: color-mod(var(--accentColor) saturation(+20%));
+	--linkColorDead: var(--red);
+	--linkColorActive: var(--accentColorBrighter);
+}

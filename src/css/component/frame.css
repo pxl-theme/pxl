@@ -1,0 +1,132 @@
+.c-frame {
+	background-color: color-mod(var(--baseColor) a(85%));
+	/* background-color: var(--baseColor); */
+	/* display: block; */
+	width: 100%;
+	overflow: hidden;
+
+	/* Parent */
+	.o-grid12 & {
+		grid-column: span 12;
+	}
+	/*-- Parent */
+	/* &:not(.-viewGrid) { */
+	/* 	padding: 1em; */
+	/* } */
+
+	&.--typeText {
+		.c-frame__content {
+			width: 100%;
+			max-width: 40em;
+			display: block;
+			padding: 0 1em;
+
+			margin: 0 auto;
+		}
+
+	}
+
+	&.--typeQuote {
+		display: grid;
+		align-content: center;
+		min-height: 70vh; /* If content is bigger, frame will be big as possible */
+		padding: 1em;
+		text-align: center;
+		@media (--wall) {
+			padding: 1em calc( ( 100vw - var(--maxContentWidth) ) / 2 );
+		}
+	}
+	/* &.--typeExplanation { */
+	/* 	.c-frame { */
+	/* 		&__content {} */
+	/* 		&__info{} */
+	/* 	} */
+
+	/* } */
+
+
+	/*-----States-------*/
+
+	/* &.-infoTrivial { */
+	/* 	background-color: color-mod(grey a(70%)) ; */
+	/* 	color: color-mod(white blend(grey 20%)); */
+	/* } */
+	/* &.-infoTip { */
+	/* 	background-color: color-mod(var(--yellow) a(80%)) ; */
+	/* 	color: color-mod(white blend(var(--yellow) 20%)); */
+	/* } */
+	/* &.-infoSuccess { */
+	/* 	background-color: color-mod(var(--green) a(80%)) ; */
+	/* 	color: color-mod(white blend(var(--green) 20%)); */
+	/* } */
+	&.-urgencyLow {
+		/* color: color-mod( var(--yellow) b(+25%)) ; */
+		/* background-color: color-mod( var(--baseColor) blend( var(--yellow) 20%)); */
+
+		/* For light theme */
+		/* color: color-mod(var(--baseColor) blend(var(--yellow) 20%)); */
+		/* background-color: color-mod(var(--yellow) a(80%)) ; */
+
+
+		/* For dark theme */
+		color: color-mod(var(--textColorBolder) blend(var(--yellow) 50%));
+		background-color: color-mod(var(--baseColor) blend(var(--yellow) 30%));
+	}
+	&.-urgencyNormal {
+		/* color: var(--orange) ; */
+		/* background-color: color-mod( var(--baseColor) blend( var(--orange) 20%)); */
+
+		/* For light theme */
+		/* color: color-mod(var(--baseColor) blend(var(--orange) 20%)); */
+		/* background-color: color-mod(var(--orange) a(90%)) ; */
+
+
+		/* For dark theme */
+		color: color-mod(var(--textColorBolder) blend(var(--orange) 50%));
+		background-color: color-mod(var(--baseColor) blend(var(--orange) 40%));
+	}
+	&.-urgencyCritical {
+		/* color: var(--red) ; */
+		/* background-color: color-mod( var(--baseColor) blend( var(--red) 10%)); */
+
+		/* For light theme */
+		/* color: color-mod(var(--baseColor) blend(var(--red) 10%)); */
+		/* background-color: var(--red) ; */
+
+		/* For dark theme */
+		color: color-mod(var(--textColorBolder) blend(var(--red) 40%));
+		background-color: color-mod(var(--baseColor) blend(var(--red) 40%));
+	}
+
+}
+
+.c-frame.-t-rainbow {
+	&:nth-child(7n+1) {
+		background-color: var(--baseColor);
+		/* color: var(--textColor); */
+	}
+	&:nth-child(7n+2) {
+		background-color: color-mod( var(--baseColor) h(+51.428deg));
+		color: color-mod( var(--textColor) h(+51.428deg));
+	}
+	&:nth-child(7n+3) {
+		background-color: color-mod( var(--baseColor) h(+102.856deg));
+		color: color-mod( var(--textColor) h(+102.856deg));
+	}
+	&:nth-child(7n+4) {
+		background-color: color-mod( var(--baseColor) h(+154.284deg));
+		color: color-mod( var(--textColor) h(+154.284deg));
+	}
+	&:nth-child(7n+5) {
+		background-color: color-mod( var(--baseColor) h(+205.712deg));
+		color: color-mod( var(--textColor) h(+205.712deg));
+	}
+	&:nth-child(7n+6) {
+		background-color: color-mod( var(--baseColor) h(+257.14deg));
+		color: color-mod( var(--textColor) h(+257.14deg));
+	}
+	&:nth-child(7n+7) {
+		background-color: color-mod( var(--baseColor) h(+308.568deg));
+		color: color-mod( var(--textColor) h(+308.568deg));
+	}
+}

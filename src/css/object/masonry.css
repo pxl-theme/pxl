@@ -1,0 +1,15 @@
+.o-masonry {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(18em,1fr));
+	justify-items: center;
+	grid-auto-rows: 1em;
+	/*opinionated!*/
+	padding: 1.5em;
+	grid-gap: 1em;
+
+	max-width: var(--maxContentWidth);
+	margin: auto;
+
+	/*--opinionated!*/
+}
+

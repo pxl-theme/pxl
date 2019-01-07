@@ -1,0 +1,51 @@
+.s-cmsContent {
+	& img {
+		max-width: 100%;
+		width: auto;
+		height: auto;
+	}
+
+}
+
+.alignCenter, .aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.alignLeft, .alignleft, .alignRight, .alignright {
+	display: inline;
+}
+.alignLeft, .alignleft {
+	float: left;
+	margin-right: 1em;
+}
+.alignRight, .alignright {
+	float: right;
+	margin-left: 1em;
+}
+
+/* Perfect full-size background */
+.c-background {
+	z-index: -1;
+	&.-viewFullFixed {
+		position: fixed;
+
+		width: 800%;
+		left: -350%;
+
+		height: 800%;
+		top: -350%;
+		& img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+
+			margin: auto;
+			min-width: 12.5%;
+			min-height: 12.5%;
+		}
+	}
+}

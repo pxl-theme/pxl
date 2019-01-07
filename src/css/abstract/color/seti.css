@@ -1,0 +1,31 @@
+:root{
+	--red:     #cc3e44;
+	--orange:  #e37933;
+	--yellow:  #cbcb41;
+	--green:   #8dc149;
+	--cyan:    #7494a3;
+	--blue:    #519ABA;
+	--violet:  #A074C4;
+	--magenta: #F55385;
+
+	--baseColor: #1F2326;
+	--textColor: #6D8086;
+	--textColorBolder: #D4D7D6;
+	--backColor: #0E1112;
+	--deepColor: #090B0D;
+	--accentColor: var(--blue);
+
+
+	--foreColor: color-mod( var(--baseColor) l(+3%));
+	--foreColorBrighter: color-mod( var(--baseColor) l(+5%));
+
+	--accentColorBrighter: color-mod(var(--accentColor) lightness(+20%));
+	--accentColorBrighterTranslucent: color-mod(var(--accentColor) lightness(+20%) a(60%));
+
+	--textColorTranslucent: color-mod(var(--textColor) a(.4));
+	--textColorTransparent: color-mod(var(--textColor) a(.2));
+
+	--linkColorVisited: color-mod(var(--accentColor) saturation(+20%));
+	--linkColorDead: var(--red);
+	--linkColorActive: var(--accentColorBrighter);
+}

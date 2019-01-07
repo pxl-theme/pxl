@@ -1,0 +1,46 @@
+/*!
+Theme Name: pxl-theme
+Theme URI: https://github.com/egeesin/pxl
+Author: Ege Esin
+Author URI:
+Description: Just a simple, customizable blog theme
+Version: 0.1
+License: GPLv2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: pxl-theme
+Tags:*/
+
+@import "abstract/var.css";
+
+@import "abstract/color/solarized.css";
+/* @import "abstract/color/seti.css"; */
+/* @import "abstract/color/tomorrow.css"; */
+/* @import "abstract/color/atomone.css"; */
+/* @import "abstract/color/nova.css"; */
+/* @import "abstract/color/nightowl.css"; */
+/* @import "abstract/color/monokai.css"; */
+/* @import "abstract/color/ios.css"; */
+/* @import "abstract/color/material.css"; */
+
+@import "abstract/mixin.css";
+@import "abstract/utils.css";
+
+@import "vendor/modern-normalize.css";
+
+@import "base/reset.css";
+@import "base/typography.css";
+@import "base/general.css";
+
+@import "object/grid.css";
+@import "object/masonry.css";
+
+@import "component/header.css";
+@import "component/footer.css";
+@import "component/frame.css";
+@import "component/card.css";
+@import "component/nav.css";
+
+@import "snippet/responsive-iframe.css";
+
+@import "shame.css";
+

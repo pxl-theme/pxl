@@ -1,0 +1,12 @@
+<!-- Header, Site title/description-->
+{% assign default_paths = site.pages | map: "path" %}
+<header id="mainHeader" class='c-header' role='banner'>
+
+<h1 style="text-align:center"><a href="{{ "/" | relative_url }}">{{ site.title | escape }}</a></h1>
+<h4 style="text-align:center">{{ site.description }}</h4>
+</header>
+
+
+<!-- Navigation, Menu-->
+<input id="c-toggleNav" type="checkbox">
+{% include nav-nested.html %}
