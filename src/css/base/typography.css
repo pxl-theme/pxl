@@ -468,7 +468,7 @@ pre {
 	.c-card{
 		padding: 1em 2em;
 	}
-	.o-grid12, .o-masonry {
+	.o-grid, .o-masonry {
 		padding: 0;
 	}
 }

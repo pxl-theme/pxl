@@ -14,7 +14,7 @@
 - No CSS frameworks used.
 	- Only homemade components.
 - Improved legibility with vertical rhythm and modular scale by default.
-- Written with modern specifications like custom properties, grid, mediaMatch...
+- Written with modern specifications like custom properties, mediaMatch...
 - Supports every web browser except all versions of Internet Explorer, Opera Mini, and other browsers that has global usage lesser than 0.33%
 	- [browserl.ist](http://browserl.ist/?q=%3E0.33%25%2C+not+ie+11%2C+not+op_mini+all)
 - System font bundle as fallback.
@@ -96,6 +96,9 @@ Cards must not look like it's part of element itself but children of element. Th
 
 #### Frame | ``c-frame``
 This concept can host full-sized content like jumbotron, videos. It must looks like **part** of element. Visually, frames must contain, not being contained. Width of a frame is also width of viewport.
+
+#### Grid | ``o-grid``
+This grid system based on [csswizardry-grids](https://github.com/csswizardry/csswizardry-grids).
 
 #### Navigation | ``o-nav``
 A navigation menu must let reader navigate through site or category. It doesn't have be limited to be a navigation bar. This concept can involve Table of Content lists, site map, blog tags and other relevant things too.

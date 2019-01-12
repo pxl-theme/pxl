@@ -2,11 +2,13 @@
 layout: default
 ---
 
-<main class="s-cmsContent u-clearFix o-grid12" aria-label="Content">
-	<article class="c-card --typePost o-grid12__item">
-		<header class="c-header c-card__header">
-			<h1 class="c-card__title">{{ page.title | escape }}</h1>
-		</header>
-		{{ content }}
-	</article>
+<main class="s-cmsContent u-clearFix o-grid --alignCenter" aria-label="Content">
+	<div class="o-grid__item -col12 -col2-3@palm">
+		<article class="c-card --typePost">
+			<header class="c-header c-card__header">
+				<h1 class="c-card__title">{{ page.title | escape }}</h1>
+			</header>
+			{{ content }}
+		</article>
+	</div>
 </main>

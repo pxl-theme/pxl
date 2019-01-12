@@ -2,26 +2,28 @@
 layout: default
 ---
 
-<main id="mainContent" class="s-cmsContent u-clearFix o-grid12" aria-label="Content">
+<main id="mainContent" class="s-cmsContent u-clearFix o-grid --alignCenter" aria-label="Content">
 
 {{ content }}
 
 {% if site.posts.size > 0 %}
 
 	{% for post in site.posts limit:40 %}
-	<article class="c-card --typePost o-grid12__item o-masonry__item">
-		<header class="c-header c-card__header">
-			{% assign date_format = site.minima.date_format | default: "%-d %b %Y" %}
-			<h6 class="c-card__meta">{{ post.date | date: date_format }}</h6>
-			<h2 class="c-card__title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
-		</header>
-		{% if post.content contains '<!--more-->' %}
-			{{ post.content | split:'<!--more-->' | first }}
-		{% else %}
-			{{ post.content | truncatehtml: 280, "…" }}
-		{% endif %}
-		<a href="{{ post.url }}">Devamı…</a>
-	</article>
+	<div class="o-grid__item -col12 -col2-3@palm o-masonry__item">
+		<article class="c-card --typePost">
+			<header class="c-header c-card__header">
+				{% assign date_format = site.minima.date_format | default: "%-d %b %Y" %}
+				<h6 class="c-card__meta">{{ post.date | date: date_format }}</h6>
+				<h2 class="c-card__title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+			</header>
+			{% if post.content contains '<!--more-->' %}
+				{{ post.content | split:'<!--more-->' | first }}
+			{% else %}
+				{{ post.content | truncatehtml: 280, "…" }}
+			{% endif %}
+			<a href="{{ post.url }}">Devamı…</a>
+		</article>
+	</div>
 	{% endfor %}
 
 {% endif %}

@@ -10,6 +10,12 @@
 	max-width: var(--maxContentWidth);
 	margin: auto;
 
-	/*--opinionated!*/
+	&__item {
+		width: 100%;
+		> .c-card {
+			height: 100%;
+		}
+	}
+
 }
 

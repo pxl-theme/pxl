@@ -2,34 +2,36 @@
 layout: default
 ---
 
-<main class="s-cmsContent u-clearFix o-grid12" aria-label="Content">
-	<article class="c-card --typePost o-grid12__item">
-		<header class="c-header c-card__header">
-			{% assign date_format = site.minima.date_format | default: "%-d %b %Y" %}
-			{% if post %}
-				{% assign categories = post.categories %}
-				{% assign tags = post.tags %}
-			{% else %}
-				{% assign categories = page.categories %}
-				{% assign tags = page.tags %}
-			{% endif %}
-			<h5 class="c-card__meta{% if categories != empty %} -leftSide{% endif %}">{{ page.date | date: date_format }}{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person">{{ page.author }}</span>{% endif %}</h5>{% if categories != empty %}<h6 class="c-card__meta -rightSide">{% for category in categories %}<a href="{{site.baseurl}}/blog/categories/#{{category|slugize}}">{{category}}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</h6>{% endif %}
-			<h1 class="c-card__title">{{ page.title | escape }}</h1>
-		</header>
-		{{ content }}
-
-		<footer class="c-card__footer">
-			<ul class="c-nav -positionTop -viewTag">
-				{% if tags != empty %}
-					<span class="c-nav__item"><b>Etiketler:</b></span>
-					{% for tag in tags %}
-						<li class="c-nav__item"><a href="{{site.baseurl}}/blog/tags/#{{tag|slugize}}">{{ tag }}</a></li>
-					{% endfor %}
+<main class="s-cmsContent u-clearFix o-grid --alignCenter" aria-label="Content">
+	<div class="o-grid__item -col12 -col2-3@palm">
+		<article class="c-card --typePost">
+			<header class="c-header c-card__header">
+				{% assign date_format = site.minima.date_format | default: "%-d %b %Y" %}
+				{% if post %}
+					{% assign categories = post.categories %}
+					{% assign tags = post.tags %}
+				{% else %}
+					{% assign categories = page.categories %}
+					{% assign tags = page.tags %}
 				{% endif %}
-			</ul>
-		</footer>
-		<a class="url" href="{{ page.url | relative_url }}" hidden></a>
-	</article>
+				<h5 class="c-card__meta{% if categories != empty %} -leftSide{% endif %}">{{ page.date | date: date_format }}{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person">{{ page.author }}</span>{% endif %}</h5>{% if categories != empty %}<h6 class="c-card__meta -rightSide">{% for category in categories %}<a href="{{site.baseurl}}/blog/categories/#{{category|slugize}}">{{category}}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</h6>{% endif %}
+				<h1 class="c-card__title">{{ page.title | escape }}</h1>
+			</header>
+			{{ content }}
+
+			<footer class="c-card__footer">
+				<ul class="c-nav -positionTop -viewTag">
+					{% if tags != empty %}
+						<span class="c-nav__item"><b>Etiketler:</b></span>
+						{% for tag in tags %}
+							<li class="c-nav__item"><a href="{{site.baseurl}}/blog/tags/#{{tag|slugize}}">{{ tag }}</a></li>
+						{% endfor %}
+					{% endif %}
+				</ul>
+			</footer>
+			<a class="url" href="{{ page.url | relative_url }}" hidden></a>
+		</article>
+	</div>
 
 	{% if site.disqus.shortname %}
 		{% include disqus_comments.html %}

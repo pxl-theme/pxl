@@ -113,7 +113,7 @@
 
 /* } */
 /* ^^ That's really a hard code but nice looking edit */
-*:not(.o-masonry) > * > .c-card__header.-viewWithMedia {
+*:not(.o-masonry) > .o-masonry__item > .c-card > .c-card__header.-viewWithMedia {
 	padding-top: 40%;
 	@media (--palm) {
 	/* 16:9 Space */
@@ -132,7 +132,7 @@
 	/* Square Space */
 	padding-top: 33%;
 	margin-bottom: 0;
-	*:not(.o-masonry) > * > & {
+	*:not(.o-masonry) > .o-masonry__item > .c-card > & {
 		@media (--lap) {
 			width: calc( 4em + 100% );
 			left: -2em;

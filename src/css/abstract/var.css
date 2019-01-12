@@ -20,6 +20,8 @@
 	--vwMall: 1920; /* for wide screen monitors and TVs */
 	--vwTitan: 2400;/* for 4K, 8K, VR?... */
 
+	/* o-grid Gutter Width */
+	--gridGutter: 1em;
 
 	/* 1920 / 16 */
 	--maxContentWidth: 1920px;

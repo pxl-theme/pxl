@@ -31,11 +31,11 @@ if (mainContent) {
 		// Change location from side to top if min-width is 80em
 		match : function() {
 			mainContent.classList.add("o-masonry");
-			mainContent.classList.remove("o-grid12");
+			mainContent.classList.remove("o-grid");
 		},
 		unmatch : function() {
 			mainContent.classList.remove("o-masonry");
-			mainContent.classList.add("o-grid12");
+			mainContent.classList.add("o-grid");
 		}
 	});
 }

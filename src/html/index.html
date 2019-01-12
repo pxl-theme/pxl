@@ -10,34 +10,20 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/main.jpg">
 </head>
 <body>
-	<!-- <include src='component/nav.html'></include> -->
-	<!-- <include src='component/nav/side-dropdown.html'></include> -->
-		<!-- <header class="header grid__item"> -->
-		<!-- 	<span class="header__title">Blog title</span> -->
-		<!-- 	<span class="header__description">Blog description</span> -->
-		<!-- </header> -->
 	<include src='component/header.html'></include>
 	<include src='component/nav/tree.html'></include>
 
-	<!-- Available options for main tag:o-grid12 o-masonry -->
-	<!-- <main class="s-cmsContent u-clearFix o-grid12"> -->
-	<!-- 	<include src='layout/loop.html'></include> -->
-	<!-- </main> -->
-
-	<main id="mainContent" class="s-cmsContent u-clearFix o-grid12" aria-label="Content">
-	<!-- <main class="s-cmsContent u-clearFix o-grid12"> -->
+	<main id="mainContent" class="s-cmsContent u-clearFix o-grid --alignCenter" aria-label="Content">
 
 		<include src='layout/loop.html'></include>
-		<!-- ^^ Parent element requires "o-grid12" class -->
+		<!-- ^^ Parent element requires "o-grid" class -->
 
 		<!-- <include src='examples/post.html'></include> -->
 
 		<!-- <include src="layout/masonry.html"></include> -->
 		<!-- ^^ Parent element requires "o-masonry" class -->
 
-
 		<!-- <include src="layout/kitchensink.html"></include> -->
-
 
 		<!------------Pages for Jekyll theme production -->
 		<!-- <include src='compatibility/jekyll/_layouts/default.html'></include> -->
