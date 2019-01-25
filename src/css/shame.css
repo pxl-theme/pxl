@@ -50,25 +50,24 @@
 
 
 	&Isometric {
-		background: repeating-linear-gradient(
+		background:	repeating-linear-gradient(
 			-30deg,
-			color-mod(var(--textColor) a(25%)),
-			color-mod(var(--textColor) a(25%)) 1px,
-			transparent 1px,
+			rgba(101,123,131,.1),
+			rgba(101,123,131,.1) 1em,
+			transparent 0,
 			transparent 64px
-		),repeating-linear-gradient(
-			30deg,
-			color-mod(var(--textColor) a(25%)),
-			color-mod(var(--textColor) a(25%)) 1px,
-			transparent 1px,
+		),
+		repeating-linear-gradient(30deg,rgba(101,123,131,.075),rgba(101,123,131,.075) 2em,
+			transparent 0,
 			transparent 64px
-		), repeating-linear-gradient(
-			90deg,
-			color-mod(var(--textColor) a(25%)),
-			color-mod(var(--textColor) a(25%)) 1px,
-			transparent 1px,
+		),
+			repeating-linear-gradient(90deg,
+			rgba(101,123,131,.05),
+			rgba(101,123,131,.05) 2.2em,
+			transparent 0,
 			transparent 64px
-		),var(--backColor);
+		),
+		var(--backColor);
 	}
 	&OldScreen {
 		background: repeating-linear-gradient(
@@ -167,3 +166,156 @@
 text-shadow: var(--baseColor) 0px 0px 1px,   var(--baseColor) 0px 0px 1px,   var(--baseColor) 0px 0px 1px,
              var(--baseColor) 0px 0px 1px,   var(--baseColor) 0px 0px 1px,   var(--baseColor) 0px 0px 1px;
 }
+
+body {
+	&.--bgOldSchool {
+		background: repeating-linear-gradient(
+			0deg,
+			color-mod(var(--textColor) a(50%)),
+			color-mod(var(--textColor) a(50%)) 1px,
+			transparent 1px,
+			transparent 3px
+		),var(--backColor);
+		@media (--hidpi) {
+			background: repeating-linear-gradient(
+				0deg,
+				color-mod(var(--textColor) a(80%)),
+				color-mod(var(--textColor) a(80%)) 0.5px,
+				transparent 0.5px,
+				transparent 3px
+			),var(--backColor);
+		}
+	}
+	&.--bgHGrid {
+		/* Horizontal Grid (gradient) Note: It doesn't stay still while resizing */
+
+		background: repeating-linear-gradient(
+			0deg,
+			color-mod(var(--textColor) a(25%)),
+			color-mod(var(--textColor) a(25%)) 1px,
+			transparent 1px,
+			transparent .5em
+		),repeating-linear-gradient(
+			0deg,
+			color-mod(var(--textColor) a(25%)),
+			color-mod(var(--textColor) a(25%)) 1px,
+			transparent 1px,
+			transparent 1em
+		),var(--backColor);
+		@media (--hidpi) {
+			background: repeating-linear-gradient(
+				0deg,
+				color-mod(var(--textColor) a(25%)),
+				color-mod(var(--textColor) a(25%)) .5px,
+				transparent .5px,
+				transparent .5em
+			),repeating-linear-gradient(
+				0deg,
+				color-mod(var(--textColor) a(25%)),
+				color-mod(var(--textColor) a(25%)) .5px,
+				transparent .5px,
+				transparent 1em
+			),var(--backColor);
+		}
+		/* Horizontal Grid (PNG) */
+
+		/* background: var(--backColor) repeat top left; */
+		/* background-image: url("img/pattern/hgrid16.png"); */
+		/* @media (--lap) { */
+		/* 	background-image: url("img/pattern/hgrid18.png"); */
+		/* } */
+	}
+	&.--bgCrossGrid {
+		background: repeating-linear-gradient(
+			-45deg,
+			color-mod(var(--textColor) a(25%)),
+			color-mod(var(--textColor) a(25%)) 1.41px,
+			transparent 1.41px,
+			transparent 1em
+		),repeating-linear-gradient(
+			45deg,
+			color-mod(var(--textColor) a(25%)),
+			color-mod(var(--textColor) a(25%)) 1.41px,
+			transparent 1.41px,
+			transparent 1em
+		),var(--backColor);
+		@media (--hidpi) {
+			background: repeating-linear-gradient(
+				-45deg,
+				color-mod(var(--textColor) a(25%)),
+				color-mod(var(--textColor) a(25%)) .7px,
+				transparent .7px,
+				transparent 1em
+			),repeating-linear-gradient(
+				45deg,
+				color-mod(var(--textColor) a(25%)),
+				color-mod(var(--textColor) a(25%)) .7px,
+				transparent .7px,
+				transparent 1em
+			),var(--backColor);
+		}
+	}
+	&.--bgHexAlt {
+		background:	repeating-linear-gradient(
+			-30deg,
+			rgba(101,123,131,.1),
+			rgba(101,123,131,.1) 1em,
+			transparent 0,
+			transparent 64px
+		),
+		repeating-linear-gradient(30deg,rgba(101,123,131,.075),rgba(101,123,131,.075) 2em,
+			transparent 0,
+			transparent 64px
+		),
+			repeating-linear-gradient(90deg,
+			rgba(101,123,131,.05),
+			rgba(101,123,131,.05) 2.2em,
+			transparent 0,
+			transparent 64px
+		),
+		var(--backColor);
+	}
+	&.--borderMod {
+		.c-card,.c-nav.-viewDropdown, .c-nav.-viewDropdown .c-nav__submenu, .c-nav.-viewTree, .c-toggleTrigger{
+			/* box-shadow: 0 0 0 1px var(--backColor); */
+
+			/* box-shadow: .25em .25em 0 0 var(--deepColor); */
+
+			/* box-shadow: 0 .5em 0 -.25em rgba(0,0,0,.33), 0 0 0 1px var(--backColor); */
+			box-shadow: 0 0 0 1px var(--backColor), 0 .5em 0 -.25em rgba(0,0,0,.33);
+
+		}
+	}
+	&.--materialShadow {
+		.c-card,.c-nav.-viewDropdown, .c-nav.-viewDropdown .c-nav__submenu, .c-nav.-viewTree, .c-toggleTrigger{
+			box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+		}
+	}
+	&.--macOSShadow {
+		.c-card,.c-nav.-viewDropdown, .c-nav.-viewDropdown .c-nav__submenu, .c-nav.-viewTree, .c-toggleTrigger{
+			box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56); 
+		}
+	}
+	&.--noBg {
+		.c-card,.c-nav.-viewTree, .c-nav.-viewTree .c-toggleTrigger, .c-nav.-viewDropdown.-positionTop{
+			background: transparent;
+		}
+	}
+}
+._pxlTheLogo {
+	display: block;
+	margin: auto;
+	width: 8em;
+	height: 5em;
+	vertical-align: middle;
+	stroke: currentColor;
+	stroke-width: 2.888;
+	-webkit-tap-highlight-color: transparent;
+}
+a:hover ._pxlTheLogo, ._pxlTheLogo:hover {
+	stroke-width: 4.666;
+}
+a:active ._pxlTheLogo, ._pxlTheLogo:active {
+	stroke-width: 1.444;
+}
+

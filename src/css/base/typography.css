@@ -16,6 +16,7 @@ html {
 /* In mobile (tested in iOS Safari 12), gradient isn't page-wide but viewport-wide */
 html {
 	position: relative;
+	/* Note: If background attachment is fixed, backgrounds that use repeating gradients may occur slow scrolling speed, low FPS etc. in some browsers (confirmed on Safari 12).
 	/* top:0; */
 	&:before {
 		content: "";
@@ -27,7 +28,7 @@ html {
 		z-index: -9999;
 
 
-		background: linear-gradient(to bottom, transparent, var(--blue));
+		/* background: linear-gradient(to bottom, transparent, var(--blue)); */
 	}
 }
 /*--Page-Wide Gradient--*/
@@ -39,124 +40,8 @@ body {
     -webkit-font-smoothing: antialiased;
 	/* height: auto; */
 
-	/* Page-Wide Gradient Fallback Color */
+	/* Fallback Background Color */
 	background-color: var(--backColor);
-
-	/* Isomorphic Pattern (needs work) */
-
-	/* background: repeating-linear-gradient( */
-	/* 	-30deg, */
-	/* 	color-mod(var(--textColor) a(25%)), */
-	/* 	color-mod(var(--textColor) a(25%)) 1px, */
-	/* 	transparent 1px, */
-	/* 	transparent 64px */
-	/* ),repeating-linear-gradient( */
-	/* 	30deg, */
-	/* 	color-mod(var(--textColor) a(25%)), */
-	/* 	color-mod(var(--textColor) a(25%)) 1px, */
-	/* 	transparent 1px, */
-	/* 	transparent 64px */
-	/* ), repeating-linear-gradient( */
-	/* 	90deg, */
-	/* 	color-mod(var(--textColor) a(25%)), */
-	/* 	color-mod(var(--textColor) a(25%)) 1px, */
-	/* 	transparent 1px, */
-	/* 	transparent 64px */
-	/* ),var(--backColor); */
-
-
-	/* Old-School Computer */
-
-	/* background: repeating-linear-gradient( */
-	/* 	0deg, */
-	/* 	color-mod(var(--textColor) a(50%)), */
-	/* 	color-mod(var(--textColor) a(50%)) 1px, */
-	/* 	transparent 1px, */
-	/* 	transparent 3px */
-	/* ),var(--backColor); */
-	/* @media (--hidpi) { */
-	/* 	background: repeating-linear-gradient( */
-	/* 		0deg, */
-	/* 		color-mod(var(--textColor) a(80%)), */
-	/* 		color-mod(var(--textColor) a(80%)) 0.5px, */
-	/* 		transparent 0.5px, */
-	/* 		transparent 3px */
-	/* 	),var(--backColor); */
-	/* } */
-
-
-	/* Horizontal Grid (gradient) Note: It doesn't stay still while resizing */
-
-	/* background: repeating-linear-gradient( */
-	/* 	0deg, */
-	/* 	color-mod(var(--textColor) a(25%)), */
-	/* 	color-mod(var(--textColor) a(25%)) 1px, */
-	/* 	transparent 1px, */
-	/* 	transparent .5em */
-	/* ),repeating-linear-gradient( */
-	/* 	0deg, */
-	/* 	color-mod(var(--textColor) a(25%)), */
-	/* 	color-mod(var(--textColor) a(25%)) 1px, */
-	/* 	transparent 1px, */
-	/* 	transparent 1em */
-	/* ),var(--backColor); */
-	/* @media (--hidpi) { */
-	/* 	background: repeating-linear-gradient( */
-	/* 		0deg, */
-	/* 		color-mod(var(--textColor) a(25%)), */
-	/* 		color-mod(var(--textColor) a(25%)) .5px, */
-	/* 		transparent .5px, */
-	/* 		transparent .5em */
-	/* 	),repeating-linear-gradient( */
-	/* 		0deg, */
-	/* 		color-mod(var(--textColor) a(25%)), */
-	/* 		color-mod(var(--textColor) a(25%)) .5px, */
-	/* 		transparent .5px, */
-	/* 		transparent 1em */
-	/* 	),var(--backColor); */
-	/* } */
-
-
-    /* Diagonal Grid */
-
-	/* background: repeating-linear-gradient( */
-	/* 	-45deg, */
-	/* 	color-mod(var(--textColor) a(25%)), */
-	/* 	color-mod(var(--textColor) a(25%)) 1.41px, */
-	/* 	transparent 1.41px, */
-	/* 	transparent 1em */
-	/* ),repeating-linear-gradient( */
-	/* 	45deg, */
-	/* 	color-mod(var(--textColor) a(25%)), */
-	/* 	color-mod(var(--textColor) a(25%)) 1.41px, */
-	/* 	transparent 1.41px, */
-	/* 	transparent 1em */
-	/* ),var(--backColor); */
-	/* @media (--hidpi) { */
-	/* 	background: repeating-linear-gradient( */
-	/* 		-45deg, */
-	/* 		color-mod(var(--textColor) a(25%)), */
-	/* 		color-mod(var(--textColor) a(25%)) .7px, */
-	/* 		transparent .7px, */
-	/* 		transparent 1em */
-	/* 	),repeating-linear-gradient( */
-	/* 		45deg, */
-	/* 		color-mod(var(--textColor) a(25%)), */
-	/* 		color-mod(var(--textColor) a(25%)) .7px, */
-	/* 		transparent .7px, */
-	/* 		transparent 1em */
-	/* 	),var(--backColor); */
-	/* } */
-
-
-	/* Horizontal Grid (PNG) */
-
-	/* background: var(--backColor) repeat top left; */
-	/* background-image: url("img/pattern/hgrid16.png"); */
-	/* @media (--lap) { */
-	/* 	background-image: url("img/pattern/hgrid18.png"); */
-	/* } */
-
 
 	/* Noise Texture (PNG) */
 

@@ -9,10 +9,18 @@
 	<link rel="icon" href="./img/favicon/main.jpg"/>
 	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/main.jpg">
 </head>
-<body>
+<!-- Available options for <body>:
+	--borderMod --materialShadow --macOSShadow --noBg
+	--bgHGrid --bgCrossGrid --bgHexAlt
+-->
+<body class="--bgHexAlt --borderMod">
+	<!-- <div class="c-frame --typeText -urgencyLow"> -->
+	<!-- 	<div class="c-frame__content"> -->
+	<!-- 		<p><b>Note:</b> Some links, buttons, inputs may not work as intended. This page is just demonstration.</p> -->
+	<!-- 	</div> -->
+	<!-- </div> -->
 	<include src='component/header.html'></include>
 	<include src='component/nav/tree.html'></include>
-
 	<main id="mainContent" class="s-cmsContent u-clearFix o-grid --alignCenter" aria-label="Content">
 
 		<include src='layout/loop.html'></include>
