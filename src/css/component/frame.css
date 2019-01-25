@@ -1,9 +1,9 @@
 .c-frame {
-	background-color: color-mod(var(--baseColor) a(85%));
-	/* background-color: var(--baseColor); */
-	/* display: block; */
+	/* background-color: color-mod(var(--baseColor) a(85%)); */
+	background-color: var(--baseColor);
 	width: 100%;
 	overflow: hidden;
+	padding: 1em;
 
 	&.--typeText {
 		.c-frame__content {
@@ -21,7 +21,6 @@
 		display: grid;
 		align-content: center;
 		min-height: 70vh; /* If content is bigger, frame will be big as possible */
-		padding: 1em;
 		text-align: center;
 		@media (--wall) {
 			padding: 1em calc( ( 100vw - var(--maxContentWidth) ) / 2 );
