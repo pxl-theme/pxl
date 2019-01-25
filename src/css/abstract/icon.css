@@ -1,0 +1,198 @@
+/*
+  Icon Font: pxl-icon
+*/
+
+@font-face {
+  font-family: "pxl-icon";
+  src: url("font/pxl-icon.eot");
+  src: url("font/pxl-icon.eot?#iefix") format("embedded-opentype"),
+       url("font/pxl-icon.woff2") format("woff2"),
+       url("font/pxl-icon.woff") format("woff"),
+       url("font/pxl-icon.ttf") format("truetype"),
+       url("font/pxl-icon.svg#pxl-icon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "pxl-icon";
+    src: url("font/pxl-icon.svg#pxl-icon") format("svg");
+  }
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.pi-0w0:before,
+.pi-app-multiple:before,
+.pi-app-open:before,
+.pi-at-symbol:before,
+.pi-bench:before,
+.pi-book:before,
+.pi-coffee-mug:before,
+.pi-comment:before,
+.pi-computer-mouse:before,
+.pi-contact:before,
+.pi-contact-alt:before,
+.pi-contact-alt-with-headset:before,
+.pi-credits:before,
+.pi-crop-tool:before,
+.pi-document:before,
+.pi-document-alt:before,
+.pi-document-landscape:before,
+.pi-document-multiple:before,
+.pi-document-picture:before,
+.pi-document-spreadsheet:before,
+.pi-document-spreadsheet-alt:before,
+.pi-document-text:before,
+.pi-document-with-pen:before,
+.pi-download-zip:before,
+.pi-drawer:before,
+.pi-face-with-vr:before,
+.pi-file-approved:before,
+.pi-file-declined:before,
+.pi-file-multiple:before,
+.pi-file-pending:before,
+.pi-filter:before,
+.pi-folder:before,
+.pi-folder-approved:before,
+.pi-folder-compressed:before,
+.pi-folder-declined:before,
+.pi-folder-multiple:before,
+.pi-globe:before,
+.pi-hashtag:before,
+.pi-hexagon:before,
+.pi-hide-list-left:before,
+.pi-hide-list-right:before,
+.pi-home:before,
+.pi-info-circle:before,
+.pi-iphone-x:before,
+.pi-keylock-locked:before,
+.pi-keylock-unlocked:before,
+.pi-lampbulb:before,
+.pi-laptop-computer:before,
+.pi-layout-horizontal:before,
+.pi-layout-masonry:before,
+.pi-layout-single-column:before,
+.pi-layout-two-column:before,
+.pi-letterbox:before,
+.pi-lifesaver:before,
+.pi-link-add:before,
+.pi-link-external:before,
+.pi-link-remove:before,
+.pi-list:before,
+.pi-magnifier:before,
+.pi-microphone:before,
+.pi-notebook:before,
+.pi-pencil:before,
+.pi-rolling-boxes:before,
+.pi-share:before,
+.pi-sort-by-az:before,
+.pi-sort-by-popularity:before,
+.pi-space-rocket:before,
+.pi-space-rocket-alt:before,
+.pi-stack:before,
+.pi-t-shirt:before,
+.pi-tag:before,
+.pi-the-logo:before,
+.pi-time:before,
+.pi-trash-drop:before,
+.pi-trash-empty:before,
+.pi-tv:before,
+.pi-warning-triangle:before,
+.pi-wasd:before,
+.pi-wtf:before {
+  display: inline-block;
+  font-family: "pxl-icon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.pi-0w0:before { content: "\f100"; }
+.pi-app-multiple:before { content: "\f101"; }
+.pi-app-open:before { content: "\f102"; }
+.pi-at-symbol:before { content: "\f103"; }
+.pi-bench:before { content: "\f104"; }
+.pi-book:before { content: "\f105"; }
+.pi-coffee-mug:before { content: "\f106"; }
+.pi-comment:before { content: "\f107"; }
+.pi-computer-mouse:before { content: "\f108"; }
+.pi-contact:before { content: "\f109"; }
+.pi-contact-alt:before { content: "\f10a"; }
+.pi-contact-alt-with-headset:before { content: "\f10b"; }
+.pi-credits:before { content: "\f10c"; }
+.pi-crop-tool:before { content: "\f10d"; }
+.pi-document:before { content: "\f10e"; }
+.pi-document-alt:before { content: "\f10f"; }
+.pi-document-landscape:before { content: "\f110"; }
+.pi-document-multiple:before { content: "\f111"; }
+.pi-document-picture:before { content: "\f112"; }
+.pi-document-spreadsheet:before { content: "\f113"; }
+.pi-document-spreadsheet-alt:before { content: "\f114"; }
+.pi-document-text:before { content: "\f115"; }
+.pi-document-with-pen:before { content: "\f116"; }
+.pi-download-zip:before { content: "\f117"; }
+.pi-drawer:before { content: "\f118"; }
+.pi-face-with-vr:before { content: "\f119"; }
+.pi-file-approved:before { content: "\f11a"; }
+.pi-file-declined:before { content: "\f11b"; }
+.pi-file-multiple:before { content: "\f11c"; }
+.pi-file-pending:before { content: "\f11d"; }
+.pi-filter:before { content: "\f11e"; }
+.pi-folder:before { content: "\f11f"; }
+.pi-folder-approved:before { content: "\f120"; }
+.pi-folder-compressed:before { content: "\f121"; }
+.pi-folder-declined:before { content: "\f122"; }
+.pi-folder-multiple:before { content: "\f123"; }
+.pi-globe:before { content: "\f124"; }
+.pi-hashtag:before { content: "\f125"; }
+.pi-hexagon:before { content: "\f126"; }
+.pi-hide-list-left:before { content: "\f127"; }
+.pi-hide-list-right:before { content: "\f128"; }
+.pi-home:before { content: "\f129"; }
+.pi-info-circle:before { content: "\f12a"; }
+.pi-iphone-x:before { content: "\f12b"; }
+.pi-keylock-locked:before { content: "\f12c"; }
+.pi-keylock-unlocked:before { content: "\f12d"; }
+.pi-lampbulb:before { content: "\f12e"; }
+.pi-laptop-computer:before { content: "\f12f"; }
+.pi-layout-horizontal:before { content: "\f130"; }
+.pi-layout-masonry:before { content: "\f131"; }
+.pi-layout-single-column:before { content: "\f132"; }
+.pi-layout-two-column:before { content: "\f133"; }
+.pi-letterbox:before { content: "\f134"; }
+.pi-lifesaver:before { content: "\f135"; }
+.pi-link-add:before { content: "\f136"; }
+.pi-link-external:before { content: "\f137"; }
+.pi-link-remove:before { content: "\f138"; }
+.pi-list:before { content: "\f139"; }
+.pi-magnifier:before { content: "\f13a"; }
+.pi-microphone:before { content: "\f13b"; }
+.pi-notebook:before { content: "\f13c"; }
+.pi-pencil:before { content: "\f13d"; }
+.pi-rolling-boxes:before { content: "\f13e"; }
+.pi-share:before { content: "\f13f"; }
+.pi-sort-by-az:before { content: "\f140"; }
+.pi-sort-by-popularity:before { content: "\f141"; }
+.pi-space-rocket:before { content: "\f142"; }
+.pi-space-rocket-alt:before { content: "\f143"; }
+.pi-stack:before { content: "\f144"; }
+.pi-t-shirt:before { content: "\f145"; }
+.pi-tag:before { content: "\f146"; }
+.pi-the-logo:before { content: "\f147"; }
+.pi-time:before { content: "\f148"; }
+.pi-trash-drop:before { content: "\f149"; }
+.pi-trash-empty:before { content: "\f14a"; }
+.pi-tv:before { content: "\f14b"; }
+.pi-warning-triangle:before { content: "\f14c"; }
+.pi-wasd:before { content: "\f14d"; }
+.pi-wtf:before { content: "\f14e"; }

@@ -24,6 +24,7 @@ Tags:*/
 
 @import "abstract/mixin.css";
 @import "abstract/utils.css";
+@import "abstract/icon.css";
 
 @import "vendor/modern-normalize.css";
 
