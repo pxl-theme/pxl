@@ -1,38 +1,38 @@
 :root{
 	/* Day */
 
-	/* --red:     #c82829; */
-	/* --orange:  #f5871f; */
-	/* --yellow:  #eab700; */
-	/* --green:   #718c00; */
-	/* --cyan:    #3e999f; */
-	/* --blue:    #4271ae; */
-	/* --violet:  #8959a8; */
+	--red:     #c82829;
+	--orange:  #f5871f;
+	--yellow:  #eab700;
+	--green:   #718c00;
+	--cyan:    #3e999f;
+	--blue:    #4271ae;
+	--violet:  #8959a8;
 
-	/* --baseColor: #efefef; */
-	/* --textColor: #4d4d4c; */
-	/* --textColorBolder: #282a2e; */
-	/* --backColor: #c5c8c6; */
-	/* --deepColor: #8e908c; */
+	--baseColor: #efefef;
+	--textColor: #4d4d4c;
+	--textColorBolder: #282a2e;
+	--backColor: #c5c8c6;
+	--deepColor: #8e908c;
 
-	/* --accentColor: var(--cyan); */
+	--accentColor: var(--cyan);
 
 	/* Dark */
 
-	--red:     #cc6666;
-	--orange:  #de935f;
-	--yellow:  #f0c674;
-	--green:   #b5bd68;
-	--cyan:    #8abeb7;
-	--blue:    #81a2be;
-	--violet:  #b294bb;
+	/* --red:     #cc6666; */
+	/* --orange:  #de935f; */
+	/* --yellow:  #f0c674; */
+	/* --green:   #b5bd68; */
+	/* --cyan:    #8abeb7; */
+	/* --blue:    #81a2be; */
+	/* --violet:  #b294bb; */
 
-	--baseColor: #282a2e;
-	--textColor: #969896;
-	--textColorBolder: #c5c8c6;
-	--backColor: #1d1f21;
-	--deepColor: #000;
-	--accentColor: var(--cyan);
+	/* --baseColor: #282a2e; */
+	/* --textColor: #969896; */
+	/* --textColorBolder: #c5c8c6; */
+	/* --backColor: #1d1f21; */
+	/* --deepColor: #000; */
+	/* --accentColor: var(--cyan); */
 
 	/*------*/
 

@@ -17,16 +17,16 @@
 	--base3:#fdf6e3;
 
 	/* Day */
-	/* --baseColor: var(--base2); */
-	/* --textColor: var(--base01); */
-	/* --textColorBolder: var(--base02); */
-	/* --backColor: color-mod(var(--baseColor) l(-10%)); */
+	--baseColor: var(--base2);
+	--textColor: var(--base01);
+	--textColorBolder: var(--base02);
+	--backColor: color-mod(var(--baseColor) l(-10%));
 
 	/* Dark */
-	--baseColor: var(--base03);
-	--textColor: var(--base00);
-	--textColorBolder: var(--base0);
-	--backColor: color-mod(var(--baseColor) l(-3%));
+	/* --baseColor: var(--base03); */
+	/* --textColor: var(--base00); */
+	/* --textColorBolder: var(--base0); */
+	/* --backColor: color-mod(var(--baseColor) l(-3%)); */
 
 	/*---------*/
 

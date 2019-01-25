@@ -1,36 +1,36 @@
 :root{
 	/* Day */
 
-	/* --red:     #E45649; */
-	/* --orange:  #986801; */
-	/* --yellow:  #C18401; */
-	/* --green:   #50A14F; */
-	/* --cyan:    #0184BC; */
-	/* --blue:    #4078F2; */
-	/* --violet:  #A626A4; */
+	--red:     #E45649;
+	--orange:  #986801;
+	--yellow:  #C18401;
+	--green:   #50A14F;
+	--cyan:    #0184BC;
+	--blue:    #4078F2;
+	--violet:  #A626A4;
 
-	/* --baseColor: #FAFAFA; */
-	/* --textColor: #696C77; */
-	/* --textColorBolder: #383A42; */
-	/* --backColor: #A0A1A7; */
-	/* --accentColor: #526EFF; */
+	--baseColor: #FAFAFA;
+	--textColor: #696C77;
+	--textColorBolder: #383A42;
+	--backColor: #A0A1A7;
+	--accentColor: #526EFF;
 
 	/* Dark */
 
-	--red:     #E06C75;
-	--orange:  #D19A66;
-	--yellow:  #E5C07B;
-	--green:   #98C379;
-	--cyan:    #56B6C2;
-	--blue:    #61AFEF;
-	--violet:  #C678DD;
+	/* --red:     #E06C75; */
+	/* --orange:  #D19A66; */
+	/* --yellow:  #E5C07B; */
+	/* --green:   #98C379; */
+	/* --cyan:    #56B6C2; */
+	/* --blue:    #61AFEF; */
+	/* --violet:  #C678DD; */
 
-	--baseColor: #282C34;
-	--textColor: #828997;
-	--textColorBolder: #ABB2BF;
-	--backColor: color-mod(var(--baseColor) l(-3%));
-	--deepColor: color-mod( var(--baseColor) l(-60%));
-	--accentColor: #528BFF;
+	/* --baseColor: #282C34; */
+	/* --textColor: #828997; */
+	/* --textColorBolder: #ABB2BF; */
+	/* --backColor: color-mod(var(--baseColor) l(-3%)); */
+	/* --deepColor: color-mod( var(--baseColor) l(-60%)); */
+	/* --accentColor: #528BFF; */
 
 
 	--foreColor: color-mod( var(--baseColor) l(+3%));
