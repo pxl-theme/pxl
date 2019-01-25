@@ -217,10 +217,10 @@ ul.c-nav, .c-nav ul {
 			border-top: .2em solid;
 		}
 	}
-	& .c-nav__item {
+	.c-nav__item {
 		&.-hasChildren {
 			position: relative;
-			& .c-nav__item {
+			.c-nav__item {
 				float: none;
 				& > a {
 					width: 100%
@@ -337,24 +337,20 @@ ul.c-nav, .c-nav ul {
 			}
 		}
 
-		& .c-nav__item {
+		.c-nav__item {
 			float: left;
 		}
-		& > .c-nav__item {
-			/* 1st depth */
-			&.-hasChildren > a[href="#"] {
+		> .c-nav__item {
+			&.-hasChildren > a[href="#"] { /* 1st depth */
 				cursor: s-resize;
 			}
-			/* Submenu opens below */
-			&:hover > .c-nav__submenu, &:focus > .c-nav__submenu{
-				top: 100%;
-				left: 0;
-			}
-			/* First depth */
-
-		/*			 The arrow indicator		 */
-		/* Affects first depth only */
-			&.-hasChildren:after {
+			&:hover, &:focus {
+				> .c-nav__submenu { /* Submenu opens below */
+					top: 100%;
+					left: 0;
+				}
+			} /* The arrow indicator */
+			&.-hasChildren:after { /* Affects first depth only */
 				top: auto;
 				right: auto;
 				left: 0;
@@ -495,15 +491,3 @@ ul.c-nav, .c-nav ul {
 		}
 	}
 }
-
-/* .noiseWrapper { */
-/* 	position: absolute; */
-/* 	width: 100%; */
-/* 	min-height: 100%; */
-/* 	display: block; */
-/* 	background-color: blue; */
-/* 	top: 0; */
-/* 	left: 0; */
-/* 	z-index: 5555; */
-/* } */
-
