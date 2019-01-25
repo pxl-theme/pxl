@@ -121,7 +121,8 @@ fieldset {
 blockquote {
 	margin: 1em 0;
 	padding: 0 0 0 1em;
-	border-left: 2px solid currentColor;
+	/* border-left: 2px solid currentColor; */
+	border-left: 1px solid currentColor;
 }
 a {
 	touch-action: manipulation;
@@ -332,6 +333,36 @@ abbr[title],acronym[title]{
 
 pre {
 	overflow: auto;
+}
+
+/* opinionated */
+code {
+	background-color: var(--textColor);
+	color: var(--baseColor);
+	font-size:.75em;
+	padding:.4em;
+	border-radius:.4em;
+}
+
+table {
+	border-collapse: collapse;
+	td, th{
+		/* border: 1px solid currentColor; */
+		border: 1px solid var(--textColorTranslucent);
+		padding: .25em;
+	}
+
+	&.--noBorder {
+		td, th {
+			border: none;
+			padding: initial;
+		}
+	}
+	&.--zebraRows {
+		tbody tr:nth-child(odd) {
+			background-color: var(--textColorTransparent) ;
+		}
+	}
 }
 
 ._s-improvedHeadings {
