@@ -107,9 +107,9 @@ input:not([type=file]),textarea,button,select {
   outline: none !important;
 }
 
-/* *:focus{ */
-/* 	outline: none; */
-/* } */
+*:focus{
+	outline: none;
+}
 /* * { */
 /* 	-webkit-overflow-scrolling: touch */
 /* } */
