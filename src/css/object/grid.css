@@ -2,7 +2,6 @@
 /* Source: https://github.com/csswizardry/csswizardry-grids/blob/master/csswizardry-grids.scss */
 
 .s-cmsContent.o-grid{
-	padding-top: 1em;
 	padding-bottom: 1em;
 	max-width: 72em;
 }
@@ -39,9 +38,6 @@
 	}
 	hr {
 		width: 100%
-	}
-	& .c-card {
-		margin-bottom: 1em
 	}
 	.o-grid__item {
 		display: inline-block;

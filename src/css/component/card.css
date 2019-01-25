@@ -15,11 +15,13 @@
 	/* } */
 	/* background-color: var(--baseColor); */
 	padding: 1em 1em;
+	margin-bottom: 1em;
 	@media (--lap) {
 		padding: 1em 2em;
 	}
 	/*Parent classes*/
 	.o-masonry & {
+		margin: 0;
 		@media (--lap) {
 			padding: 1em;
 		}
@@ -59,61 +61,8 @@
 		margin-top: 0
 	}
 }
-/* *:not(.o-masonry) > * > .c-card__header.-viewFeaturedImage { */
-/* /1* ^^ That's really a hard code but nice looking edit *1/ */
-/* 	@media (--palm) { */
-/* 		padding-top: 56.25%; */
-/* 	} */
-/* 	@media (--lap) { */
-/* 		padding-top: 42.85%; */
-/* 	} */
-/* } */
-/* .c-card__header.-viewFeaturedImage { */
-/* 	position: relative; */
-/* 	width: calc( 2em + 100% ); */
-/* 	top: -1em; */
-/* 	left: -1em; */
-/* 	padding-top: 100%; */
-/* 	overflow: hidden; */
-/* 	margin-bottom: 0; */
-/* 	*:not(.o-masonry) > * > & { */
-/* 		@media (--lap) { */
-/* 			width: calc( 4em + 100% ); */
-/* 			left: -2em; */
-/* 		} */
-/* 	} */
-
-/* 	/1* Make sure box-sizing set as border-box *1/ */
-/* 	> * { */
-/* 		position: absolute; */
-/* 		top: 0; */
-/* 		left: 0; */
-/* 		width: 100%; */
-/* 		/1* z-index: 1; *1/ */
-/* 	} */
-/* 	&:before { */
-/* 		position: relative; */
-/* 		content: ''; */
-/* 		display: block; */
-/* 	} */
-/* 	.c-card__meta, .c-card__title { */
-/* 		margin: 0 1em; */
-/* 		padding-right: 2em; */
-/* 		text-shadow: #020202 0px 0px 1px, #020202 0px 0px 1px, #020202 0px 0px 1px, */
-/* 					 #020202 0px 0px 1px, #020202 0px 0px 1px, var(--baseColor) 0px 0px 1px; */
-/* 		/1* text-shadow: 0 0.2em .4em #020202; *1/ */
-/* 		color: #FDFDFD; */
-/* 	} */
-/* 	.c-card__meta { */
-/* 		top: 1em; */
-/* 	} */
-/* 	.c-card__title { */
-/* 		top: 1em; */
-/* 	} */
-
-/* } */
-/* ^^ That's really a hard code but nice looking edit */
 *:not(.o-masonry) > .o-masonry__item > .c-card > .c-card__header.-viewWithMedia {
+/* ^^ That's really a hard code but nice looking edit */
 	padding-top: 40%;
 	@media (--palm) {
 	/* 16:9 Space */
@@ -166,4 +115,3 @@
 .c-card__footer {
 	margin-top: 2em;
 }
-
