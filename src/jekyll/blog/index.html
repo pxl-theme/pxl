@@ -1,0 +1,42 @@
+---
+layout: default
+title: Blog
+---
+
+{% if paginator.page %}
+  {% assign offset = paginator.page | minus:1 | times:paginator.per_page %}
+  {% assign currentPage = paginator.page %}
+{% else %}
+  {% assign offset = 0 %}
+  {% assign currentPage = 1 %}
+{% endif %}
+
+<main id="mainContent" class="s-cmsContent u-clearFix o-grid --alignCenter" aria-label="Content" data-page="{{ currentPage }}" data-totalPages="{{ paginator.total_pages }}">
+
+{% if site.posts.size > 0 %}
+
+	{% for post in site.posts limit:site.paginate offset:offset %}
+	<div class="o-grid__item -col12 -col2-3@palm o-masonry__item">
+		<article class="c-card --typePost">
+			<header class="c-header c-card__header">
+				{% assign date_format = site.minima.date_format | default: "%-d %b %Y" %}
+				<h6 class="c-card__meta">{{ post.date | date: date_format }}</h6>
+				<h2 class="c-card__title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a></h2>
+			</header>
+			{% if post.content contains '<!--more-->' %}
+				{{ post.content | split:'<!--more-->' | first }}
+			{% else %}
+				{{ post.content | truncatehtml: 280, "…" }}
+			{% endif %}
+			<a href="{{ post.url }}">Devamı…</a>
+		</article>
+	</div>
+	{% endfor %}
+{% endif %}
+</main>
+
+{% assign postCount = site.posts | size %}
+{% assign postsCovered = site.paginate | plus:offset %}
+{% if postsCovered < postCount %}
+<button class="_loadMore"></button>
+{% endif %}
