@@ -1,8 +1,13 @@
+@import url('https://rsms.me/inter/inter-ui.css');
+@supports (font-variation-settings: normal) {
+  :root { --mainFont: 'Inter UI var alt'; }
+}
 :root {
 	/* Font family */
-	--systemFont:  -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica Neue, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	--systemFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica Neue, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	--customFonts: var(--mainFont);
 	--mainFont: "Inter UI"; /* default: "none" */
+	/* --mainFont: "none"; /1* default: "none" *1/ */
 
 	--chosenFonts: var(--customFonts), var(--systemFont);
 
@@ -118,4 +123,12 @@
 		background-color: brown;
 		color: #fff;
 	}
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
