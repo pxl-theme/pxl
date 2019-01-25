@@ -1,10 +1,11 @@
+<input id="c-toggleNav" type="checkbox">
 {% assign page_paths = site.header_pages | default: default_paths %}
 
 {% assign navurl = page.url | remove: 'index.html' %}
 
 {% if page_paths %}
 <ul id="mainNav" class="c-nav -viewTree -collapsible">
-	<label class="c-toggleTrigger -viewMobile" for="c-toggleNav"><a>Menu</a></label>
+	<label class="c-toggleTrigger" for="c-toggleNav" onclick><a></a></label>
 	{% for path in page_paths %}
 		{% assign my_page = site.pages | where: "path", path | first %}
 		{% if my_page.title %}

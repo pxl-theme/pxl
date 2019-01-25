@@ -51,29 +51,18 @@ ul.c-nav, .c-nav ul {
 		border:none !important;
 		text-align:center;
 		display:block;
-		width:90%;
-		margin: auto;
-		padding:.5em 0 !important;
-		/* max-width:10em; */
-		/* margin: auto; */
-		@media (--desk){
-			/* Warning: Parent must display flex */
-			order:999;
-			max-width:8em;
-			margin: initial;
-			padding:initial;
+		&.--viewWithIcon {
+			font-family: 'pxl-icon', var(--mainFont);
 		}
-		/* &:active, &:focus{ */
-		/* 	width:10em; */
-		/* } */
 	}
+
 	hr {
 		color: var(--textColorTranslucent);
 	}
 }
 .c-nav__item {
 	position: relative;
-	& a {
+	a {
 		/* --borderWidth: 1px; */
 		--borderWidth: 0;
 		/* padding: calc(.25em - var(--borderWidth)) calc(.8em - var(--borderWidth)); */
@@ -418,7 +407,13 @@ ul.c-nav, .c-nav ul {
 			}
 		}
 		& ~ .c-nav.-collapsible > .c-toggleTrigger:after {
-			content: "Close";
+			content: "close";
+		}
+		& ~ .c-nav.-collapsible > .c-toggleTrigger.--viewWithIcon:after {
+			content: "\f127\00a0 CLOSE";
+		}
+		& ~ .c-nav.-collapsible > .c-toggleTrigger.--viewIconOnly:after {
+			content: "\f127";
 		}
 	}
 }
@@ -426,18 +421,44 @@ ul.c-nav, .c-nav ul {
 	display: none;
 	cursor: pointer;
 	text-align: center;
-	font-size: .75em;
 	letter-spacing: .2rem;
 	font-weight: 900;
 	height: 2rem;
-	text-transform: uppercase;
+	margin-bottom: 1em;
+	/* font-size: .75em; */
+	/* line-height: 2; */
+	text-transform: lowercase;
+	font-variant: small-caps;
 	background-color: var(--baseColor);
-	line-height: 2;
 	padding-left: .5rem;
 	padding-right: .5rem;
 
+	&.--viewIconOnly, &.--viewWithIcon {
+		font-family: 'pxl-icon', var(--mainFont);
+		text-transform: unset;
+		font-variant: unset;
+	}
+	&.--viewWithIcon {
+		font-size: .75em;
+		line-height: 2;
+		text-transform: unset;
+		font-variant: unset;
+	}
+	&.--viewIconOnly {
+		padding-left: 1rem;
+		padding-right: 1rem;
+		font-weight: 400;
+		font-size: 1.5em;
+		line-height: 1;
+	}
 	&:after{
-		content: "Menu";
+		content: "menu";
+	}
+	&.--viewIconOnly:after{
+		content: "\f139";
+	}
+	&.--viewWithIcon:after{
+		content: "\f139\00a0MENU";
 	}
 	&:hover, &:focus {
 		background-color: var(--textColor);
