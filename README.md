@@ -10,7 +10,7 @@
 - Mobile-first responsive layout.
 - (Almost) every element has multiple designs to serve content in multiple ways.
 - Scalable and maintainable codebase written with several naming conventions and methodologies like OOCSS, BEVM in mind.
-	- Opinionated styles as an option.
+	- Opinionated styles as options.
 - No CSS frameworks used.
 	- Only homemade components.
 - Improved legibility with vertical rhythm and modular scale by default.
@@ -24,9 +24,12 @@
 
 ## Build
 
-**Dependencies:** git, npm, [gulp](https://gulpjs.com/docs/en/getting-started/quick-start)
+**Note:** Instructions tested on Linux and macOS. I haven't tested in Windows yet.
+
+**Dependencies:** [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [npm](https://www.npmjs.com/get-npm), [gulp](https://gulpjs.com/docs/en/getting-started/quick-start)
 
 Open a terminal emulator (/Applications/Terminal.app in macOS) and execute commands below.
+
 
 ```sh
 # Clone the repository to your local machine
@@ -36,11 +39,24 @@ git clone https://github.com/egeesin/pxl
 cd pxl
 
 # Install Gulp plugins to local directory.
-npm install -D
+npm install
 
 # Generate
 gulp build
 ```
+
+### Export as Jekyll theme
+
+**Warning:** Jekyll support isn't quite ready yet. Highly recommended to test on clean local server until it's ready for general use.
+
+**Dependencies:** jekyll-paginate, jekyll-menus, nokogiri, iconv
+
+```sh
+# After completion of build, generate Jekyll theme and move to your local. 
+gulp jekyll
+mv jekyll-build/* /path/to/local/jekyll/server/
+```
+
 
 
 ## Wiki
@@ -128,21 +144,20 @@ Unlike most other works breakpoints are not grouped by device/model names but [h
 ## Known Issues
 
 - Long sub-menus are unreachable in short screens.
-- Some design inconsistencies in MS Edge.
-- Jekyll Gulp task doesn't working.
+- ``o-masonry`` and ``o-nav --collapsible`` doesn't quite work in MS Edge.
 
 ## Roadmap
 
-- [] Improving documentation, grammar etc.
-- [] Contribution info
-- [] Jekyll & WordPress theme support
-- [] Dynamic dark theme script
-- [] Custom icon set
-- [] [Pywal](https://github.com/dylanaraps/pywal) support
-- [] Legacy support
+- [x] Custom icon set
+- [ ] Improving documentation, grammar etc.
+- [ ] Build info for Windows users
+- [ ] Full Jekyll and WordPress theme support
+- [ ] Dynamic dark theme script
+- [ ] [Pywal](https://github.com/dylanaraps/pywal) support
+- [ ] Legacy support
 
 ## Contribution
 Issues and PRs are welcomed!
 
 ## License
-Theme is under GNU GPL 2.0 license.
+Theme is under [GNU GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html) license.
