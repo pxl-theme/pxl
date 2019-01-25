@@ -319,3 +319,54 @@ a:active ._pxlTheLogo, ._pxlTheLogo:active {
 	stroke-width: 1.444;
 }
 
+._loadMore {
+	border-radius: 50%;
+	width:3em;
+	height:3em;
+	display: block;
+	margin: auto;
+	margin-bottom: 1em;
+	padding: 1px;
+	position: relative;
+	&::after {
+		position: absolute;
+		top:0;
+		left:0;
+		width:100%;
+		text-align: center;
+		content: "⋯";
+		/* font-size: 2em; */
+		font-weight: 900;
+		line-height:3em;
+	}
+	/* &.loading { */
+	/* 	&::after { */
+	/* 		content: ""; */
+	/* 	} */
+	/* } */
+	._spinner {
+		position: absolute;
+		left:.50em;
+		top:.50em;
+	}
+}
+._spinner {
+	border-radius: 50%;
+	width: 2em;
+	height: 2em;
+	border: .25em solid transparent;
+	border-top-color: currentColor;
+	animation: spin 1s infinite linear;
+	margin: auto;
+}
+/* .noiseWrapper { */
+/* 	position: absolute; */
+/* 	width: 100%; */
+/* 	min-height: 100%; */
+/* 	display: block; */
+/* 	background-color: blue; */
+/* 	top: 0; */
+/* 	left: 0; */
+/* 	z-index: 5555; */
+/* } */
+

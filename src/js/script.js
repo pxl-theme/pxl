@@ -109,4 +109,27 @@ function getStyleValue(element, style) {
 //    resizeGridItem(item);
 // }
 
+//------ Pagination
+$("._loadMore").click(loadMorePosts);
+function loadMorePosts() {
+	var _this = this;
+	var $blogContainer = $("#mainContent");
+	var nextPage = parseInt($blogContainer.attr("data-page")) + 1;
+	var totalPages = parseInt($blogContainer.attr("data-totalPages"));
+	// $(this).addClass("loading");
+	$(this).append("<div class='_spinner'></div>");
+
+	$.get("/blog/page" + nextPage, function(data) {
+		var htmlData = $.parseHTML(data);
+		var $articles = $(htmlData).find("div.o-grid__item.o-masonry__item");
+		$blogContainer.attr("data-page", nextPage).append($articles);
+		if ($blogContainer.attr("data-totalPages") == nextPage) {
+			$("._loadMore").remove();
+		}
+		// resize();
+		setTimeout(resize, 500);
+		// $(_this).removeClass("loading");
+		$("._spinner").remove();
+	});
+}
 
