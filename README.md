@@ -3,7 +3,7 @@
 
 <img class="center" src="screenshot.png" alt="As you can see, Solarized theme has 2 variants: day and night." />
 
-[**Demo**](https://egeesin.com/pxl-preview)
+[**Demo**](https://pxl.egeesin.com)
 
 ## Features
 
