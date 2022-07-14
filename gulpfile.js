@@ -1,465 +1,674 @@
-/* ----------- Dependencies ------------*/
+/***** Modules
+*/
+/**** Essentials
+*/
+import gulp                from 'gulp';
+const {src, dest, parallel, series, task, watch} = gulp;
+import pump                from "pump"
+import del                 from "del"
+import rename              from "gulp-rename"
+import stringReplace       from "gulp-string-replace"
+import sourcemaps          from "gulp-sourcemaps"
+import filter              from "gulp-filter"
+import zip                 from "gulp-zip"
+import browsersyncSrc      from "browser-sync"
+import path                from "path"
+const browsersync = browsersyncSrc.create();
 
-const gulp = require("gulp"),
-	{ src, dest, parallel, series, task } = require("gulp"),
-	pump          = require("pump"),
-	del           = require("del"),
-	rename        = require("gulp-rename"),
-	stringReplace = require("gulp-string-replace"),
-	sourcemaps    = require("gulp-sourcemaps"),
-	filter        = require("gulp-filter"),
-	zip           = require("gulp-zip"),
-	browsersync   = require("browser-sync").create(),
-	htmlmin       = require("gulp-htmlmin"),
-	w3cjs         = require("gulp-w3cjs"),
-	stylelint     = require("gulp-stylelint"),
-	imagemin      = require("gulp-imagemin"),
-	inlinesvg     = require("postcss-inline-svg"),
-	svgSprite     = require("gulp-svg-sprite"),
-	concat        = require("gulp-concat"),
-	uglifyjs      = require("uglify-es"),
-	composer      = require("gulp-uglify/composer"),
-	minify        = composer(uglifyjs, console),
-	eslint        = require("gulp-eslint"),
-	purgeCSS      = require("gulp-purgecss"),
+/**** HTML
+*/
+import htmlmin             from "gulp-htmlmin"
+import {htmlValidator}     from "gulp-w3c-html-validator"
 
-	pngcrush      = require("imagemin-pngcrush"),
-	postcss       = require("gulp-postcss"),
-	autoprefixer  = require("autoprefixer"),
-	sorter        = require("css-declaration-sorter"),
-	nano          = require("cssnano"),
+/** PostHTML Plugins
+*/
+import posthtml            from "gulp-posthtml"
 
-	colorMod      = require("postcss-color-mod-function"),
-	customProp    = require("postcss-custom-properties"),
-	mixins        = require("postcss-mixins"),
-	calc          = require("postcss-calc"),
-	util          = require("postcss-utilities"),
-	nested        = require("postcss-nested"),
-	willchange    = require("postcss-will-change"),
-	focus         = require("postcss-focus"),
-	custommedia   = require("postcss-custom-media"),
-	atImport      = require("postcss-import"),
-	urlrev        = require("postcss-urlrev"),
-	extend        = require("postcss-extend"),
+import posthtmlInclude     from "posthtml-include"
+import posthtmlLorem       from "posthtml-lorem"
+import posthtmlMd          from "posthtml-md"
+import posthtmlAltAlways   from "posthtml-alt-always"
+// import posthtmlExpressions from "posthtml-expressions"
 
-	cssPseudos    = require("postcss-pseudoelements"),
-	fontVariant   = require("postcss-font-variant"),
+/**** CSS
+*/
+import stylelint           from "gulp-stylelint"
+import sorter              from "css-declaration-sorter"
+import nano                from "cssnano"
+import purgeCSS            from "gulp-purgecss"
+import w3cCSS              from "gulp-w3c-css"
+
+import rcs                 from "gulp-rcs"
+
+/**** JavaScript
+*/
+import concat              from "gulp-concat"
+import uglifyjs            from "uglify-es"
+import composer            from "gulp-uglify/composer.js"
+const uglifyMinify         = composer(uglifyjs, console);
+// import eslint              from "gulp-eslint"
+import eslint              from "gulp-eslint7"
+
+/** PostCSS Plugins
+*/
+import postcss             from "gulp-postcss"
+import autoprefixer        from "autoprefixer"
+// import colorMod            from "postcss-color-mod-function"
+import mixins              from "postcss-mixins"
+// import calc                from "postcss-calc" // To reduce calc values
+// import presetenv           from "postcss-preset-env"
+import nested              from "postcss-nested"
+// import nesting              from "postcss-nesting"
+import extractMediaQuery   from "postcss-extract-media-query"
+import willChange          from "postcss-will-change"
+// import focus               from "postcss-focus"
+import customMedia         from "postcss-custom-media"
+import atImport            from "postcss-import"
+import atImportGlob        from "postcss-import-ext-glob"
+// import urlrev              from "postcss-urlrev"
+import extend              from "postcss-extend"
+import anylinkPseudo       from "postcss-pseudo-class-any-link"
+import overflowWrap        from "postcss-replace-overflow-wrap"
+import cssPseudos          from "postcss-pseudoelements"
+import fontVariant         from "postcss-font-variant"
+import inlineSVG           from "postcss-inline-svg"
+import brandColors         from "postcss-brand-colors"
+
+// import fontgrabbermodule   from "postcss-font-grabber"
+// const  {fontGrabber} = fontgrabbermodule;
+
+// import fontMagician        from "postcss-font-magician"
+
+// import colorblind          from "postcss-colorblind"
 
 
-// Not really necessary stuff, but doesn't hurts
-	anylinkPseudo = require("postcss-pseudo-class-any-link"),
-	overflowWrap  = require("postcss-replace-overflow-wrap"),
+/**** Images
+*/
+/** imagemin Plugins
+ * https://www.npmjs.com/browse/keyword/imageminplugin
+*/
+import imagemin, {gifsicle, svgo} from "gulp-imagemin"
+// import imagemin, {gifsicle,mozjpeg,optipng,svgo} from "gulp-imagemin"
+// import webp          from "gulp-webp"
+import webp                from "imagemin-webp"
+import gif2webp            from "imagemin-gif2webp"
+import svgstore            from "gulp-svgstore"
+// import svgmin              from "gulp-svgmin"
+import cheerio             from "gulp-cheerio"
 
-// PostHTML
-	posthtml      = require("gulp-posthtml");
+/***** Paths & Variables
+*/
 
-// Wishlist
-//
-// postcss-css-mix
-// postcss-aspect-ratio
-// postcss-currency
-// postcss-round-subpixels (may have a problem with hairline border)
-// postcss-inline-comments
-// postcss-brand-colors
-//
-
-/*-----Paths-&-Variables----*/
-
-var path = {
-	src: "src",
-	html: "src/html",
-	css: "src/css",
-	js: "src/js",
-	img: "src/img",
-	icon: "src/icon",
-	font: "src/font",
-	jekyll: "src/jekyll"
+/**** Directory Names and Paths
+*/
+// All files on-going production, where things get dirty.
+const srcDir = "src";
+const srcPath = {
+	html:     srcDir+"/html",
+	css:      srcDir+"/css",
+	js:       srcDir+"/js",
+	img:      srcDir+"/img",
+	icon:     srcDir+"/icon/slices",
+	font:     srcDir+"/font",
+	eleventy: srcDir+"/11ty"
+	// icon:     srcDir+"/icon",
 };
-var outputDir = "dist";
+const watched = {
+	html: srcPath.html + "/**/*.html",
+	// html: srcPath.html + "/index.html",
 
-var cssOutputOrig = [outputDir + "/*.css", "!"+outputDir+"/*.min.css"];
-var htmlOutputOrig = [outputDir + "/*.html", "!"+outputDir+"/*.min.html"];
-// var htmlOutputOrig = [HTMLoutputDir + "**/*.html"];
-// var jsOutputOrig = [outputDir + "/*.js", "!"+outputDir+"/*.min.js"];
+	css: srcPath.css + "/a.css",
+	cssAll: srcPath.css + "/**/*.css",
+	// css: [srcPath.css + "/style.css", srcPath.css + "/icon.css"],
+	// css: srcPath.css + "/**/*.css",
 
-var watched = {
-	// css: path.css + "/**/*.css",
-	css: path.css + "/style.css",
+	jsMain: srcPath.js + "/**/*.js",
+	// jsMain: [srcPath.js + "/**/*.js", "!" + srcPath.js + "/vendor/*.js" ],
 
-	// html: path.html + "/index.html",
-	// html: HTMLoutputDir + "/index.html",
-	html: path.html + "/**/*.html",
-	// img: [path.img + "/**/*", "!" + path.img + "/icon/*"], except icon material
-	// js: path.js + "/**/*.js",
-	// js: [path.js + "/**/*.js", "!node_modules/**", "!feather.js"],
-	// js = {vendor: path.js + "/vendor/*.js", main: path.js + "/main.js"},
-	jsVendor: path.js + "/vendor/*.js",
-	jsMain: [path.js + "/**/*.js", "!" + path.js + "/vendor/*.js" ],
+	img1: srcPath.img + "/**/*.{jpg,png,tif,webp}", // Image extensions to convert to WebP
+	img2: srcPath.img + "/**/*.{svg,gif}", // To optimize GIFs and SVGs
+	// img: [srcPath.img + "/**/*", "!" + srcPath.img + "/icon/*"], except icon material
 
-	img: path.img + "/**/*",
+	icon: srcPath.icon + "/**/*.svg", // for sprites
 
-	icon: path.icon + "/**/*.svg",
-	// for making icon sprite
+	font: srcPath.font + "/**/*.woff2",
+	// font: srcPath.font + "/**/*.{woff2,ttf,svg}",
 
-	font: [path.font + "/**/*.woff2", path.font + "/**/*.ttf"],
-	
-	all: path.src + "/**/*.*",
-	jekyll: path.jekyll + "/**/*"
+	all: srcPath.src + "/**/*.*",
+	eleventy: srcPath.eleventy + "/**/*"
 };
-// var renameJSFunction = function (pathjs) {
-// 	pathjs.extname = ".min.js";
-// 	return pathjs;
+
+// All text-based files prepared for distribution, unminified but processed.
+const predistDir = "pre-dist";
+const predist = {
+	html: predistDir + "/**/*.html",
+	css: predistDir + "/*.css",
+	js: predistDir + "/**/*.js"
+}
+
+// Ready-to-export distribution files.
+const distDir = "dist";
+
+// Third party JavaScript libraries, dependencies.
+const jsVendors = [
+	// Warning: jQuery must be on the top!!!
+	"node_modules/jquery/dist/jquery.min.js",
+	"node_modules/enquire.js/dist/enquire.min.js",
+	"node_modules/colcade/colcade.js",
+	//TODO: Need to minimize colcade.js in the mergeVendor task.
+	"node_modules/lazysizes/lazysizes.min.js",
+	"node_modules/no-darkreader/nodarkreader.min.js"
+];
+// const jsVendor: srcPath.js + "/vendor/*.js";
+
+// var jsOutputOrig = [distDir + "/*.js", "!"+distDir+"/*.min.js"];
+
+
+/**** Renaming Functions
+*/
+// const renameHTMLFunction = (a)=> {
+// 	a.extname = ".min.html";
+// 	return a;
 // };
 
-var renameCSSFunction = function (pathcss) {
-	pathcss.extname = ".min.css";
-	return pathcss;
+const renameCSSFunction = (a)=> {
+// example.css -> example.m.css
+	a.extname = ".m.css";
+	return a;
 };
-// var renameHTMLFunction = function (pathhtml) {
-// 	pathhtml.extname = ".min.html";
-// 	return pathhtml;
-// };
+const renameJSFunction = (a)=> {
+// example.js -> example.m.js
+	a.extname = ".m.js";
+	return a;
+};
 
+/***** General Tasks
+*/
 
-/*-----Tasks----------------*/
+/** BrowserSync
+*/
+// General config for BrowserSync
+function broSync() {
+	browsersync.init({
+		open: false,
+		server: {
+			baseDir: distDir
+		},
+		port: 3000
+	});
+}
+// Reload task for BrowserSync
+function broSyncReload(cb) {
+	browsersync.reload();
+	cb();
+}
+/**** HTML Tasks
+*/
+function texts() {
+// Process PostHTML plugins to all HTML pages
+	return src(watched.html)
+		.pipe(posthtml([
+			posthtmlInclude({ root: srcPath.html }),
+			posthtmlLorem(),
+			posthtmlMd(),
+			posthtmlAltAlways()
+			// posthtmlExpressions({ locals: { theMessage: "This is a message from gulpfile.js" }}),
+		]))
+		.pipe(dest(predistDir));
+}
+function clearHTMLIncludes() {
+// Clear all HTML includes just in case to get rid of abandoned/old pages
+	return del([predistDir + "/includes", predistDir + "/layouts"]);
+}
+function validateHTML() {
+// Validate HTML syntax by the W3C standarts
+	return src(predist.html)
+		.pipe(htmlValidator.analyzer())
+		.pipe(htmlValidator.reporter());
+}
+function minifyHTML() {
+// Clear whitespaces and linebreaks of HTML files
+	// return src(watched.html)
+	return src(predist.html)
+		// .pipe(rename(renameHTMLFunction))
+		.pipe(htmlmin({
+			collapseWhitespace: true,
+			minifyCSS: true,
+			minifyJS: true,
+			minifyURLs: true,
+			removeComments: true,
+			removeOptionalTags: true,
+			removeRedundantAttributes: true,
+			// removeEmptyElements: true,
+			removeStyleLinkTypeAttributes: true,
+			removeScriptTypeAttributes: true,
+			useShortDoctype: true
+		}))
+		.pipe(dest(distDir));
+}
 
-/*--CSS Tasks--*/
+/**** CSS Tasks
+*/
 function styles () {
+// Process all PostCSS plugins in production CSS files
 	let processors = [
+		atImportGlob({sort: 'asc'}),
 		atImport({ from: watched.css }),
-		willchange,
+		willChange,
 		autoprefixer,
 		mixins,
-		customProp({ strict: false, preserve: true }),
-		calc({mediaQueries: true,selectors: true}),
+		// calc({mediaQueries: true,selectors: true,precision: 10}),
+		// presetenv
 		nested,
-		custommedia,
-		colorMod,
-		focus,
+		// nesting,
+		customMedia,
+		// colorMod,
+		// focus,
 		extend,
-		urlrev({relativePath: "src/"}),
-		util,
-		inlinesvg,
-
+		// urlrev({relativePath: "src/"}),
+		brandColors,
+		inlineSVG,
 		cssPseudos,
 		fontVariant,
 		anylinkPseudo,
+		w3cCSS,
+
+		// fontGrabber({
+		// 	cssDest: predistDir,
+		// 	fontDest: watched.font
+		// }),
+
+		// fontMagician({
+		// 	formats: 'woff2',
+		// 	display: 'swap',
+		// 	hosted: [srcPath.font]
+		// }),
+
+		// colorblind({method:'tritanopia'}),
 		overflowWrap({method: "copy"})
 	];
 	return src(watched.css)
 		.pipe(postcss(processors))
-		.pipe(dest(outputDir));
+		.pipe(dest(predistDir));
 }
-
-
 function lintCSS(){
-	return src(cssOutputOrig)
+// Check main CSS files for syntax errors or warnings.
+	return src(predist.css)
 		.pipe(stylelint({
 			failAfterError: true,
-			reportOutputDir: "reports/stylelint",
-			reporters: [
-				{formatter: "verbose", console: true},
-				{formatter: "json", save: "report.json"}
-			],
+			// reportOutputDir: "reports/stylelint",
+			// reporters: [
+			// 	{formatter: "verbose", console: true},
+			// 	{formatter: "json", save: "report.json"}
+			// ],
 			debug: true
-		}));
+		}))
 }
-
-function renameCSS() {
-	return src(cssOutputOrig)
-		.pipe(rename(renameCSSFunction))
-		.pipe(dest(outputDir));
-}
-
-function sourcemap() {
-	return src(cssOutputOrig)
-		.pipe(sourcemaps.init())
-		.pipe(sourcemaps.write("map/"))
-		// .pipe(sourcemaps.write("map/", {
-		//   sourceMappingURLPrefix: "https://www.mydomain.com/"
-		// }))
-		.pipe(dest(outputDir));
+function sortCSS() {
+// Sort CSS declarations by a specific order.
+	return src(predist.css)
+		.pipe(postcss([ sorter({})]))
+		.pipe(dest(predistDir));
 }
 
 function minifyCSS() {
-	return src(outputDir + "/*.min.css")
-		.pipe(postcss([ nano({ autoprefixer: false })]))
-		.pipe(dest(outputDir));
+// Minimize the filesize of processed and linted CSS files.
+	return src(predist.css)
+		// .pipe(sourcemaps.init())
+		// .pipe(sourcemaps.write("map/", {
+		//   sourceMappingURLPrefix: "https://www.mydomain.com/"
+		// }))
+		.pipe(rename(renameCSSFunction))
+		.pipe(postcss([ nano({ autoprefixer: false }) ]))
+		// .pipe(sourcemaps.write("map/"))
+		.pipe(dest(distDir));
 }
 
-function sortCSS() {
-	return src(outputDir + "/*.min.css")
-		.pipe(postcss([ sorter({ order: "alphabetically" })]))
-		.pipe(dest(outputDir));
+function clearMedia() {
+// Preparation for extracting media queries
+	return del(distDir + "/*.mq-*.css");
 }
 
-function unCSS() {
-	return src(outputDir + "/*.min.css")
-		.pipe(
-			purgeCSS({
-				content: ["dist/**/*.html", "dist/**/*.js"]
+
+function extractMedia() {
+// Extract and separate all declarations inside media queries one by one
+	return src([distDir + "/*.m.css", "!" + distDir + "/*.un.*"])
+		.pipe(postcss([
+			extractMediaQuery({
+				output: {
+					path: distDir,
+					name: '[name].mq-[query].[ext]'
+				},
+				stats: false,
+				extractAll: false,
+				queries: {
+					// Make sure it's synchronized with the media queries from css/abstract/00-media.css
+
+					// Media Queries for Wrist or smaller
+					// "screen and (max-width:2in)": "s",
+
+					// Media Queries for Palm or smaller
+					// "screen and (max-width:calc(calc(640/16)*1em)-1px)": "s",
+
+					// Media Queries for Palm or bigger
+					"screen and (min-width:calc(calc(640/16)*1em))": "m",
+
+					// Media Queries for Lap or bigger
+					"screen and (min-width:calc(calc(960/16)*1em))": "l",
+
+					// Media Queries for Desk or bigger
+					"screen and (min-width:calc(calc(1280/16)*1em))": "l",
+
+					// Media Queries for Wall or bigger
+					"screen and (min-width:calc(calc(1600/16)*1em))": "xl",
+
+					// Media Queries for Mall or bigger
+					"screen and (min-width:calc(calc(1920/16)*1em))": "xl",
+
+					// Media Queries for Titan or bigger
+					"screen and (min-width:calc(calc(2400/16)*1em))": "xl",
+
+					// Inputs with Cursor
+					"(any-hover:hover)": "cur",
+					"(any-pointer:fine)": "cur",
+					"(any-hover:hover) and (any-pointer:fine)": "cur",
+
+					// Dark Color Scheme
+					"(prefers-color-scheme:dark)": "dark"
+				}
 			})
-		)
-		.pipe(dest(outputDir));
-}
-
-/*--HTML Tasks --*/
-
-/*--First Scenario--*/
-// task("texts", function(){
-// 	return src(watched.html)
-// 		.pipe(posthtml([
-// 			/* Text Plugins */
-// 			require("posthtml-lorem")(),
-// 			require("posthtml-md")(),
-// 			/* DOM Plugins */
-// 			require("posthtml-alt-always")(),
-// 			require("posthtml-expressions")({ locals: { theMessage: "This is a message from gulpfile.js" }}),
-// 			require("posthtml-include")(),
-// 			require("posthtml-cache")()
-// 		]))
-// 		// .pipe(rename(renameHTMLFunction))
-// 		.pipe(htmlmin({collapseWhitespace: true}))
-// 		.pipe(dest(outputDir));
-// });
-// gulp.task("w3c", ["texts"], function () {
-// 	return src(htmlOutputOrig)
-// 		.pipe(w3cjs())
-// 		.pipe(w3cjs.reporter());
-// });
-function texts() {
-	return src(watched.html)
-		.pipe(posthtml([
-			require("posthtml-include")({ root: path.html }),
-			require("posthtml-lorem")(),
-			require("posthtml-md")(),
-			require("posthtml-alt-always")(),
-			require("posthtml-expressions")({ locals: { theMessage: "This is a message from gulpfile.js" }})
 		]))
-		// .pipe(rename(renameHTMLFunction))
-		.pipe(htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true, removeComments: true}))
-		.pipe(dest(outputDir));
+		.pipe(dest(distDir));
 }
 
-function w3c() {
-	return src(htmlOutputOrig)
-		.pipe(w3cjs())
-		.pipe(w3cjs.reporter());
-}
-
-/*--JavaScript Tasks--*/
+/**** JavaScript Tasks
+*/
 function lintJS() {
-	pump([
-		src(watched.jsMain),
-		eslint({
-			rules: {"camelcase":1,"comma-dangle":2,"quotes":0},
-			// envs: ["browser],
-			globals: ["jQuery","$"]
-		}),
-		eslint.result(result => {
+// Check all main JavaScript files for errors or warnings. Exit when there's error.
+	return src(watched.jsMain)
+		.pipe(eslint())
+		.pipe(eslint.format())
+		.pipe(eslint.result(result => {
 			// Called for each ESLint result.
 			console.log(`ESLint result: ${result.filePath}`);
 			console.log(`# Messages: ${result.messages.length}`);
 			console.log(`# Warnings: ${result.warningCount}`);
 			console.log(`# Errors: ${result.errorCount}`);
-		})
-	]);
+		}))
+		.pipe(eslint.failAfterError())
+		/* Move unchanged and corrected JS files to the pre-dist directory */
+		.pipe(dest(predistDir));
 }
-
-// function concatVendor() {
-// 	pump([
-// 		src(watched.jsVendor),
-// 		concat("vendor.js"),
-// 		dest(outputDir),
-// 	]);
-// }
-function concatVendor() {
-	return src(watched.jsVendor)
-		.pipe(concat("vendor.js"))
-		.pipe(dest(outputDir))
+function mergeVendor(cb) {
+// Get JavaScript libraries and concetanate into one vendor JS file with respective order.
+	pump([
+		src(jsVendors),
+		sourcemaps.init(),
+		concat("v.js"),
+		uglifyMinify(),
+		sourcemaps.write("map/"),
+		// Skip predist directory, has nothing to do with selector renaming or minimizing.
+		dest(distDir)
+	],cb);
 }
 
 function concatJS(cb) {
+// Concatenate main JS files into one file, create source map for easy debugging later.
 	var options = {};
 	pump([
-		src(watched.jsMain),
+		src(predist.js),
 		sourcemaps.init(),
-		concat("script.js"),
-		dest(outputDir),
-		rename("script.min.js"),
-		minify(options),
+		// concat("a.js"),
+		dest(predistDir),
+		// rename("a.m.js"),
+		rename(renameJSFunction),
+		uglifyMinify(options),
 		sourcemaps.write("map/"),
-		dest(outputDir)
+		dest(distDir)
 	],
 	cb
 	);
 }
-// function concatJS() {
-// 	return src(watched.jsMain)
-// 		.pipe(sourcemaps.init())
-// 		.pipe(concat("script.js")),
 
-// 	dest(outputDir)
-// 		.pipe(rename("script.min.js"))
-// 		// minify().on("error", function(err) {
-// 		// 	gutil.log(gutil.colors.red("[Error]"), err.toString());
-// 		// 	// this.emit("end");
-// 		// }),
-// 		.pipe(minify())
-// 		.pipe(sourcemaps.write("map/")),
-// 	dest(outputDir);
-// }
-
-// BrowserSync
-function broSync() {
-	browsersync.init({
-		server: {
-			baseDir: outputDir
-		},
-		port: 3000
-	});
-}
-function broSyncReload() {
-	browsersync.reload();
-}
-
-// gulp.task("renameHTML", series(w3c), function () {
-// 	return src(htmlOutputOrig)
-// 		.pipe(rename(renameHTMLFunction))
-// 		.pipe(dest(outputDir));
-// });
-
-
-/*-----Production & Independent Tasks-----*/
-
-function img() {
-	return src([watched.img, "!" + "sprite.pxl-icons.svg"])
+/***** Image Tasks
+*/
+function convertToWebP() {
+// For JPG, PNG, TIFF, SVG and WebP
+	return src(watched.img1)
 		.pipe(imagemin([
-			imagemin.svgo({
-				plugins: [
-					{cleanupIDs: false}
-				]
+			webp({
+				// quality: 75
+				// https://github.com/imagemin/imagemin-webp#options
 			})
 		]))
-		.pipe(dest(outputDir + "/img"));
+		.pipe(rename({ extname: '.webp' }))
+		.pipe(dest(distDir + "/img"));
 }
 
+function optimizeImg() {
+// GIF and SVG only
+	// return src([watched.img, "!" + "sprite.pxl-icons.svg"])
+	// return src([watched.img2, "!" + watched.icon])
+	return src(watched.img2)
+		.pipe(imagemin([
+			gifsicle({
+				interlaced: false,
+				optimizationLevel: 3
+			})
+			// ,mozjpeg({quality: 75, progressive: true})
+			// ,optipng({optimizationLevel: 5})
+			,svgo({
+				plugins: [
+					{
+						name: 'cleanupIDs',
+						active: 'false'
+					}
+				]
+			})
+		], {
+			verbose: true
+		}
+		))
+		.pipe(dest(distDir + "/img"));
+}
 
-// function makeSprite() {
-// 	return src(watched.icon)
-// 		.pipe(svgSprite({
-// 			dest: "./",
-// 			mode: { symbol: { dest: "./" } }
-// 		}))
-// 		.pipe(rename({
-// 			basename: "pxl-icons",
-// 			dirname: "./",
-// 			prefix: "sprite" + "."
-// 		}))
-// 		.pipe(dest(path.img))
-// 		.pipe(stringReplace(new RegExp(' stroke-width="2"', "g"), "", {logs: {enabled: false} }))
-// 		.pipe(stringReplace(new RegExp(' fill="#000"', "g"), "", {logs: {enabled: false} }))
-// 		.pipe(stringReplace(new RegExp(' stroke="#000"', "g"), "", {logs: {enabled: false} }))
-// 		.pipe(dest(outputDir + "/img"));
-// }
-
+/***** Other Tasks
+*/
 function font() {
+	// Move fonts to the specified output directory
 	return src(watched.font)
-		.pipe(dest(outputDir + "/font"));
+		.pipe(dest(distDir + "/font"));
 }
 
-function clear() {
-	return del([outputDir]);
+function icon() {
+	// Move and process SVG icons
+	return src(watched.icon)
+
+		// .pipe(svgmin())
+		.pipe(svgstore({inlineSVG: true }))
+		.pipe(imagemin([
+			svgo({
+				plugins: [
+					{ active:false,name:'inlineStyles' },
+					{ active:false,name:'mergeStyles' },
+					{ active:true,name:'convertStyleToAttrs' },
+					{ active:true,name:'reusePaths' }
+				]
+			})
+		]
+		,{
+			verbose: false
+		}
+		))
+		.pipe(cheerio({
+			run: ($) => {
+				$('defs').find('[stroke]').attr({'stroke': 'var(--iconColor)', 'stroke-width': 'var(--iconWeight)'});
+				$('g').find('[stroke]').attr({'stroke': 'var(--iconColor)', 'stroke-width': 'var(--iconWeight)'});
+			},
+			parserOptions: { xmlMode: true }
+		}))
+		.pipe(rename("pi.svg"))
+		.pipe(dest(distDir));
 }
+// Clear all distribution and pre-distribution files
+const clear = () => del([predistDir,distDir]);
+
 function zipIt() {
-	return src(outputDir + "/**/*")
+// Make an archive of all distribution files
+	return src(distDir + "/**/*")
 		.pipe(zip("dist.zip"))
 		.pipe(dest("."));
 }
 
-function clearJekyllFiles() {
-	return del(["./jekyll-build"]);
-}
-function exportJekyllFiles() {
+// Clear externally generated build files relevant to Eleventy
+const clear11ty = () => del("./11ty-build");
+
+function export11ty() {
+// Prepare externally generated build files for exportation to the Eleventy environment
 
 	// Copy templates, includes and layouts
-	return src(watched.jekyll)
-		.pipe(dest("./jekyll-build")),
+	return src(watched.eleventy)
+		.pipe(dest("./11ty-build")),
 
 	// Copy CSS & JS,
 	src([
-		outputDir + "/*.min.css",
-		outputDir + "/*.min.js",
-		outputDir + "/vendor.js"
+		distDir + "/*.m.css",
+		distDir + "/*.mq-*.css",
+		distDir + "/*.m.js",
+		distDir + "/v.js",
+		// distDir + "/pi.svg"
+		distDir + "/*.svg"
 	])
-		.pipe(dest("./jekyll-build/assets/")),
+		.pipe(dest("./11ty-build/src/assets/")),
 
-	src(outputDir + "/map/**")
-		.pipe(dest("./jekyll-build/assets/map/")),
+	// src(distDir + "/map/**")
+	// 	.pipe(dest("./11ty-build/src/assets/map/")),
 
 	// Copy image assets except fillers
-	src([outputDir + "/img/**", "!"+outputDir+"/img/filler/**"])
-		.pipe(dest("./jekyll-build/assets/img/")),
+	src([distDir + "/img/**", "!"+distDir+"/img/filler/**"])
+		.pipe(dest("./11ty-build/src/assets/img/")),
 
 	// Copy fonts
-	src(outputDir + "/font/**")
-		.pipe(dest("./jekyll-build/assets/font/"));
+	src(distDir + "/font/**")
+		.pipe(dest("./11ty-build/src/assets/font/"));
 }
 
-// function fetchClass() {
-// 	return src(PATHTOSOURCE)
-// 	.pipe(posthtml([
-//		require("posthtml-classes")()({
-// 		    fileSave: true,
-// 		    filePath: "classList.css",
-// 		    overwrite: false,
-// 		    eol: "\n",
-// 		    nested: false
-// 		})
-//     ]));
+function unCSS() {
+// Delete unused CSS from HTML or JS or make a rejected list of it.
+	return src(predist.css)
+		// .pipe(rename({
+		// 	suffix: ".un"
+		// }))
+		.pipe(purgeCSS({
+			// Check docs for more config: https://purgecss.com/configuration.html
+			content: [predist.html, predist.js]
+			// safelist: ['', /^nav-/]
+			// rejected: true
+			// rejectedCss: true
+		}))
+		.pipe(dest(predistDir));
+}
+
+function renameSelectors() {
+/* Rename all CSS selectors from the DOM tree and all relevant HTML, JS files */
+
+	// return src(["dist/*.css","src/js/*.js","dist/**/*.html"]
+
+	// All files in the input must not minimized.
+	return src(predistDir + "/**/*.{css,js,html}")
+		.pipe(rcs({
+			// mapping: './config/renaming_map.json'
+			replaceKeyframes: true,
+			exclude: ["pi","iconColor","iconWeight"]
+		}))
+		// .pipe(rcs.writeMapping(distDir))
+		// .pipe(dest(distDir));
+		.pipe(dest(predistDir));
+}
+
+/***** Export Files
+*/
+
+/***** Task Groups
+*/
+task("cssInit", series(styles, lintCSS, sortCSS));
+task("cssMin", series(minifyCSS, clearMedia, extractMedia));
+task("htmlInit", series(texts, clearHTMLIncludes));
+task("htmlMin", series(minifyHTML));
+task("jsInit", series(lintJS));
+task("jsMin", series(mergeVendor, concatJS));
+
+// task("css", series(styles, lintCSS, sortCSS), renameSelectors, series(minifyCSS, unCSS, clearMedia, extractMedia), ()=>{
+task("css", series("cssInit", "cssMin"), ()=>{
+	browsersync.stream({match: distDir + "/**/*.css"});
+});
+
+// task("html", series(texts, w3c), ()=>{
+// task("html", series(texts, clearHTMLIncludes, validateHTML, minifyHTML), ()=>{
+task("html", series("htmlInit", "htmlMin"), ()=>{
+	browsersync.stream({match: distDir + "/**/*.html"});
+});
+
+// task("js", series(lintJS), ()=>{
+task("js", series("jsInit", "jsMin"), ()=>{
+	// browsersync.stream();
+	browsersync.stream({match: distDir + "/**/*.js"});
+});
+
+task("img", parallel(convertToWebP,optimizeImg), ()=>{
+	browsersync.stream({match: distDir + "/**/*.{png,jpg,jpeg,webp,gif,svg}"});
+});
+
+/**** Watch Files
+*/
+// function reportChanges(event) {
+// 	console.log("File " + event.path + " was " + event.type + ", running tasks…");
+// 	/*TODO: event type and path always outputs "Undefined" */
 // }
-
-/* ----------- Export Tasks ------------*/
-
-
-
-/*-----Watch----------------*/
-
+/* Detect file changes from various filetypes and apply relevant tasks automatically.*/
 function watchFiles() {
-	gulp.watch(path.css + "/**/*.css", series("css")).on("change", function(e) {
-		console.log("File " + e.path + " was " + e.type + ", running tasks...");
+	watch(watched.cssAll, series("css",broSyncReload)).on("change", ()=>{
+		console.log("Changes on CSS files detected, running tasks…");
 	});
-	gulp.watch(path.src + "/**/*.html", series("html")).on("change", function(e) {
-		console.log("File " + e.path + " was " + e.type + ", running tasks...");
+	watch(watched.html, series("html",broSyncReload)).on("change", ()=>{
+		console.log("Changes on HTML files detected, running tasks…");
 	});
-	gulp.watch(path.js + "/**/*.js", series("js")).on("change", function(e) {
-		console.log("File " + e.path + " was " + e.type + ", running tasks...");
+	watch(watched.jsMain, series("js",broSyncReload)).on("change", ()=>{
+		console.log("Changes on JS files detected, running tasks…");
 	});
-	// gulp.watch(watched.html, ["js"]).on("change", function(e) {
-	// 	console.log("File " + e.path + " was " + e.type + ", running tasks...");
+	watch(watched.img1, series(convertToWebP,broSyncReload)).on("change", ()=>{
+		console.log("Changes on images detected, running tasks…");
+	});
+	watch(watched.img2, series(optimizeImg,broSyncReload)).on("change", ()=>{
+		console.log("Changes on SVG, GIF images detected, running tasks…");
+	});
+	watch(watched.icon, series(icon)).on("change", ()=>{
+		console.log("Changes on icons detected, running tasks…");
+	});
+	// watch([watched.cssAll], series("css",broSyncReload)).on("change", reportChanges);
+
+	// watch(watched.html, ["js"]).on("change", function(event) {
+	// 	console.log("File " + event.path + " was " + event.type + ", running tasks…");
 	// });
-	gulp.watch(watched.all).on("change", broSyncReload);
 }
+/***** Defined Tasks
+*/
 
+// Build
+const build = series(clear, parallel("cssInit", "htmlInit", "jsInit"), parallel("cssMin", "htmlMin", "jsMin"), font, "img", icon);
+const buildMin = series(clear, parallel("cssInit", "htmlInit", "jsInit"), series(renameSelectors), parallel("cssMin", "htmlMin", "jsMin"), font, "img", icon);
+// const buildMin = series(clear, parallel("cssInit", "htmlInit", "jsInit"), series(unCSS, renameSelectors), parallel("cssMin", "htmlMin", "jsMin"), font, "img", icon);
 
-/*-----Task Groups----------*/
+// Watch/start automated tasks for all defined production files and update/refresh automatically when change detected
+const watchWBroSync = parallel(watchFiles, broSync);
 
-task("css", series(styles, lintCSS, renameCSS, sourcemap, minifyCSS), function() {
-	browsersync.stream({match: outputDir + "/**/*.css"});
-});
-// task("html", series("texts", "w3c, function() {
-task("html", series(texts), function() {
-	browsersync.stream({match: outputDir + "/**/*.html"});
-});
-
-task("js", series(concatVendor, concatJS), function() {
-	browsersync.stream();
-	browsersync.stream({match: outputDir + "/**/*.js"});
-});
-
-const build = series(clear, parallel("css", "html", "js"), sortCSS, img, font);
-const watch = parallel(watchFiles, broSync);
+// Build and archive distributed directory
 const compress = series(build, zipIt);
-const jekyll = series(build, clearJekyllFiles, exportJekyllFiles);
 
-module.exports = { sortCSS, unCSS, img, font, clear, clearJekyllFiles, build, zipIt, compress, jekyll, watch, default: watch };
+// Build only Eleventy related files/templates/data
+const eleventy = series(build, clear11ty, export11ty);
+
+export { build, buildMin, compress, eleventy, clear11ty, export11ty, watchWBroSync, clear, icon, renameSelectors }
+
+// Default task (when executed with "gulp" in CLI)
+export default watchWBroSync
