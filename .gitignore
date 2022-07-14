@@ -1,9 +1,9 @@
 node_modules
 npm-debug.log
 
-session.vim
-
 reports/
+pre-dist/
 dist/
 jekyll-build/
+11ty-build/
 template/
