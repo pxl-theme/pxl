@@ -1,8 +1,58 @@
-# pxl-theme
-<img class=left src=icon.gif alt="Pixelated logo with flashy written letters 'pxl'." />
-> An adjustable website theme with sensible defaults and nice looks.
+<include src='includes/page-header.html' locals='{
+         "title":"Documentation"
+}'></include>
 
-<img class=center src=preview.png alt="A screenshot of the website theme previewing both light and dark theme." />
+<div class="o-rustygrid u-clearFix -reversed@palm">
+
+<aside class="o-rustygrid__item -col1 -col1-4@palm c-nav__wrapper u-sticky@palm" aria-labelledby=navTitle style="top:0;overflow:auto;max-height:100vh">
+	<details open>
+	<summary>
+		<h3 id=navTitle>Table of Contents</h3>
+	</summary>
+		<ol id=toc class="c-nav -typeTree">
+			<li class=c-nav__item><a class=c-nav__anchor href=#features>
+				Features
+			</a></li>
+			<li class=c-nav__item><a class=c-nav__anchor href=#build>
+				Build
+			</a></li>
+			<li class="c-nav__item -hasSubmenu">
+				<a class=c-nav__anchor href=#browser-support>
+					Browser Support
+				</a>
+				<ol class=c-nav__submenu role=group>
+					<li class=c-nav__item><a class=c-nav__anchor href=#instructing-some-stuff>
+						Instructing some stuff
+					</a></li>
+					<li class=c-nav__item><a class=c-nav__anchor href=#to-be-supported>
+						To be supported
+					</a></li>
+					<li class=c-nav__item><a class=c-nav__anchor href=#good-lcuk-having-these>
+						Good luck having these
+					</a></li>
+				</ol>
+			</li>
+			<li class=c-nav__item><a class=c-nav__anchor href=#typography>
+				Typography
+			</a></li>
+			<li class=c-nav__item><a class=c-nav__anchor href=#known-issues>
+				Known Issues
+			</a></li>
+			<li class=c-nav__item><a class=c-nav__anchor href=#roadmap>
+				Roadmap
+			</a></li>
+		</ol>
+	</details>
+</aside>
+<main id=content class="s-cmsContent o-rustygrid__item -col1 -col2-3@palm -col" aria-label=Content>
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header">
+		<h1 class="c-card__title" id="pxl--minimal-theme--front-end-env">Documentation</h1>
+		</header>
+		<md>
+# pxl-theme
+
+> An adjustable website theme with sensible defaults and nice looks.
 
 ## Features
 
@@ -17,7 +67,6 @@
 - Sanitize.css Reset
 - Scalable codebase, written with OOCSS, BEVM in mind
 - Custom grid layout (CSS Grid will be adapted soon)
-- Basic multidirectional writing mode with [logical properties](https://css-tricks.com/css-logical-properties-and-values/)
 - Builds with [Gulp](https://gulpjs.com/) task runner with advanced configuration
 	- CSS written with PostCSS plugins including `autoprefixer`, `nested`, `custom-media`
 	- Optimized via [HTMLMinifier](https://github.com/kangax/html-minifier), [cssnano](https://github.com/cssnano/cssnano) and [terser](https://github.com/terser/terser)
@@ -84,9 +133,8 @@ Almost all box units are em-based. Heading elements are proportionally sized by 
 Breakpoints in the media queries based on [human ergonomics](https://twitter.com/lukew/status/273453112902172672).
 
 ## Known Issues
-- Undocumented combinations of variants or modifiers may not look perfect.
+- Not documented combinations of variants may not look as expected.
 - Contrast value between different color palettes may differ, need further adjustment to match their counterparts.
-- Anchor text underline animates on hover except Chrome or any other Chromium based web browsers.
 
 ## Roadmap
 
@@ -96,13 +144,14 @@ Breakpoints in the media queries based on [human ergonomics](https://twitter.com
 - [ ] Selector whitelist for PurgeCSS and rcs
 - [ ] Detailed docs for concepts inclusive to this theme
 - [ ] [Pywal](https://github.com/dylanaraps/pywal) color theme compatibility
-- [ ] WordPress Block Theme support
-- [ ] Update CSS when implementations [below](https://caniuse.com/css-backdrop-filter,css-has,jpegxl,css-container-queries,mdn-css_types_color_oklch,mdn-css_types_color_color-mix,mdn-css_at-rules_property,mdn-api_css_lh,css-media-range-syntax) got full browser support in the future:
-	- Selectors 4 ([:has](https://drafts.csswg.org/selectors-4/#relational))
-	- Color Module Level 5 ([OKLCH unit](https://drafts.csswg.org/css-color-5/#relative-OKLCH), [Relative Color Syntax](https://drafts.csswg.org/css-color-5/#relative-colors), [color-mix()](https://drafts.csswg.org/css-color-5/#color-mix)])
-	- [@property values](https://developer.mozilla.org/en-US/docs/Web/CSS/@property#browser_compatibility)
-	- Units and Values Module Level 4 ([Exponent Functions (pow() especially)](https://www.w3.org/TR/css-values-4/#exponent-funcs), [Stepped Value Functions (round())](https://www.w3.org/TR/css-values-4/#funcdef-round), [Font-relative lengths (lh)](https://www.w3.org/TR/css-values-4/#lh))
-	- env() in media queries
+- [ ] WordPress Block Theme
+- [ ] Update CSS with :has, Color Module Level 5 implementations
 
 ## License
 Theme is under [GNU GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.html) license.
+          </md>
+      </article>
+</main>
+<div class="o-rustygrid__item -col0 -col1-12@palm"></div>
+</div>
+<include src='includes/page-footer.html'></include>

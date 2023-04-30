@@ -1,0 +1,144 @@
+:root {
+	/*** Media Breakpoints
+	 */
+	--vwPalm:  640;  /* for phablets */
+	--vwLap:   960;  /* for tablets in portrait mode */
+	--vwDesk:  1280; /* for laptops and tablets in landscape mode */
+	--vwWall:  1600; /* for desktops */
+	--vwMall:  1920; /* for wide screen monitors and TVs */
+	--vwTitan: 2400; /* for 4K, 8K, VR?... */
+
+
+/*** Geometry
+*/
+
+	/* o-rustygrid Gutter Width */
+
+	--gridGutter: 1rem;
+
+	@media (--wrist-or-lt) {
+		--gridGutter: .25rem;
+	}
+
+	/* 1920 / 16 */
+	--maxContentWidth: 1920px;
+
+	/* --c-card-padTop: .75rem; */
+	--c-card-padTop: calc(var(--rhythmUnit)*.6667);
+	--c-card-padSide: 1rem;
+	/* --c-card-padBottom: 1.25rem; */
+	--c-card-padBottom: calc(var(--rhythmUnit)*2.5);
+
+	--nav-item-padSide: .5rem;
+
+	@media (--wrist-or-lt) {
+		/* --c-card-padTop: .25rem; */
+		--c-card-padTop: calc(var(--rhythmUnit)/2);
+		--c-card-padSide: .125rem;
+		/* --c-card-padBottom: .25rem; */
+		--c-card-padBottom: calc(var(--rhythmUnit)/2);
+
+		--nav-item-padSide: .35rem;
+	}
+
+	/* --sidebarWidth: 12em; */
+	/* --sidebarWidth: 50vw; */
+	/* @media (--palm-or-gt) { */
+	/* 	--sidebarWidth: 33vw; */
+	/* } */
+	/* @media (--lap-or-gt) { */
+	/* 	--sidebarWidth: 25vw; */
+	/* }- */
+	/* @media (--desk-or-gt) { */
+	/* 	/1* --sidebarWidth: 25vw; *1/ */
+	/* 	--sidebarWidth: 12em; */
+	/* } */
+
+	/* --footerHeight: 3em; */
+	--borderHairline: 1px;
+	@media (--hidpi) {
+		--borderHairline: 0.5px;
+	}
+	--borderS:  1px;
+	--borderM:  2px;
+	--borderL:  4px;
+	--borderXL: 8px;
+
+	/*TODO: Use these variables for -corner... theme modifiers.*/
+	--radiusS: .25rem;
+	--radiusM: .5rem;
+	--radiusL: .8rem;
+
+	--radiusInnerDefault: 0px;
+	--radiusDefault: 0px;
+	--radiusOuterDefault: 0px;
+}
+
+/** Radius Default Settings
+*/
+:root, :is(.-cornerSharp){
+	/* Sharp by defualt */
+	/* Adding px to avoid calc() issues */
+	--radiusInnerDefault: 0px;
+	--radiusDefault: 0px;
+	--radiusOuterDefault: 0px;
+}
+:is(.-cornerRoundedTiny) {
+	--radiusInnerDefault: var(--radiusS);
+	--radiusDefault: var(--radiusS);
+	--radiusOuterDefault: var(--radiusS);
+}
+:is(.-cornerRounded) {
+	--radiusInnerDefault: var(--radiusS);
+	--radiusDefault: var(--radiusM);
+	--radiusOuterDefault: var(--radiusL);
+}
+:is(.-cornerRoundedInner) {
+	--radiusInnerDefault: var(--radiusM);
+	--radiusDefault: var(--radiusM);
+	--radiusOuterDefault: var(--radiusL);
+}
+
+/*** Animations
+ */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ball {
+	0% {
+		left: 0;
+		width: 0%;
+	}
+	25% {
+		left: 0;
+		width: 100%;
+	}
+	50% {
+		left: 100%;
+		width: 0%;
+	}
+	75% {
+		left: 0;
+		width: 100%;
+	}
+	100% {
+		left: 0;
+		width: 0%;
+	}
+}
+@keyframes gradientBackgroundLoop {
+	0% {
+		background-position: 0%;
+	}
+	50% {
+		background-position: 100%;
+	}
+	100% {
+		background-position: 0%;
+	}
+}

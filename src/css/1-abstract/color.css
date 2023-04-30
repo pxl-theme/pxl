@@ -1,0 +1,636 @@
+:root {
+	color-scheme: dark light;
+	/* --colorBg: var(--bgImageColor, --colorBase); */
+	--colorBg: var(--colorBack, --colorBase);
+	/* --colorBg: var(--violet); */
+	/* --bgImageColor ; */
+
+	/* Special Solid Background Color Codes */
+	/* --colorBg: #008080; /1* Windows95 Solid Color Turquise *1/ */
+	/* --colorBg: #4169AA; /1* MacOSX Solid Color Blue *1/ */
+	/* --colorBg: #657185; /1* MacOSX Solid Color Grayscale *1/ */
+	/* --colorBg: #4A0640; /1* Ubuntu Solid Color Purple *1/ */
+
+}
+/* Default color scheme */
+:root, :root.s-themeMod__root:where(.-colorSchemeIOS){
+	/* Day */
+	--red:     hsl(4 75% 54%);
+	--orange:  hsl(35 100% 50%);
+	--yellow:  hsl(48 100% 50%);
+	--green:   hsl(130 65% 57%);
+	--blue:    hsl(211 100% 50%);
+	--cyan:    hsl(199 94% 67%);
+	--violet:  hsl(241 61% 59%);
+	--magenta: hsl(349 100% 59%);
+
+	--colorAccent: var(--blue);
+	--colorAccentBrighter: hsl(211 100% 70%);
+	--colorAccentBrighterOpac60: hsl(211 100% 70% / .6);
+
+	/* TODO: Reduce variables whenever there's a relative color plugin out there. */
+	--colorText: hsl(0 0% 11%);
+	--colorTextOpac80: hsl(0 0% 11% / .8);
+	--colorTextOpac60: hsl(0 0% 11% / .6);
+	--colorTextOpac40: hsl(0 0% 11% / .4);
+	--colorTextOpac20: hsl(0 0% 11% / .2);
+	--colorTextOpac075: hsl(0 0% 11% / .075);
+
+	--colorTextBolder: hsl(0 0% 0%);
+	--colorTextBolderReddish: hsl(4 65% 21%);
+	--colorTextBolderOrangey: hsl(35 100% 25%);
+	--colorTextBolderYellowish: hsl(48 100% 25%);
+
+	--colorBase: hsl(0 0% 98%);
+	--colorBaseTransparent: hsl(0 0% 98% / 0);
+	--colorBaseReddish: hsl(3 69% 80%);
+	--colorBaseOrangey: hsl(35 93% 78%);
+	--colorBaseYellowish: hsl(48 91% 83%);
+
+	--colorBack: hsl(0 0% 90%);
+	--colorBackOpac80: hsl(0 0% 90% / .8);
+	--colorDeep: hsl(0 0% 69%);
+	/* those two aren't effective */
+	--colorFore: hsl(0 0% 100%);
+	--colorForeBrighter: hsl(0 0% 100%);
+
+	--colorLinkVisited: hsl(211, 100%, 50%);
+	/* &.s-variantDark{ */
+	@media (prefers-color-scheme: dark) {
+		--red:     hsl(4 75% 54%);
+		--orange:  hsl(35 100% 50%);
+		--yellow:  hsl(48 100% 50%);
+		--green:   hsl(130 65% 57%);
+		--blue:    hsl(198 81% 54%);
+		--cyan:    hsl(199 94% 67%);
+		--violet:  hsl(241 61% 59%);
+		--magenta: hsl(349 100% 59%);
+
+		--colorAccent: var(--blue);
+		--colorAccentBrighter: hsl(198 82% 74%);
+		--colorAccentBrighterOpac60: hsl(198 82% 74% / .6); 
+
+		--colorText: hsl(0 0% 69%);
+		--colorTextOpac80: hsl(0 0% 69% / .8);
+		--colorTextOpac60: hsl(0 0% 69% / .6);
+		--colorTextOpac40: hsl(0 0% 69% / .4);
+		--colorTextOpac20: hsl(0 0% 69% / .2);
+		--colorTextOpac075: hsl(0 0% 69% / .075);
+
+		--colorTextBolder: hsl(0 0% 100%);
+		--colorTextBolderReddish: hsl(4 75% 81%);
+		--colorTextBolderOrangey: hsl(35 100% 75%);
+		--colorTextBolderYellowish: hsl(48 100% 75%);
+
+		--colorBase: hsl(0 0% 12%);
+		--colorBaseTransparent: hsl(0 0% 12% / 0);
+		--colorBaseReddish: hsl(4 49% 28%);
+		--colorBaseOrangey: hsl(35 74% 27%);
+		--colorBaseYellowish: hsl(48 65% 23%);
+
+		--colorBack: hsl(0 0% 7%);
+		--colorBackOpac80: hsl(0 0% 7% / .8);
+		--colorDeep: hsl(0 0% 0%);
+
+		--colorFore: hsl(0 0% 15%);
+		--colorForeBrighter: hsl(0 0% 17%);
+
+		--colorLinkVisited: hsl(198 100% 54%);
+		--colorLinkDead: var(--red);
+		--colorLinkActive: var(--colorAccentBrighter);
+	}
+}
+:root.s-themeMod__root:where(.-colorSchemeSolarized){
+	--red:    hsl(1 71% 52%);
+	--orange: hsl(18 80% 44%);
+	--yellow: hsl(45 100% 35%);
+	--green:  hsl(68 100% 30%);
+	--cyan:	  hsl(175 59% 40%);
+	--blue:   hsl(205 69% 49%);
+	--violet: hsl(237 43% 60%);
+	--magenta:hsl(331 64% 52%);
+
+	--colorAccent: var(--blue);
+	--colorAccentBrighter: hsl(205 69% 69%);
+	--colorAccentBrighterOpac60: hsl(205 70% 69% / .6);
+
+	--colorText: hsl(194 14% 40%);
+	--colorTextOpac80: hsl(193 14% 40% / .8);
+	--colorTextOpac60: hsl(193 14% 40% / .6);
+	--colorTextOpac40: hsl(193 14% 40% / .4);
+	--colorTextOpac20: hsl(193 14% 40% / .2);
+	--colorTextOpac075: hsl(193 14% 40% / .075);
+
+	--colorTextBolder: hsl(192 81% 14%);
+	--colorTextBolderReddish: hsl(351 29% 28%);
+	--colorTextBolderOrangey: hsl(21 41% 29%);
+	--colorTextBolderYellowish: hsl(60 49% 25%);
+
+	--colorBase: hsl(46 42% 88%);
+	--colorBaseOpac80: hsl(46 42% 88% / 80%);
+	--colorBaseTransparent: hsl(46 42% 88% / 0);
+	--colorBaseReddish: hsl(9 63% 74%);
+	--colorBaseOrangey: hsl(23 58% 70%);
+	--colorBaseYellowish: hsl(45 51% 72%);
+
+	--colorBack: hsl(46 42% 78%); /* --colorBack: color-mod(var(--colorBase) l(-10%)); */
+	--colorBackOpac80: hsl(46 42% 78% / .8);
+	--colorDeep: hsl(46 42% 28%);
+
+	--colorFore: hsl(45 43% 91%);
+	--colorForeBrighter: hsl(44 43% 93%);
+
+	--colorLinkVisited: hsl(205 89% 49%);
+	--colorLinkDead: var(--red);
+	--colorLinkActive: var(--colorAccentBrighter);
+	/* &.s-variantDark{ */
+	@media (prefers-color-scheme: dark) {
+		--colorText: hsl(196 13% 45%);
+		--colorTextOpac80: hsl(196 13% 45% / .8);
+		--colorTextOpac60: hsl(196 13% 45% / .6);
+		--colorTextOpac40: hsl(196 13% 45% / .4);
+		--colorTextOpac20: hsl(196 13% 45% / .2);
+		--colorTextOpac075: hsl(196 13% 45% / .075);
+
+		--colorTextBolder: hsl(186 8% 55%);
+		--colorTextBolderReddish: hsl(0 25% 54%);
+		--colorTextBolderOrangey: hsl(19 32% 50%);
+		--colorTextBolderYellowish: hsl(49 35% 45%);
+
+		--colorBase: hsl(192 100% 11%);
+		--colorBaseTransparent: hsl(192 100% 11% / 0);
+		--colorBaseReddish: hsl(351 31% 26%);
+		--colorBaseOrangey: hsl(22 31% 24%);
+		--colorBaseYellowish: hsl(93 30% 22%);
+
+		--colorBack: hsl(192 100% 8%);
+		--colorBackOpac80: hsl(192 100% 8% / .8);
+		--colorDeep: hsl(0 0% 0%);
+
+		--colorFore: hsl(192 100% 14%);
+		--colorForeBrighter: hsl(192 100% 16%);
+	}
+}
+:root.s-themeMod__root:where(.-colorSchemeAtomOne){
+	--red:     hsl(5 74% 59%);
+	--orange:  hsl(41 99% 30%);
+	--yellow:  hsl(41 99% 38%);
+	--green:   hsl(119 34% 47%);
+	--cyan:    hsl(198 99% 37%);
+	--blue:    hsl(221 87% 60%);
+	--violet:  hsl(301 63% 40%);
+	--magenta: transparent;
+
+	--colorAccent: hsl(230 100% 66%);
+	--colorAccentBrighter: hsl(230 100% 86%);
+	--colorAccentBrighterOpac60: hsl(230 100% 86% / .6);
+
+	--colorText: hsl(227 6% 44%);
+	--colorTextOpac80: hsl(227 6% 44% / .8);
+	--colorTextOpac60: hsl(227 6% 44% / .6);
+	--colorTextOpac40: hsl(227 6% 44% / .4);
+	--colorTextOpac20: hsl(227 6% 44% / .2);
+	--colorTextOpac075: hsl(227 6% 44% / .075);
+
+	--colorTextBolder: hsl(228 8% 24%);
+	--colorTextBolderReddish: hsl(0 29% 38%);
+	--colorTextBolderOrangey: hsl(41 52% 27%);
+	--colorTextBolderYellowish: hsl(40 57% 31%);
+
+	--colorBase: hsl(0 0% 98%);
+	--colorBaseTransparent: hsl(0 0% 98% / 0);
+	--colorBaseReddish: hsl(5 69% 82%);
+	--colorBaseOrangey: hsl(41 41% 71%);
+	--colorBaseYellowish: hsl(41 57% 80%);
+
+	--colorBack: hsl(231 4% 64%);
+	--colorBackOpac80: hsl(231 4% 64% / .8);
+	--colorDeep: hsl(255 0% 34%);
+
+	--colorFore: hsl(0 0% 100%);
+	--colorForeBrighter: hsl(0 0% 100%);
+
+	--colorLinkVisited: hsl(230, 100%, 66%); /* that didn't work */
+	/* &.s-variantDark{ */
+	@media (prefers-color-scheme: dark) {
+		--red:     hsl(355 65% 65%);
+		--orange:  hsl(29 54% 61%);
+		--yellow:  hsl(39 67% 69%);
+		--green:   hsl(95 38% 62%);
+		--cyan:    hsl(187 47% 55%);
+		--blue:    hsl(207 82% 66%);
+		--violet:  hsl(286 60% 67%);
+		--magenta: transparent;
+
+		--colorAccent: hsl(220 100% 66%);
+		--colorAccentBrighter: hsl(221 100% 86%);
+		--colorAccentBrighterOpac60: hsl(221 100% 86% / .6);
+
+		--colorText: hsl(220 9% 55%);
+		--colorTextOpac80: hsl(220 9% 55% / .8);
+		--colorTextOpac60: hsl(220 9% 55% / .6);
+		--colorTextOpac40: hsl(220 9% 55% / .4);
+		--colorTextOpac20: hsl(220 9% 55% / .2);
+		--colorTextOpac075: hsl(220 9% 55% / .075);
+
+		--colorTextBolder: hsl(219 14% 71%);
+		--colorTextBolderReddish: hsl(344 25% 67%);
+		--colorTextBolderOrangey: hsl(27 25% 66%);
+		--colorTextBolderYellowish: hsl(39 28% 70%);
+
+		--colorBase: hsl(220 13% 18%);
+		--colorBaseTransparent: hsl(220 13% 18% / 0);
+		--colorBaseReddish: hsl(349 24% 36%);
+		--colorBaseOrangey: hsl(27 20% 35%);
+		--colorBaseYellowish: hsl(38 14% 33%);
+
+		--colorBack: hsl(216 13% 15%);
+		--colorBackOpac80: hsl(216 13% 15% / .8);
+		--colorDeep: hsl(0 0% 0%);
+
+		--colorFore: hsl(223 13% 21%);
+		--colorForeBrighter: hsl(220 13% 23%);
+
+		--colorLinkVisited: hsl(220 100% 66%); /* that didn't work */
+	}
+}
+:root.s-themeMod__root:where(.-colorSchemeMaterialV1){
+	/*TODO: Make sure it's accurate to the source: https://m1.material.io/style/color.html#color-color-palette*/
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700'); */ /* --fontMain: "Roboto"; */
+	--red:     hsl(0 100% 66%);
+	--orange:  hsl(34 100% 50%);
+	--yellow:  hsl(47 100% 63%);
+	--green:   hsl(88 100% 67%);
+	--cyan:    hsl(180 100% 55%);
+	--blue:    hsl(199 100% 63%);
+	--violet:  hsl(291 96% 62%);
+	--magenta: hsl(340 100% 63%);
+
+	--colorAccent: var(--blue);
+	--colorAccentBrighter: hsl(198 100% 83%);
+	--colorAccentBrighterOpac60: hsl(198 100% 83% / .6);
+
+	--colorText: hsl(201 14% 68%);
+	--colorTextOpac80: hsl(201 14% 68% / .8);
+	--colorTextOpac60: hsl(201 14% 68% / .6);
+	--colorTextOpac40: hsl(201 14% 68% / .4);
+	--colorTextOpac20: hsl(201 14% 68% / .2);
+	--colorTextOpac075: hsl(201 14% 68% / .075);
+
+	--colorTextBolder: hsl(204 15% 94%);
+	--colorTextBolderReddish: hsl(359 76% 82%);
+	--colorTextBolderOrangey: hsl(34 87% 72%);
+	--colorTextBolderYellowish: hsl(48 84% 78%);
+
+	--colorBase: hsl(200 19% 18%);
+	--colorBaseTransparent: hsl(200 19% 18% / 0);
+	--colorBaseReddish: hsl(357 33% 37%);
+	--colorBaseOrangey: hsl(36 57% 31%)
+	--colorBaseYellowish: hsl(55 28% 32%);
+
+	--colorBack: hsl(198 42% 11%);
+	--colorBackOpac80: hsl(198 42% 11% / .8);
+	--colorDeep: hsl(207 100% 4%);
+
+	--colorFore: hsl(200 19% 21%);
+	--colorForeBrighter: hsl(198 9% 23%);
+
+	--colorLinkVisited: rgb(66 195 254);
+}
+:root.s-themeMod__root:where(.-colorSchemeMonokai){
+	/* Note: Text color is too saturated, a few colors missing */
+	--red:     hsl(338 84% 56%);
+	--orange:  hsl(32 93% 55%);
+	--yellow:  hsl(55 67% 67%);
+	--green:   hsl(76 60% 51%);
+	/* --cyan :   transparent; */
+	--blue:    hsl(193 68% 67%);
+	--violet:  hsl(262 30% 62%);
+	/* --magenta: transparent; */
+
+	--colorAccent: var(--green);
+	--colorAccentBrighter: hsl(76 60% 71%);
+	--colorAccentBrighterOpac60: hsl(76 60% 71% / .6);
+
+	--colorText: hsl(50 11% 42%);
+	--colorTextOpac80: hsl(50 11% 42% / .8);
+	--colorTextOpac60: hsl(50 11% 42% / .6);
+	--colorTextOpac40: hsl(50 11% 42% / .4);
+	--colorTextOpac20: hsl(50 11% 42% / .2);
+	--colorTextOpac075: hsl(50 11% 42% / .075);
+
+	--colorTextBolder: hsl(49 23% 67%);
+	--colorTextBolderReddish: hsl(353 47% 66%);
+	--colorTextBolderOrangey: hsl(35 63% 62%);
+	--colorTextBolderYellowish: hsl(53 45% 68%);
+
+	--colorBase: hsl(70 8% 15%);
+	--colorBaseTransparent: hsl(70 8% 15% / 0);
+	--colorBaseReddish: hsl(341 47% 32%);
+	--colorBaseOrangey: hsl(34 55% 31%);
+	--colorBaseYellowish: hsl(55 24% 30%);
+
+	--colorBack: hsl(72 8% 12%);
+	--colorBackOpac80: hsl(72 8% 12% / .8);
+	--colorDeep: hsl(0, 0% 0%);
+
+	--colorFore: hsl(70 6% 18%);
+	--colorForeBrighter: hsl(55 8% 26%);
+
+	--colorLinkVisited: hsl(76 80% 51%);
+}
+:root.s-themeMod__root:where(.-colorSchemeNightOwl){
+	--red:     hsl(1 83% 63%);
+	--orange:  hsl(14 90% 70%);
+	--yellow:  hsl(35 71% 74%);
+	--green:   hsl(84 62% 63%);
+	--cyan:    hsl(169 56% 68%);
+	--blue:    hsl(207 89% 68%);
+	--violet:  hsl(276 68% 75%);
+	--magenta: transparent;
+
+	--colorAccent: var(--blue);
+	--colorAccentBrighter: hsl(207 90% 88%);
+	--colorAccentBrighterOpac60: hsl(207 90% 88% / .6);
+
+	--colorText: hsl(217 34% 88%);
+	--colorTextOpac80: hsl(217 34% 88% / .8);
+	--colorTextOpac60: hsl(217 34% 88% / .6);
+	--colorTextOpac40: hsl(217 34% 88% / .4);
+	--colorTextOpac20: hsl(217 34% 88% / .2);
+	--colorTextOpac075: hsl(217 34% 88% / .075);
+
+	--colorTextBolder: hsl(0 0% 100%);
+	--colorTextBolderReddish: hsl(1 84% 85%);
+	--colorTextBolderOrangey: hsl(14 90% 85%);
+	--colorTextBolderYellowish: hsl(35 73% 87%);
+
+	--colorBase: hsl(207 95% 8%);
+	--colorBaseTransparent: hsl(207 95% 8% / 0);
+	--colorBaseReddish: hsl(349 35% 28%);
+	--colorBaseOrangey: hsl(4 19% 33%);
+	--colorBaseYellowish: hsl(90 3% 28%);
+
+	--colorBack: hsl(208 90% 4%);
+	--colorBackOpac80: hsl(208 90% 4% / .8);
+	--colorDeep: hsl(0 0% 0%);
+
+	--colorFore: hsl(207 68% 14%);
+	--colorForeBrighter: hsl(206 57% 16%);
+
+	--colorLinkVisited: hsl(207 100% 68%);
+}
+:root.s-themeMod__root:where(.-colorSchemeNova){
+	--red:     hsl(0 56% 71%);
+	--orange:  hsl(32 79% 75%);
+	--yellow:  hsl(60 49% 72%);
+	--green:   hsl(99 38% 69%);
+	--cyan:    hsl(187 41% 65%);
+	--blue:    hsl(213 65% 71%);
+	--violet:  hsl(245 57% 73%);
+	--magenta: hsl(313 42% 69%);
+
+	--colorAccent: var(--cyan);
+	--colorAccentBrighter: hsl(187 42% 85%);
+	--colorAccentBrighterOpac60: hsl(187 42% 85% / .6);
+
+	--colorText: hsl(203 14% 59%);
+	--colorTextOpac80: hsl(203 14% 59% / .8);
+	--colorTextOpac60: hsl(203 14% 59% / .6);
+	--colorTextOpac40: hsl(203 14% 59% / .4);
+	--colorTextOpac20: hsl(203 14% 59% / .2);
+	--colorTextOpac075: hsl(203 14% 59% / .075);
+
+	--colorTextBolder: hsl(202 26% 82%);
+	--colorTextBolderReddish: hsl(345 20% 76%);
+	--colorTextBolderOrangey: hsl(35 35% 79%);
+	--colorTextBolderYellowish: hsl(74 28% 78%);
+
+	--colorBase: hsl(202 17% 28%);
+	--colorBaseTransparent: hsl(202 17% 28% / 0);
+	--colorBaseReddish: hsl(347 10% 45%);
+	--colorBaseOrangey: hsl(38 10% 47%);
+	--colorBaseYellowish: hsl(108 7% 44%);
+
+	--colorBack: hsl(200 17% 20%);
+	--colorBackOpac80: hsl(200 17% 20% / .8);
+	--colorDeep: hsl(201 19% 15%);
+
+	--colorFore: hsl(201 18% 32%);
+	--colorForeBrighter: hsl(202 17% 36%);
+
+	--colorLinkVisited: hsl(187 61% 65%);
+}
+:root.s-themeMod__root:where(.-colorSchemeSeti){
+	--red:     hsl(357 58% 52%);
+	--orange:  hsl(24 76% 55%);
+	--yellow:  hsl(60 57% 53%);
+	--green:   hsl(86 49% 52%);
+	--cyan:    hsl(199 20% 55%);
+	--blue:    hsl(198 43% 52%);
+	--violet:  hsl(273 40% 61%);
+	--magenta: hsl(341 89% 64%);
+
+	--colorAccent: var(--blue);
+	--colorAccentBrighter: hsl(199 43% 72%);
+	--colorAccentBrighterOpac60: hsl(199 43% 72% / .6);
+
+	--colorText: hsl(194 10% 48%);
+	--colorTextOpac80: hsl(194 10% 48% / .8);
+	--colorTextOpac60: hsl(194 10% 48% / .6);
+	--colorTextOpac40: hsl(194 10% 48% / .4);
+	--colorTextOpac20: hsl(194 10% 48% / .2);
+	--colorTextOpac075: hsl(194 10% 48% / .075);
+
+	--colorTextBolder: hsl(160 4% 84%);
+	--colorTextBolderReddish: hsl(358 37% 71%);
+	--colorTextBolderOrangey: hsl(24 55% 69%);
+	--colorTextBolderYellowish: hsl(61 43% 68%);
+
+	--colorBase: hsl(206 10% 14%);
+	--colorBaseTransparent: hsl(206 10% 14% / 0);
+	--colorBaseReddish: hsl(356 37% 29%);
+	--colorBaseOrangey: hsl(24 43% 30%);
+	--colorBaseYellowish: hsl(63 30% 26%);
+
+	--colorBack: hsl(195 13% 6%);
+	--colorBackOpac80: hsl(195 13% 6% / .8);
+	--colorDeep: hsl(210 18% 4%);
+
+	--colorFore: hsl(202 10% 16%);
+	--colorForeBrighter: hsl(204 11% 18%);
+
+	--colorLinkVisited: hsl(198 63% 52%);
+}
+:root.s-themeMod__root:where(.-colorSchemeTomorrow){
+	--red:     hsl(360 67% 47%);
+	--orange:  hsl(29 91% 54%);
+	--yellow:  hsl(47 100% 46%);
+	--green:   hsl(72 100% 27%);
+	--cyan:    hsl(184 44% 43%);
+	--blue:    hsl(214 45% 47%);
+	--violet:  hsl(276 31% 50%);
+	/* --magenta: transparent; */
+	/* --magenta: inherit; */
+
+	--colorAccent: var(--cyan);
+	--colorAccentBrighter: hsl(184 44% 63%);
+	--colorAccentBrighterOpac60: hsl(184 44% 64% / .6);
+
+	--colorText: hsl(60 1% 30%);
+	--colorTextOpac80: hsl(60 1% 30% / .8);
+	--colorTextOpac60: hsl(60 1% 30% / .6);
+	--colorTextOpac40: hsl(60 1% 30% / .4);
+	--colorTextOpac20: hsl(60 1% 30% / .2);
+	--colorTextOpac075: hsl(60 1% 30% / .075);
+
+	--colorTextBolder: hsl(220 7% 17%);
+	--colorTextBolderReddish: hsl(357 43% 28%);
+	--colorTextBolderOrangey: hsl(29 57% 36%);
+	--colorTextBolderYellowish: hsl(47 71% 31%);
+
+	--colorBase: hsl(0 0% 94%);
+	--colorBaseTransparent: hsl(0 0% 94% / 0);
+	--colorBaseReddish: hsl(359 50% 75%);
+	--colorBaseOrangey: hsl(29 75% 78%);
+	--colorBaseYellowish: hsl(46 68% 79%);
+
+	--colorBack: hsl(140 3% 78%);
+	--colorBackOpac80: hsl(140 3% 78% / .8);
+	--colorDeep: hsl(90 2% 56%);
+
+	--colorFore: hsl(0 0% 97%);
+	--colorForeBrighter: hsl(0 0% 99%);
+
+	--colorLinkVisited: hsl(184 64% 43%);
+	/* &.s-variantDark { */
+	@media (prefers-color-scheme: dark) {
+		--red:     hsl(0 50% 60%);
+		--orange:  hsl(25 66% 62%);
+		--yellow:  hsl(40 81% 70%);
+		--green:   hsl(66 39% 57%);
+		--cyan:    hsl(172 29% 64%);
+		--blue:    hsl(208 32% 63%);
+		--violet:  hsl(286 22% 66%);
+		/* --magenta: transparent; */
+		/* --magenta: inherit; */
+
+		--colorAccent: var(--cyan);
+		--colorAccentBrighter: hsl(172 27% 84%);
+		--colorAccentBrighterOpac60: hsl(172 27% 84% / .6);
+
+		--colorText: hsl(120 1% 59%);
+		--colorTextOpac80: hsl(120 1% 59% / .8);
+		--colorTextOpac60: hsl(120 1% 59% / .6);
+		--colorTextOpac40: hsl(120 1% 59% / .4);
+		--colorTextOpac20: hsl(120 1% 59% / .2);
+		--colorTextOpac075: hsl(120 1% 59% / .075);
+
+		--colorTextBolder: hsl(140 3% 78%);
+		--colorTextBolderReddish: hsl(1 27% 71%);
+		--colorTextBolderOrangey: hsl(26 41% 70%);
+		--colorTextBolderYellowish: hsl(41 46% 74%);
+
+		--colorBase: hsl(220 7% 17%);
+		--colorBaseTransparent: hsl(220 7% 17% / 0);
+		--colorBaseReddish: hsl(357 23% 34%);
+		--colorBaseOrangey: hsl(23 26% 35%);
+		--colorBaseYellowish: hsl(40 20% 33%);
+
+		--colorBack: hsl(210 6% 12%);
+		--colorBackOpac80: hsl(210 6% 12% / .8);
+		--colorDeep: hsl(0 0% 0%);
+
+		--colorFore: hsl(223 7% 20%);
+		--colorForeBrighter: hsl(225 7% 22%);
+
+		--colorLinkVisited: hsl(172 48% 64%);
+	}
+}
+
+:root.s-themeMod__root:where(.-colorSchemeGruvbox){
+	--red:    hsl(2 75% 46%);
+	--orange: hsl(24 88% 45%);
+	--yellow: hsl(40 73% 49%);
+	--green:  hsl(60 71% 35%);
+	--cyan:	  hsl(104 35% 62%); /* aqua */
+	--blue:   hsl(183 33% 40%);
+	--violet: hsl(333 34% 54%); /* purple */
+	/* TODO: Fill blanks: find something for magenta or consider removing all of them */
+	/* --magenta:hsl(9 64% 52%); */
+
+	--colorAccent: var(--blue);
+	--colorAccentBrighter: hsl(190 89% 25%);
+	--colorAccentBrighterOpac60: hsl(190 89% 25% / .6);
+
+	--colorText: hsl(20 5% 22%);
+	--colorTextOpac80: hsl(20 5% 22% / .8);
+	--colorTextOpac60: hsl(20 5% 22% / .6);
+	--colorTextOpac40: hsl(20 5% 22% / .4);
+	--colorTextOpac20: hsl(20 5% 22% / .2);
+	--colorTextOpac075: hsl(20 5% 22% / .05);
+
+	--colorTextBolder: hsl(0 0% 16%);
+	/* TODO: Fill blanks */
+	/* --colorTextBolderReddish: hsl(351 29% 28%); */
+	/* --colorTextBolderOrangey: hsl(21 41% 29%); */
+	/* --colorTextBolderYellowish: hsl(60 49% 25%); */
+
+	--colorBase: hsl(48 87% 88%); /* bg */
+	--colorBaseTransparent: hsl(43 59% 81% / 0);
+	/* TODO: Fill blanks */
+	/* --colorBaseReddish: hsl(9 63% 74%); */
+	/* --colorBaseOrangey: hsl(23 58% 70%); */
+	/* --colorBaseYellowish: hsl(45 51% 72%); */
+
+	--colorBack: hsl(40 38% 73%); /*bg2*/
+	--colorBackOpac80: hsl(40 38% 73% / .8);
+	--colorDeep: hsl(30 12% 51%); /*gray*/
+
+	--colorFore: hsl(53 74% 91%); /*bg0_h*/
+	--colorForeBrighter: hsl(53 74% 91%);
+
+	/* TODO: Fill blanks: Find a color for visited link */
+	/* --colorLinkVisited: hsl(183 33% 40%); */
+	--colorLinkVisited: #8da4a6; /* Brighter and desaturated */
+	--colorLinkDead: var(--red);
+	--colorLinkActive: var(--colorAccentBrighter);
+	/* &.s-variantDark{ */
+	@media (prefers-color-scheme: dark) {
+		--colorAccentBrighter: hsl(157 16% 58%); /* for blue */
+		--colorAccentBrighterOpac60: hsl(157 16% 58% / .6); /* for blue */
+
+		--colorText: hsl(43 59% 81%);
+		--colorTextOpac80: hsl(43 59% 81% / .8);
+		--colorTextOpac60: hsl(43 59% 81% / .6);
+		--colorTextOpac40: hsl(43 59% 81% / .4);
+		--colorTextOpac20: hsl(43 59% 81% / .2);
+		--colorTextOpac075: hsl(43 59% 81% / .075);
+
+		--colorTextBolder: hsl(43 59% 88%);
+		/* TODO: Fill blanks: Different hues for textcolor */
+		/* --colorTextBolderReddish: hsl(351 29% 28%); */
+		/* --colorTextBolderOrangey: hsl(21 41% 29%); */
+		/* --colorTextBolderYellowish: hsl(60 49% 25%); */
+
+		--colorBase: hsl(0 0% 16%);
+		--colorBaseTransparent: hsl(0 0% 16% / 0);
+		/* TODO: Fill blanks: Different hues for basecolor */
+		/* --colorBaseReddish: hsl(9 63% 74%); */
+		/* --colorBaseOrangey: hsl(23 58% 70%); */
+		/* --colorBaseYellowish: hsl(45 51% 72%); */
+
+		--colorBack: hsl(195 6% 5%); /* --colorBack: color-mod(var(--colorBase) l(-10%)); */
+		--colorBackOpac80: hsl(195 6% 5% / .8);
+		--colorDeep: hsl(195 6% 5%);
+
+		--colorFore: hsl(20 5% 22%); /* bg2 */
+		--colorForeBrighter: hsl(22 7% 29%); /* bg4 */
+
+		/* TODO: Fill blanks: Little darker version of accent blue */
+		/* --colorLinkVisited: hsl(183 33% 40%); */
+		--colorLinkVisited: #557375;/* Darker and desaturated */
+		--colorLinkDead: var(--red);
+		--colorLinkActive: var(--colorAccentBrighter);
+	}
+}

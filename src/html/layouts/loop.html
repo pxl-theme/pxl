@@ -1,0 +1,439 @@
+<!-- Requires "o-rustygrid" class in the parent. -->
+<div class="o-rustygrid__masonryCol o-rustygrid__masonryCol--1"></div>
+<div class="o-rustygrid__masonryCol o-rustygrid__masonryCol--2"></div>
+<div class="o-rustygrid__masonryCol o-rustygrid__masonryCol--3"></div>
+<div class="o-rustygrid__masonryCol o-rustygrid__masonryCol--4"></div>
+
+<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header">
+			<h2 class=c-card__title>Options</h2>
+		</header>
+		<fieldset>
+			<legend>Color Scheme</legend>
+			<!-- <p><b>Color</b> -->
+			<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Solarized')" value=Solarized> Solarized<sup> (Light+Dark)</sup></label><br/>
+			<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Gruvbox')" value=Gruvbox checked> Gruvbox<sup> (Light+Dark)</sup></label><br/>
+			<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'AtomOne')" value=AtomOne> Atom One<sup> (Light+Dark)</sup></label><br/>
+			<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'IOS')" value=IOS> iOS<sup> (Light+Dark)</sup></label><br/>
+			<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'MaterialV1')" value=MaterialV1> Material Design 1<sup> (Dark Only)</sup></label><br/>
+			<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Monokai')" value=Monokai> Monokai<sup> (Dark Only)</sup></label><br/>
+			<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'NightOwl')" value=NightOwl> Night Owl<sup> (Dark Only)</sup></label><br/>
+			<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Nova')" value=Nova> Nova<sup> (Dark Only)</sup></label><br/>
+			<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Seti')" value=Seti> Seti<sup> (Dark Only)</sup></label><br/>
+			<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Tomorrow')" value=Tomorrow> Tomorrow<sup> (Light+Dark)</sup></label><br/>
+			<!-- <p><b>Variant</b> -->
+			<!-- <label><input type="radio" name="variant-options" onclick="changeThemeMod('s-variant',html,'Day')" value="Day" checked> Day</label><br/> -->
+			<!-- <label><input type="radio" name="variant-options" onclick="changeThemeMod('s-variant',html,'Dark')" value="Dark"> Dark</label><br/> -->
+		</fieldset>
+		<fieldset>
+			<legend>Corners</legend>
+			<label><input type=radio name=corner-options onclick="changeThemeMod('-corner',html,'Sharp')" value="Sharp" checked> Sharp</label><br/>
+			<label><input type=radio name=corner-options onclick="changeThemeMod('-corner',html,'RoundedTiny')" value="RoundedTiny"> Tiny Rounded</label><br/>
+			<label><input type=radio name=corner-options onclick="changeThemeMod('-corner',html,'Rounded')" value="Rounded"> Rounded</label><br/>
+			<label><input type=radio name=corner-options onclick="changeThemeMod('-corner',html,'RoundedInner')" value="RoundedInner"> Rounded including inner elements</label><br/>
+		</fieldset>
+		<fieldset>
+			<legend>Background Texture</legend>
+			<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'None')" value="None" checked> Solid Color</label><br/>
+			<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'HGrid')" value="HGrid"> Horizontal Grid</label><br/>
+			<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'CrossGrid')" value="CrossGrid"> Cross Grid</label><br/>
+			<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'HexAlt')" value="HexAlt"> Hexagonal</label><br/>
+			<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'OldSchool')" value="OldSchool"> Old-School</label><br/>
+		</fieldset>
+		<fieldset>
+			<legend>Card Styles</legend>
+			<h5>Border</h5>
+			<label><input type="radio" name="border-options" onclick="changeThemeMod('-border',html,'None')" value="None"> None</label><br/>
+			<label><input type="radio" name="border-options" onclick="changeThemeMod('-border',html,'Hairline')" value="Hairline" checked> Hairline</label><br/>
+			<label><input type="radio" name="border-options" onclick="changeThemeMod('-border',html,'Normal')" value="Normal"> Normal</label><br/>
+			<label><input type="radio" name="border-options" onclick="changeThemeMod('-border',html,'Thick')" value="Thick"> Thick</label><br/>
+			<h5>Emboss</h5>
+			<label><input type="radio" name="emboss-options" onclick="changeThemeMod('-emboss',html,'None')" value="None"> None</label><br/>
+			<label><input type="radio" name="emboss-options" onclick="changeThemeMod('-emboss',html,'Smooth')" value="Smooth"> Smooth</label><br/>
+			<label><input type="radio" name="emboss-options" onclick="changeThemeMod('-emboss',html,'WinClassic')" value="WinClassic"> Windows 95</label><br/>
+			<h5>Shadow</h5>
+			<label><input type="radio" name="shadow-options" onclick="changeThemeMod('-shadow',html,'None')" value="None" checked> None</label><br/>
+			<label><input type="radio" name="shadow-options" onclick="changeThemeMod('-shadow',html,'Sharp')" value="Sharp"> Sharp</label><br/>
+			<label><input type="radio" name="shadow-options" onclick="changeThemeMod('-shadow',html,'Smooth')" value="Smooth"> Smooth</label><br/>
+			<label><input type="radio" name="shadow-options" onclick="changeThemeMod('-shadow',html,'Old')" value="Old"> Old</label><br/>
+			<label><input type="radio" name="shadow-options" onclick="changeThemeMod('-shadow',html,'MaterialV1')" value="MaterialV1"> Material Design 1</label><br/>
+			<!-- <label><input type="radio" name="shadow-options" onclick="changeThemeMod('-shadow',html,'MacOS')" value="MacOS"> macOS</label><br/> -->
+			<h5>Shadow Color</h5>
+			<label><input type="radio" name="shadowcolor-options" onclick="changeThemeMod('-shadowColor',html,'Normal')" value="Normal" checked> Normal</label><br/>
+			<label><input type="radio" name="shadowcolor-options" onclick="changeThemeMod('-shadowColor',html,'Reflect')" value="Reflect"> Reflect</label><br/>
+			<label><input type="radio" name="shadowcolor-options" onclick="changeThemeMod('-shadowColor',html,'Glowing')" value="Glowing"> Glowing</label><br/>
+		</fieldset>
+		<fieldset>
+			<legend>Styles</legend>
+			<label><input type="radio" name="misc-options" onclick="changeThemeMod('-preset',html,'Acetate')" value="Acetate"> Acetate Paper</label><br/>
+			<label><input type="radio" name="misc-options" onclick="changeThemeMod('-preset',html,'Neumorphism')" value="Neumorphism" checked> Neumorphism</label><br/>
+		</fieldset>
+	</article>
+</div>
+<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header -viewMedia">
+			<!-- <img class="noLazy" sizes="(min-width: 120em) 480px, (min-width: 100em) 25vw, (min-width: 80em) 33.3vw, (min-width:60em) 50vw, (min-width:40em) 66.6vw, 100vw" srcset="https://picsum.photos/1920 1920w, https://picsum.photos/1280 1280w, https://picsum.photos/960 960w, https://picsum.photos/640 640w"/> -->
+			<!-- <img data-srcset="img/filler/resp/1920.webp 1920w, img/filler/resp/1280.webp 1280w, img/filler/resp/960.webp 960w, img/filler/resp/640.webp 640w"/> -->
+			<img data-srcset="//picsum.photos/1920 1920w, //picsum.photos/1280 1280w, //picsum.photos/960 960w, //picsum.photos/640 640w">
+			<h6 class="c-card__meta -sideLeft">August 19th, 2015 • 2 Comments • Edit</h6>
+			<h6 class="c-card__meta -sideRight">Meaningless, Filler, Categories</h6>
+			<h2 class=c-card__title>Post Example with Featured Image</h2>
+		</header>
+		<md>
+		**A person who doesn't** make *any mistake* is ``a person`` who doesn't do anything. And biggest mistake in the world is to thought you're perfect.
+
+		I think we really should give a crap to these idioms, especially when I type meaningless paragraphs like these, I see a reason to explain [this](//google.com) sometimes. Thanks to me, I stretched my fingers a little and I am typing really something random things right now instead of being too lazy to copy-paste from Lorem Ipsum generators. Probably, this is should be longest sentence of the existence. I can't understand but that's really is.
+		</md>
+		<img class=alignStart data-src=//picsum.photos/128>
+		<md>
+		So let's try to type longest paragraph of the world. To ease the process of breaking record I will make a list of names of all prime ministers irrelevently in here. Of course, I am too lazy to not remember name of prime ministers so I can make up this list. Let's see!
+- John Jonathan
+- Anne Anderson
+- Jake Jackathon
+- Michel Michelson
+
+		</md>
+		<footer class=c-card__footer>
+			<ul class="c-nav -layoutHorizontal -typeTag">
+				<span class=c-nav__item><b>Tags:</b></span>
+				<li class=c-nav__item><a class=c-nav__anchor href=#!>FusionFall</a></li>
+				<li class=c-nav__item><a class=c-nav__anchor href=#!>Fortnite</a></li>
+				<li class=c-nav__item><a class=c-nav__anchor href=#!>Minecraft</a></li>
+			</ul>
+		</footer>
+	</article>
+</div>
+<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header">
+			<h2 class=c-card__title>Color Palette</h2>
+		</header>
+		<h5>Layers</h5>
+		<div class=_colorBox style="border:2px solid #000;background-color:var(--colorDeep)">Deep
+		<div class=_colorBox style="background-color:var(--colorBack)">Back
+		<div class=_colorBox style="background-color:var(--colorBase)">Base
+			<div class=_colorBox style="background-color:var(--colorFore)">Fore*</div>
+			<div class=_colorBox style="background-color:var(--colorForeBrighter)">Fore Brighter*
+		<div class=_colorBox style="background-color:var(--frontColor)">Front
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		<div class=_colorPalette style="background:#000">
+			<div style="background-color:var(--colorBase)">
+				<span class=_txtText>Normal Text Color</li><br/>
+				<span class=_txtTextBolder>Bolder Text Color</li>
+			</div>
+			<div class="s-themeMod__body -bgRed">Red</div>
+			<div class="s-themeMod__body -bgOrange">Orange</div>
+			<div class="s-themeMod__body -bgYellow">Yellow</div>
+			<div class="s-themeMod__body -bgGreen">Green</div>
+			<div class="s-themeMod__body -bgCyan">Cyan</div>
+			<div class="s-themeMod__body -bgBlue">Blue</div>
+			<div class="s-themeMod__body -bgViolet">Violet</div>
+			<div class="s-themeMod__body -bgMagenta">Magenta</div>
+		</div>
+		<!-- <div class=_colorPalette> -->
+		<!-- 	<div class=_bgBase03>B03</div> -->
+		<!-- 	<div class=_bgBase02>B02</div> -->
+		<!-- 	<div class=_bgBase01>B01</div> -->
+		<!-- 	<div class=_bgBase00>B00</div> -->
+		<!-- 	<div class=_bgBase0>B0</div> -->
+		<!-- 	<div class=_bgBase1>B1</div> -->
+		<!-- 	<div class=_bgBase2>B2</div> -->
+		<!-- 	<div class=_bgBase3>B3</div> -->
+		<!-- </div> -->
+	</article>
+</div>
+<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header">
+			<h2 class="c-card__title">Background Patterns</h2>
+		</header>
+		<!-- <h5>Çapraz Metrik</h5> -->
+		<h5>Cross Grid</h5>
+		<div class="_colorPalette" style="background-color:#000">
+			<div class="s-themeMod__body -bgCrossGrid" style="width:100%;height:8em"></div>
+		</div>
+		<!-- <h5>Yatay Izgara</h5> -->
+		<h5>Horizontal Grid</h5>
+		<div class="_colorPalette" style="background-color:#000">
+			<div class="s-themeMod__body -bgHGrid" style="width:100%;height:8em"></div>
+		</div>
+		<!-- <h5>Eski Ekran</h5> -->
+		<h5>Old-School</h5>
+		<div class="_colorPalette" style="background-color:#000">
+			<div class="s-themeMod__body -bgOldSchool" style="width:100%;height:8em"></div>
+		</div>
+	</article>
+</div>
+<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header">
+			<h2 class="c-card__title">Inline Styles and Blockquotes</h2>
+		</header>
+		<p>This paragraph is nested inside an article. It contains many different, sometimes useful, <a href=https://www.w3schools.com/tags/>HTML5 tags</a>. Of course there are classics like <em>emphasis</em>, <strong>strong</strong>, and <small>small</small>        but there are many others as well. Hover the following text for abbreviation tag: <abbr title="abbreviation">abbr</abbr>. Similarly, you can use acronym tag like this: <acronym title="For The Win">ftw</acronym>. You can define <del>deleted text</del>        which often gets replaced with <ins>inserted</ins> text.
+		<p>You can also use <kbd>keyboard text</kbd>, which sometimes is styled similarly to the <code>&lt;code&gt;</code> or <samp>samp</samp> tags. Even more specifically, there is a tag just for <var>variables</var>. Not to be mistaken with blockquotes
+		below, the quote tag lets you denote something as <q>quoted text</q>. Lastly don't forget the sub (H<sub>2</sub>O) and sup (E = MC<sup>2</sup>) tags. 
+		<hr/>
+		<blockquote>
+		<p>Blockquote: I quickly explained that many big jobs involve few hazards
+		<blockquote>
+		<p>This is a mult-line blockquote with a cite reference. People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick
+			carefully. I’m actually as proud of the things we haven’t done as the things I have done. Innovation is saying no to 1,000 things.
+			<cite>Steve Jobs – Apple Worldwide Developers’ Conference, 1997</cite>
+		</blockquote>
+		</blockquote>
+	</article>
+</div>
+<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header">
+			<h2 class="c-card__title">Icons</h2>
+		</header>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#the-logo></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#house></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-magnifier></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-clock></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-drawer></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-person></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#person-circle></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#person-headset></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#chat-bubble></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-tag></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-pin></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#paper-multiple-floating></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#paper-multiple-masonry></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-minus></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-plus></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-cross></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#sign-info></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#sign-tip></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#sign-attention></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#paper-valid></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#paper-invalid></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#paper-question></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-globe></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#paper-send></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#paper-send-alt></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#symbol-at></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#symbol-number></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-letterbox></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-bench></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-mug></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#lock-locked></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#lock-unlocked></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#file></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#file-multiple></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#file-landscape></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#file-txt></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#file-img></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#file-data></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#file-data-alt></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#dir></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#dir-multiple></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#dir-archive></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#dir-archive-dl></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#dir-valid></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#dir-invalid></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#dir-question></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#paper-multiple></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#paper-multiple-alt></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-pencil></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-pencil-none></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-paper-pencil></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-crop></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#qr></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#book></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#note></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#trash-bin></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#trash-bin-alt></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-sort-az></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-sort></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#tool-filter></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-list></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#list-to-left></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#list-to-right></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#chain-external></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#chain-add></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#chain-remove></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#window-minimize></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#device-monitor></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#device-laptop-computer></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#device-smartphone></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#wasd></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#device-mouse></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#device-microphone></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#device-gamepad></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-rss></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#general-credits></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#media-play></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#media-pause></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#media-stop></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#media-rewind></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#media-vol-muted></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#media-vol-none></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#media-vol-low></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#media-vol-med></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#media-vol-high></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#arrow-to-up></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#arrow-to-right></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#arrow-to-down></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#arrow-to-left></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#arrow-to-up-double></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#arrow-to-right-double></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#arrow-to-down-double></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#arrow-to-left-double></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#arrow-out></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#arrow-in></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#fun-t-shirt></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#fun-person-hmd></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#fun-rocket></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#fun-wtf></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#fun-0w0></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-ege></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#ssg-11ty></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#service-digitalocean></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#os-mac></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#os-windows></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#os-gnulinux></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#os-ios></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#os-android></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#distro-arch></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#distro-ubuntu></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-github></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-twitter></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-instagram></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-behance></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-patreon></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-twitch></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-youtube></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-reddit></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-telegram></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-discord></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-deviantart></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#site-linkedin></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#gamestore-steam></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#gamestore-epic></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#gamestore-itch></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#game-switch></svg>
+		<svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#gameeng-godot></svg>
+	</article>
+</div>
+<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header">
+			<h2 class="c-card__title">Comments</h2>
+		</header>
+		<h5 class='author'>Gamora</h5>
+		Did you do it?
+		<blockquote>
+			<h5 class='author'>Thanos</h5>
+			Yes.
+			<blockquote>
+				<h5 class='author'>Gamora</h5>
+				What did it cost?
+				<blockquote>
+					<h5 class='author'>Thanos</h5>
+					Everything.
+				</blockquote>
+			</blockquote>
+		</blockquote>
+		<h5 class='author'>Morpheus</h5>
+		Do you know what I'm talking about?
+		<blockquote>
+			<h5 class='author'>Neo</h5>
+			The Matrix?
+			<blockquote>
+				<h5 class='author'>Morpheus</h5>
+				Do you want to know what it is?
+				<blockquote>
+					<h5 class='author'>Neo</h5>
+					[Nods.]
+					<blockquote>
+						<h5 class='author'>Morpheus</h5>
+						The Matrix is everywhere. It is all around us. Even now, in this very room. You can see it when you look out your window, or when you turn on your television. You can feel it when you go to work. When you go to church. When you pay your taxes. It is the world that has been pulled over your eyes to blind you from the truth.
+						<blockquote>
+							<h5 class='author'>Neo</h5>
+							What truth?
+							<blockquote>
+								<h5 class='author'>Morpheus</h5>
+								That you are a slave, Neo. Like everyone else, you were born into bondage. Born into a prison that you cannot smell or taste or touch. A prison for your mind. Unfortunately, no one can be told what The Matrix is. You have to see it for yourself.
+							</blockquote>
+						</blockquote>
+					</blockquote>
+				</blockquote>
+			</blockquote>
+		</blockquote>
+	</article>
+</div>
+<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header">
+			<h6 class="c-card__meta">April 27th, 2022 • 7 Comments • Edit</h6>
+			<h2 class="c-card__title">Post Example</h2>
+		</header>
+		<lorem></lorem>
+		<img class="alignCenter" data-src="https://picsum.photos/640/360"/>
+		<lorem></lorem>
+		<footer class="c-card__footer">
+			<ul class="c-nav -layoutHorizontal -typeTag">
+				<span class="c-nav__item"><b>Tags:</b></span>
+				<li class="c-nav__item"><a class=c-nav__anchor href=#!>FusionFall</a></li>
+				<li class="c-nav__item"><a class=c-nav__anchor href=#!>Fortnite</a></li>
+				<li class="c-nav__item"><a class=c-nav__anchor href=#!>Minecraft</a></li>
+			</ul>
+		</footer>
+	</article>
+</div>
+<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header">
+			<h2 class="c-card__title">4:3 Video</h2>
+		</header>
+		<div class="intrinsicContainer ratio4-3">
+			<iframe width="560" height="315" data-src="https://www.youtube-nocookie.com/embed/npTC6b5-yvM?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		</div>
+	</article>
+</div>
+<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
+	<article class="c-card --typePost">
+		<header class="c-card__header c-header">
+			<h2 class="c-card__title">Table</h2>
+		</header>
+		<!-- <table class="--noBorder --zebraRows"> -->
+		<table class="--rowZebra">
+			<caption>Tables can have captions now.</caption>
+			<tbody>
+			<tr>
+				<th>Person</th>
+				<th>Number</th>
+				<th>Third Column</th>
+			</tr>
+			<tr>
+				<td>Someone Lastname</td>
+				<td>900</td>
+				<td>Nullam quis risus eget urna mollis ornare vel eu leo.</td>
+			</tr>
+			<tr>
+				<td><a href=#!>Person Name</a></td>
+				<td>1200</td>
+				<td>Vestibulum id ligula porta felis euismod semper. Donec ullamcorper nulla non metus auctor fringilla.</td>
+			</tr>
+			<tr>
+				<td>Another Person</td>
+				<td>1500</td>
+				<td>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam id dolor id nibh ultricies vehicula ut id elit.</td>
+			</tr>
+			<tr>
+				<td>Last One</td>
+				<td>2800</td>
+				<td>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</td>
+			</tr>
+			</tbody>
+		</table>
+	</article>
+</div>

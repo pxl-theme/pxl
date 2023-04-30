@@ -1,0 +1,45 @@
+<include src='includes/page-header.html' locals='{
+         "title":"Article Post Type"
+}'></include>
+
+<main id=content class="s-cmsContent u-clearFix o-rustygrid --alignCenter" aria-label=Content>
+	<div class="o-rustygrid__item -col1 -col2-3@palm">
+		<article class="c-card --typePost">
+			<header class="c-card__header c-header">
+				<h1 class=c-card__title itemprop=heading>Buttons</h1>
+			</header>
+			<fieldset>
+				<legend>Default</legend>
+				<p>
+					<input type=submit value="<input type=submit>">
+					<input type=button value="<input type=button>">
+					<input type=reset  value="<input type=reset>">
+					<input type=submit value="<input disabled>" disabled>
+				</p>
+				<p>
+					<button type=submit>&lt;button type=submit&gt;</button>
+					<button type=button>&lt;button type=button&gt;</button>
+					<button type=reset >&lt;button type=reset&gt;</button>
+					<button type=button disabled>&lt;button disabled&gt;</button>
+				</p>
+			</fieldset>
+			<fieldset>
+				<legend>Hexagonal Buttons</legend>
+				<p>
+					<input class=--viewHex type=submit value="<input type=submit>">
+					<input class=--viewHex type=button value="<input type=button>">
+					<input class=--viewHex type=reset  value="<input type=reset>">
+					<input class=--viewHex type=submit value="<input disabled>" disabled>
+				</p>
+				<p>
+					<button class=--viewHex type="submit">&lt;button type=submit&gt;</button>
+					<button class=--viewHex type="button">&lt;button type=button&gt;</button>
+					<button class=--viewHex type="reset" >&lt;button type=reset&gt;</button>
+					<button class=--viewHex type="button" disabled>&lt;button disabled&gt;</button>
+				</p>
+			</fieldset>
+		</article>
+	</div>
+</main>
+
+<include src='includes/page-footer.html'></include>

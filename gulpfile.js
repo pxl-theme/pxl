@@ -2,17 +2,17 @@
 */
 /**** Essentials
 */
-import gulp                from 'gulp';
-const {src, dest, parallel, series, task, watch} = gulp;
-import pump                from "pump"
-import del                 from "del"
-import rename              from "gulp-rename"
-import stringReplace       from "gulp-string-replace"
-import sourcemaps          from "gulp-sourcemaps"
-import filter              from "gulp-filter"
-import zip                 from "gulp-zip"
-import browsersyncSrc      from "browser-sync"
-import path                from "path"
+import gulp                from 'gulp'
+const {src, dest, parallel, series, task, watch} = gulp
+import pump                from 'pump'
+import {deleteAsync}          from 'del'
+import rename              from 'gulp-rename'
+import stringReplace       from 'gulp-string-replace'
+import sourcemaps          from 'gulp-sourcemaps'
+import filter              from 'gulp-filter'
+import zip                 from 'gulp-zip'
+import browsersyncSrc      from 'browser-sync'
+import path                from 'path'
 const browsersync = browsersyncSrc.create();
 
 /**** HTML
@@ -32,9 +32,10 @@ import posthtmlAltAlways   from "posthtml-alt-always"
 
 /**** CSS
 */
-import stylelint           from "gulp-stylelint"
-import sorter              from "css-declaration-sorter"
+import stylelint           from "@ronilaukkarinen/gulp-stylelint"
+// import sorter              from "css-declaration-sorter"
 import nano                from "cssnano"
+// import nanoAdvancedConfig  from "cssnano-preset-advanced"
 import purgeCSS            from "gulp-purgecss"
 import w3cCSS              from "gulp-w3c-css"
 
@@ -43,44 +44,61 @@ import rcs                 from "gulp-rcs"
 /**** JavaScript
 */
 import concat              from "gulp-concat"
-import uglifyjs            from "uglify-es"
-import composer            from "gulp-uglify/composer.js"
-const uglifyMinify         = composer(uglifyjs, console);
-// import eslint              from "gulp-eslint"
-import eslint              from "gulp-eslint7"
 
-/** PostCSS Plugins
+import terser              from "gulp-terser"
+// import uglifyjs            from "uglify-es"
+// import composer            from "gulp-uglify/composer.js"
+// const uglifyMinify         = composer(uglifyjs, console);
+
+// import eslint              from "gulp-eslint"
+import eslint              from "gulp-eslint-new"
+
+/**** PostCSS Plugins
 */
 import postcss             from "gulp-postcss"
-import autoprefixer        from "autoprefixer"
-// import colorMod            from "postcss-color-mod-function"
-import mixins              from "postcss-mixins"
-// import calc                from "postcss-calc" // To reduce calc values
+// import parcelCSS           from "postcss-parcel-css"
+
 // import presetenv           from "postcss-preset-env"
-import nested              from "postcss-nested"
-// import nesting              from "postcss-nesting"
-import extractMediaQuery   from "postcss-extract-media-query"
-import willChange          from "postcss-will-change"
-// import focus               from "postcss-focus"
+
+// Future CSS Syntax
 import customMedia         from "postcss-custom-media"
-import atImport            from "postcss-import"
-import atImportGlob        from "postcss-import-ext-glob"
-// import urlrev              from "postcss-urlrev"
 import extend              from "postcss-extend"
 import anylinkPseudo       from "postcss-pseudo-class-any-link"
-import overflowWrap        from "postcss-replace-overflow-wrap"
-import cssPseudos          from "postcss-pseudoelements"
-import fontVariant         from "postcss-font-variant"
-import inlineSVG           from "postcss-inline-svg"
+
+// For Fallbacks
+// import calc                from "postcss-calc" // To reduce calc values
+import autoprefixer        from "autoprefixer"
+import willChange          from "postcss-will-change"
+
+// Language Extensions
+// import colorMod            from "postcss-color-mod-function"
+import mixins              from "postcss-mixins"
+import nested              from "postcss-nested"
+// import nesting              from "postcss-nesting"
+
+// Colors
 import brandColors         from "postcss-brand-colors"
-
-// import fontgrabbermodule   from "postcss-font-grabber"
-// const  {fontGrabber} = fontgrabbermodule;
-
-// import fontMagician        from "postcss-font-magician"
-
 // import colorblind          from "postcss-colorblind"
 
+// Images & Fonts
+// import inlineSVG           from "postcss-inline-svg"
+// import fontgrabbermodule   from "postcss-font-grabber"
+// const  {fontGrabber} = fontgrabbermodule;
+// import fontMagician        from "postcss-font-magician"
+// import urlrev              from "postcss-urlrev"
+
+// Optimizations
+import atImport            from "postcss-import"
+
+// Shortcuts
+// import focus               from "postcss-focus"
+
+// Uncategorized
+import extractMediaQuery   from "postcss-extract-media-query"
+import atImportGlob        from "postcss-import-ext-glob"
+
+// Save for Later
+// postcss-zindex - Need testing with z-index values that has custom variables.
 
 /**** Images
 */
@@ -155,7 +173,7 @@ const jsVendors = [
 	"node_modules/jquery/dist/jquery.min.js",
 	"node_modules/enquire.js/dist/enquire.min.js",
 	"node_modules/colcade/colcade.js",
-	//TODO: Need to minimize colcade.js in the mergeVendor task.
+	//TODO: Need to minimize colcade.js in the concatJSVendors task.
 	"node_modules/lazysizes/lazysizes.min.js",
 	"node_modules/no-darkreader/nodarkreader.min.js"
 ];
@@ -218,7 +236,7 @@ function texts() {
 }
 function clearHTMLIncludes() {
 // Clear all HTML includes just in case to get rid of abandoned/old pages
-	return del([predistDir + "/includes", predistDir + "/layouts"]);
+	return deleteAsync([predistDir + "/includes", predistDir + "/layouts"]);
 }
 function validateHTML() {
 // Validate HTML syntax by the W3C standarts
@@ -255,23 +273,35 @@ function styles () {
 		atImportGlob({sort: 'asc'}),
 		atImport({ from: watched.css }),
 		willChange,
-		autoprefixer,
+		autoprefixer, // might got replaced by parcel-css in the future
 		mixins,
 		// calc({mediaQueries: true,selectors: true,precision: 10}),
 		// presetenv
-		nested,
+		nested, // might got replaced by parcel-css in the future
 		// nesting,
-		customMedia,
+		customMedia, // might got replaced by parcel-css in the future
 		// colorMod,
 		// focus,
 		extend,
 		// urlrev({relativePath: "src/"}),
 		brandColors,
-		inlineSVG,
-		cssPseudos,
-		fontVariant,
+		// inlineSVG,
+		// cssPseudos,
+		// fontVariant,
 		anylinkPseudo,
-		w3cCSS,
+		w3cCSS
+		// parcelCSS({
+		// 	parcelCSSOptions: {
+		// 		// Will require browser options, but doesn't need one since there's browserlist query in package.json
+		// 		minify: false,
+		// 		sourceMap: false,
+		// 		cssModules: false,
+		// 		drafts: {
+		// 			nesting: false,
+		// 			customMedia: false
+		// 		}
+		// 	}
+		// })
 
 		// fontGrabber({
 		// 	cssDest: predistDir,
@@ -285,7 +315,6 @@ function styles () {
 		// }),
 
 		// colorblind({method:'tritanopia'}),
-		overflowWrap({method: "copy"})
 	];
 	return src(watched.css)
 		.pipe(postcss(processors))
@@ -304,12 +333,6 @@ function lintCSS(){
 			debug: true
 		}))
 }
-function sortCSS() {
-// Sort CSS declarations by a specific order.
-	return src(predist.css)
-		.pipe(postcss([ sorter({})]))
-		.pipe(dest(predistDir));
-}
 
 function minifyCSS() {
 // Minimize the filesize of processed and linted CSS files.
@@ -319,16 +342,15 @@ function minifyCSS() {
 		//   sourceMappingURLPrefix: "https://www.mydomain.com/"
 		// }))
 		.pipe(rename(renameCSSFunction))
-		.pipe(postcss([ nano({ autoprefixer: false }) ]))
+		.pipe(postcss([ nano()]))
 		// .pipe(sourcemaps.write("map/"))
 		.pipe(dest(distDir));
 }
 
 function clearMedia() {
 // Preparation for extracting media queries
-	return del(distDir + "/*.mq-*.css");
+	return deleteAsync(distDir + "/*.mq-*.css");
 }
-
 
 function extractMedia() {
 // Extract and separate all declarations inside media queries one by one
@@ -344,29 +366,29 @@ function extractMedia() {
 				queries: {
 					// Make sure it's synchronized with the media queries from css/abstract/00-media.css
 
-					// Media Queries for Wrist or smaller
+					// for Wrist or smaller
 					// "screen and (max-width:2in)": "s",
 
-					// Media Queries for Palm or smaller
+					// for Palm or smaller
 					// "screen and (max-width:calc(calc(640/16)*1em)-1px)": "s",
 
-					// Media Queries for Palm or bigger
-					"screen and (min-width:calc(calc(640/16)*1em))": "m",
+					// for Palm or bigger
+					"screen and (min-width:calc((640/16)*1em))": "m",
 
-					// Media Queries for Lap or bigger
-					"screen and (min-width:calc(calc(960/16)*1em))": "l",
+					// for Lap or bigger
+					"screen and (min-width:calc((960/16)*1em))": "l",
 
-					// Media Queries for Desk or bigger
-					"screen and (min-width:calc(calc(1280/16)*1em))": "l",
+					// for Desk or bigger
+					"screen and (min-width:calc((1280/16)*1em))": "l",
 
-					// Media Queries for Wall or bigger
-					"screen and (min-width:calc(calc(1600/16)*1em))": "xl",
+					// for Wall or bigger
+					"screen and (min-width:calc((1600/16)*1em))": "xl",
 
-					// Media Queries for Mall or bigger
-					"screen and (min-width:calc(calc(1920/16)*1em))": "xl",
+					// for Mall or bigger
+					"screen and (min-width:calc((1920/16)*1em))": "xl",
 
-					// Media Queries for Titan or bigger
-					"screen and (min-width:calc(calc(2400/16)*1em))": "xl",
+					// for Titan or bigger
+					"screen and (min-width:calc((2400/16)*1em))": "xl",
 
 					// Inputs with Cursor
 					"(any-hover:hover)": "cur",
@@ -399,13 +421,14 @@ function lintJS() {
 		/* Move unchanged and corrected JS files to the pre-dist directory */
 		.pipe(dest(predistDir));
 }
-function mergeVendor(cb) {
+function concatJSVendors(cb) {
 // Get JavaScript libraries and concetanate into one vendor JS file with respective order.
 	pump([
 		src(jsVendors),
 		sourcemaps.init(),
 		concat("v.js"),
-		uglifyMinify(),
+		terser(),
+		// uglifyMinify(),
 		sourcemaps.write("map/"),
 		// Skip predist directory, has nothing to do with selector renaming or minimizing.
 		dest(distDir)
@@ -414,7 +437,7 @@ function mergeVendor(cb) {
 
 function concatJS(cb) {
 // Concatenate main JS files into one file, create source map for easy debugging later.
-	var options = {};
+	// var options = {};
 	pump([
 		src(predist.js),
 		sourcemaps.init(),
@@ -422,7 +445,8 @@ function concatJS(cb) {
 		dest(predistDir),
 		// rename("a.m.js"),
 		rename(renameJSFunction),
-		uglifyMinify(options),
+		terser(),
+		// uglifyMinify(options),
 		sourcemaps.write("map/"),
 		dest(distDir)
 	],
@@ -502,8 +526,8 @@ function icon() {
 		))
 		.pipe(cheerio({
 			run: ($) => {
-				$('defs').find('[stroke]').attr({'stroke': 'var(--iconColor)', 'stroke-width': 'var(--iconWeight)'});
-				$('g').find('[stroke]').attr({'stroke': 'var(--iconColor)', 'stroke-width': 'var(--iconWeight)'});
+				$('defs').find('[stroke]').attr({'stroke': 'var(--iconColor, #000)', 'stroke-width': 'var(--iconWeight, 2px)'});
+				$('g').find('[stroke]').attr({'stroke': 'var(--iconColor, #000)', 'stroke-width': 'var(--iconWeight, 2px)'});
 			},
 			parserOptions: { xmlMode: true }
 		}))
@@ -511,7 +535,7 @@ function icon() {
 		.pipe(dest(distDir));
 }
 // Clear all distribution and pre-distribution files
-const clear = () => del([predistDir,distDir]);
+const clear = () => deleteAsync([predistDir,distDir]);
 
 function zipIt() {
 // Make an archive of all distribution files
@@ -521,7 +545,7 @@ function zipIt() {
 }
 
 // Clear externally generated build files relevant to Eleventy
-const clear11ty = () => del("./11ty-build");
+const clear11ty = () => deleteAsync("./11ty-build");
 
 function export11ty() {
 // Prepare externally generated build files for exportation to the Eleventy environment
@@ -591,14 +615,14 @@ function renameSelectors() {
 
 /***** Task Groups
 */
-task("cssInit", series(styles, lintCSS, sortCSS));
+task("cssInit", series(styles, lintCSS));
 task("cssMin", series(minifyCSS, clearMedia, extractMedia));
 task("htmlInit", series(texts, clearHTMLIncludes));
 task("htmlMin", series(minifyHTML));
 task("jsInit", series(lintJS));
-task("jsMin", series(mergeVendor, concatJS));
+task("jsMin", series(concatJSVendors, concatJS));
 
-// task("css", series(styles, lintCSS, sortCSS), renameSelectors, series(minifyCSS, unCSS, clearMedia, extractMedia), ()=>{
+// task("css", series(styles, lintCSS), renameSelectors, series(minifyCSS, unCSS, clearMedia, extractMedia), ()=>{
 task("css", series("cssInit", "cssMin"), ()=>{
 	browsersync.stream({match: distDir + "/**/*.css"});
 });

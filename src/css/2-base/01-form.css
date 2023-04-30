@@ -1,0 +1,349 @@
+/***** Input Styles
+ */
+input, textarea, [contenteditable=true] {
+	accent-color: var(--colorAccent);
+	caret-color: var(--colorAccent);
+	/* caret-shape: block; */
+}
+:read-write{
+	user-select:text;
+}
+textarea:read-only{
+	user-select:none;
+}
+::selection{
+	background-color: var(--colorAccent);
+	color: var(--colorBase);
+	text-shadow: none;
+}
+
+label {
+	/* @mixin fontSize4; */
+	font-size: calc(var(--typeScaleBase) * 1rem); /* 16px */
+	line-height: calc(var(--rhythmUnit) * 3); /* 24px */
+	padding-block: calc(var(--rhythmUnit) / 2);
+
+	/* @media (--lap-or-gt) { */
+	/* 	@media (any-hover: hover) and (any-pointer: fine) { */
+	/* 		@mixin fontSize5; */
+	/* 	} */
+	/* } */
+}
+/* input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=file]), textarea, select, button { */
+:is(input:where(:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=file]):not([type=button]):not([type=color]):not([type=reset]):not([type=range])), select, textarea){
+	border: var(--borderS) solid;
+	border-color: currentColor;
+	margin-block-end: calc(var(--borderS) * -2);
+	border-radius: var(--radiusDefault);
+	border-collapse: collapse;
+
+	/* opinionated */
+	/* border-width: 0 0 var(--borderS) var(--borderS); */
+	/* border-style: solid; */
+	/* border-radius: 0 0 0 var(--radiusM); */
+
+	padding-block: 0;
+	/* padding-inline: .5em; */
+	padding-inline: .5rem;
+	min-height: calc(var(--rhythmUnit)*2.5);
+	color: inherit;
+	@mixin fontSize4;
+	@media (any-hover: hover) and (any-pointer: fine) {
+		@mixin fontSize5;
+	}
+	background-color: transparent;
+	/* &:focus { */
+	&:focus-visible {
+		background-color: var(--colorFore);
+		color: var(--colorTextBolder);
+		box-shadow: inset 0 0 0 var(--borderS) currentColor;
+		&:required:invalid {
+			box-shadow: inset 0 0 0 var(--borderS) var(--red);
+		}
+		&:required:valid {
+			box-shadow: inset 0 0 0 var(--borderS) var(--green);
+		}
+	}
+	/* &:active { */
+	/* 	color: var(--colorLinkActive); */
+	/* 	box-shadow: inset 0 0 0 2px currentColor; */
+	/* } */
+	&:invalid, &:required:invalid {
+		box-shadow: none;
+	}
+}
+input[type=color] {
+	/* border-radius: .4em; */
+	/* border-radius: var(--radiusS); */
+	:where([class*=-cornerRounded]) & {
+		/* Make color input rounded if any rounded corner theme modifier exists. */
+		border-radius: var(--radiusM);
+	}
+	border:0;
+	height:calc(var(--rhythmUnit)*4);
+	background-color: var(--colorText);
+}
+::placeholder{
+	/* color: currentColor; */
+	color: var(--colorTextOpac60);
+}
+/* ::-webkit-calendar-picker-indicator { */
+/* 	display: none; */
+/* } */
+
+/*** Button
+ *
+ * Info: Usually, c-button should has it's own style file in the component folder, but since extend will not function as intended, this is an exception.
+ */
+:is(input[type=button],input[type=submit],input[type=reset],button,.c-button) {
+	/* line-height: 2.5em;  */
+	--sizeButton: calc(var(--rhythmUnit)*5);/* Base height of every button in touch interface */
+	border:0;
+	cursor: pointer;
+	--fontWeight: 550;
+	/* opinionated */
+	/* margin-bottom:.25em; */
+	margin-block-end: calc(var(--rhythmUnit) / 2);
+	/* -opinionated */
+	/* min-height: 1.25rem; */
+
+	/* padding: 0 var(--radiusM); */
+	/* padding-block: ; */
+	@mixin fontSize4;
+	padding-block: calc((var(--sizeButton) - var(--lineHeight))/2);
+	padding-inline: var(--nav-item-padSide);
+
+	border-radius: var(--radiusDefault);
+
+	background-color: var(--colorFore);
+	/* color: var(--colorBase); */
+
+	label {
+		cursor: pointer;
+		/* display: block; */
+		/* position: relative; */
+		/* Negative of parent padding value */
+		/* top: calc( calc((var(--sizeButton) - var(--lineHeight))/2) * -1); */
+		/* left: calc( var(--nav-item-padSide) * -1); */
+
+	}
+	@media (any-pointer: fine){
+		--sizeButton: calc(var(--rhythmUnit)*4); /* Base height of every button*/
+	}
+	/* &:hover, &:focus { */
+	&:hover, &:focus-visible {
+		box-shadow: inset 0 0 0 var(--borderS) currentColor;
+		background-color: var(--colorForeBrighter);
+	}
+	&:active {
+		box-shadow: inset 0 0 0 var(--borderM) currentColor;
+	}
+
+	/* TODO: Button spacing needs rework */
+	& + & {
+		margin-left: .25em;
+	}
+	/* experimental */
+	&.-viewHexagon {
+		/* Taken from polymc.com, I don't know the exact source but it deserves a credit! */
+		clip-path: polygon(.6em 0,calc(100% - .6em) 0,100% 50%,calc(100% - .6em) 100%,.6em 100%,0 50%);
+		&:active {
+			box-shadow: none;
+		}
+	}
+	/* -experimental */
+	/* experimental */
+	/*** Spinner Animation
+	*/
+	._spinner {
+		border-radius: 50%;
+		width: calc(var(--rhythmUnit)*2);
+		height: calc(var(--rhythmUnit)*2);
+		border: calc(var(--rhythmUnit)/4) solid transparent;
+		border-top-color: currentColor;
+		animation: spin 1s infinite linear;
+		margin: auto;
+		/*---*/
+		position: absolute;
+		right:calc(var(--rhythmUnit)/4);
+		bottom:calc(var(--rhythmUnit)/4);
+	}
+	/* -experimental */
+}
+.c-button--primary {
+	/* Button style for the default/primary action of user */
+	background-color: var(--colorText);
+	color: var(--colorBase);
+	/* &:hover, &:focus { */
+	&:hover, &:focus-visible {
+		background-color: var(--colorTextBolder);
+	}
+	&:active {
+		box-shadow: inset 0 0 0 var(--borderM) currentColor;
+	}
+}
+/* .c-button--secondary, .c-button--tertiary { */
+/* } */
+
+select{
+	border-right: .75em solid;
+}
+
+/*** Checkbox and Radio Buttons
+ */
+:is(input[type=checkbox],input[type=radio]){
+	cursor: pointer;
+	vertical-align: middle;
+	/* width: 1.5rem; */
+	/* height: 1.5rem; */
+	width: calc(var(--rhythmUnit)*3);
+	height: calc(var(--rhythmUnit)*3);
+	color: var(--colorText);
+	border: var(--borderM) solid;
+	background-color: transparent;
+	position: relative;
+	/* Inner border hack */
+	&:after {
+		content: '';
+		position: absolute;
+		background: transparent;
+		top: 0;
+		left: 0;
+		border-radius: inherit;
+		border: calc(var(--borderM) * 2) solid transparent;
+		width: 100%;
+		height: 100%;
+	}
+	&:checked:after{
+		border-color: var(--colorBase);
+	}
+
+	&:checked{
+		background-color: var(--colorTextBolder);
+	}
+	/* &:focus { */
+	&:focus-visible {
+		color: var(--colorAccent);
+	}
+}
+input[type=checkbox] {
+	/* border-radius: .375em; */
+	/* border-radius: var(--radiusS); */
+	border-radius: var(--radiusDefault);
+	&:after{
+		border-radius: calc(var(--radiusDefault) - var(--borderM) );
+	}
+}
+input[type=radio] {
+	border-radius: 50%;
+}
+input[disabled] {
+	opacity: .66;
+}
+
+/* WebKit Search Input Styles */
+input[type="search"]::-webkit-search-cancel-button {
+	appearance: none;
+}
+
+/*** Range Input
+ *
+ * Source: https://smashingmagazine.com/2021/12/create-custom-range-input-consistent-browsers/
+ */
+input[type=range] {
+	/* Reset every browser-specific styles */
+	appearance: none;
+	cursor: pointer;
+	/* width: 100%; */
+	-webkit-tap-highlight-color: transparent;
+	background:none;
+	/* height: 2em; */
+}
+input[type=range]:focus {
+	/* Also reset the outline in order to replace it */
+	outline: none;
+}
+/* Slider Track
+ */
+input[type=range]::-webkit-slider-runnable-track {
+	/* width: 100%; */
+	height: calc(var(--rhythmUnit) / 2);
+	animate: .2s;
+	/* box-shadow:none; */
+	background: var(--colorText);
+	border:none;
+	[class*="-cornerRounded"] & {
+		/* border-radius: .125em; */
+		border-radius: calc(var(--radiusS) / 2);
+	}
+}
+input[type=range]::-moz-range-track {
+	border:none;
+	/* width: 100%; */
+	height: calc(var(--rhythmUnit) / 2);
+	animate: .2s;
+	/* box-shadow:none; */
+	background: var(--colorText);
+	[class*="-cornerRounded"] & {
+		/* border-radius: .125em; */
+		border-radius: calc(var(--radiusS) / 2);
+	}
+}
+/* input[type=range]:focus::-webkit-slider-runnable-track { */
+/* 	background: var(--colorText); */
+/* } */
+/* input[type=range]:focus::-moz-range-track { */
+/* 	background: var(--colorText); */
+/* } */
+
+/* Slider Thumb
+ */
+input[type=range]::-webkit-slider-thumb {
+	appearance: none;
+	margin-top: -12.5px;
+	box-shadow:none; /* for iOS */
+	border: calc(var(--radiusS) / 2) solid var(--colorBase);
+
+	width: 1rem;
+	/* height: 1.75em; */
+	height: calc(var(--rhythmUnit) * 3);
+
+	background: var(--colorTextBolder);
+	/* cursor: pointer; */
+	border-radius: var(--radiusDefault);
+	/* [class*="-cornerRounded"] & { */
+	/* 	border-radius: var(--radiusM); */
+	/* } */
+}
+input[type=range]::-moz-range-thumb {
+	margin-block-start: var(--borderS);
+	box-shadow:none; /* for iOS (haven't tested on Android)*/
+	border: calc(var(--radiusS) / 2) solid var(--colorBase);
+
+	width: 1rem;
+	/* height: 1.75em; */
+	height: calc(var(--rhythmUnit) * 3);
+
+	background: var(--colorTextBolder);
+	border-radius: var(--radiusDefault);
+}
+
+/*** Fieldset Input
+ */
+fieldset {
+	color: inherit;
+	border: var(--borderHairline) solid;
+	margin-block-end: calc(var(--borderHairline) * -2); /*
+	/* opinionated */
+	border-radius: var(--radiusInnerDefault);
+	/* -opinionated */
+
+	legend {
+		padding-block: 0;
+		padding-inline:.35em;
+	}
+}
+* + fieldset {
+	margin-block-start: var(--rhythmUnit);
+	/* This might be redundant if parent element is grid/flexbox and has gap values.*/
+}

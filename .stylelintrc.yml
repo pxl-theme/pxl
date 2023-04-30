@@ -2,6 +2,10 @@
 plugins:
 - stylelint-no-unsupported-browser-features
 rules:
+  # block-no-empty:
+  # - true
+  # - ignore:
+  #   - comments
   plugin/no-unsupported-browser-features:
   - true
   - ignore:

@@ -1,0 +1,646 @@
+/* .feather{ */
+/* 	vertical-align: -.666ex; */
+/* } */
+
+._colorPalette{
+	border: 2px solid #000;
+	/* padding: .5em; */
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	> * {
+		display: block;
+		/* width: auto; */
+		flex-grow: 1;
+
+		padding: 8px;
+		min-height: 3rem;
+		/* font-size: .8rem; */
+		/* line-height:3rem; */
+		/* text-align: center; */
+		/* margin: auto; */
+	}
+}
+._colorBox {
+	/* display: flex; */
+	/* flex-grow:1; */
+	/* flex-direction: row; */
+	/* text-align: end; */
+	padding: .5em;
+	/* height: 5em; */
+	& & {
+		width: 70%;
+		margin-left: 20%;
+	}
+}
+/*** Text Styles
+ */
+._text{
+	&Red      {color: var(--red);}
+	&Orange   {color: var(--orange);}
+	&Yellow   {color: var(--yellow);}
+	&Blue     {color: var(--blue);}
+	&Magenta  {color: var(--magenta);}
+	&Violet   {color: var(--violet);}
+	&Green    {color: var(--green);}
+	&Cyan     {color: var(--cyan);}
+
+	&Text     {color: var(--colorText);}
+	&TextBolder   {color: var(--colorTextBolder);}
+}
+._textStroke {
+text-shadow: var(--colorBase) 0px 0px 1px,   var(--colorBase) 0px 0px 1px,   var(--colorBase) 0px 0px 1px,
+             var(--colorBase) 0px 0px 1px,   var(--colorBase) 0px 0px 1px,   var(--colorBase) 0px 0px 1px;
+}
+._textStrokeBold {
+	/* Generated from https://owumaro.github.io/text-stroke-generator/
+		*
+		* Approximately 2px stroke
+		*/
+	text-shadow:
+	var(--colorText) 2px 0 0,
+	var(--colorText) 1.75517px 0.958851px 0,
+	var(--colorText) 1.0806px 1.68294px 0,
+	var(--colorText) 0.141474px 1.99499px 0,
+	var(--colorText) -0.832294px 1.81859px 0,
+	var(--colorText) -1.60229px 1.19694px 0,
+	var(--colorText) -1.97999px 0.28224px 0,
+	var(--colorText) -1.87291px -0.701566px 0,
+	var(--colorText) -1.30729px -1.51361px 0,
+	var(--colorText) -0.421592px -1.95506px 0,
+	var(--colorText) 0.567324px -1.91785px 0,
+	var(--colorText) 1.41734px -1.41108px 0,
+	var(--colorText) 1.92034px -0.558831px 0;
+}
+
+/*------- Background Styles -------*/
+/* body { */
+.s-themeMod__body {
+	&.-bg {
+		&Base             {background-color: var(--colorBase);}
+		&Back             {background-color: var(--colorBack);}
+		/* &Back             {background-color: var(--colorBg);} */
+		&Deep             {background-color: var(--colorDeep);}
+		&Fore             {background-color: var(--colorFore);}
+		&ForeBrighter     {background-color: var(--colorForeBrighter);}
+
+		&Red              {background-color: var(--red);       color:#FFF}
+		&Orange           {background-color: var(--orange);    color:#FFF}
+		&Yellow           {background-color: var(--yellow);    color:#000}
+		&Blue             {background-color: var(--blue);      color:#FFF}
+		&Magenta          {background-color: var(--magenta);   color:#FFF}
+		&Violet           {background-color: var(--violet);    color:#FFF}
+		&Green            {background-color: var(--green);     color:#FFF}
+		&Cyan             {background-color: var(--cyan);      color:#000}
+	}
+	&.-bgOldSchool {
+		background: repeating-linear-gradient(
+			0deg,
+			var(--colorTextOpac40),
+			var(--colorTextOpac40) var(--borderHairline),
+			transparent var(--borderHairline),
+			transparent 3px
+		),var(--colorBg);
+	}
+	&.-bgHGrid {
+		/* Horizontal Grid (gradient) Note: It doesn't stay still while resizing */
+
+		background: repeating-linear-gradient(
+			0deg,
+			var(--colorTextOpac20),
+			var(--colorTextOpac20) var(--borderHairline),
+			transparent var(--borderHairline),
+			transparent .5rem
+		),repeating-linear-gradient(
+			0deg,
+			var(--colorTextOpac20),
+			var(--colorTextOpac20) var(--borderHairline),
+			transparent var(--borderHairline),
+			transparent 1rem
+		),var(--colorBg);
+		/* @media (--hidpi) { */
+		/* 	background: repeating-linear-gradient( */
+		/* 		0deg, */
+		/* 		var(--colorTextOpac20), */
+		/* 		var(--colorTextOpac20) .5px, */
+		/* 		transparent .5px, */
+		/* 		transparent .5rem */
+		/* 	),repeating-linear-gradient( */
+		/* 		0deg, */
+		/* 		var(--colorTextOpac20), */
+		/* 		var(--colorTextOpac20) .5px, */
+		/* 		transparent .5px, */
+		/* 		transparent 1rem */
+		/* 	),var(--colorBack); */
+		/* } */
+
+		/* Horizontal Grid (PNG) */
+
+		/* background: var(--colorBack) repeat top left; */
+		/* background-image: url("img/pattern/hgrid16.png"); */
+		/* @media (--lap-or-gt) { */
+		/* 	background-image: url("img/pattern/hgrid18.png"); */
+		/* } */
+	}
+	&.-bgCrossGrid {
+		background: repeating-linear-gradient(
+			-45deg,
+			var(--colorTextOpac20),
+			var(--colorTextOpac20) 1.41px,
+			transparent 1.41px,
+			transparent 1em
+		),repeating-linear-gradient(
+			45deg,
+			var(--colorTextOpac20),
+			var(--colorTextOpac20) 1.41px,
+			transparent 1.41px,
+			transparent 1em
+		),var(--colorBg);
+		@media (--hidpi) {
+			background: repeating-linear-gradient(
+				-45deg,
+				var(--colorTextOpac20),
+				var(--colorTextOpac20) .7px,
+				transparent .7px,
+				transparent 1em
+			),repeating-linear-gradient(
+				45deg,
+				var(--colorTextOpac20),
+				var(--colorTextOpac20) .7px,
+				transparent .7px,
+				transparent 1em
+			),var(--colorBg);
+		}
+	}
+	&.-bgHexAlt {
+		background:	repeating-linear-gradient(
+			-30deg,
+			rgb(101 123 131 / .1),
+			rgb(101 123 131 / .1) 1em,
+			transparent 0,
+			transparent 64px
+		),
+		repeating-linear-gradient(30deg,rgb(101 123 131 / .075),rgb(101 123 131 / .075) 2em,
+			transparent 0,
+			transparent 64px
+		),
+			repeating-linear-gradient(90deg,
+			rgb(101 123 131 / .05),
+			rgb(101 123 131 / .05) 2.2em,
+			transparent 0,
+			transparent 64px
+		),
+		var(--colorBg);
+	}
+}
+
+
+._pxlTheLogo {
+	display: block;
+	margin: auto;
+	width: 8em;
+	height: 5em;
+	vertical-align: middle;
+	stroke: currentColor;
+	stroke-width: 2.888;
+	-webkit-tap-highlight-color: transparent;
+	transition: stroke-width .2s ease;
+	&:hover, &:focus-visible {
+		stroke-width: 4.666;
+	}
+	&:active {
+		stroke-width: 1.444;
+	}
+}
+
+/* ._egeLogo { */
+/* 	/1* width: 10em; *1/ */
+/* 	/1* height: 2.625em; *1/ */
+
+/* 	/1* width: 15em; *1/ */
+/* 	/1* height: 3.9375em; *1/ */
+/* 	height: 3.75em; */
+/* 	display: block; */
+/* 	margin: auto; */
+/* 	circle:hover { */
+/* 		fill: var(--red); */
+/* 		stroke: var(--red); */
+/* 	} */
+/* 	#logo-fill { */
+/* 		fill: currentColor; */
+/* 	} */
+/* 	#logo-stroke { */
+/* 		fill:none; */
+/* 		stroke:currentColor; */
+/* 		stroke-miterlimit:3; */
+/* 		transition: stroke-width .2s ease; */
+/* 	} */
+/* 	&:hover, &:focus-visible { */
+/* 		#logo-stroke { */
+/* 			stroke-width: 2.5; */
+/* 		} */
+/* 	} */
+/* 	a {outline: none;} */
+/* } */
+
+/*** Button that loads new posts
+ */
+._loadMore {
+	border-radius: 50%;
+	width:calc(var(--rhythmUnit)*6);
+	height:calc(var(--rhythmUnit)*6);
+	display: block;
+	margin: auto;
+	margin-block-end: 1em;
+	padding: 1px;
+	position: relative;
+	&::after {
+		position: absolute;
+		top:0;
+		left:0;
+		width:100%;
+		text-align: center;
+		content: "•••";
+		/* font-size: 2em; */
+		--fontWeight: 900;
+		line-height:calc(var(--rhythmUnit)*6);
+	}
+	/* &.loading { */
+	/* 	&::after { */
+	/* 		content: ""; */
+	/* 	} */
+	/* } */
+}
+
+
+/* .noiseWrapper { */
+/* 	position: absolute; */
+/* 	width: 100%; */
+/* 	min-height: 100%; */
+/* 	display: block; */
+/* 	background-color: blue; */
+/* 	top: 0; */
+/* 	left: 0; */
+/* 	z-index: 5555; */
+/* } */
+
+/*** Sticky Footer Compatible Body
+ */
+body._stickyFooter{
+	/* https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/ */
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	#content{
+		flex: 1;
+	}
+}
+
+/*** Lazyload (IS IT THOUGH?)
+ */
+.lazyload,
+.lazyloading {
+	opacity: 0;
+}
+.lazyloaded {
+	opacity: 1;
+	transition: opacity 300ms;
+}
+
+/*** (Experimental) WordPress Compatible Comment Form IDs & Classes
+ *
+ * Note: These haven't tested with new styles.
+ */
+#comment-form {
+	textarea {
+		min-width: 100%;
+		max-width: 100%;
+	}
+	input:not([type=checkbox]) {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		border-width: 0 0 var(--borderS) 0;
+	}
+	input:not([type=checkbox]), textarea {
+		width: 100%;
+		/* margin: 0 0 .5em 0; */
+		margin-block-end: var(--rhythmUnit);
+	}
+	/* Name area */
+	> input:nth-child(2) {
+		--fontWeight: 700;
+	}
+	/* Name and E-Mail */
+	> input:nth-child(2), > input:nth-child(3) {
+		width: 50%;
+	}
+	/* Name, E-Mail, Website */
+	> input:nth-child(2), > input:nth-child(3), > input:nth-child(4) {
+		@media (--lap-or-gt) {
+			width: 33.33%;
+		}
+	}
+	button {
+		float: right;
+		float: inline-end;
+	}
+	.g-recaptcha {
+		margin: calc(var(--rhythmUnit)*2) 0;
+	}
+}
+.js-form.form--loading button{
+	position: relative;
+	overflow: hidden;
+
+	&:after {
+		content: '';
+		height: calc(var(--rhythmUnit)/2);
+		position: absolute;
+		bottom:0;
+		margin: 0;
+		width: 0;
+		background-color: var(--colorAccent);
+		animation: ball 2s ease-in-out infinite;
+	}
+}
+.comment__content-wrapper {
+	h4 a, h5 a{
+		color: currentColor;
+		text-decoration: none;
+	}
+}
+.comment {
+	margin-block-start: calc(var(--rhythmUnit)*2);
+}
+.comment.child {
+	margin-inline-start: calc(var(--rhythmUnit)*2);
+	/* margin-top: 0; */
+	border-left: var(--borderS) solid currentColor;
+	padding-inline-start: .8em;
+}
+.comment__avatar{
+	border-radius: 50%;
+	margin: .66em .66em 0 0;
+}
+/* TODO: a.anchor (Heading hash links) need better naming. */
+a.anchor{
+	cursor: pointer;
+	text-decoration: none;
+	font-weight: 500;
+	height: 100%;
+	/* padding-top: inherit; */
+
+	/* position: absolute; */
+	/* width: 1em; */
+	/* top: 0; */
+	/* left: 0; */
+	/* margin-left: -1.5em; */
+
+	/* padding: 0 .25em; */
+	padding: calc(var(--rhythmUnit)/2); 
+
+	/* @media (any-hover: hover) { */
+	/* 	padding: 0 .125em; */
+	/* } */
+	span:before {
+		/* content: "🔗"; */
+		/* content: "⌗"; */
+		content: "#";
+		/* content: "¶"; */
+		left: 0;
+		top: 0;
+		opacity: .33;
+		transition: opacity .2s ease-in-out;
+		@media (any-hover: hover) {
+			opacity: 0;
+			:is(h1,h2,h3,h4,h5,h6):hover & {
+				opacity: 1;
+			}
+		}
+	}
+}
+a.readMore{
+	--fontWeight: 900;
+	text-decoration: none;
+	/* opinionated */
+	font-size: 1.75em;
+	line-height: .75;
+	vertical-align: -.35ex;
+	padding: 0 .2em;
+	/* -opinionated */
+}
+
+/* Source: https://benmarshall.me/responsive-iframes/ */
+
+/* <div class="intrinsicContainer intrinsicContainer-16x9">
+  <iframe src="//www.youtube.com/embed/KMYrIi_Mt8A" allowfullscreen></iframe>
+</div>
+*/
+.intrinsicContainer {
+	position: relative;
+	height: 0;
+	overflow: hidden;
+	& iframe {
+		position: absolute;
+		top:0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+	/* 21:9 Aspect Ratio */
+	&.ratio21-9 {
+		padding-block-end: 42.857%;
+	}
+	/* 16:9 Aspect Ratio */
+	&.ratio16-9 {
+		padding-block-end: 56.25%;
+	}
+	/* 4:3 Aspect Ratio */
+	&.ratio4-3 {
+		padding-block-end: 75%;
+	}
+	/* 1:1 Aspect Ratio */
+	&.ratio1-1 {
+		padding-block-end: 100%;
+	}
+}
+
+._faviconAnimated {
+	/* opinionated */
+	--imgSize:48px;
+
+	width: var(--imgSize);
+	height: var(--imgSize);
+
+	margin-inline-start: .5rem;
+	margin-block: calc((var(--lineHeight) - var(--imgSize))/2);
+
+	/* border-radius: var(--radiusInnerDefault); */
+	border-radius: var(--radiusS);
+	/* -opinionated */
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+	float: inline-start;
+	& > img {
+		vertical-align: unset;
+		white-space: nowrap /* In case of unloaded img, make sure alt text doesn't overflow off the intended space. */
+	}
+	&:before{
+		background-image: var(--faviconAnimated);
+		background-size: 100%;
+		font-size: inherit;
+		/* background-color: red; */
+		width: 100%;
+		height: 100%;
+		top:0;
+		left:0;
+		content: "";
+		z-index: 99;
+		display: block;
+		position: absolute;
+		opacity: 0;
+		/* Closing transition */
+		transition: opacity .5s ease-in-out .25s;
+	}
+}
+@media (any-hover: hover) {
+	._faviconAnimated:hover:before,
+	a:hover > ._faviconAnimated:before,
+	a:focus-visible > ._faviconAnimated:before{
+		opacity: 1;
+		/* Opening transition */
+		transition: opacity .15s ease-in-out 0s;
+	}
+}
+
+._textFillGradientAnimated {
+	/* opinionated */
+	display: inline-block;
+	/* -opinionated */
+	--colorTextGradientRainbow: linear-gradient(45deg,
+	var(--orange),
+	var(--yellow),
+	var(--green),
+	var(--blue),
+	var(--magenta),
+	var(--red)
+	);
+	background-image: var(--colorTextGradientRainbow);
+	background-size: 600% 600%;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	/* animation: textFillGradientAniamted; */
+	animation: gradientBackgroundLoop 20s linear infinite alternate;
+	&::selection {
+		-webkit-text-fill-color: currentColor;
+	}
+}
+/*TODO: Improved headings needs testing.
+ */
+/* ._s-improvedHeadings { */
+/* 	/1* opinionated *1/ */
+	/* h1,h2,h3,h4,h5 { */
+	/* 	position:relative; */
+	/* } */
+	/* h1 { */
+	/* 	left: -1.1rem */
+	/* } */
+	/* h2 { */
+	/* 	left: -0.92rem */
+	/* } */
+	/* h3 { */
+	/* 	left: -0.74rem */
+	/* } */
+	/* h4 { */
+	/* 	left: -0.56rem */
+	/* } */
+	/* h5 { */
+	/* 	left: -0.4rem */
+	/* } */
+/* 	/1* -opinionated *1/ */
+/* 	/1* .c-card{ *1/ */
+/* 	/1* 	padding-left: calc(var(--c-card-padSide) * 1.6); *1/ */
+/* 	/1* 	padding-right: calc(var(--c-card-padSide) * 1.6); *1/ */
+/* 	/1* } *1/ */
+/* 	/1* .o-rustygrid, .o-masonry { *1/ */
+/* 	/1* 	padding: 0; *1/ */
+/* 	/1* } *1/ */
+/* 	h1,h2,h3,h4,h5 { */
+/* 		max-width: 32ch; */
+/* 	} */
+/* 	p { */
+/* 		max-width: 63ch; */
+/* 	} */
+/* } */
+
+/* Keyframe gets activated everytime relocating the element interacting address bar. (Also iOS version has that problem) */
+/* Page transitions coming soon, use this instead when it's going to be globally adopted: https://www.youtube.com/watch?v=JCJUPJ_zDQ4 */
+/* .js-post { */
+/* 	@keyframes getPost { */
+/* 		0% {opacity: 0; transform: scale(0.66) translateY(100px);} */
+/* 		100% {opacity: 1; transform: scale(1) translateY(0);} */
+/* 	} */
+/* 	animation: getPost .5s cubic-bezier(.68,0,.69,1.18); */
+/* 	/1* , moveUp 2s cubic-bezier(.68,0,.69,1.18); *1/ */
+/* } */
+
+/***** Background Component
+ */
+.c-background {
+	z-index: -999;
+	/* background: red; */
+	&.-styleBlending {
+		mix-blend-mode: overlay;
+		img {
+			filter: contrast(1.2) brightness(5); /* For light mode */
+		}
+	}
+	/* &.-stylePixelated { */
+	/* 	image-rendering: pixelated; */
+	/* } */
+	&.-stylePixelated.-viewFullFixed img {
+		image-rendering: pixelated;
+	}
+	&.-filterBlur {
+	/* Warning: This might slow down scrolling/browsing experience for low-end/mid-end users. */
+		filter: blur(2px);
+	}
+
+	&.-viewStatic {
+		position: static;
+		img {
+			position: absolute;
+			display: inline;
+		}
+	}
+	/*** Perfectly positioned, full-size background
+	 * Based on this method:
+	 * https://css-tricks.com/perfect-full-page-background-image/#aa-css-only-technique-1
+	*/
+	&.-viewFullFixed {
+		position: fixed;
+		width: 800%;
+		height: 800%;
+		left: -350%;
+		top: -350%;
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+
+			margin: auto;
+			min-width: 12.5%;
+			min-height: 12.5%;
+		}
+	}
+}
+/* .s-variantDark { */
+@media (prefers-color-scheme: dark) {
+	.c-background.-styleBlending {
+		mix-blend-mode:darken;
+	}
+}

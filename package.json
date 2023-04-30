@@ -1,7 +1,7 @@
 {
   "name": "pxl-theme",
   "version": "0.1.0",
-  "description": "Customizable blog theme",
+  "description": "An adjustable website theme with sensible defaults and nice looks.",
   "repository": "egeesin/pxl",
   "author": {
     "name": "Ege Esin",
@@ -11,23 +11,20 @@
   "funding": [
     {
       "type": "individual",
-      "url": "http://egeesin.com/donate"
+      "url": "https://egeesin.com/donate"
     },
     {
       "type": "patreon",
-      "url": "http://patreon.com/egeesin"
+      "url": "https://patreon.com/egeesin"
     }
   ],
   "license": "GPL-3.0",
-  "homepage": "pxl.egeesin.com/README",
+  "homepage": "https://pxl.egeesin.com",
   "keywords": [
+    "css",
+    "html",
     "theme",
-    "responsive",
-    "minimal",
-    "customizable",
-    "mobile-first",
-    "gulp",
-    "solarized"
+    "gulp"
   ],
   "scripts": {
     "build": "gulp build",
@@ -36,52 +33,47 @@
   "type": "module",
   "exports": "./gulpfile.js",
   "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+    "node": "^14.13.1 || >=16.0.0"
   },
   "browserslist": [
-    ">= .25% and last 2 year and not unreleased versions and not dead and not edge > 0 and not ie > 0 and not opera > 0 and not op_mini > 0 and not samsung > 0 and not and_qq > 0 and not kaios > 0 and not and_uc > 0"
+    ">= .25% and last 2 year and not unreleased versions and not dead and not ie > 0 and not op_mini > 0 and not samsung > 0 and not and_qq > 0 and not kaios > 0 and not and_uc > 0"
   ],
   "devDependencies": {
-    "autoprefixer": "^10.4.7",
-    "browser-sync": "^2.27.10",
-    "css-declaration-sorter": "^6.3.0",
-    "cssnano": "^5.1.12",
-    "del": "^6.1.1",
+    "@ronilaukkarinen/gulp-stylelint": "^14.1.1",
+    "autoprefixer": "^10.4.14",
+    "browser-sync": "^2.29.1",
+    "cssnano": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-cheerio": "^1.0.0",
     "gulp-concat": "^2.6.1",
-    "gulp-eslint7": "^0.3.2",
     "gulp-filter": "^7.0.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^8.0.0",
     "gulp-postcss": "^9.0.1",
     "gulp-posthtml": "^3.0.5",
-    "gulp-purgecss": "^4.1.3",
+    "gulp-purgecss": "^5.0.0",
     "gulp-rcs": "^3.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-string-replace": "^1.1.2",
-    "gulp-stylelint": "^13.0.0",
     "gulp-svgstore": "^9.0.0",
-    "gulp-uglify": "^3.0.2",
+    "gulp-terser": "^2.1.0",
     "gulp-w3c-css": "^2.0.0",
-    "gulp-w3c-html-validator": "^5.1.3",
+    "gulp-w3c-html-validator": "^5.2.0",
     "gulp-zip": "^5.1.0",
     "imagemin-gif2webp": "^3.0.0",
-    "imagemin-webp": "^7.0.0",
+    "imagemin-webp": "^8.0.0",
     "postcss-brand-colors": "^3.0.0",
-    "postcss-custom-media": "^8.0.2",
+    "postcss-custom-media": "^9.1.3",
     "postcss-extend": "^1.0.5",
     "postcss-extract-media-query": "^3.0.0",
     "postcss-font-variant": "^5.0.0",
-    "postcss-import": "^14.1.0",
-    "postcss-import-ext-glob": "^2.0.1",
-    "postcss-inline-svg": "^5.0.0",
-    "postcss-mixins": "^9.0.3",
-    "postcss-nested": "^5.0.6",
-    "postcss-pseudo-class-any-link": "^7.1.6",
+    "postcss-import": "^15.1.0",
+    "postcss-import-ext-glob": "^2.1.1",
+    "postcss-mixins": "^9.0.4",
+    "postcss-nested": "^6.0.1",
+    "postcss-pseudo-class-any-link": "^8.0.2",
     "postcss-pseudoelements": "^5.0.0",
-    "postcss-replace-overflow-wrap": "^4.0.0",
     "postcss-will-change": "^4.0.1",
     "posthtml-alt-always": "^1.0.1",
     "posthtml-classes": "^0.2.1",
@@ -90,14 +82,14 @@
     "posthtml-md": "^1.1.0",
     "pump": "^3.0.0",
     "rcs-core": "^3.7.1",
-    "stylelint": "^14.9.1",
-    "stylelint-no-unsupported-browser-features": "^5.0.3",
-    "uglify-es": "^3.3.9"
+    "stylelint-no-unsupported-browser-features": "^6.1.0"
   },
   "dependencies": {
     "colcade": "^0.2.0",
+    "del": "^7.0.0",
     "enquire.js": "^2.1.6",
-    "jquery": "^3.6.0",
+    "gulp-eslint-new": "^1.7.2",
+    "jquery": "^3.6.4",
     "lazysizes": "^5.3.2",
     "no-darkreader": "^1.0.3",
     "prism-themes": "^1.9.0",

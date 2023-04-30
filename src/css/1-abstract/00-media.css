@@ -1,0 +1,85 @@
+/**** Custom Media Queries
+ * Note: Make sure it's synchronized with HTML stylesheet meta tags and postcss-extract-media-query config in gulfile.js
+ */
+@custom-media --wrist-or-lt only screen and (max-width: 2in);
+@custom-media --palm-or-lt screen and (max-width: calc((640/16)*1em-1px));
+@custom-media --palm-or-gt screen and (min-width: calc((640/16)*1em));
+@custom-media --lap-or-gt screen and (min-width: calc((960/16)*1em));
+@custom-media --desk-or-gt screen and (min-width: calc((1280/16)*1em));
+@custom-media --wall-or-gt screen and (min-width: calc((1600/16)*1em));
+@custom-media --mall-or-gt screen and (min-width: calc((1920/16)*1em));
+/* @custom-media --gigamall-or-gt screen and (min-width: calc((2100/16)*1em)); */
+@custom-media --titan-or-gt screen and (min-width: calc((2400/16)*1em));
+
+/* HiDPI Screen */
+@custom-media --hidpi screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi);
+/* TODO: A media query for @3x screens and bigger resolutions? */
+
+/**** Media Breakpoints based on Apple devices
+ */
+
+/* Apple Watch */
+@custom-media --apple-watch (max-device-width: 42mm) and (min-device-width: 38mm);
+
+/* Moto 360 Smartwatch */
+@custom-media --moto-360 (max-device-width: 218px) and (max-device-height: 281px);
+
+/* iPhone 4 */
+@custom-media --iph4 only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2);
+@custom-media --iph4-p only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait);
+@custom-media --iph4-l only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape);
+
+/* iPhone 5, SE */
+@custom-media --iph5 only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2);
+@custom-media --iph5-p only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait);
+@custom-media --iph5-l only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape);
+
+/* iPhone 6,7,8 */
+@custom-media --iph6 only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2);
+@custom-media --iph6-p only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait);
+@custom-media --iph6-l only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape);
+
+/* iPhone 6,7,8 Plus */
+@custom-media --iph6plus only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3);
+@custom-media --iph6plus-p only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait);
+@custom-media --iph6plus-l only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape);
+
+/* iPhone X, 11 Pro, 12 Mini */
+@custom-media --iphx only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3);
+@custom-media --iphx-p only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait);
+@custom-media --iphx-l only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape);
+
+/* iPhone 12 & 12 Pro */
+@custom-media --iph12   only screen and (min-device-width: 390px) and (max-device-width: 844px) and (-webkit-min-device-pixel-ratio: 3);
+@custom-media --iph12-p only screen and (min-device-width: 390px) and (max-device-width: 844px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait);
+@custom-media --iph12-l only screen and (min-device-width: 390px) and (max-device-width: 844px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape);
+
+/* iPhone 12 Pro Max */
+@custom-media --iph12max   only screen and (min-device-width: 428px) and (max-device-width: 926px) and (-webkit-min-device-pixel-ratio: 3);
+@custom-media --iph12max-p only screen and (min-device-width: 428px) and (max-device-width: 926px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait);
+@custom-media --iph12max-l only screen and (min-device-width: 428px) and (max-device-width: 926px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape);
+
+/* iPhone 11 Pro Max */
+@custom-media --iph12max   only screen and (min-device-width: 428px) and (max-device-width: 926px) and (-webkit-min-device-pixel-ratio: 3);
+@custom-media --iph12max-p only screen and (min-device-width: 428px) and (max-device-width: 926px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait);
+@custom-media --iph12max-l only screen and (min-device-width: 428px) and (max-device-width: 926px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape);
+
+/* iPad 1, 2, Mini and Air */
+@custom-media --ipa1 only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1);
+@custom-media --ipa1-p only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1);
+@custom-media --ipa1-l only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1);
+
+/* iPad 3, 4, and Pro 9.7" */
+@custom-media --ipa3 only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2);
+@custom-media --ipa3-p only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2);
+@custom-media --ipa3-l only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2);
+
+/* iPad Pro 10,5" */
+@custom-media --ipap10 only screen and (min-device-width: 834px) and (max-device-width: 1112px) and (-webkit-min-device-pixel-ratio: 2);
+@custom-media --ipap10-p only screen and (min-device-width: 834px) and (max-device-width: 1112px) and (-webkit-min-device-pixel-ratio: 2);
+@custom-media --ipap10-l only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2);
+
+/* iPad Pro 12,9" */
+@custom-media --ipap12 only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2);
+@custom-media --ipap12-p only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2);
+@custom-media --ipap12-l only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2);

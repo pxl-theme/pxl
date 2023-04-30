@@ -1,0 +1,75 @@
+:root {
+	/*** Default Font Settings
+	 */
+
+	/* --fontSystem: system-ui, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, color-emoji; */
+	/* --fontSystemMono: ui-monospace, Consolas, 'Liberation Mono', Menlo, Courier, monospace, color-emoji; */
+	--fontSerif: Charter, Georgia, Cambria, "Times New Roman", Times, serif;
+	--fontSystem: system-ui;
+	--fontSystemMono: ui-monospace;
+	--fontMain: "Inter V";
+	/* --fontMain: "Inter"; */
+	--fontMono: "Iosevka Aegean";
+	/* --fontMono: "Iosevka Aegean Aile"; */
+	/* --fontMono: "Hack"; */
+
+	--chosenFonts: var(--fontMain);
+	--chosenMonoFonts: var(--fontMono);
+	@media (--wrist-or-lt) {
+		--chosenFonts: inherit;
+		--chosenMonoFonts: inherit;
+	}
+
+	/* Presets */
+	--fontHeading: var(--fontMain);
+	--fontParagraph: var(--fontMain);
+}
+
+/* Define all emoji-based font families as single family */
+@font-face {
+	font-family: "color-emoji";
+	/* font-display: swap; */
+	src: local("Apple Color Emoji"),
+		 local("Segoe UI Emoji"),
+		 local("Segoe UI Symbol"),
+		 local("Noto Color Emoji");
+}
+
+/* Variable Fonts */
+@font-face {
+	font-family: 'Inter V';
+	/* font-display: swap; */
+	src: url('font/Inter.var.woff2') format('woff2-variations'),
+		 url('font/Inter.var.woff2') format('woff2'),
+		 local("Inter V");
+	font-weight: 1 999;
+	font-style: normal;
+}
+
+/*----*/
+@font-face {
+	font-family: 'Iosevka Aegean';
+	/* font-display: swap; */
+	src: url('font/iosevka-aegean-regular.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Iosevka Aegean';
+	/* font-display: swap; */
+	src: url('font/iosevka-aegean-italic.woff2') format('woff2'),
+		 local("Iosevka");
+	font-weight: normal;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Iosevka Aegean';
+	/* font-display: swap; */
+	src: url('font/iosevka-aegean-bold.woff2') format('woff2'),
+		 local("Iosevka");
+	font-weight: bold;
+	font-style: normal;
+}
+
+
+/* Tip: Keep font-display: block after updating iconfont css file */
