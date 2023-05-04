@@ -1,5 +1,6 @@
 # pxl-theme
-<img class=left src=icon.gif alt="Pixelated logo with flashy written letters 'pxl'." />
+<img class=left src=logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
+
 > An adjustable website theme with sensible defaults and nice looks.
 
 <img class=center src=preview.png alt="A screenshot of the website theme previewing both light and dark theme." />
@@ -50,7 +51,7 @@ gulp watch # or just gulp
 
 ### Browser Support
 
-All modern browsers released within 2 year are supported. Supporting legacy browsers isn't main focus yet. For details, check `browserslist` section in `package.json`.
+All modern browsers released last 2 years are supported. Supporting legacy browsers isn't main focus yet. For details, check `browserslist` section in `package.json`.
 
 ### Concepts & The Design
 
@@ -78,7 +79,7 @@ block -variant
 To connect modifier with a block(in CSS): ``.block.-modifier``
 
 ### Typography
-Almost all box units are em-based. Heading elements are proportionally sized by modular scale and each typographic element margin resized to fit vertical rhythm. Thanks to CSS custom properties, everything is reconfigurable. Default font-family is Inter V and fallback is system font stack.
+Almost all box units are (r)em-based. Heading elements are proportionally sized by modular scale and each typographic element margin resized to fit vertical rhythm. Thanks to CSS custom properties, everything is reconfigurable. Default font-family is Inter V (patched version of Iosevka as default monospace font) and fallback is system font stack.
 
 ### Media Breakpoints
 Breakpoints in the media queries based on [human ergonomics](https://twitter.com/lukew/status/273453112902172672).
@@ -91,15 +92,15 @@ Breakpoints in the media queries based on [human ergonomics](https://twitter.com
 ## Roadmap
 
 - [x] Custom icon set
+- [ ] Selector whitelist for PurgeCSS and rcs
+- [ ] Complete documentation
 - [ ] Export options for 11ty templates
 - [ ] CSS Grid support
-- [ ] Selector whitelist for PurgeCSS and rcs
-- [ ] Detailed docs for concepts inclusive to this theme
 - [ ] [Pywal](https://github.com/dylanaraps/pywal) color theme compatibility
 - [ ] WordPress Block Theme support
 - [ ] Update CSS when implementations [below](https://caniuse.com/css-backdrop-filter,css-has,jpegxl,css-container-queries,mdn-css_types_color_oklch,mdn-css_types_color_color-mix,mdn-css_at-rules_property,mdn-api_css_lh,css-media-range-syntax) got full browser support in the future:
 	- Selectors 4 ([:has](https://drafts.csswg.org/selectors-4/#relational))
-	- Color Module Level 5 ([OKLCH unit](https://drafts.csswg.org/css-color-5/#relative-OKLCH), [Relative Color Syntax](https://drafts.csswg.org/css-color-5/#relative-colors), [color-mix()](https://drafts.csswg.org/css-color-5/#color-mix)])
+	- Color Module Level 5 (Awaiting for Firefox support) ([OKLCH unit](https://drafts.csswg.org/css-color-5/#relative-OKLCH), [color-mix()](https://drafts.csswg.org/css-color-5/#color-mix)], [Relative Color Syntax](https://drafts.csswg.org/css-color-5/#relative-colors), )
 	- [@property values](https://developer.mozilla.org/en-US/docs/Web/CSS/@property#browser_compatibility)
 	- Units and Values Module Level 4 ([Exponent Functions (pow() especially)](https://www.w3.org/TR/css-values-4/#exponent-funcs), [Stepped Value Functions (round())](https://www.w3.org/TR/css-values-4/#funcdef-round), [Font-relative lengths (lh)](https://www.w3.org/TR/css-values-4/#lh))
 	- env() in media queries
