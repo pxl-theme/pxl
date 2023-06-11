@@ -1,0 +1,44 @@
+<include src='includes/page-header.html' locals='{
+         "title":"Blog Article Post"
+}'></include>
+
+<main id=content class="s-cmsContent u-clearFix o-rustygrid --alignCenter" aria-label=Content itemprop=mainContentOfPage>
+	<!-- <div class="o-rustygrid__item -col1 -colGold@palm -col7-9@desk"> -->
+	<div class="o-rustygrid__item -col1 -colGold@palm">
+		<article class="c-card --typePost" itemscope itemtype="https://schema.org/BlogPosting">
+			<header class=c-header>
+				<h5 class="c-card__meta -alignStart@wrist-gt" alt="Thu Feb 21 2019 21:25:00 GMT+0300 (GMT+03:00)">
+					<time datetime=2019-02-21 itemprop=datePublished>21 Şub 2019, Perşembe</time>
+				</h5>
+				<h6 class="c-card__meta -alignEnd@wrist-gt" itemprop=keywords>
+					Orijinal İçerik, Web Geliştirme, Web Tasarım, pxl, framework, theme, css, jekyll
+					</h6>
+					<h1 class=c-card__title itemprop=heading>Tema Geliştirmek</h1>
+			</header>
+			<section itemprop=articleBody>
+				<p>5 sene önceki “Yeni Aşama” yazımda bahsettiklerimi baya baya gerçekleştirdim sanırım. WordPress’ten çıktım, başka sunucuya geçtim ve şu an bulunduğunuz alan adımı tuttum: <a href=//egeesin.com>egeesin.com</a>
+				<p>Bir diğer yandan da yapımı yavaş yavaş ilerlemiş olup nihayet bu yazının tarihinde tamamladığım tema: pxl.
+				<h3 id=bu-tema-nedir>Bu tema nedir? <a class=anchor href=#bu-tema-nedir aria-hidden=true><span></span></a></h3>
+				<p>Öncelikle ismiyle birkaç çıkarım yaparak açıklayacağım. Bir pikselin, güncel teknolojimize göre 16 milyon renkten birini gösterebilme özelliği var. Bir tanesiyle bile milyonlarca seçenek sunabilirsiniz. Tabii sadece bir tanesinden bir mana çıkarmak zaman zaman zorlaşabilir. Belki daha fazlası gerekir. Bir şeyin desenini ya da formunu oluşturmak için. Ya da bir şeyi diğer şeyden ayrıştırmak için. Hepsi belli bir düzene göre alan kaplayabilir, yanılsama oluşturabilir. Biri başkasının yerini doldurabilir. Ve tüm bunlar aynı zamanda doğal gözükebilir. Temamda da aynı şekilde bunların özüne ulaşmak için, ismini pxl &lt;piksel&gt; yaptım.
+				<p>Bir kutucuğu, henüz sayamayacağımız kadar, çeşitli içerik türüne göre farklı tasarımlarla sunabilirsiniz. Tabii sadece bir tanesinden bir mana çıkarmak zaman zaman zorlaşabilir. Belki daha fazlası gerekir. Mesela bir kart. Mesela bir kare. Mesela bir ızgara. Hepsi belli bir düzene göre yerleştirilebilir. Biri başkasının yerini doldurabilir. Ve tüm bunlar aynı zamanda doğal gözükebilir. Bütün bunları direk olarak sağlayabilmek için modüler, akışkan, taze bir tema geliştirmeyi amaçladım.
+				<p>Tabii pxl’in bir tema olduğunu söylemek benim bazen kafamı karıştırıyor. Bu projeyi kategorileştirirken tema ya da iskelet olacağını bilemedim.
+				<h3 id=önceleri>Önceleri <a class=anchor href=#önceleri aria-hidden=true><span></span></a></h3>
+				<p>5 sene önce web tasarımı işine ucundan başlayıp evrilirken şu zamana kadar ege-theme ve aegean isimlerinde iki kez yeniden başlamış olduğum ana ‘tema’ projelerim vardı. Egoistik isimler için kusura bakmayın çok hoşnut olduğum şey değil eskisi kadar. Bu temaların çıkış noktaları her zaman bir şeyi öğrenir öğrenmez uygulayabileceğim bir kum havuzu olmasıydı benim için. Sırf slider seviyorum diye değil ama olsaydı fena olmazdı dediğim biraz da dışarıdaki örneklere aşırı özentili işler yaptım sırf nasılmış ne değilmiş diye. Bunları öğrenmek ve kendi elinden bunu oluşturabilmek ya da en azından bunun nasıl oluştuğunu anlamak güzel bir his. Eh tabii bu temalar doğal olarak <a href=//egeesin.com>egeesin.com</a>’a ayak basamadı. Ana amaç zamanla biraz saptı, çünkü o işlerin iskeletleri doldukça karıştı, karıştıkça çözülemedi. Sıfırdan yaratmış olduğunuz bir kördüğümü farklı standartlara sahip WordPress, Jekyll gibi platformlara desteklerini bağlamak en az sıfırdan kusursuz bir sistem inşa etmek kadar zormuş. Bu durumu yeni yeni yaşamaya başlayıp, merak eden varsa ileride paylaşacağım CSS Özgüllükleri yazısını okumanızı tavsiye ederim (takipte kalın).
+				<h3 id=farklı-bir-yol>Farklı bir yol <a class=anchor href=#farklı-bir-yol aria-hidden=true><span></span></a></h3>
+				<p>Bu iki sakat projelerden sonra bu sefer ne yapacağımı bilerek hareket edip son kez bir adım atmaya karar verdim ve adımın önceliği görünüşe değil temele gitti. Sadece HTML ve CSS bazında neyi yapacağımdan çok bir şeyi nasıl oluşturacağım konusunda kafa patlatacağımı tahmin etmemiştim. Kendimi salıversem göz zevkime ve kendi düşünceme göre bir tasarım oluşacaktı. İşin hep zevkli kısmı buydu. Ancak bu sefer temele önem vermem gerektiğinden farklı düşünceye göre oluşabilecek şeyleri her zaman ayrıştırmaya çalıştım ve sabrettim.
+				<h3 id=tema-mı-iskelet-mi>Tema mı, iskelet mi? <a class=anchor href=#tema-mı-iskelet-mi aria-hidden=true><span></span></a></h3>
+				<p>Eh tabii insan buna bir tema deyince bir garip oluyor. Hatta bence bunu bu şekilde çağırınca işi olduğundan da fazla küçültüyor gibi. Alakalı mecrada bilgi ve deneyimi bol olup bunu okuyan kişi belki benim hakkımda özgüvensiz olduğumu düşünebilir. Bu şimdilik doğru bir çıkarım. Ama diğer yandan kalkıp buna tema yerine iskelet yani framework olduğunu söylemek de garibime gidiyor, binlerce sitenin temelini tutan Twitter çıkışlı <em>Bootstrap</em> dururken. Çünkü o derece ayrıştırılmış, seçeneği çoğaltılmış, faydalarının çeşitli dallara uzanabilen bir iş yaratmış olsaydım ya süper zeka olurdum ya da eminim ki her diğer framework’un sistemine benzerdi. Ha bunu kullanmışsın ha diğerini.
+				<p>Benim yaptığım işin her mecraya bir İsveç çakısı olacağının garantisini veremediğimden bunun bir CSS iskeleti olduğunu söyleyemiyorum. Belki bir gün bu proje öyle bir noktaya gelir ki, çoğunluğa göre bir İsveç çakısı olabilir tabii karamsar olmayayım.
+				<p>Bir diğer yandan da bu "pxl"i bir ölü piksel gibi tek bir şeye takılı kalmasından çok üç-beş farklı moda uygun giysilerle dolu hatta yeni şeyleri de ekleyebileceğin bir gardıropa benzettiğimden sadece bir CSS teması olduğunu da söyleyemiyorum. Elbet farklı tercihler sunabilen birkaç WordPress temalarına da rastlamışlığım var. Günün sonunda buna tam olarak nasıl çağıracağım bana yine de zor geliyor ama pxl’e “tema” diyorum.
+				<p>Ben her ne kadar daha düzenli bir sistem oluşturmak istesem de en başta bunu istememin tek nedeni yapacağım düzenlemeleri, eklemeleri ve bağlantıları kolaylaştırmaktı.
+				<p>Bu temayı taze diye nitelendirmemin sebebi hala ofislerde inadınaymış gibi mecburi kullanılan Internet Explorer tarayıcısında taranacak sitede havalı bir şey için gereksiz efor sarfetmek istemememdi. Kimi sitelere göre bu tercih meselesi bile olamaz. Senin ne tasarım yapmak istediğinden çok, market payının kararı daha baskın olabiliyor.
+				<p>Burada hedef sadece kendi kişisel alanım olduğumdan bu paragraflardaki geçen her söz pxl’in temelinin nasıl sağlandığını belirliyor. Modüler, akıcı, taze.
+				<p>pxl için söyleyebileceklerimin en kökü burada ve buraya kadar. Eğer siz de bu işe katkıda bulunmak isterseniz tema şu an açık kaynak haliyle <a href=//github.com/egeesin/pxl>GitHub</a>’ta ve kullanıma hazır. Geri bildirimlerinizi ve görüşlerinizi bekliyorum.
+				<p><strong>Edit 10.03.2019:</strong> İmla
+			</section>
+			<a class=url itemprop=url href=/layout/blog-article/ hidden=""></a>
+		</article>
+	</div>
+</main>
+
+<include src='includes/page-footer.html'></include>
