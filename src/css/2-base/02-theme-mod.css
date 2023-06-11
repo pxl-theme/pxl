@@ -1,6 +1,8 @@
 /**** Theme Modifier (HTML/:root) Settings
+ *
+ * https://speakerdeck.com/csswizardry/4half-methods-for-theming-in-s-css
  */
-.s-themeMod__root{
+.t-modRoot{
 	/* Custom Properties */
 	--borderType: 0 0 transparent;
 	--borderColor: var(--colorBack);
@@ -62,7 +64,7 @@
 
 	/* Shadow Colors */
 	&.-shadowColorGlowing { --shadowColor: rgb(255 255 255 / .20); }
-	&.-shadowColorReflect { --shadowColor: var(--colorBack);}
+	&.-shadowColorReflect { --shadowColor: var(--colorBg);}
 
 	/* Emboss Effect Overrides */
 	&.-embossNone {--embossType: 0 0 transparent}
@@ -186,7 +188,6 @@
 				/* box-shadow: -2px -2px 13px #ffffff3d; */
 				box-shadow: -2px -2px 13px var(--colorFore);
 				/* background-image: linear-gradient(145deg, transparent -80%, transparent 35%, var(--colorFore) 90%); */
-
 				background-image: linear-gradient(145deg, var(--colorBaseTransparent) -80%, var(--colorBaseTransparent) 35%, var(--colorFore) 90%);
 
 				/* mix-blend-mode: soft-light; */
@@ -197,11 +198,315 @@
 				/* box-shadow: 15px 15px 13px -11px var(--colorDeep); */
 				box-shadow: 15px 15px 13px -11px var(--colorBack);
 				/* background-image: linear-gradient(145deg, var(--colorBack) -80%, transparent 35%, transparent 90%); */
-
 				background-image: linear-gradient(145deg, var(--colorBack) -80%, var(--colorBaseTransparent) 35%, var(--colorBaseTransparent) 90%);
 
 				/* mix-blend-mode: overlay; */
 			}
 		}
+	}
+	&:where(.-presetBackdropBlur) {
+		:is(
+		.c-card,
+		.c-nav.-typeFlyout:not([class*=-expand]),
+		.c-nav:not(.-typeTree)[class*=-expand]:focus-within,
+		.c-nav:not(.-typeTree)[class*=-expand].js-visible
+		),
+		[id^=toggleNav-]:checked + .c-nav:not(.-typeTree)[class*=-expand]
+		{
+			background-color: var(--colorBaseOpac80);
+			backdrop-filter: saturate(180%) blur(16px);
+		}
+	}
+}
+
+/* Background Filters and Patterns
+ */
+.t-modBody {
+	&.-bg {
+		&Base             {background-color: var(--colorBase);}
+		&Back             {background-color: var(--colorBack);}
+		/* &Back             {background-color: var(--colorBg);} */
+		&Deep             {background-color: var(--colorDeep);}
+		&Fore             {background-color: var(--colorFore);}
+		&ForeBrighter     {background-color: var(--colorForeBrighter);}
+
+		&Red              {background-color: var(--red);       color:#FFF}
+		&Orange           {background-color: var(--orange);    color:#FFF}
+		&Yellow           {background-color: var(--yellow);    color:#000}
+		&Blue             {background-color: var(--blue);      color:#FFF}
+		&Magenta          {background-color: var(--magenta);   color:#FFF}
+		&Violet           {background-color: var(--violet);    color:#FFF}
+		&Green            {background-color: var(--green);     color:#FFF}
+		&Cyan             {background-color: var(--cyan);      color:#000}
+	}
+	/* Some of the custom CSS gradient textures are taken from:
+	 * https://projects.verou.me/css3patterns */
+	&.-bgHorizontalStripesSM {
+		background: repeating-linear-gradient(
+			0deg,
+			var(--colorTextOpac40),
+			var(--colorTextOpac40) var(--borderHairline),
+			transparent var(--borderHairline),
+			transparent 3px
+		),var(--colorBg);
+	}
+	&.-bgDiagonalStripesSM {
+		background: repeating-linear-gradient(
+			-45deg,
+			var(--colorTextOpac20),
+			var(--colorTextOpac20) 1.75px,
+			transparent 1.75px,
+			transparent 6px
+		),var(--colorBg);
+	}
+	&.-bgDiagonalStripesAltSM {
+		background: repeating-linear-gradient(
+			-26.565deg,
+			var(--colorTextOpac075),
+			var(--colorTextOpac075) var(--borderM),
+			transparent var(--borderM),
+			transparent 8px
+		),var(--colorBg);
+	}
+	&.-bgHGrid {
+		/* Horizontal Grid
+		 * Note: Measurement doesn't stay intact when resizing window somehow. */
+
+		background: repeating-linear-gradient(
+			0deg,
+			var(--colorTextOpac20),
+			var(--colorTextOpac20) var(--borderHairline),
+			transparent var(--borderHairline),
+			transparent .5rem
+		),repeating-linear-gradient(
+			0deg,
+			var(--colorTextOpac20),
+			var(--colorTextOpac20) var(--borderHairline),
+			transparent var(--borderHairline),
+			transparent 1rem
+		),var(--colorBg);
+	}
+	&.-bgHGridAlt {
+		/* Rasterized Horizontal Grid (PNG) */
+		/* background: var(--colorBack) repeat top left; */
+		background-image: url("img/pattern/grid24.webp");
+		@media (--lap-or-gt) {
+			background-image: url("img/pattern/grid27.webp");
+		}
+	}
+	&.-bgCrossGrid {
+		background: repeating-linear-gradient(
+			-45deg,
+			var(--colorTextOpac20),
+			var(--colorTextOpac20) 1.41px,
+			transparent 1.41px,
+			transparent 1em
+		),repeating-linear-gradient(
+			45deg,
+			var(--colorTextOpac20),
+			var(--colorTextOpac20) 1.41px,
+			transparent 1.41px,
+			transparent 1em
+		),var(--colorBg);
+		@media (--hidpi) {
+			background: repeating-linear-gradient(
+				-45deg,
+				var(--colorTextOpac20),
+				var(--colorTextOpac20) .7px,
+				transparent .7px,
+				transparent 1em
+			),repeating-linear-gradient(
+				45deg,
+				var(--colorTextOpac20),
+				var(--colorTextOpac20) .7px,
+				transparent .7px,
+				transparent 1em
+			),var(--colorBg);
+		}
+	}
+	&.-bgHexAlt {
+		background:	repeating-linear-gradient(
+			-30deg,
+			rgb(101 123 131 / .1),
+			rgb(101 123 131 / .1) 1em,
+			transparent 0,
+			transparent 64px
+		),
+		repeating-linear-gradient(30deg,rgb(101 123 131 / .075),rgb(101 123 131 / .075) 2em,
+			transparent 0,
+			transparent 64px
+		),
+			repeating-linear-gradient(90deg,
+			rgb(101 123 131 / .05),
+			rgb(101 123 131 / .05) 2.2em,
+			transparent 0,
+			transparent 64px
+		),
+		var(--colorBg);
+	}
+	&.-bgZigZag /* by eCSSpert */ {
+		background:
+			linear-gradient(135deg,var(--colorTextOpac20) 25%,#0000 25%) -25px 0,
+			linear-gradient(225deg,var(--colorTextOpac20) 25%,#0000 25%) -25px 0,
+			linear-gradient(315deg,var(--colorTextOpac20) 25%,#0000 25%),
+			linear-gradient(45deg,var(--colorTextOpac20) 25%,#0000 25%);
+		background-color: var(--colorBg);
+		background-size: 50px 50px;
+	}
+	&.-bgMicrobialMat /* by Logan McBroom */ {
+		background:
+		radial-gradient(circle at 0 50%,#0000 9px,var(--colorTextOpac20) 10px,#0000 11px) 0 10px,radial-gradient(at 100% 100%,#0000 9px,var(--colorTextOpac20) 10px,#0000 11px),var(--colorBg);
+		background-size: 20px 20px;
+	}
+	&.-bgTriangleMosaic /* by Valentin Agachi */ {
+		background:
+			linear-gradient(120deg,#0000 75%,var(--colorTextOpac20) 75%) 0 0,
+			linear-gradient(240deg,#0000 75%,var(--colorTextOpac20) 75%) 0 0,
+			linear-gradient(120deg,#0000 75%,var(--colorTextOpac20) 75%) 16px -24px,
+			linear-gradient(240deg,#0000 75%,var(--colorTextOpac20) 75%) 16px -24px,
+			var(--colorBg);
+		background-size: 32px 48px;
+	}
+	&.-bgWeaves /* by Jeroen Franse */{
+		--1:var(--colorBg);
+		--2:var(--colorTextOpac20);
+		background:
+			linear-gradient(135deg,var(--1) 16px,var(--2) 17px,var(--2) 19px,#0000 19px,#0000 50px,var(--2) 50px,var(--2) 52px,#0000 52px),
+			linear-gradient(225deg,var(--1) 16px,var(--2) 17px,var(--2) 19px,#0000 19px,#0000 50px,var(--2) 50px,var(--2) 52px,#0000 52px)0 48px;
+		background-color: var(--1);
+		background-size: 48px 96px;
+	}
+	&.-bgCross {
+		--1:var(--colorBg);
+		--2:var(--colorTextOpac20);
+		background:
+			radial-gradient(circle,#0000 20%,var(--1) 20%,var(--1) 80%,#0000 80%,#0000),
+			radial-gradient(circle,#0000 20%,var(--1) 20%,var(--1) 80%,#0000 80%,#0000) 25px 25px,
+			linear-gradient(var(--2) 4px,#0000 4px) 0 -2px,
+			linear-gradient(90deg,var(--2) 4px,#0000 4px) -2px 0;
+		background-color: var(--1);
+		background-size: 50px 50px,50px 50px,25px 25px,25px 25px;
+	}
+	&.-bgShippo {
+		--1:var(--colorTextOpac20);
+		background-color:var(--colorBg);
+		background-image:
+			radial-gradient(closest-side, #0000 98%, var(--1) 99%),
+			radial-gradient(closest-side, #0000 98%, var(--1) 99%);
+		background-size:80px 80px;
+		background-position:0 0, 40px 40px;
+		background-repeat: repeat;
+	}
+	&.-bgCarbonFiber /* by Atle Mo (design), Sébastien Grosjean (code) */{
+		/* background: */
+		/* 	linear-gradient(27deg, #151515 5px, #0000 5px) 0 5px, */
+		/* 	linear-gradient(207deg, #151515 5px, #0000 5px) 10px 0px, */
+		/* 	linear-gradient(27deg, #222 5px, #0000 5px) 0px 10px, */
+		/* 	linear-gradient(207deg, #222 5px, #0000 5px) 10px 5px, */
+		/* 	linear-gradient(90deg, #1b1b1b 10px, #0000 10px), */
+		/* 	linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, #0000 50%, #0000 75%, #242424 75%, #242424); */
+		/* background-color: #131313; */
+
+		/* background: */
+		/* 	linear-gradient(27deg,#800080 5px,#0000 0) 0 5px, */
+		/* 	linear-gradient(207deg,#800080 5px,#0000 0) 10px 0, */
+		/* 	linear-gradient(27deg,#ffe100 5px,#0000 0) 0 10px, */
+		/* 	linear-gradient(207deg,#ffe100 5px,#0000 0) 10px 5px, */
+		/* 	linear-gradient(90deg,#ff0000 10px,#0000 0), */
+		/* 	linear-gradient(transparent 25%,#f00 0,#f00 50%,#800080 0,#800080 75%,yellow 0,yellow); */
+		/* background-color: orange; */
+
+		background:
+			linear-gradient(27deg, #151515 5px, #0000 5px) 0 5px,
+			linear-gradient(207deg, #151515 5px, #0000 5px) 10px 0px,
+			linear-gradient(27deg, #222 5px, #0000 5px) 0px 10px,
+			linear-gradient(207deg, #222 5px, #0000 5px) 10px 5px,
+			linear-gradient(90deg, #1b1b1b 10px, #0000 10px),
+			linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, #0000 50%, #0000 75%, #242424 75%, #242424);
+		background-color: #131313;
+
+		/* background-color: var(--colorBg); */
+		background-size: 20px 20px;
+	}
+	&.-bgPyramid /* by Paul Salentiny */{
+		background:
+			linear-gradient(315deg, #0000 75%, var(--colorFore) 0)-10px 0,
+			linear-gradient(45deg, #0000 75%, var(--colorFore) 0)-10px 0,
+			linear-gradient(135deg, var(--colorBase) 50%, #0000 0) 0 0,
+			linear-gradient(45deg, var(--colorBack) 50%, var(--colorDeep) 0) 0 0 var(--colorDeep);
+		background-size: 20px 20px;
+	}
+	&.-bgSeigeiha {
+		--1:var(--colorDeep);
+		--2:var(--colorBg);
+		background-color:var(--1);
+		background-image:
+			radial-gradient(circle at 100% 150%, var(--1) 24%, var(--2) 24%, var(--2) 28%, var(--1) 28%, var(--1) 36%, var(--2) 36%, var(--2) 40%, #0000 40%, #0000),
+			radial-gradient(circle at 0    150%, var(--1) 24%, var(--2) 24%, var(--2) 28%, var(--1) 28%, var(--1) 36%, var(--2) 36%, var(--2) 40%, #0000 40%, #0000),
+			radial-gradient(circle at 50%  100%, var(--2) 10%, var(--1) 10%, var(--1) 23%, var(--2) 23%, var(--2) 30%, var(--1) 30%, var(--1) 43%, var(--2) 43%, var(--2) 50%, var(--1) 50%, var(--1) 63%, var(--2) 63%, var(--2) 71%, #0000 71%, #0000),
+			radial-gradient(circle at 100% 50%, var(--2) 5%, var(--1) 5%, var(--1) 15%, var(--2) 15%, var(--2) 20%, var(--1) 20%, var(--1) 29%, var(--2) 29%, var(--2) 34%, var(--1) 34%, var(--1) 44%, var(--2) 44%, var(--2) 49%, #0000 49%, #0000),
+			radial-gradient(circle at 0    50%, var(--2) 5%, var(--1) 5%, var(--1) 15%, var(--2) 15%, var(--2) 20%, var(--1) 20%, var(--1) 29%, var(--2) 29%, var(--2) 34%, var(--1) 34%, var(--1) 44%, var(--2) 44%, var(--2) 49%, #0000 49%, #0000);
+		background-size: 100px 50px;
+		background-repeat:repeat
+	}
+	&.-bgHoundstooth /* by Antoine Bernier */{
+		--1:var(--colorBg);
+		--2:var(--colorTextOpac20);
+		background:
+			linear-gradient(-45deg, var(--1) 25%, #0000 25%, #0000 75%, var(--2) 75%, var(--2)) 0 0,
+			linear-gradient(-45deg, var(--2) 25%, #0000 25%, #0000 75%, var(--1) 75%, var(--1)) 1em 1em,
+			linear-gradient(45deg, var(--2) 17%, #0000 17%, #0000 25%, var(--2) 25%, var(--2) 36%, #0000 36%, #0000 64%, var(--2) 64%, var(--2) 75%, #0000 75%, #0000 83%, var(--2) 83%) 1em 1em;
+		background-color: var(--1);
+		background-size: 2em 2em;
+
+	}
+	&.-bgCheckerboard {
+		--1:var(--colorBg);
+		--2:var(--colorTextOpac20);
+		--3:calc(2*var(--rhythmUnit));
+		background-color: var(--1);
+		background-image:
+			linear-gradient(45deg, var(--2) 25%, transparent 25%, transparent 75%, var(--2) 75%, var(--2)),
+			linear-gradient(45deg, var(--2) 25%, transparent 25%, transparent 75%, var(--2) 75%, var(--2));
+		background-size: var(--3) var(--3);
+		background-position: 0 0, calc(var(--3)/2) calc(var(--3)/2);
+		background-repeat: repeat
+	}
+	&.-bgIsometricCubes {
+		--0:var(--colorFore);
+		--1:var(--colorBg);
+		--2:var(--colorDeep);
+		background-color:var(--1);
+		background-image: linear-gradient(30deg, var(--2) 12%, transparent 12.5%, transparent 87%, var(--2) 87.5%, var(--2)),
+		linear-gradient(150deg, var(--2) 12%, transparent 12.5%, transparent 87%, var(--2) 87.5%, var(--2)),
+		linear-gradient(30deg, var(--2) 12%, transparent 12.5%, transparent 87%, var(--2) 87.5%, var(--2)),
+		linear-gradient(150deg, var(--2) 12%, transparent 12.5%, transparent 87%, var(--2) 87.5%, var(--2)),
+		linear-gradient(60deg, var(--0) 25%, transparent 25.5%, transparent 75%, var(--0) 75%, var(--0)),
+		linear-gradient(60deg, var(--0) 25%, transparent 25.5%, transparent 75%, var(--0) 75%, var(--0));
+		background-size:80px 140px;
+		background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+		background-repeat: repeat;
+	}
+	&.-bgArrowTessellation {
+		--1:var(--colorBg);
+		--2:var(--colorDeep);
+		background:
+		linear-gradient(45deg, var(--2) 45px, transparent 45px)64px 64px,
+		linear-gradient(45deg, var(--2) 45px, transparent 45px,transparent 91px, var(--1) 91px, var(--1) 135px, transparent 135px),
+		linear-gradient(-45deg, var(--2) 23px, transparent 23px, transparent 68px,var(--2) 68px,var(--2) 113px,transparent 113px,transparent 158px,var(--2) 158px);
+		background-color:var(--1);
+		background-size: 128px 128px;
+	}
+	&.-bgArgyle {
+		--0:var(--colorTextOpac20);
+		--2:var(--colorDeep);
+		background-color: var(--colorBg);
+		background-image:
+			repeating-linear-gradient(120deg, var(--0), var(--0) 1px, transparent 1px, transparent 60px),
+			repeating-linear-gradient(60deg, var(--0), var(--0) 1px, transparent 1px, transparent 60px),
+			linear-gradient(60deg, var(--2) 25%, transparent 25%, transparent 75%, var(--2) 75%, var(--2)),
+			linear-gradient(120deg, var(--2) 25%, transparent 25%, transparent 75%, var(--2) 75%, var(--2));
+		background-size: 70px 120px;
+		background-repeat: repeat;
 	}
 }
