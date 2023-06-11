@@ -5,12 +5,6 @@
 	overflow-wrap: break-word;
 	width: 100%;
 	position: relative;
-	/* @supports ( (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)) ) { */
-	/* 	background-color: var(--colorBaseOpac80); */
-	/* /1* autoprefixer: off *1/ */
-	/* 	-webkit-backdrop-filter: blur(2px); */
-	/* 			backdrop-filter: blur(2px); */
-	/* } */
 	background-color: var(--colorBase);
 
 	padding: var(--c-card-padTop) var(--c-card-padSide) var(--c-card-padBottom);
@@ -124,20 +118,13 @@
 }
 /* -opinionated */
 
-/*** Header inside Card Component
+
+/*** Header Component inside Card Component
  */
-.c-card__header {
-	margin-block-end:var(--rhythmUnit);
-	& :is(h1,h2,h3,h4,h5,h6) {
-		margin-block-start: 0
-	}
-	/* &__title, &__meta{ */
-	/* } */
-}
 /* ^^ That's really a hard code but nice looking edit */
 /* *:not(.o-rustygrid.-viewMasonry) > .o-rustygrid__item */
 *:not(.-viewMasonry) > .js-posts .o-rustygrid__item{
-	.c-card__header.-viewMedia {
+	.c-card .c-header.-viewMedia {
 		/* padding-bottom: 40%; */
 		padding-bottom: 30%;
 		@media (--palm-or-gt) {
@@ -155,7 +142,7 @@
 			padding-bottom: calc(9 / 21 * 100 - 10)%
 		}
 	}
-	.c-card.--typePhoto .c-card__header.-viewMedia {
+	.c-card.--typePhoto .c-header.-viewMedia {
 		padding-bottom: 60%;
 		@media (--palm-or-gt) {
 			padding-bottom: 60%;
@@ -166,10 +153,10 @@
 	}
 }
 
-/*** Header inside Card Component for Media Content
+/*** Header Component with Media View inside Card Component
  */
-/* TODO: viewMedia option not totally ready yet, avoid using it, still work in progress.*/
-.c-card__header.-viewMedia {
+	/* I want to get rid of -viewMedia class once :has support is globally available for the majority (including Firefox) */
+.c-card .c-header.-viewMedia {
 	/* Override parent(c-card) gap */
 	width: calc( var(--c-card-padSide) * 2 + 100% );
 	inset-block-start: calc( var(--c-card-padTop) * -1);
@@ -178,6 +165,13 @@
 	/* padding-bottom: 33%; */
 	padding-block-end: 23%;
 	margin-block-start: 0;
+
+	/* Overriding/inheriting padding data
+	 * from Card component
+	 * over Header component */
+	padding-inline: var(--c-card-padSide);
+	/* INFO: This one ^ might supposed to have higher specifity before, check if works properly... */
+
 	/* .o-rustygrid:not(.-viewMasonry) > .o-rustygrid__item & { */
 	/* *:not(.-viewMasonry) > .o-rustygrid__item & { */
 	*:not(.-viewMasonry) > .js-posts .o-rustygrid__item & {
@@ -188,6 +182,7 @@
 		}
 	}
 	> img {
+		/* Prevent image inside header section unselectable and draggable */
 		user-select: none;
 		-webkit-user-drag: none;
 		-webkit-touch-callout: none;
@@ -208,13 +203,7 @@
 		--fontWeight: 900;
 	}
 }
-.c-card__header.c-header.-viewMedia {
-	/* Overriding/inheriting padding data
-	 * from Card component
-	 * over Header component */
-	padding-inline: var(--c-card-padSide);
-}
-.c-card.--typePhoto .c-card__header.-viewMedia {
+.c-card.--typePhoto .c-header.-viewMedia {
 	padding-block-end: 60%;
 }
 :is(h4,h5,h6).c-card__meta {
@@ -222,21 +211,38 @@
 }
 
 /*** Meta Text inside Card Component
+ *
+ * Metadata like date of content, comment counter, SEO tags etc.
  */
 .c-card__meta {
 	text-transform:uppercase;
-	&:is(.-sideLeft,.-sideRight) {
+	&:is(.-alignStart,.-alignEnd) {
 		display: inline-block;
 		width: 50%;
 		vertical-align: top;
 	}
-	&.-sideLeft {
+	&.-alignStart {
 		text-align: start;
 		padding-inline-end: .5rem;
 	}
-	&.-sideRight {
+	&.-alignEnd {
 		text-align: end;
 		padding-inline-start: .5rem;
+	}
+	@media (--wrist-or-gt) {
+		&:is(.-alignStart\@wrist-gt,.-alignEnd\@wrist-gt) {
+			display: inline-block;
+			width: 50%;
+			vertical-align: top;
+		}
+		&.-alignStart\@wrist-gt {
+			text-align: start;
+			padding-inline-end: .5rem;
+		}
+		&.-alignEnd\@wrist-gt {
+			text-align: end;
+			padding-inline-start: .5rem;
+		}
 	}
 }
 

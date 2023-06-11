@@ -2,6 +2,10 @@
  */
 .c-header {
 	color: var(--colorTextBolder);
+	margin-block-end:var(--rhythmUnit);
+	& :is(h1,h2,h3,h4,h5,h6) {
+		margin-block-start: 0
+	}
 	a {
 		color: currentColor;
 		text-decoration-line: none;
@@ -14,97 +18,68 @@
 		}
 	}
 }
-/*** Opinionated Header/Page Title
-	*/
-/* opinionated */
-.c-header__title {
-	/* Title divider */
-	&:before {
-		content: "/";
-		font-weight: 100;
-		--fontWeight: 100;
-		text-decoration-line: none;
-	}
-}
-/* -opinionated */
 
 /***** Header Component with Media View
  */
 .c-header.-viewMedia {
+	/* I want to get rid of -viewMedia class once :has support is globally available for the majority (including Firefox) */
+
 	/* Warning: Make sure box-sizing set as border-box */
 
 	/* background-color: var(--colorDeep); */
 	border-top-left-radius: inherit;
 	border-top-right-radius: inherit;
-	padding-left: 1em;
-	padding-right: 1em;
+	/* padding-left: 1em; */
+	/* padding-right: 1em; */
 	position: relative;
 	overflow: hidden;
+
 	/* text-shadow: #020202 0 0 1px, #020202 0 0 1px, #020202 0 0 1px, */
 	/* 			 #020202 0 0 1px, #020202 0 0 1px, #020202 0 0 1px; */
 	/* text-shadow: var(--colorDeep) 0 0 1px, var(--colorDeep) 0 0 1px, var(--colorDeep) 0 0 1px, */
 	/* 			 var(--colorDeep) 0 0 1px, var(--colorDeep) 0 0 1px, var(--colorDeep) 0 0 1px; */
+	/* Generated from https://owumaro.github.io/text-stroke-generator/
+		*
+		* Approximately 2px stroke
+		*/
+	--stroke: var(--colorText);
+	text-shadow:
+	var(--stroke) 2px 0 0,
+	var(--stroke) 1.75517px 0.958851px 0,
+	var(--stroke) 1.0806px 1.68294px 0,
+	var(--stroke) 0.141474px 1.99499px 0,
+	var(--stroke) -0.832294px 1.81859px 0,
+	var(--stroke) -1.60229px 1.19694px 0,
+	var(--stroke) -1.97999px 0.28224px 0,
+	var(--stroke) -1.87291px -0.701566px 0,
+	var(--stroke) -1.30729px -1.51361px 0,
+	var(--stroke) -0.421592px -1.95506px 0,
+	var(--stroke) 0.567324px -1.91785px 0,
+	var(--stroke) 1.41734px -1.41108px 0,
+	var(--stroke) 1.92034px -0.558831px 0;
 
+	/* color: #FDFDFD; */
+	color: var(--colorFore);
+	@media (prefers-color-scheme: dark) {
+		/* TODO: pxl #9 */
+		color: var(--colorTextBolder);
+		--stroke: var(--colorDeep);
+	}
 	.pi {
 	/* Add border to all icons inside header modified with -viewMedia */
 		/*opinionated*/
 		--iconWeight:1.75px;
 		/*-opinionated*/
 		filter:
-		drop-shadow(calc(var(--iconWeight)*2) 0 0 var(--colorText))
-		drop-shadow(0 calc(var(--iconWeight)*2) 0 var(--colorText))
-		drop-shadow(calc(var(--iconWeight)*-2) calc(var(--iconWeight)*-2) 0 var(--colorText));
+		drop-shadow(calc(var(--iconWeight)*2) 0 0 var(--stroke))
+		drop-shadow(0 calc(var(--iconWeight)*2) 0 var(--stroke))
+		drop-shadow(calc(var(--iconWeight)*-2) calc(var(--iconWeight)*-2) 0 var(--stroke));
 		/* filter: /1* Glitchy look *1/ */
 		/* drop-shadow(calc(var(--iconWeight)*2) 0 0 var(--red)) */
 		/* drop-shadow(0 calc(var(--iconWeight)*2) 0 var(--green)) */
 		/* drop-shadow(calc(var(--iconWeight) * -2) calc(var(--iconWeight) * -2) 0 var(--blue)); */
-
-		@media (prefers-color-scheme: dark) {
-		filter:
-			drop-shadow(calc(var(--iconWeight)*2) 0 0 var(--colorDeep))
-			drop-shadow(0 calc(var(--iconWeight)*2) 0 var(--colorDeep))
-			drop-shadow(calc(var(--iconWeight)*-2) calc(var(--iconWeight)*-2) 0 var(--colorDeep));
-		}
 	}
 
-	/* Generated from https://owumaro.github.io/text-stroke-generator/
-		*
-		* Approximately 2px stroke
-		*/
-	text-shadow:
-	var(--colorText) 2px 0 0,
-	var(--colorText) 1.75517px 0.958851px 0,
-	var(--colorText) 1.0806px 1.68294px 0,
-	var(--colorText) 0.141474px 1.99499px 0,
-	var(--colorText) -0.832294px 1.81859px 0,
-	var(--colorText) -1.60229px 1.19694px 0,
-	var(--colorText) -1.97999px 0.28224px 0,
-	var(--colorText) -1.87291px -0.701566px 0,
-	var(--colorText) -1.30729px -1.51361px 0,
-	var(--colorText) -0.421592px -1.95506px 0,
-	var(--colorText) 0.567324px -1.91785px 0,
-	var(--colorText) 1.41734px -1.41108px 0,
-	var(--colorText) 1.92034px -0.558831px 0;
-
-	/* color: #FDFDFD; */
-	color: var(--colorFore);
-	@media (prefers-color-scheme: dark) {
-		color: var(--colorTextBolder);
-		text-shadow:
-		var(--colorDeep) 2px 0 0,
-		var(--colorDeep) 1.75517px 0.958851px 0,
-		var(--colorDeep) 1.0806px 1.68294px 0,
-		var(--colorDeep) 0.141474px 1.99499px 0,
-		var(--colorDeep) -0.832294px 1.81859px 0,
-		var(--colorDeep) -1.60229px 1.19694px 0,
-		var(--colorDeep) -1.97999px 0.28224px 0,
-		var(--colorDeep) -1.87291px -0.701566px 0,
-		var(--colorDeep) -1.30729px -1.51361px 0,
-		var(--colorDeep) -0.421592px -1.95506px 0,
-		var(--colorDeep) 0.567324px -1.91785px 0,
-		var(--colorDeep) 1.41734px -1.41108px 0,
-		var(--colorDeep) 1.92034px -0.558831px 0;
-	}
 	/* > * { */
 	> *:not(img) {
 		position: relative;
@@ -125,35 +100,16 @@
 		display: block;
 	}
 }
-
-/**** Header ID
- */
-#header {
-	/* background-color: var(--colorBack); */
-	/* background-color: var(--colorBackOpac80); */
-	/* @supports ( backdrop-filter: blur(1px) ) { */
-	/* 	background-color: var(--colorBack); */
-	/* 	backdrop-filter: blur(5px); */
-	/* } */
-
-	overflow:hidden;
-	margin-bottom:1em;
-
-	/* opinionated */
-	text-align: center;
-	svg, h1 {
-		display: inline-block;
-		text-align: left;
-		vertical-align: top;
-	}
-	h1 {
-		margin-top: .25em;
-		/* opinionated */
-		--fontWeight: 900;
-		font-variation-settings: "wght" 900;
-		letter-spacing: -0.03em;
-		user-select: none;
-		/* -opinionated */
-	}
-	/* -opinionated */
-}
+/*** Opinionated Header/Page Title
+	*/
+/* opinionated */
+/* .c-header__title { */
+/* 	/1* Title divider *1/ */
+/* 	&:before { */
+/* 		content: "/"; */
+/* 		font-weight: 100; */
+/* 		--fontWeight: 100; */
+/* 		text-decoration-line: none; */
+/* 	} */
+/* } */
+/* -opinionated */

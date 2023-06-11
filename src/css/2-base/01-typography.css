@@ -139,8 +139,8 @@ body {
 	/* } */
 
 }
-/* .s-themeMod__root:where(-presetAcetate, .-presetNeumorphism) body { */
-.s-themeMod__root:where(-presetAcetate, .-presetNeumorphism) body {
+/* .t-modRoot:where(-presetAcetate, .-presetNeumorphism) body { */
+.t-modRoot:where(-presetAcetate, .-presetNeumorphism) body {
 	background-color: var(--colorBase);
 }
 
@@ -491,11 +491,49 @@ table{
 	/*margin-left: 1em;*/
 	margin-inline-start: var(--c-card-padSide);
 }
-.c-card.--viewMedia {
-	.aligncenter,.alignleft,.alignright {
-		margin: 0 !important;
-		float: auto !important;
-		clear: auto !important;
-		display: block !important;
-	}
-}
+/* .c-card.--viewMedia { */
+/* 	.aligncenter,.alignleft,.alignright { */
+/* 		margin: 0 !important; */
+/* 		float: auto !important; */
+/* 		clear: auto !important; */
+/* 		display: block !important; */
+/* 	} */
+/* } */
+
+/*TODO: Improved headings needs testing.
+ */
+/* ._s-improvedHeadings { */
+/* 	/1* opinionated *1/ */
+	/* h1,h2,h3,h4,h5 { */
+	/* 	position:relative; */
+	/* } */
+	/* h1 { */
+	/* 	left: -1.1rem */
+	/* } */
+	/* h2 { */
+	/* 	left: -0.92rem */
+	/* } */
+	/* h3 { */
+	/* 	left: -0.74rem */
+	/* } */
+	/* h4 { */
+	/* 	left: -0.56rem */
+	/* } */
+	/* h5 { */
+	/* 	left: -0.4rem */
+	/* } */
+/* 	/1* -opinionated *1/ */
+/* 	/1* .c-card{ *1/ */
+/* 	/1* 	padding-left: calc(var(--c-card-padSide) * 1.6); *1/ */
+/* 	/1* 	padding-right: calc(var(--c-card-padSide) * 1.6); *1/ */
+/* 	/1* } *1/ */
+/* 	/1* .o-rustygrid, .o-masonry { *1/ */
+/* 	/1* 	padding: 0; *1/ */
+/* 	/1* } *1/ */
+/* 	h1,h2,h3,h4,h5 { */
+/* 		max-width: 32ch; */
+/* 	} */
+/* 	p { */
+/* 		max-width: 63ch; */
+/* 	} */
+/* } */
