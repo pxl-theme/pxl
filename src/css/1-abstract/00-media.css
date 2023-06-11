@@ -2,6 +2,7 @@
  * Note: Make sure it's synchronized with HTML stylesheet meta tags and postcss-extract-media-query config in gulfile.js
  */
 @custom-media --wrist-or-lt only screen and (max-width: 2in);
+@custom-media --wrist-or-gt only screen and (min-width: 2in);
 @custom-media --palm-or-lt screen and (max-width: calc((640/16)*1em-1px));
 @custom-media --palm-or-gt screen and (min-width: calc((640/16)*1em));
 @custom-media --lap-or-gt screen and (min-width: calc((960/16)*1em));

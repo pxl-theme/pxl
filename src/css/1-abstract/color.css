@@ -13,7 +13,7 @@
 
 }
 /* Default color scheme */
-:root, :root.s-themeMod__root:where(.-colorSchemeIOS){
+:root, :root.t-modRoot:where(.-colorSchemeIOS){
 	/* Day */
 	--red:     hsl(4 75% 54%);
 	--orange:  hsl(35 100% 50%);
@@ -42,6 +42,7 @@
 	--colorTextBolderYellowish: hsl(48 100% 25%);
 
 	--colorBase: hsl(0 0% 98%);
+	--colorBaseOpac80: hsl(0 0% 98% / .8);
 	--colorBaseTransparent: hsl(0 0% 98% / 0);
 	--colorBaseReddish: hsl(3 69% 80%);
 	--colorBaseOrangey: hsl(35 93% 78%);
@@ -55,7 +56,7 @@
 	--colorForeBrighter: hsl(0 0% 100%);
 
 	--colorLinkVisited: hsl(211, 100%, 50%);
-	/* &.s-variantDark{ */
+	/* &.t-variantDark{ */
 	@media (prefers-color-scheme: dark) {
 		--red:     hsl(4 75% 54%);
 		--orange:  hsl(35 100% 50%);
@@ -83,6 +84,7 @@
 		--colorTextBolderYellowish: hsl(48 100% 75%);
 
 		--colorBase: hsl(0 0% 12%);
+		--colorBaseOpac80: hsl(0 0% 12% / .8);
 		--colorBaseTransparent: hsl(0 0% 12% / 0);
 		--colorBaseReddish: hsl(4 49% 28%);
 		--colorBaseOrangey: hsl(35 74% 27%);
@@ -100,7 +102,7 @@
 		--colorLinkActive: var(--colorAccentBrighter);
 	}
 }
-:root.s-themeMod__root:where(.-colorSchemeSolarized){
+:root.t-modRoot:where(.-colorSchemeSolarized){
 	--red:    hsl(1 71% 52%);
 	--orange: hsl(18 80% 44%);
 	--yellow: hsl(45 100% 35%);
@@ -127,7 +129,7 @@
 	--colorTextBolderYellowish: hsl(60 49% 25%);
 
 	--colorBase: hsl(46 42% 88%);
-	--colorBaseOpac80: hsl(46 42% 88% / 80%);
+	--colorBaseOpac80: hsl(46 42% 88% / .8);
 	--colorBaseTransparent: hsl(46 42% 88% / 0);
 	--colorBaseReddish: hsl(9 63% 74%);
 	--colorBaseOrangey: hsl(23 58% 70%);
@@ -143,7 +145,7 @@
 	--colorLinkVisited: hsl(205 89% 49%);
 	--colorLinkDead: var(--red);
 	--colorLinkActive: var(--colorAccentBrighter);
-	/* &.s-variantDark{ */
+	/* &.t-variantDark{ */
 	@media (prefers-color-scheme: dark) {
 		--colorText: hsl(196 13% 45%);
 		--colorTextOpac80: hsl(196 13% 45% / .8);
@@ -158,6 +160,7 @@
 		--colorTextBolderYellowish: hsl(49 35% 45%);
 
 		--colorBase: hsl(192 100% 11%);
+		--colorBaseOpac80: hsl(192 100% 11% / .8);
 		--colorBaseTransparent: hsl(192 100% 11% / 0);
 		--colorBaseReddish: hsl(351 31% 26%);
 		--colorBaseOrangey: hsl(22 31% 24%);
@@ -171,7 +174,7 @@
 		--colorForeBrighter: hsl(192 100% 16%);
 	}
 }
-:root.s-themeMod__root:where(.-colorSchemeAtomOne){
+:root.t-modRoot:where(.-colorSchemeAtomOne){
 	--red:     hsl(5 74% 59%);
 	--orange:  hsl(41 99% 30%);
 	--yellow:  hsl(41 99% 38%);
@@ -198,6 +201,7 @@
 	--colorTextBolderYellowish: hsl(40 57% 31%);
 
 	--colorBase: hsl(0 0% 98%);
+	--colorBaseOpac80: hsl(0 0% 98% / .8);
 	--colorBaseTransparent: hsl(0 0% 98% / 0);
 	--colorBaseReddish: hsl(5 69% 82%);
 	--colorBaseOrangey: hsl(41 41% 71%);
@@ -211,7 +215,7 @@
 	--colorForeBrighter: hsl(0 0% 100%);
 
 	--colorLinkVisited: hsl(230, 100%, 66%); /* that didn't work */
-	/* &.s-variantDark{ */
+	/* &.t-variantDark{ */
 	@media (prefers-color-scheme: dark) {
 		--red:     hsl(355 65% 65%);
 		--orange:  hsl(29 54% 61%);
@@ -239,6 +243,7 @@
 		--colorTextBolderYellowish: hsl(39 28% 70%);
 
 		--colorBase: hsl(220 13% 18%);
+		--colorBaseOpac80: hsl(220 13% 18% / .8);
 		--colorBaseTransparent: hsl(220 13% 18% / 0);
 		--colorBaseReddish: hsl(349 24% 36%);
 		--colorBaseOrangey: hsl(27 20% 35%);
@@ -254,7 +259,7 @@
 		--colorLinkVisited: hsl(220 100% 66%); /* that didn't work */
 	}
 }
-:root.s-themeMod__root:where(.-colorSchemeMaterialV1){
+:root.t-modRoot:where(.-colorSchemeMaterialV1){
 	/*TODO: Make sure it's accurate to the source: https://m1.material.io/style/color.html#color-color-palette*/
 /* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700'); */ /* --fontMain: "Roboto"; */
 	--red:     hsl(0 100% 66%);
@@ -283,6 +288,7 @@
 	--colorTextBolderYellowish: hsl(48 84% 78%);
 
 	--colorBase: hsl(200 19% 18%);
+	--colorBaseOpac80: hsl(200 19% 18% / .8);
 	--colorBaseTransparent: hsl(200 19% 18% / 0);
 	--colorBaseReddish: hsl(357 33% 37%);
 	--colorBaseOrangey: hsl(36 57% 31%)
@@ -297,7 +303,7 @@
 
 	--colorLinkVisited: rgb(66 195 254);
 }
-:root.s-themeMod__root:where(.-colorSchemeMonokai){
+:root.t-modRoot:where(.-colorSchemeMonokai){
 	/* Note: Text color is too saturated, a few colors missing */
 	--red:     hsl(338 84% 56%);
 	--orange:  hsl(32 93% 55%);
@@ -325,6 +331,7 @@
 	--colorTextBolderYellowish: hsl(53 45% 68%);
 
 	--colorBase: hsl(70 8% 15%);
+	--colorBaseOpac80: hsl(70 8% 15% / .8);
 	--colorBaseTransparent: hsl(70 8% 15% / 0);
 	--colorBaseReddish: hsl(341 47% 32%);
 	--colorBaseOrangey: hsl(34 55% 31%);
@@ -339,7 +346,7 @@
 
 	--colorLinkVisited: hsl(76 80% 51%);
 }
-:root.s-themeMod__root:where(.-colorSchemeNightOwl){
+:root.t-modRoot:where(.-colorSchemeNightOwl){
 	--red:     hsl(1 83% 63%);
 	--orange:  hsl(14 90% 70%);
 	--yellow:  hsl(35 71% 74%);
@@ -366,6 +373,7 @@
 	--colorTextBolderYellowish: hsl(35 73% 87%);
 
 	--colorBase: hsl(207 95% 8%);
+	--colorBaseOpac80: hsl(207 95% 8% / .8);
 	--colorBaseTransparent: hsl(207 95% 8% / 0);
 	--colorBaseReddish: hsl(349 35% 28%);
 	--colorBaseOrangey: hsl(4 19% 33%);
@@ -380,7 +388,7 @@
 
 	--colorLinkVisited: hsl(207 100% 68%);
 }
-:root.s-themeMod__root:where(.-colorSchemeNova){
+:root.t-modRoot:where(.-colorSchemeNova){
 	--red:     hsl(0 56% 71%);
 	--orange:  hsl(32 79% 75%);
 	--yellow:  hsl(60 49% 72%);
@@ -407,6 +415,7 @@
 	--colorTextBolderYellowish: hsl(74 28% 78%);
 
 	--colorBase: hsl(202 17% 28%);
+	--colorBaseOpac80: hsl(202 17% 28% / .8);
 	--colorBaseTransparent: hsl(202 17% 28% / 0);
 	--colorBaseReddish: hsl(347 10% 45%);
 	--colorBaseOrangey: hsl(38 10% 47%);
@@ -421,7 +430,7 @@
 
 	--colorLinkVisited: hsl(187 61% 65%);
 }
-:root.s-themeMod__root:where(.-colorSchemeSeti){
+:root.t-modRoot:where(.-colorSchemeSeti){
 	--red:     hsl(357 58% 52%);
 	--orange:  hsl(24 76% 55%);
 	--yellow:  hsl(60 57% 53%);
@@ -448,6 +457,7 @@
 	--colorTextBolderYellowish: hsl(61 43% 68%);
 
 	--colorBase: hsl(206 10% 14%);
+	--colorBaseOpac80: hsl(206 10% 14% / .8);
 	--colorBaseTransparent: hsl(206 10% 14% / 0);
 	--colorBaseReddish: hsl(356 37% 29%);
 	--colorBaseOrangey: hsl(24 43% 30%);
@@ -462,7 +472,7 @@
 
 	--colorLinkVisited: hsl(198 63% 52%);
 }
-:root.s-themeMod__root:where(.-colorSchemeTomorrow){
+:root.t-modRoot:where(.-colorSchemeTomorrow){
 	--red:     hsl(360 67% 47%);
 	--orange:  hsl(29 91% 54%);
 	--yellow:  hsl(47 100% 46%);
@@ -490,6 +500,7 @@
 	--colorTextBolderYellowish: hsl(47 71% 31%);
 
 	--colorBase: hsl(0 0% 94%);
+	--colorBaseOpac80: hsl(0 0% 94% / .8);
 	--colorBaseTransparent: hsl(0 0% 94% / 0);
 	--colorBaseReddish: hsl(359 50% 75%);
 	--colorBaseOrangey: hsl(29 75% 78%);
@@ -503,7 +514,7 @@
 	--colorForeBrighter: hsl(0 0% 99%);
 
 	--colorLinkVisited: hsl(184 64% 43%);
-	/* &.s-variantDark { */
+	/* &.t-variantDark { */
 	@media (prefers-color-scheme: dark) {
 		--red:     hsl(0 50% 60%);
 		--orange:  hsl(25 66% 62%);
@@ -532,6 +543,7 @@
 		--colorTextBolderYellowish: hsl(41 46% 74%);
 
 		--colorBase: hsl(220 7% 17%);
+		--colorBaseOpac80: hsl(220 7% 17% / .8);
 		--colorBaseTransparent: hsl(220 7% 17% / 0);
 		--colorBaseReddish: hsl(357 23% 34%);
 		--colorBaseOrangey: hsl(23 26% 35%);
@@ -548,7 +560,7 @@
 	}
 }
 
-:root.s-themeMod__root:where(.-colorSchemeGruvbox){
+:root.t-modRoot:where(.-colorSchemeGruvbox){
 	--red:    hsl(2 75% 46%);
 	--orange: hsl(24 88% 45%);
 	--yellow: hsl(40 73% 49%);
@@ -577,6 +589,7 @@
 	/* --colorTextBolderYellowish: hsl(60 49% 25%); */
 
 	--colorBase: hsl(48 87% 88%); /* bg */
+	--colorBaseOpac80: hsl(48 87% 88% / .8); /* bg */
 	--colorBaseTransparent: hsl(43 59% 81% / 0);
 	/* TODO: Fill blanks */
 	/* --colorBaseReddish: hsl(9 63% 74%); */
@@ -595,7 +608,7 @@
 	--colorLinkVisited: #8da4a6; /* Brighter and desaturated */
 	--colorLinkDead: var(--red);
 	--colorLinkActive: var(--colorAccentBrighter);
-	/* &.s-variantDark{ */
+	/* &.t-variantDark{ */
 	@media (prefers-color-scheme: dark) {
 		--colorAccentBrighter: hsl(157 16% 58%); /* for blue */
 		--colorAccentBrighterOpac60: hsl(157 16% 58% / .6); /* for blue */
@@ -614,6 +627,7 @@
 		/* --colorTextBolderYellowish: hsl(60 49% 25%); */
 
 		--colorBase: hsl(0 0% 16%);
+		--colorBaseOpac80: hsl(0 0% 16% / .8);
 		--colorBaseTransparent: hsl(0 0% 16% / 0);
 		/* TODO: Fill blanks: Different hues for basecolor */
 		/* --colorBaseReddish: hsl(9 63% 74%); */

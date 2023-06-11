@@ -113,7 +113,7 @@ ul.c-nav, .c-nav ul {
 			filter: opacity(0.75) saturate(0.66);
 		}
 	}
-	.s-themeMod__root:is(.-cornerRounded,.-cornerRoundedInner,.-cornerRoundedTiny) & img {
+	.t-modRoot:is(.-cornerRounded,.-cornerRoundedInner,.-cornerRoundedTiny) & img {
 		/* Make the corners of image rounded if any relevant theme modifier class exists */
 		/* border-radius: var(--radiusS); */
 		border-radius: var(--radiusInnerDefault);
@@ -167,7 +167,7 @@ ul.c-nav, .c-nav ul {
 /*** Make nav item of label italic when it's indicating the current page
  */
 /* .c-nav__item.-currentPage > .c-nav__anchor { */
-.c-nav__item > .c-nav__anchor[aria-current="page"]{
+.c-nav__item[aria-current=page] > .c-nav__anchor{
 	font-style: italic;
 }
 /* .c-nav__item > .c-nav__submenu{ */
@@ -584,12 +584,6 @@ ol.c-nav.-typeTree .c-nav__item {
 	.c-nav__submenu {
 		--bringForward: 0;
 		background-color: var(--colorForeBrighter);
-		/* @supports ( (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)) ) { */
-		/* 	background-color: color-mod(var(--colorForeBrighter) a(80%)); */
-		/* 	-webkit-backdrop-filter: blur(3px); */
-		/* 			backdrop-filter: blur(3px); */
-		/* } */
-
 		/* min-width: 100%; */
 		/* max-height: 60vh; */
 		/* overflow: auto; */
@@ -787,10 +781,10 @@ ol.c-nav.-typeTree .c-nav__item {
 				/* -opinionated */
 
 				/* Adjusting top position a little bit for different border modifiers */
-				.s-themeMod__root:is(.-borderNormal,.-borderThick) :is(&) {
+				.t-modRoot:is(.-borderNormal,.-borderThick) :is(&) {
 					inset-block-start: calc(100% + var(--borderS));
 				}
-				.s-themeMod__root.-borderHairline :is(&) {
+				.t-modRoot.-borderHairline :is(&) {
 					inset-block-start: calc(100% + var(--borderHairline));
 				}
 			}
@@ -1043,11 +1037,6 @@ ol.c-nav.-typeTree .c-nav__item {
  */
 .c-nav:is(.-typeTree,.-typeFlyout){
 	background-color: var(--colorFore);
-	/* @supports ( (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)) ) { */
-	/* 	background-color: color-mod(var(--colorFore) a(80%)); */
-	/* 	-webkit-backdrop-filter: blur(3px); */
-	/* 			backdrop-filter: blur(3px); */
-	/* } */
 	input[type="search"]{
 		/* opinionated */
 		/* border:none !important; */
@@ -1310,7 +1299,7 @@ ol.c-nav.-typeTree .c-nav__item {
 		}
 		> .c-nav__item > .c-nav__submenu {
 			border-radius: 0 0 var(--radiusDefault) var(--radiusDefault);
-			.s-themeMod__root:where(.-cornerRoundedInner) & {
+			.t-modRoot:where(.-cornerRoundedInner) & {
 				border-radius: var(--radiusDefault);
 			}
 		}
@@ -1334,7 +1323,7 @@ ol.c-nav.-typeTree .c-nav__item {
 }
 /* Adjust top position of submenu in the 2nd depth or deeper depths
  * of Vertical Fly-out Type Nav while Rounded Corner theme mod is active.*/
-.s-themeMod__root:where([class*="-corner"]:not(.-cornerRoundedInner))
+.t-modRoot:where([class*="-corner"]:not(.-cornerRoundedInner))
 .c-nav.-typeFlyout.-layoutHorizontal
 > .c-nav__item
 > .c-nav__submenu .c-nav__submenu{
@@ -1345,13 +1334,13 @@ ol.c-nav.-typeTree .c-nav__item {
 }
 /**** Nav Component with Inner Rounded Corners Theme Modifier
  */
-.s-themeMod__root.-cornerRoundedInner {
+.t-modRoot.-cornerRoundedInner {
 /* Is this in the right file? */
 	/* --bleedSize: .25em; */
 	/* --bleedSize: 4px; */
 	--bleedSize: calc(var(--rhythmUnit)/2);
 }
-.s-themeMod__root:where(.-cornerRoundedInner) {
+.t-modRoot:where(.-cornerRoundedInner) {
 	/* .c-nav__item > .c-nav__anchor { */
 	/* 	border-radius: var(--bleedSize); */
 		/* padding: .25em calc(.8em - var(--bleedSize)) */
@@ -1416,7 +1405,7 @@ ol.c-nav.-typeTree .c-nav__item {
 }
 
 /* TODO: Check here later. */
-/* .s-themeMod__root:is(.-cornerRounded,.-cornerRoundedInner) { */
+/* .t-modRoot:is(.-cornerRounded,.-cornerRoundedInner) { */
 /* 	:is([id^="toggleNav-"]:checked + .c-nav.-typeTree.-expandFromBlockStart, .c-nav.-typeTree.-expandFromBlockStart.js-visible, .c-nav.-typeTree.-expandFromBlockStart:focus-within) { */
 /* 		border-radius: 0; */
 /* 		.c-toggleExpand { */
@@ -1425,8 +1414,8 @@ ol.c-nav.-typeTree .c-nav__item {
 /* 	} */
 /* } */
 
-/* .s-themeMod__root:is(.-cornerRounded,.-presetNeumorphism,.-embossWinClassic):not(.-cornerRoundedInner) .c-nav.-typeFlyout { */
-.s-themeMod__root:is(.-cornerRoundedTiny,
+/* .t-modRoot:is(.-cornerRounded,.-presetNeumorphism,.-embossWinClassic):not(.-cornerRoundedInner) .c-nav.-typeFlyout { */
+.t-modRoot:is(.-cornerRoundedTiny,
     .-cornerRounded,
 	.-embossWinClassic)
 	.c-nav.-typeFlyout.-layoutHorizontal{
@@ -1435,7 +1424,7 @@ ol.c-nav.-typeTree .c-nav__item {
 		padding-block-start: 0;
 	}
 }
-.s-themeMod__root:is(.-embossWinClassic) .c-nav.-typeFlyout {
+.t-modRoot:is(.-embossWinClassic) .c-nav.-typeFlyout {
 	.c-nav__submenu {
 		padding-block: var(--radiusDefault);
 	}
@@ -1448,7 +1437,7 @@ ol.c-nav.-typeTree .c-nav__item {
 		}
 	}
 }
-/* .s-themeMod__root:is(.-presetAcetate, .-presetNeumorphism) .c-nav.-typeTree.-expandFromBlockStart { */
+/* .t-modRoot:is(.-presetAcetate, .-presetNeumorphism) .c-nav.-typeTree.-expandFromBlockStart { */
 /* 	:is(a.c-toggleExpand:hover,a.c-toggleExpand:focus-visible){ */
 /* 		color: currentColor; */
 /* 	} */

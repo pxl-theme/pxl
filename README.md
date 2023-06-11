@@ -1,5 +1,4 @@
-# pxl-theme
-<img class=left src=logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
+# pxl-theme <img class=left src=logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
 
 > An adjustable website theme with sensible defaults and nice looks.
 

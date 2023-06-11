@@ -62,14 +62,14 @@ function changeThemeMod(p, s, o) {
 // Set default colors and variants
 
 // changeThemeMod("-colorScheme",html,checkValueOf("color-options"));
-// changeThemeMod("s-variant",html,checkValueOf("variant-options"));
+// changeThemeMod("t-variant",html,checkValueOf("variant-options"));
 // changeThemeMod("-bg",body,checkValueOf("bg-options"));
 // changeThemeMod("-corner",html,checkValueOf("corner-options"));
 // changeThemeMod("-border",html,checkValueOf("border-options"));
 // changeThemeMod("-emboss",html,checkValueOf("emboss-options"));
 // changeThemeMod("-shadow",body,checkValueOf("shadow-options"));
 // changeThemeMod("-shadowColor",html,checkValueOf("shadowcolor-options"));
-// changeThemeMod("-style",html,checkValueOf("misc-options"));
+// changeThemeMod("-preset",html,checkValueOf("preset-options"));
 
 // Switch to dark theme between 8 AM and 6 PM
 
@@ -79,10 +79,10 @@ function changeThemeMod(p, s, o) {
 // 	var overridingParent = document.querySelector("html.js-override-variant")
 // 	if ( ! overridingParent ) {
 // 		if (8 <= currentHour && currentHour < 18) {
-// 			changeThemeMod("s-variant", html, "Day");
+// 			changeThemeMod("t-variant", html, "Day");
 // 		}
 // 		if (18 <= currentHour && currentHour <= 24 || currentHour < 8) {
-// 			changeThemeMod("s-variant", html, "Dark");
+// 			changeThemeMod("t-variant", html, "Dark");
 // 		}
 // 	}
 // }

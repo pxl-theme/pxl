@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Available options for s-themeMod__root:
+<!-- Available options for t-modRoot:
 	-paperAcetate
 	-borderNormal
 	-shadowSharp -shadowOld -shadowMacOS -shadowMaterialV1
@@ -9,22 +9,24 @@
 	-cornerRoundedTiny -cornerRounded -cornerRoundedInner
 -->
 <!-- Favourite theme mod combinations -->
-<!-- <html lang=en dir=ltr class="s-themeMod__root -colorSchemeSolarized -borderHairline -shadowNone -presetNeumorphism" > -->
-<!-- <html lang=en dir=ltr class="s-themeMod__root -colorSchemeGruvbox -borderHairline -shadowColorNormal -presetNeumorphism u-transitionNone"> -->
-<!-- <html lang=en dir=ltr class="s-themeMod__root -colorSchemeGruvbox -borderHairline -shadowColorNormal -presetNeumorphism -cornerRoundedInner u-transitionNone"> -->
-<!-- <html lang=en dir=ltr class="s-themeMod__root -borderNormal -cornerRoundedInner -colorSchemeGruvbox"> -->
-<html lang=en dir=ltr class="s-themeMod__root -borderHairline -cornerRoundedInner -colorSchemeGruvbox -presetNeumorphism">
-<!-- <html lang=en dir=ltr class="s-themeMod__root -colorSchemeGruvbox -cornerSharp -borderThick -embossWinClassic -presetAcetate"> -->
+<!-- <html lang=en dir=ltr class="t-modRoot -colorSchemeSolarized -borderHairline -shadowNone -presetNeumorphism" > -->
+<!-- <html lang=en dir=ltr class="t-modRoot -colorSchemeGruvbox -borderHairline -shadowColorNormal -presetNeumorphism u-transitionNone"> -->
+<!-- <html lang=en dir=ltr class="t-modRoot -colorSchemeGruvbox -borderHairline -shadowColorNormal -presetNeumorphism -cornerRoundedInner u-transitionNone"> -->
+<!-- <html lang=en dir=ltr class="t-modRoot -borderNormal -cornerRoundedInner -colorSchemeGruvbox"> -->
+<!-- <html lang=en dir=ltr class="t-modRoot -borderHairline -cornerRoundedInner -colorSchemeGruvbox -presetNone"> -->
+<!-- <html lang=en dir=ltr class="t-modRoot -colorSchemeGruvbox -cornerSharp -borderThick -embossWinClassic -presetAcetate"> -->
+<html lang=en dir=ltr class=t-modRoot>
 	<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
-	<meta http-equiv=X-UA-Compatible content="IE=edge">
+	<meta http-equiv=X-UA-Compatible content=IE=edge>
 
-	<meta content='width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover' name='viewport'>
+	<meta content='width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover' name=viewport>
 	<meta name=disabled-adaptations content=watch>
 
-	<!-- <meta name="theme-color" content="var(--colorBack)"> -->
 	<meta name=theme-color content=var(--colorBg)>
 	<meta name=darkreader content=NO-DARKREADER-PLUGIN>
+
 	<title>{{ title }}・pxl</title>
+	<meta name=description content="Live preview of pxl-theme, an adjustable website theme with sensible defaults and nice looks.">
 
 	<!-- All Stylesheets with Relevant Media Queries -->
 	<!-- Make sure it's synchronized with the media queries from css/abstract/00-media.css -->
@@ -38,17 +40,16 @@
 	<link rel=icon href=/img/fav/icon.webp>
 	<link rel=apple-touch-icon sizes=180x180 href=/img/fav/icon.webp>
 
-<body class="s-themeMod__body js-preload _stickyFooter">
-<!-- Available options for s-themeMod__body:
+	<body class="t-modBody -bgDiagonalStripesAltSM js-preload _stickyFooter" itemscope itemtype="https://schema.org/WebPage">
+<!-- Available options for t-modBody:
 	-bgOldSchool -bgHGrid -bgCrossGrid -bgHexAlt
 	_stickyFooter
 -->
-	<a style="z-index:9999;background-color:var(--colorText);color:var(--colorBack);text-decoration:none;padding:10px;position:absolute;top:0" class="u-sr-only -focusable" tabindex="0" href="#content"><b>Skip to the content</b> (Enter ↩︎)</a>
-	<a style="z-index:9999;background-color:var(--colorText);color:var(--colorBack);text-decoration:none;padding:10px;position:absolute;top:0" class="u-sr-only -focusable" tabindex="0" href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
+	<a style="z-index:9999;background-color:var(--colorText);color:var(--colorBack);text-decoration:none;padding:10px;position:absolute;top:0" class="u-visuallyHidden -focusable" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
+	<a style="z-index:9999;background-color:var(--colorText);color:var(--colorBack);text-decoration:none;padding:10px;position:absolute;top:0" class="u-visuallyHidden -focusable" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
 	<!-- <div class="o-frame --typeText -priorityLow"> -->
 	<!-- 	<div class="o-frame__content"> -->
 	<!-- 		<p><b>Note:</b> Some links, buttons, inputs may not work as intended. This page is just demonstration. -->
 	<!-- 	</div> -->
 	<!-- </div> -->
 	<include src='includes/header.html'></include>
-	<!-- <include src='includes/nav/responsive.html'></include> -->
