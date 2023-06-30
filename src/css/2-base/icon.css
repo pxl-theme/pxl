@@ -1,8 +1,4 @@
 :root{
-  /* --fontWeightMultiplier: 1; */
-  /* @media (prefers-color-scheme: dark) { */
-  /*   --fontWeightMultiplier: .85; */
-  /* } */
   --iconColor: currentColor;
   --iconWeight: 2px;
 

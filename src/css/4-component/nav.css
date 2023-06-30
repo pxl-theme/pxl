@@ -593,7 +593,7 @@ ol.c-nav.-typeTree .c-nav__item {
 		z-index: calc(444+var(--bringForward));
 	}
 
-	/* First depth of submenu indicator inside Fly-out Type Nav Component 
+	/* First depth of submenu indicator inside Fly-out Type Nav Component
 	 */
 	> .c-nav__item.-hasSubmenu:after, > .c-nav__item.-hasSubmenu .-hasSubmenu:after {
 		inset-block-start: 0;
@@ -1046,7 +1046,7 @@ ol.c-nav.-typeTree .c-nav__item {
 		display:block;
 		/* TODO: Search input icon view
 		/* &.-viewIconText { */
-		/* 	font-family: 'pxl-icon', var(--chosenFonts); */
+		/* 	font-family: 'pxl-icon', var(--fontMain); */
 		/* } */
 	}
 	.c-nav__separator {
@@ -1125,7 +1125,7 @@ ol.c-nav.-typeTree .c-nav__item {
 /* 	/1* -opinionated *1/ */
 
 /* 	:is(.-viewIcon, .-viewIconText) { */
-/* 		font-family: 'pxl-icon', var(--chosenFonts); */
+/* 		font-family: 'pxl-icon', var(--fontMain); */
 /* 		text-transform: unset; */
 /* 		font-variant: unset; */
 /* 	} */

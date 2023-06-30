@@ -120,7 +120,11 @@
 
 
 /*** Header Component inside Card Component
+ *
+ * Article: Height equals width with pure CSS
+ * https://mademyday.de/height-equals-width-with-pure-css/
  */
+
 /* ^^ That's really a hard code but nice looking edit */
 /* *:not(.o-rustygrid.-viewMasonry) > .o-rustygrid__item */
 *:not(.-viewMasonry) > .js-posts .o-rustygrid__item{

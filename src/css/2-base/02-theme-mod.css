@@ -233,23 +233,6 @@
 /* Background Filters and Patterns
  */
 .t-modBody {
-	&.-bg {
-		&Base             {background-color: var(--colorBase);}
-		&Back             {background-color: var(--colorBack);}
-		/* &Back             {background-color: var(--colorBg);} */
-		&Deep             {background-color: var(--colorDeep);}
-		&Fore             {background-color: var(--colorFore);}
-		&ForeBrighter     {background-color: var(--colorForeBrighter);}
-
-		&Red              {background-color: var(--red);       color:#FFF}
-		&Orange           {background-color: var(--orange);    color:#FFF}
-		&Yellow           {background-color: var(--yellow);    color:#000}
-		&Blue             {background-color: var(--blue);      color:#FFF}
-		&Magenta          {background-color: var(--magenta);   color:#FFF}
-		&Violet           {background-color: var(--violet);    color:#FFF}
-		&Green            {background-color: var(--green);     color:#FFF}
-		&Cyan             {background-color: var(--cyan);      color:#000}
-	}
 	/* Some of the custom CSS gradient textures are taken from:
 	 * https://projects.verou.me/css3patterns */
 	&.-bgHorizontalStripesSM {

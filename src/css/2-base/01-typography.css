@@ -383,18 +383,16 @@ table {
 	border: var(--borderTable) solid var(--colorText);
 	/* border: var(--borderTable) solid var(--colorTextOpac40); */
 	border-collapse: collapse;
-	td, th{
+	:is(td, th){
 		/* border: var(--borderTable) solid currentColor; */
 		border: var(--borderTable) solid var(--colorText);
 		/* border: 1px solid var(--colorTextOpac40); */
 		padding: calc(var(--rhythmUnit)/2);
 	}
 
-	&.--noBorder {
-		td, th {
-			border: none;
-			padding: initial;
-		}
+	&.--noBorder :is(td, th) {
+		border: none;
+		padding: initial;
 	}
 	&.--rowZebra {
 		tbody tr:nth-child(odd) {
