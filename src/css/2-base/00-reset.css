@@ -101,7 +101,7 @@ a:is([href="#"],[href="#!"]){
 /** Scrollbar styling for Firefox (CSS standard)
  */
 html {
-	scrollbar-color: var(--colorText) var(--colorDeep);
+	scrollbar-color: var(--colorText) var(--colorBackmost);
 	/* scrollbar-color: var(--scrollbarFg) var(--scrollbarBg); */
 	overflow-x:auto;
 	/* min-width:0!important */
@@ -111,7 +111,7 @@ html {
 /* :root ::-webkit-scrollbar { */
 /* 	/1* Setting variables for scrollbar size and color *1/ */
 /* 	--scrollbarBg: var(--colorBack); */
-/* 	--scrollbarFg: var(--colorForeBrighter); */
+/* 	--scrollbarFg: var(--colorFrontmost); */
 /* 	--scrollbarColorBorder: var(--colorTextOpac20); */
 
 /* 	/1* TODO: If grid gutter is 0px, then think of something else for scrolbar width. *1/ */
@@ -133,7 +133,7 @@ html {
 /* 	/1* background: linear-gradient(90deg, var(--scrollbarColorBorder),var(--scrollbarColorBorder) var(--borderHairline), var(--scrollbarBg) 0, var(--colorBackOpac80)) *1/ */
 /* } */
 /* :root ::-webkit-scrollbar-thumb { */
-/* 	background: var(--colorForeBrighter); */
+/* 	background: var(--colorFrontmost); */
 /* 	border-radius:0; */
 /* 	min-width: 3em; */
 /* 	min-height: 3em; */

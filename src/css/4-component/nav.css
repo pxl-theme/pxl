@@ -555,7 +555,8 @@ ol.c-nav.-typeTree .c-nav__item {
 		background-color: var(--colorTextOpac20);
 		/*TODO: need more brighter/darker color for hovered on navigation*/
 		color: var(--colorTextBolder);
-		@media (prefers-color-scheme: dark) {
+		/* @media (prefers-color-scheme: dark) { */
+		.t-color[data-theme=dark] & {
 			background-color: var(--colorTextOpac40);
 		}
 
@@ -583,7 +584,7 @@ ol.c-nav.-typeTree .c-nav__item {
 	 */
 	.c-nav__submenu {
 		--bringForward: 0;
-		background-color: var(--colorForeBrighter);
+		background-color: var(--colorFrontmost);
 		/* min-width: 100%; */
 		/* max-height: 60vh; */
 		/* overflow: auto; */
@@ -920,7 +921,7 @@ ol.c-nav.-typeTree .c-nav__item {
 			inset-block-start: 100%;
 			/* margin-left: .25em; */
 			position: absolute;
-			background-color: var(--colorForeBrighter);
+			background-color: var(--colorFrontmost);
 			border-radius: var(--radiusInnerDefault);
 
 			@mixin fontSize6;
@@ -1036,7 +1037,7 @@ ol.c-nav.-typeTree .c-nav__item {
 /***** Common Nav Styles for Tree and Fly-out Type
  */
 .c-nav:is(.-typeTree,.-typeFlyout){
-	background-color: var(--colorFore);
+	background-color: var(--colorFront);
 	input[type="search"]{
 		/* opinionated */
 		/* border:none !important; */

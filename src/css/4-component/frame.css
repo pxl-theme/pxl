@@ -80,15 +80,15 @@
 
 /***** Frame Component for Various Priorities
  */
-.-priorityLow {
-	color: var(--colorTextBolderYellowish);
-	background-color: var(--colorBaseYellowish);
-}
-.-priorityNormal {
-	color: var(--colorTextBolderOrangey);
-	background-color: var(--colorBaseOrangey);
-}
-.-priorityCritical {
-	color: var(--colorTextBolderReddish);
-	background-color: var(--colorBaseReddish);
-}
+/* .-priorityLow { */
+/* 	color: var(--colorTextBolderYellowish); */
+/* 	background-color: var(--colorBaseYellowish); */
+/* } */
+/* .-priorityNormal { */
+/* 	color: var(--colorTextBolderOrangey); */
+/* 	background-color: var(--colorBaseOrangey); */
+/* } */
+/* .-priorityCritical { */
+/* 	color: var(--colorTextBolderReddish); */
+/* 	background-color: var(--colorBaseReddish); */
+/* } */

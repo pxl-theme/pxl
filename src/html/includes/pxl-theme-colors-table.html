@@ -1,0 +1,2518 @@
+<style>
+td span {
+display:block;
+color: #fffb;
+text-transform:uppercase;
+text-align:right;
+text-shadow: 1px 1px #0008;
+font-size:.5em;
+transform-origin: 100% 100%;
+font-family: ui-monospace, monospace;
+}
+table :is(td,tr){border:none}
+tr:first-child td{min-width:6.2em}
+td:first-child{max-width:15em;overflow:auto;text-align:right;position:sticky;top:0;left:0;background:#000E;color:#DDD;z-index:1;}
+</style>
+<div style="width:100%;overflow:scroll;max-height:720px"><table style="width:max-content;border:none">
+<tr style=position:sticky;top:0;left:0;background:#000E;color:#DDD;z-index:2;text-align:center;>
+<td><b>🎨 Scheme</b></td>
+<td><b>📍Base</b></td>
+<td>⏩ Front</td>
+<td>⏭ Frontmost</td>
+<td>⏪ Back</td>
+<td>⏮ Backmost</td>
+<td><b>✏️ Text</b></td>
+<td>🍎 Red</td>
+<td>🍊 Orange</td>
+<td>🍋 Yellow</td>
+<td>🍏 Green</td>
+<td>💎 Cyan</td>
+<td>💧 Blue</td>
+<td>🫐 Hue 1</td>
+<td>💩 Hue 2</td>
+</tr>
+<tr>
+<td><b>Ashes<b></td>
+<td rowspan=3 style=background:#1C2023><span>1C2023<br>28 32 35</span></td>
+<td rowspan=3 style=background:#393F45><span>393F45<br>57 63 69</span></td>
+<td rowspan=3 style=background:#565E65><span>565E65<br>86 94 101</span></td>
+<td rowspan=3 style=background:#111415><span>111415<br>17 20 21</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#C7CCD1><span>C7CCD1<br>199 204 209</span></td>
+<td rowspan=3 style=background:#C7AE95><span>C7AE95<br>199 174 149</span></td>
+<td rowspan=3 style=background:#C7C795><span>C7C795<br>199 199 149</span></td>
+<td rowspan=3 style=background:#AEC795><span>AEC795<br>174 199 149</span></td>
+<td rowspan=3 style=background:#95C7AE><span>95C7AE<br>149 199 174</span></td>
+<td rowspan=3 style=background:#95AEC7><span>95AEC7<br>149 174 199</span></td>
+<td rowspan=3 style=background:#AE95C7><span>AE95C7<br>174 149 199</span></td>
+<td rowspan=3 style=background:#C795AE><span>C795AE<br>199 149 174</span></td>
+<td rowspan=3 style=background:#C79595><span>C79595<br>199 149 149</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jannik Siebert (https://github.com/janniks)</td>
+</tr>
+<tr>
+<td><b>Atelier Cave<b></td>
+<td rowspan=3 style=background:#19171c><span>19171c<br>25 23 28</span></td>
+<td rowspan=3 style=background:#26232a><span>26232a<br>38 35 42</span></td>
+<td rowspan=3 style=background:#38343d><span>38343d<br>56 52 61</span></td>
+<td rowspan=3 style=background:#0f0e11><span>0f0e11<br>15 14 17</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#8b8792><span>8b8792<br>139 135 146</span></td>
+<td rowspan=3 style=background:#be4678><span>be4678<br>190 70 120</span></td>
+<td rowspan=3 style=background:#aa573c><span>aa573c<br>170 87 60</span></td>
+<td rowspan=3 style=background:#a06e3b><span>a06e3b<br>160 110 59</span></td>
+<td rowspan=3 style=background:#2a9292><span>2a9292<br>42 146 146</span></td>
+<td rowspan=3 style=background:#398bc6><span>398bc6<br>57 139 198</span></td>
+<td rowspan=3 style=background:#576ddb><span>576ddb<br>87 109 219</span></td>
+<td rowspan=3 style=background:#955ae7><span>955ae7<br>149 90 231</span></td>
+<td rowspan=3 style=background:#bf40bf><span>bf40bf<br>191 64 191</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Dune<b></td>
+<td rowspan=3 style=background:#20201d><span>20201d<br>32 32 29</span></td>
+<td rowspan=3 style=background:#292824><span>292824<br>41 40 36</span></td>
+<td rowspan=3 style=background:#3f3d36><span>3f3d36<br>63 61 54</span></td>
+<td rowspan=3 style=background:#141412><span>141412<br>20 20 18</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#a6a28c><span>a6a28c<br>166 162 140</span></td>
+<td rowspan=3 style=background:#d73737><span>d73737<br>215 55 55</span></td>
+<td rowspan=3 style=background:#b65611><span>b65611<br>182 86 17</span></td>
+<td rowspan=3 style=background:#ae9513><span>ae9513<br>174 149 19</span></td>
+<td rowspan=3 style=background:#60ac39><span>60ac39<br>96 172 57</span></td>
+<td rowspan=3 style=background:#1fad83><span>1fad83<br>31 173 131</span></td>
+<td rowspan=3 style=background:#6684e1><span>6684e1<br>102 132 225</span></td>
+<td rowspan=3 style=background:#b854d4><span>b854d4<br>184 84 212</span></td>
+<td rowspan=3 style=background:#d43552><span>d43552<br>212 53 82</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Forest<b></td>
+<td rowspan=3 style=background:#1b1918><span>1b1918<br>27 25 24</span></td>
+<td rowspan=3 style=background:#2c2421><span>2c2421<br>44 36 33</span></td>
+<td rowspan=3 style=background:#3f3734><span>3f3734<br>63 55 52</span></td>
+<td rowspan=3 style=background:#110f0e><span>110f0e<br>17 15 14</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#a8a19f><span>a8a19f<br>168 161 159</span></td>
+<td rowspan=3 style=background:#f22c40><span>f22c40<br>242 44 64</span></td>
+<td rowspan=3 style=background:#df5320><span>df5320<br>223 83 32</span></td>
+<td rowspan=3 style=background:#c38418><span>c38418<br>195 132 24</span></td>
+<td rowspan=3 style=background:#7b9726><span>7b9726<br>123 151 38</span></td>
+<td rowspan=3 style=background:#3d97b8><span>3d97b8<br>61 151 184</span></td>
+<td rowspan=3 style=background:#407ee7><span>407ee7<br>64 126 231</span></td>
+<td rowspan=3 style=background:#6666ea><span>6666ea<br>102 102 234</span></td>
+<td rowspan=3 style=background:#c33ff3><span>c33ff3<br>195 63 243</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Heath<b></td>
+<td rowspan=3 style=background:#1b181b><span>1b181b<br>27 24 27</span></td>
+<td rowspan=3 style=background:#292329><span>292329<br>41 35 41</span></td>
+<td rowspan=3 style=background:#3d353d><span>3d353d<br>61 53 61</span></td>
+<td rowspan=3 style=background:#110e11><span>110e11<br>17 14 17</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#ab9bab><span>ab9bab<br>171 155 171</span></td>
+<td rowspan=3 style=background:#ca402b><span>ca402b<br>202 64 43</span></td>
+<td rowspan=3 style=background:#a65926><span>a65926<br>166 89 38</span></td>
+<td rowspan=3 style=background:#bb8a35><span>bb8a35<br>187 138 53</span></td>
+<td rowspan=3 style=background:#918b3b><span>918b3b<br>145 139 59</span></td>
+<td rowspan=3 style=background:#159393><span>159393<br>21 147 147</span></td>
+<td rowspan=3 style=background:#516aec><span>516aec<br>81 106 236</span></td>
+<td rowspan=3 style=background:#7b59c0><span>7b59c0<br>123 89 192</span></td>
+<td rowspan=3 style=background:#cc33cc><span>cc33cc<br>204 51 204</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Lakeside<b></td>
+<td rowspan=3 style=background:#161b1d><span>161b1d<br>22 27 29</span></td>
+<td rowspan=3 style=background:#1f292e><span>1f292e<br>31 41 46</span></td>
+<td rowspan=3 style=background:#2f3e46><span>2f3e46<br>47 62 70</span></td>
+<td rowspan=3 style=background:#0d1112><span>0d1112<br>13 17 18</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#7ea2b4><span>7ea2b4<br>126 162 180</span></td>
+<td rowspan=3 style=background:#d22d72><span>d22d72<br>210 45 114</span></td>
+<td rowspan=3 style=background:#935c25><span>935c25<br>147 92 37</span></td>
+<td rowspan=3 style=background:#8a8a0f><span>8a8a0f<br>138 138 15</span></td>
+<td rowspan=3 style=background:#568c3b><span>568c3b<br>86 140 59</span></td>
+<td rowspan=3 style=background:#2d8f6f><span>2d8f6f<br>45 143 111</span></td>
+<td rowspan=3 style=background:#257fad><span>257fad<br>37 127 173</span></td>
+<td rowspan=3 style=background:#6b6bb8><span>6b6bb8<br>107 107 184</span></td>
+<td rowspan=3 style=background:#b72dd2><span>b72dd2<br>183 45 210</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Plateau<b></td>
+<td rowspan=3 style=background:#1b1818><span>1b1818<br>27 24 24</span></td>
+<td rowspan=3 style=background:#292424><span>292424<br>41 36 36</span></td>
+<td rowspan=3 style=background:#383232><span>383232<br>56 50 50</span></td>
+<td rowspan=3 style=background:#110e0e><span>110e0e<br>17 14 14</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#8a8585><span>8a8585<br>138 133 133</span></td>
+<td rowspan=3 style=background:#ca4949><span>ca4949<br>202 73 73</span></td>
+<td rowspan=3 style=background:#b45a3c><span>b45a3c<br>180 90 60</span></td>
+<td rowspan=3 style=background:#a06e3b><span>a06e3b<br>160 110 59</span></td>
+<td rowspan=3 style=background:#4b8b8b><span>4b8b8b<br>75 139 139</span></td>
+<td rowspan=3 style=background:#5485b6><span>5485b6<br>84 133 182</span></td>
+<td rowspan=3 style=background:#7272ca><span>7272ca<br>114 114 202</span></td>
+<td rowspan=3 style=background:#8464c4><span>8464c4<br>132 100 196</span></td>
+<td rowspan=3 style=background:#bd5187><span>bd5187<br>189 81 135</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Seaside<b></td>
+<td rowspan=3 style=background:#131513><span>131513<br>19 21 19</span></td>
+<td rowspan=3 style=background:#242924><span>242924<br>36 41 36</span></td>
+<td rowspan=3 style=background:#363f36><span>363f36<br>54 63 54</span></td>
+<td rowspan=3 style=background:#0b0c0b><span>0b0c0b<br>11 12 11</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#8ca68c><span>8ca68c<br>140 166 140</span></td>
+<td rowspan=3 style=background:#e6193c><span>e6193c<br>230 25 60</span></td>
+<td rowspan=3 style=background:#87711d><span>87711d<br>135 113 29</span></td>
+<td rowspan=3 style=background:#98981b><span>98981b<br>152 152 27</span></td>
+<td rowspan=3 style=background:#29a329><span>29a329<br>41 163 41</span></td>
+<td rowspan=3 style=background:#1999b3><span>1999b3<br>25 153 179</span></td>
+<td rowspan=3 style=background:#3d62f5><span>3d62f5<br>61 98 245</span></td>
+<td rowspan=3 style=background:#ad2bee><span>ad2bee<br>173 43 238</span></td>
+<td rowspan=3 style=background:#e619c3><span>e619c3<br>230 25 195</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Sulphurpool<b></td>
+<td rowspan=3 style=background:#202746><span>202746<br>32 39 70</span></td>
+<td rowspan=3 style=background:#293256><span>293256<br>41 50 86</span></td>
+<td rowspan=3 style=background:#3b4366><span>3b4366<br>59 67 102</span></td>
+<td rowspan=3 style=background:#151726><span>151726<br>21 23 38</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#979db4><span>979db4<br>151 157 180</span></td>
+<td rowspan=3 style=background:#c94922><span>c94922<br>201 73 34</span></td>
+<td rowspan=3 style=background:#c76b29><span>c76b29<br>199 107 41</span></td>
+<td rowspan=3 style=background:#c08b30><span>c08b30<br>192 139 48</span></td>
+<td rowspan=3 style=background:#ac9739><span>ac9739<br>172 151 57</span></td>
+<td rowspan=3 style=background:#22a2c9><span>22a2c9<br>34 162 201</span></td>
+<td rowspan=3 style=background:#3d8fd1><span>3d8fd1<br>61 143 209</span></td>
+<td rowspan=3 style=background:#6679cc><span>6679cc<br>102 121 204</span></td>
+<td rowspan=3 style=background:#9c637a><span>9c637a<br>156 99 122</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atlas<b></td>
+<td rowspan=3 style=background:#002635><span>002635<br>0 38 53</span></td>
+<td rowspan=3 style=background:#00384d><span>00384d<br>0 56 77</span></td>
+<td rowspan=3 style=background:#204f62><span>204f62<br>32 79 98</span></td>
+<td rowspan=3 style=background:#152228><span>152228<br>21 34 40</span></td>
+<td rowspan=3 style=background:#131a1d><span>131a1d<br>19 26 29</span></td>
+<td rowspan=3 style=background:#a1a19a><span>a1a19a<br>161 161 154</span></td>
+<td rowspan=3 style=background:#ff5a67><span>ff5a67<br>255 90 103</span></td>
+<td rowspan=3 style=background:#f08e48><span>f08e48<br>240 142 72</span></td>
+<td rowspan=3 style=background:#ffcc1b><span>ffcc1b<br>255 204 27</span></td>
+<td rowspan=3 style=background:#7fc06e><span>7fc06e<br>127 192 110</span></td>
+<td rowspan=3 style=background:#5dd7b9><span>5dd7b9<br>93 215 185</span></td>
+<td rowspan=3 style=background:#14747e><span>14747e<br>20 116 126</span></td>
+<td rowspan=3 style=background:#9a70a4><span>9a70a4<br>154 112 164</span></td>
+<td rowspan=3 style=background:#c43060><span>c43060<br>196 48 96</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Alex Lende (https://ajlende.com)</td>
+</tr>
+<tr>
+<td><b>Atom One<b></td>
+<td rowspan=3 style=background:#282c34><span>282c34<br>40 44 52</span></td>
+<td rowspan=3 style=background:#3d414a><span>3d414a<br>61 65 74</span></td>
+<td rowspan=3 style=background:#545862><span>545862<br>84 88 98</span></td>
+<td rowspan=3 style=background:#242528><span>242528<br>36 37 40</span></td>
+<td rowspan=3 style=background:#1c1c1d><span>1c1c1d<br>28 28 29</span></td>
+<td rowspan=3 style=background:#abb2bf><span>abb2bf<br>171 178 191</span></td>
+<td rowspan=3 style=background:#e06c75><span>e06c75<br>224 108 117</span></td>
+<td rowspan=3 style=background:#d19a66><span>d19a66<br>209 154 102</span></td>
+<td rowspan=3 style=background:#e5c07b><span>e5c07b<br>229 192 123</span></td>
+<td rowspan=3 style=background:#98c379><span>98c379<br>152 195 121</span></td>
+<td rowspan=3 style=background:#56b6c2><span>56b6c2<br>86 182 194</span></td>
+<td rowspan=3 style=background:#61afef><span>61afef<br>97 175 239</span></td>
+<td rowspan=3 style=background:#c678dd><span>c678dd<br>198 120 221</span></td>
+<td rowspan=3 style=background:#be5046><span>be5046<br>190 80 70</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Lalit Magant (http://github.com/tilal6991)</td>
+</tr>
+<tr>
+<td><b>Ayu Mirage<b></td>
+<td rowspan=3 style=background:#171B24><span>171B24<br>23 27 36</span></td>
+<td rowspan=3 style=background:#242936><span>242936<br>36 41 54</span></td>
+<td rowspan=3 style=background:#3c4251><span>3c4251<br>60 66 81</span></td>
+<td rowspan=3 style=background:#1b1c20><span>1b1c20<br>27 28 32</span></td>
+<td rowspan=3 style=background:#151719><span>151719<br>21 23 25</span></td>
+<td rowspan=3 style=background:#CCCAC2><span>CCCAC2<br>204 202 194</span></td>
+<td rowspan=3 style=background:#F28779><span>F28779<br>242 135 121</span></td>
+<td rowspan=3 style=background:#FFAD66><span>FFAD66<br>255 173 102</span></td>
+<td rowspan=3 style=background:#FFD173><span>FFD173<br>255 209 115</span></td>
+<td rowspan=3 style=background:#D5FF80><span>D5FF80<br>213 255 128</span></td>
+<td rowspan=3 style=background:#95E6CB><span>95E6CB<br>149 230 203</span></td>
+<td rowspan=3 style=background:#5CCFE6><span>5CCFE6<br>92 207 230</span></td>
+<td rowspan=3 style=background:#D4BFFF><span>D4BFFF<br>212 191 255</span></td>
+<td rowspan=3 style=background:#F29E74><span>F29E74<br>242 158 116</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Khue Nguyen</td>
+</tr>
+<tr>
+<td><b>Ayu<b></td>
+<td rowspan=3 style=background:#0F1419><span>0F1419<br>15 20 25</span></td>
+<td rowspan=3 style=background:#272D38><span>272D38<br>39 45 56</span></td>
+<td rowspan=3 style=background:#3E4B59><span>3E4B59<br>62 75 89</span></td>
+<td rowspan=3 style=background:#131618><span>131618<br>19 22 24</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#E6E1CF><span>E6E1CF<br>230 225 207</span></td>
+<td rowspan=3 style=background:#F07178><span>F07178<br>240 113 120</span></td>
+<td rowspan=3 style=background:#FF8F40><span>FF8F40<br>255 143 64</span></td>
+<td rowspan=3 style=background:#FFB454><span>FFB454<br>255 180 84</span></td>
+<td rowspan=3 style=background:#B8CC52><span>B8CC52<br>184 204 82</span></td>
+<td rowspan=3 style=background:#95E6CB><span>95E6CB<br>149 230 203</span></td>
+<td rowspan=3 style=background:#59C2FF><span>59C2FF<br>89 194 255</span></td>
+<td rowspan=3 style=background:#D2A6FF><span>D2A6FF<br>210 166 255</span></td>
+<td rowspan=3 style=background:#E6B673><span>E6B673<br>230 182 115</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Khue Nguyen</td>
+</tr>
+<tr>
+<td><b>Bespin<b></td>
+<td rowspan=3 style=background:#28211c><span>28211c<br>40 33 28</span></td>
+<td rowspan=3 style=background:#36312e><span>36312e<br>54 49 46</span></td>
+<td rowspan=3 style=background:#433f3d><span>433f3d<br>67 63 61</span></td>
+<td rowspan=3 style=background:#231f1d><span>231f1d<br>35 31 29</span></td>
+<td rowspan=3 style=background:#1b1916><span>1b1916<br>27 25 22</span></td>
+<td rowspan=3 style=background:#9d9b97><span>9d9b97<br>157 155 151</span></td>
+<td rowspan=3 style=background:#cf6a4c><span>cf6a4c<br>207 106 76</span></td>
+<td rowspan=3 style=background:#cf7d34><span>cf7d34<br>207 125 52</span></td>
+<td rowspan=3 style=background:#f9ee98><span>f9ee98<br>249 238 152</span></td>
+<td rowspan=3 style=background:#54be0d><span>54be0d<br>84 190 13</span></td>
+<td rowspan=3 style=background:#afc4db><span>afc4db<br>175 196 219</span></td>
+<td rowspan=3 style=background:#5ea6ea><span>5ea6ea<br>94 166 234</span></td>
+<td rowspan=3 style=background:#9b859d><span>9b859d<br>155 133 157</span></td>
+<td rowspan=3 style=background:#937121><span>937121<br>147 113 33</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jan T. Sott</td>
+</tr>
+<tr>
+<td><b>Brush Trees<b></td>
+<td rowspan=3 style=background:#485867><span>485867<br>72 88 103</span></td>
+<td rowspan=3 style=background:#5A6D7A><span>5A6D7A<br>90 109 122</span></td>
+<td rowspan=3 style=background:#6D828E><span>6D828E<br>109 130 142</span></td>
+<td rowspan=3 style=background:#3d4955><span>3d4955<br>61 73 85</span></td>
+<td rowspan=3 style=background:#313b45><span>313b45<br>49 59 69</span></td>
+<td rowspan=3 style=background:#B0C5C8><span>B0C5C8<br>176 197 200</span></td>
+<td rowspan=3 style=background:#b38686><span>b38686<br>179 134 134</span></td>
+<td rowspan=3 style=background:#d8bba2><span>d8bba2<br>216 187 162</span></td>
+<td rowspan=3 style=background:#aab386><span>aab386<br>170 179 134</span></td>
+<td rowspan=3 style=background:#87b386><span>87b386<br>135 179 134</span></td>
+<td rowspan=3 style=background:#86b3b3><span>86b3b3<br>134 179 179</span></td>
+<td rowspan=3 style=background:#868cb3><span>868cb3<br>134 140 179</span></td>
+<td rowspan=3 style=background:#b386b2><span>b386b2<br>179 134 178</span></td>
+<td rowspan=3 style=background:#b39f9f><span>b39f9f<br>179 159 159</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Abraham White</td>
+</tr>
+<tr>
+<td><b>C64<b></td>
+<td rowspan=3 style=background:#40318D><span>40318D<br>64 49 141</span></td>
+<td rowspan=3 style=background:#483995><span>483995<br>72 57 149</span></td>
+<td rowspan=3 style=background:#50419c><span>50419c<br>80 65 156</span></td>
+<td rowspan=3 style=background:#372a74><span>372a74<br>55 42 116</span></td>
+<td rowspan=3 style=background:#2e235c><span>2e235c<br>46 35 92</span></td>
+<td rowspan=3 style=background:#7869C4><span>7869C4<br>120 105 196</span></td>
+<td rowspan=3 style=background:#883932><span>883932<br>136 57 50</span></td>
+<td rowspan=3 style=background:#a78451><span>a78451<br>167 132 81</span></td>
+<td rowspan=3 style=background:#BFCE72><span>BFCE72<br>191 206 114</span></td>
+<td rowspan=3 style=background:#55A049><span>55A049<br>85 160 73</span></td>
+<td rowspan=3 style=background:#67B6BD><span>67B6BD<br>103 182 189</span></td>
+<td rowspan=3 style=background:#40318D><span>40318D<br>64 49 141</span></td>
+<td rowspan=3 style=background:#8B3F96><span>8B3F96<br>139 63 150</span></td>
+<td rowspan=3 style=background:#BFCE72><span>BFCE72<br>191 206 114</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'></td>
+</tr>
+<tr>
+<td><b>Catppuccin Macchiato<b></td>
+<td rowspan=3 style=background:#24273a><span>24273a<br>36 39 58</span></td>
+<td rowspan=3 style=background:#363a4f><span>363a4f<br>54 58 79</span></td>
+<td rowspan=3 style=background:#626880><span>626880<br>98 104 128</span></td>
+<td rowspan=3 style=background:#1b1c28><span>1b1c28<br>27 28 40</span></td>
+<td rowspan=3 style=background:#111118><span>111118<br>17 17 24</span></td>
+<td rowspan=3 style=background:#cad3f5><span>cad3f5<br>202 211 245</span></td>
+<td rowspan=3 style=background:#ed8796><span>ed8796<br>237 135 150</span></td>
+<td rowspan=3 style=background:#f5a97f><span>f5a97f<br>245 169 127</span></td>
+<td rowspan=3 style=background:#eed49f><span>eed49f<br>238 212 159</span></td>
+<td rowspan=3 style=background:#a6da95><span>a6da95<br>166 218 149</span></td>
+<td rowspan=3 style=background:#8bd5ca><span>8bd5ca<br>139 213 202</span></td>
+<td rowspan=3 style=background:#8aadf4><span>8aadf4<br>138 173 244</span></td>
+<td rowspan=3 style=background:#c6a0f6><span>c6a0f6<br>198 160 246</span></td>
+<td rowspan=3 style=background:#f0c6c6><span>f0c6c6<br>240 198 198</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>https://github.com/catppuccin/catppuccin</td>
+</tr>
+<tr>
+<td><b>Colors<b></td>
+<td rowspan=3 style=background:#111111><span>111111<br>17 17 17</span></td>
+<td rowspan=3 style=background:#333333><span>333333<br>51 51 51</span></td>
+<td rowspan=3 style=background:#555555><span>555555<br>85 85 85</span></td>
+<td rowspan=3 style=background:#090909><span>090909<br>9 9 9</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#bbbbbb><span>bbbbbb<br>187 187 187</span></td>
+<td rowspan=3 style=background:#ff4136><span>ff4136<br>255 65 54</span></td>
+<td rowspan=3 style=background:#ff851b><span>ff851b<br>255 133 27</span></td>
+<td rowspan=3 style=background:#ffdc00><span>ffdc00<br>255 220 0</span></td>
+<td rowspan=3 style=background:#2ecc40><span>2ecc40<br>46 204 64</span></td>
+<td rowspan=3 style=background:#7fdbff><span>7fdbff<br>127 219 255</span></td>
+<td rowspan=3 style=background:#0074d9><span>0074d9<br>0 116 217</span></td>
+<td rowspan=3 style=background:#b10dc9><span>b10dc9<br>177 13 201</span></td>
+<td rowspan=3 style=background:#85144b><span>85144b<br>133 20 75</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>mrmrs (http://clrs.cc)</td>
+</tr>
+<tr>
+<td><b>Da One Gray<b></td>
+<td rowspan=3 style=background:#181818><span>181818<br>24 24 24</span></td>
+<td rowspan=3 style=background:#282828><span>282828<br>40 40 40</span></td>
+<td rowspan=3 style=background:#585858><span>585858<br>88 88 88</span></td>
+<td rowspan=3 style=background:#0e0e0e><span>0e0e0e<br>14 14 14</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#fa7883><span>fa7883<br>250 120 131</span></td>
+<td rowspan=3 style=background:#ff9470><span>ff9470<br>255 148 112</span></td>
+<td rowspan=3 style=background:#ffc387><span>ffc387<br>255 195 135</span></td>
+<td rowspan=3 style=background:#98c379><span>98c379<br>152 195 121</span></td>
+<td rowspan=3 style=background:#8af5ff><span>8af5ff<br>138 245 255</span></td>
+<td rowspan=3 style=background:#6bb8ff><span>6bb8ff<br>107 184 255</span></td>
+<td rowspan=3 style=background:#e799ff><span>e799ff<br>231 153 255</span></td>
+<td rowspan=3 style=background:#b3684f><span>b3684f<br>179 104 79</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>NNB (https://github.com/NNBnh)</td>
+</tr>
+<tr>
+<td><b>Da One Ocean<b></td>
+<td rowspan=3 style=background:#171726><span>171726<br>23 23 38</span></td>
+<td rowspan=3 style=background:#22273d><span>22273d<br>34 39 61</span></td>
+<td rowspan=3 style=background:#525866><span>525866<br>82 88 102</span></td>
+<td rowspan=3 style=background:#0f0e17><span>0f0e17<br>15 14 23</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#fa7883><span>fa7883<br>250 120 131</span></td>
+<td rowspan=3 style=background:#ff9470><span>ff9470<br>255 148 112</span></td>
+<td rowspan=3 style=background:#ffc387><span>ffc387<br>255 195 135</span></td>
+<td rowspan=3 style=background:#98c379><span>98c379<br>152 195 121</span></td>
+<td rowspan=3 style=background:#8af5ff><span>8af5ff<br>138 245 255</span></td>
+<td rowspan=3 style=background:#6bb8ff><span>6bb8ff<br>107 184 255</span></td>
+<td rowspan=3 style=background:#e799ff><span>e799ff<br>231 153 255</span></td>
+<td rowspan=3 style=background:#b3684f><span>b3684f<br>179 104 79</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>NNB (https://github.com/NNBnh)</td>
+</tr>
+<tr>
+<td><b>Da One Sea<b></td>
+<td rowspan=3 style=background:#22273d><span>22273d<br>34 39 61</span></td>
+<td rowspan=3 style=background:#374059><span>374059<br>55 64 89</span></td>
+<td rowspan=3 style=background:#525866><span>525866<br>82 88 102</span></td>
+<td rowspan=3 style=background:#151721><span>151721<br>21 23 33</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#fa7883><span>fa7883<br>250 120 131</span></td>
+<td rowspan=3 style=background:#ff9470><span>ff9470<br>255 148 112</span></td>
+<td rowspan=3 style=background:#ffc387><span>ffc387<br>255 195 135</span></td>
+<td rowspan=3 style=background:#98c379><span>98c379<br>152 195 121</span></td>
+<td rowspan=3 style=background:#8af5ff><span>8af5ff<br>138 245 255</span></td>
+<td rowspan=3 style=background:#6bb8ff><span>6bb8ff<br>107 184 255</span></td>
+<td rowspan=3 style=background:#e799ff><span>e799ff<br>231 153 255</span></td>
+<td rowspan=3 style=background:#b3684f><span>b3684f<br>179 104 79</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>NNB (https://github.com/NNBnh)</td>
+</tr>
+<tr>
+<td><b>DanQing<b></td>
+<td rowspan=3 style=background:#2d302f><span>2d302f<br>45 48 47</span></td>
+<td rowspan=3 style=background:#434846><span>434846<br>67 72 70</span></td>
+<td rowspan=3 style=background:#5a605d><span>5a605d<br>90 96 93</span></td>
+<td rowspan=3 style=background:#1a1b1b><span>1a1b1b<br>26 27 27</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#e0f0eF><span>e0f0eF<br>224 240 239</span></td>
+<td rowspan=3 style=background:#F9906F><span>F9906F<br>249 144 111</span></td>
+<td rowspan=3 style=background:#CA6924><span>CA6924<br>202 105 36</span></td>
+<td rowspan=3 style=background:#F0C239><span>F0C239<br>240 194 57</span></td>
+<td rowspan=3 style=background:#8AB361><span>8AB361<br>138 179 97</span></td>
+<td rowspan=3 style=background:#30DFF3><span>30DFF3<br>48 223 243</span></td>
+<td rowspan=3 style=background:#B0A4E3><span>B0A4E3<br>176 164 227</span></td>
+<td rowspan=3 style=background:#CCA4E3><span>CCA4E3<br>204 164 227</span></td>
+<td rowspan=3 style=background:#B38A61><span>B38A61<br>179 138 97</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Wenhan Zhu (Cosmos)</td>
+</tr>
+<tr>
+<td><b>Darktooth<b></td>
+<td rowspan=3 style=background:#1D2021><span>1D2021<br>29 32 33</span></td>
+<td rowspan=3 style=background:#32302F><span>32302F<br>50 48 47</span></td>
+<td rowspan=3 style=background:#504945><span>504945<br>80 73 69</span></td>
+<td rowspan=3 style=background:#121414><span>121414<br>18 20 20</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#A89984><span>A89984<br>168 153 132</span></td>
+<td rowspan=3 style=background:#FB543F><span>FB543F<br>251 84 63</span></td>
+<td rowspan=3 style=background:#FE8625><span>FE8625<br>254 134 37</span></td>
+<td rowspan=3 style=background:#FAC03B><span>FAC03B<br>250 192 59</span></td>
+<td rowspan=3 style=background:#95C085><span>95C085<br>149 192 133</span></td>
+<td rowspan=3 style=background:#8BA59B><span>8BA59B<br>139 165 155</span></td>
+<td rowspan=3 style=background:#0D6678><span>0D6678<br>13 102 120</span></td>
+<td rowspan=3 style=background:#8F4673><span>8F4673<br>143 70 115</span></td>
+<td rowspan=3 style=background:#A87322><span>A87322<br>168 115 34</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jason Milkins (https://github.com/jasonm23)</td>
+</tr>
+<tr>
+<td><b>Decaf<b></td>
+<td rowspan=3 style=background:#2d2d2d><span>2d2d2d<br>45 45 45</span></td>
+<td rowspan=3 style=background:#393939><span>393939<br>57 57 57</span></td>
+<td rowspan=3 style=background:#515151><span>515151<br>81 81 81</span></td>
+<td rowspan=3 style=background:#252525><span>252525<br>37 37 37</span></td>
+<td rowspan=3 style=background:#1e1e1e><span>1e1e1e<br>30 30 30</span></td>
+<td rowspan=3 style=background:#cccccc><span>cccccc<br>204 204 204</span></td>
+<td rowspan=3 style=background:#ff7f7b><span>ff7f7b<br>255 127 123</span></td>
+<td rowspan=3 style=background:#ffbf70><span>ffbf70<br>255 191 112</span></td>
+<td rowspan=3 style=background:#ffd67c><span>ffd67c<br>255 214 124</span></td>
+<td rowspan=3 style=background:#beda78><span>beda78<br>190 218 120</span></td>
+<td rowspan=3 style=background:#bed6ff><span>bed6ff<br>190 214 255</span></td>
+<td rowspan=3 style=background:#90bee1><span>90bee1<br>144 190 225</span></td>
+<td rowspan=3 style=background:#efb3f7><span>efb3f7<br>239 179 247</span></td>
+<td rowspan=3 style=background:#ff93b3><span>ff93b3<br>255 147 179</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Alex Mirrington (https://github.com/alexmirrington)</td>
+</tr>
+<tr>
+<td><b>Default<b></td>
+<td rowspan=3 style=background:#181818><span>181818<br>24 24 24</span></td>
+<td rowspan=3 style=background:#282828><span>282828<br>40 40 40</span></td>
+<td rowspan=3 style=background:#585858><span>585858<br>88 88 88</span></td>
+<td rowspan=3 style=background:#0e0e0e><span>0e0e0e<br>14 14 14</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#d8d8d8><span>d8d8d8<br>216 216 216</span></td>
+<td rowspan=3 style=background:#ab4642><span>ab4642<br>171 70 66</span></td>
+<td rowspan=3 style=background:#dc9656><span>dc9656<br>220 150 86</span></td>
+<td rowspan=3 style=background:#f7ca88><span>f7ca88<br>247 202 136</span></td>
+<td rowspan=3 style=background:#a1b56c><span>a1b56c<br>161 181 108</span></td>
+<td rowspan=3 style=background:#86c1b9><span>86c1b9<br>134 193 185</span></td>
+<td rowspan=3 style=background:#7cafc2><span>7cafc2<br>124 175 194</span></td>
+<td rowspan=3 style=background:#ba8baf><span>ba8baf<br>186 139 175</span></td>
+<td rowspan=3 style=background:#a16946><span>a16946<br>161 105 70</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>Dracula<b></td>
+<td rowspan=3 style=background:#282a36><span>282a36<br>40 42 54</span></td>
+<td rowspan=3 style=background:#303247><span>303247<br>48 50 71</span></td>
+<td rowspan=3 style=background:#44475a><span>44475a<br>68 71 90</span></td>
+<td rowspan=3 style=background:#1d1e26><span>1d1e26<br>29 30 38</span></td>
+<td rowspan=3 style=background:#121317><span>121317<br>18 19 23</span></td>
+<td rowspan=3 style=background:#f8f8f2><span>f8f8f2<br>248 248 242</span></td>
+<td rowspan=3 style=background:#ff5555><span>ff5555<br>255 85 85</span></td>
+<td rowspan=3 style=background:#ffb86c><span>ffb86c<br>255 184 108</span></td>
+<td rowspan=3 style=background:#f1fa8c><span>f1fa8c<br>241 250 140</span></td>
+<td rowspan=3 style=background:#50fa7b><span>50fa7b<br>80 250 123</span></td>
+<td rowspan=3 style=background:#8be9fd><span>8be9fd<br>139 233 253</span></td>
+<td rowspan=3 style=background:#78acd0><span>78acd0<br>120 172 208</span></td>
+<td rowspan=3 style=background:#bd93f9><span>bd93f9<br>189 147 249</span></td>
+<td rowspan=3 style=background:#ff79c6><span>ff79c6<br>255 121 198</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>draculatheme.com</td>
+</tr>
+<tr>
+<td><b>Eighties<b></td>
+<td rowspan=3 style=background:#2d2d2d><span>2d2d2d<br>45 45 45</span></td>
+<td rowspan=3 style=background:#393939><span>393939<br>57 57 57</span></td>
+<td rowspan=3 style=background:#515151><span>515151<br>81 81 81</span></td>
+<td rowspan=3 style=background:#202020><span>202020<br>32 32 32</span></td>
+<td rowspan=3 style=background:#141414><span>141414<br>20 20 20</span></td>
+<td rowspan=3 style=background:#d3d0c8><span>d3d0c8<br>211 208 200</span></td>
+<td rowspan=3 style=background:#f2777a><span>f2777a<br>242 119 122</span></td>
+<td rowspan=3 style=background:#f99157><span>f99157<br>249 145 87</span></td>
+<td rowspan=3 style=background:#ffcc66><span>ffcc66<br>255 204 102</span></td>
+<td rowspan=3 style=background:#99cc99><span>99cc99<br>153 204 153</span></td>
+<td rowspan=3 style=background:#66cccc><span>66cccc<br>102 204 204</span></td>
+<td rowspan=3 style=background:#6699cc><span>6699cc<br>102 153 204</span></td>
+<td rowspan=3 style=background:#cc99cc><span>cc99cc<br>204 153 204</span></td>
+<td rowspan=3 style=background:#d27b53><span>d27b53<br>210 123 83</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>Eva<b></td>
+<td rowspan=3 style=background:#2a3b4d><span>2a3b4d<br>42 59 77</span></td>
+<td rowspan=3 style=background:#3d566f><span>3d566f<br>61 86 111</span></td>
+<td rowspan=3 style=background:#4b6988><span>4b6988<br>75 105 136</span></td>
+<td rowspan=3 style=background:#1f2934><span>1f2934<br>31 41 52</span></td>
+<td rowspan=3 style=background:#14181d><span>14181d<br>20 24 29</span></td>
+<td rowspan=3 style=background:#9fa2a6><span>9fa2a6<br>159 162 166</span></td>
+<td rowspan=3 style=background:#c4676c><span>c4676c<br>196 103 108</span></td>
+<td rowspan=3 style=background:#ff9966><span>ff9966<br>255 153 102</span></td>
+<td rowspan=3 style=background:#ffff66><span>ffff66<br>255 255 102</span></td>
+<td rowspan=3 style=background:#66ff66><span>66ff66<br>102 255 102</span></td>
+<td rowspan=3 style=background:#4b8f77><span>4b8f77<br>75 143 119</span></td>
+<td rowspan=3 style=background:#15f4ee><span>15f4ee<br>21 244 238</span></td>
+<td rowspan=3 style=background:#9c6cd3><span>9c6cd3<br>156 108 211</span></td>
+<td rowspan=3 style=background:#bb64a9><span>bb64a9<br>187 100 169</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>kjakapat (https://github.com/kjakapat)</td>
+</tr>
+<tr>
+<td><b>Everforest Medium<b></td>
+<td rowspan=3 style=background:#2d353b><span>2d353b<br>45 53 59</span></td>
+<td rowspan=3 style=background:#343f44><span>343f44<br>52 63 68</span></td>
+<td rowspan=3 style=background:#475258><span>475258<br>71 82 88</span></td>
+<td rowspan=3 style=background:#232a2e><span>232a2e<br>35 42 46</span></td>
+<td rowspan=3 style=background:#1e2226><span>1e2226<br>30 34 38</span></td>
+<td rowspan=3 style=background:#d3c6aa><span>d3c6aa<br>211 198 170</span></td>
+<td rowspan=3 style=background:#e67e80><span>e67e80<br>230 126 128</span></td>
+<td rowspan=3 style=background:#e69875><span>e69875<br>230 152 117</span></td>
+<td rowspan=3 style=background:#dbbc7f><span>dbbc7f<br>219 188 127</span></td>
+<td rowspan=3 style=background:#a7c080><span>a7c080<br>167 192 128</span></td>
+<td rowspan=3 style=background:#83c092><span>83c092<br>131 192 146</span></td>
+<td rowspan=3 style=background:#7fbbb3><span>7fbbb3<br>127 187 179</span></td>
+<td rowspan=3 style=background:#d699b6><span>d699b6<br>214 153 182</span></td>
+<td rowspan=3 style=background:#514045><span>514045<br>81 64 69</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Sainnhe Park (https://github.com/sainnhe)</td>
+</tr>
+<tr>
+<td><b>Flat<b></td>
+<td rowspan=3 style=background:#2C3E50><span>2C3E50<br>44 62 80</span></td>
+<td rowspan=3 style=background:#34495E><span>34495E<br>52 73 94</span></td>
+<td rowspan=3 style=background:#4d5e6d><span>4d5e6d<br>77 94 109</span></td>
+<td rowspan=3 style=background:#263443><span>263443<br>38 52 67</span></td>
+<td rowspan=3 style=background:#202b36><span>202b36<br>32 43 54</span></td>
+<td rowspan=3 style=background:#e0e0e0><span>e0e0e0<br>224 224 224</span></td>
+<td rowspan=3 style=background:#E74C3C><span>E74C3C<br>231 76 60</span></td>
+<td rowspan=3 style=background:#E67E22><span>E67E22<br>230 126 34</span></td>
+<td rowspan=3 style=background:#F1C40F><span>F1C40F<br>241 196 15</span></td>
+<td rowspan=3 style=background:#2ECC71><span>2ECC71<br>46 204 113</span></td>
+<td rowspan=3 style=background:#1ABC9C><span>1ABC9C<br>26 188 156</span></td>
+<td rowspan=3 style=background:#3498DB><span>3498DB<br>52 152 219</span></td>
+<td rowspan=3 style=background:#9B59B6><span>9B59B6<br>155 89 182</span></td>
+<td rowspan=3 style=background:#be643c><span>be643c<br>190 100 60</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>Gruber Darker<b></td>
+<td rowspan=3 style=background:#181818><span>181818<br>24 24 24</span></td>
+<td rowspan=3 style=background:#453d41><span>453d41<br>69 61 65</span></td>
+<td rowspan=3 style=background:#52494e><span>52494e<br>82 73 78</span></td>
+<td rowspan=3 style=background:#0e0e0e><span>0e0e0e<br>14 14 14</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#e4e4ef><span>e4e4ef<br>228 228 239</span></td>
+<td rowspan=3 style=background:#f43841><span>f43841<br>244 56 65</span></td>
+<td rowspan=3 style=background:#cc8c3c><span>cc8c3c<br>204 140 60</span></td>
+<td rowspan=3 style=background:#ffdd33><span>ffdd33<br>255 221 51</span></td>
+<td rowspan=3 style=background:#73c936><span>73c936<br>115 201 54</span></td>
+<td rowspan=3 style=background:#95a99f><span>95a99f<br>149 169 159</span></td>
+<td rowspan=3 style=background:#96a6c8><span>96a6c8<br>150 166 200</span></td>
+<td rowspan=3 style=background:#9e95c7><span>9e95c7<br>158 149 199</span></td>
+<td rowspan=3 style=background:#c73c3f><span>c73c3f<br>199 60 63</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>github.com/rexim/gruber-darker-theme</td>
+</tr>
+<tr>
+<td><b>Gruvbox Material Medium<b></td>
+<td rowspan=3 style=background:#292828><span>292828<br>41 40 40</span></td>
+<td rowspan=3 style=background:#32302f><span>32302f<br>50 48 47</span></td>
+<td rowspan=3 style=background:#504945><span>504945<br>80 73 69</span></td>
+<td rowspan=3 style=background:#1d2021><span>1d2021<br>29 32 33</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#ddc7a1><span>ddc7a1<br>221 199 161</span></td>
+<td rowspan=3 style=background:#ea6962><span>ea6962<br>234 105 98</span></td>
+<td rowspan=3 style=background:#e78a4e><span>e78a4e<br>231 138 78</span></td>
+<td rowspan=3 style=background:#d8a657><span>d8a657<br>216 166 87</span></td>
+<td rowspan=3 style=background:#a9b665><span>a9b665<br>169 182 101</span></td>
+<td rowspan=3 style=background:#89b482><span>89b482<br>137 180 130</span></td>
+<td rowspan=3 style=background:#7daea3><span>7daea3<br>125 174 163</span></td>
+<td rowspan=3 style=background:#d3869b><span>d3869b<br>211 134 155</span></td>
+<td rowspan=3 style=background:#bd6f3e><span>bd6f3e<br>189 111 62</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Mayush Kumar, sainnhe (https://github.com/sainnhe/gruvbox-material-vscode)</td>
+</tr>
+<tr>
+<td><b>Gruvbox Medium<b></td>
+<td rowspan=3 style=background:#282828><span>282828<br>40 40 40</span></td>
+<td rowspan=3 style=background:#3c3836><span>3c3836<br>60 56 54</span></td>
+<td rowspan=3 style=background:#504945><span>504945<br>80 73 69</span></td>
+<td rowspan=3 style=background:#1d2021><span>1d2021<br>29 32 33</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#d5c4a1><span>d5c4a1<br>213 196 161</span></td>
+<td rowspan=3 style=background:#fb4934><span>fb4934<br>251 73 52</span></td>
+<td rowspan=3 style=background:#fe8019><span>fe8019<br>254 128 25</span></td>
+<td rowspan=3 style=background:#fabd2f><span>fabd2f<br>250 189 47</span></td>
+<td rowspan=3 style=background:#b8bb26><span>b8bb26<br>184 187 38</span></td>
+<td rowspan=3 style=background:#8ec07c><span>8ec07c<br>142 192 124</span></td>
+<td rowspan=3 style=background:#83a598><span>83a598<br>131 165 152</span></td>
+<td rowspan=3 style=background:#d3869b><span>d3869b<br>211 134 155</span></td>
+<td rowspan=3 style=background:#d65d0e><span>d65d0e<br>214 93 14</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Dawid Kurek, morhetz (https://github.com/morhetz/gruvbox)</td>
+</tr>
+<tr>
+<td><b>Harmonic16<b></td>
+<td rowspan=3 style=background:#0b1c2c><span>0b1c2c<br>11 28 44</span></td>
+<td rowspan=3 style=background:#223b54><span>223b54<br>34 59 84</span></td>
+<td rowspan=3 style=background:#405c79><span>405c79<br>64 92 121</span></td>
+<td rowspan=3 style=background:#09111a><span>09111a<br>9 17 26</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#cbd6e2><span>cbd6e2<br>203 214 226</span></td>
+<td rowspan=3 style=background:#bf5656><span>bf5656<br>191 86 86</span></td>
+<td rowspan=3 style=background:#bf8b56><span>bf8b56<br>191 139 86</span></td>
+<td rowspan=3 style=background:#bfbf56><span>bfbf56<br>191 191 86</span></td>
+<td rowspan=3 style=background:#8bbf56><span>8bbf56<br>139 191 86</span></td>
+<td rowspan=3 style=background:#56bf8b><span>56bf8b<br>86 191 139</span></td>
+<td rowspan=3 style=background:#568bbf><span>568bbf<br>86 139 191</span></td>
+<td rowspan=3 style=background:#8b56bf><span>8b56bf<br>139 86 191</span></td>
+<td rowspan=3 style=background:#bf568b><span>bf568b<br>191 86 139</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jannik Siebert (https://github.com/janniks)</td>
+</tr>
+<tr>
+<td><b>Helios<b></td>
+<td rowspan=3 style=background:#1d2021><span>1d2021<br>29 32 33</span></td>
+<td rowspan=3 style=background:#383c3e><span>383c3e<br>56 60 62</span></td>
+<td rowspan=3 style=background:#53585b><span>53585b<br>83 88 91</span></td>
+<td rowspan=3 style=background:#121414><span>121414<br>18 20 20</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#d5d5d5><span>d5d5d5<br>213 213 213</span></td>
+<td rowspan=3 style=background:#d72638><span>d72638<br>215 38 56</span></td>
+<td rowspan=3 style=background:#eb8413><span>eb8413<br>235 132 19</span></td>
+<td rowspan=3 style=background:#f19d1a><span>f19d1a<br>241 157 26</span></td>
+<td rowspan=3 style=background:#88b92d><span>88b92d<br>136 185 45</span></td>
+<td rowspan=3 style=background:#1ba595><span>1ba595<br>27 165 149</span></td>
+<td rowspan=3 style=background:#1e8bac><span>1e8bac<br>30 139 172</span></td>
+<td rowspan=3 style=background:#be4264><span>be4264<br>190 66 100</span></td>
+<td rowspan=3 style=background:#c85e0d><span>c85e0d<br>200 94 13</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Alex Meyer (https://github.com/reyemxela)</td>
+</tr>
+<tr>
+<td><b>Hopscotch<b></td>
+<td rowspan=3 style=background:#322931><span>322931<br>50 41 49</span></td>
+<td rowspan=3 style=background:#433b42><span>433b42<br>67 59 66</span></td>
+<td rowspan=3 style=background:#5c545b><span>5c545b<br>92 84 91</span></td>
+<td rowspan=3 style=background:#1c181c><span>1c181c<br>28 24 28</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#b9b5b8><span>b9b5b8<br>185 181 184</span></td>
+<td rowspan=3 style=background:#dd464c><span>dd464c<br>221 70 76</span></td>
+<td rowspan=3 style=background:#fd8b19><span>fd8b19<br>253 139 25</span></td>
+<td rowspan=3 style=background:#fdcc59><span>fdcc59<br>253 204 89</span></td>
+<td rowspan=3 style=background:#8fc13e><span>8fc13e<br>143 193 62</span></td>
+<td rowspan=3 style=background:#149b93><span>149b93<br>20 155 147</span></td>
+<td rowspan=3 style=background:#1290bf><span>1290bf<br>18 144 191</span></td>
+<td rowspan=3 style=background:#c85e7c><span>c85e7c<br>200 94 124</span></td>
+<td rowspan=3 style=background:#b33508><span>b33508<br>179 53 8</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jan T. Sott</td>
+</tr>
+<tr>
+<td><b>Humanoid<b></td>
+<td rowspan=3 style=background:#232629><span>232629<br>35 38 41</span></td>
+<td rowspan=3 style=background:#333b3d><span>333b3d<br>51 59 61</span></td>
+<td rowspan=3 style=background:#484e54><span>484e54<br>72 78 84</span></td>
+<td rowspan=3 style=background:#151718><span>151718<br>21 23 24</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#f8f8f2><span>f8f8f2<br>248 248 242</span></td>
+<td rowspan=3 style=background:#f11235><span>f11235<br>241 18 53</span></td>
+<td rowspan=3 style=background:#ff9505><span>ff9505<br>255 149 5</span></td>
+<td rowspan=3 style=background:#ffb627><span>ffb627<br>255 182 39</span></td>
+<td rowspan=3 style=background:#02d849><span>02d849<br>2 216 73</span></td>
+<td rowspan=3 style=background:#0dd9d6><span>0dd9d6<br>13 217 214</span></td>
+<td rowspan=3 style=background:#00a6fb><span>00a6fb<br>0 166 251</span></td>
+<td rowspan=3 style=background:#f15ee3><span>f15ee3<br>241 94 227</span></td>
+<td rowspan=3 style=background:#b27701><span>b27701<br>178 119 1</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Thomas (tasmo) Friese</td>
+</tr>
+<tr>
+<td><b>iA<b></td>
+<td rowspan=3 style=background:#1a1a1a><span>1a1a1a<br>26 26 26</span></td>
+<td rowspan=3 style=background:#222222><span>222222<br>34 34 34</span></td>
+<td rowspan=3 style=background:#3c3c3c><span>3c3c3c<br>60 60 60</span></td>
+<td rowspan=3 style=background:#101010><span>101010<br>16 16 16</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#cccccc><span>cccccc<br>204 204 204</span></td>
+<td rowspan=3 style=background:#d86868><span>d86868<br>216 104 104</span></td>
+<td rowspan=3 style=background:#d88568><span>d88568<br>216 133 104</span></td>
+<td rowspan=3 style=background:#b99353><span>b99353<br>185 147 83</span></td>
+<td rowspan=3 style=background:#83a471><span>83a471<br>131 164 113</span></td>
+<td rowspan=3 style=background:#7c9cae><span>7c9cae<br>124 156 174</span></td>
+<td rowspan=3 style=background:#8eccdd><span>8eccdd<br>142 204 221</span></td>
+<td rowspan=3 style=background:#b98eb2><span>b98eb2<br>185 142 178</span></td>
+<td rowspan=3 style=background:#8b6c37><span>8b6c37<br>139 108 55</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>iA Inc. (modified by aramisgithub)</td>
+</tr>
+<tr>
+<td><b>Kanagawa<b></td>
+<td rowspan=3 style=background:#1F1F28><span>1F1F28<br>31 31 40</span></td>
+<td rowspan=3 style=background:#223249><span>223249<br>34 50 73</span></td>
+<td rowspan=3 style=background:#54546D><span>54546D<br>84 84 109</span></td>
+<td rowspan=3 style=background:#131318><span>131318<br>19 19 24</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#DCD7BA><span>DCD7BA<br>220 215 186</span></td>
+<td rowspan=3 style=background:#C34043><span>C34043<br>195 64 67</span></td>
+<td rowspan=3 style=background:#FFA066><span>FFA066<br>255 160 102</span></td>
+<td rowspan=3 style=background:#C0A36E><span>C0A36E<br>192 163 110</span></td>
+<td rowspan=3 style=background:#76946A><span>76946A<br>118 148 106</span></td>
+<td rowspan=3 style=background:#6A9589><span>6A9589<br>106 149 137</span></td>
+<td rowspan=3 style=background:#7E9CD8><span>7E9CD8<br>126 156 216</span></td>
+<td rowspan=3 style=background:#957FB8><span>957FB8<br>149 127 184</span></td>
+<td rowspan=3 style=background:#D27E99><span>D27E99<br>210 126 153</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Tommaso Laurenzi (https://github.com/rebelot)</td>
+</tr>
+<tr>
+<td><b>Marrakesh<b></td>
+<td rowspan=3 style=background:#201602><span>201602<br>32 22 2</span></td>
+<td rowspan=3 style=background:#312c07><span>312c07<br>49 44 7</span></td>
+<td rowspan=3 style=background:#47430e><span>47430e<br>71 67 14</span></td>
+<td rowspan=3 style=background:#140d01><span>140d01<br>20 13 1</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#948e48><span>948e48<br>148 142 72</span></td>
+<td rowspan=3 style=background:#c35359><span>c35359<br>195 83 89</span></td>
+<td rowspan=3 style=background:#b36144><span>b36144<br>179 97 68</span></td>
+<td rowspan=3 style=background:#a88339><span>a88339<br>168 131 57</span></td>
+<td rowspan=3 style=background:#18974e><span>18974e<br>24 151 78</span></td>
+<td rowspan=3 style=background:#75a738><span>75a738<br>117 167 56</span></td>
+<td rowspan=3 style=background:#477ca1><span>477ca1<br>71 124 161</span></td>
+<td rowspan=3 style=background:#8868b3><span>8868b3<br>136 104 179</span></td>
+<td rowspan=3 style=background:#b3588e><span>b3588e<br>179 88 142</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Alexandre Gavioli (http://github.com/Alexx2/)</td>
+</tr>
+<tr>
+<td><b>Materia<b></td>
+<td rowspan=3 style=background:#263238><span>263238<br>38 50 56</span></td>
+<td rowspan=3 style=background:#374349><span>374349<br>55 67 73</span></td>
+<td rowspan=3 style=background:#4a545b><span>4a545b<br>74 84 91</span></td>
+<td rowspan=3 style=background:#171c1f><span>171c1f<br>23 28 31</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#CDD3DE><span>CDD3DE<br>205 211 222</span></td>
+<td rowspan=3 style=background:#EC5F67><span>EC5F67<br>236 95 103</span></td>
+<td rowspan=3 style=background:#EA9560><span>EA9560<br>234 149 96</span></td>
+<td rowspan=3 style=background:#FFCC00><span>FFCC00<br>255 204 0</span></td>
+<td rowspan=3 style=background:#8BD649><span>8BD649<br>139 214 73</span></td>
+<td rowspan=3 style=background:#80CBC4><span>80CBC4<br>128 203 196</span></td>
+<td rowspan=3 style=background:#89DDFF><span>89DDFF<br>137 221 255</span></td>
+<td rowspan=3 style=background:#82AAFF><span>82AAFF<br>130 170 255</span></td>
+<td rowspan=3 style=background:#EC5F67><span>EC5F67<br>236 95 103</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>https://github.com/nana-4/materia-theme/</td>
+</tr>
+<tr>
+<td><b>Material Darker<b></td>
+<td rowspan=3 style=background:#212121><span>212121<br>33 33 33</span></td>
+<td rowspan=3 style=background:#424242><span>424242<br>66 66 66</span></td>
+<td rowspan=3 style=background:#616161><span>616161<br>97 97 97</span></td>
+<td rowspan=3 style=background:#141414><span>141414<br>20 20 20</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#EEFFFF><span>EEFFFF<br>238 255 255</span></td>
+<td rowspan=3 style=background:#F07178><span>F07178<br>240 113 120</span></td>
+<td rowspan=3 style=background:#F78C6C><span>F78C6C<br>247 140 108</span></td>
+<td rowspan=3 style=background:#FFCB6B><span>FFCB6B<br>255 203 107</span></td>
+<td rowspan=3 style=background:#C3E88D><span>C3E88D<br>195 232 141</span></td>
+<td rowspan=3 style=background:#89DDFF><span>89DDFF<br>137 221 255</span></td>
+<td rowspan=3 style=background:#82AAFF><span>82AAFF<br>130 170 255</span></td>
+<td rowspan=3 style=background:#C792EA><span>C792EA<br>199 146 234</span></td>
+<td rowspan=3 style=background:#FF5370><span>FF5370<br>255 83 112</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Nate Peterson</td>
+</tr>
+<tr>
+<td><b>Material Palenight<b></td>
+<td rowspan=3 style=background:#282d3f><span>282d3f<br>40 45 63</span></td>
+<td rowspan=3 style=background:#444267><span>444267<br>68 66 103</span></td>
+<td rowspan=3 style=background:#676E95><span>676E95<br>103 110 149</span></td>
+<td rowspan=3 style=background:#181a22><span>181a22<br>24 26 34</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#bdc7d6><span>bdc7d6<br>189 199 214</span></td>
+<td rowspan=3 style=background:#F07178><span>F07178<br>240 113 120</span></td>
+<td rowspan=3 style=background:#F78C6C><span>F78C6C<br>247 140 108</span></td>
+<td rowspan=3 style=background:#FFCB6B><span>FFCB6B<br>255 203 107</span></td>
+<td rowspan=3 style=background:#C3E88D><span>C3E88D<br>195 232 141</span></td>
+<td rowspan=3 style=background:#89DDFF><span>89DDFF<br>137 221 255</span></td>
+<td rowspan=3 style=background:#82AAFF><span>82AAFF<br>130 170 255</span></td>
+<td rowspan=3 style=background:#C792EA><span>C792EA<br>199 146 234</span></td>
+<td rowspan=3 style=background:#FF5370><span>FF5370<br>255 83 112</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Nate Peterson (https://m1.material.io/style/color.html#color-color-palette)</td>
+</tr>
+<tr>
+<td><b>Material<b></td>
+<td rowspan=3 style=background:#263238><span>263238<br>38 50 56</span></td>
+<td rowspan=3 style=background:#37474f><span>37474f<br>55 71 79</span></td>
+<td rowspan=3 style=background:#455a64><span>455a64<br>69 90 100</span></td>
+<td rowspan=3 style=background:#171c1f><span>171c1f<br>23 28 31</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#EEFFFF><span>EEFFFF<br>238 255 255</span></td>
+<td rowspan=3 style=background:#F07178><span>F07178<br>240 113 120</span></td>
+<td rowspan=3 style=background:#F78C6C><span>F78C6C<br>247 140 108</span></td>
+<td rowspan=3 style=background:#FFCB6B><span>FFCB6B<br>255 203 107</span></td>
+<td rowspan=3 style=background:#C3E88D><span>C3E88D<br>195 232 141</span></td>
+<td rowspan=3 style=background:#89DDFF><span>89DDFF<br>137 221 255</span></td>
+<td rowspan=3 style=background:#82AAFF><span>82AAFF<br>130 170 255</span></td>
+<td rowspan=3 style=background:#C792EA><span>C792EA<br>199 146 234</span></td>
+<td rowspan=3 style=background:#FF5370><span>FF5370<br>255 83 112</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Nate Peterson (https://m1.material.io/style/color.html#color-color-palette)</td>
+</tr>
+<tr>
+<td><b>Mocha<b></td>
+<td rowspan=3 style=background:#3B3228><span>3B3228<br>59 50 40</span></td>
+<td rowspan=3 style=background:#534636><span>534636<br>83 70 54</span></td>
+<td rowspan=3 style=background:#645240><span>645240<br>100 82 64</span></td>
+<td rowspan=3 style=background:#2d2823><span>2d2823<br>45 40 35</span></td>
+<td rowspan=3 style=background:#201d1a><span>201d1a<br>32 29 26</span></td>
+<td rowspan=3 style=background:#d0c8c6><span>d0c8c6<br>208 200 198</span></td>
+<td rowspan=3 style=background:#cb6077><span>cb6077<br>203 96 119</span></td>
+<td rowspan=3 style=background:#d28b71><span>d28b71<br>210 139 113</span></td>
+<td rowspan=3 style=background:#f4bc87><span>f4bc87<br>244 188 135</span></td>
+<td rowspan=3 style=background:#beb55b><span>beb55b<br>190 181 91</span></td>
+<td rowspan=3 style=background:#7bbda4><span>7bbda4<br>123 189 164</span></td>
+<td rowspan=3 style=background:#8ab3b5><span>8ab3b5<br>138 179 181</span></td>
+<td rowspan=3 style=background:#a89bb9><span>a89bb9<br>168 155 185</span></td>
+<td rowspan=3 style=background:#bb9584><span>bb9584<br>187 149 132</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>Monokai<b></td>
+<td rowspan=3 style=background:#272822><span>272822<br>39 40 34</span></td>
+<td rowspan=3 style=background:#3f3f35><span>3f3f35<br>63 63 53</span></td>
+<td rowspan=3 style=background:#5a5749><span>5a5749<br>90 87 73</span></td>
+<td rowspan=3 style=background:#1c1d19><span>1c1d19<br>28 29 25</span></td>
+<td rowspan=3 style=background:#11120f><span>11120f<br>17 18 15</span></td>
+<td rowspan=3 style=background:#f8f8f2><span>f8f8f2<br>248 248 242</span></td>
+<td rowspan=3 style=background:#f92672><span>f92672<br>249 38 114</span></td>
+<td rowspan=3 style=background:#fd971f><span>fd971f<br>253 151 31</span></td>
+<td rowspan=3 style=background:#f4bf75><span>f4bf75<br>244 191 117</span></td>
+<td rowspan=3 style=background:#a6e22e><span>a6e22e<br>166 226 46</span></td>
+<td rowspan=3 style=background:#a1efe4><span>a1efe4<br>161 239 228</span></td>
+<td rowspan=3 style=background:#66d9ef><span>66d9ef<br>102 217 239</span></td>
+<td rowspan=3 style=background:#ae81ff><span>ae81ff<br>174 129 255</span></td>
+<td rowspan=3 style=background:#cc6633><span>cc6633<br>204 102 51</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Wimer Hazenberg (http://www.monokai.nl)</td>
+</tr>
+<tr>
+<td><b>Mountain<b></td>
+<td rowspan=3 style=background:#191919><span>191919<br>25 25 25</span></td>
+<td rowspan=3 style=background:#262626><span>262626<br>38 38 38</span></td>
+<td rowspan=3 style=background:#4c4c4c><span>4c4c4c<br>76 76 76</span></td>
+<td rowspan=3 style=background:#0f0f0f><span>0f0f0f<br>15 15 15</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#cacaca><span>cacaca<br>202 202 202</span></td>
+<td rowspan=3 style=background:#ac8a8c><span>ac8a8c<br>172 138 140</span></td>
+<td rowspan=3 style=background:#ceb188><span>ceb188<br>206 177 136</span></td>
+<td rowspan=3 style=background:#aca98a><span>aca98a<br>172 169 138</span></td>
+<td rowspan=3 style=background:#8aac8b><span>8aac8b<br>138 172 139</span></td>
+<td rowspan=3 style=background:#8aabac><span>8aabac<br>138 171 172</span></td>
+<td rowspan=3 style=background:#8f8aac><span>8f8aac<br>143 138 172</span></td>
+<td rowspan=3 style=background:#ac8aac><span>ac8aac<br>172 138 172</span></td>
+<td rowspan=3 style=background:#ac8a8c><span>ac8a8c<br>172 138 140</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>gnsfujiwara (https://github.com/gnsfujiwara)</td>
+</tr>
+<tr>
+<td><b>Night Owl<b></td>
+<td rowspan=3 style=background:#011627><span>011627<br>1 22 39</span></td>
+<td rowspan=3 style=background:#0e283c><span>0e283c<br>14 40 60</span></td>
+<td rowspan=3 style=background:#1d3b53><span>1d3b53<br>29 59 83</span></td>
+<td rowspan=3 style=background:#030d17><span>030d17<br>3 13 23</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#d6deeb><span>d6deeb<br>214 222 235</span></td>
+<td rowspan=3 style=background:#ef5350><span>ef5350<br>239 83 80</span></td>
+<td rowspan=3 style=background:#d7a05b><span>d7a05b<br>215 160 91</span></td>
+<td rowspan=3 style=background:#addb67><span>addb67<br>173 219 103</span></td>
+<td rowspan=3 style=background:#22da6e><span>22da6e<br>34 218 110</span></td>
+<td rowspan=3 style=background:#21c7a8><span>21c7a8<br>33 199 168</span></td>
+<td rowspan=3 style=background:#82aaff><span>82aaff<br>130 170 255</span></td>
+<td rowspan=3 style=background:#c792ea><span>c792ea<br>199 146 234</span></td>
+<td rowspan=3 style=background:#969696><span>969696<br>150 150 150</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Sarah Drasner</td>
+</tr>
+<tr>
+<td><b>Nord<b></td>
+<td rowspan=3 style=background:#2E3440><span>2E3440<br>46 52 64</span></td>
+<td rowspan=3 style=background:#4C566A><span>4C566A<br>76 86 106</span></td>
+<td rowspan=3 style=background:#626b7e><span>626b7e<br>98 107 126</span></td>
+<td rowspan=3 style=background:#1b1d23><span>1b1d23<br>27 29 35</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#D8DEE9><span>D8DEE9<br>216 222 233</span></td>
+<td rowspan=3 style=background:#BF616A><span>BF616A<br>191 97 106</span></td>
+<td rowspan=3 style=background:#D08770><span>D08770<br>208 135 112</span></td>
+<td rowspan=3 style=background:#EBCB8B><span>EBCB8B<br>235 203 139</span></td>
+<td rowspan=3 style=background:#A3BE8C><span>A3BE8C<br>163 190 140</span></td>
+<td rowspan=3 style=background:#88C0D0><span>88C0D0<br>136 192 208</span></td>
+<td rowspan=3 style=background:#81A1C1><span>81A1C1<br>129 161 193</span></td>
+<td rowspan=3 style=background:#B48EAD><span>B48EAD<br>180 142 173</span></td>
+<td rowspan=3 style=background:#5E81AC><span>5E81AC<br>94 129 172</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>arcticicestudio (https://www.nordtheme.com/)</td>
+</tr>
+<tr>
+<td><b>Nova<b></td>
+<td rowspan=3 style=background:#3C4C55><span>3C4C55<br>60 76 85</span></td>
+<td rowspan=3 style=background:#485a64><span>485a64<br>72 90 100</span></td>
+<td rowspan=3 style=background:#546874><span>546874<br>84 104 116</span></td>
+<td rowspan=3 style=background:#2d3940><span>2d3940<br>45 57 64</span></td>
+<td rowspan=3 style=background:#1e272c><span>1e272c<br>30 39 44</span></td>
+<td rowspan=3 style=background:#C5D4DD><span>C5D4DD<br>197 212 221</span></td>
+<td rowspan=3 style=background:#DF8C8C><span>DF8C8C<br>223 140 140</span></td>
+<td rowspan=3 style=background:#F2C38F><span>F2C38F<br>242 195 143</span></td>
+<td rowspan=3 style=background:#DADA93><span>DADA93<br>218 218 147</span></td>
+<td rowspan=3 style=background:#A8CE93><span>A8CE93<br>168 206 147</span></td>
+<td rowspan=3 style=background:#7FC1CA><span>7FC1CA<br>127 193 202</span></td>
+<td rowspan=3 style=background:#83AFE5><span>83AFE5<br>131 175 229</span></td>
+<td rowspan=3 style=background:#9A93E1><span>9A93E1<br>154 147 225</span></td>
+<td rowspan=3 style=background:#D18EC2><span>D18EC2<br>209 142 194</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Trevor Miller</td>
+</tr>
+<tr>
+<td><b>Ocean<b></td>
+<td rowspan=3 style=background:#2b303b><span>2b303b<br>43 48 59</span></td>
+<td rowspan=3 style=background:#3d4550><span>3d4550<br>61 69 80</span></td>
+<td rowspan=3 style=background:#4f5b66><span>4f5b66<br>79 91 102</span></td>
+<td rowspan=3 style=background:#191b20><span>191b20<br>25 27 32</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#c0c5ce><span>c0c5ce<br>192 197 206</span></td>
+<td rowspan=3 style=background:#bf616a><span>bf616a<br>191 97 106</span></td>
+<td rowspan=3 style=background:#d08770><span>d08770<br>208 135 112</span></td>
+<td rowspan=3 style=background:#ebcb8b><span>ebcb8b<br>235 203 139</span></td>
+<td rowspan=3 style=background:#a3be8c><span>a3be8c<br>163 190 140</span></td>
+<td rowspan=3 style=background:#96b5b4><span>96b5b4<br>150 181 180</span></td>
+<td rowspan=3 style=background:#8fa1b3><span>8fa1b3<br>143 161 179</span></td>
+<td rowspan=3 style=background:#b48ead><span>b48ead<br>180 142 173</span></td>
+<td rowspan=3 style=background:#ab7967><span>ab7967<br>171 121 103</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>OceanicNext<b></td>
+<td rowspan=3 style=background:#1B2B34><span>1B2B34<br>27 43 52</span></td>
+<td rowspan=3 style=background:#343D46><span>343D46<br>52 61 70</span></td>
+<td rowspan=3 style=background:#4F5B66><span>4F5B66<br>79 91 102</span></td>
+<td rowspan=3 style=background:#12191d><span>12191d<br>18 25 29</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#C0C5CE><span>C0C5CE<br>192 197 206</span></td>
+<td rowspan=3 style=background:#EC5f67><span>EC5f67<br>236 95 103</span></td>
+<td rowspan=3 style=background:#F99157><span>F99157<br>249 145 87</span></td>
+<td rowspan=3 style=background:#FAC863><span>FAC863<br>250 200 99</span></td>
+<td rowspan=3 style=background:#99C794><span>99C794<br>153 199 148</span></td>
+<td rowspan=3 style=background:#5FB3B3><span>5FB3B3<br>95 179 179</span></td>
+<td rowspan=3 style=background:#6699CC><span>6699CC<br>102 153 204</span></td>
+<td rowspan=3 style=background:#C594C5><span>C594C5<br>197 148 197</span></td>
+<td rowspan=3 style=background:#AB7967><span>AB7967<br>171 121 103</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>https://github.com/voronianski/oceanic-next-color-scheme</td>
+</tr>
+<tr>
+<td><b>Outrun<b></td>
+<td rowspan=3 style=background:#171b41><span>171b41<br>23 27 65</span></td>
+<td rowspan=3 style=background:#30305a><span>30305a<br>48 48 90</span></td>
+<td rowspan=3 style=background:#484772><span>484772<br>72 71 114</span></td>
+<td rowspan=3 style=background:#121123><span>121123<br>18 17 35</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#D0D0FA><span>D0D0FA<br>208 208 250</span></td>
+<td rowspan=3 style=background:#FF4242><span>FF4242<br>255 66 66</span></td>
+<td rowspan=3 style=background:#FC8D28><span>FC8D28<br>252 141 40</span></td>
+<td rowspan=3 style=background:#F3E877><span>F3E877<br>243 232 119</span></td>
+<td rowspan=3 style=background:#59F176><span>59F176<br>89 241 118</span></td>
+<td rowspan=3 style=background:#0EF0F0><span>0EF0F0<br>14 240 240</span></td>
+<td rowspan=3 style=background:#66B0FF><span>66B0FF<br>102 176 255</span></td>
+<td rowspan=3 style=background:#F10596><span>F10596<br>241 5 150</span></td>
+<td rowspan=3 style=background:#F003EF><span>F003EF<br>240 3 239</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Hugo Delahousse (http://github.com/hugodelahousse/)</td>
+</tr>
+<tr>
+<td><b>Paraiso<b></td>
+<td rowspan=3 style=background:#2f1e2e><span>2f1e2e<br>47 30 46</span></td>
+<td rowspan=3 style=background:#3f303d><span>3f303d<br>63 48 61</span></td>
+<td rowspan=3 style=background:#4f424c><span>4f424c<br>79 66 76</span></td>
+<td rowspan=3 style=background:#1b131a><span>1b131a<br>27 19 26</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#a39e9b><span>a39e9b<br>163 158 155</span></td>
+<td rowspan=3 style=background:#ef6155><span>ef6155<br>239 97 85</span></td>
+<td rowspan=3 style=background:#f99b15><span>f99b15<br>249 155 21</span></td>
+<td rowspan=3 style=background:#fec418><span>fec418<br>254 196 24</span></td>
+<td rowspan=3 style=background:#48b685><span>48b685<br>72 182 133</span></td>
+<td rowspan=3 style=background:#5bc4bf><span>5bc4bf<br>91 196 191</span></td>
+<td rowspan=3 style=background:#06b6ef><span>06b6ef<br>6 182 239</span></td>
+<td rowspan=3 style=background:#815ba4><span>815ba4<br>129 91 164</span></td>
+<td rowspan=3 style=background:#e96ba8><span>e96ba8<br>233 107 168</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jan T. Sott</td>
+</tr>
+<tr>
+<td><b>PhD<b></td>
+<td rowspan=3 style=background:#061229><span>061229<br>6 18 41</span></td>
+<td rowspan=3 style=background:#2a3448><span>2a3448<br>42 52 72</span></td>
+<td rowspan=3 style=background:#4d5666><span>4d5666<br>77 86 102</span></td>
+<td rowspan=3 style=background:#060a19><span>060a19<br>6 10 25</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#b8bbc2><span>b8bbc2<br>184 187 194</span></td>
+<td rowspan=3 style=background:#d07346><span>d07346<br>208 115 70</span></td>
+<td rowspan=3 style=background:#f0a000><span>f0a000<br>240 160 0</span></td>
+<td rowspan=3 style=background:#fbd461><span>fbd461<br>251 212 97</span></td>
+<td rowspan=3 style=background:#99bf52><span>99bf52<br>153 191 82</span></td>
+<td rowspan=3 style=background:#72b9bf><span>72b9bf<br>114 185 191</span></td>
+<td rowspan=3 style=background:#5299bf><span>5299bf<br>82 153 191</span></td>
+<td rowspan=3 style=background:#9989cc><span>9989cc<br>153 137 204</span></td>
+<td rowspan=3 style=background:#b08060><span>b08060<br>176 128 96</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Hennig Hasemann (http://leetless.de/vim.html)</td>
+</tr>
+<tr>
+<td><b>Pop<b></td>
+<td rowspan=3 style=background:#2a2a2a><span>2a2a2a<br>42 42 42</span></td>
+<td rowspan=3 style=background:#3c3c3c><span>3c3c3c<br>60 60 60</span></td>
+<td rowspan=3 style=background:#505050><span>505050<br>80 80 80</span></td>
+<td rowspan=3 style=background:#191919><span>191919<br>25 25 25</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#d0d0d0><span>d0d0d0<br>208 208 208</span></td>
+<td rowspan=3 style=background:#eb008a><span>eb008a<br>235 0 138</span></td>
+<td rowspan=3 style=background:#f29333><span>f29333<br>242 147 51</span></td>
+<td rowspan=3 style=background:#f8ca12><span>f8ca12<br>248 202 18</span></td>
+<td rowspan=3 style=background:#37b349><span>37b349<br>55 179 73</span></td>
+<td rowspan=3 style=background:#00aabb><span>00aabb<br>0 170 187</span></td>
+<td rowspan=3 style=background:#0e5a94><span>0e5a94<br>14 90 148</span></td>
+<td rowspan=3 style=background:#b31e8d><span>b31e8d<br>179 30 141</span></td>
+<td rowspan=3 style=background:#7a2d00><span>7a2d00<br>122 45 0</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>Selenized Black<b></td>
+<td rowspan=3 style=background:#181818><span>181818<br>24 24 24</span></td>
+<td rowspan=3 style=background:#252525><span>252525<br>37 37 37</span></td>
+<td rowspan=3 style=background:#3b3b3b><span>3b3b3b<br>59 59 59</span></td>
+<td rowspan=3 style=background:#0e0e0e><span>0e0e0e<br>14 14 14</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#b9b9b9><span>b9b9b9<br>185 185 185</span></td>
+<td rowspan=3 style=background:#ed4a46><span>ed4a46<br>237 74 70</span></td>
+<td rowspan=3 style=background:#e67f43><span>e67f43<br>230 127 67</span></td>
+<td rowspan=3 style=background:#dbb32d><span>dbb32d<br>219 179 45</span></td>
+<td rowspan=3 style=background:#70b433><span>70b433<br>112 180 51</span></td>
+<td rowspan=3 style=background:#3fc5b7><span>3fc5b7<br>63 197 183</span></td>
+<td rowspan=3 style=background:#368aeb><span>368aeb<br>54 138 235</span></td>
+<td rowspan=3 style=background:#a580e2><span>a580e2<br>165 128 226</span></td>
+<td rowspan=3 style=background:#eb6eb7><span>eb6eb7<br>235 110 183</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jan Warchol (https://github.com/jan-warchol/selenized)</td>
+</tr>
+<tr>
+<td><b>Selenized<b></td>
+<td rowspan=3 style=background:#103c48><span>103c48<br>16 60 72</span></td>
+<td rowspan=3 style=background:#184956><span>184956<br>24 73 86</span></td>
+<td rowspan=3 style=background:#2d5b69><span>2d5b69<br>45 91 105</span></td>
+<td rowspan=3 style=background:#073642><span>073642<br>7 54 66</span></td>
+<td rowspan=3 style=background:#002b36><span>002b36<br>0 43 54</span></td>
+<td rowspan=3 style=background:#adbcbc><span>adbcbc<br>173 188 188</span></td>
+<td rowspan=3 style=background:#fa5750><span>fa5750<br>250 87 80</span></td>
+<td rowspan=3 style=background:#ed8649><span>ed8649<br>237 134 73</span></td>
+<td rowspan=3 style=background:#dbb32d><span>dbb32d<br>219 179 45</span></td>
+<td rowspan=3 style=background:#75b938><span>75b938<br>117 185 56</span></td>
+<td rowspan=3 style=background:#41c7b9><span>41c7b9<br>65 199 185</span></td>
+<td rowspan=3 style=background:#4695f7><span>4695f7<br>70 149 247</span></td>
+<td rowspan=3 style=background:#af88eb><span>af88eb<br>175 136 235</span></td>
+<td rowspan=3 style=background:#f275be><span>f275be<br>242 117 190</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jan Warchol (https://github.com/jan-warchol/selenized)</td>
+</tr>
+<tr>
+<td><b>Seti UI<b></td>
+<td rowspan=3 style=background:#151718><span>151718<br>21 23 24</span></td>
+<td rowspan=3 style=background:#282a2b><span>282a2b<br>40 42 43</span></td>
+<td rowspan=3 style=background:#41535B><span>41535B<br>65 83 91</span></td>
+<td rowspan=3 style=background:#0c0e0e><span>0c0e0e<br>12 14 14</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#d6d6d6><span>d6d6d6<br>214 214 214</span></td>
+<td rowspan=3 style=background:#Cd3f45><span>Cd3f45<br>205 63 69</span></td>
+<td rowspan=3 style=background:#db7b55><span>db7b55<br>219 123 85</span></td>
+<td rowspan=3 style=background:#e6cd69><span>e6cd69<br>230 205 105</span></td>
+<td rowspan=3 style=background:#9fca56><span>9fca56<br>159 202 86</span></td>
+<td rowspan=3 style=background:#55dbbe><span>55dbbe<br>85 219 190</span></td>
+<td rowspan=3 style=background:#55b5db><span>55b5db<br>85 181 219</span></td>
+<td rowspan=3 style=background:#a074c4><span>a074c4<br>160 116 196</span></td>
+<td rowspan=3 style=background:#8a553f><span>8a553f<br>138 85 63</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'></td>
+</tr>
+<tr>
+<td><b>Shades of Purple<b></td>
+<td rowspan=3 style=background:#2d2b55><span>2d2b55<br>45 43 85</span></td>
+<td rowspan=3 style=background:#422ca5><span>422ca5<br>66 44 165</span></td>
+<td rowspan=3 style=background:#4d21fc><span>4d21fc<br>77 33 252</span></td>
+<td rowspan=3 style=background:#1b192c><span>1b192c<br>27 25 44</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#d90429><span>d90429<br>217 4 41</span></td>
+<td rowspan=3 style=background:#f18e25><span>f18e25<br>241 142 37</span></td>
+<td rowspan=3 style=background:#ffe700><span>ffe700<br>255 231 0</span></td>
+<td rowspan=3 style=background:#3ad900><span>3ad900<br>58 217 0</span></td>
+<td rowspan=3 style=background:#00c5c7><span>00c5c7<br>0 197 199</span></td>
+<td rowspan=3 style=background:#6943ff><span>6943ff<br>105 67 255</span></td>
+<td rowspan=3 style=background:#ff77ff><span>ff77ff<br>255 119 255</span></td>
+<td rowspan=3 style=background:#ff2c70><span>ff2c70<br>255 44 112</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>ahmadawais</td>
+</tr>
+<tr>
+<td><b>Solarized<b></td>
+<td rowspan=3 style=background:#002b36><span>002b36<br>0 43 54</span></td>
+<td rowspan=3 style=background:#073642><span>073642<br>7 54 66</span></td>
+<td rowspan=3 style=background:#184956><span>184956<br>24 73 86</span></td>
+<td rowspan=3 style=background:#081f26><span>081f26<br>8 31 38</span></td>
+<td rowspan=3 style=background:#061317><span>061317<br>6 19 23</span></td>
+<td rowspan=3 style=background:#93a1a1><span>93a1a1<br>147 161 161</span></td>
+<td rowspan=3 style=background:#dc322f><span>dc322f<br>220 50 47</span></td>
+<td rowspan=3 style=background:#cb4b16><span>cb4b16<br>203 75 22</span></td>
+<td rowspan=3 style=background:#b58900><span>b58900<br>181 137 0</span></td>
+<td rowspan=3 style=background:#859900><span>859900<br>133 153 0</span></td>
+<td rowspan=3 style=background:#2aa198><span>2aa198<br>42 161 152</span></td>
+<td rowspan=3 style=background:#268bd2><span>268bd2<br>38 139 210</span></td>
+<td rowspan=3 style=background:#6c71c4><span>6c71c4<br>108 113 196</span></td>
+<td rowspan=3 style=background:#d33682><span>d33682<br>211 54 130</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Ethan Schoonover (modified by aramisgithub)</td>
+</tr>
+<tr>
+<td><b>Sonokai Andromeda<b></td>
+<td rowspan=3 style=background:#2b2d3a><span>2b2d3a<br>43 45 58</span></td>
+<td rowspan=3 style=background:#363a4e><span>363a4e<br>54 58 78</span></td>
+<td rowspan=3 style=background:#3f445b><span>3f445b<br>63 68 91</span></td>
+<td rowspan=3 style=background:#252630><span>252630<br>37 38 48</span></td>
+<td rowspan=3 style=background:#181a1c><span>181a1c<br>24 26 28</span></td>
+<td rowspan=3 style=background:#e1e3e4><span>e1e3e4<br>225 227 228</span></td>
+<td rowspan=3 style=background:#fb617e><span>fb617e<br>251 97 126</span></td>
+<td rowspan=3 style=background:#f89860><span>f89860<br>248 152 96</span></td>
+<td rowspan=3 style=background:#edc763><span>edc763<br>237 199 99</span></td>
+<td rowspan=3 style=background:#9ed06c><span>9ed06c<br>158 208 108</span></td>
+<td rowspan=3 style=background:#6dcae8><span>6dcae8<br>109 202 232</span></td>
+<td rowspan=3 style=background:#bb97ee><span>bb97ee<br>187 151 238</span></td>
+<td rowspan=3 style=background:#55393d><span>55393d<br>85 57 61</span></td>
+<td rowspan=3 style=background:#4e432f><span>4e432f<br>78 67 47</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Sainnhe Park (https://github.com/sainnhe)</td>
+</tr>
+<tr>
+<td><b>Sonokai Default<b></td>
+<td rowspan=3 style=background:#2c2e34><span>2c2e34<br>44 46 52</span></td>
+<td rowspan=3 style=background:#363944><span>363944<br>54 57 68</span></td>
+<td rowspan=3 style=background:#414550><span>414550<br>65 69 80</span></td>
+<td rowspan=3 style=background:#222327><span>222327<br>34 35 39</span></td>
+<td rowspan=3 style=background:#181819><span>181819<br>24 24 25</span></td>
+<td rowspan=3 style=background:#e2e2e3><span>e2e2e3<br>226 226 227</span></td>
+<td rowspan=3 style=background:#fc5d7c><span>fc5d7c<br>252 93 124</span></td>
+<td rowspan=3 style=background:#f39660><span>f39660<br>243 150 96</span></td>
+<td rowspan=3 style=background:#e7c664><span>e7c664<br>231 198 100</span></td>
+<td rowspan=3 style=background:#9ed072><span>9ed072<br>158 208 114</span></td>
+<td rowspan=3 style=background:#76cce0><span>76cce0<br>118 204 224</span></td>
+<td rowspan=3 style=background:#b39df3><span>b39df3<br>179 157 243</span></td>
+<td rowspan=3 style=background:#55393d><span>55393d<br>85 57 61</span></td>
+<td rowspan=3 style=background:#4e432f><span>4e432f<br>78 67 47</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Sainnhe Park (https://github.com/sainnhe)</td>
+</tr>
+<tr>
+<td><b>Sonokai Espresso<b></td>
+<td rowspan=3 style=background:#312c2b><span>312c2b<br>49 44 43</span></td>
+<td rowspan=3 style=background:#413937><span>413937<br>65 57 55</span></td>
+<td rowspan=3 style=background:#4e433f><span>4e433f<br>78 67 63</span></td>
+<td rowspan=3 style=background:#242120><span>242120<br>36 33 32</span></td>
+<td rowspan=3 style=background:#1f1e1c><span>1f1e1c<br>31 30 28</span></td>
+<td rowspan=3 style=background:#e4e3e1><span>e4e3e1<br>228 227 225</span></td>
+<td rowspan=3 style=background:#f86882><span>f86882<br>248 104 130</span></td>
+<td rowspan=3 style=background:#f08d71><span>f08d71<br>240 141 113</span></td>
+<td rowspan=3 style=background:#f0c66f><span>f0c66f<br>240 198 111</span></td>
+<td rowspan=3 style=background:#a6cd77><span>a6cd77<br>166 205 119</span></td>
+<td rowspan=3 style=background:#81d0c9><span>81d0c9<br>129 208 201</span></td>
+<td rowspan=3 style=background:#9fa0e1><span>9fa0e1<br>159 160 225</span></td>
+<td rowspan=3 style=background:#55393d><span>55393d<br>85 57 61</span></td>
+<td rowspan=3 style=background:#4e432f><span>4e432f<br>78 67 47</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Sainnhe Park (https://github.com/sainnhe)</td>
+</tr>
+<tr>
+<td><b>Sonokai Maia<b></td>
+<td rowspan=3 style=background:#273136><span>273136<br>39 49 54</span></td>
+<td rowspan=3 style=background:#353f46><span>353f46<br>53 63 70</span></td>
+<td rowspan=3 style=background:#414b53><span>414b53<br>65 75 83</span></td>
+<td rowspan=3 style=background:#21282c><span>21282c<br>33 40 44</span></td>
+<td rowspan=3 style=background:#1c1e1f><span>1c1e1f<br>28 30 31</span></td>
+<td rowspan=3 style=background:#e1e2e3><span>e1e2e3<br>225 226 227</span></td>
+<td rowspan=3 style=background:#f76c7c><span>f76c7c<br>247 108 124</span></td>
+<td rowspan=3 style=background:#f3a96a><span>f3a96a<br>243 169 106</span></td>
+<td rowspan=3 style=background:#e3d367><span>e3d367<br>227 211 103</span></td>
+<td rowspan=3 style=background:#9cd57b><span>9cd57b<br>156 213 123</span></td>
+<td rowspan=3 style=background:#78cee9><span>78cee9<br>120 206 233</span></td>
+<td rowspan=3 style=background:#baa0f8><span>baa0f8<br>186 160 248</span></td>
+<td rowspan=3 style=background:#55593d><span>55593d<br>85 89 61</span></td>
+<td rowspan=3 style=background:#4e432f><span>4e432f<br>78 67 47</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Sainnhe Park (https://github.com/sainnhe)</td>
+</tr>
+<tr>
+<td><b>Spaceduck<b></td>
+<td rowspan=3 style=background:#16172d><span>16172d<br>22 23 45</span></td>
+<td rowspan=3 style=background:#1b1c36><span>1b1c36<br>27 28 54</span></td>
+<td rowspan=3 style=background:#30365F><span>30365F<br>48 54 95</span></td>
+<td rowspan=3 style=background:#0f0e1a><span>0f0e1a<br>15 14 26</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#ecf0c1><span>ecf0c1<br>236 240 193</span></td>
+<td rowspan=3 style=background:#e33400><span>e33400<br>227 52 0</span></td>
+<td rowspan=3 style=background:#e39400><span>e39400<br>227 148 0</span></td>
+<td rowspan=3 style=background:#f2ce00><span>f2ce00<br>242 206 0</span></td>
+<td rowspan=3 style=background:#5ccc96><span>5ccc96<br>92 204 150</span></td>
+<td rowspan=3 style=background:#00a3cc><span>00a3cc<br>0 163 204</span></td>
+<td rowspan=3 style=background:#7a5ccc><span>7a5ccc<br>122 92 204</span></td>
+<td rowspan=3 style=background:#b3a1e6><span>b3a1e6<br>179 161 230</span></td>
+<td rowspan=3 style=background:#ce6f8f><span>ce6f8f<br>206 111 143</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Guillermo Rodriguez (https://github.com/pineapplegiant)</td>
+</tr>
+<tr>
+<td><b>Spacemacs<b></td>
+<td rowspan=3 style=background:#1f2022><span>1f2022<br>31 32 34</span></td>
+<td rowspan=3 style=background:#282828><span>282828<br>40 40 40</span></td>
+<td rowspan=3 style=background:#444155><span>444155<br>68 65 85</span></td>
+<td rowspan=3 style=background:#131415><span>131415<br>19 20 21</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#a3a3a3><span>a3a3a3<br>163 163 163</span></td>
+<td rowspan=3 style=background:#f2241f><span>f2241f<br>242 36 31</span></td>
+<td rowspan=3 style=background:#ffa500><span>ffa500<br>255 165 0</span></td>
+<td rowspan=3 style=background:#b1951d><span>b1951d<br>177 149 29</span></td>
+<td rowspan=3 style=background:#67b11d><span>67b11d<br>103 177 29</span></td>
+<td rowspan=3 style=background:#2d9574><span>2d9574<br>45 149 116</span></td>
+<td rowspan=3 style=background:#4f97d7><span>4f97d7<br>79 151 215</span></td>
+<td rowspan=3 style=background:#a31db1><span>a31db1<br>163 29 177</span></td>
+<td rowspan=3 style=background:#b03060><span>b03060<br>176 48 96</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Nasser Alshammari (https://github.com/nashamri/spacemacs-theme)</td>
+</tr>
+<tr>
+<td><b>Standardized<b></td>
+<td rowspan=3 style=background:#222222><span>222222<br>34 34 34</span></td>
+<td rowspan=3 style=background:#303030><span>303030<br>48 48 48</span></td>
+<td rowspan=3 style=background:#555555><span>555555<br>85 85 85</span></td>
+<td rowspan=3 style=background:#151515><span>151515<br>21 21 21</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#c0c0c0><span>c0c0c0<br>192 192 192</span></td>
+<td rowspan=3 style=background:#e15d67><span>e15d67<br>225 93 103</span></td>
+<td rowspan=3 style=background:#fc804e><span>fc804e<br>252 128 78</span></td>
+<td rowspan=3 style=background:#e1b31a><span>e1b31a<br>225 179 26</span></td>
+<td rowspan=3 style=background:#5db129><span>5db129<br>93 177 41</span></td>
+<td rowspan=3 style=background:#21c992><span>21c992<br>33 201 146</span></td>
+<td rowspan=3 style=background:#00a3f2><span>00a3f2<br>0 163 242</span></td>
+<td rowspan=3 style=background:#b46ee0><span>b46ee0<br>180 110 224</span></td>
+<td rowspan=3 style=background:#b87d28><span>b87d28<br>184 125 40</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>ali (https://github.com/ali-githb/base16-standardized-scheme)</td>
+</tr>
+<tr>
+<td><b>Summerfruit<b></td>
+<td rowspan=3 style=background:#151515><span>151515<br>21 21 21</span></td>
+<td rowspan=3 style=background:#202020><span>202020<br>32 32 32</span></td>
+<td rowspan=3 style=background:#303030><span>303030<br>48 48 48</span></td>
+<td rowspan=3 style=background:#0c0c0c><span>0c0c0c<br>12 12 12</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#D0D0D0><span>D0D0D0<br>208 208 208</span></td>
+<td rowspan=3 style=background:#FF0086><span>FF0086<br>255 0 134</span></td>
+<td rowspan=3 style=background:#FD8900><span>FD8900<br>253 137 0</span></td>
+<td rowspan=3 style=background:#ABA800><span>ABA800<br>171 168 0</span></td>
+<td rowspan=3 style=background:#00C918><span>00C918<br>0 201 24</span></td>
+<td rowspan=3 style=background:#1FAAAA><span>1FAAAA<br>31 170 170</span></td>
+<td rowspan=3 style=background:#3777E6><span>3777E6<br>55 119 230</span></td>
+<td rowspan=3 style=background:#AD00A1><span>AD00A1<br>173 0 161</span></td>
+<td rowspan=3 style=background:#CC6633><span>CC6633<br>204 102 51</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Christopher Corley (http://christop.club/)</td>
+</tr>
+<tr>
+<td><b>Tokyo Night Storm<b></td>
+<td rowspan=3 style=background:#24283b><span>24283b<br>36 40 59</span></td>
+<td rowspan=3 style=background:#414868><span>414868<br>65 72 104</span></td>
+<td rowspan=3 style=background:#565f89><span>565f89<br>86 95 137</span></td>
+<td rowspan=3 style=background:#1b1d29><span>1b1d29<br>27 29 41</span></td>
+<td rowspan=3 style=background:#111218><span>111218<br>17 18 24</span></td>
+<td rowspan=3 style=background:#a9b1d6><span>a9b1d6<br>169 177 214</span></td>
+<td rowspan=3 style=background:#f7768e><span>f7768e<br>247 118 142</span></td>
+<td rowspan=3 style=background:#ff9e64><span>ff9e64<br>255 158 100</span></td>
+<td rowspan=3 style=background:#e0af68><span>e0af68<br>224 175 104</span></td>
+<td rowspan=3 style=background:#9ece6a><span>9ece6a<br>158 206 106</span></td>
+<td rowspan=3 style=background:#73daca><span>73daca<br>115 218 202</span></td>
+<td rowspan=3 style=background:#7aa2f7><span>7aa2f7<br>122 162 247</span></td>
+<td rowspan=3 style=background:#bb9af7><span>bb9af7<br>187 154 247</span></td>
+<td rowspan=3 style=background:#cfc9c2><span>cfc9c2<br>207 201 194</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>enkia</td>
+</tr>
+<tr>
+<td><b>Tomorrow Night Eighties<b></td>
+<td rowspan=3 style=background:#2d2d2d><span>2d2d2d<br>45 45 45</span></td>
+<td rowspan=3 style=background:#393939><span>393939<br>57 57 57</span></td>
+<td rowspan=3 style=background:#515151><span>515151<br>81 81 81</span></td>
+<td rowspan=3 style=background:#202020><span>202020<br>32 32 32</span></td>
+<td rowspan=3 style=background:#141414><span>141414<br>20 20 20</span></td>
+<td rowspan=3 style=background:#cccccc><span>cccccc<br>204 204 204</span></td>
+<td rowspan=3 style=background:#f2777a><span>f2777a<br>242 119 122</span></td>
+<td rowspan=3 style=background:#f99157><span>f99157<br>249 145 87</span></td>
+<td rowspan=3 style=background:#ffcc66><span>ffcc66<br>255 204 102</span></td>
+<td rowspan=3 style=background:#99cc99><span>99cc99<br>153 204 153</span></td>
+<td rowspan=3 style=background:#66cccc><span>66cccc<br>102 204 204</span></td>
+<td rowspan=3 style=background:#6699cc><span>6699cc<br>102 153 204</span></td>
+<td rowspan=3 style=background:#cc99cc><span>cc99cc<br>204 153 204</span></td>
+<td rowspan=3 style=background:#a3685a><span>a3685a<br>163 104 90</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>Tomorrow Night<b></td>
+<td rowspan=3 style=background:#1d1f21><span>1d1f21<br>29 31 33</span></td>
+<td rowspan=3 style=background:#282a2e><span>282a2e<br>40 42 46</span></td>
+<td rowspan=3 style=background:#373b41><span>373b41<br>55 59 65</span></td>
+<td rowspan=3 style=background:#121314><span>121314<br>18 19 20</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#c5c8c6><span>c5c8c6<br>197 200 198</span></td>
+<td rowspan=3 style=background:#cc6666><span>cc6666<br>204 102 102</span></td>
+<td rowspan=3 style=background:#de935f><span>de935f<br>222 147 95</span></td>
+<td rowspan=3 style=background:#f0c674><span>f0c674<br>240 198 116</span></td>
+<td rowspan=3 style=background:#b5bd68><span>b5bd68<br>181 189 104</span></td>
+<td rowspan=3 style=background:#8abeb7><span>8abeb7<br>138 190 183</span></td>
+<td rowspan=3 style=background:#81a2be><span>81a2be<br>129 162 190</span></td>
+<td rowspan=3 style=background:#b294bb><span>b294bb<br>178 148 187</span></td>
+<td rowspan=3 style=background:#a3685a><span>a3685a<br>163 104 90</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>Twilight<b></td>
+<td rowspan=3 style=background:#1e1e1e><span>1e1e1e<br>30 30 30</span></td>
+<td rowspan=3 style=background:#323537><span>323537<br>50 53 55</span></td>
+<td rowspan=3 style=background:#464b50><span>464b50<br>70 75 80</span></td>
+<td rowspan=3 style=background:#121212><span>121212<br>18 18 18</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#a7a7a7><span>a7a7a7<br>167 167 167</span></td>
+<td rowspan=3 style=background:#cf6a4c><span>cf6a4c<br>207 106 76</span></td>
+<td rowspan=3 style=background:#cda869><span>cda869<br>205 168 105</span></td>
+<td rowspan=3 style=background:#f9ee98><span>f9ee98<br>249 238 152</span></td>
+<td rowspan=3 style=background:#8f9d6a><span>8f9d6a<br>143 157 106</span></td>
+<td rowspan=3 style=background:#afc4db><span>afc4db<br>175 196 219</span></td>
+<td rowspan=3 style=background:#7587a6><span>7587a6<br>117 135 166</span></td>
+<td rowspan=3 style=background:#9b859d><span>9b859d<br>155 133 157</span></td>
+<td rowspan=3 style=background:#9b703f><span>9b703f<br>155 112 63</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>David Hart (https://github.com/hartbit)</td>
+</tr>
+<tr>
+<td><b>Unikitty<b></td>
+<td rowspan=3 style=background:#2e2a31><span>2e2a31<br>46 42 49</span></td>
+<td rowspan=3 style=background:#4a464d><span>4a464d<br>74 70 77</span></td>
+<td rowspan=3 style=background:#666369><span>666369<br>102 99 105</span></td>
+<td rowspan=3 style=background:#1a191c><span>1a191c<br>26 25 28</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#bcbabe><span>bcbabe<br>188 186 190</span></td>
+<td rowspan=3 style=background:#d8137f><span>d8137f<br>216 19 127</span></td>
+<td rowspan=3 style=background:#d65407><span>d65407<br>214 84 7</span></td>
+<td rowspan=3 style=background:#dc8a0e><span>dc8a0e<br>220 138 14</span></td>
+<td rowspan=3 style=background:#17ad98><span>17ad98<br>23 173 152</span></td>
+<td rowspan=3 style=background:#149bda><span>149bda<br>20 155 218</span></td>
+<td rowspan=3 style=background:#796af5><span>796af5<br>121 106 245</span></td>
+<td rowspan=3 style=background:#bb60ea><span>bb60ea<br>187 96 234</span></td>
+<td rowspan=3 style=background:#c720ca><span>c720ca<br>199 32 202</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Josh W Lewis (@joshwlewis)</td>
+</tr>
+<tr>
+<td><b>Woodland<b></td>
+<td rowspan=3 style=background:#231e18><span>231e18<br>35 30 24</span></td>
+<td rowspan=3 style=background:#302b25><span>302b25<br>48 43 37</span></td>
+<td rowspan=3 style=background:#48413a><span>48413a<br>72 65 58</span></td>
+<td rowspan=3 style=background:#16120f><span>16120f<br>22 18 15</span></td>
+<td rowspan=3 style=background:#000000><span>000000<br>0 0 0</span></td>
+<td rowspan=3 style=background:#cabcb1><span>cabcb1<br>202 188 177</span></td>
+<td rowspan=3 style=background:#d35c5c><span>d35c5c<br>211 92 92</span></td>
+<td rowspan=3 style=background:#ca7f32><span>ca7f32<br>202 127 50</span></td>
+<td rowspan=3 style=background:#e0ac16><span>e0ac16<br>224 172 22</span></td>
+<td rowspan=3 style=background:#b7ba53><span>b7ba53<br>183 186 83</span></td>
+<td rowspan=3 style=background:#6eb958><span>6eb958<br>110 185 88</span></td>
+<td rowspan=3 style=background:#88a4d3><span>88a4d3<br>136 164 211</span></td>
+<td rowspan=3 style=background:#bb90e2><span>bb90e2<br>187 144 226</span></td>
+<td rowspan=3 style=background:#b49368><span>b49368<br>180 147 104</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jay Cornwall (https://jcornwall.com)</td>
+</tr>
+<tr>
+<td><b>Atelier Cave<b></td>
+<td rowspan=3 style=background:#efecf4><span>efecf4<br>239 236 244</span></td>
+<td rowspan=3 style=background:#f7f5f9><span>f7f5f9<br>247 245 249</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e2dfe7><span>e2dfe7<br>226 223 231</span></td>
+<td rowspan=3 style=background:#c4c1ca><span>c4c1ca<br>196 193 202</span></td>
+<td rowspan=3 style=background:#585260><span>585260<br>88 82 96</span></td>
+<td rowspan=3 style=background:#be4678><span>be4678<br>190 70 120</span></td>
+<td rowspan=3 style=background:#aa573c><span>aa573c<br>170 87 60</span></td>
+<td rowspan=3 style=background:#a06e3b><span>a06e3b<br>160 110 59</span></td>
+<td rowspan=3 style=background:#2a9292><span>2a9292<br>42 146 146</span></td>
+<td rowspan=3 style=background:#398bc6><span>398bc6<br>57 139 198</span></td>
+<td rowspan=3 style=background:#576ddb><span>576ddb<br>87 109 219</span></td>
+<td rowspan=3 style=background:#955ae7><span>955ae7<br>149 90 231</span></td>
+<td rowspan=3 style=background:#bf40bf><span>bf40bf<br>191 64 191</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Dune<b></td>
+<td rowspan=3 style=background:#fefbec><span>fefbec<br>254 251 236</span></td>
+<td rowspan=3 style=background:#fffdf5><span>fffdf5<br>255 253 245</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e8e4cf><span>e8e4cf<br>232 228 207</span></td>
+<td rowspan=3 style=background:#d2ceb8><span>d2ceb8<br>210 206 184</span></td>
+<td rowspan=3 style=background:#6e6b5e><span>6e6b5e<br>110 107 94</span></td>
+<td rowspan=3 style=background:#d73737><span>d73737<br>215 55 55</span></td>
+<td rowspan=3 style=background:#b65611><span>b65611<br>182 86 17</span></td>
+<td rowspan=3 style=background:#ae9513><span>ae9513<br>174 149 19</span></td>
+<td rowspan=3 style=background:#60ac39><span>60ac39<br>96 172 57</span></td>
+<td rowspan=3 style=background:#1fad83><span>1fad83<br>31 173 131</span></td>
+<td rowspan=3 style=background:#6684e1><span>6684e1<br>102 132 225</span></td>
+<td rowspan=3 style=background:#b854d4><span>b854d4<br>184 84 212</span></td>
+<td rowspan=3 style=background:#d43552><span>d43552<br>212 53 82</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Forest<b></td>
+<td rowspan=3 style=background:#f1efee><span>f1efee<br>241 239 238</span></td>
+<td rowspan=3 style=background:#f8f7f6><span>f8f7f6<br>248 247 246</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e6e2e0><span>e6e2e0<br>230 226 224</span></td>
+<td rowspan=3 style=background:#d1ccca><span>d1ccca<br>209 204 202</span></td>
+<td rowspan=3 style=background:#68615e><span>68615e<br>104 97 94</span></td>
+<td rowspan=3 style=background:#f22c40><span>f22c40<br>242 44 64</span></td>
+<td rowspan=3 style=background:#df5320><span>df5320<br>223 83 32</span></td>
+<td rowspan=3 style=background:#c38418><span>c38418<br>195 132 24</span></td>
+<td rowspan=3 style=background:#7b9726><span>7b9726<br>123 151 38</span></td>
+<td rowspan=3 style=background:#3d97b8><span>3d97b8<br>61 151 184</span></td>
+<td rowspan=3 style=background:#407ee7><span>407ee7<br>64 126 231</span></td>
+<td rowspan=3 style=background:#6666ea><span>6666ea<br>102 102 234</span></td>
+<td rowspan=3 style=background:#c33ff3><span>c33ff3<br>195 63 243</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Heath<b></td>
+<td rowspan=3 style=background:#f7f3f7><span>f7f3f7<br>247 243 247</span></td>
+<td rowspan=3 style=background:#fbf9fb><span>fbf9fb<br>251 249 251</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e7dee7><span>e7dee7<br>231 222 231</span></td>
+<td rowspan=3 style=background:#d8cad8><span>d8cad8<br>216 202 216</span></td>
+<td rowspan=3 style=background:#695d69><span>695d69<br>105 93 105</span></td>
+<td rowspan=3 style=background:#ca402b><span>ca402b<br>202 64 43</span></td>
+<td rowspan=3 style=background:#a65926><span>a65926<br>166 89 38</span></td>
+<td rowspan=3 style=background:#bb8a35><span>bb8a35<br>187 138 53</span></td>
+<td rowspan=3 style=background:#918b3b><span>918b3b<br>145 139 59</span></td>
+<td rowspan=3 style=background:#159393><span>159393<br>21 147 147</span></td>
+<td rowspan=3 style=background:#516aec><span>516aec<br>81 106 236</span></td>
+<td rowspan=3 style=background:#7b59c0><span>7b59c0<br>123 89 192</span></td>
+<td rowspan=3 style=background:#cc33cc><span>cc33cc<br>204 51 204</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Lakeside<b></td>
+<td rowspan=3 style=background:#ebf8ff><span>ebf8ff<br>235 248 255</span></td>
+<td rowspan=3 style=background:#f5fbff><span>f5fbff<br>245 251 255</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#d6eefb><span>d6eefb<br>214 238 251</span></td>
+<td rowspan=3 style=background:#c1e4f6><span>c1e4f6<br>193 228 246</span></td>
+<td rowspan=3 style=background:#516d7b><span>516d7b<br>81 109 123</span></td>
+<td rowspan=3 style=background:#d22d72><span>d22d72<br>210 45 114</span></td>
+<td rowspan=3 style=background:#935c25><span>935c25<br>147 92 37</span></td>
+<td rowspan=3 style=background:#8a8a0f><span>8a8a0f<br>138 138 15</span></td>
+<td rowspan=3 style=background:#568c3b><span>568c3b<br>86 140 59</span></td>
+<td rowspan=3 style=background:#2d8f6f><span>2d8f6f<br>45 143 111</span></td>
+<td rowspan=3 style=background:#257fad><span>257fad<br>37 127 173</span></td>
+<td rowspan=3 style=background:#6b6bb8><span>6b6bb8<br>107 107 184</span></td>
+<td rowspan=3 style=background:#b72dd2><span>b72dd2<br>183 45 210</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Plateau Light<b></td>
+<td rowspan=3 style=background:#f4ecec><span>f4ecec<br>244 236 236</span></td>
+<td rowspan=3 style=background:#faf5f5><span>faf5f5<br>250 245 245</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e7dfdf><span>e7dfdf<br>231 223 223</span></td>
+<td rowspan=3 style=background:#d4cccc><span>d4cccc<br>212 204 204</span></td>
+<td rowspan=3 style=background:#585050><span>585050<br>88 80 80</span></td>
+<td rowspan=3 style=background:#ca4949><span>ca4949<br>202 73 73</span></td>
+<td rowspan=3 style=background:#b45a3c><span>b45a3c<br>180 90 60</span></td>
+<td rowspan=3 style=background:#a06e3b><span>a06e3b<br>160 110 59</span></td>
+<td rowspan=3 style=background:#4b8b8b><span>4b8b8b<br>75 139 139</span></td>
+<td rowspan=3 style=background:#5485b6><span>5485b6<br>84 133 182</span></td>
+<td rowspan=3 style=background:#7272ca><span>7272ca<br>114 114 202</span></td>
+<td rowspan=3 style=background:#8464c4><span>8464c4<br>132 100 196</span></td>
+<td rowspan=3 style=background:#bd5187><span>bd5187<br>189 81 135</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Seaside<b></td>
+<td rowspan=3 style=background:#f4fbf4><span>f4fbf4<br>244 251 244</span></td>
+<td rowspan=3 style=background:#f5fbff><span>f5fbff<br>245 251 255</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e1f2e1><span>e1f2e1<br>225 242 225</span></td>
+<td rowspan=3 style=background:#cfe8cf><span>cfe8cf<br>207 232 207</span></td>
+<td rowspan=3 style=background:#5e6e5e><span>5e6e5e<br>94 110 94</span></td>
+<td rowspan=3 style=background:#e6193c><span>e6193c<br>230 25 60</span></td>
+<td rowspan=3 style=background:#87711d><span>87711d<br>135 113 29</span></td>
+<td rowspan=3 style=background:#98981b><span>98981b<br>152 152 27</span></td>
+<td rowspan=3 style=background:#29a329><span>29a329<br>41 163 41</span></td>
+<td rowspan=3 style=background:#1999b3><span>1999b3<br>25 153 179</span></td>
+<td rowspan=3 style=background:#3d62f5><span>3d62f5<br>61 98 245</span></td>
+<td rowspan=3 style=background:#ad2bee><span>ad2bee<br>173 43 238</span></td>
+<td rowspan=3 style=background:#e619c3><span>e619c3<br>230 25 195</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atelier Sulphurpool<b></td>
+<td rowspan=3 style=background:#f5f7ff><span>f5f7ff<br>245 247 255</span></td>
+<td rowspan=3 style=background:#fafbff><span>fafbff<br>250 251 255</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#dfe2f1><span>dfe2f1<br>223 226 241</span></td>
+<td rowspan=3 style=background:#c7cadc><span>c7cadc<br>199 202 220</span></td>
+<td rowspan=3 style=background:#5e6687><span>5e6687<br>94 102 135</span></td>
+<td rowspan=3 style=background:#c94922><span>c94922<br>201 73 34</span></td>
+<td rowspan=3 style=background:#c76b29><span>c76b29<br>199 107 41</span></td>
+<td rowspan=3 style=background:#c08b30><span>c08b30<br>192 139 48</span></td>
+<td rowspan=3 style=background:#ac9739><span>ac9739<br>172 151 57</span></td>
+<td rowspan=3 style=background:#22a2c9><span>22a2c9<br>34 162 201</span></td>
+<td rowspan=3 style=background:#3d8fd1><span>3d8fd1<br>61 143 209</span></td>
+<td rowspan=3 style=background:#6679cc><span>6679cc<br>102 121 204</span></td>
+<td rowspan=3 style=background:#9c637a><span>9c637a<br>156 99 122</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Bram de Haan (http://atelierbramdehaan.nl)</td>
+</tr>
+<tr>
+<td><b>Atom One<b></td>
+<td rowspan=3 style=background:#f5f5f6><span>f5f5f6<br>245 245 246</span></td>
+<td rowspan=3 style=background:#fafafa><span>fafafa<br>250 250 250</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#f0f0f1><span>f0f0f1<br>240 240 241</span></td>
+<td rowspan=3 style=background:#e5e5e6><span>e5e5e6<br>229 229 230</span></td>
+<td rowspan=3 style=background:#383a42><span>383a42<br>56 58 66</span></td>
+<td rowspan=3 style=background:#ca1243><span>ca1243<br>202 18 67</span></td>
+<td rowspan=3 style=background:#d75f00><span>d75f00<br>215 95 0</span></td>
+<td rowspan=3 style=background:#c18401><span>c18401<br>193 132 1</span></td>
+<td rowspan=3 style=background:#50a14f><span>50a14f<br>80 161 79</span></td>
+<td rowspan=3 style=background:#0184bc><span>0184bc<br>1 132 188</span></td>
+<td rowspan=3 style=background:#4078f2><span>4078f2<br>64 120 242</span></td>
+<td rowspan=3 style=background:#a626a4><span>a626a4<br>166 38 164</span></td>
+<td rowspan=3 style=background:#986801><span>986801<br>152 104 1</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Daniel Pfeifer (http://github.com/purpleKarrot)</td>
+</tr>
+<tr>
+<td><b>Ayu<b></td>
+<td rowspan=3 style=background:#F3F4F5><span>F3F4F5<br>243 244 245</span></td>
+<td rowspan=3 style=background:#fafafa><span>fafafa<br>250 250 250</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e1e3e5><span>e1e3e5<br>225 227 229</span></td>
+<td rowspan=3 style=background:#ced1d5><span>ced1d5<br>206 209 213</span></td>
+<td rowspan=3 style=background:#5C6773><span>5C6773<br>92 103 115</span></td>
+<td rowspan=3 style=background:#F07178><span>F07178<br>240 113 120</span></td>
+<td rowspan=3 style=background:#FA8D3E><span>FA8D3E<br>250 141 62</span></td>
+<td rowspan=3 style=background:#F2AE49><span>F2AE49<br>242 174 73</span></td>
+<td rowspan=3 style=background:#86B300><span>86B300<br>134 179 0</span></td>
+<td rowspan=3 style=background:#4CBF99><span>4CBF99<br>76 191 153</span></td>
+<td rowspan=3 style=background:#36A3D9><span>36A3D9<br>54 163 217</span></td>
+<td rowspan=3 style=background:#A37ACC><span>A37ACC<br>163 122 204</span></td>
+<td rowspan=3 style=background:#E6BA7E><span>E6BA7E<br>230 186 126</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Khue Nguyen</td>
+</tr>
+<tr>
+<td><b>Brush Trees<b></td>
+<td rowspan=3 style=background:#E3EFEF><span>E3EFEF<br>227 239 239</span></td>
+<td rowspan=3 style=background:#f1f7f7><span>f1f7f7<br>241 247 247</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#C9DBDC><span>C9DBDC<br>201 219 220</span></td>
+<td rowspan=3 style=background:#B0C5C8><span>B0C5C8<br>176 197 200</span></td>
+<td rowspan=3 style=background:#6D828E><span>6D828E<br>109 130 142</span></td>
+<td rowspan=3 style=background:#b38686><span>b38686<br>179 134 134</span></td>
+<td rowspan=3 style=background:#d8bba2><span>d8bba2<br>216 187 162</span></td>
+<td rowspan=3 style=background:#aab386><span>aab386<br>170 179 134</span></td>
+<td rowspan=3 style=background:#87b386><span>87b386<br>135 179 134</span></td>
+<td rowspan=3 style=background:#86b3b3><span>86b3b3<br>134 179 179</span></td>
+<td rowspan=3 style=background:#868cb3><span>868cb3<br>134 140 179</span></td>
+<td rowspan=3 style=background:#b386b2><span>b386b2<br>179 134 178</span></td>
+<td rowspan=3 style=background:#b39f9f><span>b39f9f<br>179 159 159</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Abraham White</td>
+</tr>
+<tr>
+<td><b>Catppuccin Latte<b></td>
+<td rowspan=3 style=background:#eff1f5><span>eff1f5<br>239 241 245</span></td>
+<td rowspan=3 style=background:#f7f8fa><span>f7f8fa<br>247 248 250</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#d5d8e0><span>d5d8e0<br>213 216 224</span></td>
+<td rowspan=3 style=background:#bcc0cc><span>bcc0cc<br>188 192 204</span></td>
+<td rowspan=3 style=background:#4c4f69><span>4c4f69<br>76 79 105</span></td>
+<td rowspan=3 style=background:#d20f39><span>d20f39<br>210 15 57</span></td>
+<td rowspan=3 style=background:#fe640b><span>fe640b<br>254 100 11</span></td>
+<td rowspan=3 style=background:#df8e1d><span>df8e1d<br>223 142 29</span></td>
+<td rowspan=3 style=background:#40a02b><span>40a02b<br>64 160 43</span></td>
+<td rowspan=3 style=background:#179299><span>179299<br>23 146 153</span></td>
+<td rowspan=3 style=background:#1e66f5><span>1e66f5<br>30 102 245</span></td>
+<td rowspan=3 style=background:#8839ef><span>8839ef<br>136 57 239</span></td>
+<td rowspan=3 style=background:#dd7878><span>dd7878<br>221 120 120</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>https://github.com/catppuccin/catppuccin</td>
+</tr>
+<tr>
+<td><b>Cupcake<b></td>
+<td rowspan=3 style=background:#fbf1f2><span>fbf1f2<br>251 241 242</span></td>
+<td rowspan=3 style=background:#fdf8f8><span>fdf8f8<br>253 248 248</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#d8d5dd><span>d8d5dd<br>216 213 221</span></td>
+<td rowspan=3 style=background:#bfb9c6><span>bfb9c6<br>191 185 198</span></td>
+<td rowspan=3 style=background:#a59daf><span>a59daf<br>165 157 175</span></td>
+<td rowspan=3 style=background:#D57E85><span>D57E85<br>213 126 133</span></td>
+<td rowspan=3 style=background:#EBB790><span>EBB790<br>235 183 144</span></td>
+<td rowspan=3 style=background:#DCB16C><span>DCB16C<br>220 177 108</span></td>
+<td rowspan=3 style=background:#A3B367><span>A3B367<br>163 179 103</span></td>
+<td rowspan=3 style=background:#69A9A7><span>69A9A7<br>105 169 167</span></td>
+<td rowspan=3 style=background:#7297B9><span>7297B9<br>114 151 185</span></td>
+<td rowspan=3 style=background:#BB99B4><span>BB99B4<br>187 153 180</span></td>
+<td rowspan=3 style=background:#BAA58C><span>BAA58C<br>186 165 140</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>Da One Paper<b></td>
+<td rowspan=3 style=background:#faf0dc><span>faf0dc<br>250 240 220</span></td>
+<td rowspan=3 style=background:#fcf5e8><span>fcf5e8<br>252 245 232</span></td>
+<td rowspan=3 style=background:#fefaf3><span>fefaf3<br>254 250 243</span></td>
+<td rowspan=3 style=background:#e1dcd2><span>e1dcd2<br>225 220 210</span></td>
+<td rowspan=3 style=background:#c8c8c8><span>c8c8c8<br>200 200 200</span></td>
+<td rowspan=3 style=background:#181818><span>181818<br>24 24 24</span></td>
+<td rowspan=3 style=background:#de5d6e><span>de5d6e<br>222 93 110</span></td>
+<td rowspan=3 style=background:#ff9470><span>ff9470<br>255 148 112</span></td>
+<td rowspan=3 style=background:#b3684f><span>b3684f<br>179 104 79</span></td>
+<td rowspan=3 style=background:#76a85d><span>76a85d<br>118 168 93</span></td>
+<td rowspan=3 style=background:#64b5a7><span>64b5a7<br>100 181 167</span></td>
+<td rowspan=3 style=background:#5890f8><span>5890f8<br>88 144 248</span></td>
+<td rowspan=3 style=background:#c173d1><span>c173d1<br>193 115 209</span></td>
+<td rowspan=3 style=background:#b3684f><span>b3684f<br>179 104 79</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>NNB (https://github.com/NNBnh)</td>
+</tr>
+<tr>
+<td><b>Default<b></td>
+<td rowspan=3 style=background:#f8f8f8><span>f8f8f8<br>248 248 248</span></td>
+<td rowspan=3 style=background:#fbfbfb><span>fbfbfb<br>251 251 251</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e8e8e8><span>e8e8e8<br>232 232 232</span></td>
+<td rowspan=3 style=background:#d8d8d8><span>d8d8d8<br>216 216 216</span></td>
+<td rowspan=3 style=background:#383838><span>383838<br>56 56 56</span></td>
+<td rowspan=3 style=background:#ab4642><span>ab4642<br>171 70 66</span></td>
+<td rowspan=3 style=background:#dc9656><span>dc9656<br>220 150 86</span></td>
+<td rowspan=3 style=background:#f7ca88><span>f7ca88<br>247 202 136</span></td>
+<td rowspan=3 style=background:#a1b56c><span>a1b56c<br>161 181 108</span></td>
+<td rowspan=3 style=background:#86c1b9><span>86c1b9<br>134 193 185</span></td>
+<td rowspan=3 style=background:#7cafc2><span>7cafc2<br>124 175 194</span></td>
+<td rowspan=3 style=background:#ba8baf><span>ba8baf<br>186 139 175</span></td>
+<td rowspan=3 style=background:#a16946><span>a16946<br>161 105 70</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>Everforest Medium<b></td>
+<td rowspan=3 style=background:#fdf6e3><span>fdf6e3<br>253 246 227</span></td>
+<td rowspan=3 style=background:#fefaf1><span>fefaf1<br>254 250 241</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e6e2cc><span>e6e2cc<br>230 226 204</span></td>
+<td rowspan=3 style=background:#bdc3af><span>bdc3af<br>189 195 175</span></td>
+<td rowspan=3 style=background:#5c6a72><span>5c6a72<br>92 106 114</span></td>
+<td rowspan=3 style=background:#f85552><span>f85552<br>248 85 82</span></td>
+<td rowspan=3 style=background:#f57d26><span>f57d26<br>245 125 38</span></td>
+<td rowspan=3 style=background:#dfa000><span>dfa000<br>223 160 0</span></td>
+<td rowspan=3 style=background:#8da101><span>8da101<br>141 161 1</span></td>
+<td rowspan=3 style=background:#35a77c><span>35a77c<br>53 167 124</span></td>
+<td rowspan=3 style=background:#3a94c5><span>3a94c5<br>58 148 197</span></td>
+<td rowspan=3 style=background:#df69ba><span>df69ba<br>223 105 186</span></td>
+<td rowspan=3 style=background:#eaedc8><span>eaedc8<br>234 237 200</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Sainnhe Park (https://github.com/sainnhe)</td>
+</tr>
+<tr>
+<td><b>Gruvbox Material Medium<b></td>
+<td rowspan=3 style=background:#fbf1c7><span>fbf1c7<br>251 241 199</span></td>
+<td rowspan=3 style=background:#fdf6da><span>fdf6da<br>253 246 218</span></td>
+<td rowspan=3 style=background:#fefaec><span>fefaec<br>254 250 236</span></td>
+<td rowspan=3 style=background:#f2e5bc><span>f2e5bc<br>242 229 188</span></td>
+<td rowspan=3 style=background:#d5c4a1><span>d5c4a1<br>213 196 161</span></td>
+<td rowspan=3 style=background:#654735><span>654735<br>101 71 53</span></td>
+<td rowspan=3 style=background:#c14a4a><span>c14a4a<br>193 74 74</span></td>
+<td rowspan=3 style=background:#c35e0a><span>c35e0a<br>195 94 10</span></td>
+<td rowspan=3 style=background:#b47109><span>b47109<br>180 113 9</span></td>
+<td rowspan=3 style=background:#6c782e><span>6c782e<br>108 120 46</span></td>
+<td rowspan=3 style=background:#4c7a5d><span>4c7a5d<br>76 122 93</span></td>
+<td rowspan=3 style=background:#45707a><span>45707a<br>69 112 122</span></td>
+<td rowspan=3 style=background:#945e80><span>945e80<br>148 94 128</span></td>
+<td rowspan=3 style=background:#e78a4e><span>e78a4e<br>231 138 78</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Mayush Kumar (https://github.com/MayushKumar)</td>
+</tr>
+<tr>
+<td><b>Gruvbox Medium<b></td>
+<td rowspan=3 style=background:#fbf1c7><span>fbf1c7<br>251 241 199</span></td>
+<td rowspan=3 style=background:#fdf6da><span>fdf6da<br>253 246 218</span></td>
+<td rowspan=3 style=background:#fefaec><span>fefaec<br>254 250 236</span></td>
+<td rowspan=3 style=background:#ebdbb2><span>ebdbb2<br>235 219 178</span></td>
+<td rowspan=3 style=background:#d5c4a1><span>d5c4a1<br>213 196 161</span></td>
+<td rowspan=3 style=background:#504945><span>504945<br>80 73 69</span></td>
+<td rowspan=3 style=background:#9d0006><span>9d0006<br>157 0 6</span></td>
+<td rowspan=3 style=background:#af3a03><span>af3a03<br>175 58 3</span></td>
+<td rowspan=3 style=background:#b57614><span>b57614<br>181 118 20</span></td>
+<td rowspan=3 style=background:#79740e><span>79740e<br>121 116 14</span></td>
+<td rowspan=3 style=background:#427b58><span>427b58<br>66 123 88</span></td>
+<td rowspan=3 style=background:#076678><span>076678<br>7 102 120</span></td>
+<td rowspan=3 style=background:#8f3f71><span>8f3f71<br>143 63 113</span></td>
+<td rowspan=3 style=background:#d65d0e><span>d65d0e<br>214 93 14</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Dawid Kurek, morhetz (https://github.com/morhetz/gruvbox)</td>
+</tr>
+<tr>
+<td><b>Harmonic16<b></td>
+<td rowspan=3 style=background:#f7f9fb><span>f7f9fb<br>247 249 251</span></td>
+<td rowspan=3 style=background:#fbfcfd><span>fbfcfd<br>251 252 253</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e5ebf1><span>e5ebf1<br>229 235 241</span></td>
+<td rowspan=3 style=background:#cbd6e2><span>cbd6e2<br>203 214 226</span></td>
+<td rowspan=3 style=background:#405c79><span>405c79<br>64 92 121</span></td>
+<td rowspan=3 style=background:#bf5656><span>bf5656<br>191 86 86</span></td>
+<td rowspan=3 style=background:#bf8b56><span>bf8b56<br>191 139 86</span></td>
+<td rowspan=3 style=background:#bfbf56><span>bfbf56<br>191 191 86</span></td>
+<td rowspan=3 style=background:#8bbf56><span>8bbf56<br>139 191 86</span></td>
+<td rowspan=3 style=background:#56bf8b><span>56bf8b<br>86 191 139</span></td>
+<td rowspan=3 style=background:#568bbf><span>568bbf<br>86 139 191</span></td>
+<td rowspan=3 style=background:#8b56bf><span>8b56bf<br>139 86 191</span></td>
+<td rowspan=3 style=background:#bf568b><span>bf568b<br>191 86 139</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jannik Siebert (https://github.com/janniks)</td>
+</tr>
+<tr>
+<td><b>Humanoid<b></td>
+<td rowspan=3 style=background:#f8f8f2><span>f8f8f2<br>248 248 242</span></td>
+<td rowspan=3 style=background:#fcfbf8><span>fcfbf8<br>252 251 248</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#efefe9><span>efefe9<br>239 239 233</span></td>
+<td rowspan=3 style=background:#deded8><span>deded8<br>222 222 216</span></td>
+<td rowspan=3 style=background:#232629><span>232629<br>35 38 41</span></td>
+<td rowspan=3 style=background:#b0151a><span>b0151a<br>176 21 26</span></td>
+<td rowspan=3 style=background:#ff3d00><span>ff3d00<br>255 61 0</span></td>
+<td rowspan=3 style=background:#ffb627><span>ffb627<br>255 182 39</span></td>
+<td rowspan=3 style=background:#388e3c><span>388e3c<br>56 142 60</span></td>
+<td rowspan=3 style=background:#008e8e><span>008e8e<br>0 142 142</span></td>
+<td rowspan=3 style=background:#0082c9><span>0082c9<br>0 130 201</span></td>
+<td rowspan=3 style=background:#700f98><span>700f98<br>112 15 152</span></td>
+<td rowspan=3 style=background:#b27701><span>b27701<br>178 119 1</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Thomas (tasmo) Friese</td>
+</tr>
+<tr>
+<td><b>iA<b></td>
+<td rowspan=3 style=background:#f6f6f6><span>f6f6f6<br>246 246 246</span></td>
+<td rowspan=3 style=background:#fafafa><span>fafafa<br>250 250 250</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#dedede><span>dedede<br>222 222 222</span></td>
+<td rowspan=3 style=background:#c1c1c1><span>c1c1c1<br>193 193 193</span></td>
+<td rowspan=3 style=background:#181818><span>181818<br>24 24 24</span></td>
+<td rowspan=3 style=background:#c43e18><span>c43e18<br>196 62 24</span></td>
+<td rowspan=3 style=background:#9c5a02><span>9c5a02<br>156 90 2</span></td>
+<td rowspan=3 style=background:#c48218><span>c48218<br>196 130 24</span></td>
+<td rowspan=3 style=background:#38781c><span>38781c<br>56 120 28</span></td>
+<td rowspan=3 style=background:#2d6bb1><span>2d6bb1<br>45 107 177</span></td>
+<td rowspan=3 style=background:#48bac2><span>48bac2<br>72 186 194</span></td>
+<td rowspan=3 style=background:#a94598><span>a94598<br>169 69 152</span></td>
+<td rowspan=3 style=background:#8b6c37><span>8b6c37<br>139 108 55</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>iA Inc. (modified by aramisgithub)</td>
+</tr>
+<tr>
+<td><b>Light Owl<b></td>
+<td rowspan=3 style=background:#f6f6f6><span>f6f6f6<br>246 246 246</span></td>
+<td rowspan=3 style=background:#fafafa><span>fafafa<br>250 250 250</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#ebebeb><span>ebebeb<br>235 235 235</span></td>
+<td rowspan=3 style=background:#E0E0E0><span>E0E0E0<br>224 224 224</span></td>
+<td rowspan=3 style=background:#403f53><span>403f53<br>64 63 83</span></td>
+<td rowspan=3 style=background:#de3d3b><span>de3d3b<br>222 61 59</span></td>
+<td rowspan=3 style=background:#de7a2c><span>de7a2c<br>222 122 44</span></td>
+<td rowspan=3 style=background:#daaa01><span>daaa01<br>218 170 1</span></td>
+<td rowspan=3 style=background:#08916a><span>08916a<br>8 145 106</span></td>
+<td rowspan=3 style=background:#2aa298><span>2aa298<br>42 162 152</span></td>
+<td rowspan=3 style=background:#288ed7><span>288ed7<br>40 142 215</span></td>
+<td rowspan=3 style=background:#d6438a><span>d6438a<br>214 67 138</span></td>
+<td rowspan=3 style=background:#969696><span>969696<br>150 150 150</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Sarah Drasner</td>
+</tr>
+<tr>
+<td><b>Material Lighter<b></td>
+<td rowspan=3 style=background:#f0f2f3><span>f0f2f3<br>240 242 243</span></td>
+<td rowspan=3 style=background:#f7f8f9><span>f7f8f9<br>247 248 249</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#E7EAEC><span>E7EAEC<br>231 234 236</span></td>
+<td rowspan=3 style=background:#c7cdd8><span>c7cdd8<br>199 205 216</span></td>
+<td rowspan=3 style=background:#8796B0><span>8796B0<br>135 150 176</span></td>
+<td rowspan=3 style=background:#FF5370><span>FF5370<br>255 83 112</span></td>
+<td rowspan=3 style=background:#F76D47><span>F76D47<br>247 109 71</span></td>
+<td rowspan=3 style=background:#FFB62C><span>FFB62C<br>255 182 44</span></td>
+<td rowspan=3 style=background:#91B859><span>91B859<br>145 184 89</span></td>
+<td rowspan=3 style=background:#39ADB5><span>39ADB5<br>57 173 181</span></td>
+<td rowspan=3 style=background:#6182B8><span>6182B8<br>97 130 184</span></td>
+<td rowspan=3 style=background:#7C4DFF><span>7C4DFF<br>124 77 255</span></td>
+<td rowspan=3 style=background:#E53935><span>E53935<br>229 57 53</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Nate Peterson</td>
+</tr>
+<tr>
+<td><b>Sagelight<b></td>
+<td rowspan=3 style=background:#f0f0f0><span>f0f0f0<br>240 240 240</span></td>
+<td rowspan=3 style=background:#f7f8f9><span>f7f8f9<br>247 248 249</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e8e8e8><span>e8e8e8<br>232 232 232</span></td>
+<td rowspan=3 style=background:#d8d8d8><span>d8d8d8<br>216 216 216</span></td>
+<td rowspan=3 style=background:#383838><span>383838<br>56 56 56</span></td>
+<td rowspan=3 style=background:#fa8480><span>fa8480<br>250 132 128</span></td>
+<td rowspan=3 style=background:#ffaa61><span>ffaa61<br>255 170 97</span></td>
+<td rowspan=3 style=background:#ffdc61><span>ffdc61<br>255 220 97</span></td>
+<td rowspan=3 style=background:#a0d2c8><span>a0d2c8<br>160 210 200</span></td>
+<td rowspan=3 style=background:#a2d6f5><span>a2d6f5<br>162 214 245</span></td>
+<td rowspan=3 style=background:#a0a7d2><span>a0a7d2<br>160 167 210</span></td>
+<td rowspan=3 style=background:#c8a0d2><span>c8a0d2<br>200 160 210</span></td>
+<td rowspan=3 style=background:#d2b2a0><span>d2b2a0<br>210 178 160</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Carter Veldhuizen</td>
+</tr>
+<tr>
+<td><b>Sakura<b></td>
+<td rowspan=3 style=background:#feedf3><span>feedf3<br>254 237 243</span></td>
+<td rowspan=3 style=background:#fff6f9><span>fff6f9<br>255 246 249</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#f8e2e7><span>f8e2e7<br>248 226 231</span></td>
+<td rowspan=3 style=background:#e0ccd1><span>e0ccd1<br>224 204 209</span></td>
+<td rowspan=3 style=background:#564448><span>564448<br>86 68 72</span></td>
+<td rowspan=3 style=background:#df2d52><span>df2d52<br>223 45 82</span></td>
+<td rowspan=3 style=background:#f6661e><span>f6661e<br>246 102 30</span></td>
+<td rowspan=3 style=background:#c29461><span>c29461<br>194 148 97</span></td>
+<td rowspan=3 style=background:#2e916d><span>2e916d<br>46 145 109</span></td>
+<td rowspan=3 style=background:#1d8991><span>1d8991<br>29 137 145</span></td>
+<td rowspan=3 style=background:#006e93><span>006e93<br>0 110 147</span></td>
+<td rowspan=3 style=background:#5e2180><span>5e2180<br>94 33 128</span></td>
+<td rowspan=3 style=background:#ba0d35><span>ba0d35<br>186 13 53</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Misterio77 (http://github.com/Misterio77)</td>
+</tr>
+<tr>
+<td><b>Selenized White<b></td>
+<td rowspan=3 style=background:#f8f8f8><span>f8f8f8<br>248 248 248</span></td>
+<td rowspan=3 style=background:#fcfcfc><span>fcfcfc<br>252 252 252</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#ebebeb><span>ebebeb<br>235 235 235</span></td>
+<td rowspan=3 style=background:#cdcdcd><span>cdcdcd<br>205 205 205</span></td>
+<td rowspan=3 style=background:#474747><span>474747<br>71 71 71</span></td>
+<td rowspan=3 style=background:#bf0000><span>bf0000<br>191 0 0</span></td>
+<td rowspan=3 style=background:#ba3700><span>ba3700<br>186 55 0</span></td>
+<td rowspan=3 style=background:#af8500><span>af8500<br>175 133 0</span></td>
+<td rowspan=3 style=background:#008400><span>008400<br>0 132 0</span></td>
+<td rowspan=3 style=background:#009a8a><span>009a8a<br>0 154 138</span></td>
+<td rowspan=3 style=background:#0054cf><span>0054cf<br>0 84 207</span></td>
+<td rowspan=3 style=background:#6b40c3><span>6b40c3<br>107 64 195</span></td>
+<td rowspan=3 style=background:#dd0f9d><span>dd0f9d<br>221 15 157</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jan Warchol (https://github.com/jan-warchol/selenized)</td>
+</tr>
+<tr>
+<td><b>Selenized<b></td>
+<td rowspan=3 style=background:#fbf3db><span>fbf3db<br>251 243 219</span></td>
+<td rowspan=3 style=background:#fdf7e7><span>fdf7e7<br>253 247 231</span></td>
+<td rowspan=3 style=background:#fefbf3><span>fefbf3<br>254 251 243</span></td>
+<td rowspan=3 style=background:#ece3cc><span>ece3cc<br>236 227 204</span></td>
+<td rowspan=3 style=background:#d5cdb6><span>d5cdb6<br>213 205 182</span></td>
+<td rowspan=3 style=background:#53676d><span>53676d<br>83 103 109</span></td>
+<td rowspan=3 style=background:#cc1729><span>cc1729<br>204 23 41</span></td>
+<td rowspan=3 style=background:#bc5819><span>bc5819<br>188 88 25</span></td>
+<td rowspan=3 style=background:#a78300><span>a78300<br>167 131 0</span></td>
+<td rowspan=3 style=background:#428b00><span>428b00<br>66 139 0</span></td>
+<td rowspan=3 style=background:#00978a><span>00978a<br>0 151 138</span></td>
+<td rowspan=3 style=background:#006dce><span>006dce<br>0 109 206</span></td>
+<td rowspan=3 style=background:#825dc0><span>825dc0<br>130 93 192</span></td>
+<td rowspan=3 style=background:#c44392><span>c44392<br>196 67 146</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Jan Warchol (https://github.com/jan-warchol/selenized) / adapted to base16 by ali</td>
+</tr>
+<tr>
+<td><b>Solarized<b></td>
+<td rowspan=3 style=background:#fdf6e3><span>fdf6e3<br>253 246 227</span></td>
+<td rowspan=3 style=background:#fefaf1><span>fefaf1<br>254 250 241</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#eee8d5><span>eee8d5<br>238 232 213</span></td>
+<td rowspan=3 style=background:#d7d6c8><span>d7d6c8<br>215 214 200</span></td>
+<td rowspan=3 style=background:#586e75><span>586e75<br>88 110 117</span></td>
+<td rowspan=3 style=background:#dc322f><span>dc322f<br>220 50 47</span></td>
+<td rowspan=3 style=background:#cb4b16><span>cb4b16<br>203 75 22</span></td>
+<td rowspan=3 style=background:#b58900><span>b58900<br>181 137 0</span></td>
+<td rowspan=3 style=background:#859900><span>859900<br>133 153 0</span></td>
+<td rowspan=3 style=background:#2aa198><span>2aa198<br>42 161 152</span></td>
+<td rowspan=3 style=background:#268bd2><span>268bd2<br>38 139 210</span></td>
+<td rowspan=3 style=background:#6c71c4><span>6c71c4<br>108 113 196</span></td>
+<td rowspan=3 style=background:#d33682><span>d33682<br>211 54 130</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Ethan Schoonover (modified by aramisgithub)</td>
+</tr>
+<tr>
+<td><b>Standardized<b></td>
+<td rowspan=3 style=background:#f4f4f4><span>f4f4f4<br>244 244 244</span></td>
+<td rowspan=3 style=background:#f9f9f9><span>f9f9f9<br>249 249 249</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#eeeeee><span>eeeeee<br>238 238 238</span></td>
+<td rowspan=3 style=background:#cccccc><span>cccccc<br>204 204 204</span></td>
+<td rowspan=3 style=background:#444444><span>444444<br>68 68 68</span></td>
+<td rowspan=3 style=background:#d03e3e><span>d03e3e<br>208 62 62</span></td>
+<td rowspan=3 style=background:#d7691d><span>d7691d<br>215 105 29</span></td>
+<td rowspan=3 style=background:#ad8200><span>ad8200<br>173 130 0</span></td>
+<td rowspan=3 style=background:#31861f><span>31861f<br>49 134 31</span></td>
+<td rowspan=3 style=background:#00998f><span>00998f<br>0 153 143</span></td>
+<td rowspan=3 style=background:#3173c5><span>3173c5<br>49 115 197</span></td>
+<td rowspan=3 style=background:#9e57c2><span>9e57c2<br>158 87 194</span></td>
+<td rowspan=3 style=background:#895025><span>895025<br>137 80 37</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>ali (https://github.com/ali-githb/base16-standardized-scheme)</td>
+</tr>
+<tr>
+<td><b>Summerfruit<b></td>
+<td rowspan=3 style=background:#f5f5f5><span>f5f5f5<br>245 245 245</span></td>
+<td rowspan=3 style=background:#fafafa><span>fafafa<br>250 250 250</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#E0E0E0><span>E0E0E0<br>224 224 224</span></td>
+<td rowspan=3 style=background:#D0D0D0><span>D0D0D0<br>208 208 208</span></td>
+<td rowspan=3 style=background:#101010><span>101010<br>16 16 16</span></td>
+<td rowspan=3 style=background:#FF0086><span>FF0086<br>255 0 134</span></td>
+<td rowspan=3 style=background:#FD8900><span>FD8900<br>253 137 0</span></td>
+<td rowspan=3 style=background:#ABA800><span>ABA800<br>171 168 0</span></td>
+<td rowspan=3 style=background:#00C918><span>00C918<br>0 201 24</span></td>
+<td rowspan=3 style=background:#1FAAAA><span>1FAAAA<br>31 170 170</span></td>
+<td rowspan=3 style=background:#3777E6><span>3777E6<br>55 119 230</span></td>
+<td rowspan=3 style=background:#AD00A1><span>AD00A1<br>173 0 161</span></td>
+<td rowspan=3 style=background:#CC6633><span>CC6633<br>204 102 51</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Christopher Corley (http://christop.club/)</td>
+</tr>
+<tr>
+<td><b>Tokyo Night<b></td>
+<td rowspan=3 style=background:#d5d6db><span>d5d6db<br>213 214 219</span></td>
+<td rowspan=3 style=background:#e3e4e7><span>e3e4e7<br>227 228 231</span></td>
+<td rowspan=3 style=background:#f1f1f3><span>f1f1f3<br>241 241 243</span></td>
+<td rowspan=3 style=background:#b5b7bf><span>b5b7bf<br>181 183 191</span></td>
+<td rowspan=3 style=background:#9699a3><span>9699a3<br>150 153 163</span></td>
+<td rowspan=3 style=background:#343b58><span>343b58<br>52 59 88</span></td>
+<td rowspan=3 style=background:#8c4351><span>8c4351<br>140 67 81</span></td>
+<td rowspan=3 style=background:#965027><span>965027<br>150 80 39</span></td>
+<td rowspan=3 style=background:#8f5e15><span>8f5e15<br>143 94 21</span></td>
+<td rowspan=3 style=background:#485e30><span>485e30<br>72 94 48</span></td>
+<td rowspan=3 style=background:#166775><span>166775<br>22 103 117</span></td>
+<td rowspan=3 style=background:#34548a><span>34548a<br>52 84 138</span></td>
+<td rowspan=3 style=background:#5a4a78><span>5a4a78<br>90 74 120</span></td>
+<td rowspan=3 style=background:#634f30><span>634f30<br>99 79 48</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>enkia</td>
+</tr>
+<tr>
+<td><b>Tomorrow<b></td>
+<td rowspan=3 style=background:#f5f5f5><span>f5f5f5<br>245 245 245</span></td>
+<td rowspan=3 style=background:#fafafa><span>fafafa<br>250 250 250</span></td>
+<td rowspan=3 style=background:#ffffff><span>ffffff<br>255 255 255</span></td>
+<td rowspan=3 style=background:#e0e0e0><span>e0e0e0<br>224 224 224</span></td>
+<td rowspan=3 style=background:#d6d6d6><span>d6d6d6<br>214 214 214</span></td>
+<td rowspan=3 style=background:#4d4d4c><span>4d4d4c<br>77 77 76</span></td>
+<td rowspan=3 style=background:#c82829><span>c82829<br>200 40 41</span></td>
+<td rowspan=3 style=background:#f5871f><span>f5871f<br>245 135 31</span></td>
+<td rowspan=3 style=background:#eab700><span>eab700<br>234 183 0</span></td>
+<td rowspan=3 style=background:#718c00><span>718c00<br>113 140 0</span></td>
+<td rowspan=3 style=background:#3e999f><span>3e999f<br>62 153 159</span></td>
+<td rowspan=3 style=background:#4271ae><span>4271ae<br>66 113 174</span></td>
+<td rowspan=3 style=background:#8959a8><span>8959a8<br>137 89 168</span></td>
+<td rowspan=3 style=background:#a3685a><span>a3685a<br>163 104 90</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Chris Kempson (http://chriskempson.com)</td>
+</tr>
+<tr>
+<td><b>Unikitty<b></td>
+<td rowspan=3 style=background:#f0f0f0><span>f0f0f0<br>240 240 240</span></td>
+<td rowspan=3 style=background:#f5f5f5><span>f5f5f5<br>245 245 245</span></td>
+<td rowspan=3 style=background:#fafafa><span>fafafa<br>250 250 250</span></td>
+<td rowspan=3 style=background:#e1e1e2><span>e1e1e2<br>225 225 226</span></td>
+<td rowspan=3 style=background:#c4c3c5><span>c4c3c5<br>196 195 197</span></td>
+<td rowspan=3 style=background:#6c696e><span>6c696e<br>108 105 110</span></td>
+<td rowspan=3 style=background:#d8137f><span>d8137f<br>216 19 127</span></td>
+<td rowspan=3 style=background:#d65407><span>d65407<br>214 84 7</span></td>
+<td rowspan=3 style=background:#dc8a0e><span>dc8a0e<br>220 138 14</span></td>
+<td rowspan=3 style=background:#17ad98><span>17ad98<br>23 173 152</span></td>
+<td rowspan=3 style=background:#149bda><span>149bda<br>20 155 218</span></td>
+<td rowspan=3 style=background:#775dff><span>775dff<br>119 93 255</span></td>
+<td rowspan=3 style=background:#aa17e6><span>aa17e6<br>170 23 230</span></td>
+<td rowspan=3 style=background:#e013d0><span>e013d0<br>224 19 208</span></td>
+</tr>
+<tr>
+<td>Light</td>
+</tr>
+<tr>
+<td style='font-style:italic;font-size:.75em;height:3em;position:relative;'>Josh W Lewis (@joshwlewis)</td>
+</tr>
+</table></div>

@@ -1,9 +1,16 @@
-:root {
-	color-scheme: dark light;
-	/* --colorBg: var(--bgImageColor, --colorBase); */
+/*
+ * Default Custom Properties for Colors
+ */
+/* :root { */
+.t-color {
+	/* color-scheme: dark light; */
+
+	--colorAccent: var(--blue); /* Blue as defualt accent color */
+	/* TODO: color-mix for colorAccentBrighter and Opac60 as fallback */
+	--colorAccentBrighter: var(--colorAccent);
+	--colorAccentBrighterOpac60: var(--colorAccent);
+
 	--colorBg: var(--colorBack, --colorBase);
-	/* --colorBg: var(--violet); */
-	/* --bgImageColor ; */
 
 	/* Special Solid Background Color Codes */
 	/* --colorBg: #008080; /1* Windows95 Solid Color Turquise *1/ */
@@ -11,640 +18,2632 @@
 	/* --colorBg: #657185; /1* MacOSX Solid Color Grayscale *1/ */
 	/* --colorBg: #4A0640; /1* Ubuntu Solid Color Purple *1/ */
 
-}
-/* Default color scheme */
-:root, :root.t-modRoot:where(.-colorSchemeIOS){
-	/* Day */
+	/* Text color with various alpha settings */
+	--colorTextVal:     5 5 5;
+	--colorText:        rgb(var(--colorTextVal));
+	--colorTextBolder:  var(--colorText); /* TODO: color-mix for colorTextBolder as fallback */
+	--colorTextOpac80:  rgb(var(--colorTextVal) / .8);
+	--colorTextOpac60:  rgb(var(--colorTextVal) / .6);
+	--colorTextOpac40:  rgb(var(--colorTextVal) / .4);
+	--colorTextOpac20:  rgb(var(--colorTextVal) / .2);
+	--colorTextOpac075: rgb(var(--colorTextVal) / .075);
+
+	/* Base color with various alpha settings */
+	--colorBaseVal:     250 250 250;
+	--colorBase:        rgb(var(--colorBaseVal));
+	--colorBaseOpac80:  rgb(var(--colorBaseVal) / .8);
+	--colorBaseOpac0:   rgb(var(--colorBaseVal) / 0);
+
+	--colorBackmost: hsl(0 0% 69%);
+	--colorBack: hsl(0 0% 90%);
+	--colorBackOpac80: hsl(0 0% 90% / .8);
+
+	--colorFront: hsl(0 0% 100%);
+	--colorFrontmost: hsl(0 0% 100%);
+
 	--red:     hsl(4 75% 54%);
 	--orange:  hsl(35 100% 50%);
 	--yellow:  hsl(48 100% 50%);
 	--green:   hsl(130 65% 57%);
-	--blue:    hsl(211 100% 50%);
 	--cyan:    hsl(199 94% 67%);
-	--violet:  hsl(241 61% 59%);
-	--magenta: hsl(349 100% 59%);
+	--blue:    hsl(211 100% 50%);
+	--hue01:   hsl(241 61% 59%);
+	--hue02:   hsl(349 100% 59%);
 
-	--colorAccent: var(--blue);
-	--colorAccentBrighter: hsl(211 100% 70%);
-	--colorAccentBrighterOpac60: hsl(211 100% 70% / .6);
+	--colorLinkDead: var(--red); /* Red as default dead link color */
+}
 
-	/* TODO: Reduce variables whenever there's a relative color plugin out there. */
-	--colorText: hsl(0 0% 11%);
-	--colorTextOpac80: hsl(0 0% 11% / .8);
-	--colorTextOpac60: hsl(0 0% 11% / .6);
-	--colorTextOpac40: hsl(0 0% 11% / .4);
-	--colorTextOpac20: hsl(0 0% 11% / .2);
-	--colorTextOpac075: hsl(0 0% 11% / .075);
+/*
+ * Main Theme Scope for Various Color Schemes
+ */
+.t-color[data-theme=dark]{--colorBackmost:#000}
+.t-color[data-theme=light]{--colorFrontmost:#fff}
+/* TODO: Add color-mix for colorBack + colorBackmost (and Front + Frontmost) as fallback. */
 
-	--colorTextBolder: hsl(0 0% 0%);
-	--colorTextBolderReddish: hsl(4 65% 21%);
-	--colorTextBolderOrangey: hsl(35 100% 25%);
-	--colorTextBolderYellowish: hsl(48 100% 25%);
-
-	--colorBase: hsl(0 0% 98%);
-	--colorBaseOpac80: hsl(0 0% 98% / .8);
-	--colorBaseTransparent: hsl(0 0% 98% / 0);
-	--colorBaseReddish: hsl(3 69% 80%);
-	--colorBaseOrangey: hsl(35 93% 78%);
-	--colorBaseYellowish: hsl(48 91% 83%);
-
-	--colorBack: hsl(0 0% 90%);
-	--colorBackOpac80: hsl(0 0% 90% / .8);
-	--colorDeep: hsl(0 0% 69%);
-	/* those two aren't effective */
-	--colorFore: hsl(0 0% 100%);
-	--colorForeBrighter: hsl(0 0% 100%);
-
-	--colorLinkVisited: hsl(211, 100%, 50%);
-	/* &.t-variantDark{ */
-	@media (prefers-color-scheme: dark) {
-		--red:     hsl(4 75% 54%);
-		--orange:  hsl(35 100% 50%);
-		--yellow:  hsl(48 100% 50%);
-		--green:   hsl(130 65% 57%);
-		--blue:    hsl(198 81% 54%);
-		--cyan:    hsl(199 94% 67%);
-		--violet:  hsl(241 61% 59%);
-		--magenta: hsl(349 100% 59%);
+.t-color[data-theme=dark] {
+	/* @media (prefers-color-scheme: dark) { */
+		/* Hues might differ among various Base16 color schemes. */
+		--red:    hsl(4 75% 54%);
+		--orange: hsl(35 100% 50%);
+		--yellow: hsl(48 100% 50%);
+		--green:  hsl(130 65% 57%);
+		--cyan:   hsl(199 94% 67%); /* or Teal, Aqua */
+		--blue:   hsl(198 81% 54%);
+		--hue01:  hsl(241 61% 59%); /* usually Purple or Magenta */
+		--hue02:  hsl(349 100% 59%); /* usually Brown, might be Magenta, Pink */
 
 		--colorAccent: var(--blue);
 		--colorAccentBrighter: hsl(198 82% 74%);
-		--colorAccentBrighterOpac60: hsl(198 82% 74% / .6); 
+		--colorAccentBrighterOpac60: hsl(198 82% 74% / .6);
 
-		--colorText: hsl(0 0% 69%);
-		--colorTextOpac80: hsl(0 0% 69% / .8);
-		--colorTextOpac60: hsl(0 0% 69% / .6);
-		--colorTextOpac40: hsl(0 0% 69% / .4);
-		--colorTextOpac20: hsl(0 0% 69% / .2);
-		--colorTextOpac075: hsl(0 0% 69% / .075);
+		--colorTextVal: 0 0% 69%;
 
 		--colorTextBolder: hsl(0 0% 100%);
-		--colorTextBolderReddish: hsl(4 75% 81%);
-		--colorTextBolderOrangey: hsl(35 100% 75%);
-		--colorTextBolderYellowish: hsl(48 100% 75%);
+		--colorBaseVal: 0 0% 12%;
 
-		--colorBase: hsl(0 0% 12%);
-		--colorBaseOpac80: hsl(0 0% 12% / .8);
-		--colorBaseTransparent: hsl(0 0% 12% / 0);
-		--colorBaseReddish: hsl(4 49% 28%);
-		--colorBaseOrangey: hsl(35 74% 27%);
-		--colorBaseYellowish: hsl(48 65% 23%);
-
+		--colorBackmost: hsl(0 0% 0%);
 		--colorBack: hsl(0 0% 7%);
 		--colorBackOpac80: hsl(0 0% 7% / .8);
-		--colorDeep: hsl(0 0% 0%);
 
-		--colorFore: hsl(0 0% 15%);
-		--colorForeBrighter: hsl(0 0% 17%);
-
-		--colorLinkVisited: hsl(198 100% 54%);
-		--colorLinkDead: var(--red);
-		--colorLinkActive: var(--colorAccentBrighter);
-	}
-}
-:root.t-modRoot:where(.-colorSchemeSolarized){
-	--red:    hsl(1 71% 52%);
-	--orange: hsl(18 80% 44%);
-	--yellow: hsl(45 100% 35%);
-	--green:  hsl(68 100% 30%);
-	--cyan:	  hsl(175 59% 40%);
-	--blue:   hsl(205 69% 49%);
-	--violet: hsl(237 43% 60%);
-	--magenta:hsl(331 64% 52%);
-
-	--colorAccent: var(--blue);
-	--colorAccentBrighter: hsl(205 69% 69%);
-	--colorAccentBrighterOpac60: hsl(205 70% 69% / .6);
-
-	--colorText: hsl(194 14% 40%);
-	--colorTextOpac80: hsl(193 14% 40% / .8);
-	--colorTextOpac60: hsl(193 14% 40% / .6);
-	--colorTextOpac40: hsl(193 14% 40% / .4);
-	--colorTextOpac20: hsl(193 14% 40% / .2);
-	--colorTextOpac075: hsl(193 14% 40% / .075);
-
-	--colorTextBolder: hsl(192 81% 14%);
-	--colorTextBolderReddish: hsl(351 29% 28%);
-	--colorTextBolderOrangey: hsl(21 41% 29%);
-	--colorTextBolderYellowish: hsl(60 49% 25%);
-
-	--colorBase: hsl(46 42% 88%);
-	--colorBaseOpac80: hsl(46 42% 88% / .8);
-	--colorBaseTransparent: hsl(46 42% 88% / 0);
-	--colorBaseReddish: hsl(9 63% 74%);
-	--colorBaseOrangey: hsl(23 58% 70%);
-	--colorBaseYellowish: hsl(45 51% 72%);
-
-	--colorBack: hsl(46 42% 78%); /* --colorBack: color-mod(var(--colorBase) l(-10%)); */
-	--colorBackOpac80: hsl(46 42% 78% / .8);
-	--colorDeep: hsl(46 42% 28%);
-
-	--colorFore: hsl(45 43% 91%);
-	--colorForeBrighter: hsl(44 43% 93%);
-
-	--colorLinkVisited: hsl(205 89% 49%);
-	--colorLinkDead: var(--red);
-	--colorLinkActive: var(--colorAccentBrighter);
-	/* &.t-variantDark{ */
-	@media (prefers-color-scheme: dark) {
-		--colorText: hsl(196 13% 45%);
-		--colorTextOpac80: hsl(196 13% 45% / .8);
-		--colorTextOpac60: hsl(196 13% 45% / .6);
-		--colorTextOpac40: hsl(196 13% 45% / .4);
-		--colorTextOpac20: hsl(196 13% 45% / .2);
-		--colorTextOpac075: hsl(196 13% 45% / .075);
-
-		--colorTextBolder: hsl(186 8% 55%);
-		--colorTextBolderReddish: hsl(0 25% 54%);
-		--colorTextBolderOrangey: hsl(19 32% 50%);
-		--colorTextBolderYellowish: hsl(49 35% 45%);
-
-		--colorBase: hsl(192 100% 11%);
-		--colorBaseOpac80: hsl(192 100% 11% / .8);
-		--colorBaseTransparent: hsl(192 100% 11% / 0);
-		--colorBaseReddish: hsl(351 31% 26%);
-		--colorBaseOrangey: hsl(22 31% 24%);
-		--colorBaseYellowish: hsl(93 30% 22%);
-
-		--colorBack: hsl(192 100% 8%);
-		--colorBackOpac80: hsl(192 100% 8% / .8);
-		--colorDeep: hsl(0 0% 0%);
-
-		--colorFore: hsl(192 100% 14%);
-		--colorForeBrighter: hsl(192 100% 16%);
-	}
-}
-:root.t-modRoot:where(.-colorSchemeAtomOne){
-	--red:     hsl(5 74% 59%);
-	--orange:  hsl(41 99% 30%);
-	--yellow:  hsl(41 99% 38%);
-	--green:   hsl(119 34% 47%);
-	--cyan:    hsl(198 99% 37%);
-	--blue:    hsl(221 87% 60%);
-	--violet:  hsl(301 63% 40%);
-	--magenta: transparent;
-
-	--colorAccent: hsl(230 100% 66%);
-	--colorAccentBrighter: hsl(230 100% 86%);
-	--colorAccentBrighterOpac60: hsl(230 100% 86% / .6);
-
-	--colorText: hsl(227 6% 44%);
-	--colorTextOpac80: hsl(227 6% 44% / .8);
-	--colorTextOpac60: hsl(227 6% 44% / .6);
-	--colorTextOpac40: hsl(227 6% 44% / .4);
-	--colorTextOpac20: hsl(227 6% 44% / .2);
-	--colorTextOpac075: hsl(227 6% 44% / .075);
-
-	--colorTextBolder: hsl(228 8% 24%);
-	--colorTextBolderReddish: hsl(0 29% 38%);
-	--colorTextBolderOrangey: hsl(41 52% 27%);
-	--colorTextBolderYellowish: hsl(40 57% 31%);
-
-	--colorBase: hsl(0 0% 98%);
-	--colorBaseOpac80: hsl(0 0% 98% / .8);
-	--colorBaseTransparent: hsl(0 0% 98% / 0);
-	--colorBaseReddish: hsl(5 69% 82%);
-	--colorBaseOrangey: hsl(41 41% 71%);
-	--colorBaseYellowish: hsl(41 57% 80%);
-
-	--colorBack: hsl(231 4% 64%);
-	--colorBackOpac80: hsl(231 4% 64% / .8);
-	--colorDeep: hsl(255 0% 34%);
-
-	--colorFore: hsl(0 0% 100%);
-	--colorForeBrighter: hsl(0 0% 100%);
-
-	--colorLinkVisited: hsl(230, 100%, 66%); /* that didn't work */
-	/* &.t-variantDark{ */
-	@media (prefers-color-scheme: dark) {
-		--red:     hsl(355 65% 65%);
-		--orange:  hsl(29 54% 61%);
-		--yellow:  hsl(39 67% 69%);
-		--green:   hsl(95 38% 62%);
-		--cyan:    hsl(187 47% 55%);
-		--blue:    hsl(207 82% 66%);
-		--violet:  hsl(286 60% 67%);
-		--magenta: transparent;
-
-		--colorAccent: hsl(220 100% 66%);
-		--colorAccentBrighter: hsl(221 100% 86%);
-		--colorAccentBrighterOpac60: hsl(221 100% 86% / .6);
-
-		--colorText: hsl(220 9% 55%);
-		--colorTextOpac80: hsl(220 9% 55% / .8);
-		--colorTextOpac60: hsl(220 9% 55% / .6);
-		--colorTextOpac40: hsl(220 9% 55% / .4);
-		--colorTextOpac20: hsl(220 9% 55% / .2);
-		--colorTextOpac075: hsl(220 9% 55% / .075);
-
-		--colorTextBolder: hsl(219 14% 71%);
-		--colorTextBolderReddish: hsl(344 25% 67%);
-		--colorTextBolderOrangey: hsl(27 25% 66%);
-		--colorTextBolderYellowish: hsl(39 28% 70%);
-
-		--colorBase: hsl(220 13% 18%);
-		--colorBaseOpac80: hsl(220 13% 18% / .8);
-		--colorBaseTransparent: hsl(220 13% 18% / 0);
-		--colorBaseReddish: hsl(349 24% 36%);
-		--colorBaseOrangey: hsl(27 20% 35%);
-		--colorBaseYellowish: hsl(38 14% 33%);
-
-		--colorBack: hsl(216 13% 15%);
-		--colorBackOpac80: hsl(216 13% 15% / .8);
-		--colorDeep: hsl(0 0% 0%);
-
-		--colorFore: hsl(223 13% 21%);
-		--colorForeBrighter: hsl(220 13% 23%);
-
-		--colorLinkVisited: hsl(220 100% 66%); /* that didn't work */
-	}
-}
-:root.t-modRoot:where(.-colorSchemeMaterialV1){
-	/*TODO: Make sure it's accurate to the source: https://m1.material.io/style/color.html#color-color-palette*/
-/* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700'); */ /* --fontMain: "Roboto"; */
-	--red:     hsl(0 100% 66%);
-	--orange:  hsl(34 100% 50%);
-	--yellow:  hsl(47 100% 63%);
-	--green:   hsl(88 100% 67%);
-	--cyan:    hsl(180 100% 55%);
-	--blue:    hsl(199 100% 63%);
-	--violet:  hsl(291 96% 62%);
-	--magenta: hsl(340 100% 63%);
-
-	--colorAccent: var(--blue);
-	--colorAccentBrighter: hsl(198 100% 83%);
-	--colorAccentBrighterOpac60: hsl(198 100% 83% / .6);
-
-	--colorText: hsl(201 14% 68%);
-	--colorTextOpac80: hsl(201 14% 68% / .8);
-	--colorTextOpac60: hsl(201 14% 68% / .6);
-	--colorTextOpac40: hsl(201 14% 68% / .4);
-	--colorTextOpac20: hsl(201 14% 68% / .2);
-	--colorTextOpac075: hsl(201 14% 68% / .075);
-
-	--colorTextBolder: hsl(204 15% 94%);
-	--colorTextBolderReddish: hsl(359 76% 82%);
-	--colorTextBolderOrangey: hsl(34 87% 72%);
-	--colorTextBolderYellowish: hsl(48 84% 78%);
-
-	--colorBase: hsl(200 19% 18%);
-	--colorBaseOpac80: hsl(200 19% 18% / .8);
-	--colorBaseTransparent: hsl(200 19% 18% / 0);
-	--colorBaseReddish: hsl(357 33% 37%);
-	--colorBaseOrangey: hsl(36 57% 31%)
-	--colorBaseYellowish: hsl(55 28% 32%);
-
-	--colorBack: hsl(198 42% 11%);
-	--colorBackOpac80: hsl(198 42% 11% / .8);
-	--colorDeep: hsl(207 100% 4%);
-
-	--colorFore: hsl(200 19% 21%);
-	--colorForeBrighter: hsl(198 9% 23%);
-
-	--colorLinkVisited: rgb(66 195 254);
-}
-:root.t-modRoot:where(.-colorSchemeMonokai){
-	/* Note: Text color is too saturated, a few colors missing */
-	--red:     hsl(338 84% 56%);
-	--orange:  hsl(32 93% 55%);
-	--yellow:  hsl(55 67% 67%);
-	--green:   hsl(76 60% 51%);
-	/* --cyan :   transparent; */
-	--blue:    hsl(193 68% 67%);
-	--violet:  hsl(262 30% 62%);
-	/* --magenta: transparent; */
-
-	--colorAccent: var(--green);
-	--colorAccentBrighter: hsl(76 60% 71%);
-	--colorAccentBrighterOpac60: hsl(76 60% 71% / .6);
-
-	--colorText: hsl(50 11% 42%);
-	--colorTextOpac80: hsl(50 11% 42% / .8);
-	--colorTextOpac60: hsl(50 11% 42% / .6);
-	--colorTextOpac40: hsl(50 11% 42% / .4);
-	--colorTextOpac20: hsl(50 11% 42% / .2);
-	--colorTextOpac075: hsl(50 11% 42% / .075);
-
-	--colorTextBolder: hsl(49 23% 67%);
-	--colorTextBolderReddish: hsl(353 47% 66%);
-	--colorTextBolderOrangey: hsl(35 63% 62%);
-	--colorTextBolderYellowish: hsl(53 45% 68%);
-
-	--colorBase: hsl(70 8% 15%);
-	--colorBaseOpac80: hsl(70 8% 15% / .8);
-	--colorBaseTransparent: hsl(70 8% 15% / 0);
-	--colorBaseReddish: hsl(341 47% 32%);
-	--colorBaseOrangey: hsl(34 55% 31%);
-	--colorBaseYellowish: hsl(55 24% 30%);
-
-	--colorBack: hsl(72 8% 12%);
-	--colorBackOpac80: hsl(72 8% 12% / .8);
-	--colorDeep: hsl(0, 0% 0%);
-
-	--colorFore: hsl(70 6% 18%);
-	--colorForeBrighter: hsl(55 8% 26%);
-
-	--colorLinkVisited: hsl(76 80% 51%);
-}
-:root.t-modRoot:where(.-colorSchemeNightOwl){
-	--red:     hsl(1 83% 63%);
-	--orange:  hsl(14 90% 70%);
-	--yellow:  hsl(35 71% 74%);
-	--green:   hsl(84 62% 63%);
-	--cyan:    hsl(169 56% 68%);
-	--blue:    hsl(207 89% 68%);
-	--violet:  hsl(276 68% 75%);
-	--magenta: transparent;
-
-	--colorAccent: var(--blue);
-	--colorAccentBrighter: hsl(207 90% 88%);
-	--colorAccentBrighterOpac60: hsl(207 90% 88% / .6);
-
-	--colorText: hsl(217 34% 88%);
-	--colorTextOpac80: hsl(217 34% 88% / .8);
-	--colorTextOpac60: hsl(217 34% 88% / .6);
-	--colorTextOpac40: hsl(217 34% 88% / .4);
-	--colorTextOpac20: hsl(217 34% 88% / .2);
-	--colorTextOpac075: hsl(217 34% 88% / .075);
-
-	--colorTextBolder: hsl(0 0% 100%);
-	--colorTextBolderReddish: hsl(1 84% 85%);
-	--colorTextBolderOrangey: hsl(14 90% 85%);
-	--colorTextBolderYellowish: hsl(35 73% 87%);
-
-	--colorBase: hsl(207 95% 8%);
-	--colorBaseOpac80: hsl(207 95% 8% / .8);
-	--colorBaseTransparent: hsl(207 95% 8% / 0);
-	--colorBaseReddish: hsl(349 35% 28%);
-	--colorBaseOrangey: hsl(4 19% 33%);
-	--colorBaseYellowish: hsl(90 3% 28%);
-
-	--colorBack: hsl(208 90% 4%);
-	--colorBackOpac80: hsl(208 90% 4% / .8);
-	--colorDeep: hsl(0 0% 0%);
-
-	--colorFore: hsl(207 68% 14%);
-	--colorForeBrighter: hsl(206 57% 16%);
-
-	--colorLinkVisited: hsl(207 100% 68%);
-}
-:root.t-modRoot:where(.-colorSchemeNova){
-	--red:     hsl(0 56% 71%);
-	--orange:  hsl(32 79% 75%);
-	--yellow:  hsl(60 49% 72%);
-	--green:   hsl(99 38% 69%);
-	--cyan:    hsl(187 41% 65%);
-	--blue:    hsl(213 65% 71%);
-	--violet:  hsl(245 57% 73%);
-	--magenta: hsl(313 42% 69%);
-
-	--colorAccent: var(--cyan);
-	--colorAccentBrighter: hsl(187 42% 85%);
-	--colorAccentBrighterOpac60: hsl(187 42% 85% / .6);
-
-	--colorText: hsl(203 14% 59%);
-	--colorTextOpac80: hsl(203 14% 59% / .8);
-	--colorTextOpac60: hsl(203 14% 59% / .6);
-	--colorTextOpac40: hsl(203 14% 59% / .4);
-	--colorTextOpac20: hsl(203 14% 59% / .2);
-	--colorTextOpac075: hsl(203 14% 59% / .075);
-
-	--colorTextBolder: hsl(202 26% 82%);
-	--colorTextBolderReddish: hsl(345 20% 76%);
-	--colorTextBolderOrangey: hsl(35 35% 79%);
-	--colorTextBolderYellowish: hsl(74 28% 78%);
-
-	--colorBase: hsl(202 17% 28%);
-	--colorBaseOpac80: hsl(202 17% 28% / .8);
-	--colorBaseTransparent: hsl(202 17% 28% / 0);
-	--colorBaseReddish: hsl(347 10% 45%);
-	--colorBaseOrangey: hsl(38 10% 47%);
-	--colorBaseYellowish: hsl(108 7% 44%);
-
-	--colorBack: hsl(200 17% 20%);
-	--colorBackOpac80: hsl(200 17% 20% / .8);
-	--colorDeep: hsl(201 19% 15%);
-
-	--colorFore: hsl(201 18% 32%);
-	--colorForeBrighter: hsl(202 17% 36%);
-
-	--colorLinkVisited: hsl(187 61% 65%);
-}
-:root.t-modRoot:where(.-colorSchemeSeti){
-	--red:     hsl(357 58% 52%);
-	--orange:  hsl(24 76% 55%);
-	--yellow:  hsl(60 57% 53%);
-	--green:   hsl(86 49% 52%);
-	--cyan:    hsl(199 20% 55%);
-	--blue:    hsl(198 43% 52%);
-	--violet:  hsl(273 40% 61%);
-	--magenta: hsl(341 89% 64%);
-
-	--colorAccent: var(--blue);
-	--colorAccentBrighter: hsl(199 43% 72%);
-	--colorAccentBrighterOpac60: hsl(199 43% 72% / .6);
-
-	--colorText: hsl(194 10% 48%);
-	--colorTextOpac80: hsl(194 10% 48% / .8);
-	--colorTextOpac60: hsl(194 10% 48% / .6);
-	--colorTextOpac40: hsl(194 10% 48% / .4);
-	--colorTextOpac20: hsl(194 10% 48% / .2);
-	--colorTextOpac075: hsl(194 10% 48% / .075);
-
-	--colorTextBolder: hsl(160 4% 84%);
-	--colorTextBolderReddish: hsl(358 37% 71%);
-	--colorTextBolderOrangey: hsl(24 55% 69%);
-	--colorTextBolderYellowish: hsl(61 43% 68%);
-
-	--colorBase: hsl(206 10% 14%);
-	--colorBaseOpac80: hsl(206 10% 14% / .8);
-	--colorBaseTransparent: hsl(206 10% 14% / 0);
-	--colorBaseReddish: hsl(356 37% 29%);
-	--colorBaseOrangey: hsl(24 43% 30%);
-	--colorBaseYellowish: hsl(63 30% 26%);
-
-	--colorBack: hsl(195 13% 6%);
-	--colorBackOpac80: hsl(195 13% 6% / .8);
-	--colorDeep: hsl(210 18% 4%);
-
-	--colorFore: hsl(202 10% 16%);
-	--colorForeBrighter: hsl(204 11% 18%);
-
-	--colorLinkVisited: hsl(198 63% 52%);
-}
-:root.t-modRoot:where(.-colorSchemeTomorrow){
-	--red:     hsl(360 67% 47%);
-	--orange:  hsl(29 91% 54%);
-	--yellow:  hsl(47 100% 46%);
-	--green:   hsl(72 100% 27%);
-	--cyan:    hsl(184 44% 43%);
-	--blue:    hsl(214 45% 47%);
-	--violet:  hsl(276 31% 50%);
-	/* --magenta: transparent; */
-	/* --magenta: inherit; */
-
-	--colorAccent: var(--cyan);
-	--colorAccentBrighter: hsl(184 44% 63%);
-	--colorAccentBrighterOpac60: hsl(184 44% 64% / .6);
-
-	--colorText: hsl(60 1% 30%);
-	--colorTextOpac80: hsl(60 1% 30% / .8);
-	--colorTextOpac60: hsl(60 1% 30% / .6);
-	--colorTextOpac40: hsl(60 1% 30% / .4);
-	--colorTextOpac20: hsl(60 1% 30% / .2);
-	--colorTextOpac075: hsl(60 1% 30% / .075);
-
-	--colorTextBolder: hsl(220 7% 17%);
-	--colorTextBolderReddish: hsl(357 43% 28%);
-	--colorTextBolderOrangey: hsl(29 57% 36%);
-	--colorTextBolderYellowish: hsl(47 71% 31%);
-
-	--colorBase: hsl(0 0% 94%);
-	--colorBaseOpac80: hsl(0 0% 94% / .8);
-	--colorBaseTransparent: hsl(0 0% 94% / 0);
-	--colorBaseReddish: hsl(359 50% 75%);
-	--colorBaseOrangey: hsl(29 75% 78%);
-	--colorBaseYellowish: hsl(46 68% 79%);
-
-	--colorBack: hsl(140 3% 78%);
-	--colorBackOpac80: hsl(140 3% 78% / .8);
-	--colorDeep: hsl(90 2% 56%);
-
-	--colorFore: hsl(0 0% 97%);
-	--colorForeBrighter: hsl(0 0% 99%);
-
-	--colorLinkVisited: hsl(184 64% 43%);
-	/* &.t-variantDark { */
-	@media (prefers-color-scheme: dark) {
-		--red:     hsl(0 50% 60%);
-		--orange:  hsl(25 66% 62%);
-		--yellow:  hsl(40 81% 70%);
-		--green:   hsl(66 39% 57%);
-		--cyan:    hsl(172 29% 64%);
-		--blue:    hsl(208 32% 63%);
-		--violet:  hsl(286 22% 66%);
-		/* --magenta: transparent; */
-		/* --magenta: inherit; */
-
-		--colorAccent: var(--cyan);
-		--colorAccentBrighter: hsl(172 27% 84%);
-		--colorAccentBrighterOpac60: hsl(172 27% 84% / .6);
-
-		--colorText: hsl(120 1% 59%);
-		--colorTextOpac80: hsl(120 1% 59% / .8);
-		--colorTextOpac60: hsl(120 1% 59% / .6);
-		--colorTextOpac40: hsl(120 1% 59% / .4);
-		--colorTextOpac20: hsl(120 1% 59% / .2);
-		--colorTextOpac075: hsl(120 1% 59% / .075);
-
-		--colorTextBolder: hsl(140 3% 78%);
-		--colorTextBolderReddish: hsl(1 27% 71%);
-		--colorTextBolderOrangey: hsl(26 41% 70%);
-		--colorTextBolderYellowish: hsl(41 46% 74%);
-
-		--colorBase: hsl(220 7% 17%);
-		--colorBaseOpac80: hsl(220 7% 17% / .8);
-		--colorBaseTransparent: hsl(220 7% 17% / 0);
-		--colorBaseReddish: hsl(357 23% 34%);
-		--colorBaseOrangey: hsl(23 26% 35%);
-		--colorBaseYellowish: hsl(40 20% 33%);
-
-		--colorBack: hsl(210 6% 12%);
-		--colorBackOpac80: hsl(210 6% 12% / .8);
-		--colorDeep: hsl(0 0% 0%);
-
-		--colorFore: hsl(223 7% 20%);
-		--colorForeBrighter: hsl(225 7% 22%);
-
-		--colorLinkVisited: hsl(172 48% 64%);
-	}
+		--colorFront: hsl(0 0% 15%);
+		--colorFrontmost: hsl(0 0% 17%);
+	/* } */
 }
 
-:root.t-modRoot:where(.-colorSchemeGruvbox){
-	--red:    hsl(2 75% 46%);
-	--orange: hsl(24 88% 45%);
-	--yellow: hsl(40 73% 49%);
-	--green:  hsl(60 71% 35%);
-	--cyan:	  hsl(104 35% 62%); /* aqua */
-	--blue:   hsl(183 33% 40%);
-	--violet: hsl(333 34% 54%); /* purple */
-	/* TODO: Fill blanks: find something for magenta or consider removing all of them */
-	/* --magenta:hsl(9 64% 52%); */
+/*
+ * Light Color Schemes
+ */
+.t-color[data-theme=light]{
+&:where(.-schemeLightAtelierCave) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
 
-	--colorAccent: var(--blue);
-	--colorAccentBrighter: hsl(190 89% 25%);
-	--colorAccentBrighterOpac60: hsl(190 89% 25% / .6);
-
-	--colorText: hsl(20 5% 22%);
-	--colorTextOpac80: hsl(20 5% 22% / .8);
-	--colorTextOpac60: hsl(20 5% 22% / .6);
-	--colorTextOpac40: hsl(20 5% 22% / .4);
-	--colorTextOpac20: hsl(20 5% 22% / .2);
-	--colorTextOpac075: hsl(20 5% 22% / .05);
-
-	--colorTextBolder: hsl(0 0% 16%);
-	/* TODO: Fill blanks */
-	/* --colorTextBolderReddish: hsl(351 29% 28%); */
-	/* --colorTextBolderOrangey: hsl(21 41% 29%); */
-	/* --colorTextBolderYellowish: hsl(60 49% 25%); */
-
-	--colorBase: hsl(48 87% 88%); /* bg */
-	--colorBaseOpac80: hsl(48 87% 88% / .8); /* bg */
-	--colorBaseTransparent: hsl(43 59% 81% / 0);
-	/* TODO: Fill blanks */
-	/* --colorBaseReddish: hsl(9 63% 74%); */
-	/* --colorBaseOrangey: hsl(23 58% 70%); */
-	/* --colorBaseYellowish: hsl(45 51% 72%); */
-
-	--colorBack: hsl(40 38% 73%); /*bg2*/
-	--colorBackOpac80: hsl(40 38% 73% / .8);
-	--colorDeep: hsl(30 12% 51%); /*gray*/
-
-	--colorFore: hsl(53 74% 91%); /*bg0_h*/
-	--colorForeBrighter: hsl(53 74% 91%);
-
-	/* TODO: Fill blanks: Find a color for visited link */
-	/* --colorLinkVisited: hsl(183 33% 40%); */
-	--colorLinkVisited: #8da4a6; /* Brighter and desaturated */
-	--colorLinkDead: var(--red);
-	--colorLinkActive: var(--colorAccentBrighter);
-	/* &.t-variantDark{ */
-	@media (prefers-color-scheme: dark) {
-		--colorAccentBrighter: hsl(157 16% 58%); /* for blue */
-		--colorAccentBrighterOpac60: hsl(157 16% 58% / .6); /* for blue */
-
-		--colorText: hsl(43 59% 81%);
-		--colorTextOpac80: hsl(43 59% 81% / .8);
-		--colorTextOpac60: hsl(43 59% 81% / .6);
-		--colorTextOpac40: hsl(43 59% 81% / .4);
-		--colorTextOpac20: hsl(43 59% 81% / .2);
-		--colorTextOpac075: hsl(43 59% 81% / .075);
-
-		--colorTextBolder: hsl(43 59% 88%);
-		/* TODO: Fill blanks: Different hues for textcolor */
-		/* --colorTextBolderReddish: hsl(351 29% 28%); */
-		/* --colorTextBolderOrangey: hsl(21 41% 29%); */
-		/* --colorTextBolderYellowish: hsl(60 49% 25%); */
-
-		--colorBase: hsl(0 0% 16%);
-		--colorBaseOpac80: hsl(0 0% 16% / .8);
-		--colorBaseTransparent: hsl(0 0% 16% / 0);
-		/* TODO: Fill blanks: Different hues for basecolor */
-		/* --colorBaseReddish: hsl(9 63% 74%); */
-		/* --colorBaseOrangey: hsl(23 58% 70%); */
-		/* --colorBaseYellowish: hsl(45 51% 72%); */
-
-		--colorBack: hsl(195 6% 5%); /* --colorBack: color-mod(var(--colorBase) l(-10%)); */
-		--colorBackOpac80: hsl(195 6% 5% / .8);
-		--colorDeep: hsl(195 6% 5%);
-
-		--colorFore: hsl(20 5% 22%); /* bg2 */
-		--colorForeBrighter: hsl(22 7% 29%); /* bg4 */
-
-		/* TODO: Fill blanks: Little darker version of accent blue */
-		/* --colorLinkVisited: hsl(183 33% 40%); */
-		--colorLinkVisited: #557375;/* Darker and desaturated */
-		--colorLinkDead: var(--red);
-		--colorLinkActive: var(--colorAccentBrighter);
-	}
+--colorBaseVal:239 236 244;
+--colorFront:rgb(247 245 249);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(226 223 231);
+--colorBackmost:rgb(196 193 202);
+--colorTextVal:88 82 96;
+--red:rgb(190 70 120);
+--orange:rgb(170 87 60);
+--yellow:rgb(160 110 59);
+--green:rgb(42 146 146);
+--cyan:rgb(57 139 198);
+--blue:rgb(87 109 219);
+--hue01:rgb(149 90 231);
+--hue02:rgb(191 64 191);
 }
+&:where(.-schemeLightAtelierDune) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:254 251 236;
+--colorFront:rgb(255 253 245);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(232 228 207);
+--colorBackmost:rgb(210 206 184);
+--colorTextVal:110 107 94;
+--red:rgb(215 55 55);
+--orange:rgb(182 86 17);
+--yellow:rgb(174 149 19);
+--green:rgb(96 172 57);
+--cyan:rgb(31 173 131);
+--blue:rgb(102 132 225);
+--hue01:rgb(184 84 212);
+--hue02:rgb(212 53 82);
+}
+&:where(.-schemeLightAtelierForest) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:241 239 238;
+--colorFront:rgb(248 247 246);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(230 226 224);
+--colorBackmost:rgb(209 204 202);
+--colorTextVal:104 97 94;
+--red:rgb(242 44 64);
+--orange:rgb(223 83 32);
+--yellow:rgb(195 132 24);
+--green:rgb(123 151 38);
+--cyan:rgb(61 151 184);
+--blue:rgb(64 126 231);
+--hue01:rgb(102 102 234);
+--hue02:rgb(195 63 243);
+}
+&:where(.-schemeLightAtelierHeath) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:247 243 247;
+--colorFront:rgb(251 249 251);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(231 222 231);
+--colorBackmost:rgb(216 202 216);
+--colorTextVal:105 93 105;
+--red:rgb(202 64 43);
+--orange:rgb(166 89 38);
+--yellow:rgb(187 138 53);
+--green:rgb(145 139 59);
+--cyan:rgb(21 147 147);
+--blue:rgb(81 106 236);
+--hue01:rgb(123 89 192);
+--hue02:rgb(204 51 204);
+}
+&:where(.-schemeLightAtelierLakeside) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:235 248 255;
+--colorFront:rgb(245 251 255);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(214 238 251);
+--colorBackmost:rgb(193 228 246);
+--colorTextVal:81 109 123;
+--red:rgb(210 45 114);
+--orange:rgb(147 92 37);
+--yellow:rgb(138 138 15);
+--green:rgb(86 140 59);
+--cyan:rgb(45 143 111);
+--blue:rgb(37 127 173);
+--hue01:rgb(107 107 184);
+--hue02:rgb(183 45 210);
+}
+&:where(.-schemeLightAtelierPlateau) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:244 236 236;
+--colorBack:rgb(231 223 223);
+--colorBackmost:rgb(212 204 204);
+--colorTextVal:88 80 80;
+--red:rgb(202 73 73);
+--orange:rgb(180 90 60);
+--yellow:rgb(160 110 59);
+--green:rgb(75 139 139);
+--cyan:rgb(84 133 182);
+--blue:rgb(114 114 202);
+--hue01:rgb(132 100 196);
+--hue02:rgb(189 81 135);
+}
+&:where(.-schemeLightAtelierSeaside) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:244 251 244;
+--colorFront:rgb(245 251 255);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(225 242 225);
+--colorBackmost:rgb(207 232 207);
+--colorTextVal:94 110 94;
+--red:rgb(230 25 60);
+--orange:rgb(135 113 29);
+--yellow:rgb(152 152 27);
+--green:rgb(41 163 41);
+--cyan:rgb(25 153 179);
+--blue:rgb(61 98 245);
+--hue01:rgb(173 43 238);
+--hue02:rgb(230 25 195);
+}
+&:where(.-schemeLightAtelierSulphurpool) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:245 247 255;
+--colorFront:rgb(250 251 255);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(223 226 241);
+--colorBackmost:rgb(199 202 220);
+--colorTextVal:94 102 135;
+--red:rgb(201 73 34);
+--orange:rgb(199 107 41);
+--yellow:rgb(192 139 48);
+--green:rgb(172 151 57);
+--cyan:rgb(34 162 201);
+--blue:rgb(61 143 209);
+--hue01:rgb(102 121 204);
+--hue02:rgb(156 99 122);
+}
+&:where(.-schemeLightAtomOne) {
+/* Daniel Pfeifer (http://github.com/purpleKarrot) */
+
+--colorBaseVal:245 245 246;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(240 240 241);
+--colorBackmost:rgb(229 229 230);
+--colorTextVal:56 58 66;
+--red:rgb(202 18 67);
+--orange:rgb(215 95 0);
+--yellow:rgb(193 132 1);
+--green:rgb(80 161 79);
+--cyan:rgb(1 132 188);
+--blue:rgb(64 120 242);
+--hue01:rgb(166 38 164);
+--hue02:rgb(152 104 1);
+}
+&:where(.-schemeLightAyu) {
+/* Khue Nguyen */
+
+--colorBaseVal:243 244 245;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(225 227 229);
+--colorBackmost:rgb(206 209 213);
+--colorTextVal:92 103 115;
+--red:rgb(240 113 120);
+--orange:rgb(250 141 62);
+--yellow:rgb(242 174 73);
+--green:rgb(134 179 0);
+--cyan:rgb(76 191 153);
+--blue:rgb(54 163 217);
+--hue01:rgb(163 122 204);
+--hue02:rgb(230 186 126);
+}
+&:where(.-schemeLightBrushtrees) {
+/* Abraham White */
+
+--colorBaseVal:227 239 239;
+--colorFront:rgb(241 247 247);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(201 219 220);
+--colorBackmost:rgb(176 197 200);
+--colorTextVal:109 130 142;
+--red:rgb(179 134 134);
+--orange:rgb(216 187 162);
+--yellow:rgb(170 179 134);
+--green:rgb(135 179 134);
+--cyan:rgb(134 179 179);
+--blue:rgb(134 140 179);
+--hue01:rgb(179 134 178);
+--hue02:rgb(179 159 159);
+}
+&:where(.-schemeLightCatppuccinLatte) {
+/* https://github.com/catppuccin/catppuccin */
+
+--colorBaseVal:239 241 245;
+--colorFront:rgb(247 248 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(213 216 224);
+--colorBackmost:rgb(188 192 204);
+--colorTextVal:76 79 105;
+--red:rgb(210 15 57);
+--orange:rgb(254 100 11);
+--yellow:rgb(223 142 29);
+--green:rgb(64 160 43);
+--cyan:rgb(23 146 153);
+--blue:rgb(30 102 245);
+--hue01:rgb(136 57 239);
+--hue02:rgb(221 120 120);
+}
+&:where(.-schemeLightCupcake) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:251 241 242;
+--colorFront:rgb(253 248 248);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(216 213 221);
+--colorBackmost:rgb(191 185 198);
+--colorTextVal:165 157 175;
+--red:rgb(213 126 133);
+--orange:rgb(235 183 144);
+--yellow:rgb(220 177 108);
+--green:rgb(163 179 103);
+--cyan:rgb(105 169 167);
+--blue:rgb(114 151 185);
+--hue01:rgb(187 153 180);
+--hue02:rgb(186 165 140);
+}
+&:where(.-schemeLightDaOnePaper) {
+/* NNB (https://github.com/NNBnh) */
+
+--colorBaseVal:250 240 220;
+--colorFront:rgb(252 245 232);
+--colorFrontmost:rgb(254 250 243);
+--colorBack:rgb(225 220 210);
+--colorBackmost:rgb(200 200 200);
+--colorTextVal:24 24 24;
+--red:rgb(222 93 110);
+--orange:rgb(255 148 112);
+--yellow:rgb(179 104 79);
+--green:rgb(118 168 93);
+--cyan:rgb(100 181 167);
+--blue:rgb(88 144 248);
+--hue01:rgb(193 115 209);
+--hue02:rgb(179 104 79);
+}
+&:where(.-schemeLightDefault) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:248 248 248;
+--colorFront:rgb(251 251 251);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(232 232 232);
+--colorBackmost:rgb(216 216 216);
+--colorTextVal:56 56 56;
+--red:rgb(171 70 66);
+--orange:rgb(220 150 86);
+--yellow:rgb(247 202 136);
+--green:rgb(161 181 108);
+--cyan:rgb(134 193 185);
+--blue:rgb(124 175 194);
+--hue01:rgb(186 139 175);
+--hue02:rgb(161 105 70);
+}
+&:where(.-schemeLightEverforest) {
+/* Sainnhe Park (https://github.com/sainnhe) */
+
+--colorBaseVal:253 246 227;
+--colorFront:rgb(254 250 241);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(230 226 204);
+--colorBackmost:rgb(189 195 175);
+--colorTextVal:92 106 114;
+--red:rgb(248 85 82);
+--orange:rgb(245 125 38);
+--yellow:rgb(223 160 0);
+--green:rgb(141 161 1);
+--cyan:rgb(53 167 124);
+--blue:rgb(58 148 197);
+--hue01:rgb(223 105 186);
+--hue02:rgb(234 237 200);
+}
+&:where(.-schemeLightGruvboxMaterialMedium) {
+/* Mayush Kumar (https://github.com/MayushKumar) */
+
+--colorBaseVal:251 241 199;
+--colorFront:rgb(253 246 218);
+--colorFrontmost:rgb(254 250 236);
+--colorBack:rgb(242 229 188);
+--colorBackmost:rgb(213 196 161);
+--colorTextVal:101 71 53;
+--red:rgb(193 74 74);
+--orange:rgb(195 94 10);
+--yellow:rgb(180 113 9);
+--green:rgb(108 120 46);
+--cyan:rgb(76 122 93);
+--blue:rgb(69 112 122);
+--hue01:rgb(148 94 128);
+--hue02:rgb(231 138 78);
+}
+&:where(.-schemeLightGruvboxMedium) {
+/* Dawid Kurek, morhetz (https://github.com/morhetz/gruvbox) */
+
+--colorBaseVal:251 241 199;
+--colorFront:rgb(253 246 218);
+--colorFrontmost:rgb(254 250 236);
+--colorBack:rgb(235 219 178);
+--colorBackmost:rgb(213 196 161);
+--colorTextVal:80 73 69;
+--red:rgb(157 0 6);
+--orange:rgb(175 58 3);
+--yellow:rgb(181 118 20);
+--green:rgb(121 116 14);
+--cyan:rgb(66 123 88);
+--blue:rgb(7 102 120);
+--hue01:rgb(143 63 113);
+--hue02:rgb(214 93 14);
+}
+&:where(.-schemeLightHarmonic16) {
+/* Jannik Siebert (https://github.com/janniks) */
+
+--colorBaseVal:247 249 251;
+--colorFront:rgb(251 252 253);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(229 235 241);
+--colorBackmost:rgb(203 214 226);
+--colorTextVal:64 92 121;
+--red:rgb(191 86 86);
+--orange:rgb(191 139 86);
+--yellow:rgb(191 191 86);
+--green:rgb(139 191 86);
+--cyan:rgb(86 191 139);
+--blue:rgb(86 139 191);
+--hue01:rgb(139 86 191);
+--hue02:rgb(191 86 139);
+}
+&:where(.-schemeLightHumanoid) {
+/* Thomas (tasmo) Friese */
+
+--colorBaseVal:248 248 242;
+--colorFront:rgb(252 251 248);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(239 239 233);
+--colorBackmost:rgb(222 222 216);
+--colorTextVal:35 38 41;
+--red:rgb(176 21 26);
+--orange:rgb(255 61 0);
+--yellow:rgb(255 182 39);
+--green:rgb(56 142 60);
+--cyan:rgb(0 142 142);
+--blue:rgb(0 130 201);
+--hue01:rgb(112 15 152);
+--hue02:rgb(178 119 1);
+}
+&:where(.-schemeLightIa) {
+/* iA Inc. (modified by aramisgithub) */
+
+--colorBaseVal:246 246 246;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(222 222 222);
+--colorBackmost:rgb(193 193 193);
+--colorTextVal:24 24 24;
+--red:rgb(196 62 24);
+--orange:rgb(156 90 2);
+--yellow:rgb(196 130 24);
+--green:rgb(56 120 28);
+--cyan:rgb(45 107 177);
+--blue:rgb(72 186 194);
+--hue01:rgb(169 69 152);
+--hue02:rgb(139 108 55);
+}
+&:where(.-schemeLightLightOwl) {
+/* Sarah Drasner */
+
+--colorBaseVal:246 246 246;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(235 235 235);
+--colorBackmost:rgb(224 224 224);
+--colorTextVal:64 63 83;
+--red:rgb(222 61 59);
+--orange:rgb(222 122 44);
+--yellow:rgb(218 170 1);
+--green:rgb(8 145 106);
+--cyan:rgb(42 162 152);
+--blue:rgb(40 142 215);
+--hue01:rgb(214 67 138);
+--hue02:rgb(150 150 150);
+}
+&:where(.-schemeLightMaterialLighter) {
+/* Nate Peterson */
+
+--colorBaseVal:240 242 243;
+--colorFront:rgb(247 248 249);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(231 234 236);
+--colorBackmost:rgb(199 205 216);
+--colorTextVal:135 150 176;
+--red:rgb(255 83 112);
+--orange:rgb(247 109 71);
+--yellow:rgb(255 182 44);
+--green:rgb(145 184 89);
+--cyan:rgb(57 173 181);
+--blue:rgb(97 130 184);
+--hue01:rgb(124 77 255);
+--hue02:rgb(229 57 53);
+}
+&:where(.-schemeLightSagelight) {
+/* Carter Veldhuizen */
+
+--colorBaseVal:240 240 240;
+--colorFront:rgb(247 248 249);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(232 232 232);
+--colorBackmost:rgb(216 216 216);
+--colorTextVal:56 56 56;
+--red:rgb(250 132 128);
+--orange:rgb(255 170 97);
+--yellow:rgb(255 220 97);
+--green:rgb(160 210 200);
+--cyan:rgb(162 214 245);
+--blue:rgb(160 167 210);
+--hue01:rgb(200 160 210);
+--hue02:rgb(210 178 160);
+}
+&:where(.-schemeLightSakura) {
+/* Misterio77 (http://github.com/Misterio77) */
+
+--colorBaseVal:254 237 243;
+--colorFront:rgb(255 246 249);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(248 226 231);
+--colorBackmost:rgb(224 204 209);
+--colorTextVal:86 68 72;
+--red:rgb(223 45 82);
+--orange:rgb(246 102 30);
+--yellow:rgb(194 148 97);
+--green:rgb(46 145 109);
+--cyan:rgb(29 137 145);
+--blue:rgb(0 110 147);
+--hue01:rgb(94 33 128);
+--hue02:rgb(186 13 53);
+}
+&:where(.-schemeLightSelenizedWhite) {
+/* Jan Warchol (https://github.com/jan-warchol/selenized) */
+
+--colorBaseVal:248 248 248;
+--colorFront:rgb(252 252 252);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(235 235 235);
+--colorBackmost:rgb(205 205 205);
+--colorTextVal:71 71 71;
+--red:rgb(191 0 0);
+--orange:rgb(186 55 0);
+--yellow:rgb(175 133 0);
+--green:rgb(0 132 0);
+--cyan:rgb(0 154 138);
+--blue:rgb(0 84 207);
+--hue01:rgb(107 64 195);
+--hue02:rgb(221 15 157);
+}
+&:where(.-schemeLightSelenized) {
+/* Jan Warchol (https://github.com/jan-warchol/selenized) / adapted to base16 by ali */
+
+--colorBaseVal:251 243 219;
+--colorFront:rgb(253 247 231);
+--colorFrontmost:rgb(254 251 243);
+--colorBack:rgb(236 227 204);
+--colorBackmost:rgb(213 205 182);
+--colorTextVal:83 103 109;
+--red:rgb(204 23 41);
+--orange:rgb(188 88 25);
+--yellow:rgb(167 131 0);
+--green:rgb(66 139 0);
+--cyan:rgb(0 151 138);
+--blue:rgb(0 109 206);
+--hue01:rgb(130 93 192);
+--hue02:rgb(196 67 146);
+}
+&:where(.-schemeLightSolarized) {
+/* Ethan Schoonover (modified by aramisgithub) */
+
+--colorBaseVal:253 246 227;
+--colorFront:rgb(254 250 241);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(238 232 213);
+--colorBackmost:rgb(215 214 200);
+--colorTextVal:88 110 117;
+--red:rgb(220 50 47);
+--orange:rgb(203 75 22);
+--yellow:rgb(181 137 0);
+--green:rgb(133 153 0);
+--cyan:rgb(42 161 152);
+--blue:rgb(38 139 210);
+--hue01:rgb(108 113 196);
+--hue02:rgb(211 54 130);
+}
+&:where(.-schemeLightStandardized) {
+/* ali (https://github.com/ali-githb/base16-standardized-scheme) */
+
+--colorBaseVal:244 244 244;
+--colorFront:rgb(249 249 249);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(238 238 238);
+--colorBackmost:rgb(204 204 204);
+--colorTextVal:68 68 68;
+--red:rgb(208 62 62);
+--orange:rgb(215 105 29);
+--yellow:rgb(173 130 0);
+--green:rgb(49 134 31);
+--cyan:rgb(0 153 143);
+--blue:rgb(49 115 197);
+--hue01:rgb(158 87 194);
+--hue02:rgb(137 80 37);
+}
+&:where(.-schemeLightSummerfruit) {
+/* Christopher Corley (http://christop.club/) */
+
+--colorBaseVal:245 245 245;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(224 224 224);
+--colorBackmost:rgb(208 208 208);
+--colorTextVal:16 16 16;
+--red:rgb(255 0 134);
+--orange:rgb(253 137 0);
+--yellow:rgb(171 168 0);
+--green:rgb(0 201 24);
+--cyan:rgb(31 170 170);
+--blue:rgb(55 119 230);
+--hue01:rgb(173 0 161);
+--hue02:rgb(204 102 51);
+}
+&:where(.-schemeLightTokyoNight) {
+/* enkia */
+
+--colorBaseVal:213 214 219;
+--colorFront:rgb(227 228 231);
+--colorFrontmost:rgb(241 241 243);
+--colorBack:rgb(181 183 191);
+--colorBackmost:rgb(150 153 163);
+--colorTextVal:52 59 88;
+--red:rgb(140 67 81);
+--orange:rgb(150 80 39);
+--yellow:rgb(143 94 21);
+--green:rgb(72 94 48);
+--cyan:rgb(22 103 117);
+--blue:rgb(52 84 138);
+--hue01:rgb(90 74 120);
+--hue02:rgb(99 79 48);
+}
+&:where(.-schemeLightTomorrow) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:245 245 245;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(224 224 224);
+--colorBackmost:rgb(214 214 214);
+--colorTextVal:77 77 76;
+--red:rgb(200 40 41);
+--orange:rgb(245 135 31);
+--yellow:rgb(234 183 0);
+--green:rgb(113 140 0);
+--cyan:rgb(62 153 159);
+--blue:rgb(66 113 174);
+--hue01:rgb(137 89 168);
+--hue02:rgb(163 104 90);
+}
+&:where(.-schemeLightUnikitty) {
+/* Josh W Lewis (@joshwlewis) */
+
+--colorBaseVal:240 240 240;
+--colorFront:rgb(245 245 245);
+--colorFrontmost:rgb(250 250 250);
+--colorBack:rgb(225 225 226);
+--colorBackmost:rgb(196 195 197);
+--colorTextVal:108 105 110;
+--red:rgb(216 19 127);
+--orange:rgb(214 84 7);
+--yellow:rgb(220 138 14);
+--green:rgb(23 173 152);
+--cyan:rgb(20 155 218);
+--blue:rgb(119 93 255);
+--hue01:rgb(170 23 230);
+--hue02:rgb(224 19 208);
+}
+
+}
+
+/*
+ * Light Color Schemes
+ */
+.t-color[data-theme=light]{
+&:where(.-schemeLightAtelierCave) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:239 236 244;
+--colorFront:rgb(247 245 249);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(226 223 231);
+--colorBackmost:rgb(196 193 202);
+--colorTextVal:88 82 96;
+--red:rgb(190 70 120);
+--orange:rgb(170 87 60);
+--yellow:rgb(160 110 59);
+--green:rgb(42 146 146);
+--cyan:rgb(57 139 198);
+--blue:rgb(87 109 219);
+--hue01:rgb(149 90 231);
+--hue02:rgb(191 64 191);
+}
+&:where(.-schemeLightAtelierDune) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:254 251 236;
+--colorFront:rgb(255 253 245);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(232 228 207);
+--colorBackmost:rgb(210 206 184);
+--colorTextVal:110 107 94;
+--red:rgb(215 55 55);
+--orange:rgb(182 86 17);
+--yellow:rgb(174 149 19);
+--green:rgb(96 172 57);
+--cyan:rgb(31 173 131);
+--blue:rgb(102 132 225);
+--hue01:rgb(184 84 212);
+--hue02:rgb(212 53 82);
+}
+&:where(.-schemeLightAtelierForest) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:241 239 238;
+--colorFront:rgb(248 247 246);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(230 226 224);
+--colorBackmost:rgb(209 204 202);
+--colorTextVal:104 97 94;
+--red:rgb(242 44 64);
+--orange:rgb(223 83 32);
+--yellow:rgb(195 132 24);
+--green:rgb(123 151 38);
+--cyan:rgb(61 151 184);
+--blue:rgb(64 126 231);
+--hue01:rgb(102 102 234);
+--hue02:rgb(195 63 243);
+}
+&:where(.-schemeLightAtelierHeath) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:247 243 247;
+--colorFront:rgb(251 249 251);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(231 222 231);
+--colorBackmost:rgb(216 202 216);
+--colorTextVal:105 93 105;
+--red:rgb(202 64 43);
+--orange:rgb(166 89 38);
+--yellow:rgb(187 138 53);
+--green:rgb(145 139 59);
+--cyan:rgb(21 147 147);
+--blue:rgb(81 106 236);
+--hue01:rgb(123 89 192);
+--hue02:rgb(204 51 204);
+}
+&:where(.-schemeLightAtelierLakeside) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:235 248 255;
+--colorFront:rgb(245 251 255);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(214 238 251);
+--colorBackmost:rgb(193 228 246);
+--colorTextVal:81 109 123;
+--red:rgb(210 45 114);
+--orange:rgb(147 92 37);
+--yellow:rgb(138 138 15);
+--green:rgb(86 140 59);
+--cyan:rgb(45 143 111);
+--blue:rgb(37 127 173);
+--hue01:rgb(107 107 184);
+--hue02:rgb(183 45 210);
+}
+&:where(.-schemeLightAtelierPlateau) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:244 236 236;
+--colorFront:rgb(250 245 245);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(231 223 223);
+--colorBackmost:rgb(212 204 204);
+--colorTextVal:88 80 80;
+--red:rgb(202 73 73);
+--orange:rgb(180 90 60);
+--yellow:rgb(160 110 59);
+--green:rgb(75 139 139);
+--cyan:rgb(84 133 182);
+--blue:rgb(114 114 202);
+--hue01:rgb(132 100 196);
+--hue02:rgb(189 81 135);
+}
+&:where(.-schemeLightAtelierSeaside) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:244 251 244;
+--colorFront:rgb(245 251 255);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(225 242 225);
+--colorBackmost:rgb(207 232 207);
+--colorTextVal:94 110 94;
+--red:rgb(230 25 60);
+--orange:rgb(135 113 29);
+--yellow:rgb(152 152 27);
+--green:rgb(41 163 41);
+--cyan:rgb(25 153 179);
+--blue:rgb(61 98 245);
+--hue01:rgb(173 43 238);
+--hue02:rgb(230 25 195);
+}
+&:where(.-schemeLightAtelierSulphurpool) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:245 247 255;
+--colorFront:rgb(250 251 255);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(223 226 241);
+--colorBackmost:rgb(199 202 220);
+--colorTextVal:94 102 135;
+--red:rgb(201 73 34);
+--orange:rgb(199 107 41);
+--yellow:rgb(192 139 48);
+--green:rgb(172 151 57);
+--cyan:rgb(34 162 201);
+--blue:rgb(61 143 209);
+--hue01:rgb(102 121 204);
+--hue02:rgb(156 99 122);
+}
+&:where(.-schemeLightAtomOne) {
+/* Daniel Pfeifer (http://github.com/purpleKarrot) */
+
+--colorBaseVal:245 245 246;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(240 240 241);
+--colorBackmost:rgb(229 229 230);
+--colorTextVal:56 58 66;
+--red:rgb(202 18 67);
+--orange:rgb(215 95 0);
+--yellow:rgb(193 132 1);
+--green:rgb(80 161 79);
+--cyan:rgb(1 132 188);
+--blue:rgb(64 120 242);
+--hue01:rgb(166 38 164);
+--hue02:rgb(152 104 1);
+}
+&:where(.-schemeLightAyu) {
+/* Khue Nguyen */
+
+--colorBaseVal:243 244 245;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(225 227 229);
+--colorBackmost:rgb(206 209 213);
+--colorTextVal:92 103 115;
+--red:rgb(240 113 120);
+--orange:rgb(250 141 62);
+--yellow:rgb(242 174 73);
+--green:rgb(134 179 0);
+--cyan:rgb(76 191 153);
+--blue:rgb(54 163 217);
+--hue01:rgb(163 122 204);
+--hue02:rgb(230 186 126);
+}
+&:where(.-schemeLightBrushtrees) {
+/* Abraham White */
+
+--colorBaseVal:227 239 239;
+--colorFront:rgb(241 247 247);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(201 219 220);
+--colorBackmost:rgb(176 197 200);
+--colorTextVal:109 130 142;
+--red:rgb(179 134 134);
+--orange:rgb(216 187 162);
+--yellow:rgb(170 179 134);
+--green:rgb(135 179 134);
+--cyan:rgb(134 179 179);
+--blue:rgb(134 140 179);
+--hue01:rgb(179 134 178);
+--hue02:rgb(179 159 159);
+}
+&:where(.-schemeLightCatppuccinLatte) {
+/* https://github.com/catppuccin/catppuccin */
+
+--colorBaseVal:239 241 245;
+--colorFront:rgb(247 248 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(213 216 224);
+--colorBackmost:rgb(188 192 204);
+--colorTextVal:76 79 105;
+--red:rgb(210 15 57);
+--orange:rgb(254 100 11);
+--yellow:rgb(223 142 29);
+--green:rgb(64 160 43);
+--cyan:rgb(23 146 153);
+--blue:rgb(30 102 245);
+--hue01:rgb(136 57 239);
+--hue02:rgb(221 120 120);
+}
+&:where(.-schemeLightCupcake) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:251 241 242;
+--colorFront:rgb(253 248 248);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(216 213 221);
+--colorBackmost:rgb(191 185 198);
+--colorTextVal:165 157 175;
+--red:rgb(213 126 133);
+--orange:rgb(235 183 144);
+--yellow:rgb(220 177 108);
+--green:rgb(163 179 103);
+--cyan:rgb(105 169 167);
+--blue:rgb(114 151 185);
+--hue01:rgb(187 153 180);
+--hue02:rgb(186 165 140);
+}
+&:where(.-schemeLightDaOnePaper) {
+/* NNB (https://github.com/NNBnh) */
+
+--colorBaseVal:250 240 220;
+--colorFront:rgb(252 245 232);
+--colorFrontmost:rgb(254 250 243);
+--colorBack:rgb(225 220 210);
+--colorBackmost:rgb(200 200 200);
+--colorTextVal:24 24 24;
+--red:rgb(222 93 110);
+--orange:rgb(255 148 112);
+--yellow:rgb(179 104 79);
+--green:rgb(118 168 93);
+--cyan:rgb(100 181 167);
+--blue:rgb(88 144 248);
+--hue01:rgb(193 115 209);
+--hue02:rgb(179 104 79);
+}
+&:where(.-schemeLightDefault) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:248 248 248;
+--colorFront:rgb(251 251 251);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(232 232 232);
+--colorBackmost:rgb(216 216 216);
+--colorTextVal:56 56 56;
+--red:rgb(171 70 66);
+--orange:rgb(220 150 86);
+--yellow:rgb(247 202 136);
+--green:rgb(161 181 108);
+--cyan:rgb(134 193 185);
+--blue:rgb(124 175 194);
+--hue01:rgb(186 139 175);
+--hue02:rgb(161 105 70);
+}
+&:where(.-schemeLightEverforest) {
+/* Sainnhe Park (https://github.com/sainnhe) */
+
+--colorBaseVal:253 246 227;
+--colorFront:rgb(254 250 241);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(230 226 204);
+--colorBackmost:rgb(189 195 175);
+--colorTextVal:92 106 114;
+--red:rgb(248 85 82);
+--orange:rgb(245 125 38);
+--yellow:rgb(223 160 0);
+--green:rgb(141 161 1);
+--cyan:rgb(53 167 124);
+--blue:rgb(58 148 197);
+--hue01:rgb(223 105 186);
+--hue02:rgb(234 237 200);
+}
+&:where(.-schemeLightGruvboxMaterialMedium) {
+/* Mayush Kumar (https://github.com/MayushKumar) */
+
+--colorBaseVal:251 241 199;
+--colorFront:rgb(253 246 218);
+--colorFrontmost:rgb(254 250 236);
+--colorBack:rgb(242 229 188);
+--colorBackmost:rgb(213 196 161);
+--colorTextVal:101 71 53;
+--red:rgb(193 74 74);
+--orange:rgb(195 94 10);
+--yellow:rgb(180 113 9);
+--green:rgb(108 120 46);
+--cyan:rgb(76 122 93);
+--blue:rgb(69 112 122);
+--hue01:rgb(148 94 128);
+--hue02:rgb(231 138 78);
+}
+&:where(.-schemeLightGruvboxMedium) {
+/* Dawid Kurek, morhetz (https://github.com/morhetz/gruvbox) */
+
+--colorBaseVal:251 241 199;
+--colorFront:rgb(253 246 218);
+--colorFrontmost:rgb(254 250 236);
+--colorBack:rgb(235 219 178);
+--colorBackmost:rgb(213 196 161);
+--colorTextVal:80 73 69;
+--red:rgb(157 0 6);
+--orange:rgb(175 58 3);
+--yellow:rgb(181 118 20);
+--green:rgb(121 116 14);
+--cyan:rgb(66 123 88);
+--blue:rgb(7 102 120);
+--hue01:rgb(143 63 113);
+--hue02:rgb(214 93 14);
+}
+&:where(.-schemeLightHarmonic16) {
+/* Jannik Siebert (https://github.com/janniks) */
+
+--colorBaseVal:247 249 251;
+--colorFront:rgb(251 252 253);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(229 235 241);
+--colorBackmost:rgb(203 214 226);
+--colorTextVal:64 92 121;
+--red:rgb(191 86 86);
+--orange:rgb(191 139 86);
+--yellow:rgb(191 191 86);
+--green:rgb(139 191 86);
+--cyan:rgb(86 191 139);
+--blue:rgb(86 139 191);
+--hue01:rgb(139 86 191);
+--hue02:rgb(191 86 139);
+}
+&:where(.-schemeLightHumanoid) {
+/* Thomas (tasmo) Friese */
+
+--colorBaseVal:248 248 242;
+--colorFront:rgb(252 251 248);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(239 239 233);
+--colorBackmost:rgb(222 222 216);
+--colorTextVal:35 38 41;
+--red:rgb(176 21 26);
+--orange:rgb(255 61 0);
+--yellow:rgb(255 182 39);
+--green:rgb(56 142 60);
+--cyan:rgb(0 142 142);
+--blue:rgb(0 130 201);
+--hue01:rgb(112 15 152);
+--hue02:rgb(178 119 1);
+}
+&:where(.-schemeLightIa) {
+/* iA Inc. (modified by aramisgithub) */
+
+--colorBaseVal:246 246 246;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(222 222 222);
+--colorBackmost:rgb(193 193 193);
+--colorTextVal:24 24 24;
+--red:rgb(196 62 24);
+--orange:rgb(156 90 2);
+--yellow:rgb(196 130 24);
+--green:rgb(56 120 28);
+--cyan:rgb(45 107 177);
+--blue:rgb(72 186 194);
+--hue01:rgb(169 69 152);
+--hue02:rgb(139 108 55);
+}
+&:where(.-schemeLightLightOwl) {
+/* Sarah Drasner */
+
+--colorBaseVal:246 246 246;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(235 235 235);
+--colorBackmost:rgb(224 224 224);
+--colorTextVal:64 63 83;
+--red:rgb(222 61 59);
+--orange:rgb(222 122 44);
+--yellow:rgb(218 170 1);
+--green:rgb(8 145 106);
+--cyan:rgb(42 162 152);
+--blue:rgb(40 142 215);
+--hue01:rgb(214 67 138);
+--hue02:rgb(150 150 150);
+}
+&:where(.-schemeLightMaterialLighter) {
+/* Nate Peterson */
+
+--colorBaseVal:240 242 243;
+--colorFront:rgb(247 248 249);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(231 234 236);
+--colorBackmost:rgb(199 205 216);
+--colorTextVal:135 150 176;
+--red:rgb(255 83 112);
+--orange:rgb(247 109 71);
+--yellow:rgb(255 182 44);
+--green:rgb(145 184 89);
+--cyan:rgb(57 173 181);
+--blue:rgb(97 130 184);
+--hue01:rgb(124 77 255);
+--hue02:rgb(229 57 53);
+}
+&:where(.-schemeLightSagelight) {
+/* Carter Veldhuizen */
+
+--colorBaseVal:240 240 240;
+--colorFront:rgb(247 248 249);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(232 232 232);
+--colorBackmost:rgb(216 216 216);
+--colorTextVal:56 56 56;
+--red:rgb(250 132 128);
+--orange:rgb(255 170 97);
+--yellow:rgb(255 220 97);
+--green:rgb(160 210 200);
+--cyan:rgb(162 214 245);
+--blue:rgb(160 167 210);
+--hue01:rgb(200 160 210);
+--hue02:rgb(210 178 160);
+}
+&:where(.-schemeLightSakura) {
+/* Misterio77 (http://github.com/Misterio77) */
+
+--colorBaseVal:254 237 243;
+--colorFront:rgb(255 246 249);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(248 226 231);
+--colorBackmost:rgb(224 204 209);
+--colorTextVal:86 68 72;
+--red:rgb(223 45 82);
+--orange:rgb(246 102 30);
+--yellow:rgb(194 148 97);
+--green:rgb(46 145 109);
+--cyan:rgb(29 137 145);
+--blue:rgb(0 110 147);
+--hue01:rgb(94 33 128);
+--hue02:rgb(186 13 53);
+}
+&:where(.-schemeLightSelenizedWhite) {
+/* Jan Warchol (https://github.com/jan-warchol/selenized) */
+
+--colorBaseVal:248 248 248;
+--colorFront:rgb(252 252 252);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(235 235 235);
+--colorBackmost:rgb(205 205 205);
+--colorTextVal:71 71 71;
+--red:rgb(191 0 0);
+--orange:rgb(186 55 0);
+--yellow:rgb(175 133 0);
+--green:rgb(0 132 0);
+--cyan:rgb(0 154 138);
+--blue:rgb(0 84 207);
+--hue01:rgb(107 64 195);
+--hue02:rgb(221 15 157);
+}
+&:where(.-schemeLightSelenized) {
+/* Jan Warchol (https://github.com/jan-warchol/selenized) / adapted to base16 by ali */
+
+--colorBaseVal:251 243 219;
+--colorFront:rgb(253 247 231);
+--colorFrontmost:rgb(254 251 243);
+--colorBack:rgb(236 227 204);
+--colorBackmost:rgb(213 205 182);
+--colorTextVal:83 103 109;
+--red:rgb(204 23 41);
+--orange:rgb(188 88 25);
+--yellow:rgb(167 131 0);
+--green:rgb(66 139 0);
+--cyan:rgb(0 151 138);
+--blue:rgb(0 109 206);
+--hue01:rgb(130 93 192);
+--hue02:rgb(196 67 146);
+}
+&:where(.-schemeLightSolarized) {
+/* Ethan Schoonover (modified by aramisgithub) */
+
+--colorBaseVal:253 246 227;
+--colorFront:rgb(254 250 241);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(238 232 213);
+--colorBackmost:rgb(215 214 200);
+--colorTextVal:88 110 117;
+--red:rgb(220 50 47);
+--orange:rgb(203 75 22);
+--yellow:rgb(181 137 0);
+--green:rgb(133 153 0);
+--cyan:rgb(42 161 152);
+--blue:rgb(38 139 210);
+--hue01:rgb(108 113 196);
+--hue02:rgb(211 54 130);
+}
+&:where(.-schemeLightStandardized) {
+/* ali (https://github.com/ali-githb/base16-standardized-scheme) */
+
+--colorBaseVal:244 244 244;
+--colorFront:rgb(249 249 249);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(238 238 238);
+--colorBackmost:rgb(204 204 204);
+--colorTextVal:68 68 68;
+--red:rgb(208 62 62);
+--orange:rgb(215 105 29);
+--yellow:rgb(173 130 0);
+--green:rgb(49 134 31);
+--cyan:rgb(0 153 143);
+--blue:rgb(49 115 197);
+--hue01:rgb(158 87 194);
+--hue02:rgb(137 80 37);
+}
+&:where(.-schemeLightSummerfruit) {
+/* Christopher Corley (http://christop.club/) */
+
+--colorBaseVal:245 245 245;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(224 224 224);
+--colorBackmost:rgb(208 208 208);
+--colorTextVal:16 16 16;
+--red:rgb(255 0 134);
+--orange:rgb(253 137 0);
+--yellow:rgb(171 168 0);
+--green:rgb(0 201 24);
+--cyan:rgb(31 170 170);
+--blue:rgb(55 119 230);
+--hue01:rgb(173 0 161);
+--hue02:rgb(204 102 51);
+}
+&:where(.-schemeLightTokyoNight) {
+/* enkia */
+
+--colorBaseVal:213 214 219;
+--colorFront:rgb(227 228 231);
+--colorFrontmost:rgb(241 241 243);
+--colorBack:rgb(181 183 191);
+--colorBackmost:rgb(150 153 163);
+--colorTextVal:52 59 88;
+--red:rgb(140 67 81);
+--orange:rgb(150 80 39);
+--yellow:rgb(143 94 21);
+--green:rgb(72 94 48);
+--cyan:rgb(22 103 117);
+--blue:rgb(52 84 138);
+--hue01:rgb(90 74 120);
+--hue02:rgb(99 79 48);
+}
+&:where(.-schemeLightTomorrow) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:245 245 245;
+--colorFront:rgb(250 250 250);
+--colorFrontmost:rgb(255 255 255);
+--colorBack:rgb(224 224 224);
+--colorBackmost:rgb(214 214 214);
+--colorTextVal:77 77 76;
+--red:rgb(200 40 41);
+--orange:rgb(245 135 31);
+--yellow:rgb(234 183 0);
+--green:rgb(113 140 0);
+--cyan:rgb(62 153 159);
+--blue:rgb(66 113 174);
+--hue01:rgb(137 89 168);
+--hue02:rgb(163 104 90);
+}
+&:where(.-schemeLightUnikitty) {
+/* Josh W Lewis (@joshwlewis) */
+
+--colorBaseVal:240 240 240;
+--colorFront:rgb(245 245 245);
+--colorFrontmost:rgb(250 250 250);
+--colorBack:rgb(225 225 226);
+--colorBackmost:rgb(196 195 197);
+--colorTextVal:108 105 110;
+--red:rgb(216 19 127);
+--orange:rgb(214 84 7);
+--yellow:rgb(220 138 14);
+--green:rgb(23 173 152);
+--cyan:rgb(20 155 218);
+--blue:rgb(119 93 255);
+--hue01:rgb(170 23 230);
+--hue02:rgb(224 19 208);
+}
+
+}
+
+/*
+ * Dark Color Schemes
+ */
+.t-color[data-theme=dark]{
+&:where(.-schemeDarkAshes) {
+/* Jannik Siebert (https://github.com/janniks) */
+
+--colorBaseVal:28 32 35;
+--colorFront:rgb(57 63 69);
+--colorFrontmost:rgb(86 94 101);
+--colorBack:rgb(17 20 21);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:199 204 209;
+--red:rgb(199 174 149);
+--orange:rgb(199 199 149);
+--yellow:rgb(174 199 149);
+--green:rgb(149 199 174);
+--cyan:rgb(149 174 199);
+--blue:rgb(174 149 199);
+--hue01:rgb(199 149 174);
+--hue02:rgb(199 149 149);
+}
+&:where(.-schemeDarkAtelierCave) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:25 23 28;
+--colorFront:rgb(38 35 42);
+--colorFrontmost:rgb(56 52 61);
+--colorBack:rgb(15 14 17);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:139 135 146;
+--red:rgb(190 70 120);
+--orange:rgb(170 87 60);
+--yellow:rgb(160 110 59);
+--green:rgb(42 146 146);
+--cyan:rgb(57 139 198);
+--blue:rgb(87 109 219);
+--hue01:rgb(149 90 231);
+--hue02:rgb(191 64 191);
+}
+&:where(.-schemeDarkAtelierDune) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:32 32 29;
+--colorFront:rgb(41 40 36);
+--colorFrontmost:rgb(63 61 54);
+--colorBack:rgb(20 20 18);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:166 162 140;
+--red:rgb(215 55 55);
+--orange:rgb(182 86 17);
+--yellow:rgb(174 149 19);
+--green:rgb(96 172 57);
+--cyan:rgb(31 173 131);
+--blue:rgb(102 132 225);
+--hue01:rgb(184 84 212);
+--hue02:rgb(212 53 82);
+}
+&:where(.-schemeDarkAtelierForest) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:27 25 24;
+--colorFront:rgb(44 36 33);
+--colorFrontmost:rgb(63 55 52);
+--colorBack:rgb(17 15 14);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:168 161 159;
+--red:rgb(242 44 64);
+--orange:rgb(223 83 32);
+--yellow:rgb(195 132 24);
+--green:rgb(123 151 38);
+--cyan:rgb(61 151 184);
+--blue:rgb(64 126 231);
+--hue01:rgb(102 102 234);
+--hue02:rgb(195 63 243);
+}
+&:where(.-schemeDarkAtelierHeath) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:27 24 27;
+--colorFront:rgb(41 35 41);
+--colorFrontmost:rgb(61 53 61);
+--colorBack:rgb(17 14 17);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:171 155 171;
+--red:rgb(202 64 43);
+--orange:rgb(166 89 38);
+--yellow:rgb(187 138 53);
+--green:rgb(145 139 59);
+--cyan:rgb(21 147 147);
+--blue:rgb(81 106 236);
+--hue01:rgb(123 89 192);
+--hue02:rgb(204 51 204);
+}
+&:where(.-schemeDarkAtelierLakeside) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:22 27 29;
+--colorFront:rgb(31 41 46);
+--colorFrontmost:rgb(47 62 70);
+--colorBack:rgb(13 17 18);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:126 162 180;
+--red:rgb(210 45 114);
+--orange:rgb(147 92 37);
+--yellow:rgb(138 138 15);
+--green:rgb(86 140 59);
+--cyan:rgb(45 143 111);
+--blue:rgb(37 127 173);
+--hue01:rgb(107 107 184);
+--hue02:rgb(183 45 210);
+}
+&:where(.-schemeDarkAtelierPlateau) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:27 24 24;
+--colorFront:rgb(41 36 36);
+--colorFrontmost:rgb(56 50 50);
+--colorBack:rgb(17 14 14);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:138 133 133;
+--red:rgb(202 73 73);
+--orange:rgb(180 90 60);
+--yellow:rgb(160 110 59);
+--green:rgb(75 139 139);
+--cyan:rgb(84 133 182);
+--blue:rgb(114 114 202);
+--hue01:rgb(132 100 196);
+--hue02:rgb(189 81 135);
+}
+&:where(.-schemeDarkAtelierSeaside) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:19 21 19;
+--colorFront:rgb(36 41 36);
+--colorFrontmost:rgb(54 63 54);
+--colorBack:rgb(11 12 11);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:140 166 140;
+--red:rgb(230 25 60);
+--orange:rgb(135 113 29);
+--yellow:rgb(152 152 27);
+--green:rgb(41 163 41);
+--cyan:rgb(25 153 179);
+--blue:rgb(61 98 245);
+--hue01:rgb(173 43 238);
+--hue02:rgb(230 25 195);
+}
+&:where(.-schemeDarkAtelierSulphurpool) {
+/* Bram de Haan (http://atelierbramdehaan.nl) */
+
+--colorBaseVal:32 39 70;
+--colorFront:rgb(41 50 86);
+--colorFrontmost:rgb(59 67 102);
+--colorBack:rgb(21 23 38);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:151 157 180;
+--red:rgb(201 73 34);
+--orange:rgb(199 107 41);
+--yellow:rgb(192 139 48);
+--green:rgb(172 151 57);
+--cyan:rgb(34 162 201);
+--blue:rgb(61 143 209);
+--hue01:rgb(102 121 204);
+--hue02:rgb(156 99 122);
+}
+&:where(.-schemeDarkAtlas) {
+/* Alex Lende (https://ajlende.com) */
+
+--colorBaseVal:0 38 53;
+--colorFront:rgb(0 56 77);
+--colorFrontmost:rgb(32 79 98);
+--colorBack:rgb(21 34 40);
+--colorBackmost:rgb(19 26 29);
+--colorTextVal:161 161 154;
+--red:rgb(255 90 103);
+--orange:rgb(240 142 72);
+--yellow:rgb(255 204 27);
+--green:rgb(127 192 110);
+--blue:rgb(93 215 185);
+--cyan:rgb(20 116 126);
+--hue01:rgb(154 112 164);
+--hue02:rgb(196 48 96);
+}
+&:where(.-schemeDarkAtomOne) {
+/* Lalit Magant (http://github.com/tilal6991) */
+
+--colorBaseVal:40 44 52;
+--colorFront:rgb(61 65 74);
+--colorFrontmost:rgb(84 88 98);
+--colorBack:rgb(36 37 40);
+--colorBackmost:rgb(28 28 29);
+--colorTextVal:171 178 191;
+--red:rgb(224 108 117);
+--orange:rgb(209 154 102);
+--yellow:rgb(229 192 123);
+--green:rgb(152 195 121);
+--cyan:rgb(86 182 194);
+--blue:rgb(97 175 239);
+--hue01:rgb(198 120 221);
+--hue02:rgb(190 80 70);
+}
+&:where(.-schemeDarkAyuMirage) {
+/* Khue Nguyen */
+
+--colorBaseVal:23 27 36;
+--colorFront:rgb(36 41 54);
+--colorFrontmost:rgb(60 66 81);
+--colorBack:rgb(27 28 32);
+--colorBackmost:rgb(21 23 25);
+--colorTextVal:204 202 194;
+--red:rgb(242 135 121);
+--orange:rgb(255 173 102);
+--yellow:rgb(255 209 115);
+--green:rgb(213 255 128);
+--cyan:rgb(149 230 203);
+--blue:rgb(92 207 230);
+--hue01:rgb(212 191 255);
+--hue02:rgb(242 158 116);
+}
+&:where(.-schemeDarkAyu) {
+/* Khue Nguyen */
+
+--colorBaseVal:15 20 25;
+--colorFront:rgb(39 45 56);
+--colorFrontmost:rgb(62 75 89);
+--colorBack:rgb(19 22 24);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:230 225 207;
+--red:rgb(240 113 120);
+--orange:rgb(255 143 64);
+--yellow:rgb(255 180 84);
+--green:rgb(184 204 82);
+--cyan:rgb(149 230 203);
+--blue:rgb(89 194 255);
+--hue01:rgb(210 166 255);
+--hue02:rgb(230 182 115);
+}
+&:where(.-schemeDarkBespin) {
+/* Jan T. Sott */
+
+--colorBaseVal:40 33 28;
+--colorFront:rgb(54 49 46);
+--colorFrontmost:rgb(67 63 61);
+--colorBack:rgb(35 31 29);
+--colorBackmost:rgb(27 25 22);
+--colorTextVal:157 155 151;
+--red:rgb(207 106 76);
+--orange:rgb(207 125 52);
+--yellow:rgb(249 238 152);
+--green:rgb(84 190 13);
+--cyan:rgb(175 196 219);
+--blue:rgb(94 166 234);
+--hue01:rgb(155 133 157);
+--hue02:rgb(147 113 33);
+}
+&:where(.-schemeDarkBrushtrees) {
+/* Abraham White */
+
+--colorBaseVal:72 88 103;
+--colorFront:rgb(90 109 122);
+--colorFrontmost:rgb(109 130 142);
+--colorBack:rgb(61 73 85);
+--colorBackmost:rgb(49 59 69);
+--colorTextVal:176 197 200;
+--red:rgb(179 134 134);
+--orange:rgb(216 187 162);
+--yellow:rgb(170 179 134);
+--green:rgb(135 179 134);
+--cyan:rgb(134 179 179);
+--blue:rgb(134 140 179);
+--hue01:rgb(179 134 178);
+--hue02:rgb(179 159 159);
+}
+&:where(.-schemeDarkC64) {
+/*  */
+
+--colorBaseVal:64 49 141;
+--colorFront:rgb(72 57 149);
+--colorFrontmost:rgb(80 65 156);
+--colorBack:rgb(55 42 116);
+--colorBackmost:rgb(46 35 92);
+--colorTextVal:120 105 196;
+--red:rgb(136 57 50);
+--orange:rgb(167 132 81);
+--yellow:rgb(191 206 114);
+--green:rgb(85 160 73);
+--cyan:rgb(103 182 189);
+--blue:rgb(64 49 141);
+--hue01:rgb(139 63 150);
+--hue02:rgb(191 206 114);
+}
+&:where(.-schemeDarkCatppuccinMacchiato) {
+/* https://github.com/catppuccin/catppuccin */
+
+--colorBaseVal:36 39 58;
+--colorFront:rgb(54 58 79);
+--colorFrontmost:rgb(98 104 128);
+--colorBack:rgb(27 28 40);
+--colorBackmost:rgb(17 17 24);
+--colorTextVal:202 211 245;
+--red:rgb(237 135 150);
+--orange:rgb(245 169 127);
+--yellow:rgb(238 212 159);
+--green:rgb(166 218 149);
+--cyan:rgb(139 213 202);
+--blue:rgb(138 173 244);
+--hue01:rgb(198 160 246);
+--hue02:rgb(240 198 198);
+}
+&:where(.-schemeDarkColors) {
+/* mrmrs (http://clrs.cc) */
+
+--colorBaseVal:17 17 17;
+--colorFront:rgb(51 51 51);
+--colorFrontmost:rgb(85 85 85);
+--colorBack:rgb(9 9 9);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:187 187 187;
+--red:rgb(255 65 54);
+--orange:rgb(255 133 27);
+--yellow:rgb(255 220 0);
+--green:rgb(46 204 64);
+--cyan:rgb(127 219 255);
+--blue:rgb(0 116 217);
+--hue01:rgb(177 13 201);
+--hue02:rgb(133 20 75);
+}
+&:where(.-schemeDarkDaOneGray) {
+/* NNB (https://github.com/NNBnh) */
+
+--colorBaseVal:24 24 24;
+--colorFront:rgb(40 40 40);
+--colorFrontmost:rgb(88 88 88);
+--colorBack:rgb(14 14 14);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:255 255 255;
+--red:rgb(250 120 131);
+--orange:rgb(255 148 112);
+--yellow:rgb(255 195 135);
+--green:rgb(152 195 121);
+--cyan:rgb(138 245 255);
+--blue:rgb(107 184 255);
+--hue01:rgb(231 153 255);
+--hue02:rgb(179 104 79);
+}
+&:where(.-schemeDarkDaOneOcean) {
+/* NNB (https://github.com/NNBnh) */
+
+--colorBaseVal:23 23 38;
+--colorFront:rgb(34 39 61);
+--colorFrontmost:rgb(82 88 102);
+--colorBack:rgb(15 14 23);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:255 255 255;
+--red:rgb(250 120 131);
+--orange:rgb(255 148 112);
+--yellow:rgb(255 195 135);
+--green:rgb(152 195 121);
+--cyan:rgb(138 245 255);
+--blue:rgb(107 184 255);
+--hue01:rgb(231 153 255);
+--hue02:rgb(179 104 79);
+}
+&:where(.-schemeDarkDaOneSea) {
+/* NNB (https://github.com/NNBnh) */
+
+--colorBaseVal:34 39 61;
+--colorFront:rgb(55 64 89);
+--colorFrontmost:rgb(82 88 102);
+--colorBack:rgb(21 23 33);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:255 255 255;
+--red:rgb(250 120 131);
+--orange:rgb(255 148 112);
+--yellow:rgb(255 195 135);
+--green:rgb(152 195 121);
+--cyan:rgb(138 245 255);
+--blue:rgb(107 184 255);
+--hue01:rgb(231 153 255);
+--hue02:rgb(179 104 79);
+}
+&:where(.-schemeDarkDanqing) {
+/* Wenhan Zhu (Cosmos) */
+
+--colorBaseVal:45 48 47;
+--colorFront:rgb(67 72 70);
+--colorFrontmost:rgb(90 96 93);
+--colorBack:rgb(26 27 27);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:224 240 239;
+--red:rgb(249 144 111);
+--orange:rgb(202 105 36);
+--yellow:rgb(240 194 57);
+--green:rgb(138 179 97);
+--cyan:rgb(48 223 243);
+--blue:rgb(176 164 227);
+--hue01:rgb(204 164 227);
+--hue02:rgb(179 138 97);
+}
+&:where(.-schemeDarkDarktooth) {
+/* Jason Milkins (https://github.com/jasonm23) */
+
+--colorBaseVal:29 32 33;
+--colorFront:rgb(50 48 47);
+--colorFrontmost:rgb(80 73 69);
+--colorBack:rgb(18 20 20);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:168 153 132;
+--red:rgb(251 84 63);
+--orange:rgb(254 134 37);
+--yellow:rgb(250 192 59);
+--green:rgb(149 192 133);
+--cyan:rgb(139 165 155);
+--blue:rgb(13 102 120);
+--hue01:rgb(143 70 115);
+--hue02:rgb(168 115 34);
+}
+&:where(.-schemeDarkDecaf) {
+/* Alex Mirrington (https://github.com/alexmirrington) */
+
+--colorBaseVal:45 45 45;
+--colorFront:rgb(57 57 57);
+--colorFrontmost:rgb(81 81 81);
+--colorBack:rgb(37 37 37);
+--colorBackmost:rgb(30 30 30);
+--colorTextVal:204 204 204;
+--red:rgb(255 127 123);
+--orange:rgb(255 191 112);
+--yellow:rgb(255 214 124);
+--green:rgb(190 218 120);
+--cyan:rgb(190 214 255);
+--blue:rgb(144 190 225);
+--hue01:rgb(239 179 247);
+--hue02:rgb(255 147 179);
+}
+&:where(.-schemeDarkDefault) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:24 24 24;
+--colorFront:rgb(40 40 40);
+--colorFrontmost:rgb(88 88 88);
+--colorBack:rgb(14 14 14);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:216 216 216;
+--red:rgb(171 70 66);
+--orange:rgb(220 150 86);
+--yellow:rgb(247 202 136);
+--green:rgb(161 181 108);
+--cyan:rgb(134 193 185);
+--blue:rgb(124 175 194);
+--hue01:rgb(186 139 175);
+--hue02:rgb(161 105 70);
+}
+&:where(.-schemeDarkDracula) {
+/* draculatheme.com */
+
+--colorBaseVal:40 42 54;
+--colorFront:rgb(48 50 71);
+--colorFrontmost:rgb(68 71 90);
+--colorBack:rgb(29 30 38);
+--colorBackmost:rgb(18 19 23);
+--colorTextVal:248 248 242;
+--red:rgb(255 85 85);
+--orange:rgb(255 184 108);
+--yellow:rgb(241 250 140);
+--green:rgb(80 250 123);
+--cyan:rgb(139 233 253);
+--blue:rgb(120 172 208);
+--hue01:rgb(189 147 249);
+--hue02:rgb(255 121 198);
+}
+&:where(.-schemeDarkEighties) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:45 45 45;
+--colorFront:rgb(57 57 57);
+--colorFrontmost:rgb(81 81 81);
+--colorBack:rgb(32 32 32);
+--colorBackmost:rgb(20 20 20);
+--colorTextVal:211 208 200;
+--red:rgb(242 119 122);
+--orange:rgb(249 145 87);
+--yellow:rgb(255 204 102);
+--green:rgb(153 204 153);
+--cyan:rgb(102 204 204);
+--blue:rgb(102 153 204);
+--hue01:rgb(204 153 204);
+--hue02:rgb(210 123 83);
+}
+&:where(.-schemeDarkEva) {
+/* kjakapat (https://github.com/kjakapat) */
+
+--colorBaseVal:42 59 77;
+--colorFront:rgb(61 86 111);
+--colorFrontmost:rgb(75 105 136);
+--colorBack:rgb(31 41 52);
+--colorBackmost:rgb(20 24 29);
+--colorTextVal:159 162 166;
+--red:rgb(196 103 108);
+--orange:rgb(255 153 102);
+--yellow:rgb(255 255 102);
+--green:rgb(102 255 102);
+--cyan:rgb(75 143 119);
+--blue:rgb(21 244 238);
+--hue01:rgb(156 108 211);
+--hue02:rgb(187 100 169);
+}
+&:where(.-schemeDarkEverforest) {
+/* Sainnhe Park (https://github.com/sainnhe) */
+
+--colorBaseVal:45 53 59;
+--colorFront:rgb(52 63 68);
+--colorFrontmost:rgb(71 82 88);
+--colorBack:rgb(35 42 46);
+--colorBackmost:rgb(30 34 38);
+--colorTextVal:211 198 170;
+--red:rgb(230 126 128);
+--orange:rgb(230 152 117);
+--yellow:rgb(219 188 127);
+--green:rgb(167 192 128);
+--cyan:rgb(131 192 146);
+--blue:rgb(127 187 179);
+--hue01:rgb(214 153 182);
+--hue02:rgb(81 64 69);
+}
+&:where(.-schemeDarkFlat) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:44 62 80;
+--colorFront:rgb(52 73 94);
+--colorFrontmost:rgb(77 94 109);
+--colorBack:rgb(38 52 67);
+--colorBackmost:rgb(32 43 54);
+--colorTextVal:224 224 224;
+--red:rgb(231 76 60);
+--orange:rgb(230 126 34);
+--yellow:rgb(241 196 15);
+--green:rgb(46 204 113);
+--cyan:rgb(26 188 156);
+--blue:rgb(52 152 219);
+--hue01:rgb(155 89 182);
+--hue02:rgb(190 100 60);
+}
+&:where(.-schemeDarkGruber) {
+/* github.com/rexim/gruber-darker-theme */
+
+--colorBaseVal:24 24 24;
+--colorFront:rgb(69 61 65);
+--colorFrontmost:rgb(82 73 78);
+--colorBack:rgb(14 14 14);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:228 228 239;
+--red:rgb(244 56 65);
+--orange:rgb(204 140 60);
+--yellow:rgb(255 221 51);
+--green:rgb(115 201 54);
+--cyan:rgb(149 169 159);
+--blue:rgb(150 166 200);
+--hue01:rgb(158 149 199);
+--hue02:rgb(199 60 63);
+}
+&:where(.-schemeDarkGruvboxMaterialMedium) {
+/* Mayush Kumar, sainnhe (https://github.com/sainnhe/gruvbox-material-vscode) */
+
+--colorBaseVal:41 40 40;
+--colorFront:rgb(50 48 47);
+--colorFrontmost:rgb(80 73 69);
+--colorBack:rgb(29 32 33);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:221 199 161;
+--red:rgb(234 105 98);
+--orange:rgb(231 138 78);
+--yellow:rgb(216 166 87);
+--green:rgb(169 182 101);
+--cyan:rgb(137 180 130);
+--blue:rgb(125 174 163);
+--hue01:rgb(211 134 155);
+--hue02:rgb(189 111 62);
+}
+&:where(.-schemeDarkGruvboxMedium) {
+/* Dawid Kurek, morhetz (https://github.com/morhetz/gruvbox) */
+
+--colorBaseVal:40 40 40;
+--colorFront:rgb(60 56 54);
+--colorFrontmost:rgb(80 73 69);
+--colorBack:rgb(29 32 33);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:213 196 161;
+--red:rgb(251 73 52);
+--orange:rgb(254 128 25);
+--yellow:rgb(250 189 47);
+--green:rgb(184 187 38);
+--cyan:rgb(142 192 124);
+--blue:rgb(131 165 152);
+--hue01:rgb(211 134 155);
+--hue02:rgb(214 93 14);
+}
+&:where(.-schemeDarkHarmonic16) {
+/* Jannik Siebert (https://github.com/janniks) */
+
+--colorBaseVal:11 28 44;
+--colorFront:rgb(34 59 84);
+--colorFrontmost:rgb(64 92 121);
+--colorBack:rgb(9 17 26);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:203 214 226;
+--red:rgb(191 86 86);
+--orange:rgb(191 139 86);
+--yellow:rgb(191 191 86);
+--green:rgb(139 191 86);
+--cyan:rgb(86 191 139);
+--blue:rgb(86 139 191);
+--hue01:rgb(139 86 191);
+--hue02:rgb(191 86 139);
+}
+&:where(.-schemeDarkHelios) {
+/* Alex Meyer (https://github.com/reyemxela) */
+
+--colorBaseVal:29 32 33;
+--colorFront:rgb(56 60 62);
+--colorFrontmost:rgb(83 88 91);
+--colorBack:rgb(18 20 20);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:213 213 213;
+--red:rgb(215 38 56);
+--orange:rgb(235 132 19);
+--yellow:rgb(241 157 26);
+--green:rgb(136 185 45);
+--cyan:rgb(27 165 149);
+--blue:rgb(30 139 172);
+--hue01:rgb(190 66 100);
+--hue02:rgb(200 94 13);
+}
+&:where(.-schemeDarkHopscotch) {
+/* Jan T. Sott */
+
+--colorBaseVal:50 41 49;
+--colorFront:rgb(67 59 66);
+--colorFrontmost:rgb(92 84 91);
+--colorBack:rgb(28 24 28);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:185 181 184;
+--red:rgb(221 70 76);
+--orange:rgb(253 139 25);
+--yellow:rgb(253 204 89);
+--green:rgb(143 193 62);
+--cyan:rgb(20 155 147);
+--blue:rgb(18 144 191);
+--hue01:rgb(200 94 124);
+--hue02:rgb(179 53 8);
+}
+&:where(.-schemeDarkHumanoid) {
+/* Thomas (tasmo) Friese */
+
+--colorBaseVal:35 38 41;
+--colorFront:rgb(51 59 61);
+--colorFrontmost:rgb(72 78 84);
+--colorBack:rgb(21 23 24);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:248 248 242;
+--red:rgb(241 18 53);
+--orange:rgb(255 149 5);
+--yellow:rgb(255 182 39);
+--green:rgb(2 216 73);
+--cyan:rgb(13 217 214);
+--blue:rgb(0 166 251);
+--hue01:rgb(241 94 227);
+--hue02:rgb(178 119 1);
+}
+&:where(.-schemeDarkIa) {
+/* iA Inc. (modified by aramisgithub) */
+
+--colorBaseVal:26 26 26;
+--colorFront:rgb(34 34 34);
+--colorFrontmost:rgb(60 60 60);
+--colorBack:rgb(16 16 16);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:204 204 204;
+--red:rgb(216 104 104);
+--orange:rgb(216 133 104);
+--yellow:rgb(185 147 83);
+--green:rgb(131 164 113);
+--cyan:rgb(124 156 174);
+--blue:rgb(142 204 221);
+--hue01:rgb(185 142 178);
+--hue02:rgb(139 108 55);
+}
+&:where(.-schemeDarkKanagawa) {
+/* Tommaso Laurenzi (https://github.com/rebelot) */
+
+--colorBaseVal:31 31 40;
+--colorFront:rgb(34 50 73);
+--colorFrontmost:rgb(84 84 109);
+--colorBack:rgb(19 19 24);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:220 215 186;
+--red:rgb(195 64 67);
+--orange:rgb(255 160 102);
+--yellow:rgb(192 163 110);
+--green:rgb(118 148 106);
+--cyan:rgb(106 149 137);
+--blue:rgb(126 156 216);
+--hue01:rgb(149 127 184);
+--hue02:rgb(210 126 153);
+}
+&:where(.-schemeDarkMarrakesh) {
+/* Alexandre Gavioli (http://github.com/Alexx2/) */
+
+--colorBaseVal:32 22 2;
+--colorFront:rgb(49 44 7);
+--colorFrontmost:rgb(71 67 14);
+--colorBack:rgb(20 13 1);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:148 142 72;
+--red:rgb(195 83 89);
+--orange:rgb(179 97 68);
+--yellow:rgb(168 131 57);
+--green:rgb(24 151 78);
+--cyan:rgb(117 167 56);
+--blue:rgb(71 124 161);
+--hue01:rgb(136 104 179);
+--hue02:rgb(179 88 142);
+}
+&:where(.-schemeDarkMateria) {
+/* https://github.com/nana-4/materia-theme/ */
+
+--colorBaseVal:38 50 56;
+--colorFront:rgb(55 67 73);
+--colorFrontmost:rgb(74 84 91);
+--colorBack:rgb(23 28 31);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:205 211 222;
+--red:rgb(236 95 103);
+--orange:rgb(234 149 96);
+--yellow:rgb(255 204 0);
+--green:rgb(139 214 73);
+--cyan:rgb(128 203 196);
+--blue:rgb(137 221 255);
+--hue01:rgb(130 170 255);
+--hue02:rgb(236 95 103);
+}
+&:where(.-schemeDarkMaterialDarker) {
+/* Nate Peterson */
+
+--colorBaseVal:33 33 33;
+--colorFront:rgb(66 66 66);
+--colorFrontmost:rgb(97 97 97);
+--colorBack:rgb(20 20 20);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:238 255 255;
+--red:rgb(240 113 120);
+--orange:rgb(247 140 108);
+--yellow:rgb(255 203 107);
+--green:rgb(195 232 141);
+--cyan:rgb(137 221 255);
+--blue:rgb(130 170 255);
+--hue01:rgb(199 146 234);
+--hue02:rgb(255 83 112);
+}
+&:where(.-schemeDarkMaterialPalenight) {
+/* Nate Peterson (https://m1.material.io/style/color.html#color-color-palette) */
+
+--colorBaseVal:40 45 63;
+--colorFront:rgb(68 66 103);
+--colorFrontmost:rgb(103 110 149);
+--colorBack:rgb(24 26 34);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:189 199 214;
+--red:rgb(240 113 120);
+--orange:rgb(247 140 108);
+--yellow:rgb(255 203 107);
+--green:rgb(195 232 141);
+--cyan:rgb(137 221 255);
+--blue:rgb(130 170 255);
+--hue01:rgb(199 146 234);
+--hue02:rgb(255 83 112);
+}
+&:where(.-schemeDarkMaterial) {
+/* Nate Peterson (https://m1.material.io/style/color.html#color-color-palette) */
+
+--colorBaseVal:38 50 56;
+--colorFront:rgb(55 71 79);
+--colorFrontmost:rgb(69 90 100);
+--colorBack:rgb(23 28 31);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:238 255 255;
+--red:rgb(240 113 120);
+--orange:rgb(247 140 108);
+--yellow:rgb(255 203 107);
+--green:rgb(195 232 141);
+--cyan:rgb(137 221 255);
+--blue:rgb(130 170 255);
+--hue01:rgb(199 146 234);
+--hue02:rgb(255 83 112);
+}
+&:where(.-schemeDarkMocha) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:59 50 40;
+--colorFront:rgb(83 70 54);
+--colorFrontmost:rgb(100 82 64);
+--colorBack:rgb(45 40 35);
+--colorBackmost:rgb(32 29 26);
+--colorTextVal:208 200 198;
+--red:rgb(203 96 119);
+--orange:rgb(210 139 113);
+--yellow:rgb(244 188 135);
+--green:rgb(190 181 91);
+--cyan:rgb(123 189 164);
+--blue:rgb(138 179 181);
+--hue01:rgb(168 155 185);
+--hue02:rgb(187 149 132);
+}
+&:where(.-schemeDarkMonokai) {
+/* Wimer Hazenberg (http://www.monokai.nl) */
+
+--colorBaseVal:39 40 34;
+--colorFront:rgb(63 63 53);
+--colorFrontmost:rgb(90 87 73);
+--colorBack:rgb(28 29 25);
+--colorBackmost:rgb(17 18 15);
+--colorTextVal:248 248 242;
+--red:rgb(249 38 114);
+--orange:rgb(253 151 31);
+--yellow:rgb(244 191 117);
+--green:rgb(166 226 46);
+--cyan:rgb(161 239 228);
+--blue:rgb(102 217 239);
+--hue01:rgb(174 129 255);
+--hue02:rgb(204 102 51);
+}
+&:where(.-schemeDarkMountain) {
+/* gnsfujiwara (https://github.com/gnsfujiwara) */
+
+--colorBaseVal:25 25 25;
+--colorFront:rgb(38 38 38);
+--colorFrontmost:rgb(76 76 76);
+--colorBack:rgb(15 15 15);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:202 202 202;
+--red:rgb(172 138 140);
+--orange:rgb(206 177 136);
+--yellow:rgb(172 169 138);
+--green:rgb(138 172 139);
+--cyan:rgb(138 171 172);
+--blue:rgb(143 138 172);
+--hue01:rgb(172 138 172);
+--hue02:rgb(172 138 140);
+}
+&:where(.-schemeDarkNightOwl) {
+/* Sarah Drasner */
+
+--colorBaseVal:1 22 39;
+--colorFront:rgb(14 40 60);
+--colorFrontmost:rgb(29 59 83);
+--colorBack:rgb(3 13 23);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:214 222 235;
+--red:rgb(239 83 80);
+--orange:rgb(215 160 91);
+--yellow:rgb(173 219 103);
+--green:rgb(34 218 110);
+--cyan:rgb(33 199 168);
+--blue:rgb(130 170 255);
+--hue01:rgb(199 146 234);
+--hue02:rgb(150 150 150);
+}
+&:where(.-schemeDarkNord) {
+/* arcticicestudio (https://www.nordtheme.com/) */
+
+--colorBaseVal:46 52 64;
+--colorFront:rgb(76 86 106);
+--colorFrontmost:rgb(98 107 126);
+--colorBack:rgb(27 29 35);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:216 222 233;
+--red:rgb(191 97 106);
+--orange:rgb(208 135 112);
+--yellow:rgb(235 203 139);
+--green:rgb(163 190 140);
+--cyan:rgb(136 192 208);
+--blue:rgb(129 161 193);
+--hue01:rgb(180 142 173);
+--hue02:rgb(94 129 172);
+}
+&:where(.-schemeDarkNova) {
+/* Trevor Miller */
+
+--colorBaseVal:60 76 85;
+--colorFront:rgb(72 90 100);
+--colorFrontmost:rgb(84 104 116);
+--colorBack:rgb(45 57 64);
+--colorBackmost:rgb(30 39 44);
+--colorTextVal:197 212 221;
+--red:rgb(223 140 140);
+--orange:rgb(242 195 143);
+--yellow:rgb(218 218 147);
+--green:rgb(168 206 147);
+--cyan:rgb(127 193 202);
+--blue:rgb(131 175 229);
+--hue01:rgb(154 147 225);
+--hue02:rgb(209 142 194);
+}
+&:where(.-schemeDarkOcean) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:43 48 59;
+--colorFront:rgb(61 69 80);
+--colorFrontmost:rgb(79 91 102);
+--colorBack:rgb(25 27 32);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:192 197 206;
+--red:rgb(191 97 106);
+--orange:rgb(208 135 112);
+--yellow:rgb(235 203 139);
+--green:rgb(163 190 140);
+--cyan:rgb(150 181 180);
+--blue:rgb(143 161 179);
+--hue01:rgb(180 142 173);
+--hue02:rgb(171 121 103);
+}
+&:where(.-schemeDarkOceanicnext) {
+/* https://github.com/voronianski/oceanic-next-color-scheme */
+
+--colorBaseVal:27 43 52;
+--colorFront:rgb(52 61 70);
+--colorFrontmost:rgb(79 91 102);
+--colorBack:rgb(18 25 29);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:192 197 206;
+--red:rgb(236 95 103);
+--orange:rgb(249 145 87);
+--yellow:rgb(250 200 99);
+--green:rgb(153 199 148);
+--cyan:rgb(95 179 179);
+--blue:rgb(102 153 204);
+--hue01:rgb(197 148 197);
+--hue02:rgb(171 121 103);
+}
+&:where(.-schemeDarkOutrun) {
+/* Hugo Delahousse (http://github.com/hugodelahousse/) */
+
+--colorBaseVal:23 27 65;
+--colorFront:rgb(48 48 90);
+--colorFrontmost:rgb(72 71 114);
+--colorBack:rgb(18 17 35);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:208 208 250;
+--red:rgb(255 66 66);
+--orange:rgb(252 141 40);
+--yellow:rgb(243 232 119);
+--green:rgb(89 241 118);
+--cyan:rgb(14 240 240);
+--blue:rgb(102 176 255);
+--hue01:rgb(241 5 150);
+--hue02:rgb(240 3 239);
+}
+&:where(.-schemeDarkParaiso) {
+/* Jan T. Sott */
+
+--colorBaseVal:47 30 46;
+--colorFront:rgb(63 48 61);
+--colorFrontmost:rgb(79 66 76);
+--colorBack:rgb(27 19 26);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:163 158 155;
+--red:rgb(239 97 85);
+--orange:rgb(249 155 21);
+--yellow:rgb(254 196 24);
+--green:rgb(72 182 133);
+--cyan:rgb(91 196 191);
+--blue:rgb(6 182 239);
+--hue01:rgb(129 91 164);
+--hue02:rgb(233 107 168);
+}
+&:where(.-schemeDarkPhd) {
+/* Hennig Hasemann (http://leetless.de/vim.html) */
+
+--colorBaseVal:6 18 41;
+--colorFront:rgb(42 52 72);
+--colorFrontmost:rgb(77 86 102);
+--colorBack:rgb(6 10 25);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:184 187 194;
+--red:rgb(208 115 70);
+--orange:rgb(240 160 0);
+--yellow:rgb(251 212 97);
+--green:rgb(153 191 82);
+--cyan:rgb(114 185 191);
+--blue:rgb(82 153 191);
+--hue01:rgb(153 137 204);
+--hue02:rgb(176 128 96);
+}
+&:where(.-schemeDarkPop) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:42 42 42;
+--colorFront:rgb(60 60 60);
+--colorFrontmost:rgb(80 80 80);
+--colorBack:rgb(25 25 25);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:208 208 208;
+--red:rgb(235 0 138);
+--orange:rgb(242 147 51);
+--yellow:rgb(248 202 18);
+--green:rgb(55 179 73);
+--cyan:rgb(0 170 187);
+--blue:rgb(14 90 148);
+--hue01:rgb(179 30 141);
+--hue02:rgb(122 45 0);
+}
+&:where(.-schemeDarkSelenizedBlack) {
+/* Jan Warchol (https://github.com/jan-warchol/selenized) */
+
+--colorBaseVal:24 24 24;
+--colorFront:rgb(37 37 37);
+--colorFrontmost:rgb(59 59 59);
+--colorBack:rgb(14 14 14);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:185 185 185;
+--red:rgb(237 74 70);
+--orange:rgb(230 127 67);
+--yellow:rgb(219 179 45);
+--green:rgb(112 180 51);
+--cyan:rgb(63 197 183);
+--blue:rgb(54 138 235);
+--hue01:rgb(165 128 226);
+--hue02:rgb(235 110 183);
+}
+&:where(.-schemeDarkSelenized) {
+/* Jan Warchol (https://github.com/jan-warchol/selenized) */
+
+--colorBaseVal:16 60 72;
+--colorFront:rgb(24 73 86);
+--colorFrontmost:rgb(45 91 105);
+--colorBack:rgb(7 54 66);
+--colorBackmost:rgb(0 43 54);
+--colorTextVal:173 188 188;
+--red:rgb(250 87 80);
+--orange:rgb(237 134 73);
+--yellow:rgb(219 179 45);
+--green:rgb(117 185 56);
+--cyan:rgb(65 199 185);
+--blue:rgb(70 149 247);
+--hue01:rgb(175 136 235);
+--hue02:rgb(242 117 190);
+}
+&:where(.-schemeDarkSeti) {
+/*  */
+
+--colorBaseVal:21 23 24;
+--colorFront:rgb(40 42 43);
+--colorFrontmost:rgb(65 83 91);
+--colorBack:rgb(12 14 14);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:214 214 214;
+--red:rgb(205 63 69);
+--orange:rgb(219 123 85);
+--yellow:rgb(230 205 105);
+--green:rgb(159 202 86);
+--cyan:rgb(85 219 190);
+--blue:rgb(85 181 219);
+--hue01:rgb(160 116 196);
+--hue02:rgb(138 85 63);
+}
+&:where(.-schemeDarkShadesOfPurple) {
+/* ahmadawais */
+
+--colorBaseVal:45 43 85;
+--colorFront:rgb(66 44 165);
+--colorFrontmost:rgb(77 33 252);
+--colorBack:rgb(27 25 44);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:255 255 255;
+--red:rgb(217 4 41);
+--orange:rgb(241 142 37);
+--yellow:rgb(255 231 0);
+--green:rgb(58 217 0);
+--cyan:rgb(0 197 199);
+--blue:rgb(105 67 255);
+--hue01:rgb(255 119 255);
+--hue02:rgb(255 44 112);
+}
+&:where(.-schemeDarkSolarized) {
+/* Ethan Schoonover (modified by aramisgithub) */
+
+--colorBaseVal:0 43 54;
+--colorFront:rgb(7 54 66);
+--colorFrontmost:rgb(24 73 86);
+--colorBack:rgb(8 31 38);
+--colorBackmost:rgb(6 19 23);
+--colorTextVal:147 161 161;
+--red:rgb(220 50 47);
+--orange:rgb(203 75 22);
+--yellow:rgb(181 137 0);
+--green:rgb(133 153 0);
+--cyan:rgb(42 161 152);
+--blue:rgb(38 139 210);
+--hue01:rgb(108 113 196);
+--hue02:rgb(211 54 130);
+}
+&:where(.-schemeDarkSonokaiAndromeda) {
+/* Sainnhe Park (https://github.com/sainnhe) */
+
+--colorBaseVal:43 45 58;
+--colorFront:rgb(54 58 78);
+--colorFrontmost:rgb(63 68 91);
+--colorBack:rgb(37 38 48);
+--colorBackmost:rgb(24 26 28);
+--colorTextVal:225 227 228;
+--red:rgb(251 97 126);
+--orange:rgb(248 152 96);
+--yellow:rgb(237 199 99);
+--green:rgb(158 208 108);
+--cyan:rgb(109 202 232);
+--blue:rgb(187 151 238);
+--hue01:rgb(85 57 61);
+--hue02:rgb(78 67 47);
+}
+&:where(.-schemeDarkSonokaiDefault) {
+/* Sainnhe Park (https://github.com/sainnhe) */
+
+--colorBaseVal:44 46 52;
+--colorFront:rgb(54 57 68);
+--colorFrontmost:rgb(65 69 80);
+--colorBack:rgb(34 35 39);
+--colorBackmost:rgb(24 24 25);
+--colorTextVal:226 226 227;
+--red:rgb(252 93 124);
+--orange:rgb(243 150 96);
+--yellow:rgb(231 198 100);
+--green:rgb(158 208 114);
+--cyan:rgb(118 204 224);
+--blue:rgb(179 157 243);
+--hue01:rgb(85 57 61);
+--hue02:rgb(78 67 47);
+}
+&:where(.-schemeDarkSonokaiEspresso) {
+/* Sainnhe Park (https://github.com/sainnhe) */
+
+--colorBaseVal:49 44 43;
+--colorFront:rgb(65 57 55);
+--colorFrontmost:rgb(78 67 63);
+--colorBack:rgb(36 33 32);
+--colorBackmost:rgb(31 30 28);
+--colorTextVal:228 227 225;
+--red:rgb(248 104 130);
+--orange:rgb(240 141 113);
+--yellow:rgb(240 198 111);
+--green:rgb(166 205 119);
+--cyan:rgb(129 208 201);
+--blue:rgb(159 160 225);
+--hue01:rgb(85 57 61);
+--hue02:rgb(78 67 47);
+}
+&:where(.-schemeDarkSonokaiMaia) {
+/* Sainnhe Park (https://github.com/sainnhe) */
+
+--colorBaseVal:39 49 54;
+--colorFront:rgb(53 63 70);
+--colorFrontmost:rgb(65 75 83);
+--colorBack:rgb(33 40 44);
+--colorBackmost:rgb(28 30 31);
+--colorTextVal:225 226 227;
+--red:rgb(247 108 124);
+--orange:rgb(243 169 106);
+--yellow:rgb(227 211 103);
+--green:rgb(156 213 123);
+--cyan:rgb(120 206 233);
+--blue:rgb(186 160 248);
+--hue01:rgb(85 89 61);
+--hue02:rgb(78 67 47);
+}
+&:where(.-schemeDarkSpaceduck) {
+/* Guillermo Rodriguez (https://github.com/pineapplegiant) */
+
+--colorBaseVal:22 23 45;
+--colorFront:rgb(27 28 54);
+--colorFrontmost:rgb(48 54 95);
+--colorBack:rgb(15 14 26);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:236 240 193;
+--red:rgb(227 52 0);
+--orange:rgb(227 148 0);
+--yellow:rgb(242 206 0);
+--green:rgb(92 204 150);
+--cyan:rgb(0 163 204);
+--blue:rgb(122 92 204);
+--hue01:rgb(179 161 230);
+--hue02:rgb(206 111 143);
+}
+&:where(.-schemeDarkSpacemacs) {
+/* Nasser Alshammari (https://github.com/nashamri/spacemacs-theme) */
+
+--colorBaseVal:31 32 34;
+--colorFront:rgb(40 40 40);
+--colorFrontmost:rgb(68 65 85);
+--colorBack:rgb(19 20 21);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:163 163 163;
+--red:rgb(242 36 31);
+--orange:rgb(255 165 0);
+--yellow:rgb(177 149 29);
+--green:rgb(103 177 29);
+--cyan:rgb(45 149 116);
+--blue:rgb(79 151 215);
+--hue01:rgb(163 29 177);
+--hue02:rgb(176 48 96);
+}
+&:where(.-schemeDarkStandardized) {
+/* ali (https://github.com/ali-githb/base16-standardized-scheme) */
+
+--colorBaseVal:34 34 34;
+--colorFront:rgb(48 48 48);
+--colorFrontmost:rgb(85 85 85);
+--colorBack:rgb(21 21 21);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:192 192 192;
+--red:rgb(225 93 103);
+--orange:rgb(252 128 78);
+--yellow:rgb(225 179 26);
+--green:rgb(93 177 41);
+--cyan:rgb(33 201 146);
+--blue:rgb(0 163 242);
+--hue01:rgb(180 110 224);
+--hue02:rgb(184 125 40);
+}
+&:where(.-schemeDarkSummerfruit) {
+/* Christopher Corley (http://christop.club/) */
+
+--colorBaseVal:21 21 21;
+--colorFront:rgb(32 32 32);
+--colorFrontmost:rgb(48 48 48);
+--colorBack:rgb(12 12 12);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:208 208 208;
+--red:rgb(255 0 134);
+--orange:rgb(253 137 0);
+--yellow:rgb(171 168 0);
+--green:rgb(0 201 24);
+--cyan:rgb(31 170 170);
+--blue:rgb(55 119 230);
+--hue01:rgb(173 0 161);
+--hue02:rgb(204 102 51);
+}
+&:where(.-schemeDarkTokyoNightStorm) {
+/* enkia */
+
+--colorBaseVal:36 40 59;
+--colorFront:rgb(65 72 104);
+--colorFrontmost:rgb(86 95 137);
+--colorBack:rgb(27 29 41);
+--colorBackmost:rgb(17 18 24);
+--colorTextVal:169 177 214;
+--red:rgb(247 118 142);
+--orange:rgb(255 158 100);
+--yellow:rgb(224 175 104);
+--green:rgb(158 206 106);
+--cyan:rgb(115 218 202);
+--blue:rgb(122 162 247);
+--hue01:rgb(187 154 247);
+--hue02:rgb(207 201 194);
+}
+&:where(.-schemeDarkTomorrowNightEighties) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:45 45 45;
+--colorFront:rgb(57 57 57);
+--colorFrontmost:rgb(81 81 81);
+--colorBack:rgb(32 32 32);
+--colorBackmost:rgb(20 20 20);
+--colorTextVal:204 204 204;
+--red:rgb(242 119 122);
+--orange:rgb(249 145 87);
+--yellow:rgb(255 204 102);
+--green:rgb(153 204 153);
+--cyan:rgb(102 204 204);
+--blue:rgb(102 153 204);
+--hue01:rgb(204 153 204);
+--hue02:rgb(163 104 90);
+}
+&:where(.-schemeDarkTomorrowNight) {
+/* Chris Kempson (http://chriskempson.com) */
+
+--colorBaseVal:29 31 33;
+--colorFront:rgb(40 42 46);
+--colorFrontmost:rgb(55 59 65);
+--colorBack:rgb(18 19 20);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:197 200 198;
+--red:rgb(204 102 102);
+--orange:rgb(222 147 95);
+--yellow:rgb(240 198 116);
+--green:rgb(181 189 104);
+--cyan:rgb(138 190 183);
+--blue:rgb(129 162 190);
+--hue01:rgb(178 148 187);
+--hue02:rgb(163 104 90);
+}
+&:where(.-schemeDarkTwilight) {
+/* David Hart (https://github.com/hartbit) */
+
+--colorBaseVal:30 30 30;
+--colorFront:rgb(50 53 55);
+--colorFrontmost:rgb(70 75 80);
+--colorBack:rgb(18 18 18);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:167 167 167;
+--red:rgb(207 106 76);
+--orange:rgb(205 168 105);
+--yellow:rgb(249 238 152);
+--green:rgb(143 157 106);
+--cyan:rgb(175 196 219);
+--blue:rgb(117 135 166);
+--hue01:rgb(155 133 157);
+--hue02:rgb(155 112 63);
+}
+&:where(.-schemeDarkUnikitty) {
+/* Josh W Lewis (@joshwlewis) */
+
+--colorBaseVal:46 42 49;
+--colorFront:rgb(74 70 77);
+--colorFrontmost:rgb(102 99 105);
+--colorBack:rgb(26 25 28);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:188 186 190;
+--red:rgb(216 19 127);
+--orange:rgb(214 84 7);
+--yellow:rgb(220 138 14);
+--green:rgb(23 173 152);
+--cyan:rgb(20 155 218);
+--blue:rgb(121 106 245);
+--hue01:rgb(187 96 234);
+--hue02:rgb(199 32 202);
+}
+&:where(.-schemeDarkWoodland) {
+/* Jay Cornwall (https://jcornwall.com) */
+
+--colorBaseVal:35 30 24;
+--colorFront:rgb(48 43 37);
+--colorFrontmost:rgb(72 65 58);
+--colorBack:rgb(22 18 15);
+--colorBackmost:rgb(0 0 0);
+--colorTextVal:202 188 177;
+--red:rgb(211 92 92);
+--orange:rgb(202 127 50);
+--yellow:rgb(224 172 22);
+--green:rgb(183 186 83);
+--cyan:rgb(110 185 88);
+--blue:rgb(136 164 211);
+--hue01:rgb(187 144 226);
+--hue02:rgb(180 147 104);
+}
+
+}
+

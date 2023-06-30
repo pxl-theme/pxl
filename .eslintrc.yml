@@ -9,6 +9,7 @@ extends:
 globals:
   enquire: writable
   Colcade: writable
+  Darkmode: writable
 parserOptions:
   ecmaVersion: latest
   sourceType: module

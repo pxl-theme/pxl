@@ -54,7 +54,7 @@ label {
 	background-color: transparent;
 	/* &:focus { */
 	&:focus-visible {
-		background-color: var(--colorFore);
+		background-color: var(--colorFront);
 		color: var(--colorTextBolder);
 		box-shadow: inset 0 0 0 var(--borderS) currentColor;
 		&:required:invalid {
@@ -115,7 +115,7 @@ input[type=color] {
 
 	border-radius: var(--radiusDefault);
 
-	background-color: var(--colorFore);
+	background-color: var(--colorFront);
 	/* color: var(--colorBase); */
 
 	label {
@@ -133,7 +133,7 @@ input[type=color] {
 	/* &:hover, &:focus { */
 	&:hover, &:focus-visible {
 		box-shadow: inset 0 0 0 var(--borderS) currentColor;
-		background-color: var(--colorForeBrighter);
+		background-color: var(--colorFrontmost);
 	}
 	&:active {
 		box-shadow: inset 0 0 0 var(--borderM) currentColor;
@@ -346,4 +346,9 @@ fieldset {
 * + fieldset {
 	margin-block-start: var(--rhythmUnit);
 	/* This might be redundant if parent element is grid/flexbox and has gap values.*/
+}
+
+/* Monospaced font applied for password, phone number and number inputs */
+input:is([type=password],[type=tel],[type=number]) {
+	font-family: var(--fontMono);
 }

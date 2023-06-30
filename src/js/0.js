@@ -32,24 +32,6 @@ var mqPalmOrGT = "screen and (min-width:40em)",
 //--- If JavaScript is enabled, hide navigation initially.
 respoNav.classList.remove("js-visible");
 
-//--- Theme Modifier Detector and Changer
-
-function resetClassStartWith(el, prefix) {
-	el.classList.forEach(className => {
-		if (className.startsWith(prefix)) {
-			el.classList.remove(className);
-		}
-	});
-}
-function changeThemeMod(p, s, o) {
-	if (o) {
-		resetClassStartWith(s, p);
-		s.classList.add(p + o);
-	}
-	// if (debugMode) {
-	// 	console.log("[changeThemeMod]: " + p + " set as " + o);
-	// }
-}
 // function checkValueOf(e) {
 // 	var s = document.querySelector("input[name=" + e + "]:checked");
 // 	if (s) {
@@ -61,7 +43,7 @@ function changeThemeMod(p, s, o) {
 
 // Set default colors and variants
 
-// changeThemeMod("-colorScheme",html,checkValueOf("color-options"));
+// changeThemeMod("-scheme",html,checkValueOf("color-options"));
 // changeThemeMod("t-variant",html,checkValueOf("variant-options"));
 // changeThemeMod("-bg",body,checkValueOf("bg-options"));
 // changeThemeMod("-corner",html,checkValueOf("corner-options"));
@@ -216,18 +198,3 @@ var addComment = {
 		return document.getElementById(id);
 	}
 };
-
-// Safari Prefers Color Scheme
-// function setDark(e) {
-//	if (e.matches) {
-//		changeVariant("Dark");
-//	} else {
-//		changeVariant("Day");
-//	}
-// }
-// var darkMatch = window.matchMedia("(prefers-color-scheme: dark)");
-// darkMatch.addListener(setDark);
-// // WARN: addListener will be deprecated and should replaced with addEventListener
-// document.addEventListener("DOMContentLoaded", function() {
-//	setDark(darkMatch);
-// });

@@ -25,8 +25,9 @@ body {
 	&.-filterGrainy {
 		/* opacity: 100%; */
 		mix-blend-mode: color-burn;
-		@media (prefers-color-scheme: dark) {
-			mix-blend-mode: multiply;
+		/* @media (prefers-color-scheme: dark) { */
+		.t-color[data-theme=dark] & {
+			mix-blend-mode: color-dodge;
 		}
 		/* Targeted for body */
 		/* &::after,&::before{ */
@@ -87,7 +88,8 @@ body {
 	}
 }
 /* .t-variantDark { */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) { */
+.t-color[data-theme=dark] {
 	.c-extBgFrame.-styleBlending {
 		mix-blend-mode:darken;
 	}

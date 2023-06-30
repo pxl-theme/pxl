@@ -13,85 +13,213 @@
 
 	<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
 		<article class=c-card>
-			<header class=c-header>
+			<header class="c-header">
 				<h2 class=c-card__title>Options</h2>
 			</header>
+			<script>
+				//--- Theme Modifier Detector and Changer
+				function resetClassStartWith(el, prefix) {
+					el.classList.forEach(className => {
+						if (className.startsWith(prefix)) {
+							el.classList.remove(className);
+						}
+					});
+				}
+				function changeThemeMod(prefix, elem, sel) {
+					var val = document.getElementById(sel).value;
+					resetClassStartWith(elem, prefix);
+					elem.classList.add(prefix + val);
+					console.log("[changeThemeMod]: " + prefix + " set as " + val);
+				}
+			</script>
 			<fieldset>
-				<legend>Color Schemes</legend>
-				<!-- <p><b>Color</b> -->
-				<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Solarized')" value=Solarized> Solarized<sup> (Light+Dark)</sup></label><br/>
-				<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Gruvbox')" value=Gruvbox checked> Gruvbox<sup> (Light+Dark)</sup></label><br/>
-				<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'AtomOne')" value=AtomOne> Atom One<sup> (Light+Dark)</sup></label><br/>
-				<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'IOS')" value=IOS> iOS<sup> (Light+Dark)</sup></label><br/>
-				<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'MaterialV1')" value=MaterialV1> Material Design 1<sup> (Dark Only)</sup></label><br/>
-				<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Monokai')" value=Monokai> Monokai<sup> (Dark Only)</sup></label><br/>
-				<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'NightOwl')" value=NightOwl> Night Owl<sup> (Dark Only)</sup></label><br/>
-				<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Nova')" value=Nova> Nova<sup> (Dark Only)</sup></label><br/>
-				<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Seti')" value=Seti> Seti<sup> (Dark Only)</sup></label><br/>
-				<label><input type=radio name=color-options onclick="changeThemeMod('-colorScheme',html,'Tomorrow')" value=Tomorrow> Tomorrow<sup> (Light+Dark)</sup></label><br/>
-				<!-- <p><b>Variant</b> -->
-				<!-- <label><input type="radio" name="variant-options" onclick="changeThemeMod('t-variant',html,'Day')" value="Day" checked> Day</label><br/> -->
-				<!-- <label><input type="radio" name="variant-options" onclick="changeThemeMod('t-variant',html,'Dark')" value="Dark"> Dark</label><br/> -->
-			</fieldset>
-			<fieldset>
-				<legend>Corner Roundness</legend>
-				<label><input type=radio name=corner-options onclick="changeThemeMod('-corner',html,'Sharp')" value=Sharp checked> Sharp</label><br/>
-				<label><input type=radio name=corner-options onclick="changeThemeMod('-corner',html,'RoundedTiny')" value=RoundedTiny> Tiny Rounded</label><br/>
-				<label><input type=radio name=corner-options onclick="changeThemeMod('-corner',html,'Rounded')" value=Rounded> Rounded</label><br/>
-				<label><input type=radio name=corner-options onclick="changeThemeMod('-corner',html,'RoundedInner')" value=RoundedInner> Rounded including inner elements</label><br/>
-			</fieldset>
-			<fieldset>
-				<legend>Background Patterns</legend>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'None')" value=None checked> Solid Color</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'HGrid')" value=HGrid> Horizontal Grid</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'CrossGrid')" value=CrossGrid> Cross Grid</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'HexAlt')" value=HexAlt> Hexagonal</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'HorizontalStripesSM')" value=HorizontalStripesSM> Horizontal Stripes (Small)</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'DiagonalStripesSM')" value=DiagonalStripesSM> Diagonal Stripes (Small)</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'ZigZag')" value=ZigZag> ZigZag</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'MicrobialMat')" value=MicrobialMat> Microbial Mat</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'TriangleMosaic')" value=TriangleMosaic> Triangle Mosaic</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'Weaves')" value=Weaves> Weaves</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'Cross')" value=Cross> Cross</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'Shippo')" value=Shippo> Shippo</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'Pyramid')" value=Pyramid> Pyramid</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'Seigeiha')" value=Seigeiha> Seigeiha</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'Houndstooth')" value=Houndstooth> Houndstooth</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'Checkerboard')" value=Checkerboard> Checkerboard</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'CarbonFiber')" value=CarbonFiber> Carbon Fiber</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'IsometricCubes')" value=IsometricCubes> Isometric Cubes</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'ArrowTessellation')" value=ArrowTessellation> Arrow Tesellation</label><br/>
-				<label><input type=radio name=bg-options onclick="changeThemeMod('-bg',body,'Argyle')" value=Argyle> Argyle</label><br/>
+				<legend>General Styles</legend>
+				<label for=selectLight><svg class=pi viewBox="0 0 18 18" width=18px><use id=darkModToggle href=/pi.svg#sun></use></svg> Light Scheme: </label>
+				<select id=selectLight name="Light theme options" onchange="changeThemeMod('-schemeLight',html,'selectLight')" >
+					<option value=AtelierCave>Atelier Cave</option>
+					<option value=AtelierDune>Atelier Dune</option>
+					<option value=AtelierForest>Atelier Forest</option>
+					<option value=AtelierHeath>Atelier Heath</option>
+					<option value=AtelierLakeside>Atelier Lakeside</option>
+					<option value=AtelierPlateau>Atelier Plateau Light</option>
+					<option value=AtelierSeaside>Atelier Seaside</option>
+					<option value=AtelierSulphurpool>Atelier Sulphurpool</option>
+					<option value=AtomOne>Atom One</option>
+					<option value=Ayu>Ayu</option>
+					<option value=Brushtrees>Brush Trees</option>
+					<option value=CatppuccinLatte>Catppuccin Latte</option>
+					<option value=Cupcake>Cupcake</option>
+					<option value=DaOnePaper>Da One Paper</option>
+					<option value=Default>Default</option>
+					<option value=Everforest>Everforest Medium</option>
+					<option value=GruvboxMaterialMedium>Gruvbox Material Medium</option>
+					<option value=GruvboxMedium>Gruvbox Medium</option>
+					<option value=Harmonic16>Harmonic16</option>
+					<option value=Humanoid>Humanoid</option>
+					<option value=Ia>iA</option>
+					<option value=LightOwl>Light Owl</option>
+					<option value=MaterialLighter>Material Lighter</option>
+					<option value=Sagelight>Sagelight</option>
+					<option value=Sakura>Sakura</option>
+					<option value=SelenizedWhite>Selenized White</option>
+					<option value=Selenized>Selenized</option>
+					<option value=Solarized>Solarized</option>
+					<option value=Standardized>Standardized</option>
+					<option value=Summerfruit>Summerfruit</option>
+					<option value=TokyoNight>Tokyo Night</option>
+					<option value=Tomorrow>Tomorrow</option>
+					<option value=Unikitty>Unikitty</option>
+				</select>
+				<br>
+				<label for=selectDark><svg class=pi viewBox="0 0 18 18" width=18px><use id=darkModToggle href=/pi.svg#moon></use></svg> Dark Scheme: </label>
+				<select id=selectDark name="Dark theme options" onchange="changeThemeMod('-schemeDark',html,'selectDark')" >
+					<option value=Ashes>Ashes</option>
+					<option value=AtelierCave>Atelier Cave</option>
+					<option value=AtelierDune>Atelier Dune</option>
+					<option value=AtelierForest>Atelier Forest</option>
+					<option value=AtelierHeath>Atelier Heath</option>
+					<option value=AtelierLakeside>Atelier Lakeside</option>
+					<option value=AtelierPlateau>Atelier Plateau</option>
+					<option value=AtelierSeaside>Atelier Seaside</option>
+					<option value=AtelierSulphurpool>Atelier Sulphurpool</option>
+					<option value=Atlas>Atlas</option>
+					<option value=AtomOne>Atom One</option>
+					<option value=AyuMirage>Ayu Mirage</option>
+					<option value=Ayu>Ayu</option>
+					<option value=Bespin>Bespin</option>
+					<option value=Brushtrees>Brush Trees</option>
+					<option value=C64>C64</option>
+					<option value=CatppuccinMacchiato>Catppuccin Macchiato</option>
+					<option value=Colors>Colors</option>
+					<option value=DaOneGray>Da One Gray</option>
+					<option value=DaOneOcean>Da One Ocean</option>
+					<option value=DaOneSea>Da One Sea</option>
+					<option value=Danqing>DanQing</option>
+					<option value=Darktooth>Darktooth</option>
+					<option value=Decaf>Decaf</option>
+					<option value=Default>Default</option>
+					<option value=Dracula>Dracula</option>
+					<option value=Eighties>Eighties</option>
+					<option value=Eva>Eva</option>
+					<option value=Everforest>Everforest Medium</option>
+					<option value=Flat>Flat</option>
+					<option value=Gruber>Gruber</option>
+					<option value=GruvboxMaterialMedium>Gruvbox Material Medium</option>
+					<option value=GruvboxMedium>Gruvbox Medium</option>
+					<option value=Harmonic16>Harmonic16</option>
+					<option value=Helios>Helios</option>
+					<option value=Hopscotch>Hopscotch</option>
+					<option value=Humanoid>Humanoid</option>
+					<option value=Ia>iA</option>
+					<option value=Kanagawa>Kanagawa</option>
+					<option value=Marrakesh>Marrakesh</option>
+					<option value=Materia>Materia</option>
+					<option value=MaterialDarker>Material Darker</option>
+					<option value=MaterialPalenight>Material Palenight</option>
+					<option value=Material>Material</option>
+					<option value=Mocha>Mocha</option>
+					<option value=Monokai>Monokai</option>
+					<option value=Mountain>Mountain</option>
+					<option value=NightOwl>Night Owl</option>
+					<option value=Nord>Nord</option>
+					<option value=Nova>Nova</option>
+					<option value=Ocean>Ocean</option>
+					<option value=Oceanicnext>OceanicNext</option>
+					<option value=Outrun>Outrun</option>
+					<option value=Paraiso>Paraiso</option>
+					<option value=Phd>PhD</option>
+					<option value=Pop>Pop</option>
+					<option value=SelenizedBlack>Selenized Black</option>
+					<option value=Selenized>Selenized</option>
+					<option value=Seti>Seti UI</option>
+					<option value=ShadesOfPurple>Shades of Purple</option>
+					<option value=Solarized>Solarized</option>
+					<option value=SonokaiAndromeda>Sonokai Andromeda</option>
+					<option value=SonokaiDefault>Sonokai Default</option>
+					<option value=SonokaiEspresso>Sonokai Espresso</option>
+					<option value=SonokaiMaia>Sonokai Maia</option>
+					<option value=Spaceduck>Spaceduck</option>
+					<option value=Spacemacs>Spacemacs</option>
+					<option value=Standardized>Standardized</option>
+					<option value=Summerfruit>Summerfruit</option>
+					<option value=TokyoNightStorm>Tokyo Night Storm</option>
+					<option value=TomorrowNightEighties>Tomorrow Night Eighties</option>
+					<option value=TomorrowNight>Tomorrow Night</option>
+					<option value=Twilight>Twilight</option>
+					<option value=Unikitty>Unikitty</option>
+					<option value=Woodland>Woodland</option>
+				</select>
+				<br>
+				<button data-drkmd-toggle title="Toggle dark mode" aria-label="Toggle dark mode">🌗 Toggle Theme</button>
+				<br>
+				<label for=selectBg>Background: </label>
+				<select id=selectBg name="Background Pattern Options" onchange="changeThemeMod('-bg',body,'selectBg')" >
+					<option value=None>Solid Color</option>
+					<option value=HGrid>Horizontal Grid</option>
+					<option value=CrossGrid>Cross Grid</option>
+					<option value=HexAlt>Hexagonal</option>
+					<option value=HorizontalStripesSM>Horizontal Stripes (Small)</option>
+					<option value=DiagonalStripesSM>Diagonal Stripes (Small)</option>
+					<option value=DiagonalStripesAltSM>Diagonal Stripes (Alt, Small)</option>
+					<option value=ZigZag>ZigZag</option>
+					<option value=MicrobialMat>Microbial Mat</option>
+					<option value=TriangleMosaic>Triangle Mosaic</option>
+					<option value=Weaves>Weaves</option>
+					<option value=Cross>Cross</option>
+					<option value=Shippo>Shippo</option>
+					<option value=Pyramid>Pyramid</option>
+					<option value=Seigeiha>Seigeiha</option>
+					<option value=Houndstooth>Houndstooth</option>
+					<option value=Checkerboard>Checkerboard</option>
+					<option value=CarbonFiber>Carbon Fiber</option>
+					<option value=IsometricCubes>Isometric Cubes</option>
+					<option value=ArrowTessellation>Arrow Tesellation</option>
+					<option value=Argyle>Argyle</option>
+				</select><br>
+				<label for=selectPreset>Preset: </label>
+				<select id=selectPreset name="Preset Options" onchange="changeThemeMod('-preset',html,'selectPreset')" >
+					<option value=None>Default</option>
+					<option value=BackdropBlur>Backdrop Blur</option>
+					<option value=Acetate>Acetate Paper</option>
+					<option value=Neumorphism>Neumorphism</option>
+				</select><br>
 			</fieldset>
 			<fieldset>
 				<legend>Card Styles</legend>
-				<h5>Border</h5>
-				<label><input type=radio name=border-options onclick="changeThemeMod('-border',html,'None')" value=None> None</label><br/>
-				<label><input type=radio name=border-options onclick="changeThemeMod('-border',html,'Hairline')" value=Hairline checked> Hairline</label><br/>
-				<label><input type=radio name=border-options onclick="changeThemeMod('-border',html,'Normal')" value=Normal> Normal</label><br/>
-				<label><input type=radio name=border-options onclick="changeThemeMod('-border',html,'Thick')" value=Thick> Thick</label><br/>
-				<h5>Emboss</h5>
-				<label><input type=radio name=emboss-options onclick="changeThemeMod('-emboss',html,'None')" value=None> None</label><br/>
-				<label><input type=radio name=emboss-options onclick="changeThemeMod('-emboss',html,'Smooth')" value=Smooth> Smooth</label><br/>
-				<label><input type=radio name=emboss-options onclick="changeThemeMod('-emboss',html,'WinClassic')" value=WinClassic> Windows 95</label><br/>
-				<h5>Shadow</h5>
-				<label><input type=radio name=shadow-options onclick="changeThemeMod('-shadow',html,'None')" value=None checked> None</label><br/>
-				<label><input type=radio name=shadow-options onclick="changeThemeMod('-shadow',html,'Sharp')" value=Sharp> Sharp</label><br/>
-				<label><input type=radio name=shadow-options onclick="changeThemeMod('-shadow',html,'Smooth')" value=Smooth> Smooth</label><br/>
-				<label><input type=radio name=shadow-options onclick="changeThemeMod('-shadow',html,'Old')" value=Old> Old</label><br/>
-				<label><input type=radio name=shadow-options onclick="changeThemeMod('-shadow',html,'MaterialV1')" value=MaterialV1> Material Design 1</label><br/>
-				<!-- <label><input type="radio" name="shadow-options" onclick="changeThemeMod('-shadow',html,'MacOS')" value="MacOS"> macOS</label><br/> -->
-				<h5>Shadow Color</h5>
-				<label><input type=radio name=shadowcolor-options onclick="changeThemeMod('-shadowColor',html,'Normal')" value=Normal checked> Normal</label><br/>
-				<label><input type=radio name=shadowcolor-options onclick="changeThemeMod('-shadowColor',html,'Reflect')" value=Reflect> Reflect</label><br/>
-				<label><input type=radio name=shadowcolor-options onclick="changeThemeMod('-shadowColor',html,'Glowing')" value=Glowing> Glowing</label><br/>
-			</fieldset>
-			<fieldset>
-				<legend>Styles</legend>
-				<label><input type=radio name=preset-options onclick="changeThemeMod('-preset',html,'None')" value=None> Default</label><br/>
-				<label><input type=radio name=preset-options onclick="changeThemeMod('-preset',html,'BackdropBlur')" value=BackdropBlur checked> Backdrop Blur</label><br/>
-				<label><input type=radio name=preset-options onclick="changeThemeMod('-preset',html,'Acetate')" value=Acetate> Acetate Paper</label><br/>
-				<label><input type=radio name=preset-options onclick="changeThemeMod('-preset',html,'Neumorphism')" value=Neumorphism checked> Neumorphism</label><br/>
+				<label for=selectCorner>Corner Roundness: </label>
+				<select id=selectCorner name="Corner Roundness Options" onchange="changeThemeMod('-corner',html,'selectCorner')" >
+					<option value=Sharp>Sharp</option>
+					<option value=RoundedTiny>Tiny Rounded</option>
+					<option value=Rounded>Rounded</option>
+					<option value=RoundedInner>More Rounded</option>
+				</select><br>
+				<label for=selectBorder>Border: </label>
+				<select id=selectBorder name="Border Options" onchange="changeThemeMod('-border',html,'selectBorder')" >
+					<option value=None>None</option>
+					<option value=Hairline>Hairline</option>
+					<option value=Normal>Normal</option>
+					<option value=Thick>Thick</option>
+				</select><br>
+				<label for=selectEmboss>Emboss: </label>
+				<select id=selectEmboss name="Emboss Options" onchange="changeThemeMod('-emboss',html,'selectEmboss')" >
+					<option value=None>None</option>
+					<option value=Smooth>Smooth</option>
+					<option value=WinClassic>Windows 95</option>
+				</select><br>
+				<label for=selectShadow>Shadow: </label>
+				<select id=selectShadow name="Shadow Options" onchange="changeThemeMod('-shadow',html,'selectShadow')" >
+					<option value=None>None</option>
+					<option value=Sharp>Sharp</option>
+					<option value=Smooth>Smooth</option>
+					<option value=Old>Old</option>
+					<option value=MaterialV1>Material Design 1</option>
+				</select><br>
+				<label for=selectShadowColor>Shadow Color: </label>
+				<select id=selectShadowColor name="Shadow Color Options" onchange="changeThemeMod('-shadowColor',html,'selectShadowColor')" >
+					<option value=Normal>Normal</option>
+					<option value=Reflect>Reflect</option>
+					<option value=Glowing>Glowing</option>
+				</select><br>
 			</fieldset>
 		</article>
 	</div>
@@ -131,47 +259,60 @@ So let's try to type longest paragraph of the world. To ease the process of brea
 		</article>
 	</div>
 	<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
-		<article class=c-card>
+		<section class=c-card>
 			<header class=c-header>
-				<h2 class=c-card__title>Color Palette</h2>
+				<h2 class=c-card__title>Colors</h2>
 			</header>
+			<h5>Main</h5>
+			<div class=temp-container>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--colorBg);></div><br>BG</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--colorText);></div><br>Text</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--colorAccent);></div><br>Accent</div>
+			</div>
+			<hr>
 			<h5>Layers</h5>
-			<div class=_colorBox style="border:2px solid #000;background-color:var(--colorDeep)">Deep
-			<div class=_colorBox style="background-color:var(--colorBack)">Back
-			<div class=_colorBox style="background-color:var(--colorBase)">Base
-				<div class=_colorBox style="background-color:var(--colorFore)">Fore*</div>
-				<div class=_colorBox style="background-color:var(--colorForeBrighter)">Fore Brighter*
-			<div class=_colorBox style="background-color:var(--frontColor)">Front
+			<div class=temp-container>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--colorFrontmost);></div><br>Frontmost</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--colorFront);></div><br>Front</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--colorBase);></div><br>Base</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--colorBack);></div><br>Back</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--colorBackmost);></div><br>Backmost</div>
 			</div>
+			<hr>
+			<h5>Hues</h5>
+			<div class=temp-container>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--red);></div><br>Red</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--orange);></div><br>Orange</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--yellow);></div><br>Yellow</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--green);></div><br>Green</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--cyan);></div><br>Cyan</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--blue);></div><br>Blue</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--hue01);></div><br>Hue01</div>
+				<div class=temp><div class=temp-inner style=--tempVal:var(--Hue02);></div><br>Hue02</div>
 			</div>
-			</div>
-			</div>
-			</div>
-			<div class=_colorPalette style="background:#000">
-				<div style="background-color:var(--colorBase)">
-					<span class=_txtText>Normal Text Color</li><br/>
-					<span class=_txtTextBolder>Bolder Text Color</li>
-				</div>
-				<div class="t-modBody -bgRed">Red</div>
-				<div class="t-modBody -bgOrange">Orange</div>
-				<div class="t-modBody -bgYellow">Yellow</div>
-				<div class="t-modBody -bgGreen">Green</div>
-				<div class="t-modBody -bgCyan">Cyan</div>
-				<div class="t-modBody -bgBlue">Blue</div>
-				<div class="t-modBody -bgViolet">Violet</div>
-				<div class="t-modBody -bgMagenta">Magenta</div>
-			</div>
-			<!-- <div class=_colorPalette> -->
-			<!-- 	<div class=_bgBase03>B03</div> -->
-			<!-- 	<div class=_bgBase02>B02</div> -->
-			<!-- 	<div class=_bgBase01>B01</div> -->
-			<!-- 	<div class=_bgBase00>B00</div> -->
-			<!-- 	<div class=_bgBase0>B0</div> -->
-			<!-- 	<div class=_bgBase1>B1</div> -->
-			<!-- 	<div class=_bgBase2>B2</div> -->
-			<!-- 	<div class=_bgBase3>B3</div> -->
-			<!-- </div> -->
-		</article>
+			<style>
+				.temp-container{
+					display:flex;
+					flex-wrap:wrap;
+					justify-content: center;
+				}
+				.temp {
+					text-align: center;
+					padding:.5em;
+					font-size:smaller;
+				}
+				.temp-inner{
+					display:inline-block;
+					margin: 0 auto;
+					border: 2px solid #0006;
+					box-shadow: 0 0 0 2px #FFF6;
+					width:64px;
+					aspect-ratio:1;
+					border-radius:50%;
+					background-color: var(--tempVal);
+				}
+			</style>
+		</section>
 	</div>
 	<div class="o-rustygrid__item -col1 -col2-3@palm -col1@lap js-post">
 		<article class=c-card>

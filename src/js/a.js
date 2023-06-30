@@ -425,3 +425,15 @@ function nothingImportant() {
 	// 	console.log("Oh my god, what have you done...");
 	// }
 }
+
+//--- Dark Mode Toggle: github.com/BetaHuhn/drkmd.js
+//
+// new Darkmode().attach();
+const darkModeToggleImg = {
+	dark: "/pi.svg#sun",
+	light: "/pi.svg#moon"
+}
+window.addEventListener('theme-change', e => {
+	const theme = e.detail.to
+	document.getElementById('darkModeToggle').href = darkModeToggleImg[theme]
+})

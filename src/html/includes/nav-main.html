@@ -69,6 +69,12 @@
 					</a>
 				</li>
 				<li class=c-nav__item role=treeitem>
+					<a class=c-nav__anchor href=/example/color.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#the-logo>
+					</svg><span>Colors</span></a>
+				</li>
+				<li class=c-nav__item role=treeitem>
 					<a class=c-nav__anchor href=/example/table.html>
 					<svg class=pi viewBox="0 0 18 18" width=18px>
 						<use href=/pi.svg#file-data-alt>
@@ -217,10 +223,14 @@
 				</li>
 			</ul>
 		</li>
-		<!-- <li class="c-nav__separator -leanEnd"></li> -->
-		<!-- <li class=c-nav__item> -->
-		<!-- 	<!-1- TODO: Need a functioning toggle color scheme switcher here -1-> -->
-		<!-- 	<a href>🌗</a> -->
-		<!-- </li> -->
+		<li class="c-nav__separator -leanEnd"></li>
+		<li class=c-nav__item>
+			<a class=c-nav__anchor href=#! data-drkmd-toggle title="Toggle dark mode" aria-label="Toggle dark mode">
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use id=darkModToggle href=/pi.svg#sun></use>
+				</svg><span>Toggle Theme</span>
+				<!-- <a href>🌗</a> -->
+			</a>
+		</li>
 	</ul>
 </nav>

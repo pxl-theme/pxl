@@ -173,6 +173,7 @@ const jsVendors = [
 	"node_modules/jquery/dist/jquery.min.js",
 	"node_modules/enquire.js/dist/enquire.min.js",
 	"node_modules/colcade/colcade.js",
+	"node_modules/drkmd-js/dist/drkmd-js.min.js",
 	//TODO: Need to minimize colcade.js in the concatJSVendors task.
 	"node_modules/lazysizes/lazysizes.min.js",
 	"node_modules/no-darkreader/nodarkreader.min.js"
