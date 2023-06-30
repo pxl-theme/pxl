@@ -420,7 +420,7 @@ bindUIEvents();
 reloadThings();
 
 function nothingImportant() {
-	document.documentElement.style.setProperty("--chosenFonts", "Comic Sans MS, ChalkboardSE-Regular, Marker Felt, Papyrus, Arial, serif");
+	document.documentElement.style.setProperty("--fontMain", "Comic Sans MS, ChalkboardSE-Regular, Marker Felt, Papyrus, Arial, serif");
 	// if (debugMode) {
 	// 	console.log("Oh my god, what have you done...");
 	// }

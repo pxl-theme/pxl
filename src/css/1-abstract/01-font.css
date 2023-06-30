@@ -1,28 +1,48 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Foldit:wght@700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Antonio&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Texturina&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap'); */
 :root {
-	/*** Default Font Settings
-	 */
 
-	/* --fontSystem: system-ui, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, color-emoji; */
-	/* --fontSystemMono: ui-monospace, Consolas, 'Liberation Mono', Menlo, Courier, monospace, color-emoji; */
-	--fontSerif: Charter, Georgia, Cambria, "Times New Roman", Times, serif;
-	--fontSystem: system-ui;
-	--fontSystemMono: ui-monospace;
-	--fontMain: "Inter V";
-	/* --fontMain: "Inter"; */
-	--fontMono: "Iosevka Aegean";
-	/* --fontMono: "Iosevka Aegean Aile"; */
-	/* --fontMono: "Hack"; */
+	/* https://modernfontstacks.com/#font-stacks */
 
-	--chosenFonts: var(--fontMain);
-	--chosenMonoFonts: var(--fontMono);
+	/* Sans Serif Stacks */
+	--fontStackSystemUI: system-ui, sans-serif, color-emoji;
+	--fontStackHumanist: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+	--fontStackGeoHumanist: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+	--fontStackClassicHumanist: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+	--fontStackNeoGrotesque: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+	--fontStackIndustrial: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
+	--fontStackRounded: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
+
+	/* Serif Stacks */
+	/* --fontStackSerif: Charter, Georgia, Cambria, "Times New Roman", Times, serif; */
+	--fontStackTransitional: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+	--fontStackOldStyle: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif;
+	--fontStackSlabSerif: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
+	--fontStackAntique: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+	--fontStackDidone: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif;
+
+	/* Monospaced Stacks */
+	--fontStackMono: ui-monospace, Consolas, 'Liberation Mono', Menlo, Courier, monospace, color-emoji;
+	--fontStackMonospaceSlab: 'Nimbus Mono PS', 'Courier New', monospace;
+	--fontStackMonospaceCode: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+
+	/* Display/Script Stacks */
+	--fontStackHandwritten: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
+
+	/* Font Properties in Use */
+	--fontMain: "Inter V", var(--fontStackNeoGrotesque);
+	--fontMono: "Iosevka Aegean", var(--fontStackMono);
+	--fontHeading: var(--fontMain);
+	/* --fontParagraph: var(--fontMain); */
+
 	@media (--wrist-or-lt) {
-		--chosenFonts: inherit;
-		--chosenMonoFonts: inherit;
+		--fontMain: inherit;
+		--fontMono: inherit;
 	}
 
-	/* Presets */
-	--fontHeading: var(--fontMain);
-	--fontParagraph: var(--fontMain);
 }
 
 /* Define all emoji-based font families as single family */
@@ -70,6 +90,18 @@
 	font-weight: bold;
 	font-style: normal;
 }
+
+/* Source: https://www.ctrl.blog/entry/creative-commons-unicode-fallback-font.html */
+/* @font-face { */
+/*   font-display: swap; */
+/*   font-family: CCSymbols; */
+/*   font-synthesis: none; */
+/*   src: url(CCSymbols.woff2) format(woff2), */
+/*        url(CCSymbols.woff)  format(woff); */
+/*   unicode-range: u+a9, u+229c, */
+/*                  u+1f10d-1f10f, */
+/*                  u+1f16d-1f16f; */
+/* } */
 
 
 /* Tip: Keep font-display: block after updating iconfont css file */

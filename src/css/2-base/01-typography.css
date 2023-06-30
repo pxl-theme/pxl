@@ -58,7 +58,8 @@
 	--fontWeightMultiplier: 1;
 	--letterSpacing: 0ch;
 	/* Make variable fonts thinner overall and add subtle letter spacing in dark theme */
-	@media (prefers-color-scheme: dark) {
+	&[data-theme=dark] {
+	/* @media (prefers-color-scheme: dark) { */
 		--fontWeightMultiplier: .85;
 		--letterSpacing: .02ch;
 	}
@@ -104,7 +105,7 @@ body {
 /* Set the font family and relevant rendering options
  */
 body {
-	font-family: var(--chosenFonts);
+	font-family: var(--fontMain);
 	/* font-weight: calc(400 * var(--fontWeightMultiplier, 1)); */
 	-moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased; /* disables subpixel antialias */
@@ -322,7 +323,7 @@ abbr[title],acronym[title]{
 }
 
 pre,code,kbd,samp{
-	font-family: var(--chosenMonoFonts);
+	font-family: var(--fontMono);
 }
 pre {
 	/* overflow: auto; */ /* Already exists in current reset */
@@ -352,7 +353,8 @@ mark {
 	background: linear-gradient(-100deg, hsl(60 100% 50% / .3), hsl(60 100% 50% / .7) 95%, hsl(60 100% 50% / .1));
 	color: black;
 	padding: calc(var(--rhythmUnit)/2);
-	@media (prefers-color-scheme: dark) {
+	/* @media (prefers-color-scheme: dark) { */
+	[data-theme=dark] & {
 		color: hsl(60 100% 50%);
 		background: linear-gradient(-100deg, hsl(60 100% 50% / .1), hsl(60 100% 50% / .2) 95%, hsl(60 100% 50% / .1));
 	}
