@@ -68,9 +68,7 @@
 	}
 	.pi {
 	/* Add border to all icons inside header modified with -viewMedia */
-		/*opinionated*/
-		--iconWeight:1.75px;
-		/*-opinionated*/
+		--iconWeight:1.75px;/*opinionated*/
 		filter:
 		drop-shadow(calc(var(--iconWeight)*2) 0 0 var(--stroke))
 		drop-shadow(0 calc(var(--iconWeight)*2) 0 var(--stroke))

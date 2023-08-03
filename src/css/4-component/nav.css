@@ -85,9 +85,7 @@ ul.c-nav, .c-nav ul {
 	}
 	/* First SVG child inside nav item */
 	svg:first-child{
-	/* opinionated */
-		margin-inline-start:0;
-	/* -opinionated */
+		margin-inline-start:0; /* opinionated */
 	}
 	:is(svg,.c-iconWrapper) + :is(span,b) {
 		/* Space between icon and label in the nav item*/
@@ -118,14 +116,12 @@ ul.c-nav, .c-nav ul {
 		/* border-radius: var(--radiusS); */
 		border-radius: var(--radiusInnerDefault);
 	}
-	/* opinionated */
-	/* Reset filters  inside nav item if it's possible to hover on */
-	@media (any-hover: hover) and (any-pointer: fine) {
+	/* Reset filters inside nav item if it's possible to hover on */
+	@media (any-hover: hover) and (any-pointer: fine) { /* opinionated */
 		&:hover img{
 			filter: opacity(1) saturate(1);
 		}
 	}
-	/* -opinionated */
 	/* :is(.c-nav__anchor, .c-nav__anchor:hover, .c-nav__anchor:focus, .c-nav__anchor:active){ */
 	:is(.c-nav__anchor, .c-nav__anchor:hover, .c-nav__anchor:focus-visible, .c-nav__anchor:active){
 		color: currentColor;
@@ -179,9 +175,8 @@ ul.c-nav, .c-nav ul {
 	&:is(.-typeTree, .-typeFlyout.-layoutHorizontal) {
 		margin-block-end: calc(var(--rhythmUnit)*2);
 	}
-	/* Opinionated Search-Type Input inside Horizontal Fly-out Type and Tree Type Nav*/
-	/* opinionated */
-	&:is(.-typeTree, .-typeFlyout.-layoutVertical) {
+	/* *Opinionated* Search-Type Input inside Horizontal Fly-out Type and Tree Type Nav*/
+	&:is(.-typeTree, .-typeFlyout.-layoutVertical) { /* opinionated */
 		input[type='search'] {
 			width:90%;
 			margin: auto;
@@ -190,7 +185,6 @@ ul.c-nav, .c-nav ul {
 			padding-inline:0 !important;
 		}
 	}
-	/* -opinionated */
 }
 
 /* experimental */
@@ -277,10 +271,7 @@ ul.c-nav, .c-nav ul {
 		text-decoration-color: currentColor;
 		text-decoration-thickness: 1px;
 		text-underline-offset: 1px;
-
-		/* opinionated */
-		/* @mixin fontSize3; */
-		/* -opinionated */
+		/* @mixin fontSize3; /1* opinionated *1/ */
 		@media (any-hover: hover) {
 			text-decoration-line: none;
 			&:hover, &:focus-visible {
@@ -310,9 +301,8 @@ ul.c-nav, .c-nav ul {
 		box-shadow: calc(var(--borderHairline) * -1) 0 var(--colorTextOpac40);
 		/* Font size and vertical alignment of SECOND or MORE depth navigation item in Tree  Nav Component */
 		/* .c-nav__item > .c-nav__anchor { */
-			/* opinionated */
-			/* @mixin fontSize4; */
-			/* -opinionated */
+
+			/* @mixin fontSize4;/1* opinionated *1/ */
 		/* } */
 	}
 	/* Tree-Type Nav Expandable From Block Start (Top)*/
@@ -417,9 +407,7 @@ ol.c-nav.-typeTree .c-nav__item {
  */
 	/* Affects every depth */
 	&.-layoutVertical {
-		/* opinionated */
-		width: 12em;
-		/* -opinionated */
+		width: 12em; /* opinionated */
 		/* max-width: var(--sidebarWidth); */
 
 		/* Font Size and Box Values of Nav Item Label, Submenu Indicator */
@@ -428,9 +416,7 @@ ol.c-nav.-typeTree .c-nav__item {
 			@mixin fontSize4;
 		}
 		.c-nav__submenu {
-		/* opinionated */
-			width: 12em;
-		/* -opinionated */
+			width: 12em; /* opinionated */
 			/* max-width: var(--sidebarWidth); */
 		}
 		/* > .c-nav__item { */
@@ -438,10 +424,7 @@ ol.c-nav.-typeTree .c-nav__item {
 		/* } */
 		&.-expandFromStartStart {
 			/* font-size: 1.25rem; */
-
-			/* opinionated */
-			z-index: 555;
-			/* -opinionated */
+			z-index: 555; /* opinionated */
 
 			position: absolute;
 			/* position: fixed; */
@@ -649,13 +632,11 @@ ol.c-nav.-typeTree .c-nav__item {
 			/* 	} */
 			/* } */
 		}
-		&:is(.-alignStart,.-alignEnd) {
-			/* opinionated */
+		&:is(.-alignStart,.-alignEnd) { /* opinionated */
 			padding-inline: 1em;
 			@media (--palm-or-gt){;
 				padding-inline: 3em;
 			}
-			/* -opinionated */
 		}
 		/* Align every descendant items of Horizontal Fly-out Type Nav to the left */
 		&.-alignStart {
@@ -777,9 +758,8 @@ ol.c-nav.-typeTree .c-nav__item {
 				inset-inline-start: 0;
 
 				/* First depth of submenus open beneath the related nav item */
-				/* opinionated */
-				transform: translate(0 calc(var(--rhythmUnit)*-3));
-				/* -opinionated */
+
+				transform: translate(0 calc(var(--rhythmUnit)*-3)); /* opinionated */
 
 				/* Adjusting top position a little bit for different border modifiers */
 				.t-modRoot:is(.-borderNormal,.-borderThick) :is(&) {
@@ -845,8 +825,7 @@ ol.c-nav.-typeTree .c-nav__item {
 			/* margin: auto calc( 1 / 3 * 1em ); */
 			margin-inline: .33333em;
 		}
-		/* opinionated */
-		input[type="search"]{
+		input[type="search"]{ /* opinionated */
 			order: 999;
 			width: 8em;
 			/* &.-leanEnd { */
@@ -854,7 +833,6 @@ ol.c-nav.-typeTree .c-nav__item {
 			/* 	float: inline-end */
 			/* } */
 		}
-		/* -opinionated */
 	}
 }
 
@@ -872,9 +850,7 @@ ol.c-nav.-typeTree .c-nav__item {
 	padding-inline: 0;
 
 	min-width: 3em; /* Minimum recommended thumb size (48px) */
-	/* opinionated */
-	max-width: 8em;
-	/* -opinionated */
+	max-width: 8em; /* opinionated */
 	/* > svg { */
 	> :is(.pi) {
 		/* 1.5x of pxl icon size */
@@ -1039,9 +1015,7 @@ ol.c-nav.-typeTree .c-nav__item {
 .c-nav:is(.-typeTree,.-typeFlyout){
 	background-color: var(--colorFront);
 	input[type="search"]{
-		/* opinionated */
-		/* border:none !important; */
-		/* -opinionated */
+		/* border:none !important; /1* opinionated *1/ */
 		text-align:center;
 		display:block;
 		/* TODO: Search input icon view

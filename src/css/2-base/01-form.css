@@ -333,11 +333,8 @@ input[type=range]::-moz-range-thumb {
 fieldset {
 	color: inherit;
 	border: var(--borderHairline) solid;
-	margin-block-end: calc(var(--borderHairline) * -2); /*
-	/* opinionated */
-	border-radius: var(--radiusInnerDefault);
-	/* -opinionated */
-
+	margin-block-end: calc(var(--borderHairline) * -2);
+	border-radius: var(--radiusInnerDefault);/* opinionated */
 	legend {
 		padding-block: 0;
 		padding-inline:.35em;

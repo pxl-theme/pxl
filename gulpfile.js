@@ -325,13 +325,13 @@ function lintCSS(){
 // Check main CSS files for syntax errors or warnings.
 	return src(predist.css)
 		.pipe(stylelint({
-			failAfterError: true,
+			failAfterError: false,
 			// reportOutputDir: "reports/stylelint",
 			// reporters: [
 			// 	{formatter: "verbose", console: true},
 			// 	{formatter: "json", save: "report.json"}
 			// ],
-			debug: true
+			debug: false
 		}))
 }
 

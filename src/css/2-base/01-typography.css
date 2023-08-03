@@ -39,9 +39,8 @@
 	/**** Vertical Rhythm/Baseline Grid
 	 */
 	--lineHeight: 1.5rem; /* 24px */
-	/* opinionated */
-	--rhythmUnit: calc(var(--lineHeight)/3); /* 8px */
-	/* -opinionated */
+
+	--rhythmUnit: calc(var(--lineHeight)/3); /* 8px */ /* opinionated */
 
 	/*** Set font size
 	 */
@@ -189,6 +188,7 @@ h3 { @mixin fontSize3;}
 h4 { @mixin fontSize4;}
 h5 { @mixin fontSize5;}
 h6 { @mixin fontSize6;}
+
 /* opinionated */
 h1,h2,h3 {
 	font-family: var(--fontHeading);
@@ -207,15 +207,14 @@ h1,h2,h3 {
 /* -opinionated */
 
 /* Heading 5 and 6 styles for small (around 2 inch) smartwatch screens */
-@media (--wrist-or-lt) {
+@media (--wrist-or-lt) { /* opinionated */
 	h5, h6 {
 		@mixin fontSize5;
-		/* opinionated */
+		/* font-variant-caps: all-small-caps; */
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		letter-spacing: calc(var(--letterSpacing)+1px);
 		--fontWeight: 400;
-		/* -opinionated */
 	}
 }
 p,caption,ul{
@@ -239,12 +238,10 @@ hr{
 	border: 0;
 	border-block-start: 1px solid var(--colorText);
 }
-ul{
-	/* opinionated */
+ul{ /* opinionated */
 	margin-block: calc(var(--rhythmunit)*2);
 	margin-inline: 0;
 	padding-inline-start: calc(var(--rhythmUnit)*5);
-	/* -opinionated */
 }
 blockquote {
 	margin-block: calc(var(--rhythmunit)*2);
@@ -337,8 +334,7 @@ pre {
 	}
 }
 
-/* opinionated */
-code, var, kbd, samp {
+code, var, kbd, samp {/* opinionated */
 	background-color: var(--colorBack);
 	/* font-size:1em; */
 	padding-block: calc(var(--rhythmUnit)/4);
@@ -348,8 +344,7 @@ code, var, kbd, samp {
 
 /* Realistic Marker Element*/
 /* Source: https://www.abeautifulsite.net/posts/a-clever-way-to-style-the-mark-element/ */
-/* opinionated */
-mark {
+mark {/* opinionated */
 	background: linear-gradient(-100deg, hsl(60 100% 50% / .3), hsl(60 100% 50% / .7) 95%, hsl(60 100% 50% / .1));
 	color: black;
 	padding: calc(var(--rhythmUnit)/2);
@@ -365,14 +360,12 @@ mark {
 		border-radius: var(--radiusL) 0;
 	}
 }
-/*- opinionated */
 
-var {
+var {/* opinionated */
 	padding-inline-start: .2rem; /* Lower left padding because it seem off from the center while it's slanted by default. */
 	padding-inline-end: .3rem;
 	/* Sum of these are connected to vertical rhythm unit (.5) */
 }
-/* -opinionated */
 
 figcaption {
 	@mixin fontSize5;

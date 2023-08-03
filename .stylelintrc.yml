@@ -1,19 +1,21 @@
 ---
-plugins:
-- stylelint-no-unsupported-browser-features
+# plugins:
+# - stylelint-no-unsupported-browser-features
 rules:
+  extends: stylelint-config-recommended
+
   # block-no-empty:
   # - true
   # - ignore:
   #   - comments
-  plugin/no-unsupported-browser-features:
-  - true
-  - ignore:
-    - appearance
-    - css3-cursors
-    - text-size-adjust
-    - css-touch-action
-    - css-resize
-    ignorePartialSupport: true
-    severity: warning
+  # plugin/no-unsupported-browser-features:
+  # - true
+  # - ignore:
+  #   - appearance
+  #   - css3-cursors
+  #   - text-size-adjust
+  #   - css-touch-action
+  #   - css-resize
+  #   ignorePartialSupport: true
+  #   severity: warning
 

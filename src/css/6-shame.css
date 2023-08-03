@@ -307,9 +307,7 @@ a.readMore{
 }
 
 ._textFillGradientAnimated {
-	/* opinionated */
-	display: inline-block;
-	/* -opinionated */
+	display: inline-block;/* opinionated */
 	--colorTextGradientRainbow: linear-gradient(45deg,
 	var(--orange),
 	var(--yellow),

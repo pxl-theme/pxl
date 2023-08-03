@@ -4,24 +4,18 @@
 /***** Grid Object Inside CMS Content
  */
 .s-cmsContent.o-rustygrid{
-	/* opinionated */
-	padding-block-end: 1rem;
+	padding-block-end: 1rem;/* opinionated */
 	/* This might be redundant when parent element is grid/flexbox and has gap values. */
-	/* -opinionated */
 }
 /* .s-cmsContent.o-rustygrid:not(.-viewMasonry) .o-rustygrid__item { */
 /* 	display: block; */
-/* 	/1* opinionated *1/ */
-/* 	max-width: 44em; */
-/* 	/1* -opinionated *1/ */
+/* 	max-width: 44em;/1* opinionated *1/ */
 /* 	margin: auto; */
 /* } */
 
-/*opinionated*/
-.-cornerRounded .--noGutter .c-card {
+.-cornerRounded .--noGutter .c-card {/* opinionated */
 	border-radius: 0;
 }
-/*-opinionated*/
 
 /***** Grid Object
  */
@@ -130,9 +124,7 @@
 	vertical-align: top;
 	padding-inline-start: var(--gridGutter);
 	background-clip: content-box;
-	/* opinionated */
-	background-size: cover;
-	/* /opinionated */
+	background-size: cover; /* opinionated */
 	width: 100%;
 
 	/* &.col-0 + & { */

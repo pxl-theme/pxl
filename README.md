@@ -97,7 +97,7 @@ Breakpoints in the media queries based on [human ergonomics](https://twitter.com
 - [ ] CSS Grid support
 - [ ] [Pywal](https://github.com/dylanaraps/pywal) color theme compatibility
 - [ ] WordPress Block Theme support
-- [ ] Update CSS when implementations [below](https://caniuse.com/css-backdrop-filter,css-has,jpegxl,css-container-queries,mdn-css_types_color_oklch,mdn-css_types_color_color-mix,mdn-css_at-rules_property,mdn-api_css_lh,css-media-range-syntax) got full browser support in the future:
+- [ ] Update CSS when implementations [below](https://caniuse.com/?feats=view-transitions,css-relative-colors,css-text-box-trim,mdn-css_types_color_color-mix,css-media-range-syntax,css-cascade-layers,mdn-css_types_length_lh,mdn-css_at-rules_property,mdn-css_types_color_oklch,css-container-queries,style-scoped,jpegxl,css-has,css-text-wrap-balance) got wide browser support in the future:
 	- Selectors 4 ([:has](https://drafts.csswg.org/selectors-4/#relational))
 	- Color Module Level 5 (Awaiting for Firefox support) ([OKLCH unit](https://drafts.csswg.org/css-color-5/#relative-OKLCH), [color-mix()](https://drafts.csswg.org/css-color-5/#color-mix)], [Relative Color Syntax](https://drafts.csswg.org/css-color-5/#relative-colors), )
 	- [@property values](https://developer.mozilla.org/en-US/docs/Web/CSS/@property#browser_compatibility)

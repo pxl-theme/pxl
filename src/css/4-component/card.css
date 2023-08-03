@@ -13,9 +13,7 @@
 	/* This might be redundant when parent element is grid/flexbox and has gap value. */
 
 	/* background-clip: content-box; */
-	/* opinionated */
-	background-size: cover;
-	/* /opinionated */
+	background-size: cover;/* opinionated */
 
 	/* Responsive Square */
 	/* &.--viewSquare { */
@@ -62,18 +60,20 @@
 
 /*** Card Component inside Masonry Grid
  */
-	/*Parent classes*/
+	/* Parent class */
 	.o-rustygrid.-viewMasonry & {
-		margin: 0;
+		margin-block-end: 0; /* TODO: specifity casualty, check here later 💀 */
 		@media (--lap-or-gt) {
 			&.--typePhoto {
 				padding-block-end:0;
 			}
 		}
+		/* Highlight card when screen reader focuses on something inside it */
 		&:focus-within {
 			outline: 2px solid var(--colorAccent);
 		}
 
+		/* Set limit images inside card component in bigger screens */
 		@media (--lap-or-gt) {
 			.c-card.--typePost img {
 				max-height: 40vh;
@@ -112,11 +112,9 @@
 :is(.-cornerRounded, .-cornerRoundedInner) .c-card {
 	border-radius: var(--radiusL);
 }
-/* opinionated */
-.-cornerRoundedInner .c-card :is(img,iframe,embed,video,audio,object){
+.-cornerRoundedInner .c-card :is(img,iframe,embed,video,audio,object){/* opinionated */
 	border-radius: var(--radiusS);
 }
-/* -opinionated */
 
 
 /*** Header Component inside Card Component

@@ -1,4 +1,7 @@
 :root {
+	.ಠ_ಠ { --（╯°□°）╯: ︵┻━┻; } /* is a valid CSS. */
+	/* https://twitter.com/tabatkins/status/1099050056760487936 */
+
 	/*** Media Breakpoints
 	 */
 	--vwPalm:  640;  /* for phablets */
@@ -7,7 +10,6 @@
 	--vwWall:  1600; /* for desktops */
 	--vwMall:  1920; /* for wide screen monitors and TVs */
 	--vwTitan: 2400; /* for 4K, 8K, VR?... */
-
 
 /*** Geometry
 */
@@ -102,12 +104,12 @@
 /*** Animations
  */
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 @keyframes ball {
 	0% {
