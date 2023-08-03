@@ -1,11 +1,17 @@
 :root{
-  --iconColor: currentColor;
-  --iconWeight: 2px;
+	/* Source: https://makandracards.com/makandra/532661-how-to-reliably-center-block-icons-vertically-with-text */
+	/* In fontforge > Element > Font Info > OS/2 */
+	/* Typo Ascent/Capital Height */
+	/* 2728 / 2048 for Inter V */
+	/* --fontCapitalHeight: 1.332; */
+	--fontCapitalHeight: .75;
+	--iconColor: currentColor;
+	--iconWeight: 2px;
 
-  @media (--hidpi) {
-    --iconWeight: 1.5px;
-    /* --iconWeight: calc( 2px * var(--fontWeightMultiplier, 1) ); */
-  }
+	@media (--hidpi) {
+		--iconWeight: 1.5px;
+		/* --iconWeight: calc( 2px * var(--fontWeightMultiplier, 1) ); */
+	}
 }
 /* @font-face { */
 /*   font-family: "pxl-icon"; */
@@ -20,8 +26,14 @@
   display:inline;
   width: auto;
   height: var(--iconSize);
-  margin-block-start: calc((var(--lineHeight) - var(--iconSize))/2.5);
-  margin-block-end: calc((var(--lineHeight) - var(--iconSize))/1.5);
+
+  --iconVMiddle: calc(var(--iconSize)/2);
+  --capitalVMiddle: calc(var(--fontCapitalHeight)/2 * 1em);
+  vertical-align: calc(var(--capitalVMiddle) - var(--iconVMiddle));
+
+  /* margin-block-start: calc((var(--lineHeight) - var(--iconSize))/2.5); */
+  /* margin-block-end: calc((var(--lineHeight) - var(--iconSize))/1.5); */
+
   /* margin-block: calc(var(--lineHeight)*3 */
   /* vertical-align: -.2ex; */
   /* vertical-align: -.05rem; */

@@ -292,7 +292,8 @@ a {
 	}
 	&:visited {
 		/* color: var(--colorLinkVisited); */
-		text-decoration-color: var(--colorLinkVisited);
+		/* text-decoration-color: var(--colorLinkVisited); */
+		text-decoration-color: var(--hue01);
 	}
 	/* &[href=""] { */
 	/* 	color: var(--colorLinkDead); */
@@ -302,6 +303,12 @@ a {
 /* This is from zachleat/11ty docs site, investigate script too. */
 /* &[href^="//"]:not(.minilink):not(.elv-externalexempt)::after, a[href^="http://"]:not(.minilink):not(.elv-externalexempt)::after, a[href^="https://"]:not(.minilink):not(.elv-externalexempt)::after */
 /* &[href^="//"]::after, &[href^="http://"]::after, &[href^="https://"]::after */
+
+/* TODO: Can't pass custom property inside background svg data, using a Unicode symbol might solve this instead. */
+a[target="_blank"]:after{
+	content:'↗︎';
+	opacity:.66;
+}
 
 /* Adjust line offset/thickness */
 abbr, acronym {
