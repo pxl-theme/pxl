@@ -1,10 +1,34 @@
-/***** Frame Component
+/***** Frame Object
  */
+.o-frame__wrapper {
+	max-height:100vh;
+	max-height:100dvh;
+	overflow:auto;
+	scroll-snap-type: y mandatory; /* opinionated */
+	&.--horizontal{
+		scroll-snap-type: x mandatory;
+		max-height:auto;
+		.o-frame{
+			float: left;
+		}
+	}
+}
 .o-frame {
+	display:grid;
 	/* background-color: var(--colorBase); */
 	background-position: center;
 	background-size: cover;
 	width: 100%;
+	/* opinionated */
+	/* max-height:768px; */
+	/* height:70vh; */
+	min-height:70vh;
+	min-height:70dvh;
+	/* -opinionated */
+	scroll-margin-block-start: 15vh;
+	scroll-margin-block-start: 15dvh;
+	scroll-snap-align: start;
+	scroll-snap-stop: normal;
 	/* overflow: hidden; */
 	/* padding: calc(var(--rhythmUnit) * 2); */
 
@@ -13,9 +37,7 @@
 	&.--typeText {
 		.o-frame__content {
 			width: 100%;
-			/* opinionated */
-			max-width: 40em;
-			/* -opinionated */
+			max-width: 40em;/* opinionated */
 			display: block;
 			padding: 0 calc(var(--rhythmUnit) * 2);
 
@@ -30,6 +52,7 @@
 		display: grid;
 		align-content: center;
 		min-height: 70vh; /* If content is bigger, frame will be big as possible */
+		min-height: 70dvh; /* If content is bigger, frame will be big as possible */
 		text-align: center;
 		@media (--wall-or-gt) {
 			padding: calc(var(--rhythmUnit) * 2) calc( ( 100vw - var(--maxContentWidth) ) / 2 );
@@ -44,9 +67,7 @@
 		position: fixed;
 		top: calc(var(--rhythmUnit) * 2);
 		right: -100%;
-		/* opinionated */
-		max-width: 18rem;
-		/* -opinionated */
+		max-width: 18rem;/* opinionated */
 		z-index: 9999;
 		border-radius: var(--radiusDefault);
 		/* transition: all .5s ease; */

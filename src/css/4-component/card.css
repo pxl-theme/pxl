@@ -4,6 +4,10 @@
 	overflow: hidden;
 	overflow-wrap: break-word;
 	width: 100%;
+	/* opinionated */
+	max-width:540px;
+	margin-inline: auto;
+	/* -opinionated */
 	position: relative;
 	background-color: var(--colorBase);
 
@@ -34,29 +38,29 @@
 
 	/* } */
 
-	.o-rustygrid:not(.-viewMasonry) &.--typePost {
-		@media (--lap-or-gt) {
-			/* Bigger gaps inside card in a single post with bigger screen. */
-			--c-card-padTop: calc(var(--rhythmUnit)*2);
-			--c-card-padSide: 2rem;
-			--c-card-padBottom: calc(var(--rhythmUnit)*3);
-		}
-	}
+	/* .o-rustygrid:not(.-viewMasonry) &.--typePost { */
+	/* 	@media (--lap-or-gt) { */
+	/* 		/1* Bigger gaps inside card in a single post with bigger screen. *1/ */
+	/* 		--c-card-padTop: calc(var(--rhythmUnit)*2); */
+	/* 		--c-card-padSide: 2rem; */
+	/* 		--c-card-padBottom: calc(var(--rhythmUnit)*3); */
+	/* 	} */
+	/* } */
 
 /*** Card Component with Photo Content
  */
-	&.--typePhoto {
-		/* padding: 0 var(--c-card-padSide) 0; */
-		padding-block: 0;
-		*:not(img):last-child {
-			margin-block-end: var(--c-card-padBottom);
-		}
-		> img {
-			position: relative;
-			inset-inline-start: calc(var(--c-card-padSide) * -1);
-			max-width: calc( var(--c-card-padSide) * 2 + 100%);
-		}
-	}
+	/* &.--typePhoto { */
+	/* 	/1* padding: 0 var(--c-card-padSide) 0; *1/ */
+	/* 	padding-block: 0; */
+	/* 	*:not(img):last-child { */
+	/* 		margin-block-end: var(--c-card-padBottom); */
+	/* 	} */
+	/* 	> img { */
+	/* 		position: relative; */
+	/* 		inset-inline-start: calc(var(--c-card-padSide) * -1); */
+	/* 		max-width: calc( var(--c-card-padSide) * 2 + 100%); */
+	/* 	} */
+	/* } */
 
 /*** Card Component inside Masonry Grid
  */
@@ -75,8 +79,9 @@
 
 		/* Set limit images inside card component in bigger screens */
 		@media (--lap-or-gt) {
-			.c-card.--typePost img {
+			.c-card img {
 				max-height: 40vh;
+				max-height: 40dvh;
 			}
 		}
 	}
@@ -144,15 +149,15 @@
 			padding-bottom: calc(9 / 21 * 100 - 10)%
 		}
 	}
-	.c-card.--typePhoto .c-header.-viewMedia {
-		padding-bottom: 60%;
-		@media (--palm-or-gt) {
-			padding-bottom: 60%;
-		}
-		/* @media (--lap-or-gt) { */
-		/* 	padding-bottom: 60%; */
-		/* } */
-	}
+	/* .c-card.--typePhoto .c-header.-viewMedia { */
+	/* 	padding-bottom: 60%; */
+	/* 	@media (--palm-or-gt) { */
+	/* 		padding-bottom: 60%; */
+	/* 	} */
+	/* 	/1* @media (--lap-or-gt) { *1/ */
+	/* 	/1* 	padding-bottom: 60%; *1/ */
+	/* 	/1* } *1/ */
+	/* } */
 }
 
 /*** Header Component with Media View inside Card Component
@@ -163,16 +168,24 @@
 	width: calc( var(--c-card-padSide) * 2 + 100% );
 	inset-block-start: calc( var(--c-card-padTop) * -1);
 	inset-inline-start: calc( var(--c-card-padSide) * -1);
-	/* Square Space */
-	/* padding-bottom: 33%; */
-	padding-block-end: 23%;
-	margin-block-start: 0;
+	/* margin-block-start: 0; */
 
 	/* Overriding/inheriting padding data
 	 * from Card component
 	 * over Header component */
 	padding-inline: var(--c-card-padSide);
 	/* INFO: This one ^ might supposed to have higher specifity before, check if works properly... */
+
+	/* Method 1: Old Padding Aspect Ratio Hack */
+	/* padding-block-end: 23%; */
+
+	/* Method 2: Flex & Aspect Ratio */
+	aspect-ratio:1.25; /* 5/4 */
+	display:flex;
+    flex-wrap: wrap;
+	justify-items: stretch;
+    align-content: space-between;
+    /* align-content: flex-end; */
 
 	/* .o-rustygrid:not(.-viewMasonry) > .o-rustygrid__item & { */
 	/* *:not(.-viewMasonry) > .o-rustygrid__item & { */
@@ -205,9 +218,9 @@
 		--fontWeight: 900;
 	}
 }
-.c-card.--typePhoto .c-header.-viewMedia {
-	padding-block-end: 60%;
-}
+/* .c-card.--typePhoto .c-header.-viewMedia { */
+/* 	padding-block-end: 60%; */
+/* } */
 :is(h4,h5,h6).c-card__meta {
 	--fontWeight: 400;
 }
@@ -250,6 +263,6 @@
 
 /*** Footer section of Card Component
  */
-.c-card__footer {
-	margin-top: 2em;
-}
+/* .c-card__footer { */
+/* 	margin-top: 2em; */
+/* } */

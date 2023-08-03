@@ -595,7 +595,7 @@ ol.c-nav.-typeTree .c-nav__item {
  */
 	&.-layoutHorizontal {
 		width: 100%;
-		/* max-width: var(--maxContentWidth); */
+		max-width: var(--maxContentWidth);
 		/* margin-top: 1em; */
 		margin-inline: auto;
 		/* padding: 0 var(--c-card-padSide); */

@@ -23,6 +23,7 @@
 	margin: auto;
 	padding-inline-end: var(--gridGutter);
 	background-clip: content-box;
+	width:100%;
 	max-width: var(--maxContentWidth);
 
 	&.-reversed {

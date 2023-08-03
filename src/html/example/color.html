@@ -2,210 +2,207 @@
          "title":"Colors"
 }'></include>
 
-<main id="content" class="" aria-label="Content">
-		<section class="c-card u-clearFix o-rustygrid --alignCenter">
-			<div class="o-rustygrid__item -col1 -col2-3@palm">
-			<header class=c-header>
-				<h1 class=c-card__title>Colors</h2>
-			</header>
-			<h2>Current Color Scheme</h5>
-			<h5>Main</h5>
-			<div class=temp-container>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--colorBg);></div><br>BG</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--colorText);></div><br>Text</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--colorAccent);></div><br>Accent</div>
-			</div>
-			<hr>
-			<h5>Layers</h5>
-			<div class=temp-container>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--colorFrontmost);></div><br>Frontmost</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--colorFront);></div><br>Front</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--colorBase);></div><br>Base</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--colorBack);></div><br>Back</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--colorBackmost);></div><br>Backmost</div>
-			</div>
-			<hr>
-			<h5>Hues</h5>
-			<div class=temp-container>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--red);></div><br>Red</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--orange);></div><br>Orange</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--yellow);></div><br>Yellow</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--green);></div><br>Green</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--cyan);></div><br>Cyan</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--blue);></div><br>Blue</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--hue01);></div><br>Hue01</div>
-				<div class=temp><div class=temp-inner style=--tempVal:var(--hue02);></div><br>Hue02</div>
-			</div>
-			<hr>
-			<footer class="o-rustygrid__item -col1">
-				<style style="display: block;background-color:var(--colorBg);color:var(--colorText);font-family:var(--fontMono);padding:1em;border-radius:var(--radiusDefault);border: 1px solid currentColor;opacity: .75;transform: scale(.5);">
-					.temp-container{
-						display:flex;
-						flex-wrap:wrap;
-						justify-content: center;
+<main id=content aria-label=Content>
+	<section class=c-card>
+		<h2>Settings</h2>
+		<script>
+			//--- Theme Modifier Detector and Changer
+			function resetClassStartWith(el, prefix) {
+				el.classList.forEach(className => {
+					if (className.startsWith(prefix)) {
+						el.classList.remove(className);
 					}
-					.temp {
-						text-align: center;
-						padding:1em;
-						font-size:smaller;
-					}
-					.temp-inner{
-						display:inline-block;
-						margin: 0 auto;
-						border: 2px solid #0006;
-						box-shadow: 0 0 0 2px #FFF6;
-						width:64px;
-						aspect-ratio:1;
-						border-radius:50%;
-						background-color: var(--tempVal);
-					}
-				</style>
-			</footer>
-			</div>
-			<div class="o-rustygrid__item -col1 -col1-3@palm">
-				<script>
-					//--- Theme Modifier Detector and Changer
-					function resetClassStartWith(el, prefix) {
-						el.classList.forEach(className => {
-							if (className.startsWith(prefix)) {
-								el.classList.remove(className);
-							}
-						});
-					}
-					function changeThemeMod(prefix, elem, sel) {
-						var val = document.getElementById(sel).value;
-						resetClassStartWith(elem, prefix);
-						elem.classList.add(prefix + val);
-						console.log("[changeThemeMod]: " + prefix + " set as " + val);
-					}
-				</script>
-				<h2>Settings</h2>
-				<label for=selectLight><svg class=pi viewBox="0 0 18 18" width=18px><use id=darkModToggle href=/pi.svg#sun></use></svg> Light Scheme: </label>
-				<select id=selectLight name="Light theme options" onchange="changeThemeMod('-schemeLight',html,'selectLight')" >
-					<option value=AtelierCave>Atelier Cave</option>
-					<option value=AtelierDune>Atelier Dune</option>
-					<option value=AtelierForest>Atelier Forest</option>
-					<option value=AtelierHeath>Atelier Heath</option>
-					<option value=AtelierLakeside>Atelier Lakeside</option>
-					<option value=AtelierPlateau>Atelier Plateau Light</option>
-					<option value=AtelierSeaside>Atelier Seaside</option>
-					<option value=AtelierSulphurpool>Atelier Sulphurpool</option>
-					<option value=AtomOne>Atom One</option>
-					<option value=Ayu>Ayu</option>
-					<option value=Brushtrees>Brush Trees</option>
-					<option value=CatppuccinLatte>Catppuccin Latte</option>
-					<option value=Cupcake>Cupcake</option>
-					<option value=DaOnePaper>Da One Paper</option>
-					<option value=Default>Default</option>
-					<option value=Everforest>Everforest Medium</option>
-					<option value=GruvboxMaterialMedium>Gruvbox Material Medium</option>
-					<option value=GruvboxMedium>Gruvbox Medium</option>
-					<option value=Harmonic16>Harmonic16</option>
-					<option value=Humanoid>Humanoid</option>
-					<option value=Ia>iA</option>
-					<option value=LightOwl>Light Owl</option>
-					<option value=MaterialLighter>Material Lighter</option>
-					<option value=Sagelight>Sagelight</option>
-					<option value=Sakura>Sakura</option>
-					<option value=SelenizedWhite>Selenized White</option>
-					<option value=Selenized>Selenized</option>
-					<option value=Solarized>Solarized</option>
-					<option value=Standardized>Standardized</option>
-					<option value=Summerfruit>Summerfruit</option>
-					<option value=TokyoNight>Tokyo Night</option>
-					<option value=Tomorrow>Tomorrow</option>
-					<option value=Unikitty>Unikitty</option>
-				</select>
-				<br>
-				<label for=selectDark><svg class=pi viewBox="0 0 18 18" width=18px><use id=darkModToggle href=/pi.svg#moon></use></svg> Dark Scheme: </label>
-				<select id=selectDark name="Dark theme options" onchange="changeThemeMod('-schemeDark',html,'selectDark')" >
-					<option value=Ashes>Ashes</option>
-					<option value=AtelierCave>Atelier Cave</option>
-					<option value=AtelierDune>Atelier Dune</option>
-					<option value=AtelierForest>Atelier Forest</option>
-					<option value=AtelierHeath>Atelier Heath</option>
-					<option value=AtelierLakeside>Atelier Lakeside</option>
-					<option value=AtelierPlateau>Atelier Plateau</option>
-					<option value=AtelierSeaside>Atelier Seaside</option>
-					<option value=AtelierSulphurpool>Atelier Sulphurpool</option>
-					<option value=Atlas>Atlas</option>
-					<option value=AtomOne>Atom One</option>
-					<option value=AyuMirage>Ayu Mirage</option>
-					<option value=Ayu>Ayu</option>
-					<option value=Bespin>Bespin</option>
-					<option value=Brushtrees>Brush Trees</option>
-					<option value=C64>C64</option>
-					<option value=CatppuccinMacchiato>Catppuccin Macchiato</option>
-					<option value=Colors>Colors</option>
-					<option value=DaOneGray>Da One Gray</option>
-					<option value=DaOneOcean>Da One Ocean</option>
-					<option value=DaOneSea>Da One Sea</option>
-					<option value=Danqing>DanQing</option>
-					<option value=Darktooth>Darktooth</option>
-					<option value=Decaf>Decaf</option>
-					<option value=Default>Default</option>
-					<option value=Dracula>Dracula</option>
-					<option value=Eighties>Eighties</option>
-					<option value=Eva>Eva</option>
-					<option value=Everforest>Everforest Medium</option>
-					<option value=Flat>Flat</option>
-					<option value=Gruber>Gruber Darker</option>
-					<option value=GruvboxMaterialMedium>Gruvbox Material Medium</option>
-					<option value=GruvboxMedium>Gruvbox Medium</option>
-					<option value=Harmonic16>Harmonic16</option>
-					<option value=Helios>Helios</option>
-					<option value=Hopscotch>Hopscotch</option>
-					<option value=Humanoid>Humanoid</option>
-					<option value=Ia>iA</option>
-					<option value=Kanagawa>Kanagawa</option>
-					<option value=Marrakesh>Marrakesh</option>
-					<option value=Materia>Materia</option>
-					<option value=MaterialDarker>Material Darker</option>
-					<option value=MaterialPalenight>Material Palenight</option>
-					<option value=Material>Material</option>
-					<option value=Mocha>Mocha</option>
-					<option value=Monokai>Monokai</option>
-					<option value=Mountain>Mountain</option>
-					<option value=NightOwl>Night Owl</option>
-					<option value=Nord>Nord</option>
-					<option value=Nova>Nova</option>
-					<option value=Ocean>Ocean</option>
-					<option value=Oceanicnext>OceanicNext</option>
-					<option value=Outrun>Outrun</option>
-					<option value=Paraiso>Paraiso</option>
-					<option value=Phd>PhD</option>
-					<option value=Pop>Pop</option>
-					<option value=SelenizedBlack>Selenized Black</option>
-					<option value=Selenized>Selenized</option>
-					<option value=Seti>Seti UI</option>
-					<option value=ShadesOfPurple>Shades of Purple</option>
-					<option value=Solarized>Solarized</option>
-					<option value=SonokaiAndromeda>Sonokai Andromeda</option>
-					<option value=SonokaiDefault>Sonokai Default</option>
-					<option value=SonokaiEspresso>Sonokai Espresso</option>
-					<option value=SonokaiMaia>Sonokai Maia</option>
-					<option value=Spaceduck>Spaceduck</option>
-					<option value=Spacemacs>Spacemacs</option>
-					<option value=Standardized>Standardized</option>
-					<option value=Summerfruit>Summerfruit</option>
-					<option value=TokyoNightStorm>Tokyo Night Storm</option>
-					<option value=TomorrowNightEighties>Tomorrow Night Eighties</option>
-					<option value=TomorrowNight>Tomorrow Night</option>
-					<option value=Twilight>Twilight</option>
-					<option value=Unikitty>Unikitty</option>
-					<option value=Woodland>Woodland</option>
-				</select>
-				<br>
-				<button data-drkmd-toggle title="Toggle dark mode" aria-label="Toggle dark mode">🌗 Toggle Theme</button>
-			</div>
-		</section>
-
-		<section class="c-card u-clearFix o-rustygrid --alignCenter">
-			<div class="o-rustygrid__item -col1">
-			<h2>List of all color schemes</h2>
-			<include src='includes/pxl-theme-colors-table.html'></include>
-		</section>
+				});
+			}
+			function changeThemeMod(prefix, elem, sel) {
+				var val = document.getElementById(sel).value;
+				resetClassStartWith(elem, prefix);
+				elem.classList.add(prefix + val);
+				console.log("[changeThemeMod]: " + prefix + " set as " + val);
+			}
+		</script>
+		<label for=selectLight><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#sun></use></svg> Light Scheme: </label>
+		<select id=selectLight title="Light theme options" onchange="changeThemeMod('-schemeLight',html,'selectLight')" >
+			<option disabled selected>Light theme…</option>
+			<option value=AtelierCave>Atelier Cave</option>
+			<option value=AtelierDune>Atelier Dune</option>
+			<option value=AtelierForest>Atelier Forest</option>
+			<option value=AtelierHeath>Atelier Heath</option>
+			<option value=AtelierLakeside>Atelier Lakeside</option>
+			<option value=AtelierPlateau>Atelier Plateau Light</option>
+			<option value=AtelierSeaside>Atelier Seaside</option>
+			<option value=AtelierSulphurpool>Atelier Sulphurpool</option>
+			<option value=AtomOne>Atom One</option>
+			<option value=Ayu>Ayu</option>
+			<option value=Brushtrees>Brush Trees</option>
+			<option value=CatppuccinLatte>Catppuccin Latte</option>
+			<option value=Cupcake>Cupcake</option>
+			<option value=DaOnePaper>Da One Paper</option>
+			<option value=Default>Default</option>
+			<option value=Everforest>Everforest Medium</option>
+			<option value=GruvboxMaterialMedium>Gruvbox Material Medium</option>
+			<option value=GruvboxMedium>Gruvbox Medium</option>
+			<option value=Harmonic16>Harmonic16</option>
+			<option value=Humanoid>Humanoid</option>
+			<option value=Ia>iA</option>
+			<option value=LightOwl>Light Owl</option>
+			<option value=MaterialLighter>Material Lighter</option>
+			<option value=Sagelight>Sagelight</option>
+			<option value=Sakura>Sakura</option>
+			<option value=SelenizedWhite>Selenized White</option>
+			<option value=Selenized>Selenized</option>
+			<option value=Solarized>Solarized</option>
+			<option value=Standardized>Standardized</option>
+			<option value=Summerfruit>Summerfruit</option>
+			<option value=TokyoNight>Tokyo Night</option>
+			<option value=Tomorrow>Tomorrow</option>
+			<option value=Unikitty>Unikitty</option>
+		</select>
+		<br>
+		<label for=selectDark><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#moon></use></svg> Dark Scheme: </label>
+		<select id=selectDark title="Dark theme options" onchange="changeThemeMod('-schemeDark',html,'selectDark')" >
+			<option disabled selected>Dark theme…</option>
+			<option value=Ashes>Ashes</option>
+			<option value=AtelierCave>Atelier Cave</option>
+			<option value=AtelierDune>Atelier Dune</option>
+			<option value=AtelierForest>Atelier Forest</option>
+			<option value=AtelierHeath>Atelier Heath</option>
+			<option value=AtelierLakeside>Atelier Lakeside</option>
+			<option value=AtelierPlateau>Atelier Plateau</option>
+			<option value=AtelierSeaside>Atelier Seaside</option>
+			<option value=AtelierSulphurpool>Atelier Sulphurpool</option>
+			<option value=Atlas>Atlas</option>
+			<option value=AtomOne>Atom One</option>
+			<option value=AyuMirage>Ayu Mirage</option>
+			<option value=Ayu>Ayu</option>
+			<option value=Bespin>Bespin</option>
+			<option value=Brushtrees>Brush Trees</option>
+			<option value=C64>C64</option>
+			<option value=CatppuccinMacchiato>Catppuccin Macchiato</option>
+			<option value=Colors>Colors</option>
+			<option value=DaOneGray>Da One Gray</option>
+			<option value=DaOneOcean>Da One Ocean</option>
+			<option value=DaOneSea>Da One Sea</option>
+			<option value=Danqing>DanQing</option>
+			<option value=Darktooth>Darktooth</option>
+			<option value=Decaf>Decaf</option>
+			<option value=Default>Default</option>
+			<option value=Dracula>Dracula</option>
+			<option value=Eighties>Eighties</option>
+			<option value=Eva>Eva</option>
+			<option value=Everforest>Everforest Medium</option>
+			<option value=Flat>Flat</option>
+			<option value=Gruber>Gruber Darker</option>
+			<option value=GruvboxMaterialMedium>Gruvbox Material Medium</option>
+			<option value=GruvboxMedium>Gruvbox Medium</option>
+			<option value=Harmonic16>Harmonic16</option>
+			<option value=Helios>Helios</option>
+			<option value=Hopscotch>Hopscotch</option>
+			<option value=Humanoid>Humanoid</option>
+			<option value=Ia>iA</option>
+			<option value=Kanagawa>Kanagawa</option>
+			<option value=Marrakesh>Marrakesh</option>
+			<option value=Materia>Materia</option>
+			<option value=MaterialDarker>Material Darker</option>
+			<option value=MaterialPalenight>Material Palenight</option>
+			<option value=Material>Material</option>
+			<option value=Mocha>Mocha</option>
+			<option value=Monokai>Monokai</option>
+			<option value=Mountain>Mountain</option>
+			<option value=NightOwl>Night Owl</option>
+			<option value=Nord>Nord</option>
+			<option value=Nova>Nova</option>
+			<option value=Ocean>Ocean</option>
+			<option value=Oceanicnext>OceanicNext</option>
+			<option value=Outrun>Outrun</option>
+			<option value=Paraiso>Paraiso</option>
+			<option value=Phd>PhD</option>
+			<option value=Pop>Pop</option>
+			<option value=SelenizedBlack>Selenized Black</option>
+			<option value=Selenized>Selenized</option>
+			<option value=Seti>Seti UI</option>
+			<option value=ShadesOfPurple>Shades of Purple</option>
+			<option value=Solarized>Solarized</option>
+			<option value=SonokaiAndromeda>Sonokai Andromeda</option>
+			<option value=SonokaiDefault>Sonokai Default</option>
+			<option value=SonokaiEspresso>Sonokai Espresso</option>
+			<option value=SonokaiMaia>Sonokai Maia</option>
+			<option value=Spaceduck>Spaceduck</option>
+			<option value=Spacemacs>Spacemacs</option>
+			<option value=Standardized>Standardized</option>
+			<option value=Summerfruit>Summerfruit</option>
+			<option value=TokyoNightStorm>Tokyo Night Storm</option>
+			<option value=TomorrowNightEighties>Tomorrow Night Eighties</option>
+			<option value=TomorrowNight>Tomorrow Night</option>
+			<option value=Twilight>Twilight</option>
+			<option value=Unikitty>Unikitty</option>
+			<option value=Woodland>Woodland</option>
+		</select>
+		<br>
+		<button data-drkmd-toggle title="Toggle dark mode" aria-label="Toggle dark mode">🌗 Toggle Theme</button>
+		<header class=c-header>
+			<h1 class=c-card__title>Colors</h2>
+		</header>
+		<h2>Current Color Scheme</h5>
+		<h5>Main</h5>
+		<div class=temp-container>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--colorBg);></div><br>BG</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--colorText);></div><br>Text</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--colorAccent);></div><br>Accent</div>
+		</div>
+		<hr>
+		<h5>Layers</h5>
+		<div class=temp-container>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--colorFrontmost);></div><br>Frontmost</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--colorFront);></div><br>Front</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--colorBase);></div><br>Base</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--colorBack);></div><br>Back</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--colorBackmost);></div><br>Backmost</div>
+		</div>
+		<hr>
+		<h5>Hues</h5>
+		<div class=temp-container>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--red);></div><br>Red</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--orange);></div><br>Orange</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--yellow);></div><br>Yellow</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--green);></div><br>Green</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--cyan);></div><br>Cyan</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--blue);></div><br>Blue</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--hue01);></div><br>Hue01</div>
+			<div class=temp><div class=temp-inner style=--tempVal:var(--hue02);></div><br>Hue02</div>
+		</div>
+		<hr>
+		<footer class="o-rustygrid__item -col1">
+			<style style="display: block;background-color:var(--colorBg);color:var(--colorText);font-family:var(--fontMono);padding:1em;border-radius:var(--radiusDefault);border: 1px solid currentColor;opacity: .75;transform: scale(.5);">
+				.temp-container{
+					display:flex;
+					flex-wrap:wrap;
+					justify-content: center;
+				}
+				.temp {
+					text-align: center;
+					padding:1em;
+					font-size:smaller;
+				}
+				.temp-inner{
+					display:inline-block;
+					margin: 0 auto;
+					border: 2px solid #0006;
+					box-shadow: 0 0 0 2px #FFF6;
+					width:64px;
+					aspect-ratio:1;
+					border-radius:50%;
+					background-color: var(--tempVal);
+				}
+			</style>
+		</footer>
+		</div>
+		<div class="o-rustygrid__item -col1 -col1-3@palm">
+		</div>
+	</section>
+	<div class=o-frame>
+		<h2 style="text-align:center">List of all color schemes</h2>
+		<include src='includes/pxl-theme-colors-table.html'></include>
+	</div>
 </main>
-
 <include src='includes/page-footer.html'></include>
-

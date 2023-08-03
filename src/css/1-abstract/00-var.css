@@ -22,12 +22,13 @@
 		--gridGutter: .25rem;
 	}
 
-	/* 1920 / 16 */
-	--maxContentWidth: 1920px;
+	/* --maxContentWidth: 1920px; /1* opinionated *1/ */
+	--maxContentWidth: calc((4*var(--c-card-maxWidth))+(5*var(--gridGutter)));
 
 	/* --c-card-padTop: .75rem; */
 	--c-card-padTop: calc(var(--rhythmUnit)*.6667);
 	--c-card-padSide: 1rem;
+	--c-card-maxWidth: 540px;
 	/* --c-card-padBottom: 1.25rem; */
 	--c-card-padBottom: calc(var(--rhythmUnit)*2.5);
 

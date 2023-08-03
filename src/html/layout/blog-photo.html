@@ -4,16 +4,18 @@
 
 <main id=content class="s-cmsContent u-clearFix o-rustygrid --alignCenter js-main" aria-label=Content>
 	<div class="o-rustygrid__item -col1 -colGold@palm">
-	<article class="c-card --typePost" itemscope itemtype="https://schema.org/BlogPosting">
-		<header class="c-header -viewMedia">
+	<article class=c-card itemscope itemtype=https://schema.org/CreativeWork>
+		<header class="c-header">
 			<!-- <img class="noLazy" sizes="(min-width: 120em) 480px, (min-width: 100em) 25vw, (min-width: 80em) 33.3vw, (min-width:60em) 50vw, (min-width:40em) 66.6vw, 100vw" srcset="https://picsum.photos/1920 1920w, https://picsum.photos/1280 1280w, https://picsum.photos/960 960w, https://picsum.photos/640 640w"/> -->
 			<!-- <img data-srcset="img/filler/resp/1920.webp 1920w, img/filler/resp/1280.webp 1280w, img/filler/resp/960.webp 960w, img/filler/resp/640.webp 640w"/> -->
-			<img data-srcset="//picsum.photos/1920 1920w, //picsum.photos/1280 1280w, //picsum.photos/960 960w, //picsum.photos/640 640w" itemprop=primaryImageOfPage>
 			<h6 class="c-card__meta -alignStart@wrist-gt"><time datetime="2015-08-19" itemprop=datePublished>August 19th, 2015</time> • <span itemprop=commentCount>2</span> Comments • Edit</h6>
 			<h6 class="c-card__meta -alignEnd@wrist-gt" itemprop=keywords>Meaningless, Filler, Categories</h6>
 			<h2 class=c-card__title>Post Example with Featured Image</h2>
 		</header>
-		<section itemprop=articleBody>
+		<section itemscope itemprop=https://schema.org/Photograph style="border-radius:var(--radiusDefault);overflow:hidden;margin-inline:auto;display:block;width:100%;background-color:var(--colorBack)">
+			<img style=margin-inline:auto;display:block data-srcset="//picsum.photos/1920 1920w, //picsum.photos/1280 1280w, //picsum.photos/960 960w, //picsum.photos/640 640w" itemprop=primaryImageOfPage>
+		</section>
+		<section itemprop=text>
 		<md>
 		**A person who doesn't** make *any mistake* is ``a person`` who doesn't do anything. And biggest mistake in the world is to thought you're perfect.
 
@@ -38,6 +40,7 @@
 				<li class=c-nav__item><a class=c-nav__anchor href=#!>Minecraft</a></li>
 			</ul>
 		</footer>
+		<a class=url itemprop=url href=/layout/blog-photo/ hidden=""></a>
 	</article>
 	</div>
 </main>
