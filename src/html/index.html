@@ -34,8 +34,9 @@
 			</script>
 			<fieldset>
 				<legend>General Styles</legend>
-				<label for=selectLight><svg class=pi viewBox="0 0 18 18" width=18px><use id=darkModToggle href=/pi.svg#sun></use></svg> Light Scheme: </label>
-				<select id=selectLight name="Light theme options" onchange="changeThemeMod('-schemeLight',html,'selectLight')" >
+				<label for=selectLight><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#sun></use></svg></label>
+				<select id=selectLight title="Light theme options" onchange="changeThemeMod('-schemeLight',html,'selectLight')" >
+					<option disabled selected>Light theme…</option>
 					<option value=AtelierCave>Atelier Cave</option>
 					<option value=AtelierDune>Atelier Dune</option>
 					<option value=AtelierForest>Atelier Forest</option>
@@ -71,8 +72,9 @@
 					<option value=Unikitty>Unikitty</option>
 				</select>
 				<br>
-				<label for=selectDark><svg class=pi viewBox="0 0 18 18" width=18px><use id=darkModToggle href=/pi.svg#moon></use></svg> Dark Scheme: </label>
-				<select id=selectDark name="Dark theme options" onchange="changeThemeMod('-schemeDark',html,'selectDark')" >
+				<label for=selectDark><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#moon></use></svg></label>
+				<select id=selectDark title="Dark theme options" onchange="changeThemeMod('-schemeDark',html,'selectDark')" >
+					<option disabled selected>Dark theme…</option>
 					<option value=Ashes>Ashes</option>
 					<option value=AtelierCave>Atelier Cave</option>
 					<option value=AtelierDune>Atelier Dune</option>
@@ -152,8 +154,9 @@
 				<br>
 				<button data-drkmd-toggle title="Toggle dark mode" aria-label="Toggle dark mode">🌗 Toggle Theme</button>
 				<br>
-				<label for=selectBg>Background: </label>
-				<select id=selectBg name="Background Pattern Options" onchange="changeThemeMod('-bg',body,'selectBg')" >
+				<label for=selectBg><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#page-background></use></svg></label>
+				<select id=selectBg title="Background Pattern Options" onchange="changeThemeMod('-bg',body,'selectBg')" >
+					<option disabled selected>Background…</option>
 					<option value=None>Solid Color</option>
 					<option value=HGrid>Horizontal Grid</option>
 					<option value=CrossGrid>Cross Grid</option>
@@ -171,13 +174,13 @@
 					<option value=Seigeiha>Seigeiha</option>
 					<option value=Houndstooth>Houndstooth</option>
 					<option value=Checkerboard>Checkerboard</option>
-					<option value=CarbonFiber>Carbon Fiber</option>
 					<option value=IsometricCubes>Isometric Cubes</option>
 					<option value=ArrowTessellation>Arrow Tesellation</option>
 					<option value=Argyle>Argyle</option>
 				</select><br>
-				<label for=selectPreset>Preset: </label>
-				<select id=selectPreset name="Preset Options" onchange="changeThemeMod('-preset',html,'selectPreset')" >
+				<label for=selectPreset><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#modifier></use></svg></label>
+				<select id=selectPreset title="Preset Options" onchange="changeThemeMod('-preset',html,'selectPreset')" >
+					<option disabled selected>Preset…</option>
 					<option value=None>Default</option>
 					<option value=BackdropBlur>Backdrop Blur</option>
 					<option value=Acetate>Acetate Paper</option>
@@ -185,37 +188,42 @@
 				</select><br>
 			</fieldset>
 			<fieldset>
-				<legend>Card Styles</legend>
-				<label for=selectCorner>Corner Roundness: </label>
-				<select id=selectCorner name="Corner Roundness Options" onchange="changeThemeMod('-corner',html,'selectCorner')" >
+				<legend>Component Styles</legend>
+				<label for=selectCorner><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#card-roundness></use></svg></label>
+				<select id=selectCorner title="Corner Roundness Options" onchange="changeThemeMod('-corner',html,'selectCorner')" >
+					<option disabled selected>Corner roundess…</option>
 					<option value=Sharp>Sharp</option>
 					<option value=RoundedTiny>Tiny Rounded</option>
 					<option value=Rounded>Rounded</option>
 					<option value=RoundedInner>More Rounded</option>
 				</select><br>
-				<label for=selectBorder>Border: </label>
-				<select id=selectBorder name="Border Options" onchange="changeThemeMod('-border',html,'selectBorder')" >
+				<label for=selectBorder><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#card-border></use></svg></label>
+				<select id=selectBorder title="Border Options" onchange="changeThemeMod('-border',html,'selectBorder')" >
+					<option disabled selected>Border thickness…</option>
 					<option value=None>None</option>
 					<option value=Hairline>Hairline</option>
 					<option value=Normal>Normal</option>
 					<option value=Thick>Thick</option>
 				</select><br>
-				<label for=selectEmboss>Emboss: </label>
-				<select id=selectEmboss name="Emboss Options" onchange="changeThemeMod('-emboss',html,'selectEmboss')" >
+				<label for=selectEmboss><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#card-emboss></use></svg></label>
+				<select id=selectEmboss title="Emboss Options" onchange="changeThemeMod('-emboss',html,'selectEmboss')" >
+					<option disabled selected>Emboss…</option>
 					<option value=None>None</option>
 					<option value=Smooth>Smooth</option>
 					<option value=WinClassic>Windows 95</option>
 				</select><br>
-				<label for=selectShadow>Shadow: </label>
-				<select id=selectShadow name="Shadow Options" onchange="changeThemeMod('-shadow',html,'selectShadow')" >
+				<label for=selectShadow><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#card-shadow></use></svg></label>
+				<select id=selectShadow title="Shadow Options" onchange="changeThemeMod('-shadow',html,'selectShadow')" >
+					<option disabled selected>Shadow…</option>
 					<option value=None>None</option>
 					<option value=Sharp>Sharp</option>
 					<option value=Smooth>Smooth</option>
 					<option value=Old>Old</option>
 					<option value=MaterialV1>Material Design 1</option>
 				</select><br>
-				<label for=selectShadowColor>Shadow Color: </label>
-				<select id=selectShadowColor name="Shadow Color Options" onchange="changeThemeMod('-shadowColor',html,'selectShadowColor')" >
+				<label for=selectShadowColor></label>
+				<select id=selectShadowColor title="Shadow Color Options" onchange="changeThemeMod('-shadowColor',html,'selectShadowColor')" >
+					<option disabled selected>Shadow color…</option>
 					<option value=Normal>Normal</option>
 					<option value=Reflect>Reflect</option>
 					<option value=Glowing>Glowing</option>
@@ -228,7 +236,7 @@
 			<header class="c-header -viewMedia">
 				<!-- <img class="noLazy" sizes="(min-width: 120em) 480px, (min-width: 100em) 25vw, (min-width: 80em) 33.3vw, (min-width:60em) 50vw, (min-width:40em) 66.6vw, 100vw" srcset="https://picsum.photos/1920 1920w, https://picsum.photos/1280 1280w, https://picsum.photos/960 960w, https://picsum.photos/640 640w"/> -->
 				<!-- <img data-srcset="img/filler/resp/1920.webp 1920w, img/filler/resp/1280.webp 1280w, img/filler/resp/960.webp 960w, img/filler/resp/640.webp 640w"/> -->
-				<img data-srcset="//picsum.photos/1920 1920w, //picsum.photos/1280 1280w, //picsum.photos/960 960w, //picsum.photos/640 640w">
+				<img class="t-modBody -bgCheckerboard" data-srcset="//picsum.photos/1920 1920w, //picsum.photos/1280 1280w, //picsum.photos/960 960w, //picsum.photos/640 640w">
 				<h6 class="c-card__meta -alignStart@wrist-gt">August 19th, 2015 • 2 Comments • Edit</h6>
 				<h6 class="c-card__meta -alignEnd@wrist-gt">Meaningless, Filler, Categories</h6>
 				<h2 class=c-card__title>Post Example with Featured Image</h2>

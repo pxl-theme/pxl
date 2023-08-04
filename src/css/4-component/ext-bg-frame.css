@@ -25,6 +25,9 @@ body {
 	&.-filterGrainy {
 		/* opacity: 100%; */
 		mix-blend-mode: color-burn;
+		.t-color[data-theme=light] & {
+			filter:contrast(10)
+		}
 		/* @media (prefers-color-scheme: dark) { */
 		.t-color[data-theme=dark] & {
 			mix-blend-mode: color-dodge;

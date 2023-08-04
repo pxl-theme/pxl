@@ -251,6 +251,27 @@ blockquote {
 	/* border-left: 2px solid currentColor; */
 	border-inline-start: 1px solid currentColor;
 }
+blockquote {
+	border-color: var(--red);
+	& & {
+		border-color: var(--yellow);
+	}
+	& & & {
+		border-color: var(--blue);
+	}
+	& & & & {
+		border-color: var(--orange);
+	}
+	& & & & & {
+		border-color: var(--green);
+	}
+	& & & & & &{
+		border-color: var(--hue01);
+	}
+	& & & & & & &{
+		border-color: var(--hue01);
+	}
+}
 
 /* Global Anchor Styles */
 a {

@@ -71,7 +71,8 @@
 
 	&.-shadowMacOS {--shadowType: 0 22px 70px 4px rgb(0 0 0 / .56);}
 	&.-shadowMacOS.-shadowColorGlowing {--shadowType: 0 22px 70px 4px rgb(255 255 255 / .46);}
-	&.-shadowSmooth {--shadowType: 0px 2px 4px var(--colorTextOpac20)/*Heavily translucent, dark color*/;}
+	/* &.-shadowSmooth {--shadowType: 0px 2px 4px var(--colorTextOpac20)/1* Heavily translucent, dark color *1/;} */
+	&.-shadowSmooth {--shadowType: 0px 2px 4px var(--colorBackmost)/* Heavily translucent, dark color */;}
 
 	/* Shadow Colors */
 	&.-shadowColorGlowing { --shadowColor: rgb(255 255 255 / .20); }
@@ -79,7 +80,8 @@
 
 	/* Emboss Effect Overrides */
 	&.-embossNone {--embossType: 0 0 transparent}
-	&.-embossSmooth {--embossType: inset 0px -2px 2px var(--colorTextOpac075)/*Heavily translucent, dark color*/;}
+	/* &.-embossSmooth {--embossType: inset 0px -2px 2px var(--colorTextOpac075)/1* Heavily translucent, dark color *1/;} */
+	&.-embossSmooth {--embossType: inset 0px -2px 2px var(--colorBack);/* Heavily translucent, dark color */}
 	&.-embossWinClassic{
 		/* --shadowType: 3px 3px 0px 0px #EBEBEB inset, -3px -3px 0px 0px #818181 inset; */
 		/* --shadowType: 3px 3px 0px 0px #EBEBEB33 inset, -3px -3px 0px 0px #81818133 inset; */
@@ -392,37 +394,19 @@
 		background-position:0 0, 40px 40px;
 		background-repeat: repeat;
 	}
-	&.-bgCarbonFiber /* by Atle Mo (design), Sébastien Grosjean (code) */{
-		/* background: */
-		/* 	linear-gradient(27deg, #151515 5px, #0000 5px) 0 5px, */
-		/* 	linear-gradient(207deg, #151515 5px, #0000 5px) 10px 0px, */
-		/* 	linear-gradient(27deg, #222 5px, #0000 5px) 0px 10px, */
-		/* 	linear-gradient(207deg, #222 5px, #0000 5px) 10px 5px, */
-		/* 	linear-gradient(90deg, #1b1b1b 10px, #0000 10px), */
-		/* 	linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, #0000 50%, #0000 75%, #242424 75%, #242424); */
-		/* background-color: #131313; */
+	/* &.-bgCarbonFiber /1* by Atle Mo (design), Sébastien Grosjean (code) *1/{ */
+	/* 	background: */
+	/* 		linear-gradient(27deg, #151515 5px, #0000 5px) 0 5px, */
+	/* 		linear-gradient(207deg, #151515 5px, #0000 5px) 10px 0px, */
+	/* 		linear-gradient(27deg, #222 5px, #0000 5px) 0px 10px, */
+	/* 		linear-gradient(207deg, #222 5px, #0000 5px) 10px 5px, */
+	/* 		linear-gradient(90deg, #1b1b1b 10px, #0000 10px), */
+	/* 		linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, #0000 50%, #0000 75%, #242424 75%, #242424); */
+	/* 	background-color: #131313; */
 
-		/* background: */
-		/* 	linear-gradient(27deg,#800080 5px,#0000 0) 0 5px, */
-		/* 	linear-gradient(207deg,#800080 5px,#0000 0) 10px 0, */
-		/* 	linear-gradient(27deg,#ffe100 5px,#0000 0) 0 10px, */
-		/* 	linear-gradient(207deg,#ffe100 5px,#0000 0) 10px 5px, */
-		/* 	linear-gradient(90deg,#ff0000 10px,#0000 0), */
-		/* 	linear-gradient(transparent 25%,#f00 0,#f00 50%,#800080 0,#800080 75%,yellow 0,yellow); */
-		/* background-color: orange; */
-
-		background:
-			linear-gradient(27deg, #151515 5px, #0000 5px) 0 5px,
-			linear-gradient(207deg, #151515 5px, #0000 5px) 10px 0px,
-			linear-gradient(27deg, #222 5px, #0000 5px) 0px 10px,
-			linear-gradient(207deg, #222 5px, #0000 5px) 10px 5px,
-			linear-gradient(90deg, #1b1b1b 10px, #0000 10px),
-			linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, #0000 50%, #0000 75%, #242424 75%, #242424);
-		background-color: #131313;
-
-		/* background-color: var(--colorBg); */
-		background-size: 20px 20px;
-	}
+	/* 	/1* background-color: var(--colorBg); *1/ */
+	/* 	background-size: 20px 20px; */
+	/* } */
 	&.-bgPyramid /* by Paul Salentiny */{
 		background:
 			linear-gradient(315deg, #0000 75%, var(--colorFront) 0)-10px 0,
