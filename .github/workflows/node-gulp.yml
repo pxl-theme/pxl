@@ -1,0 +1,54 @@
+name: Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  cache-and-install:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - uses: pnpm/action-setup@v2
+      name: Install pnpm
+      with:
+        version: 7
+        run_install: false
+
+    - name: Get pnpm store directory
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+    - uses: actions/cache@v3
+      name: Setup pnpm cache
+      with:
+        path: ${{ env.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+
+    - name: Build
+      run: |
+        pnpm i --no-frozen-lockfile
+        gulp build
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist-without-markdown
+        path: dist

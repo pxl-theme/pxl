@@ -1,4 +1,4 @@
-# pxl-theme <img class=left src=logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
+# pxl-theme [![Build](https://github.com/egeesin/pxl/actions/workflows/node-gulp.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/node-gulp.yml) <img class=left src=logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
 
 > An adjustable website theme with sensible defaults and nice looks.
 
@@ -8,12 +8,13 @@
 
 - Responsive layout with mobile-first approach
 - Several variations for navigation component
-- Heavily depending on HTML and CSS, leaving JS for providing accessibility and non-essential content
+- Heavily depending on HTML and CSS, leaving JS for providing accessibility and non-essential tweaks
 - No CSS frameworks used
 - Improved legibility with vertical rhythm and modular scale
+- Auto or manual dark mode with lots of color palette options including [Solarized](https://github.com/altercation/solarized), [Gruvbox](https://github.com/morhetz/gruvbox), [One Dark UI](https://github.com/atom/one-dark-ui)  for each mode.
 - (Almost) every element has multiple designs to serve content in multiple ways
-	- Color palette options from well-known terminal colors like, [Solarized](https://github.com/altercation/solarized), [Gruvbox](https://github.com/morhetz/gruvbox), [One Dark UI](https://github.com/atom/one-dark-ui) and more…
 	- Container make-ups like shadows, border thickness, emboss effects
+	- External background layers for adding blending grain/gradient effects
 - Sanitize.css Reset
 - Scalable codebase, written with OOCSS, BEVM in mind
 - Custom grid layout (CSS Grid will be adapted soon)
@@ -25,28 +26,34 @@
 
 ## Build
 
+### Method 1: Locally
 **Note:** Instructions tested on GNU/Linux distros and macOS.
 
-**Dependencies:** [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [npm](https://www.npmjs.com/get-npm), [gulp](https://gulpjs.com/docs/en/getting-started/quick-start)
+**Dependencies:** [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [pnpm](https://pnpm.io/installation) (or [npm](https://www.npmjs.com/get-npm)), [gulp](https://gulpjs.com/docs/en/getting-started/quick-start)
 
 Open a terminal emulator and execute commands below:
 
 ```sh
-# Clone the repository to your local machine
-git clone https://github.com/egeesin/pxl
+# Clone the repository and change directory
+git clone https://github.com/egeesin/pxl && cd pxl
 
-# Change directory
-cd pxl
+# Install Node modules locally.
+pnpm i # or "npm i"
 
-# Install Gulp plugins to local directory.
-npm i
-
-# Generate
+# Generate your first build
 gulp build
 
-# Open in your test browser
-gulp watch # or just gulp
+# Create live server for preview of the build
+gulp watch
 ```
+
+### Build Method 2: GitHub Actions
+- Go to [**Actions**](https://github.com/egeesin/pxl/actions) tab in [repository](https://github.com/egeesin/pxl) homepage.
+- Find latest successful workflow run.
+- Scroll to bottom and download build artifacts.
+
+
+## General Info
 
 ### Browser Support
 

@@ -34,7 +34,7 @@
   "type": "module",
   "exports": "./gulpfile.js",
   "engines": {
-    "node": "^14.13.1 || >=16.0.0"
+    "node": ">=16"
   },
   "browserslist": [
     ">= .25% and last 2 year and not unreleased versions and not dead and not ie > 0 and not op_mini > 0 and not samsung > 0 and not and_qq > 0 and not kaios > 0 and not and_uc > 0"
@@ -48,6 +48,7 @@
     "gulp": "^4.0.2",
     "gulp-cheerio": "^1.0.0",
     "gulp-concat": "^2.6.1",
+    "gulp-eslint-new": "^1.8.3",
     "gulp-filter": "^8.0.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^8.0.0",
@@ -65,6 +66,7 @@
     "gulp-zip": "^5.1.0",
     "imagemin-gif2webp": "^3.0.0",
     "imagemin-webp": "^8.0.0",
+    "postcss": "^8.4.27",
     "postcss-brand-colors": "^3.0.0",
     "postcss-custom-media": "^10.0.0",
     "postcss-extend": "^1.0.5",
@@ -84,13 +86,13 @@
     "posthtml-md": "^1.1.0",
     "pump": "^3.0.0",
     "rcs-core": "^3.7.1",
+    "stylelint": "^15.10.2",
     "stylelint-config-recommended": "^13.0.0"
   },
   "dependencies": {
     "colcade": "^0.2.0",
     "drkmd-js": "^1.0.12",
     "enquire.js": "^2.1.6",
-    "gulp-eslint-new": "^1.8.3",
     "jquery": "^3.7.0",
     "lazysizes": "^5.3.2",
     "no-darkreader": "^1.0.3",
