@@ -1,0 +1,283 @@
+/* source: every-layout.dev */
+
+/* stack layout primitive
+ */
+.o-stack {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+.o-stack > * { /* Don't apply margin to first child */
+	margin-block: 0;
+}
+.o-stack > * + * { /* Apply margin to all children except first one */
+	/* margin-block-start: var(--rhythmUnit); */
+	margin-block-start: calc(var(--rhythmUnit)*2);
+}
+
+/* box layout primitive
+ */
+.o-box {
+	/* padding: calc(var(--gridGutter)-var(--border, 0px)); */
+	padding: var(--gridGutter);
+	/* border: var(--borderS) solid; */
+	/* ↓ always apply the transparent outline, for high contrast mode */
+	/* outline: var(--borderS) transparent; */
+	/* outline-offset: calc(var(--borderS) * -1); */
+	color: var(--colorText);
+	background-color: var(--colorBase);
+}
+
+.o-box * {
+	/* ↓ force colors to inherit from the parent
+	and honor inversion (below) */
+	color: inherit;
+}
+.o-box.-invert {
+	color: var(--colorBase);
+	background-color: var(--colorText);
+}
+
+
+/* center layout primitive
+ */
+.o-center {
+	/* ↓ Remove padding from the width calculation */
+	box-sizing: content-box;
+	/* ↓ The maximum width is the maximum measure */
+	max-inline-size: var(--maxTextWidth);
+	/* ↓ Only affect horizontal margins */
+	margin-inline: auto;
+	/* ↓ Apply the minimum horizontal space */
+	padding-inline-start: var(--gridGutter);
+	padding-inline-end: var(--gridGutter);
+}
+
+/* Cluster Layout Primitive
+ */
+.o-cluster {
+	/* ↓ Set the Flexbox context */
+	display: flex;
+	/* ↓ Enable wrapping */
+	flex-wrap: wrap;
+	/* ↓ Set the space/gap */
+	/* gap: var(--space, 1rem); */
+	gap: calc(var(--rhythmUnit)*2) var(--gridGutter);
+	/* ↓ Choose your justification (flex-start is default) */
+	justify-content: center;
+	/* ↓ Choose your alignment (flex-start is default) */
+	align-items: center;
+}
+
+/* Sidebar Layout Primitive
+ */
+.o-withSidebar {
+	display: flex;
+	flex-wrap: wrap;
+	/* ↓ The default value is the first point on the modular scale */
+	/* gap: var(--gutter, var(--s1)); */
+	gap: calc(var(--rhythmUnit)*2) var(--gridGutter);
+}
+.o-withSidebar > :first-child {
+	/* ↓ The width when the sidebar _is_ a sidebar */
+	flex-basis: 20rem;
+	flex-grow: 1;
+}
+.o-withSidebar > :last-child {
+	/* ↓ Grow from nothing */
+	flex-basis: 0;
+	flex-grow: 999;
+	/* ↓ Wrap when the elements are of equal width */
+	min-inline-size: 50%;
+}
+
+/* Switcher Layout Primitive
+ */
+.o-switcher {
+	display: flex;
+	flex-wrap: wrap;
+	/* ↓ The default value is the first point on the modular scale */
+	/* gap: var(--gutter, var(--s1)); */
+	gap: calc(var(--rhythmUnit)*2) var(--gridGutter);
+	/* ↓ The width at which the layout “breaks” */
+	--threshold: 32rem;
+}
+.o-switcher > * {
+  /* ↓ Allow children to grow */
+  flex-grow: 1;
+  /* ↓ Switch the layout at the --threshold */
+  flex-basis: calc((var(--threshold) - 100%) * 999);
+}
+.o-switcher > :nth-last-child(n+5),
+.o-switcher > :nth-last-child(n+5) ~ * {
+  /* ↓ Switch to a vertical configuration if
+  there are more than 4 child elements */
+  flex-basis: 100%;
+}
+
+.o-cover {
+	--space: calc(var(--rhythmUnit)*2);
+	/* ↓ Establish a columnal flex context */
+	display: flex;
+	flex-direction: column;
+	/* ↓ Set a minimum height to match the viewport height
+	(any minimum would be fine) */
+	min-block-size: 100svh;
+	/* Set a padding value */
+	padding: var(--space);
+}
+.o-cover > * {
+	/* ↓ Give each child a top and bottom margin */
+	margin-block: var(--space);
+}
+.o-cover > :first-child:not(.o-cover__center) {
+	/* ↓ Remove the top margin from the first-child
+	if it _doesn't_ match the centered element */
+	margin-block-start: 0;
+}
+.o-cover > :last-child:not(.o-cover__center) {
+	/* ↓ Remove the bottom margin from the last-child
+	if it _doesn't_ match the centered element */
+	margin-block-end: 0;
+}
+.o-cover > .o-cover__center {
+	/* ↓ Center the centered element (h1 here)
+	in the available vertical space */
+	margin-block: auto;
+}
+
+/* Grid Layout Primitive
+ */
+.o-grid {
+	/* ↓ Establish a grid context */
+	display: grid;
+	/* ↓ Set a gap between grid items  */
+	/* grid-gap: calc(var(--rhythmUnit)*2) var(--gridGutter); */
+	grid-gap: var(--rhythmUnit) var(--gridGutter);
+	/* ↓ Set the minimum column width */
+	/* --minimum: 20ch; */
+	--minimum: 26ch; /* opinionated */
+	/* THIS IS EXPERIMENTAL */
+	&.-viewMasonry {
+		--minimum: 32ch; /* opinionated */
+		grid-template-rows: masonry;
+		grid-template-columns: repeat(auto-fit, min(var(--minimum),100%));
+		justify-content: center;
+		padding-inline: var(--gridGutter); /* opinionated */
+		> * {
+			align-self: start;
+		}
+
+	}
+}
+@supports (width: min(var(--minimum), 100%)) {
+	.o-grid {
+		/* ↓ Enhance with the min() function
+		into multiple columns */
+		grid-template-columns: repeat(auto-fit, minmax(min(var(--minimum), 100%), 1fr));
+	}
+}
+
+/* Frame Layout Primitive
+ */
+.o-frame {
+	--n: 16; /* numerator */
+	--d: 9; /* denominator */
+	aspect-ratio: var(--n) / var(--d);
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.o-frame > :is(img,video) {
+	inline-size: 100%;
+	block-size: 100%;
+	object-fit: cover;
+}
+
+/* Reel Layout Primitive
+ */
+.o-reel {
+	/* ↓ Custom properties for ease of adjustment */
+	--trackColor: var(--colorBackmost);
+	--thumbColor: var(--colorBase);
+	--trackSize: calc(var(--rhythmUnit)*2);
+	--thumbSize: var(--rhythmUnit)*1;
+	--space: var(--gridGutter);
+	--reelHeight: auto;
+	--item-width: 25ch;
+	display: flex;
+	block-size: var(--reelHeight);
+	/* ↓ Overflow */
+	overflow-x: auto;
+	overflow-y: hidden;
+	/* ↓ For Firefox */
+	scrollbar-color: var(--thumbColor) var(--trackColor);
+}
+.o-reel::-webkit-scrollbar {
+	/*
+	↓ Instead, you could make the scrollbar height
+	a variable too. This is left as an exercise
+	(be mindful of the linear-gradient!)
+	*/
+	block-size: var(--trackSize);
+}
+.o-reel::-webkit-scrollbar-track {
+	background-color: var(--trackColor);
+}
+.o-reel::-webkit-scrollbar-thumb {
+	background-color: var(--trackColor);
+	/* background-color: var(--thumbColor); */
+	/* ↓ Linear gradient ‘insets’ the white thumb within the black bar */
+	background-image: linear-gradient(var(--trackColor) 0, var(--trackColor) calc((var(--trackSize)-var(--thumbSize))/2), var(--thumbColor) calc((var(--trackSize)-var(--thumbSize))/2), var(--thumbColor) 0.75rem, var(--trackColor) 0.75rem);
+}
+.o-reel > * {
+	/*
+	↓ Just a `width` wouldn’t work because
+	`flex-shrink: 1` (default) still applies
+	*/
+	flex: 0 0 var(--item-width);
+}
+.o-reel > img {
+	/* ↓ Reset for images */
+	block-size: 100%;
+	flex-basis: auto;
+	width: auto;
+}
+.o-reel > * + * {
+	margin-inline-start: var(--space);
+}
+.o-reel.-overflowing:not(.-noBar) {
+	/* ↓ Only apply if there is a scrollbar (see the JavaScript) */
+	padding-block-end: var(--space);
+}
+/* ↓ Hide scrollbar with `noBar` class */
+.o-reel.-noBar {
+	scrollbar-width: none;
+}
+.o-reel.-noBar::-webkit-scrollbar {
+	display: none;
+}
+
+/* Imposter Layout Primitive
+ */
+.o-imposter {
+	/* ↓ Choose the positioning element */
+	position: var(--positioning, absolute);
+	/* ↓ Position the top left corner in the center */
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
+	/* ↓ Reposition so the center of the element
+	is the center of the container */
+	transform: translate(-50%, -50%);
+	&.-contain {
+		/* ↓ Include a unit, or the calc function will be invalid */
+		--margin: 0px;
+		/* ↓ Provide scrollbars so content is not obscured */
+		overflow: auto;
+		/* ↓ Restrict the height and width, including optional
+		spacing/margin between the element and positioning container */
+		max-inline-size: calc(100% - (var(--margin) * 2));
+		max-block-size: calc(100% - (var(--margin) * 2));
+	}
+}

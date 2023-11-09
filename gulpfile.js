@@ -8,7 +8,7 @@ import pump                from 'pump'
 import {deleteAsync}          from 'del'
 import rename              from 'gulp-rename'
 import stringReplace       from 'gulp-string-replace'
-import sourcemaps          from 'gulp-sourcemaps'
+// import sourcemaps          from 'gulp-sourcemaps'
 import filter              from 'gulp-filter'
 import zip                 from 'gulp-zip'
 import browsersyncSrc      from 'browser-sync'
@@ -17,8 +17,9 @@ const browsersync = browsersyncSrc.create();
 
 /**** HTML
 */
-import htmlmin             from "gulp-htmlmin"
-import {htmlValidator}     from "gulp-w3c-html-validator"
+// import htmlmin             from "gulp-htmlmin"
+import htmlmin             from "gulp-html-minifier-terser"
+// import {htmlValidator}     from "gulp-w3c-html-validator"
 
 /** PostHTML Plugins
 */
@@ -122,9 +123,9 @@ import cheerio             from "gulp-cheerio"
 // All files on-going production, where things get dirty.
 const srcDir = "src";
 const srcPath = {
-	html:     srcDir+"/html",
-	css:      srcDir+"/css",
-	js:       srcDir+"/js",
+	html:     srcDir+"/page",
+	css:      srcDir+"/style",
+	js:       srcDir+"/script",
 	img:      srcDir+"/img",
 	icon:     srcDir+"/icon/slices",
 	font:     srcDir+"/font",
@@ -135,7 +136,7 @@ const watched = {
 	html: srcPath.html + "/**/*.html",
 	// html: srcPath.html + "/index.html",
 
-	css: srcPath.css + "/a.css",
+	css: srcPath.css + "/index.css",
 	cssAll: srcPath.css + "/**/*.css",
 	// css: [srcPath.css + "/style.css", srcPath.css + "/icon.css"],
 	// css: srcPath.css + "/**/*.css",
@@ -224,27 +225,31 @@ function broSyncReload(cb) {
 /**** HTML Tasks
 */
 function texts() {
-// Process PostHTML plugins to all HTML pages
-	return src(watched.html)
-		.pipe(posthtml([
-			posthtmlInclude({ root: srcPath.html }),
-			posthtmlLorem(),
-			posthtmlMd(),
-			posthtmlAltAlways()
-			// posthtmlExpressions({ locals: { theMessage: "This is a message from gulpfile.js" }}),
-		]))
+	// List of PostHTML Plugins and options
+	const plugins = [
+		posthtmlInclude({ root: srcPath.html }),
+		posthtmlLorem(),
+		posthtmlMd(),
+		posthtmlAltAlways()
+		// posthtmlExpressions({ locals: { theMessage: "This is a message from gulpfile.js" }}),
+	]
+	const options = {
+	}
+	// Process PostHTML plugins to all HTML pages (except includes)
+	return src([watched.html, "!" + srcPath.img + "/_include"])
+		.pipe(posthtml(plugins, options))
 		.pipe(dest(predistDir));
 }
 function clearHTMLIncludes() {
 // Clear all HTML includes just in case to get rid of abandoned/old pages
-	return deleteAsync([predistDir + "/includes", predistDir + "/layouts"]);
+	return deleteAsync([predistDir + "/_include"]);
 }
-function validateHTML() {
+// function validateHTML() {
 // Validate HTML syntax by the W3C standarts
-	return src(predist.html)
-		.pipe(htmlValidator.analyzer())
-		.pipe(htmlValidator.reporter());
-}
+// 	return src(predist.html)
+// 		.pipe(htmlValidator.analyzer())
+// 		.pipe(htmlValidator.reporter());
+// }
 function minifyHTML() {
 // Clear whitespaces and linebreaks of HTML files
 	// return src(watched.html)
@@ -253,7 +258,7 @@ function minifyHTML() {
 		.pipe(htmlmin({
 			collapseWhitespace: true,
 			minifyCSS: true,
-			minifyJS: true,
+			// minifyJS: true,
 			minifyURLs: true,
 			removeComments: true,
 			removeOptionalTags: true,
@@ -339,9 +344,6 @@ function minifyCSS() {
 // Minimize the filesize of processed and linted CSS files.
 	return src(predist.css)
 		// .pipe(sourcemaps.init())
-		// .pipe(sourcemaps.write("map/", {
-		//   sourceMappingURLPrefix: "https://www.mydomain.com/"
-		// }))
 		.pipe(rename(renameCSSFunction))
 		.pipe(postcss([ nano()]))
 		// .pipe(sourcemaps.write("map/"))
@@ -426,11 +428,11 @@ function concatJSVendors(cb) {
 // Get JavaScript libraries and concetanate into one vendor JS file with respective order.
 	pump([
 		src(jsVendors),
-		sourcemaps.init(),
-		concat("v.js"),
+		// sourcemaps.init(),
+		concat("vendor-concat.js"),
 		terser(),
 		// uglifyMinify(),
-		sourcemaps.write("map/"),
+		// sourcemaps.write("map/"),
 		// Skip predist directory, has nothing to do with selector renaming or minimizing.
 		dest(distDir)
 	],cb);
@@ -441,14 +443,14 @@ function concatJS(cb) {
 	// var options = {};
 	pump([
 		src(predist.js),
-		sourcemaps.init(),
-		// concat("a.js"),
+		// concat("main.js"),
 		dest(predistDir),
-		// rename("a.m.js"),
+		// rename("main.m.js"),
+		// sourcemaps.init(),
 		rename(renameJSFunction),
 		terser(),
 		// uglifyMinify(options),
-		sourcemaps.write("map/"),
+		// sourcemaps.write("map/"),
 		dest(distDir)
 	],
 	cb
@@ -560,7 +562,7 @@ function export11ty() {
 		distDir + "/*.m.css",
 		distDir + "/*.mq-*.css",
 		distDir + "/*.m.js",
-		distDir + "/v.js",
+		distDir + "/vendor-concat.js",
 		// distDir + "/pi.svg"
 		distDir + "/*.svg"
 	])

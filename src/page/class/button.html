@@ -1,0 +1,71 @@
+<!doctype html>
+<html
+	lang=en
+	dir=ltr
+	class="t-color t-modRoot"
+	data-theme=dark
+	prefix="og: http://ogp.me/ns#">
+	<include src='_include/head.html'>{
+         "title":"Button Component"
+	}</include>
+	<body
+		class="js-preload _stickyFooter t-modBody"
+		itemscope itemtype="https://schema.org/WebPage"
+		>
+		<a style="z-index:9999;background-color:var(--colorText);color:var(--colorBack);text-decoration:none;padding:10px;position:absolute;top:0" class="u-visuallyHidden -focusable" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
+		<a style="z-index:9999;background-color:var(--colorText);color:var(--colorBack);text-decoration:none;padding:10px;position:absolute;top:0" class="u-visuallyHidden -focusable" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
+		<!-- <div class="o-frame --typeText"> -->
+		<!-- 	<div class="o-frame__content"> -->
+		<!-- 		<p><b>Note:</b> Some links, buttons, inputs may not work as intended. This page is just demonstration. -->
+		<!-- 	</div> -->
+		<!-- </div> -->
+		<div class="c-bodygrid -typeArticle">
+		<include src='_include/page-header.html'></include>
+			<main id=content class="s-cmsContent u-clearFix o-rustygrid --alignCenter" aria-label=Content>
+				<div class="o-rustygrid__item -col1 -col2-3@palm">
+					<article class=o-box>
+						<header class=c-header>
+							<h1 class=o-box__title itemprop=heading>Buttons</h1>
+						</header>
+						<fieldset>
+							<legend>Default</legend>
+							<p>
+								<input type=submit value="<input type=submit>">
+								<input type=button value="<input type=button>">
+								<input type=reset  value="<input type=reset>">
+								<input type=submit value="<input disabled>" disabled>
+							</p>
+							<p>
+								<button type=submit>&lt;button type=submit&gt;</button>
+								<button type=button>&lt;button type=button&gt;</button>
+								<button type=reset >&lt;button type=reset&gt;</button>
+								<button type=button disabled>&lt;button disabled&gt;</button>
+							</p>
+						</fieldset>
+						<fieldset>
+							<legend>Hexagonal Buttons</legend>
+							<p>
+								<input class=--viewHex type=submit value="<input type=submit>">
+								<input class=--viewHex type=button value="<input type=button>">
+								<input class=--viewHex type=reset  value="<input type=reset>">
+								<input class=--viewHex type=submit value="<input disabled>" disabled>
+							</p>
+							<p>
+								<button class=--viewHex type="submit">&lt;button type=submit&gt;</button>
+								<button class=--viewHex type="button">&lt;button type=button&gt;</button>
+								<button class=--viewHex type="reset" >&lt;button type=reset&gt;</button>
+								<button class=--viewHex type="button" disabled>&lt;button disabled&gt;</button>
+							</p>
+						</fieldset>
+					</article>
+				</div>
+			</main>
+		<include src='_include/page-footer.html'></include>
+	</div> <!-- end of c-bodygrid -->
+	<!-- <footer class="c-footer -sticky -textOnly"> -->
+	<!-- 	<span class="c-footer__info"><h6 style="font-weight: 400">I have no rights in here, yet. 2008-2018</h6></span> -->
+	<!-- </footer> -->
+	<include src='_include/ext-bg-frame.html'></include>
+	<include src='_include/footscript.html'></include>
+</body>
+</html>

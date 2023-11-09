@@ -1,0 +1,612 @@
+/**** Theme Modifier (HTML/:root) Settings
+ *
+ * https://speakerdeck.com/csswizardry/4half-methods-for-theming-in-s-css
+ */
+
+/* Default theme modifier values */
+.t-modRoot{
+	--outline: 0 0 transparent;
+	/* --outlineColor: transparent; */
+	--outlineColor: var(--colorBack);
+	--border: var(--borderHairline);
+	/* --borderColor: var(--colorText); */
+	--borderColor: var(--colorBackmost);
+	--borderStyle: solid;
+	--emboss: 0 0 transparent;
+	--shadow: 0 0 transparent;
+	--shadowColor: var(--colorBackmost);
+
+	/* Outline Color */
+	/* &.-outlineColorBack { --outlineColor: var(--colorBack);} */
+	&.-outlineColorText { --outlineColor: currentColor;}
+	&.-outlineColorTextOpac { --outlineColor: var(--colorTextOpac20)}
+	&.-outlineColorBackmost { --outlineColor: var(--colorBackmost)}
+	&.-outlineColorBg { --outlineColor: var(--colorBg)}
+	/* Outline Thickness */
+	/* &.-outlineValNone { --outline: 0 0 transparent} */
+	&.-outlineValHairline { --outline: 0 0 0 var(--borderHairline) var(--outlineColor)}
+	&.-outlineValNormal { --outline: 0 0 0 var(--borderS) var(--outlineColor)}
+	&.-outlineValThicker { --outline: 0 0 0 var(--borderM) var(--outlineColor)}
+	&.-outlineValThick { --outline: 0 0 0 var(--borderL) var(--outlineColor)}
+	&.-outlineValRhythm { --outline: 0 0 0 calc(var(--rhythmUnit)/2) var(--outlineColor)}
+	&.-outlineValExtraThick { --outline: 0 0 0 var(--borderXL) var(--outlineColor)}
+
+	/* Border Thickness */
+	&.-borderValNone { --border: 0px;}
+	&.-borderValHairline { --border: var(--borderHairline)}
+	&.-borderValNormal { --border: var(--borderS)}
+	&.-borderValThicker { --border: var(--borderM)}
+	&.-borderValThick { --border: var(--borderL)}
+	&.-borderValRhythm { --border: calc(var(--rhythmUnit)/2)}
+	&.-borderValExtraThick { --border: var(--borderXL)}
+	/* Border Style */
+	/* &.-borderStyleSolid { --borderStyle: solid; } */
+	&.-borderStyleDashed { --borderStyle: dashed }
+	&.-borderStyleDotted { --borderStyle: dotted }
+	&.-borderStyleDouble { --borderStyle: double }
+	/* &.-borderStyleOutset { --borderStyle: outset; } */
+	/* &.-borderStyleInset { --borderStyle: inset; } */
+	&.-borderStyleOutset { --borderColorOutsetShade: var(--colorBackmost);--borderColor: var(--colorFrontmost); }
+	&.-borderStyleInset { --borderColorInsetShade: var(--colorBackmost);--borderColor: var(--colorFrontmost); }
+	/* &.-borderStyleGroove { --borderStyle: groove; } */
+	/* &.-borderStyleRidge { --borderStyle: ridge; } */
+	/* Border Colors */
+	/* &.-borderColorBackmost { --borderColor: var(--colorBackmost)} */
+	&.-borderColorText { --borderColor: currentColor}
+	&.-borderColorBack { --borderColor: var(--colorBack)}
+
+	/* Shadow Colors */
+	/* &.-shadowColorNormal { --shadowColor: var(--colorBackmost) } */
+	&.-shadowColorText { --shadowColor: currentColor }
+	&.-shadowColorTextOpac { --shadowColor: var(--colorTextOpac20) }
+	/* &.-shadowColorGlow { --shadowColor: rgb(255 255 255 / .20)} */
+	/* &.-shadowColorReflect { --shadowColor: var(--colorBg)} */
+	&.-shadowColorFrontmost { --shadowColor: var(--colorFrontmost) }
+	&.-shadowColorBg { --shadowColor: var(--colorBg)}
+
+	/* Shadow Types */
+	&.-shadowTypeNone { --shadow: 0 0 transparent}
+	&.-shadowTypeSharp {
+		--shadow: 0 var(--rhythmUnit) 0 calc(var(--rhythmUnit)/-2) var(--shadowColor);
+		/* --shadow: 0 0 0 1px var(--colorBack); */
+		/* --shadow: calc(var(--rhythmUnit)/2) calc(var(--rhythmUnit)/2) 0 0 var(--colorBackmost); */
+		/* --shadow: 0 var(--rhythmUnit) 0 calc(var(--rhythmUnit)/-2) var(--shadowColor), 0 0 0 1px var(--colorBack); */
+	}
+	&.-shadowTypeOld {--shadow: calc(var(--rhythmUnit)/2) calc(var(--rhythmUnit)/2) var(--shadowColor)}
+	/* Source: https://m1.material.io/material-design/elevation-shadows.html#elevation-shadows-elevation-android */
+	/* TODO: shadowColor custom property doesn't work on Material and macOS Shadows */
+	&.-shadowTypeMaterialV1 {--shadow: 0 10px 20px rgb(0 0 0 / .19), 0 6px 6px rgb(0 0 0 / .23)}
+	&.-shadowTypeMaterialV1.-shadowColorGlow {--shadow: 0 10px 20px rgb(255 255 255 / .14), 0 6px 6px rgb(255 255 255 / .18)}
+	&.-shadowTypeMacOS {--shadow: 0 22px 70px 4px rgb(0 0 0 / .56)}
+	&.-shadowTypeMacOS.-shadowColorGlow {--shadow: 0 22px 70px 4px rgb(255 255 255 / .46)}
+	&.-shadowTypeSmooth {--shadow: 0px 2px 4px var(--shadowColor)/* Heavily translucent, dark color */}
+	/* Also there are different variations of Material-style box-shadows here:
+	 * http://timnew.me/blog/2014/08/16/material-design-shadow-in-html/
+	 */
+	/* &.-shadowMaterialV1-1 { box-shadow: 0 2px 10px 0  rgb(0 0 0 / .16), 0 2px 5px 0   rgb(0 0 0 / .26); } */
+	/* &.-shadowMaterialV1-2 { box-shadow: 0 6px 20px 0  rgb(0 0 0 / .19), 0 8px 17px 0  rgb(0 0 0 / .2); } */
+	/* &.-shadowMaterialV1-3 { box-shadow: 0 17px 50px 0 rgb(0 0 0 / .19), 0 12px 15px 0 rgb(0 0 0 / .24); } */
+	/* &.-shadowMaterialV1-4 { box-shadow: 0 25px 55px 0 rgb(0 0 0 / .21), 0 16px 28px 0 rgb(0 0 0 / .22); } */
+	/* &.-shadowMaterialV1-5 { box-shadow: 0 40px 77px 0 rgb(0 0 0 / .22), 0 27px 24px 0 rgb(0 0 0 / .2); } */
+
+	/* Emboss Effect Overrides */
+	&.-embossNone {--emboss: 0 0 transparent}
+	/* &.-embossSmooth {--emboss: inset 0px -2px 2px var(--colorTextOpac075)/1* Heavily translucent, dark color *1/;} */
+	&.-embossSmooth {--emboss: inset 0 2px 2px var(--colorFrontmost), inset 0px -2px 2px var(--colorBack)/* Heavily translucent, dark color */}
+	/* &.-embossSmooth {--emboss: inset 0px -2px 2px var(--colorBack);} */
+	/* &.-embossWinClassic{ */
+	/* 	--emboss: calc(var(--rhythmUnit)/-2) calc(var(--rhythmUnit)/-2) 0 0 var(--colorTextOpac60) inset, calc(var(--rhythmUnit)/2) calc(var(--rhythmUnit)/2) 0 0 var(--colorFrontmost) inset; */
+	/* 	&.t-color[data-theme=dark] { */
+	/* 		--emboss: calc(var(--rhythmUnit)/-2) calc(var(--rhythmUnit)/-2) 0 0 var(--colorBackmost) inset, calc(var(--rhythmUnit)/2) calc(var(--rhythmUnit)/2) 0 0 var(--colorTextOpac20) inset; */
+	/* 	} */
+	/* } */
+	/* Affected elements */
+	:is(.o-box.-viewCard,.c-nav.-typeFlyout.-layoutVertical.js-visible,
+	[id^="toggleNav-"]:checked + .c-nav.-typeFlyout.-layoutVertical,
+	[id^="toggleNav-"]:checked + .c-nav.-typeTree[class*=-expand],
+	.c-nav.-typeFlyout.-layoutHorizontal,
+	.c-nav.-typeFlyout .c-nav__submenu,
+	/* .c-nav.-typeTree, */
+	/* .c-toggleExpand, */
+	.-viewNotification){
+		/* TODO: Style Modifiers for hidden-overflowed card elements may need margin-right:1px */
+		box-shadow: var(--outline), var(--emboss), var(--shadow);
+		border: var(--border) var(--borderStyle);
+		border-inline-end-color: var(--borderColorOutsetShade, var(--borderColor));
+		border-block-end-color: var(--borderColorOutsetShade, var(--borderColor));
+		border-inline-start-color: var(--borderColorInsetShade, var(--borderColor));
+		border-block-start-color: var(--borderColorInsetShade, var(--borderColor));
+		/* border: var(--border) var(--borderStyle) var(--borderColor); */
+	}
+	.c-nav.-typeFlyout.-layoutHorizontal .c-nav__item.-viewIconOnly
+	> .c-nav__anchor
+	> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
+		@media (any-hover: hover) {
+			box-shadow: var(--outline), var(--emboss), var(--shadow);
+			border: var(--border) var(--borderStyle);
+			border-inline-end-color: var(--borderColorOutsetShade, var(--borderColor));
+			border-block-end-color: var(--borderColorOutsetShade, var(--borderColor));
+			border-inline-start-color: var(--borderColorInsetShade, var(--borderColor));
+			border-block-start-color: var(--borderColorInsetShade, var(--borderColor));
+		}
+	}
+	/* Check if browser supports :has pseudo (all browsers except Firefox for ex. as of 2022) */
+	@supports (selector(*:has(*))) {
+		.c-nav.-typeFlyout.-layoutVertical:has(.c-nav__anchor:focus-within){
+			box-shadow: var(--outline), var(--emboss), var(--shadow);
+			border: var(--border) var(--borderStyle);
+			border-inline-end-color: var(--borderColorOutsetShade, var(--borderColor));
+			border-block-end-color: var(--borderColorOutsetShade, var(--borderColor));
+			border-inline-start-color: var(--borderColorInsetShade, var(--borderColor));
+			border-block-start-color: var(--borderColorInsetShade, var(--borderColor));
+		}
+	}
+	/* .c-nav.-typeFlyout.-layoutVertical:focus-within{ */
+
+	/*** Acetate and Neumorphism Style
+	 */
+	&:where(.-stylesetAcetate,.-stylesetNeumorphism) {
+		--colorBg: var(--colorBase);
+		body {
+			background-color: var(--colorBase);
+		}
+		:is(.o-box.-viewCard,.c-nav:not([class*=-expand])){
+			background-color: initial;
+		}
+	}
+
+	/*** Acetate Style
+	*
+	* In this style, every element boundries are transparent and has singular background
+	*/
+	/* Resets other presets (like Neumorphism) but the practice below must be something to avoid for. */
+	.-stylesetNeumorphism &:where(.-stylesetAcetate) {
+		:is(
+		.o-box.-viewCard,
+		.c-nav.-typeFlyout:not([class*=-expand]),
+		.c-nav:not(.-typeTree)[class*=-expand]:focus-within,
+		.c-nav:not(.-typeTree)[class*=-expand].js-visible,
+		.c-nav:not(.-typeTree) .c-nav__submenu,
+		.c-nav.-typeFlyout
+		),
+		[id^=toggleNav-]:checked + .c-nav:not(.-typeTree)[class*=-expand]
+		{
+			&:after,&:before {
+				display:none;
+				/* Reset pseudo shadows*/
+			}
+		}
+	}
+
+	/*** Neumorphism Style
+	*
+	*/
+		/* &[class^="-shadow"] .o-box.-viewCard{ */
+		/* 	box-shadow: none; */
+		/* } */
+	&.-stylesetNeumorphism{
+		background-color: initial;
+	}
+	&:where(.-stylesetNeumorphism) {
+		.c-nav:not(.-typeTree) .c-nav__submenu	{
+			/* position: relative; */
+			/* overflow: visible; */
+			/* box-shadow: none !important; */
+			&:after {
+				z-index: -99;
+				content: "";
+				border-radius: inherit;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: block;
+				width: 100%;
+				height: 100%;
+				box-shadow: 15px 15px 13px -11px var(--colorBack);
+			}
+		}
+		.c-nav.-typeFlyout{
+			&:not(.-layoutHorizontal):before {
+				background-image: linear-gradient(90deg, var(--colorBaseOpac0) -80%, var(--colorBaseOpac0) 35%, var(--colorFront) 90%);
+			}
+			&:after {
+				background-image: linear-gradient(90deg, var(--colorBack) -80%, var(--colorBaseOpac0) 35%, var(--colorBaseOpac0) 90%);
+			}
+		}
+
+		:is(.o-box.-viewCard, .c-nav.-typeFlyout){
+			position: relative;
+			&:after, &:before {
+				content: "";
+				position: absolute;
+				z-index: -99;
+				top: 0;
+				left: 0;
+			}
+		}
+		:is(
+		.o-box.-viewCard,
+		.c-nav.-typeFlyout:not([class*=-expand]),
+		.c-nav:not(.-typeTree)[class*=-expand]:focus-within,
+		.c-nav:not(.-typeTree)[class*=-expand].js-visible
+		),
+		[id^=toggleNav-]:checked + .c-nav:not(.-typeTree)[class*=-expand]
+		{
+			overflow: visible; /* In order to show pseudo shadows. */
+			/* border-radius: .6em; */
+			/* box-shadow: none !important; */
+
+			&:after,&:before {
+				/* content: ""; */
+				border-radius: inherit;
+				display: block;
+				/* padding: inherit; */
+				position:absolute;
+				top:0;
+				left:0;
+				width: 100%;
+				height: 100%;
+			}
+			/* Lightning */
+			&:before{
+				/* box-shadow: -2px -2px 13px #ffffff3d; */
+				box-shadow: -2px -2px 13px var(--colorFront);
+				/* background-image: linear-gradient(145deg, transparent -80%, transparent 35%, var(--colorFront) 90%); */
+				background-image: linear-gradient(145deg, var(--colorBaseOpac0) -80%, var(--colorBaseOpac0) 35%, var(--colorFront) 90%);
+
+				/* mix-blend-mode: soft-light; */
+			}
+			/* Shadow */
+			&:after{
+				/* box-shadow: 15px 15px 13px -11px #31313157; */
+				/* box-shadow: 15px 15px 13px -11px var(--colorBackmost); */
+				box-shadow: 15px 15px 13px -11px var(--colorBack);
+				/* background-image: linear-gradient(145deg, var(--colorBack) -80%, transparent 35%, transparent 90%); */
+				background-image: linear-gradient(145deg, var(--colorBack) -80%, var(--colorBaseOpac0) 35%, var(--colorBaseOpac0) 90%);
+
+				/* mix-blend-mode: overlay; */
+			}
+		}
+	}
+	&:where(.-stylesetBackdropBlur) {
+		:is(
+		.o-box.-viewCard,
+		.c-nav.-typeFlyout:not([class*=-expand]),
+		.c-nav:not(.-typeTree)[class*=-expand]:focus-within,
+		.c-nav:not(.-typeTree)[class*=-expand].js-visible
+		),
+		[id^=toggleNav-]:checked + .c-nav:not(.-typeTree)[class*=-expand]
+		{
+			background-color: var(--colorBaseOpac80);
+			backdrop-filter: saturate(180%) blur(16px);
+		}
+	}
+}
+
+/* Background Filters and Patterns
+ */
+:where(.t-modBody) {
+	background-color: var(--colorBg);
+	background-repeat: repeat;
+	/* Some of the custom CSS gradient textures are taken from:
+	 * https://projects.verou.me/css3patterns */
+	&.-bgHorizontalStripesSM {
+		background-image: repeating-linear-gradient(
+			180deg,
+			var(--colorTextOpac40),
+			var(--colorTextOpac40) var(--borderHairline),
+			transparent var(--borderHairline),
+			transparent 3px
+		);
+	}
+	&.-bgDiagonalStripesSM {
+		background-image: repeating-linear-gradient(
+			-45deg,
+			var(--colorTextOpac20),
+			var(--colorTextOpac20) 1.75px,
+			transparent 1.75px,
+			transparent 6px
+		);
+	}
+	&.-bgDiagonalStripesAltSM {
+		--stroke: var(--borderM);
+		/* --spacing: 8px; */
+		--spacing: var(--rhythmUnit);
+		--0: var(--colorTextOpac075);
+		background-image: repeating-linear-gradient(
+			-26.565deg,
+			var(--0),
+			var(--0) var(--stroke),
+			transparent var(--stroke),
+			transparent var(--spacing)
+		);
+	}
+	&.-bgHGrid {
+		/* Horizontal Grid */
+		--0:var(--colorTextOpac20);
+		--1:var(--colorTextOpac40);
+		background-image: repeating-linear-gradient(
+			180deg,
+			var(--1),
+			var(--1) var(--borderHairline),
+			transparent var(--borderHairline),
+			/* transparent .5rem */
+			transparent var(--rhythmUnit)
+		),repeating-linear-gradient(
+			180deg,
+			var(--0),
+			var(--0) var(--borderHairline),
+			transparent var(--borderHairline),
+			/* transparent 1rem */
+			transparent calc(var(--rhythmUnit)*2)
+		);
+	}
+	&.-bgCrossGrid {
+		--size: calc(var(--rhythmUnit)*2);
+		--stroke: 1px;
+		--0: var(--colorTextOpac20);
+		background-image: repeating-linear-gradient(
+			135deg,
+			var(--0),
+			var(--0) calc(var(--stroke)*1.4142),
+			transparent calc(var(--stroke)*1.4142),
+			transparent calc(var(--size)*1.4142)
+		),repeating-linear-gradient(
+			225deg,
+			var(--0),
+			var(--0) calc(var(--stroke)*1.4142),
+			transparent calc(var(--stroke)*1.4142),
+			transparent calc(var(--size)*1.4142)
+		);
+		/* background-position-y: calc(var(--size)*-.1875); */
+		@media (--hidpi) {
+			--stroke: .5px;
+		}
+	}
+	&.-bgZigZag /* by eCSSpert */ {
+		--size: calc(var(--rhythmUnit)*6);
+		background-image:
+			linear-gradient(135deg,var(--colorTextOpac20) 25%,#0000 25%),
+			linear-gradient(225deg,var(--colorTextOpac20) 25%,#0000 25%),
+			linear-gradient(315deg,var(--colorTextOpac20) 25%,#0000 25%),
+			linear-gradient(45deg,var(--colorTextOpac20) 25%,#0000 25%);
+		background-position: calc(var(--size)/-2) 0,calc(var(--size)/-2) 0,0 0,0 0;
+		background-size: var(--size) var(--size);
+		/* background-position-x: center; */
+		/* centering background position breaks the pattern */
+	}
+	&.-bgMicrobialMat /* by Logan McBroom */ {
+		--size: calc(var(--rhythmUnit)*3);
+		--0: var(--colorTextOpac20);
+		background-image:
+			radial-gradient(circle at 0 50%,#0000 calc(var(--size)/2-1px),var(--0) calc(var(--size)/2),#0000 calc(var(--size)/2+1px)),
+			radial-gradient(at 100% 100%,#0000 calc(var(--size)/2-1px),var(--0) calc(var(--size)/2),#0000 calc(var(--size)/2+1px));
+		background-position: 0 calc(var(--size)/2), 0 0;
+		background-size: var(--size) var(--size);
+		background-position-x: center;
+	}
+	&.-bgTriangleMosaic /* based on Valentin Agachi's work, perfected by me */ {
+		--size: calc(var(--rhythmUnit)*6); /* size = height of triangle in this context */
+		--0: var(--colorTextOpac20);
+		background-image:
+			/* using .50% transition gap to make triangles look like it's anti-aliased */
+			linear-gradient(120deg,#0000 74.75%,var(--0) 75.25%),
+			linear-gradient(240deg,#0000 74.75%,var(--0) 75.25%),
+			linear-gradient(120deg,#0000 74.75%,var(--0) 75.25%),
+			linear-gradient(240deg,#0000 74.75%,var(--0) 75.25%);
+		background-position: 0 0, 0 0, calc(.28868*var(--size)) calc(var(--size)/-2), calc(.28868*var(--size)) calc(var(--size)/-2);
+		background-size: calc(.57736*var(--size)) var(--size); /* 3,464101615137755/1 */
+	}
+	&.-bgWeaves /* based on Jeroen Franse's work, perfected by me */{
+		--1:var(--colorBg);
+		--2:var(--colorTextOpac20);
+		--size: calc(var(--rhythmUnit)*6);
+		--stroke: 2px;
+		/* background-color: var(--1); */
+		background-image:
+			linear-gradient(135deg,var(--1) calc(var(--size)*.3535-calc(var(--stroke)/2)),var(--2) calc(var(--size)*.3535-calc(var(--stroke)/2)),var(--2) calc(var(--size)*.3535+calc(var(--stroke)/2)),#0000 calc(var(--size)*.3535+calc(var(--stroke)/2)),
+							#0000 calc(var(--size)*1.06-calc(var(--stroke)/2)), var(--2) calc(var(--size)*1.06-calc(var(--stroke)/2)), var(--2) calc(var(--size)*1.06+calc(var(--stroke)/2)),#0000 calc(var(--size)*1.06+calc(var(--stroke)/2))),
+			linear-gradient(225deg,var(--1) calc(var(--size)*.3535-calc(var(--stroke)/2)),var(--2) calc(var(--size)*.3535-calc(var(--stroke)/2)),var(--2) calc(var(--size)*.3535+calc(var(--stroke)/2)),#0000 calc(var(--size)*.3535+calc(var(--stroke)/2)),
+							#0000 calc(var(--size)*1.06-calc(var(--stroke)/2)), var(--2) calc(var(--size)*1.06-calc(var(--stroke)/2)), var(--2) calc(var(--size)*1.06+calc(var(--stroke)/2)),#0000 calc(var(--size)*1.06+calc(var(--stroke)/2)));
+		background-position: 0 0, 0 var(--size);
+		background-size: var(--size) calc(var(--size)*2);
+	}
+	&.-bgCross {
+		--size: calc(var(--rhythmUnit)*6);
+		--stroke: 4px;
+		--1:var(--colorBg);
+		--2:var(--colorTextOpac20);
+		/* background-color: var(--1); */
+		background-image:
+			radial-gradient(circle,#0000 20%,var(--1) 20%,var(--1) 80%,#0000 80%,#0000),
+			radial-gradient(circle,#0000 20%,var(--1) 20%,var(--1) 80%,#0000 80%,#0000),
+			linear-gradient(var(--2) var(--stroke),#0000 var(--stroke)),
+			linear-gradient(90deg,var(--2) var(--stroke),#0000 var(--stroke));
+		background-position: 0 0, calc(var(--size)/2) calc(var(--size)/2), 0 calc(var(--stroke)/-2), calc(var(--stroke)/-2) 0;
+		background-size: var(--size) var(--size),var(--size) var(--size),calc(var(--size)/2) calc(var(--size)/2),calc(var(--size)/2) calc(var(--size)/2);
+	}
+	&.-bgShippo {
+		--size: calc(var(--rhythmUnit)*10);
+		--1:var(--colorTextOpac20);
+		/* background-color:var(--colorBg); */
+		background-image:
+			radial-gradient(closest-side, #0000 98%, var(--1) 99%),
+			radial-gradient(closest-side, #0000 98%, var(--1) 99%);
+		background-size:var(--size) var(--size);
+		background-position:0 0, calc(var(--size)/2) calc(var(--size)/2);
+	}
+	/* &.-bgCarbonFiber /1* by Atle Mo (design), Sébastien Grosjean (code) *1/{ */
+	/* 	background: */
+	/* 		linear-gradient(27deg, #151515 5px, #0000 5px) 0 5px, */
+	/* 		linear-gradient(207deg, #151515 5px, #0000 5px) 10px 0px, */
+	/* 		linear-gradient(27deg, #222 5px, #0000 5px) 0px 10px, */
+	/* 		linear-gradient(207deg, #222 5px, #0000 5px) 10px 5px, */
+	/* 		linear-gradient(90deg, #1b1b1b 10px, #0000 10px), */
+	/* 		linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, #0000 50%, #0000 75%, #242424 75%, #242424); */
+	/* 	background-color: #131313; */
+
+	/* 	/1* background-color: var(--colorBg); *1/ */
+	/* 	background-size: 20px 20px; */
+	/* } */
+	&.-bgPyramid /* by Paul Salentiny */{
+		--0: var(--colorFront);
+		--1: var(--colorBase);
+		--2: var(--colorBack);
+		--3: var(--colorBackmost);
+		--size: calc(var(--rhythmUnit)*4);
+		background-image:
+			linear-gradient(315deg, #0000 75%, var(--0) 0),
+			linear-gradient(45deg, #0000 75%, var(--0) 0),
+			linear-gradient(135deg, var(--1) 50%, #0000 0),
+			linear-gradient(45deg, var(--2) 50%, var(--3) 0);
+		background-position: calc(var(--size)/-2) 0, calc(var(--size)/-2) 0, 0 0, 0 0;
+		background-size: var(--size) var(--size);
+	}
+	&.-bgSeigaiha {
+		--size: calc(var(--rhythmUnit)*6);
+		--1:var(--colorBackmost);
+		--2:var(--colorBg);
+		/* background-color:var(--1); */
+		background-image:
+			radial-gradient(circle at 100% 150%, var(--1) 24%, var(--2) 24%, var(--2) 28%, var(--1) 28%, var(--1) 36%, var(--2) 36%, var(--2) 40%, #0000 40%, #0000),
+			radial-gradient(circle at 0    150%, var(--1) 24%, var(--2) 24%, var(--2) 28%, var(--1) 28%, var(--1) 36%, var(--2) 36%, var(--2) 40%, #0000 40%, #0000),
+			radial-gradient(circle at 50%  100%, var(--2) 10%, var(--1) 10%, var(--1) 23%, var(--2) 23%, var(--2) 30%, var(--1) 30%, var(--1) 43%, var(--2) 43%, var(--2) 50%, var(--1) 50%, var(--1) 63%, var(--2) 63%, var(--2) 71%, #0000 71%, #0000),
+			radial-gradient(circle at 100% 50%, var(--2) 5%, var(--1) 5%, var(--1) 15%, var(--2) 15%, var(--2) 20%, var(--1) 20%, var(--1) 29%, var(--2) 29%, var(--2) 34%, var(--1) 34%, var(--1) 44%, var(--2) 44%, var(--2) 49%, #0000 49%, #0000),
+			radial-gradient(circle at 0    50%, var(--2) 5%, var(--1) 5%, var(--1) 15%, var(--2) 15%, var(--2) 20%, var(--1) 20%, var(--1) 29%, var(--2) 29%, var(--2) 34%, var(--1) 34%, var(--1) 44%, var(--2) 44%, var(--2) 49%, #0000 49%, #0000);
+		background-size: calc(var(--size)*2) var(--size);
+		background-position-x: center;
+
+	}
+	&.-bgHoundstooth /* by Antoine Bernier */{
+		--size: calc(var(--rhythmUnit)*2);
+		--1:var(--colorBg);
+		--2:var(--colorTextOpac20);
+		background-image:
+			linear-gradient(-45deg, var(--1) 25%, #0000 25%, #0000 75%, var(--2) 75%, var(--2)),
+			linear-gradient(-45deg, var(--2) 25%, #0000 25%, #0000 75%, var(--1) 75%, var(--1)),
+			linear-gradient(45deg, var(--2) 17%, #0000 17%, #0000 25%, var(--2) 25%, var(--2) 36%, #0000 36%, #0000 64%, var(--2) 64%, var(--2) 75%, #0000 75%, #0000 83%, var(--2) 83%);
+		background-position: 0 0, var(--size) var(--size), var(--size) var(--size);
+		background-size: calc(var(--size)*2) calc(var(--size)*2);
+	}
+	&.-bgCheckerboard {
+		--size:calc(var(--rhythmUnit)*2);
+		--1:var(--colorBg);
+		--2:var(--colorTextOpac20);
+		background-image:
+			linear-gradient(45deg, var(--2) 25%, transparent 25%, transparent 75%, var(--2) 75%, var(--2)),
+			linear-gradient(45deg, var(--2) 25%, transparent 25%, transparent 75%, var(--2) 75%, var(--2));
+		background-size: var(--size) var(--size);
+		background-position: 0 0, calc(var(--size)/2) calc(var(--size)/2);
+	}
+	&.-bgIsometricCubes {
+		--size:calc(var(--rhythmUnit)*12); /* height of isometric cube */
+		--tsize: calc(var(--size)/2*3);
+		--0:var(--colorFront);
+		--1:var(--colorBackmost);
+		background-image: linear-gradient(30deg, var(--1) 12%, transparent 12.5%, transparent 87%, var(--1) 87.5%, var(--1)),
+		linear-gradient(150deg, var(--1) 12%, transparent 12.5%, transparent 87%, var(--1) 87.5%, var(--1)),
+		linear-gradient(30deg, var(--1) 12%, transparent 12.5%, transparent 87%, var(--1) 87.5%, var(--1)),
+		linear-gradient(150deg, var(--1) 12%, transparent 12.5%, transparent 87%, var(--1) 87.5%, var(--1)),
+		linear-gradient(60deg, var(--0) 25%, transparent 25.5%, transparent 75%, var(--0) 75%, var(--0)),
+		linear-gradient(60deg, var(--0) 25%, transparent 25.5%, transparent 75%, var(--0) 75%, var(--0));
+		background-size:calc(var(--tsize)/1.732) var(--tsize);
+		background-position: 0 0, 0 0, calc(var(--tsize)/3.4641) calc(var(--tsize)/2), calc(var(--tsize)/3.4641) calc(var(--tsize)/2), 0 0, calc(var(--tsize)/3.4641) calc(var(--tsize)/2);
+	}
+	&.-bgArrowTessellation {
+		--size:calc(var(--rhythmUnit)*6);
+		--1:var(--colorBg);
+		--2:var(--colorBackmost);
+		background-image:
+			linear-gradient(45deg, var(--2) calc(var(--size)/1.4142), transparent calc(var(--size)/1.4142)),
+			linear-gradient(45deg, var(--2) calc(var(--size)/1.4142), transparent calc(var(--size)/1.4142),transparent calc(var(--size)/1.4142*2), var(--1) calc(var(--size)/1.4142*2), var(--1) calc(var(--size)/1.4142*3), transparent calc(var(--size)/1.4142*3)),
+			linear-gradient(-45deg, var(--2) calc(var(--size)/1.4142/2), transparent calc(var(--size)/1.4142/2), transparent calc(var(--size)/1.4142*1.5),var(--2) calc(var(--size)/1.4142*1.5),var(--2) calc(var(--size)/1.4142*2.5),transparent calc(var(--size)/1.4142*2.5),transparent calc(var(--size)/1.4142*3.5),var(--2) calc(var(--size)/1.4142*3.5));
+			background-position:var(--size) var(--size), 0 0, 0 0;
+		background-size: calc(var(--size)*2) calc(var(--size)*2);
+	}
+	&.-bgArgyle {
+		--size: calc(var(--rhythmUnit)*18);
+		--stroke: 1px;
+		--0:var(--colorTextOpac20);
+		--1:var(--colorBackmost);
+		background-image:
+			repeating-linear-gradient(120deg, var(--0), var(--0) var(--stroke), transparent var(--stroke), transparent calc(var(--size)/2)),
+			repeating-linear-gradient(60deg, var(--0), var(--0) var(--stroke), transparent var(--stroke), transparent calc(var(--size)/2)),
+			linear-gradient(60deg, var(--1) 25%, transparent 25%, transparent 75%, var(--1) 75%, var(--1)),
+			linear-gradient(120deg, var(--1) 25%, transparent 25%, transparent 75%, var(--1) 75%, var(--1));
+		background-size: calc(var(--size)*.57736) var(--size);
+	}
+	&.-bgTablecloth {
+		--size: calc(var(--rhythmUnit)*6);
+		--0:var(--colorTextOpac20);
+		background-image:
+			linear-gradient(90deg, var(--0) 50%, transparent 50%),
+			linear-gradient(var(--0) 50%, transparent 50%);
+		background-position-x: center;
+		background-size: var(--size) var(--size);
+		/* --darkreader-inline-bgcolor: #181a1b; */
+		/* --darkreader-inline-bgimage: linear-gradient(90deg, rgba(160, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 50%), */
+		/* 							linear-gradient(rgba(160, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 50%); */
+	}
+	&.-bgTartan {
+		--0: rgb(0 0 0 / .4);
+		--1: rgb(255 255 255 / .2);
+		--2: rgb(0 0 0 / .5);
+		--strokeThin: 3px;
+		--strokeThickThin: 50px;
+		--gapThickThin: 50px;
+		--gapThinThin: 10px;
+		background-image:
+			repeating-linear-gradient(
+			transparent,
+			transparent var(--gapThickThin),
+			var(--0) var(--gapThickThin),
+			var(--0) calc(var(--gapThickThin)+var(--strokeThin)),
+			transparent calc(var(--gapThickThin)+var(--strokeThin)),
+			transparent calc(var(--gapThickThin)+var(--strokeThin)+var(--gapThinThin)),
+			var(--0) calc(var(--gapThickThin)+var(--strokeThin)+var(--gapThinThin)),
+			var(--0) calc(var(--gapThickThin)+var(--strokeThin)*2+var(--gapThinThin)),
+			transparent calc(var(--gapThickThin)+var(--strokeThin)*2+var(--gapThinThin)),
+			transparent calc(var(--gapThickThin)*2+var(--strokeThin)*2+var(--gapThinThin)),
+			var(--2) calc(var(--gapThickThin)*2+var(--strokeThin)*2+var(--gapThinThin)),
+			var(--2) calc(var(--gapThickThin)*2+var(--strokeThin)*2+var(--gapThinThin)+var(--strokeThickThin)),
+			var(--1) calc(var(--gapThickThin)*2+var(--strokeThin)*2+var(--gapThinThin)+var(--strokeThickThin)),
+			var(--1) calc(var(--gapThickThin)*2+var(--strokeThin)*3+var(--gapThinThin)+var(--strokeThickThin)),
+			var(--2) calc(var(--gapThickThin)*2+var(--strokeThin)*3+var(--gapThinThin)+var(--strokeThickThin)),
+			var(--2) calc(var(--gapThickThin)*2+var(--strokeThin)*3+var(--gapThinThin)*2+var(--strokeThickThin)),
+			var(--1) calc(var(--gapThickThin)*2+var(--strokeThin)*3+var(--gapThinThin)*2+var(--strokeThickThin)),
+			var(--1) calc(var(--gapThickThin)*2+var(--strokeThin)*4+var(--gapThinThin)*2+var(--strokeThickThin)),
+			var(--2) calc(var(--gapThickThin)*2+var(--strokeThin)*4+var(--gapThinThin)*2+var(--strokeThickThin)),
+			var(--2) calc(var(--gapThickThin)*3+var(--strokeThin)*4+var(--gapThinThin)*2+var(--strokeThickThin)),
+			transparent calc(var(--gapThickThin)*3+var(--strokeThin)*4+var(--gapThinThin)*2+var(--strokeThickThin))
+			),
+			repeating-linear-gradient(
+			270deg,
+			transparent,
+			transparent var(--gapThickThin),
+			var(--0) var(--gapThickThin),
+			var(--0) calc(var(--gapThickThin)+var(--strokeThin)),
+			transparent calc(var(--gapThickThin)+var(--strokeThin)),
+			transparent calc(var(--gapThickThin)+var(--strokeThin)+var(--gapThinThin)),
+			var(--0) calc(var(--gapThickThin)+var(--strokeThin)+var(--gapThinThin)),
+			var(--0) calc(var(--gapThickThin)+var(--strokeThin)*2+var(--gapThinThin)),
+			transparent calc(var(--gapThickThin)+var(--strokeThin)*2+var(--gapThinThin)),
+			transparent calc(var(--gapThickThin)*2+var(--strokeThin)*2+var(--gapThinThin)),
+			var(--2) calc(var(--gapThickThin)*2+var(--strokeThin)*2+var(--gapThinThin)),
+			var(--2) calc(var(--gapThickThin)*2+var(--strokeThin)*2+var(--gapThinThin)+var(--strokeThickThin)),
+			var(--1) calc(var(--gapThickThin)*2+var(--strokeThin)*2+var(--gapThinThin)+var(--strokeThickThin)),
+			var(--1) calc(var(--gapThickThin)*2+var(--strokeThin)*3+var(--gapThinThin)+var(--strokeThickThin)),
+			var(--2) calc(var(--gapThickThin)*2+var(--strokeThin)*3+var(--gapThinThin)+var(--strokeThickThin)),
+			var(--2) calc(var(--gapThickThin)*2+var(--strokeThin)*3+var(--gapThinThin)*2+var(--strokeThickThin)),
+			var(--1) calc(var(--gapThickThin)*2+var(--strokeThin)*3+var(--gapThinThin)*2+var(--strokeThickThin)),
+			var(--1) calc(var(--gapThickThin)*2+var(--strokeThin)*4+var(--gapThinThin)*2+var(--strokeThickThin)),
+			var(--2) calc(var(--gapThickThin)*2+var(--strokeThin)*4+var(--gapThinThin)*2+var(--strokeThickThin)),
+			var(--2) calc(var(--gapThickThin)*3+var(--strokeThin)*4+var(--gapThinThin)*2+var(--strokeThickThin)),
+			transparent calc(var(--gapThickThin)*3+var(--strokeThin)*4+var(--gapThinThin)*2+var(--strokeThickThin))
+			/* repeating-linear-gradient(270deg, transparent, transparent var(--gapThickThin), var(--0) var(--gapThickThin), var(--0) calc(var(--gapThickThin)+var(--strokeThin)), transparent calc(var(--gapThickThin)+var(--strokeThin)), transparent calc(var(--gapThickThin)+var(--strokeThin)+var(--gapThinThin)), var(--0) calc(var(--gapThickThin)+var(--strokeThin), var(--0) 66px, transparent 66px, transparent 116px, var(--2) 116px, var(--2) 166px, var(--1) 166px, var(--1) 169px, var(--2) 169px, var(--2) 179px, var(--1) 179px, var(--1) 182px, var(--2) 182px, var(--2) 232px, transparent 232px); */
+			);
+	}
+	/* &.-bgDiagonalDotsSM { */
+	/* 	background-image: */
+	/* 		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='currentColor' opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E") */
+	/* } */
+}

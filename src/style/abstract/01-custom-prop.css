@@ -1,0 +1,120 @@
+.ಠ_ಠ { --（╯°□°）╯: ︵┻━┻; } /* is a valid CSS. https://x.com/tabatkins/status/1099050056760487936 */
+:where(html) {
+	/*** Geometry
+	 */
+	/* --maxTextWidth: 60ch; */
+	--maxTextWidth: 72ch;
+	--maxHeadingWidth: 36ch;
+	--sidebarWidth: 24ch;
+
+	/* o-rustygrid Gutter Width */
+
+	/* --gridGutter: 1rem; */
+	--gridGutter: 1ch;
+
+	@media (--wrist-or-lt) {
+		--gridGutter: .25rem;
+	}
+
+	/* --maxContainerWidth: 1920px; /1* opinionated *1/ */
+	--maxContainerWidth: calc((4*var(--boxViewCard-preferredWidth))+(5*var(--gridGutter)));
+
+	/* --boxViewCard-padTop: .75rem; */
+	--boxViewCard-padTop: calc(var(--rhythmUnit)*.6667);
+	/* --boxViewCard-padSide: 1rem; */
+	--boxViewCard-padSide: 1.5ch;
+	--boxViewCard-preferredWidth: 540px;
+	/* --boxViewCard-padBottom: 1.25rem; */
+	--boxViewCard-padBottom: calc(var(--rhythmUnit)*2.5);
+
+	/* --nav-item-padSide: .5rem; */
+	--nav-item-padSide: 1ch;
+
+	@media (--wrist-or-lt) {
+		/* --boxViewCard-padTop: .25rem; */
+		--boxViewCard-padTop: calc(var(--rhythmUnit)/2);
+		--boxViewCard-padSide: .125rem;
+		/* --boxViewCard-padBottom: .25rem; */
+		--boxViewCard-padBottom: calc(var(--rhythmUnit)/2);
+
+		--nav-item-padSide: .35rem;
+	}
+
+	/* --footerHeight: 3em; */
+	--borderHairline: 1px;
+	@media (--hidpi) {
+		--borderHairline: 0.5px;
+	}
+	--borderS:  1px;
+	--borderM:  2px;
+	--borderL:  4px;
+	--borderXL: 8px;
+
+	/*TODO: Use these variables for -corner... theme modifiers.*/
+	--radiusS: .25rem;
+	--radiusM: .5rem;
+	--radiusL: .8rem;
+	/* When container is full-screen (equal to viewport) remove border-radius */
+	/* Source: https://ishadeed.com/article/conditional-border-radius/ */
+	--radiusConditionalS: clamp(0px, calc(100vw - 100%) * 1e5, var(--radiusS));
+	--radiusConditionalM: clamp(0px, calc(100vw - 100%) * 1e5, var(--radiusM));
+	--radiusConditionalL: clamp(0px, calc(100vw - 100%) * 1e5, var(--radiusL));
+
+	--radiusInnerDefault: 0px;
+	--radiusDefault: 0px;
+	--radiusOuterDefault: 0px;
+}
+
+/** Radius Default Settings
+*/
+:where(html), :where(.t-modRoot.-cornerSharp){
+	/* Sharp by defualt */
+	/* Adding px to avoid calc() issues */
+	--radiusInnerDefault: 0px;
+	--radiusDefault: 0px;
+	--radiusOuterDefault: 0px;
+}
+:is(.-cornerRoundedTiny) {
+	--radiusInnerDefault: var(--radiusS);
+	--radiusDefault: var(--radiusS);
+	--radiusOuterDefault: var(--radiusS);
+}
+:is(.-cornerRounded) {
+	--radiusInnerDefault: var(--radiusS);
+	--radiusDefault: var(--radiusM);
+	--radiusOuterDefault: var(--radiusL);
+}
+:is(.-cornerRoundedInner) {
+	--radiusInnerDefault: var(--radiusM);
+	--radiusDefault: var(--radiusM);
+	--radiusOuterDefault: var(--radiusL);
+}
+/* Selected Properties from Open Props
+ * Source: https://open-props.style/
+ */
+:where(html) {
+	/* Aspect Ratios (https://github.com/argyleink/open-props/blob/main/src/props.aspects.css)*/
+	--ratioSquare: 1;
+	--ratioLandscape: 4/3;
+	--ratioPortrait: 3/4;
+	--ratioWidescreen: 16/9;
+	--ratioUltrawide: 18/5;
+	--ratioGolden: 1.6180/1;
+
+	/* Easings (https://github.com/argyleink/open-props/blob/main/src/props.easing.css)*/
+	--ease1: cubic-bezier(.25, 0, .5, 1);
+	--ease2: cubic-bezier(.25, 0, .4, 1);
+	--ease3: cubic-bezier(.25, 0, .3, 1);
+	--ease4: cubic-bezier(.25, 0, .2, 1);
+	--ease5: cubic-bezier(.25, 0, .1, 1);
+	--easeInOut1: cubic-bezier(.1, 0, .9, 1);
+	--easeInOut2: cubic-bezier(.3, 0, .7, 1);
+	--easeInOut3: cubic-bezier(.5, 0, .5, 1);
+	--easeInOut4: cubic-bezier(.7, 0, .3, 1);
+	--easeInOut5: cubic-bezier(.9, 0, .1, 1);
+	--easeStep1: steps(2);
+	--easeStep2: steps(3);
+	--easeStep3: steps(4);
+	--easeStep4: steps(7);
+	--easeStep5: steps(10);
+}

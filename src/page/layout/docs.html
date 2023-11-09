@@ -1,10 +1,106 @@
-# pxl [![Build](https://github.com/egeesin/pxl/actions/workflows/node-gulp.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/node-gulp.yml) <img class=left src=logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
+<!doctype html>
+<html
+	lang=en
+	dir=ltr
+	class="t-color t-modRoot"
+	data-theme=dark
+	prefix="og: http://ogp.me/ns#">
+	<include src='_include/head.html'>{
+         "title":"Documentation"
+	}</include>
+	<body
+		class="js-preload _stickyFooter t-modBody"
+		itemscope itemtype="https://schema.org/WebPage"
+		>
+		<a style="z-index:9999;background-color:var(--colorText);color:var(--colorBack);text-decoration:none;padding:10px;position:absolute;top:0" class="u-visuallyHidden -focusable" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
+		<a style="z-index:9999;background-color:var(--colorText);color:var(--colorBack);text-decoration:none;padding:10px;position:absolute;top:0" class="u-visuallyHidden -focusable" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
+		<!-- <div class="o-frame --typeText"> -->
+		<!-- 	<div class="o-frame__content"> -->
+		<!-- 		<p><b>Note:</b> Some links, buttons, inputs may not work as intended. This page is just demonstration. -->
+		<!-- 	</div> -->
+		<!-- </div> -->
+		<div class="c-bodygrid -colTriple">
+			<include src='_include/page-header.html'></include>
+			<!-- <div class="o-rustygrid -reversed@palm"> -->
+
+			<aside class="c-nav__wrapper u-sticky@palm" aria-labelledby=navTitle style="top:0;overflow:auto;max-height:100vh;max-height:100dvh">
+				<details open>
+				<summary>
+					<h3 id=navTitle>Table of Contents</h3>
+				</summary>
+					<ul id=toc class="c-nav -typeTree">
+						<li class=c-nav__item>
+							<a class=c-nav__anchor href=#features>
+								Features
+							</a>
+						</li>
+						<li class=c-nav__item>
+							<a class=c-nav__anchor href=#build>
+								Build
+							</a>
+							<ul class=c-nav__submenu role=group>
+								<li class=c-nav__item><a class=c-nav__anchor href=#local-installation>
+									Local Installation
+								</a></li>
+								<li class=c-nav__item><a class=c-nav__anchor href=#build-artifacts-from-github-actions>
+									Build Artifacts from Github Actions
+								</a></li>
+							</ul>
+						</li>
+						<li class=c-nav__item>
+							<a class=c-nav__anchor href=#design>
+								Design
+							</a>
+							<ul class=c-nav__submenu role=group>
+								<li class=c-nav__item><a class=c-nav__anchor href=#directory-structure-and-definitions>
+									Directory Structure and Definitions
+								</a></li>
+								<li class=c-nav__item>
+									<a class=c-nav__anchor href=#css-methodology-class-naming>
+										CSS Methodology/Class Naming
+									</a>
+									<ul class=c-nav__submenu role=group>
+										<li class=c-nav__item><a class=c-nav__anchor href=#my-interpretation-and-execution-through-all-methodologies>
+											My Interpretation and Execution Through All Methodologies
+										</a></li>
+									</ul>
+
+								</li>
+								<li class=c-nav__item><a class=c-nav__anchor href=#typography>
+									Typography
+								</a></li>
+								<li class=c-nav__item><a class=c-nav__anchor href=#media-breakpoints-for-responsive-design>
+									Media Breakpoints for Responsive Design
+								</a></li>
+								<li class=c-nav__item><a class=c-nav__anchor href=#browser-support>
+									Browser Support
+								</a></li>
+							</ul>
+						</li>
+						<li class=c-nav__item>
+							<a class=c-nav__anchor href=#roadmap>
+								Roadmap
+							</a>
+						</li>
+						<li class=c-nav__item>
+							<a class=c-nav__anchor href=#license>
+								License
+							</a>
+						</li>
+					</ul>
+				</details>
+			</aside>
+			<main id=content class=s-cmsContent aria-label=Content>
+				<article class="o-box -viewCard o-center">
+					<!-- <header class=c-header> -->
+					<!-- <h1 class=o-box__title itemprop=heading id="pxl--minimal-theme--front-end-env">Documentation</h1> -->
+					<!-- </header> -->
+					<md>
+# pxl [![Build](https://github.com/egeesin/pxl/actions/workflows/node-gulp.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/node-gulp.yml)
 
 > An adjustable framework-ish website theme with sensible defaults and nice looks.
 
-<img class=center src=preview.png alt="A screenshot of the website theme previewing both light and dark theme." />
-
-## <span style="font-weight:400">**p**retty e**x**treme **l**ist of features 'cause I ❤️ <span title="Confusing Specificity Sufferfest">CSS</span></span>
+## Features
 
 - Focused on HTML and CSS, leaving JavaScript for implementing accessibility features and non-essential tasks only
 - No CSS frameworks dependency
@@ -59,14 +155,14 @@ Initially, *pxl* is built for my own personal [website](https://egeesin.com) for
 - **`src`** (Source) directory contains everything this repository has it's in core.
 	- Inside **`page`**, there are relevant directories containing demo HTML pages of components, objects, layouts – or in other words: atoms, molecules, organisms, templates and pages. **_include** directory is for keeping files as reusable chunks like inside of \<head>, static parts of page header and footer used and parsed by [posthtml-include](https://github.com/posthtml/posthtml-include) plugin.
 	- Inside **`style`**, CSS files are placed in different directories based on [7-1 pattern](https://sass-guidelin.es/#the-7-1-pattern) that is similar to [ITCSS](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/) (Inverted Triangle CSS).
-		- `abstract`
-		- `base`
-		- `class`
+		- **`abstract`**
+		- **`base`**
+		- **`class`**
 	- **`script`** includes scripts to make this project functional and responsive. Responsive navigation components, selecting theme modifiers and updating ARIA attributes for better accessibility markup are the examples for providing these.
 	- **`icon`** includes a custom icon set that is dedicated to this repository. It's exported from Affinity Designer as multiple SVG vector files (slices) automatically to be merged as single SVG spritesheet later.
-	- `11ty` directory has filter/transform scripts, configurations and templates written with Liquid template language makes it compatible to Eleventy, static site generator.
-	- `img` has placeholder images for testing responsive \<picture>/srcset attributes, favicon and customizable page backgrounds.
-	- `font` contains preferred default sans-serif and monospace WOFF2 fonts.
+	- **`11ty`** directory has filter/transform scripts, configurations and templates written with Liquid template language makes it compatible to Eleventy, static site generator.
+	- **`img`** has placeholder images for testing responsive \<picture>/srcset attributes, favicon and customizable page backgrounds.
+	- **`font`** contains preferred default sans-serif and monospace WOFF2 fonts.
 - Among the excluded files: there's a **`dist`** (Distribution) directory for keeping the generated files that are parsed from source files; **pre-dist** (Pre-Distribution) directory for the parsed source files that aren't minimized yet; **11ty-build** for keeping 11ty-compatible templates ready to use.
 
 ### CSS Methodology/Class Naming
@@ -116,3 +212,12 @@ For the details, check `browserslist` section in `package.json`.
 
 ## License
 This project is under [GNU GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.html) license.
+				</md>
+			</article>
+		</main>
+		<include src='_include/page-footer.html'></include>
+	</div>
+	<include src='_include/ext-bg-frame.html'></include>
+	<include src='_include/footscript.html'></include>
+</body>
+</html>
