@@ -7,12 +7,12 @@ const {src, dest, parallel, series, task, watch} = gulp
 import pump                from 'pump'
 import {deleteAsync}          from 'del'
 import rename              from 'gulp-rename'
-import stringReplace       from 'gulp-string-replace'
+// import stringReplace       from 'gulp-string-replace'
 // import sourcemaps          from 'gulp-sourcemaps'
-import filter              from 'gulp-filter'
+// import filter              from 'gulp-filter'
 import zip                 from 'gulp-zip'
 import browsersyncSrc      from 'browser-sync'
-import path                from 'path'
+// import path                from 'path'
 const browsersync = browsersyncSrc.create();
 
 /**** HTML
