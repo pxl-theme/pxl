@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html
+	lang=en
+	dir=ltr
+	class="t-color t-modRoot"
+	data-theme=dark
+	prefix="og: http://ogp.me/ns#">
+	<include src='_include/head.html'>{
+         "title":"Layout Primitives",
+		"description": ""
+	}</include>
+	<body
+		class="js-preload _stickyFooter t-modBody o-stack"
+		itemscope itemtype="https://schema.org/WebPage"
+		>
+		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
+		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
+		<include src='_include/page-header.html'></include>
+		<div class=o-stack>
+			<span>Everything here is contained by a <b>stack</b> container.</span>
+			<div class="o-box">This is a <b>box</b>.</div>
+			<div class="o-center">And this is a <b>center</b> container, should be 72ch wide and centered. Typing some non-sense here so the text here can overflow inside this container.</div>
+			<div class="o-center">
+				<div class="o-box">This is a box inside a center container.</div>
+			</div>
+			<div class="o-center">
+				<div class="o-box">And this is the same one with longer content in it. So we can see the overflowing text again and see how much this box can expand inside the boundries of a center container.</div>
+			</div>
+			<div class="o-cluster">
+				<div class="o-box">This</div>
+				<div class="o-box">is</div>
+				<div class="o-box">a</div>
+				<div class="o-box"><b>cluster<b></div>
+				<div class="o-box">with</div>
+				<div class="o-box">boxes</div>
+				<div class="o-box">in it.</div>
+			</div>
+			<div class="o-withSidebar">
+				<div class=o-box>This is the first element of a <b>sidebar</b> container.</div>
+				<div class=o-box>And this is the last element of a sidebar container. It'll move to the bottom if this container width equals to the half of its parent width. Try resizing your window so you can see the change. If child element longer than its sibling, it'll stretch to match the height. The behavior can be changed with <code>align-items: flex-start</code></div>
+			</div>
+			<div class="o-withSidebar">
+				<div class=o-box style=flex-basis:128px><img class=alignStart src=//picsum.photos/128></div>
+				<div class=o-box>And this is another sidebar container with image example. You can set custom width for sidebar child as it has <code>flex-basis:128px</code></div>
+			</div>
+			<div class="o-switcher">
+				<div class=o-box>These are child elements of a <b>switcher</b> container</div>
+				<div class=o-box>Each element is equally sized and responsive intrinsically</div>
+				<div class=o-box>Child elements are placed side by side or stacked</div>
+				<div class=o-box>Depending on whether container width outsizes the threshold custom property</div>
+			</div>
+			<div class="o-cover">
+				<div>First child</div>
+				<div class="o-cover__center"><h2>These are child of <b>cover</b> element</h2></div>
+				<div>Last child</div>
+			</div>
+			<div class="o-grid">
+				<div class="o-box">These are child elements</div>
+				<div class="o-box">of a <b>grid</b> container</div>
+				<div class="o-box">Unlike switcher,</div>
+				<div class="o-box">Orphan elements don't expand</div>
+				<div class="o-box">And always stays in grid</div>
+				<div class="o-box">The grid has gaps</div>
+				<div class="o-box">Elements overflows</div>
+				<div class="o-box">depending on container size</div>
+			</div>
+			<div class="o-frame"><img src="//picsum.photos/800" alt=""></div>
+			<div class="o-reel -overflowing">
+				<div class="o-box">These are</div>
+				<div class="o-box">child elements of</div>
+				<div class="o-box">a reel container</div>
+				<div class="o-box">which is scrollable</div>
+				<div class="o-box">horizantally</div>
+				<div class="o-box">might be useful</div>
+				<div class="o-box">for navigation</div>
+				<div class="o-box">or browsing among media</div>
+			</div>
+			<div style="position: relative">
+				<p>This is a static content with <code>position: relative</code> in it.</p>
+				<p>Making a couple of placeholder paragraph so imposter container can place on top of me.</p>
+				<p>That's challenging to do an accurate example but here goes nothing.</p>
+				<div class="o-box o-imposter">
+					<p>This is an imposter and also box container.</p>
+				</div>
+			</div>
+		</div>
+
+		<include src='_include/page-footer.html'></include>
+		<include src='_include/ext-bg-frame.html'></include>
+		<include src='_include/footscript.html'></include>
+	</body>
+</html>

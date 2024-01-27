@@ -1,0 +1,10 @@
+{
+	"plugins": {
+		"posthtml-include": {
+			"root": "plain/"
+		},
+		"posthtml-lorem":{},
+		"posthtml-md":{},
+		"posthtml-alt-always":{}
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"layout": "photo",
+	"author": "Name Surname",
+	"permalink": "photo/{{ page.date | date: '%Y/%m/%d' }}/{{ page.fileSlug }}/index.html",
+	"custom_header_title": "Photo",
+	"tags": [
+		"foto"
+	],
+	"vocab": "entry",
+	"changefreq": "monthly",
+	"priority": "0.8"
+}

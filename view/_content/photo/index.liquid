@@ -1,0 +1,17 @@
+---
+layout: default
+title: Photo
+custom_header_title: Photo
+priority: 1
+pagination:
+  data: collections.photo
+  size: 9
+permalink: "photo/{% if pagination.pageNumber > 0 %}p/{{ pagination.pageNumber | plus:1 }}{% else %}index{% endif %}.html"
+---
+{% assign post_count = collections.photo | default: pagination.items %}
+{%- include 'post/container.liquid'
+	view:masonry
+	load_more_button: true
+	items: post_count
+%}
+

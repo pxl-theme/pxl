@@ -1,0 +1,198 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Foldit:wght@700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Antonio&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Texturina&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
+
+:root {
+	/* https://modernfontstacks.com/#font-stacks */
+
+	/* Sans Serif Stacks */
+	--fontStackSystemUI: ui-sans-serif, system-ui, sans-serif, color-emoji;
+	--fontStackHumanist: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+	--fontStackGeoHumanist: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+	--fontStackClassicHumanist: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+	--fontStackNeoGrotesque: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+	--fontStackIndustrial: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
+	--fontStackRounded: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
+
+	/* Serif Stacks */
+	/* --fontStackSerif: Charter, Georgia, Cambria, "Times New Roman", Times, serif; */
+	--fontStackTransitional: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+	--fontStackOldStyle: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif;
+	--fontStackSlabSerif: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
+	--fontStackAntique: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+	--fontStackDidone: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif;
+
+	/* Monospaced Stacks */
+	--fontStackMono: ui-monospace, Consolas, 'Liberation Mono', Menlo, Courier, monospace, color-emoji;
+	--fontStackMonoSlab: 'Nimbus Mono PS', 'Courier New', monospace;
+	--fontStackMonoCode: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+
+	/* Display/Script Stacks */
+	--fontStackHandwritten: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
+
+	/* Verdana is alr too but not sure if all operating systems on the market have that one... */
+
+	/* Font Properties in Use */
+	/* --fontMain: "Recursive", var(--fontStackNeoGrotesque); */
+	/* --fontMain: var(--fontStackOldStyle); */
+	--fontMain: "Inter V", var(--fontStackNeoGrotesque);
+	/* --fontMain: var(--fontStackSystemUI); */
+	--fontMono: "Iosevka Aegean", var(--fontStackMono);
+	--fontHeading: var(--fontMain);
+	/* --fontParagraph: var(--fontMain); */
+
+	/* Use default system font stack in smartwatches */
+	@media (--wrist-or-lt) {
+		--fontMain: var(--fontStackSystemUI);
+		--fontMono: var(--fontStackMono);
+	}
+}
+
+/* Define all emoji-based font families as single family */
+@font-face {
+	font-family: "color-emoji";
+	src: local("Apple Color Emoji"),
+		 local("Segoe UI Emoji"),
+		 local("Segoe UI Symbol"),
+		 local("Noto Color Emoji");
+}
+
+/* Variable Fonts */
+@font-face {
+	font-family: 'Inter V';
+	src: url('../asset/font/InterAegeanV.subset.woff2') format('woff2-variations'),
+		 url('../asset/font/InterAegeanV.subset.woff2') format('woff2'),
+		 local("Inter V");
+	font-weight: 1 999;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('../asset/font/iosevka-aegean-mono-thin.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 100;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('../asset/font/iosevka-aegean-mono-thinitalic.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('../asset/font/iosevka-aegean-mono-light.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('../asset/font/iosevka-aegean-mono-lightitalic.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('../asset/font/iosevka-aegean-mono-regular.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('../asset/font/iosevka-aegean-mono-italic.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('../asset/font/iosevka-aegean-mono-medium.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('../asset/font/iosevka-aegean-mono-mediumitalic.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('../asset/font/iosevka-aegean-mono-bold.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('../asset/font/iosevka-aegean-mono-bolditalic.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('../asset/font/iosevka-aegean-mono-heavy.subset.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Iosevka Aegean';
+	font-display: swap;
+	font-weight: 900;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('../asset/font/iosevka-aegean-mono-heavyitalic.subset.woff2') format('woff2');
+}
+
+
+
+/*----*/
+
+/* Source: https://www.ctrl.blog/entry/creative-commons-unicode-fallback-font.html */
+/* @font-face { */
+/*   font-display: swap; */
+/*   font-family: CCSymbols; */
+/*   font-synthesis: none; */
+/*   src: url(CCSymbols.woff2) format(woff2), */
+/*        url(CCSymbols.woff)  format(woff); */
+/*   unicode-range: u+a9, u+229c, */
+/*                  u+1f10d-1f10f, */
+/*                  u+1f16d-1f16f; */
+/* } */
+
+
+/* Tip: Keep font-display: block after updating iconfont css file */

@@ -1,0 +1,81 @@
+{% assign pages = site.pages | sort: 'order' %}
+
+<ul id=nav class="c-nav -responsive -typeTree -expandFromBlockStart">
+<a id=c-toggleExpand class=c-toggleExpand></a>
+{% for node in pages %}
+{% if node.url contains ".xml" or node.url contains "404"%}
+{% else %}
+	{% assign node_parts = node.url | split: '/' %}
+	{% assign node_depth = node_parts | size %}
+
+	{% if node_depth == 2 %}
+		<li class=c-nav__item {% if item.url == page.url %}aria-current=page{% endif %}>
+		<a href="{{ node.url }}">
+			{% if node.link %}
+			{{ node.link }}
+			{% else %}
+			{{ node.data.title }}
+			{% endif %}
+		</a>
+
+		{% assign node_root = '/' | append: node_parts[1] | append: '/' %}
+		{% assign has_children = false %}
+		{% for subnode in pages %}
+			{% if subnode.url contains node_root and subnode.url != node_root %}
+			{% assign has_children = true %}
+			{% endif %}
+		{% endfor %}
+
+		{% if has_children == true %}
+			<ul class=c-nav__submenu>
+			{% for subnode in pages %}
+				{% if subnode.url contains node_root and subnode.url != node_root %}
+				{% assign node_parts = subnode.url | split: '/' %}
+				{% assign node_depth = node_parts | size %}
+
+				{% if node_depth == 3 %}
+					<li class=c-nav__item {% if item.url == page.url %}aria-current=page{% endif %}>
+					<a href="{{ subnode.url }}">
+						{% if subnode.link %}
+						{{ subnode.link }}
+						{% else %}
+						{{ subnode.data.title }}
+						{% endif %}
+					</a>
+
+					{% assign subnode_root = '/' | append: node_parts[1] | append: '/' | append: node_parts[2] | append: '/' %}
+					{% assign has_children = false %}
+					{% for subsubnode in pages %}
+						{% if subsubnode.url contains subnode_root and subsubnode.url != subnode_root %}
+						{% assign has_children = true %}
+						{% endif %}
+					{% endfor %}
+
+					{% if has_children == true %}
+						<ul class=c-nav__submenu>
+						{% for subsubnode in pages %}
+							{% if subsubnode.url contains subnode_root and subsubnode.url != subnode_root %}
+							<li class=c-nav__item {% if item.url == page.url %}aria-current=page{% endif %}>
+								<a href="{{ subsubnode.url }}">
+								{% if subsubnode.link %}
+									{{ subsubnode.link }}
+								{% else %}
+									{{ subsubnode.data.title }}
+								{% endif %}
+								</a>
+							</li>
+							{% endif %}
+						{% endfor %}
+						</ul>
+					{% endif %}
+					</li>
+				{% endif %}
+				{% endif %}
+			{% endfor %}
+			</ul>
+		{% endif %}
+		</li>
+	{% endif %}
+{% endif %}
+{% endfor %}
+</ul>

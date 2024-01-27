@@ -1,0 +1,29 @@
+{
+  "javascript" : {
+    "globals": [ "$", "jQuery", "enquire", "Colcade", "Darkmode"]
+  },
+  "linter" : {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "useSingleVarDeclarator": "off",
+        "noParameterAssign": "off",
+        "noVar": "off"
+      },
+      "correctness": {
+        "noInnerDeclarations": "off",
+        "noUnusedVariables": "off"
+      },
+      "complexity": {
+        "noForEach": "off"
+	  },
+      "nursery": {
+        "noEmptyBlockStatements": "off"
+      }
+    }
+  },
+  "formatter" : {
+    "indentWidth": 4
+  }
+}

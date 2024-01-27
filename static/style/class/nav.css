@@ -1,0 +1,1300 @@
+/***** Nav Component *****/
+
+/* Reset box values if Nav Component is(or parent of) an Unordered or Ordered List */
+:where(ul,ol):is(.c-nav),
+:where(.c-nav) :is(ul,ol) {
+	margin: 0;
+	padding: 0;
+	&::marker {
+		font-variant-numeric: tabular-nums;
+		/* font-variant-numeric: oldstyle-nums; */
+	}
+}
+/* Padding value of all nav items */
+.c-nav__anchor{
+	cursor: pointer;
+	padding-block: calc(var(--rhythmUnit) / 2);
+	/* padding-block: var(--rhythmUnit); */
+}
+a[href].c-nav__anchor {
+	/* Reverting special anchor style here*/
+	border-radius: inherit;
+}
+/* Define a space for ordered list marker */
+:is(ol.c-nav, .c-nav ol){
+	--listMarkerSpace: 2ch; /* Default */
+	li::marker{
+		font-weight: 550;
+	}
+}
+ol.c-nav .c-nav__item > .c-nav__anchor {
+	padding-inline-start: 0;
+}
+ol.c-nav__submenu {
+	margin-inline-start: 0;
+	padding-inline-start: calc(var(--listMarkerSpace)*1.75);
+	li::marker{
+		font-weight: 450;
+	}
+}
+/* Safari isn't supporting counter styling feature yet…
+ * Custom number styling for the ordered list navigations (e.g. Table of Contents) */
+/* :is(ol.c-nav, .c-nav ol){ */
+/* 	/1* list-style-position: inside; *1/ */
+/* 	list-style: none; */
+/* 	counter-reset: default; */
+/* 	li { */
+/* 		counter-increment: default; */
+/* 	} */
+/* 	.c-nav__item > .c-nav__anchor { */
+/* 		/1* display: inline; *1/ */
+/* 		padding-left: 0; */
+/* 		&:before { */
+/* 			content: counter(default) ". "; */
+/* 			/1* font-size: inherit; *1/ */
+/* 			/1* padding: inherit; *1/ */
+/* 		} */
+/* 	} */
+/* } */
+
+/* Hide bullet points if Nav Component is an Unordered List element.*/
+ul.c-nav, .c-nav ul {
+	list-style: none;
+}
+
+/* Hide summary marker if Nav Anchor is <summary> */
+/* summary.c-nav__anchor::-webkit-details-marker{ */
+/* 	display: none; */
+/* } */
+
+/* Every Nav Item */
+.c-nav__item {
+	> .c-nav__anchor {
+		user-select:none;
+		opacity: 1;
+		/* pointer-events: auto; */
+		display: block;
+
+		/* text-decoration: none; */
+		text-decoration-line: none;
+
+		/* text-decoration-color: currentColor; */
+		/* text-decoration-thickness: 1px; */
+		/* text-underline-offset: 1px; */
+
+		padding-inline: var(--nav-item-padSide);
+
+		/* border: var(--borderS) solid transparent; /1* TODO: Find out why this exists… *1/ */
+
+		/* white-space: nowrap; /1* force to single line *1/ */
+		/* padding: calc(.25em - var(--borderWidth)) calc(.8em - var(--borderWidth)); */
+		/* overflow: hidden; */
+		/* background-color: var(--colorBase); */
+	}
+	/* First SVG child inside nav item */
+	svg:first-child{
+		margin-inline-start:0; /* opinionated */
+	}
+	:is(svg,.c-iconWrapper) + :is(span,b) {
+		/* Space between icon and label in the nav item*/
+		/* margin-inline-start: .3333rem; */
+		margin-inline-start: .5ch;
+	}
+	/* Every Image of Every Nav Item
+	 *
+	 * Recommmended for icons
+	 */
+	img {
+		/* Irregular negative values because of omiting modular scale font padding alignment. */
+		/* vertical-align:-.15ex; */
+		/* width:auto; */
+		height:1.7778em; /*32px/18*/
+		margin-block-start: -.3333em;
+		margin-block-end: -.1777em;
+		/* margin-right:.3333em; */
+		margin-inline-start:-.5em;
+		border-radius: inherit;
+		filter: none;
+		/* Desaturate and make translucent image inside nav item if it's possible to hover on */
+		@media (any-hover: hover) and (any-pointer: fine) {
+			filter: opacity(.75) saturate(.66);
+		}
+	}
+	.t-modRoot:is(.-cornerRounded,.-cornerRoundedInner,.-cornerRoundedTiny) & img {
+		/* Make the corners of image rounded if any relevant theme modifier class exists */
+		/* border-radius: var(--radiusS); */
+		border-radius: var(--radiusInnerDefault);
+	}
+	/* Reset filters inside nav item if it's possible to hover on */
+	@media (any-hover: hover) and (any-pointer: fine) { /* opinionated */
+		&:hover img{
+			filter: opacity(1) saturate(1);
+		}
+	}
+	/* :is(.c-nav__anchor, .c-nav__anchor:hover, .c-nav__anchor:focus, .c-nav__anchor:active){ */
+	:is(.c-nav__anchor, .c-nav__anchor:hover, .c-nav__anchor:focus-visible, .c-nav__anchor:active){
+		color: currentColor;
+	}
+	/* TODO: Test -styleShining option with social media buttons. */
+	/* &.-styleShining .c-nav__anchor { */
+	/* 	filter: drop-shadow(0px 0px 2px twitter-color); */
+	/* 	position: relative; */
+	/* } */
+}
+
+/*TODO: Nav Buttons with different social media colours: complete styleShining option.*/
+/*** Shining Nav Item
+ */
+
+/* e.g. links directing to Twitter domain */
+:is(.c-nav__item.-styleShining:hover > .c-nav__anchor[href*="//x.com"],
+    .c-nav__item.-styleShining > .c-nav__anchor[href*="//x.com"]:focus-visible){
+	/* background-color: transparent; */
+	/* Created with https://www.css-gradient.com */
+	/* background: rgb(30 161 242); */
+	color: currentColor;
+	position: relative;
+	&:after {
+		content:"";
+		position:absolute;
+		z-index: 1;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		border-radius: inherit;
+		/* background: radial-gradient(to bottom right, rgb(30 161 242 / 1.0), rgb(30 161 242 / 0.0)); */
+		background: radial-gradient(to bottom right, rgb(30 161 242 / 1.0), rgb(30 161 242 / 0.0));
+	}
+}
+
+/*** Make nav item of label italic when it's indicating the current page
+ */
+/* .c-nav__item.-currentPage > .c-nav__anchor { */
+.c-nav__item[aria-current=page] > .c-nav__anchor{
+	font-style: italic;
+	pointer-events: none; /* opinionated */
+}
+/* .c-nav__item > .c-nav__submenu{ */
+/* 	font-style: unset; */
+/* } */
+
+.c-nav {
+	/* Add spacing to Horizontal Fly-out Type and Tree Type Nav*/
+	/* &:is(.-typeTree, .-typeFlyout.-layoutHorizontal) { */
+	/* 	margin-block-end: calc(var(--rhythmUnit)*2); */
+	/* } */
+	/* *Opinionated* Search-Type Input inside Horizontal Fly-out Type and Tree Type Nav*/
+	&:is(.-typeTree, .-typeFlyout.-layoutVertical) { /* opinionated */
+		input[type=search] {
+			width:90%;
+			margin: auto;
+			/* padding:var(--rhythmUnit) 0 !important; */
+			padding-block:var(--rhythmUnit) !important;
+			padding-inline:0 !important;
+		}
+	}
+}
+
+/* experimental */
+/* Stack Type Nav Submenu */
+.c-nav.-typeFlyout.-layoutHorizontal .c-nav__submenu.-typeStack {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	@media (any-hover: hover) {
+		padding-block-start: var(--rhythmUnit);
+	}
+	> .c-nav__item.-viewIconOnly {
+		box-shadow: none !important;
+		padding-block-end: 0;
+		@media (any-hover: hover) {
+			padding-block-end: var(--rhythmUnit); /* Add some space for tooltip */
+		}
+	}
+}
+/* -experimental */
+
+/* Nav Item Separator for Every Vertical Menus (Tree-Type, Vertical Fly-out Type, Submenus of Horizontal Fly-out Type Nav Components)
+ */
+:is(.c-nav.-typeTree,
+    .c-nav.-typeFlyout.-layoutVertical,
+	.c-nav.-typeFlyout.-layoutHorizontal .c-nav__submenu) .c-nav__separator {
+	/* margin: 0 0 .05em; */
+	padding: 0;
+	/* border-top: .2em solid; */
+	background-color: currentColor;
+	--separatorSpace: calc(var(--rhythmUnit)/2);
+	--separatorWeight: .2rem;
+	height: var(--separatorWeight);
+	/* margin: calc( (var(--separatorSpace) - var(--separatorWeight)) / 2 ) 0; */
+	margin-block: calc( (var(--separatorSpace) - var(--separatorWeight)) / 2 );
+	background-color: currentColor;
+	/* border-top: .2em solid; */
+}
+:is(.c-nav.-typeFlyout.-layoutVertical,
+    .c-nav.-typeFlyout.-layoutHorizontal .c-nav__submenu) .c-nav__separator {
+	@media (any-hover: hover) and (any-pointer: fine) {
+		--separatorWeight: 1px;
+	}
+}
+
+.c-nav:not([class*="-expand"]) > .c-toggleExpand {
+	display: none;
+}
+
+/**** Tree-Type Nav Component
+ *
+ * Recommended for small screens.
+ */
+
+/** Set default padding values for non-expandable and *expanded* tree type navigation components
+ */
+.c-nav.-typeTree:not([class*=-expand]),:is(.c-nav.-typeTree[class*=-expand]:focus-within, .c-nav.-typeTree[class*=-expand].js-visible), [id^="toggleNav-"]:checked + .c-nav.-typeTree[class*="-expand"] {
+	padding-block-start: calc(var(--boxViewCard-padTop) - var(--border, 0px));
+	padding-block-end: calc(var(--boxViewCard-padBottom) - var(--border, 0px));
+
+	padding-inline: calc(var(--boxViewCard-padSide) - var(--border, 0px));
+	padding-inline-start: calc( var(--boxViewCard-padSide) + var(--listMarkerSpace,0px) - var(--border, 0px) );
+}
+
+.c-nav.-typeTree {
+	border-radius: var(--radiusInnerDefault);
+
+
+	/* Every Nav Item inside Tree-Type Nav */
+	.c-nav__item {
+
+		/* List Row Separators similar to iOS/iPadOS (Only visible to touch devices)*/
+		/* box-shadow: .5em calc(-.5em - var(--borderHairline)) 0 -.5em var(--colorTextOpac40); */
+		box-shadow: var(--rhythmUnit) calc(var(--rhythmUnit)*-1 - var(--borderHairline)) 0 calc(var(--rhythmUnit)*-1) var(--colorTextOpac40);
+		@media (any-pointer: fine) {
+			box-shadow: none;
+		}
+	}
+	/* Font size and vertical alignment of FIRST depth navigation item in Tree Nav Component */
+	.c-nav__item > .c-nav__anchor{
+		/* @mixin fontSize4; */
+		/* text-decoration-line: underline; */
+		text-decoration-line: none;
+		text-decoration-color: currentColor;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 1px;
+		@media (any-hover: hover) {
+			text-decoration-line: none;
+			&:hover, &:focus-visible {
+				text-decoration-line: underline;
+			}
+		}
+	}
+	/* Hide nav item border of Toggle Trigger, Search-Type Input and Nav Item under Nav Item Separator */
+
+	/* INFO: Classes doesn't work with these pseudos so let's assume li is .c-nav__item since this is only class that applies to li element for now. */
+	/* li = .c-nav__item */
+	/* li { */
+	/* :is(.c-nav__item:first-of-type:not(.c-toggleExpand):not(.c-nav__separator):not(input[type=search]), .c-nav__separator + .c-nav__item) { */
+	:is(.c-nav__item:first-of-type:not(.c-nav__separator):not(input[type=search]), .c-nav__separator + .c-nav__item) {
+		box-shadow: none !important;
+	}
+
+	/* Every Submenu (except ordered lists) inside Tree-Type Nav */
+	.c-nav__submenu:not(ol) {
+		margin-inline-start: 1.75rem; /* Indent every submenu to right in Tree-Type Nav */
+		@media (any-pointer: fine) {
+			margin-inline-start: 1.5rem; /* Indent a little less */
+		}
+	}
+	.c-nav__submenu {
+		/* overflow: hidden; */
+		box-shadow: calc(var(--borderHairline) * -1) 0 var(--colorTextOpac40);
+		/* Font size and vertical alignment of SECOND or MORE depth navigation item in Tree  Nav Component */
+		/* .c-nav__item > .c-nav__anchor { */
+			/* @mixin fontSize4;/1* opinionated *1/ */
+		/* } */
+	}
+	/* Tree-Type Nav Expandable From Block Start (Top)*/
+	&.-expandFromBlockStart {
+		/* Align to center */
+		/* margin-inline: auto; */
+		/* margin-inline-start: -50%; */
+		/* inline-start: 50%; */
+		/* font-size: 1.25rem; */
+		padding: 0;
+		position: absolute;
+		z-index:1;
+		overflow-y: auto; /* Hidden by default */
+		overscroll-behavior-y: contain; /* Prevent scrolling site body after you reach the end of the menu.
+		/* max-height: 2.5rem; /1* Size of button in touch interface *1/ */
+		max-height: 0; /* Size of button in touch interface */
+		/* The value below and above should be same with c-toggleExpand height or
+		 * c-button line-height inside Tree-Type Nav */
+		transition: none .5s cubic-bezier(.08,.82,.17,1);
+		transition-property: width, min-width, max-height, padding;
+
+		width: 0%;
+		/* Minimized Width opinionated */
+		/* min-width: 12.5em; */
+		/* @media (--palm-or-gt) { */
+		/* 	width: 24em; */
+		/* } */
+		/* -opinionated */
+
+		/* Expand Tree-Type Nav Component from top when its focused.*/
+		:is(&:focus-within, &.js-visible), [id^="toggleNav-"]:checked + & {
+			width: 100%;
+			max-height: 70svh; /* opinionated */
+			/* @media (--palm-or-gt) { */
+			/* 	/1* padding: 0 15%; *1/ */
+			/* 	/1* 24em isn't really connected to another value or any variable so the line below must be opinionated for now. *1/ */
+			/* 	/1* opinionated *1/ */
+			/* 	padding: 0 calc( ( 100vw - 24em ) / 2 ); */
+			/* 	/1* -opinionated *1/ */
+			/* } */
+			/* max-height: var(--maxHeight-h-expand); */
+		}
+	}
+}
+
+ol.c-nav.-typeTree .c-nav__item {
+	/* List Row Separators in Ordered List Tree-Type Nav*/
+	box-shadow: 0 calc(-1 * var(--borderHairline)) 0 0 var(--colorTextOpac40);
+	@media (any-pointer: fine) {
+		box-shadow: none;
+	}
+}
+/* First depth of Every Nav Item inside Tree-Type Nav */
+.c-nav:not(ol).-typeTree > .c-nav__item {
+	position: relative;
+
+	/* Submenu Indicator for Nav Item inside Tree-Type Nav */
+	&:has(.c-nav__submenu) > .c-nav__anchor{
+		padding-inline-start: 2ch;
+	}
+	&:has(.c-nav__submenu):after{
+		width: 2ch;
+		position: absolute;
+		/* padding: 0 var(--nav-item-padSide); */
+		/* padding-inline: var(--nav-item-padSide); */
+		/* padding-inline-end: .25ch; */
+		padding-inline-end: calc(var(--nav-item-padSide)/4);
+		content: "▶︎";
+		/* content: "▼"; */
+		/* content: "◀︎"; */
+		line-height: 2;
+		display: block;
+		font-weight: 600;
+		top: 0;
+
+		/* background-color: red; */
+	}
+	/* & > .c-nav__submenu { */
+	/* 	height: 0; */
+	/* } */
+	/* /1* Submenu opens sideways *1/ */
+	/* &:hover > .c-nav__submenu, &:focus-visible > .c-nav__submenu{ */
+	/* 	height: auto; */
+	/* } */
+}
+
+/**** Fly-out Type Nav Component
+ *
+ * Recommended for small or tall screens.
+ *
+ * The depths reveal over hovering over the nav item.
+ * Follows the a dozen old practice: https://alistapart.com/article/dropdowns/
+ * Also learned and named after here: https://adrianroselli.com/2020/03/stop-using-drop-down.html#Flyout
+ */
+.c-nav.-typeFlyout {
+	/* INFO: In Safari submenu doesn't place in front */
+	position: relative;
+	z-index: 1;
+	--fontWeight: 475; /* Makes the variable font a little bit bolder in the Fly-out Nav*/
+
+/*** Vertical Fly-out Type Nav Component
+ *
+ */
+	/* Affects every depth */
+	&.-layoutVertical {
+		width: 12em; /* opinionated */
+		/* max-width: var(--sidebarWidth); */
+
+		/* Font Size and Box Values of Nav Item Label, Submenu Indicator */
+		/* .c-nav__item:has(.c-nav__submenu):after{ */
+		/* 	@mixin fontSize4; */
+		/* } */
+		.c-nav__submenu {
+			width: 12em; /* opinionated */
+			/* max-width: var(--sidebarWidth); */
+		}
+		/* > .c-nav__item { */
+		/* 	width: 100%; */
+		/* } */
+		&.-expandFromStartStart {
+			/* font-size: 1.25rem; */
+			z-index: 555; /* opinionated */
+
+			position: absolute;
+			/* position: fixed; */
+			inset-block-start: 0;
+			/* left: 0; */
+			inset-inline-start: -1px; /* Sometimes its reachable */
+			transform: translate3d(-100%, 0, 0); /* Hide the element off-canvas */
+			transition: transform .5s cubic-bezier(.08,.82,.17,1);
+			/* > .c-toggleExpand { */
+			/* 	display: block; */
+			/* 	position: absolute; */
+			/* 	inset-block-start: 0; */
+			/* 	inset-inline-start: 100%; */
+			/* 	width: auto; */
+			/* 	/1* opinionated *1/ */
+			/* 	margin: var(--rhythmUnit); */
+			/* 	/1* -opinionated *1/ */
+			/* } */
+		}
+		&:is(.-expandFromStartStart:focus-visible, .-expandFromStartStart:focus-within, .-expandFromStartStart.js-visible), [id^="toggleNav-"]:checked + & {
+			transform: translate3d(0,0,0);/* Reset transform/Reveal the element from the off-canvas */
+		}
+
+		/* .c-nav__item:not(.c-toggleExpand):not(.c-nav__separator):not(input[type=search]) { */
+		.c-nav__item:not(.c-nav__separator):not(input[type=search]) {
+			/* box-shadow: .5em calc(-.5em - var(--borderHairline)) 0 -.5em var(--colorTextOpac40); */
+			box-shadow: var(--rhythmUnit) calc(var(--rhythmUnit)*-1 - var(--borderHairline)) 0 calc(var(--rhythmUnit)*-1) var(--colorTextOpac40);
+			@media (any-hover: hover) and (any-pointer: fine) {
+				box-shadow: none;
+			}
+
+			&:hover, &:hover + .c-nav__item {
+				box-shadow: none;
+			}
+		}
+		/* INFO: Classes doesn't work with these pseudos so let's assume li is .c-nav__item since this is only class that applies to li element for now. */
+		/* li = .c-nav__item */
+		/* li { */
+		/* :is(.c-nav__item:first-of-type:not(.c-toggleExpand):not(.c-nav__separator):not(input[type=search]), */
+		:is(.c-nav__item:first-of-type:not(.c-nav__separator):not(input[type=search]),
+	     	.c-nav__separator + .c-nav__item) {
+			box-shadow: none !important;
+		}
+
+	}
+	/* Every items inside Fly-out Type Nav */
+	.c-nav__item {
+		&:has(.c-nav__submenu) {
+			position: relative;
+			.c-nav__item {
+				float: none;
+				& > .c-nav__anchor {
+					width: 100%
+				}
+			}
+			& > .c-nav__anchor:is([href="#"],[href="#!"]){
+				cursor: e-resize;
+			}
+		}
+		&:has(.c-nav__submenu):after{
+			position: absolute;
+			content: "⟩";
+			display: block;
+			/* --fontWeight: 600; */
+			font-weight: 600;
+			/* background-color: red; */
+		}
+		/* Submenu inside every nav item of Fly-out Type Nav*/
+		> .c-nav__submenu {
+			/* Set position */
+			inset-block-start: 0;
+			inset-inline-start: 100%;
+
+			/* Hide by default */
+			visibility: hidden;
+			opacity: 0;
+			pointer-events: none; /* This is crucial when element get stuck between transitioning positions */
+
+			/* Opens sideways (To the right)*/
+			transform: translate( calc(var(--rhythmUnit) * -1), 0);
+
+			/* Closing Transition*/
+			/* Reminder: Copy the max delay/duration value and paste it to relevant function value. Ex. 1s = 1000 (ms) */
+			/* transition: transform 0s 1s, opacity .5s ease-in-out .5s, visibility .5s .5s; */
+			transition: transform 0s 1s, opacity .5s ease-in-out .15s, visibility .5s .15s;
+			.js-preload & {
+				display: none;
+			}
+		}
+
+		/* NOT WORKING YET: Change the color of arrow when hovering a nav item that has Submenu */
+		/* &:has(.c-nav__submenu) { */
+		/* 	&:hover, &:focus-visible { */
+		/* 		:after { */
+		/* 			color: var(--colorBase); */
+		/* 		} */
+		/* 	} */
+		/* } */
+
+	}
+	/* Change the bg/text color of nav item when hovering */
+	:is(.c-nav__item:not([aria-current=page]):hover > .c-nav__anchor,
+	    .c-nav__item:not([aria-current=page]) > .c-nav__anchor:focus-visible){
+
+		/* Better Contrast
+		 */
+		/* background-color: var(--colorText); */
+		/* color: var(--colorBase); */
+
+		/* Lighter Indication
+		 */
+		background-color: var(--colorTextOpac20);
+		/*TODO: need more brighter/darker color for hovered on navigation*/
+		color: var(--colorTextBolder);
+		/* @media (prefers-color-scheme: dark) { */
+		:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) & {
+			background-color: var(--colorTextOpac40);
+		}
+
+		/* background-color: var(--colorTextOpac20); */
+		/* border-color: currentColor; */
+		/* border-width: var(--borderWidth); */
+	}
+	/* Highlight the nav item of current page */
+	.c-nav__item[aria-current=page] > .c-nav__anchor{
+		background-color: var(--colorFrontmost);
+		color: var(--colorTextBolder);
+	}
+	/* Highlight while clicking on any nav item (except submenu parents)
+	 * inside flyout navigation component */
+	/* @media (any-hover: hover) and (any-pointer: fine) { */
+		.c-nav__item:not([aria-current=page],:has(.c-nav__submenu)):active > .c-nav__anchor{
+			transform: scale(.95);
+			color: var(--colorTextBolder);
+		}
+	/* } */
+
+	/* Show submenu when related nav item is hovered on or focused on itself or its parent */
+	:is(.c-nav__item:hover > .c-nav__submenu, .c-nav__item > .c-nav__anchor:focus-visible + .c-nav__submenu, .c-nav__item > .c-nav__submenu:focus-within,
+	.c-nav__item.-leanEnd:hover > .c-nav__submenu, .c-nav__item.-leanEnd > .c-nav__anchor:focus-visible + .c-nav__submenu, .c-nav__item.-leanEnd > .c-nav__submenu:focus-within
+	){
+
+		/* Show submenu when related nav item is hovered/focused */
+		--bringForward: 1;
+		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
+
+		transform: translate(0,0);
+
+		/* Opening Transition*/
+		transition: transform .25s cubic-bezier(.08,.82,.17,1) 0s, opacity .15s ease-in-out 0s, visibility .25s 0s;
+	}
+	/* Every submenu inside Fly-out Type Nav Component
+	 */
+	.c-nav__submenu {
+		--bringForward: 0;
+		background-color: var(--colorFrontmost);
+		/* min-width: 100%; */
+		/* max-height: 60svh; */
+		/* overflow: auto; */
+		position: absolute;
+		--fontWeight: 400;
+		z-index: calc(444 + var(--bringForward));
+	}
+	/* First depth of submenu indicator inside Fly-out Type Nav Component
+	 */
+	> .c-nav__item:has(.c-nav__submenu):after, > .c-nav__item:has(.c-nav__submenu) :has(.c-nav__submenu):after {
+		inset-block-start: 0;
+		inset-inline-end: 0;
+		/* width: .8em; */
+		/* padding-left: .1em; */
+		/* padding-right: .1em; */
+		height: 100%;
+		/* text-align: center; */
+		/* line-height: 1.75; */
+		transform: rotate(0);
+	}
+	/**** Horizontal Fly-out Type Nav Component
+	*
+	*/
+	&.-layoutHorizontal {
+		width: 100%;
+		max-width: var(--maxContainerWidth);
+		/* margin-top: 1em; */
+		margin-inline: auto;
+		/* padding: 0 var(--boxViewCard-padSide); */
+		padding-inline: calc(var(--boxViewCard-padSide) - var(--border, 0px));
+
+		display: flex;
+		flex-wrap: wrap;
+
+		/* align-items:baseline; */
+
+		align-items:center;
+
+		/* justify-content:space-around; */
+
+		/* Fix clickable area of arrow */
+		/* overflow: hidden; */
+		/* &:hover, &:focus-visible { */
+		/* 	overflow: visible; */
+		/* } */
+
+		&.-positionSticky {
+			position: sticky;
+			top: 0;
+		}
+
+		/* Align every descendant items of Horizontal Fly-out Type Nav to the center */
+		&.-alignCenter {
+			justify-content: space-around;
+			justify-content: center;
+			/* & * { */
+			/* 	margin: auto; */
+			/* 	@media (--wall-or-gt) { */
+			/* 		margin: initial; */
+			/* 	} */
+			/* } */
+		}
+		&:is(.-alignStart,.-alignEnd) { /* opinionated */
+			padding-inline: 2ch;
+			/* @media (--palm-or-gt){; */
+			/* 	padding-inline: 6ch; */
+			/* } */
+		}
+		/* Align every descendant items of Horizontal Fly-out Type Nav to the left */
+		&.-alignStart {
+			justify-content: left;
+			/* float: left; */
+			/* float: inline-start; */
+			/* Align to side (right by default) nav items and separators */
+			> {
+				/* Careful with the selectors below, this might be confusing. */
+				:is(& .c-nav__item.-leanEnd),
+				:is(& .c-nav__item, & .c-nav__separator):not(.-leanEnd)
+				+ :is(& .c-nav__separator.-leanEnd) {
+					margin-inline-start:auto;
+				}
+				:is(& .c-nav__item.-leanEnd,
+				    & .c-nav__separator.-leanEnd)
+					+ :is(& .c-nav__item.-leanEnd) {
+					margin-inline-start:unset;
+				}
+				/* If separator is the first element of the group of -leanEnd, hide it. */
+				:is(& .c-nav__item, & .c-nav__separator):not(.-leanEnd)
+				+ :is(& .c-nav__separator.-leanEnd) {
+					visibility: hidden;
+				}
+			}
+		}
+		/* Align every descendant items of Horizontal Fly-out Type Nav to the right */
+		&.-alignEnd {
+			justify-content: right;
+			/* float: right; */
+			/* float: inline-end; */
+		}
+
+		/* .c-toggleExpand { */
+		/* 	display: none; */
+		/* } */
+
+		/** Every submenu inside Horizontal Fly-out Type Nav
+		 */
+		.c-nav__submenu {
+			/* min-width: 100%; */
+			min-width: 10em;
+			.c-nav__item {
+				/* List Row Separators similar to iOS/iPadOS (Only visible to touch devices)*/
+				/* box-shadow: .5em calc(-.5em - var(--borderHairline)) 0 -.5em var(--colorTextOpac40); */
+				box-shadow: var(--rhythmUnit) calc(var(--rhythmUnit)*-1 - var(--borderHairline)) 0 calc(var(--rhythmUnit)*-1) var(--colorTextOpac40);
+				@media (any-pointer: fine) {
+					/* When input device is able to hover over links precisely,
+					 * hide lines between nav items and make submenus smaller.
+					 */
+					box-shadow: none;
+				}
+			}
+			/* Nav Item Label and Submenu Indicator for inputs with hover*/
+			.c-nav__item > .c-nav__anchor,
+			> .c-nav__item:has(.c-nav__submenu):after,
+			> .c-nav__item:has(.c-nav__submenu) :has(.c-nav__submenu):after{
+				@media (any-hover: hover) and (any-pointer: fine) {
+					@mixin fontSize5;
+					/* --iconSize: 18; */
+				}
+			}
+			:is(.c-nav__item:hover, .c-nav__item:focus-visible), :is(.c-nav__item:hover, .c-nav__item:focus-visible) + .c-nav__item{
+				box-shadow: none;
+			}
+			/* INFO: Classes doesn't work with these pseudos so let's assume li is .c-nav__item since this is only class that applies to li element for now. */
+			/* li = .c-nav__item */
+			/* li { */
+			/* This will not work */
+			/* :is(.c-nav__item:first-of-type:not(.c-toggleExpand):not(.c-nav__separator):not(input[type=search]), .c-nav__separator + .c-nav__item) { */
+			:is(.c-nav__item:first-of-type:not(.c-nav__separator):not(input[type=search]), .c-nav__separator + .c-nav__item) {
+				box-shadow: none !important;
+			}
+		}
+
+		/* .c-nav__item { */
+		/* 	float: left; */
+		/* 	float: inline-start; */
+		/* } */
+
+		/* Set font-size of Nav Item Label and Submenu Indicator */
+		.c-nav__item > .c-nav__anchor, > .c-nav__item:has(.c-nav__submenu):after, > .c-nav__item:has(.c-nav__submenu) :has(.c-nav__submenu):after{
+			@mixin fontSize4;
+		}
+
+		/* Invert horizontally every arrow inside leaning submenu or deeper, when submenu exists in Horizontal Fly-out Type Nav. */
+		.c-nav__item.-leanEnd .c-nav__item:has(.c-nav__submenu):after{
+			content: "⟨";
+		}
+		.c-nav__item.-leanEnd .c-nav__item:has(.c-nav__submenu) > .c-nav__anchor:is([href="#"],[href="#!"]) {
+			cursor: w-resize;
+		}
+
+		/* > :is(.c-nav__item:hover > .c-nav__submenu, .c-nav__item> .c-nav__anchor:focus + .c-nav__submenu, .c-nav__item > .c-nav__submenu:focus-within) { */
+		/* 	top: 100%; */
+		/* 	left: 0; */
+		/* 	/1* Adjusting top position a little bit for different border modifiers *1/ */
+		/* 	:where(.-borderHairline,.-borderNormal,.-borderThick) & { */
+		/* 		top: calc(100% + var(--borderS)); */
+		/* 	} */
+		/* 	:where(.-borderHairline) & { */
+		/* 		@media --hidpi { */
+		/* 			top: calc(100% + 0.5px); */
+		/* 		} */
+		/* 	} */
+		/* } */
+
+		/* First depth of nav items inside Horizontal Fly-out Nav */
+		> .c-nav__item {
+			&:has(.c-nav__submenu) > .c-nav__anchor:is([href="#"],[href="#!"]), { /* 1st depth */
+				/* Show down arrow cursor while hovering over a nav item which has not an actual link */
+				cursor: s-resize;
+			}
+			/* Only first submenu of horizontal flyout menu */
+			> .c-nav__submenu {
+				/* Set position beneath the related nav item */
+				inset-block-start: 100%;
+				inset-inline-start: 0;
+
+				/* First depth of submenus open beneath the related nav item */
+
+				transform: translate(0, calc(var(--rhythmUnit) * -3)); /* opinionated */
+
+				/* Adjusting top position a little bit for different border modifiers */
+				@media (any-hover:none) { /* For mobile */
+					.t-modRoot:is(.-borderNormal,.-borderThick) :is(&) {
+						inset-block-start: calc(100% + var(--borderS));
+					}
+					.t-modRoot.-borderHairline :is(&) {
+						inset-block-start: calc(100% + var(--borderHairline));
+					}
+				}
+			}
+			&:has(.c-nav__submenu):after {
+			/* The arrow indicator (Affects first depth only)*/
+				line-height: 0;
+				padding: 0;
+				text-align: center;
+
+				/* bottom: .2em; */
+				inset-block-start: auto;
+				inset-block-end: calc(var(--rhythmUnit)/2);
+				inset-inline-start: 0;
+				width: 100%;
+				height: 0;
+				transform: rotate(90deg);
+				pointer-events: none;
+			}
+			/* When hovering a nav item, flip the indicator */
+			/* &:is(:has(.c-nav__submenu):hover, :has(.c-nav__submenu):focus):after { */
+			/* 	transform: rotate(270deg); */
+			/* } */
+
+			/* All depths of submenus inside leaning nav item */
+			&.-leanEnd .c-nav__submenu {
+				/* Submenu expands to left */
+				inset-inline-start: auto;
+				inset-inline-end: 100%;
+				transform: translate(calc(var(--rhythmUnit) * 3), 0);
+				/* transform: auto; */
+			}
+
+			/* First depth of submenus inside leaning nav item */
+			&.-leanEnd > .c-nav__submenu {
+				/* Submenu expands to left */
+				inset-inline-end: 0;
+				/* Opens sideways (To the left) */
+				transform: auto;
+			}
+
+		}
+
+		/* > :is(.c-nav__item:hover > .c-nav__submenu, .c-nav__item > .c-nav__anchor:focus + .c-nav__submenu, .c-nav__item > .c-nav__submenu:focus-within){ */
+		/* 	transform: translate(0, 0); */
+		/* } */
+
+		/* Vertical Nav Item Separator */
+		> .c-nav__separator {
+			/* padding-top: 1em; */
+			border: 0;
+			/* border-left: var(--borderS) solid var(--colorTextOpac40); */
+			width: var(--borderS);
+			/* min-height:.8em; */
+			min-height:calc(var(--rhythmUnit)*1.5);
+			background-color: var(--colorTextOpac40);
+			margin-inline: calc(var(--rhythmUnit)/1.66667);
+		}
+
+		input[type=search]{ /* opinionated */
+			order: 999;
+			width: 8em;
+			/* &.-leanEnd { */
+			/* 	float: right */
+			/* 	float: inline-end */
+			/* } */
+		}
+	}
+}
+
+/*** Nav Item with Icon
+ * (for Horizontal Fly-out Type Nav Component)
+ */
+.c-nav.-typeFlyout.-layoutHorizontal
+.c-nav__item.-viewIconOnly
+> .c-nav__anchor {
+	/* IMPORTANT: Every declaration inside the block must be affected to FIRST DEPTH only */
+
+	position:relative;
+
+	/* Might cause specificity war*/
+	padding-inline: 0;
+
+	min-width: 3em; /* Minimum recommended thumb size (48px) */
+	max-width: 8em; /* opinionated */
+	/* > svg { */
+	> :is(.pi) {
+		/* 1.5x of pxl icon size */
+		--iconWeight: 1.25px;
+		--iconSize: 27px;
+		/* Icon is in the top of the item label, so no need for the spacing next to it.*/
+		margin-inline: auto;
+		display: block;
+		@media (any-hover: hover) {
+			/* Default size of pxl icons */
+			--iconWeight: 1.5px;
+			--iconSize: 18px;
+		}
+	}
+	/* > :is(svg,.c-iconWrapper) { */
+	/* 	padding-bottom: 1em; */
+	/* } */
+
+	/* > :is(svg,.c-iconWrapper) + :is(span,b), > :is(span:not(.c-iconWrapper), b):first-child { */
+
+	/* Tooltip Nav Item Label */
+	> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
+
+		/* Global+Mobile */
+		display: block;
+		/* font-size: .66em; */
+		/* padding-left: .33em; */
+		/* padding-right: .33em; */
+
+		@mixin fontSize6;
+
+		margin: 0; /* Reset margin, kinda beginning of the specificity wars… */
+		padding-inline: 1ch;
+		text-align: center;
+		visibility: visible;
+		max-width: 2in;
+		/* width: max-content; /1* Don't break the word, take space as long as possible. *1/ */
+		min-width: 100%;
+		pointer-events: none;
+
+		/* For devices with mouse/stylus input */
+		@media (any-hover: hover) {
+			--bringForward: 0;
+			inset-block-start: 100%;
+			/* margin-left: .25em; */
+			position: absolute;
+			background-color: var(--colorFrontmost);
+			border-radius: var(--radiusInnerDefault);
+
+			font-weight: 500;
+			letter-spacing: .05ch;
+
+			visibility: hidden; /* Hide label if input is mouse/stylus */
+			z-index: calc(444 + var(--bringForward));
+			opacity:0;
+
+			/* Closing Transition*/
+			/* Reminder: Copy the max delay/duration value and paste it to relevant function value. Ex. 1s = 1000 (ms) */
+			/* transition: opacity .5s ease-in-out .5s, visibility .5s .5s; */
+			transition: opacity .5s ease-in-out .15s, visibility .5s .15s;
+
+			/* Make it invisible on page load, to avoid transition remains at the start*/
+			@media (prefers-reduced-motion: no-preference ){
+				.js-preload & {
+					display: none;
+				}
+			}
+
+			/* left: 100%; */
+			/* visibility: hidden; */
+			/* transform: scale(.75); */
+			/* word-break: break-word; */
+			/* margin-left: 32px; */
+		}
+	}
+	/* TODO: If there isn't icon with the nav items in the first depth, create a pseudo placeholder icon (if possible )*/
+	/* > :is(span:not(.c-iconWrapper),b):first-child { */
+	/* 	&:before { */
+	/* 		/1* Encoded from pxl icons (multiple icon) *1/ */
+	/* 		content: url('data:image/svg+xml;%20charset=utf8,%3Csvg%20id%3D%22general-plus%22%3E%3Cg%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%225%22%3E%3Cpath%20d%3D%22M9%2C4.5L9%2C13.5%22%20fill%3D%22none%22%20stroke%3D%22var%28--iconColor%29%22%20stroke-width%3D%22var%28--iconWeight%29%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M13.5%2C9L4.5%2C9%22%20fill%3D%22none%22%20stroke%3D%22var%28--iconColor%29%22%20stroke-width%3D%22var%28--iconWeight%29%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E'); */
+	/* 		position: absolute; */
+	/* 		display: block; */
+	/* 		height: 27px; */
+	/* 		@media (any-hover: hover) { */
+	/* 			/1* Default size of pxl icons *1/ */
+	/* 			height: 18px; */
+	/* 		} */
+
+	/* 	} */
+	/* } */
+}
+/* If parent nav item (icon view) is leaning, align the label.*/
+@media (any-hover: hover) {
+	.c-nav.-typeFlyout.-layoutHorizontal
+	.c-nav__item.-viewIconOnly.-leanEnd
+	> .c-nav__anchor {
+		> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
+			inset-inline-end: 0;
+		}
+	}
+	.c-nav.-typeFlyout.-layoutHorizontal
+	.c-nav__item.-viewIconOnly.-leanEnd:has(.c-nav__submenu)
+	> .c-nav__anchor {
+		> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
+			inset-inline-start: auto;
+			inset-inline-end: 100%;
+		}
+	}
+}
+
+/* Adjust the min-height, so both Submenu Indicator and icon won't be too close each other */
+.c-nav.-typeFlyout.-layoutHorizontal
+.c-nav__item.-viewIconOnly:has(.c-nav__submenu)
+> .c-nav__anchor {
+	min-height: 1.85em; /* opinionated */
+}
+@media (any-hover:hover) {
+	/* Show icon label below the icon when hovered in Nav with Icon-Only View.
+	 * (Devices with cursor input only) */
+	.c-nav.-typeFlyout.-layoutHorizontal
+	:is(.c-nav__item.-viewIconOnly:hover > .c-nav__anchor,
+	    .c-nav__item.-viewIconOnly > .c-nav__anchor:focus-visible) {
+		> :is(:is(svg,.c-iconWrapper) + :is(span,b),
+		  :is(span:not(.c-iconWrapper), b):first-child) {
+			--bringForward: 5; /* Bring forward icon label when hovered */
+			visibility: visible; /* Show label when hovered with mouse/stylus */
+			opacity:1;
+			/* Opening Transition*/
+			transition: opacity .15s ease-in-out 0s, visibility .25s 0s;
+		}
+	}
+	/* Set the position of icon label of parent nav item next to the icon
+	 * in icon-only navigation bar. (Devices with cursor input only) */
+	.c-nav.-typeFlyout.-layoutHorizontal
+	.c-nav__item:has(.c-nav__submenu).-viewIconOnly
+	> .c-nav__anchor {
+		/* If item has submenu, show label next to the icon and make adjustments to typography.*/
+		> :is(:is(svg,.c-iconWrapper)
+		+ :is(span,b),
+		:is(span:not(.c-iconWrapper), b):first-child) {
+			@mixin fontSize4;
+			/* border:var(--borderHairline) solid var(--colorTextOpac20); */
+			/* height: 100%; */
+			/* font-size: 1em; */
+			inset-block-start: 0;
+			inset-inline-start: calc(var(--bleedSize)*-3+100%); /* TODO: Need fallback to the bleedSize variable when there's not cornerRoundedInner. */
+			z-index:2;
+		}
+	}
+	/* TODO: Align the label to right, when parent nav item is leaning. */
+	/* .c-nav.-typeFlyout.-layoutHorizontal .c-nav__item.-leanEnd-viewIconOnly > .c-nav__anchor { */
+	/* 	> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) { */
+	/* 		right: 0; */
+	/* 		left: auto; */
+	/* 	} */
+	/* } */
+}
+
+/***** Common Nav Styles for Tree and Fly-out Type
+ */
+/* .c-nav.-typeFlyout { */
+/* 	background-color: var(--colorFront); */
+/* } */
+.c-nav:is(.-typeTree,.-typeFlyout){
+	background-color: var(--colorBase);
+	input[type=search]{
+		/* border:none !important; /1* opinionated *1/ */
+		text-align:center;
+		display:block;
+		/* TODO: Search input icon view
+		/* &.-viewIconText { */
+		/* 	font-family: 'pxl-icon', var(--fontMain); */
+		/* } */
+	}
+	.c-nav__separator {
+		color: var(--colorTextOpac40);
+	}
+	/* Main Separator for Leaning Items */
+	> {
+		:is(& .c-nav__item, & .c-nav__separator):not(.-leanEnd) + :is(& .c-nav__separator.-leanEnd) {
+			--separatorSpace: calc(var(--rhythmUnit)*1.5);
+			--separatorWeight: var(--rhythmUnit);
+			opacity: .15;
+		}
+	}
+}
+/* Set main separator weight, in Top Fly-out Nav (Align Center) */
+.c-nav:is(.-typeFlyout.-layoutHorizontal.-alignCenter) {
+	> {
+		:is(& .c-nav__item, & .c-nav__separator):not(.-leanEnd) + :is(& .c-nav__separator.-leanEnd) {
+			width: var(--separatorWeight);
+		}
+	}
+}
+
+/*** Togglable Nav ID
+ *
+ * Required ID for CSS only approach to toggle menus.
+ *
+ * Not to be confused with ".c-toggleExpand"
+ *
+ */
+[id^="toggleNav-"] {
+	display: none;
+}
+
+/**** Tag Type Nav Component
+ *
+ * A type focused on the usage as tags of the posts, usually placed bottom of an article or meta sections.
+ */
+/* :is(.c-nav.-typeTag .c-nav__item) { */
+/* 	* + & { */
+/* 		margin-inline-start: .5em; */
+/* 	} */
+/* } */
+.c-nav.-typeTag {
+	display: inline-block;
+	margin-trim: block-end; /* Only supported in Safari 16.4 atm, check this later. */
+
+	@mixin fontSize5;
+
+	.c-nav__item {
+		float: left;
+		float: inline-start;
+		margin-block-end: var(--rhythmUnit);
+		margin-inline-end: var(--rhythmUnit);
+		> .c-nav__anchor {
+			--border: 0px;
+			border-style: solid;
+			border-width: var(--border);
+			padding-block: calc((var(--rhythmUnit)/2) - var(--border));
+			padding-inline: calc((var(--rhythmUnit)*1.5) - var(--border));
+			background-color: var(--colorTextOpac075);
+		}
+		> :is(.c-nav__anchor:hover, .c-nav__anchor:focus) {
+			--border: var(--borderS);
+			border-color: currentColor;
+			/* color: var(--colorBase); */
+		}
+		> .c-nav__anchor:active  {
+			--border: calc( var(--borderS) * 2 );
+		}
+	}
+}
+
+/**** Nav Components with Rounded Corners Theme Modifier
+ */
+.c-nav.-typeTree {
+	/* .c-nav__submenu { */
+	/* 	border-radius: .5em 0 0 0em; */
+	/* } */
+	&.-expandFromBlockStart {
+		border-radius: var(--radiusDefault);
+	}
+}
+.c-nav.-typeFlyout {
+	/* &.-layoutVertical.-expandFromStartStart > .c-toggleExpand { */
+	/* 	border-radius: var(--radiusDefault); */
+	/* } */
+	.c-nav__submenu {
+		/* padding: var(--radiusDefault) 0; */
+		padding-block: var(--radiusDefault);
+	}
+	&.-layoutVertical {
+		/* Radius set for the fly-out nav aligned to the top-left corner. */
+		/* border-radius: 0 0 var(--radiusDefault) 0; */
+		border-end-end-radius: var(--radiusDefault);
+		/* padding: var(--radiusDefault) 0; */
+		padding-block: var(--radiusDefault);
+		/* padding: var(--radiusDefault) 0 var(--radiusDefault); */
+		.c-nav__item > .c-nav__submenu {
+			inset-block-start: calc( var(--radiusDefault) * -1);
+			/* > .c-nav__submenu:focus-within { */
+			/* &:hover > .c-nav__submenu, > .c-nav__anchor:focus + .c-nav__submenu { */
+		}
+	}
+	&.-layoutHorizontal{
+		@media (--mall-or-gt) {
+			border-radius: var(--radiusDefault);
+		}
+		> .c-nav__item > .c-nav__submenu {
+			border-radius: 0 0 var(--radiusDefault) var(--radiusDefault);
+			.t-modRoot:where(.-cornerRoundedInner) & {
+				border-radius: var(--radiusDefault);
+			}
+		}
+	}
+	/* @media (--desk-or-gt){ */
+	/* 	border-radius: 0; */
+	/* 	padding: 0; */
+	/* 	> .c-nav__item > .c-nav__submenu { */
+	/* 		/1* padding-top: 0; *1/ */
+	/* 		border-radius: 0 0 var(--radiusM) var(--radiusM); */
+	/* 	} */
+	/* } */
+	.c-nav__submenu {
+		border-radius: var(--radiusDefault);
+	}
+	/* :is(.c-nav__item:hover > .c-nav__submenu, .c-nav__item > .c-nav__anchor:focus-visible + .c-nav__submenu, .c-nav__item > .c-nav__submenu:focus-within){ */
+	> .c-nav__submenu{
+		/* Set submenu position based on its default border-radius value */
+		inset-block-start: calc( var(--radiusDefault) * -1);
+	}
+}
+/* Adjust top position of submenu in the 2nd depth or deeper depths
+ * of Vertical Fly-out Type Nav while Rounded Corner theme mod is active.*/
+.t-modRoot:where([class*="-corner"]:not(.-cornerRoundedInner))
+.c-nav.-typeFlyout.-layoutHorizontal
+> .c-nav__item
+> .c-nav__submenu .c-nav__submenu{
+	inset-block-start: calc( var(--radiusDefault) * -1);
+}
+.c-nav.-typeTag .c-nav__item > .c-nav__anchor {
+	border-radius: var(--radiusInnerDefault);
+}
+/**** Nav Component with Inner Rounded Corners Theme Modifier
+ */
+.t-modRoot.-cornerRoundedInner {
+/* Is this in the right file? */
+	/* --bleedSize: .25em; */
+	/* --bleedSize: 4px; */
+	--bleedSize: calc(var(--rhythmUnit)/2);
+}
+/* Theme Modifier for Navigation Components */
+.t-modRoot:where(.-cornerRoundedInner) {
+	/* .c-nav__item > .c-nav__anchor { */
+	/* 	border-radius: var(--bleedSize); */
+		/* padding: .25em calc(.8em - var(--bleedSize)) */
+		/* padding: .25em .8em; */
+	/* } */
+	.c-nav.-typeFlyout {
+		&:is(.-layoutHorizontal, .-layoutVertical) {
+			.c-nav__separator {
+				/* Set a tiny radius for separator line for Inner Rounded Corner theme modifier. */
+				/* border-radius: .1em; */
+				border-radius: calc(var(--separatorWeight)/2);
+			}
+		}
+		.c-nav__item > .c-nav__anchor{
+			/* border-radius: calc(var(--radiusM) + .15rem - var(--bleedSize)); */
+			border-radius: calc(var(--radiusDefault) + .15rem - var(--bleedSize));
+		}
+		/* >.c-nav__item>.c-nav__submenu{ */
+		/* 	border-radius: var(--radiusM); */
+		/* 	padding: var(--bleedSize); */
+		/* } */
+		.c-nav__submenu{
+			padding: calc(var(--bleedSize) - var(--border, 0px));
+		}
+		&.-layoutHorizontal:not(.-alignStart,.-alignEnd) {
+			/* padding: 0 calc(1.5em + var(--bleedSize) * 0.5); */
+			/* padding: 0 calc(var(--bleedSize) * 2); */
+			padding-inline: calc(var(--bleedSize) * 2 - var(--border, 0px)));
+		}
+		&.-layoutHorizontal > .c-nav__item > .c-nav__submenu{
+		/* &:hover>.c-nav__submenu,>.c-nav__submenu:focus-within, >a:focus-visible+.c-nav__submenu{ */
+			/* Submenu of first depth */
+			inset-inline-start: calc(var(--bleedSize) * -1.5)
+		}
+		/* Expand the (first) submenu to the left if item is leaning end. */
+		&.-layoutHorizontal > .c-nav__item.-leanEnd > .c-nav__submenu{
+			inset-inline-end: calc(var(--bleedSize) * -1.5);
+			inset-inline-start: auto;
+		}
+		&.-layoutHorizontal > .c-nav__item:not(.-viewIconOnly) > .c-nav__anchor {
+			padding-inline: calc(var(--bleedSize) + var(--nav-item-padSide));
+			margin-inline: calc(var(--bleedSize) * -1);
+		}
+		:is(.c-nav.-typeFlyout:not(.-layoutHorizontal),
+		    .c-nav.-typeFlyout.-layoutHorizontal .c-nav__submenu) .c-nav__separator {
+			margin-inline: var(--bleedSize);
+		}
+		/* Positioning submenus in deeper levels with bleed size*/
+		/* .c-nav__item > .c-nav__submenu{ */
+		.c-nav__item > .c-nav__submenu .c-nav__submenu{
+			inset-block-start: calc(var(--bleedSize) * -1);
+		}
+		&.-layoutVertical {
+			padding: calc(var(--bleedSize) - var(--border, 0px));
+			.c-nav__item > .c-nav__submenu {
+				/* &:hover>.c-nav__submenu, >a:focus-visible+.c-nav__submenu,>.c-nav__submenu:focus-within { */
+				/* Submenu of all depths */
+				/* inset-block-start: calc(var(--bleedSize) * -1 - var(--border, 0px)); */
+				inset-block-start: calc(var(--bleedSize) * -1);
+				/* inset-inline-start: calc(100% - var(--bleedSize)); */
+			}
+		}
+	}
+}
+
+/* TODO: Check here later. */
+/* .t-modRoot:is(.-cornerRounded,.-cornerRoundedInner) { */
+/* 	:is([id^="toggleNav-"]:checked + .c-nav.-typeTree.-expandFromBlockStart, .c-nav.-typeTree.-expandFromBlockStart.js-visible, .c-nav.-typeTree.-expandFromBlockStart:focus-within) { */
+/* 		border-radius: 0; */
+/* 		.c-toggleExpand { */
+/* 			border-radius: var(--radiusM) var(--radiusM); */
+/* 		} */
+/* 	} */
+/* } */
+
+/* .t-modRoot:is(.-cornerRounded,.-stylesetNeumorphism,.-embossWinClassic):not(.-cornerRoundedInner) .c-nav.-typeFlyout { */
+.t-modRoot:is(.-cornerRoundedTiny,
+    .-cornerRounded)
+	.c-nav.-typeFlyout.-layoutHorizontal{
+	border-radius: 0;
+	> .c-nav__item > .c-nav__submenu {
+		padding-block-start: 0;
+	}
+}
+/* .t-modRoot:is(.-embossWinClassic) .c-nav.-typeFlyout { */
+/* 	.c-nav__submenu { */
+/* 		padding-block: var(--radiusDefault); */
+/* 	} */
+/* 	&.-layoutVertical { */
+/* 		padding-block: var(--radiusDefault); */
+/* 		.c-nav__item { */
+/* 			> .c-nav__submenu { */
+/* 				inset-block-start: calc(var(--radiusDefault) * -1); */
+/* 			} */
+/* 		} */
+/* 	} */
+/* } */
+/* .t-modRoot:is(.-stylesetAcetate, .-stylesetNeumorphism) .c-nav.-typeTree.-expandFromBlockStart { */
+/* 	:is(a.c-toggleExpand:hover,a.c-toggleExpand:focus-visible){ */
+/* 		color: currentColor; */
+/* 	} */
+/* } */

@@ -1,0 +1,36 @@
+{
+	"lang": "en",
+	"lang-alt": "tr",
+	"title": "Site Title",
+	"short_title": "Site",
+	"description": "Description of this website here…",
+	"url": "https://example.com",
+	"domain": "example.com",
+	"repository": "example/repo",
+	"icon": {
+		"32": "/static/asset/fav/icon.webp",
+		"70": "/static/asset/fav/icon.webp",
+		"180": "/static/asset/fav/icon.webp",
+		"512": "/static/asset/fav/icon.webp"
+	},
+	"author": {
+		"name": "Name Surname",
+		"mastodon": "@handle@mastodon.social",
+		"instagram": "instagram_name",
+		"github": "github_name",
+		"behance": "behance_name",
+		"twitterx": "@socialtwitter",
+		"avatar": "static/asset/filler/avatar.png",
+		"mail": "info@example.com"
+	},
+	"html-classes": "t-color t-modRoot -borderColorBack -borderValNormal -borderStyleOutset -embossSmooth -cornerRoundedInner -shadowTypeSmooth",
+	"body-classes": "t-modBody",
+	"separator": "・",
+	"webmention_url": "https://webmention.io/example.com/webmention",
+	"pingback_url": "https://webmention.io/example.com/xmlrpc",
+	"me_url": "https://mastodon.social/@username",
+	"token_endpoint_url": "https://tokens.indieauth.com/token",
+	"authorization_endpoint_url": "https://indieauth.com/auth",
+	"comments_locked": false,
+	"staticman-api": "about:blank"
+}

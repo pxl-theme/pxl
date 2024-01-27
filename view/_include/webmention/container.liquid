@@ -1,0 +1,9 @@
+<div aria-labelledby="webmentions">
+{% comment %} <h2 id="webmentions">Bahsedilmeler</h2> {% endcomment %}
+{% include 'webmention/facepile.liquid' with items
+	facepile_type: 'replies'
+%}
+{% for item in items reversed %}
+	{% include 'webmention/item.liquid' %}
+{% endfor %}
+</div>

@@ -1,0 +1,82 @@
+{%- assign menu = menus.primary -%}
+{%- if menu -%}
+<nav class="c-nav__wrapper u-clearFix" aria-label=Main>
+	<input id=toggleNav-000 type=checkbox>
+	<ul class="c-nav -responsive -typeTree -layoutHorizontal -expandFromBlockStart -alignStart">
+		<li class="c-nav__item -viewIconOnly u-hidden@lap">
+			<label class="c-nav__anchor" for=toggleNav-000 onclick>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#list-to-left>
+				</svg><span>Hide&nbsp;Menu</span>
+			</label>
+		</li>
+		{%- for item in menu -%}
+			<li class="c-nav__item" {%- if item.url == page.url %} aria-current=page{%- endif -%}>
+				<a class="c-nav__anchor" href="{{ item.url }}" {%
+					if item.alt -%} alt="{{ item.alt }}"{%- endif -%}{%- if item.url == page.url %} tabindex=-1{%- endif -%}>
+				{%- if item.pre -%}{{- item.pre }}{%- endif -%}
+				{%- if item.icon -%}
+					<svg class=pi viewBox='0 0 18 18'>
+						<use href=/pi.svg#{{ item.icon }}></use>
+					</svg>
+				{%- endif -%}
+				{{- item.label -}}{{- item.post -}}
+				</a>
+				{%- if item.submenu -%}
+					{%- assign submenu = item.submenu -%}
+					{%- if submenu -%}
+					<ul class=c-nav__submenu>
+						{%- for item in submenu -%}
+							<li class="c-nav__item" {%- if item.url == page.url %} aria-current=page{%- endif -%}>
+								<a class="c-nav__anchor" href="{{ item.url }}" {%
+									if item.alt -%} alt="{{ item.alt }}"{%- endif -%}{%- if item.url == page.url %} tabindex=-1{%- endif -%}>
+								{%- if item.pre -%}{{- item.pre }}{%- endif -%}
+								{%- if item.icon -%}
+									<svg class=pi viewBox='0 0 18 18'>
+										<use href=/pi.svg#{{ item.icon }}></use>
+									</svg>
+								{%- endif -%}
+								<span>{{- item.label }}</span>{{ item.post }}
+								</a>
+								{%- if item.submenu -%}
+									{%- assign submenu2 = item.submenu -%}
+									{%- if submenu2 -%}
+									<ul class=c-nav__submenu>
+										{%- for item in submenu2 -%}
+											<li class="c-nav__item" {%- if item.url == page.url %} aria-current=page{%- endif -%}>
+												<a class="c-nav__anchor" href="{{ item.url }}" {%
+													if item.alt -%} alt="{{ item.alt }}"{%- endif -%}{%- if item.url == page.url %} tabindex=-1{%- endif -%}>
+												{%- if item.pre -%}{{- item.pre }}{%- endif -%}
+												{%- if item.icon -%}
+													<svg class=pi viewBox='0 0 18 18'>
+														<use href=/pi.svg#{{ item.icon }}></use>
+													</svg>
+												{%- endif -%}
+												{{- item.label }}{{ item.post }}
+												</a>
+											</li>
+											{{- item.separator }}
+										{%- endfor -%}
+									</ul>
+									{%- endif -%}
+								{%- endif -%}
+							</li>
+							{{- item.separator }}
+						{%- endfor -%}
+					</ul>
+					{%- endif -%}
+				{%- endif -%}
+			</li>
+			{{- item.separator }}
+		{%- endfor -%}
+		<li class="c-nav__item -viewIconOnly -leanEnd">
+			<a class="c-nav__anchor" href=#! data-drkmd-toggle title="Toggle dark mode" aria-label="Toggle dark mode">
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use id=darkModToggle href=/pi.svg#sun></use>
+				</svg><span>Toggle Theme</span>
+				<!-- <a href>🌗</a> -->
+			</a>
+		</li>
+	</ul>
+</nav>
+{%- endif -%}

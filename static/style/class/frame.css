@@ -1,0 +1,111 @@
+/***** Frame Object
+ */
+.c-frame__wrapper {
+	max-height:100svh;
+	overflow:auto;
+	scroll-snap-type: y mandatory; /* opinionated */
+	&.--horizontal{
+		scroll-snap-type: x mandatory;
+		max-height:auto;
+		.c-frame{
+			float: left;
+		}
+	}
+}
+.c-frame {
+	display:grid;
+	/* background-color: var(--colorBase); */
+	background-position: center;
+	background-size: cover;
+	width: 100%;
+	/* opinionated */
+	/* max-height:768px; */
+	/* height:70svh; */
+	min-height:70svh;
+	/* -opinionated */
+	scroll-margin-block-start: 15svh;
+	scroll-snap-align: start;
+	scroll-snap-stop: normal;
+	/* overflow: hidden; */
+	/* padding: calc(var(--rhythmUnit) * 2); */
+
+/***** Frame Component for Text Content
+ */
+	&.-typeText {
+		.c-frame__content {
+			width: 100%;
+			max-width: 40em;/* opinionated */
+			display: block;
+			padding: 0 calc(var(--rhythmUnit) * 2);
+
+			margin: 0 auto;
+		}
+
+	}
+
+/***** Frame Component for Quotes
+ */
+	&.-typeQuote {
+		display: grid;
+		align-content: center;
+		min-height: 70svh; /* If content is bigger, frame will be big as possible */
+		text-align: center;
+		@media (--wall-or-gt) {
+			padding: calc(var(--rhythmUnit) * 2) calc( ( 100vw - var(--maxContainerWidth) ) / 2 );
+		}
+	}
+
+/***** Frame Component with Notification View
+ */
+	&.-viewNotification {
+		@mixin fontSize5;
+		/* font-size:.75em; */
+		position: fixed;
+		top: calc(var(--rhythmUnit) * 2);
+		right: -100%;
+		max-width: 18rem;/* opinionated */
+		z-index: 9999;
+		border-radius: var(--radiusDefault);
+		/* transition: all .5s ease; */
+		@keyframes swipeToNotify {
+			0% {right: -100%;}
+			5% {right: calc(var(--rhythmUnit) * 2);}
+			95% {right: calc(var(--rhythmUnit) * 2);}
+			100% {right: -100%;}
+		}
+		animation: swipeToNotify 10s ease-in-out;
+	}
+}
+
+/***** Frame Component for Other Types of Info
+ */
+
+/*-----States-------*/
+
+/* .-infoTrivial { */
+/* 	background-color: color-mod(grey a(70%)) ; */
+/* 	color: color-mod(white blend(grey 20%)); */
+/* } */
+/* .-infoTip { */
+/* 	background-color: color-mod(var(--yellow) a(80%)) ; */
+/* 	color: color-mod(white blend(var(--yellow) 20%)); */
+/* } */
+/* .-infoSuccess { */
+/* 	background-color: color-mod(var(--green) a(80%)) ; */
+/* 	color: color-mod(white blend(var(--green) 20%)); */
+/* } */
+
+/***** Frame Component for Various Priorities
+ */
+/* .-priorityLow { */
+/* 	color: var(--colorTextBolderYellowish); */
+/* 	background-color: var(--colorBaseYellowish); */
+/* } */
+/* .-priorityNormal { */
+/* 	color: var(--colorTextBolderOrangey); */
+/* 	background-color: var(--colorBaseOrangey); */
+/* } */
+/* .-priorityCritical { */
+/* 	color: var(--colorTextBolderReddish); */
+/* 	background-color: var(--colorBaseReddish); */
+/* } */

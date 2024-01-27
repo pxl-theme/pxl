@@ -1,0 +1,363 @@
+.u-clearFix:after{
+	content:"";
+	clear: both;
+	display: table;
+}
+.u-unselectable *:not(a) .u-unselectable, .u-unselectable:not(a) {
+	user-select: none;
+	-webkit-user-drag: none;
+	-webkit-touch-callout: none;
+}
+*:not(a) .u-unselectable, .u-unselectable:not(a) {
+	pointer-events: none;
+}
+
+
+.u-visuallyHidden {
+/*
+* Hide only visually, but have it available for screen readers:
+* https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+*
+* 1. For long content, line feeds are not interpreted as spaces and small width
+*    causes content to wrap 1 word per line:
+*    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+*/
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+	/* 1 */
+	/* &:active, &:focus, &:focus-visible { */
+	&:active, &:focus-visible{
+	/*
+	* Extends the .u-sr-only class to allow the element
+	* to be focusable when navigated to via the keyboard:
+	* https://www.drupal.org/node/897638
+	*/
+		clip: auto;
+		height: auto;
+		margin: 0;
+		overflow: visible;
+		position: static;
+		white-space: inherit;
+		/* white-space: normal; */
+		width: auto;
+	}
+}
+
+/* Force to disable transition */
+.u-transitionNone{
+	transition: none !important;
+	animation: none !important;
+	*, *:before, *:after {
+		transition: none !important;
+		animation: none !important;
+	}
+}
+
+@media print {
+	.u-hidden\@print {
+		display: none;
+	}
+}
+
+@media (--lap-or-gt) {
+	.u-hidden\@lap {
+		display: none;
+	}
+}
+
+.u-sticky {
+	position: sticky;
+}
+@media (--palm-or-gt) {
+	.u-sticky\@palm {
+		position: sticky;
+	}
+}
+@media (--lap-or-gt) {
+	.u-sticky\@lap {
+		position: sticky;
+	}
+}
+
+/*** Text Styles
+ */
+.u-txt{
+	&Red      {color: var(--red);}
+	&Orange   {color: var(--orange);}
+	&Yellow   {color: var(--yellow);}
+	&Green    {color: var(--green);}
+	&Cyan     {color: var(--cyan);}
+	&Blue     {color: var(--blue);}
+	&Hue01    {color: var(--hue01);}
+	&Hue02    {color: var(--hue02);}
+	&Text     {color: var(--colorText);}
+	&TextBolder   {color: var(--colorTextBolder);}
+}
+.u-txtRainbowAnimated {
+	display: inline-block;/* opinionated */
+	background-image: linear-gradient(46deg,
+	var(--orange),
+	var(--yellow),
+	var(--green),
+	var(--blue),
+	var(--hue01),
+	var(--red)
+	);
+	background-size: 600% 600%;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	animation: gradientBackgroundLoop 20s linear infinite alternate;
+	&::selection {
+		-webkit-text-fill-color: currentColor;
+	}
+}
+.u-txtStroke {
+	/* --stroke:var(--colorBase); */
+	--stroke:var(--colorText);
+	text-shadow: var(--stroke) 0 0 1px, var(--stroke) 0 0 1px, var(--stroke) 0 0 1px,
+				 var(--stroke) 0 0 1px, var(--stroke) 0 0 1px, var(--stroke) 0 0 1px;
+}
+.u-txtStrokeBold {
+	/* Generated from https://owumaro.github.io/text-stroke-generator/
+		*
+		* Approximately 2px stroke
+		*/
+	/* --stroke:var(--colorBase); */
+	--stroke:var(--colorText);
+	text-shadow:
+	var(--stroke) 2px 0 0,
+	var(--stroke) 1.75517px 0.958851px 0,
+	var(--stroke) 1.0806px 1.68294px 0,
+	var(--stroke) 0.141474px 1.99499px 0,
+	var(--stroke) -0.832294px 1.81859px 0,
+	var(--stroke) -1.60229px 1.19694px 0,
+	var(--stroke) -1.97999px 0.28224px 0,
+	var(--stroke) -1.87291px -0.701566px 0,
+	var(--stroke) -1.30729px -1.51361px 0,
+	var(--stroke) -0.421592px -1.95506px 0,
+	var(--stroke) 0.567324px -1.91785px 0,
+	var(--stroke) 1.41734px -1.41108px 0,
+	var(--stroke) 1.92034px -0.558831px 0;
+}
+.u-txtOnImg{
+	/* text-shadow: #020202 0 0 1px, #020202 0 0 1px, #020202 0 0 1px, */
+	/* 			 #020202 0 0 1px, #020202 0 0 1px, #020202 0 0 1px; */
+	/* text-shadow: var(--colorBackmost) 0 0 1px, var(--colorBackmost) 0 0 1px, var(--colorBackmost) 0 0 1px, */
+	/* 			 var(--colorBackmost) 0 0 1px, var(--colorBackmost) 0 0 1px, var(--colorBackmost) 0 0 1px; */
+	/* Generated from https://owumaro.github.io/text-stroke-generator/
+		*
+		* Approximately 2px stroke
+		*/
+	--stroke: var(--colorText);
+	text-shadow:
+	var(--stroke) 2px 0 0,
+	var(--stroke) 1.75517px 0.958851px 0,
+	var(--stroke) 1.0806px 1.68294px 0,
+	var(--stroke) 0.141474px 1.99499px 0,
+	var(--stroke) -0.832294px 1.81859px 0,
+	var(--stroke) -1.60229px 1.19694px 0,
+	var(--stroke) -1.97999px 0.28224px 0,
+	var(--stroke) -1.87291px -0.701566px 0,
+	var(--stroke) -1.30729px -1.51361px 0,
+	var(--stroke) -0.421592px -1.95506px 0,
+	var(--stroke) 0.567324px -1.91785px 0,
+	var(--stroke) 1.41734px -1.41108px 0,
+	var(--stroke) 1.92034px -0.558831px 0;
+
+	/* color: #FDFDFD; */
+	color: var(--colorFront);
+	& a[href]:visited, &[href]:visited{
+		color: var(--colorFront);
+		/* opacity: .85; */
+	}
+
+
+	/* @media (prefers-color-scheme: dark) { */
+	:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) & {
+		color: var(--colorTextBolder);
+		--stroke: var(--colorBackmost);
+		& a[href]:visited, &[href]:visited{
+			color: var(--colorTextBolder);
+		}
+	}
+	.pi {
+	/* Add border to all icons inside header modified with -viewMedia */
+		--iconWeight:1.75px;/*opinionated*/
+		filter:
+		drop-shadow(calc(var(--iconWeight)*2) 0 0 var(--stroke))
+		drop-shadow(0 calc(var(--iconWeight)*2) 0 var(--stroke))
+		drop-shadow(calc(var(--iconWeight)*-2) calc(var(--iconWeight)*-2) 0 var(--stroke));
+		/* filter: /1* Glitchy look *1/ */
+		/* drop-shadow(calc(var(--iconWeight)*2) 0 0 var(--red)) */
+		/* drop-shadow(0 calc(var(--iconWeight)*2) 0 var(--green)) */
+		/* drop-shadow(calc(var(--iconWeight) * -2) calc(var(--iconWeight) * -2) 0 var(--blue)); */
+	}
+}
+/* really experimental text styles like bulky or realistic */
+.u-txtBulky {
+	--depth: .1rem;
+	color: var(--colorFront);
+	--stroke: var(--colorText);
+	text-shadow:
+	0 calc(-1 * var(--depth)) 0 var(--stroke),
+	0 calc(-1 * var(--depth)) 0 var(--stroke),
+	0 var(--depth) 0 var(--stroke),
+	0 var(--depth) 0 var(--stroke),
+	calc(-1 * var(--depth)) 0 0 var(--stroke),
+	var(--depth) 0 0 var(--stroke),
+	calc(-1 * var(--depth)) 0 0 var(--stroke),
+	var(--depth) 0 0 var(--stroke),
+	calc(-1 * var(--depth)) calc(-1 * var(--depth)) 0 var(--stroke),
+	var(--depth) calc(-1 * var(--depth)) 0 var(--stroke),
+	calc(-1 * var(--depth)) var(--depth) 0 var(--stroke),
+	var(--depth) var(--depth) 0 var(--stroke),
+	calc(-1 * var(--depth)) calc(3 * var(--depth)) 0 var(--stroke),
+	0 calc(3 * var(--depth)) 0 var(--stroke),
+	var(--depth) calc(3 * var(--depth)) 0 var(--stroke),
+	0 calc( 3 * var(--depth) + 1px) 1px rgb(0 0 0 / .1),
+	0 0 var(--depth) rgb(0 0 0 / .1),
+	0 var(--depth) 3px rgb(0 0 0 / .3),
+	0 calc(2 * var(--depth)) var(--depth) rgb(0 0 0 / .2),
+	0 calc(3 * var(--depth)) calc(3 * var(--depth)) rgb(0 0 0 / .25),
+	0 calc(4 * var(--depth)) calc(4 * var(--depth)) rgb(0 0 0 / .2),
+	0 calc(6 * var(--depth)) calc(6 * var(--depth)) rgb(0 0 0 / .15);
+
+	:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) & {
+		color: var(--colorTextBolder);
+		--stroke: var(--colorBackmost);
+	}
+}
+.u-txtRealistic{
+	/* color: var(--colorBase); */
+	/* font-size: 8vi; */
+	letter-spacing: -.1ex;
+	color: var(--colorText);
+	text-shadow:
+		/* regular text-shadow */
+		0 .15ch .175em var(--colorBackmost),
+		/* text-shadow highlight */
+		0 -.04em 0 var(--colorBase);
+	:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) & {
+		color: var(--colorFrontmost);
+		text-shadow:
+			/* regular text-shadow */
+			0 .15ch .175em var(--colorBackmost),
+			/* text-shadow highlight */
+			0 -.025em 0 var(--colorText);
+	}
+}
+
+/* Heading Anchors in posts generated by Markdown It Anchor plugin */
+/* Check Markdown It config and search for "truncate_content" to modify the markup. */
+.u-headingAnchor{
+	cursor: pointer;
+	/* position: relative; */
+	text-decoration: none;
+	/* font-weight: 500; */
+	/* height: 100%; */
+	/* position: absolute; */
+	/* top: 0; */
+	/* left: 0; */
+	/* inline-size: 1ch; */
+	/* margin-left: -1.5ch; */
+	opacity: .33;
+
+	transition: opacity .25s ease-in-out;
+	@media (any-hover: hover) {
+		opacity: 0;
+		:where(h1,h2,h3,h4,h5,h6):hover & {
+			opacity: 1;
+		}
+	}
+
+	/* padding-top: inherit; */
+
+	/* position: absolute; */
+	/* width: 1em; */
+	/* top: 0; */
+	/* left: 0; */
+	/* margin-left: -1.5em; */
+
+	padding: calc(var(--rhythmUnit)/2);
+
+	/* @media (any-hover: hover) { */
+	/* 	padding: 0 .125em; */
+	/* } */
+
+	/* span:before { */
+	/* 	content: "⌗"; */
+	/* 	content: "#"; */
+	/* 	content: "¶"; */
+	/* 	content: "🔗"; */
+	/* 	left: 0; */
+	/* 	top: 0; */
+	/* 	opacity: .33; */
+	/* 	transition: opacity .2s ease-in-out; */
+	/* 	@media (any-hover: hover) { */
+	/* 		opacity: 0; */
+	/* 		:where(h1,h2,h3,h4,h5,h6):hover & { */
+	/* 			opacity: 1; */
+	/* 		} */
+	/* 	} */
+	/* } */
+}
+
+.s-healthCheck {
+	[class] {
+	/**
+	 * Outline all classes.
+	 */
+		outline: 5px solid lightgrey;
+	}
+
+	/**
+	 * Outline all BEM Elements.
+	 */
+	[class*="__"] {
+		outline: 5px solid grey;
+	}
+
+	/**
+	 * Outline all BEM Modifiers.
+	 */
+	/* [class*="--"] { */
+	/* 	outline: 5px solid darkgrey; */
+	/* } */
+
+	/**
+	 * Outline all Object classes.
+	 */
+	[class^="o-"],
+	[class*=" o-"] {
+		outline: 5px solid orange;
+	}
+
+	/**
+	 * Outline all Component classes.
+	 */
+	[class^="c-"],
+	[class*=" c-"] {
+		outline: 5px solid cyan;
+	}
+
+	/**
+	 * Outline all Responsive classes.
+	 */
+	[class*="@"] {
+		outline: 5px solid rosybrown;
+	}
+
+	/**
+	 * Outline all Hack classes.
+	 */
+	[class^="_"] {
+		outline: 5px solid red;
+	}
+}

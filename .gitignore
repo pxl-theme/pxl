@@ -1,9 +1,10 @@
 node_modules
 npm-debug.log
 
-reports/
-pre-dist/
+.cache
+.env
+
+tmp/
 dist/
-jekyll-build/
-11ty-build/
-template/
+utility/
+reports/

@@ -1,0 +1,132 @@
+/* styles for prism.js syntax highlighter */
+
+/* Based on prism-a11y-dark.css
+ * https://github.com/PrismJS/prism-themes/blob/master/themes/prism-a11y-dark.css
+ */
+
+/* Set the main properties of the code, code blocks, and inline code */
+[class*="language-"]:is(pre,code){
+	/* background: var(--colorBase); */
+	/* color: var(--colorText); */
+	/* font-family: var(--fontStackMonospace); */
+	/* font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; */
+
+	/* The following properties are standard, please leave them as they are */
+	/* font-size: 1rem; */
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	/* line-height: 1.5; */
+	/* The default is 4, but you could change it if you really, really want to */
+	tab-size: 4;
+	/* The following properties are also standard */
+	hyphens: none;
+}
+
+/* Properties specific to code blocks */
+pre[class*="language-"] {
+	/* padding: 1rem; */
+	/* margin-block: .5rem; */
+	/* margin-inline: 0; */
+	overflow: auto;
+	/* border-radius: unset; */
+}
+
+/* Properties specific to inline code */
+:not(pre) > code[class*="language-"] {
+	padding: 0.1rem;
+	border-radius: unset;
+	white-space: normal;
+}
+
+/* Inline code */
+/* :not(pre) > code[class*="language-"] { */
+/* 	padding: .1rem; */
+/* 	border-radius: .3rem; */
+/* } */
+
+.token:is(.important,.bold){
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+
+.token:is(.comment,.prolog,.doctype,.cdata){
+	color: var(--colorFrontmost);
+}
+
+.token:is(.punctuation,.namespace) {
+	opacity: .7;
+}
+
+.token:is(.property,.keyword,.tag,.symbol,.deleted) {
+	color: var(--orange);
+}
+
+.token.class-name {
+	/* color: #FFFFB6; */
+	text-decoration: underline;
+}
+
+.token:is(.boolean,.constant,.number) {
+	color: var(--cyan);
+}
+
+.token:is(.selector, .attr-name, .string, .char, .builtin, .inserted) {
+	color: var(--green);
+}
+
+.token:is(.operator,.entity,.url,.variable), :is(.language-css,.style) .token.string {
+	color: var(--cyan);
+}
+
+.token:is(.atrule,.attr-value,.function) {
+	color: var(--yellow);
+}
+
+.token.keyword {
+	color: var(--cyan);
+}
+
+.token:is(.regex,.important) {
+	color: var(--yellow);
+}
+
+
+@media screen and (-ms-high-contrast: active) {
+	[class*="language-"]:is(code,pre){
+		color: windowText;
+		background: window;
+	}
+
+	:not(pre) > [class*="language-"]:is(code,pre){
+		background: window;
+	}
+
+	.token.important {
+		background: highlight;
+		color: window;
+		font-weight: normal;
+	}
+
+	.token:is(.atrule, .attr-value, .function, .keyword, .operator, .selector) {
+		font-weight: bold;
+	}
+
+	.token:is(.attr-value, .comment, .doctype, .function, .keyword, .operator, .property, .string) {
+		color: highlight;
+	}
+
+	.token:is(.attr-value,.url) {
+		font-weight: normal;
+	}
+}

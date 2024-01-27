@@ -1,0 +1,67 @@
+{
+	"primary": [
+		{
+			"pre": "<span class=c-iconWrapper><img src='/static/asset/fav/icon.webp' alt=''></span>",
+			"label": "<b style='font:normal 900 1.1em'>Website Title</b>",
+			"alt": "Back to the home page.",
+			"url": "/"
+		},
+		{
+			"label": "Blog",
+			"url": "/blog/",
+			"icon": "paper-multiple-masonry"
+		},
+		{
+			"label": "Nav Example",
+			"url": "#!",
+			"icon": "general-drawer",
+			"separator": "<li class=c-nav__separator></li>",
+			"submenu": [
+				{
+					"label": "Old Stuff",
+					"url": "#!"
+				},
+				{
+					"label": "Rocket",
+					"url": "#!",
+					"icon": "fun-rocket"
+				}
+			]
+		},
+		{
+			"label": "Plain Version",
+			"url": "/plain/"
+		},
+		{
+			"label": "Contact",
+			"url": "#!",
+			"icon": "symbol-at",
+			"submenu": [
+				{
+					"label": "Discord",
+					"url": "//discord.com/users/000000000000000000",
+					"icon": "site-discord",
+					"alt": "Direct link to my Discord profile. DMs are currently open. Please don't send friend request unless you need to make Group DM. Thanks."
+				},
+				{
+					"label": "Mastodon",
+					"url": "//mastodon.social/@username",
+					"icon": "site-mastodon",
+					"alt": "Direct link to my Mastodon profile on mastodon.social instance."
+				},
+				{
+					"label": "GitHub",
+					"url": "//github.com/username",
+					"icon": "site-github",
+					"alt": "Direct link to my Mastodon profile on mastodon.social instance."
+				},
+				{
+					"label": "E-Mail",
+					"url": "mailto:info@example.com",
+					"icon": "general-letterbox",
+					"alt": "Direct link to compose new message to my address via default e-mail client"
+				}
+			]
+		}
+	]
+}

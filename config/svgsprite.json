@@ -1,0 +1,12 @@
+{
+	"log": "info",
+	"shape": {
+		"transform": []
+	},
+	"mode": {
+		"symbol": {
+			"dest": "tmp",
+			"sprite": "pi.svg"
+		}
+	}
+}

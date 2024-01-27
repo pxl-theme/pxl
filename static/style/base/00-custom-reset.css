@@ -1,0 +1,387 @@
+/* Heavily opinionated reset additions of pxl-theme */
+
+/* Exception-based styling, opinionated */
+*:not(html, body, div, header, nav, main, footer) {
+	max-inline-size: var(--maxTextWidth);
+}
+
+/* Reset default input, textarea, button, select styles
+
+/* input:not([type=radio]),textarea,button,select { */
+/* input:not([type=file]),textarea,button,select { */
+:where(input,textarea,button,select) {
+	appearance: none;
+	border-radius: 0;
+}
+/* If available, tabular numeric font feature is applied for password, phone number, number and date inputs */
+input:is([type=password],[type=tel],[type=number],[type=date],[type=month],[type=week],[type|=datetime]) {
+	font-variant-numeric: tabular-nums;
+}
+
+/**
+Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+(Taken from modern-normalize.css)
+*/
+:where(sub, sup) {
+	/* font-size: 75%; */
+	font-size: 87.5%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+:where(sub) {
+	bottom: calc(var(--rhythmUnit)/-2);
+}
+:where(sup) {
+	top: calc(var(--rhythmUnit)*-1);
+}
+
+/* Custom Focus Ring for Inputs Excluding -1 tabindex */
+/* :where(input,textarea,select,button,a):focus-visible, input:focus::-moz-range-thumb, input:focus::-webkit-slider-thumb { */
+:where([tabindex]:not([tabindex="-1"]),a,button,input,select,textarea,summary) {
+	outline: .125rem dotted;
+	outline-color: transparent;
+	outline-offset: var(--rhythmUnit);
+	transition: .2s linear;
+	/* transition: .2s cubic-bezier(0.22, 1, 0.36, 1); */
+	transition-property: outline-offset,outline-color;
+}
+:where([tabindex]:not([tabindex="-1"]),a,button,input,select,textarea,summary):focus-visible {
+	outline-color: var(--colorAccent);
+	outline-offset: calc(var(--rhythmUnit)/4);
+}
+:where([tabindex]:not([tabindex="-1"]),a,button,input,select,textarea,summary):active:focus-visible {
+	outline-style: dashed;
+	transition-duration: 0s;
+	outline-offset: 0;
+}
+
+/* Pseudos should be separated */
+input:focus::-moz-range-thumb {
+	outline: .125rem dotted var(--colorAccent);
+	outline-offset: calc(var(--rhythmUnit)/4);
+}
+input:focus::-webkit-slider-thumb {
+	outline: .125rem dotted var(--colorAccent);
+	outline-offset: calc(var(--rhythmUnit)/4);
+}
+*:focus:not(:focus-visible) {
+	outline: none;
+}
+
+:where(input[type],button)[disabled], :where(button:disabled) {
+	cursor: not-allowed;
+}
+/* Default Selection Styles */
+::selection{
+	/* Inverted Color Selection Style */
+	/* background-color: var(--colorText); */
+	/* color: var(--colorBase); */
+
+	/* Light Color Selection Style */
+	background-color: var(--colorTextOpac20 );
+	color: inherit;
+	text-decoration: inherit;
+	/* color: var(--colorTextBolder); */
+	/* Underline/Strikethrough colors are not affected when text is selected */
+
+	/* Accent Color Selection Style */
+	/* background-color: var(--colorAccent); */
+	/* color: var(--colorBase); */
+
+	/* Light Accent Color Selection Style */
+	/* background-color: var(--colorAccentBrighterOpac60); */
+	/* color: inherit; */
+	/* text-decoration: inherit; */
+
+	text-shadow: none;
+}
+/* Date Picker Selection Styles for WebKit (Chrome,Safari) */
+input::-webkit-datetime-edit-day-field:focus,
+input::-webkit-datetime-edit-month-field:focus,
+input::-webkit-datetime-edit-year-field:focus {
+	background-color: var(--colorAccent);
+	color: var(--colorTextBrighter);
+	outline: none;
+}
+option:focus {
+	background: red;
+}
+
+
+/* Text Level Styles for Screen Readers
+ * Source: https://adrianroselli.com/2017/12/tweaking-text-level-styles.html
+ */
+/* mark::before, mark::after, del::before, del::after, ins::before, ins::after, s::before, s::after { */
+:where(mark,del,ins,s)::before, :where(mark,del,ins,s)::after {
+	clip-path: inset(100%);
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+}
+:where(mark) {
+	&::before {
+		content: " [highlight start] ";
+	}
+	&::after {
+		content: " [highlight end] ";
+	}
+	*[lang=tr] & {
+		&::before {
+			content: " [vurgu başlar] ";
+		}
+		&::after {
+			content: " [vurgu biter] ";
+		}
+	}
+}
+:where(del) {
+	text-decoration: line-through;
+	&::before {
+		content: " [deletion begin] ";
+	}
+	&::after {
+		content: " [deletion end] ";
+	}
+	*[lang=tr] & {
+		&::before {
+			content: " [silinen başlar] ";
+		}
+		&::after {
+			content: " [silinen biter] ";
+		}
+	}
+}
+:where(ins) {
+	text-decoration: none;
+	border-bottom: .2em double var(--green, #080);
+	&::before {
+		content: " [insertion begin] ";
+	}
+	&::after {
+		content: " [insertion end] ";
+	}
+	*[lang=tr] & {
+		&::before {
+			content: " [eklenen başlar] ";
+		}
+		&::after {
+			content: " [eklenen biter] ";
+		}
+	}
+}
+:where(s) {
+	text-decoration-color: var(--red, #f00);
+	&::before {
+		content: " [start of stricken text] ";
+	}
+	&::after {
+		content: " [end of stricken text] ";
+	}
+	*[lang=tr] & {
+		&::before {
+			content: " [üstü çizili metnin başı] ";
+		}
+		&::after {
+			content: " [üstü çizili metnin sonu] ";
+		}
+	}
+}
+
+@media screen and (-ms-high-contrast: active) {
+	:where(mark) {
+		color: HighlightText;
+		background-color: Highlight;
+	}
+	:where(ins) {
+		border-bottom-color: Highlight;
+	}
+	:where(s) {
+		text-decoration-color: Highlight;
+	}
+}
+@media print {
+	:where(mark) {
+		border: 1pt dotted var(--colorText);
+	}
+	:where(ins) {
+		border-bottom-width: 3pt;
+	}
+}
+
+
+/* Disable motion for supported device */
+@media (prefers-reduced-motion: reduce) {
+	*, *:before, *:after {
+		transition: none !important;
+		animation: none !important;
+		/* animation-play-state: paused !important; */
+		/* doesn't really work for me well but a good one */
+	}
+}
+/* Make headings inline inside summary elements */
+summary :where(h1,h2,h3,h4,h5,h6,p){
+	display: inline;
+}
+/* Make headings and texts wraps itself on specific algorythms. */
+:where(h1,h2,h3) {
+	text-wrap: balanced;
+}
+:not(pre,code) {
+/* p { */
+	text-wrap: pretty;
+}
+
+/* Make inline/external SVGs fill colors dynamic. (Already exists in sanitize.css)
+ */
+/* svg:where(:not([fill])) { */
+/* 	fill: currentColor; */
+/* } */
+
+/* Don't change cursor into pointer when there is only hash URL. */
+a:where([href="#"],[href="#!"]){
+	cursor: default;
+	/* experimental */
+	/* pointer-events: none; */
+	/* -experimental */
+}
+/* When any anchor link is activated, navigate to the link a little far from the edge */
+/* Source: https://moderncss.dev/12-modern-css-one-line-upgrades/#scroll-margin-topbottom */
+[id] {
+	scroll-margin-block: var(--js-scroll-margin, calc(var(--rhythmUnit)*4))
+}
+
+
+/* * { */
+/* 	-webkit-overflow-scrolling: touch */
+/* } */
+
+/***** Multilingual Font Stylings and Quote Characters
+ */
+:lang(en-GB) {
+	quotes: '\2018' '\2019' '\201C' '\201D';
+}
+:lang(tr) {
+	quotes: '\00AB' '\00BB' '\2039' '\203A';
+}
+
+/*** Custom Scrollbar Style
+ */
+/** Scrollbar styling for Firefox (CSS standard)
+ */
+html {
+	scrollbar-color: var(--colorText) var(--colorBackmost);
+	/* scrollbar-color: var(--scrollbarFg) var(--scrollbarBg); */
+	overflow-x:auto;
+	/* min-width:0!important */
+}
+
+/*** Custom Audio/Video Styles
+ */
+video {
+	max-width: 100%;
+	width: auto;
+}
+audio, video {
+	display: block;
+}
+audio {
+	height: calc(var(--rhythmUnit)*4);
+}
+audio::-webkit-media-controls {
+	/* color: var(colorText); */
+	font-size: inherit;
+}
+audio::-webkit-media-controls-enclosure {
+	border-radius: var(--borderDefault);
+	/* background: var(--colorBase); */
+}
+:is(video,audio)::-webkit-media-controls-panel{
+	font-size: inherit;
+	/* font-family: var(fontStackMono); */
+}
+:is(video,audio)::-webkit-media-controls-current-time-display,
+:is(video,audio)::-webkit-media-controls-time-remaining-display {
+	/* color: var(--colorText); */
+	text-shadow: var(--colorText), var(--colorBase) 0 0 10px;
+	opacity: 1;
+	font-family: var(--fontMain);
+	font-variant-numeric: tabular-nums;
+}
+/* Doesn't work 💀 */
+/* audio::-webkit-media-controls-play-button { */
+/* 	background-image: url('data:image/svg+xml,<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:square;stroke-miterlimit:5"><path d="M2 1.665v14.677L15.82 9 2 1.665Z" style="fill:none;stroke:%23000;stroke-width:2px"/></svg>'); */
+/* } */
+/* :where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) audio::-webkit-media-controls-play-button { */
+/* 	background-image: url('data:image/svg+xml,<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:square;stroke-miterlimit:5"><path d="M2 1.665v14.677L15.82 9 2 1.665Z" style="fill:none;stroke:%23FFF;stroke-width:2px"/></svg>'); */
+/* } */
+/* :is(audio,video)::-webkit-media-controls-play-button.state-playing { */
+/* 	background-image: url('data:image/svg+xml,<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:square;stroke-miterlimit:5"><path style="fill:none;stroke:%23000;stroke-width:2px" d="M2 1h5v16H2zM11 1h5v16h-5z"/></svg>'); */
+/* 	:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) & { */
+/* 		background-image: url('data:image/svg+xml,<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:square;stroke-miterlimit:5"><path style="fill:none;stroke:%23FFF;stroke-width:2px" d="M2 1h5v16H2zM11 1h5v16h-5z"/></svg>'); */
+/* 	} */
+/* } */
+
+
+/*** Custom Meter/Progress Styles
+ * Note: Default browser styles on these elements are not
+ * quite consistent among browsers and some of them are not
+ * quite visible as intended.
+ */
+meter, progress {
+	height: calc(var(--rhythmUnit)*4); /* Only works in Chrome-based browsers */
+	/* vertical-align: -.2em; */
+	vertical-align: middle;
+}
+meter::-webkit-meter-bar{
+	background-color: var(--colorBase);
+	border-color: var(--colorTextOpac40);
+}
+progress::-webkit-progress-bar {
+	background-color: var(--colorBase);
+	border-color: var(--colorTextOpac40);
+}
+meter::-webkit-meter-optimum-value, progress::-webkit-progress-value {
+	background-color: var(--green);
+}
+
+/** Scrollbar styling for rest of the world (except IE)
+ */
+/* :where(html) ::-webkit-scrollbar { */
+/* 	/1* Setting variables for scrollbar size and color *1/ */
+/* 	--scrollbarBg: var(--colorBack); */
+/* 	--scrollbarFg: var(--colorFrontmost); */
+/* 	--scrollbarColorBorder: var(--colorTextOpac20); */
+
+/* 	/1* TODO: If grid gutter is 0px, then think of something else for scrolbar width. *1/ */
+/* 	/1* --scrollbarWidth: calc(--gridGutter); *1/ */
+/* 	--scrollbarWidth: calc(--gridGutter); */
+/* 	/1* --scrollbarThumbWidth: calc(var(--gridGutter) * .20); *1/ */
+/* 	--scrollbarThumbWidth: calc(var(--gridGutter) * .20); */
+
+/* 	/1* margin: .5em calc(var(--gridGutter) * .125); *1/ */
+/* 	width: var(--scrollbarWidth); */
+/* 	height: var(--scrollbarWidth); */
+/* 	background-color: var(--scrollbarBg); */
+/* 	/1* @media (any-pointer: fine) { *1/ */
+/* 	/1* 	width: calc(var(--gridGutter) * .75); *1/ */
+/* 	/1* 	height: calc(var(--gridGutter) * .75); *1/ */
+/* 	/1* } *1/ */
+/* } */
+/* :where(html) ::-webkit-scrollbar-track { */
+/* 	/1* background: linear-gradient(90deg, var(--scrollbarColorBorder),var(--scrollbarColorBorder) var(--borderHairline), var(--scrollbarBg) 0, var(--colorBack)) *1/ */
+/* } */
+/* :where(html) ::-webkit-scrollbar-thumb { */
+/* 	background: var(--colorFrontmost); */
+/* 	border-radius:0; */
+/* 	min-width: 3em; */
+/* 	min-height: 3em; */
+/* 	box-shadow:inset 0 0 0 var(--scrollbarThumbWidth) var(--scrollbarBg), 0 0 0 var(--borderHairline) var(--scrollbarBg), inset 0 0 0 calc( var(--scrollbarThumbWidth) + var(--borderHairline) ) var(--red); */
+/* } */
+/* :where(html):where([class*=-cornerRounded]) ::-webkit-scrollbar-thumb { */
+/* 	border-radius:var(--radiusM); */
+/* } */

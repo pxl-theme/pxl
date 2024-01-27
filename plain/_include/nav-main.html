@@ -1,0 +1,247 @@
+<nav class="c-nav__wrapper u-clearFix" aria-label=Main>
+
+	<!-- Checkbox input/toggle button for CSS only expandable menu component -->
+	<input id=toggleNav-000 type=checkbox>
+
+	<ul class="c-nav -responsive -typeTree -layoutHorizontal -expandFromBlockStart -alignStart">
+
+		<!-- Available options for Toggle Trigger Component:
+			-viewIcon
+			-viewIconText
+			c-button
+		-->
+
+		<!-- Search engine input -->
+		<!--TODO: details/summary CSS only modal searchbar here.-->
+		<!-- <input type=search class="-viewIconText -leanEnd" size=0 placeholder="🔍 Search…"> -->
+
+		<li class="c-nav__item -viewIconOnly u-hidden@lap">
+			<label class="c-nav__anchor" for=toggleNav-000 onclick>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#list-to-left>
+				</svg><span>Hide&nbsp;Menu</span>
+			</label>
+		</li>
+		<li class=c-nav__item aria-current=page>
+			<a class=c-nav__anchor href=/plain/index.html>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#house>
+				</svg><span>Home</span>
+			</a>
+		</li>
+		<li class="c-nav__item -viewIconOnly">
+			<a class=c-nav__anchor href=/plain/playground.html>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#paper-multiple-floating>
+				</svg><span>Playground</span>
+			</a>
+		</li>
+		<li class=c-nav__item>
+			<a class=c-nav__anchor aria-expanded=false href=#!>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#sign-info>
+				</svg><span>Examples</span>
+			</a>
+			<ul class=c-nav__submenu>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/example/html5-test.html>
+						<svg class=pi viewBox="0 0 18 18" width=18px>
+							<use href=/pi.svg#paper-multiple-floating>
+						</svg><span>All HTML Elements</span>
+					</a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/example/typography.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#the-logo>
+					</svg><span>Typography</span></a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/example/color.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#the-logo>
+					</svg><span>Colors</span></a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/example/table.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#file-data-alt>
+					</svg><span>Tables</span></a>
+				</li>
+				<li class=c-nav__separator></li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/example/icon.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#the-logo>
+					</svg><span>Icons</span></a>
+				</li>
+			</ul>
+		</li>
+		<li class=c-nav__item>
+			<a class=c-nav__anchor aria-expanded=false href=#!>
+				<span>Layouts</span>
+			</a>
+			<ul class=c-nav__submenu>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/layout/blog-article.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#file-txt>
+					</svg><span>Article</span></a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/layout/blog-photo.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#file-img-landscape>
+					</svg><span>Photo</span></a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/layout/docs.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#book-docs>
+					</svg><span>Docs</span></a>
+				</li>
+			</ul>
+		</li>
+		<li class=c-nav__item>
+			<a class=c-nav__anchor aria-expanded=false href=#!>
+				<span>Classes</span>
+			</a>
+			<ul class=c-nav__submenu>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/class/primitive.html>
+						<span>Layout Primitives</span>
+					</a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/class/box-card.html>
+						<span>Box with Card View</span>
+					</a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/class/nav.html>
+						<span>Navigation Component</span>
+					</a>
+				</li>
+				<li class=c-nav__separator></li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/class/bodygrid-multi-col.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#file-txt>
+					</svg><span>Repsonsive Multi-Column Grid</span></a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/class/rustygrid.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#general-grid>
+					</svg><span>Rusty Grid Overview</span></a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/class/rustygrid-masonry.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#paper-multiple-masonry>
+					</svg><span>Masonry Grid (JS Only)</span></a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/class/grid-masonry.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#paper-multiple-masonry>
+					</svg><span>Masonry Grid (Experimental)</span></a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/class/frame.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#file-landscape>
+					</svg><span>Frames</span></a>
+				</li>
+				<li class=c-nav__separator></li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/class/button.html>
+						<span>Button Component</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<!-- TODO: Move navigation item examples to another page -->
+		<!-- <li class=c-nav__item> -->
+		<!-- 	<a class=c-nav__anchor aria-expanded=false href=#!> -->
+		<!-- 		<span>Shrt Itm</span> -->
+		<!-- 	</a> -->
+		<!-- 	<ul class=c-nav__submenu> -->
+		<!-- 		<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Overly complicated, detailed nav item</span></a></li> -->
+		<!-- 		<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Also overly detailed, complicated nav item</span></a></li> -->
+		<!-- 	</ul> -->
+		<!-- </li> -->
+		<!-- <li class=c-nav__item> -->
+		<!-- 	<a class=c-nav__anchor href=#!> -->
+		<!-- 		<span>Fruits</span> -->
+		<!-- 	</a> -->
+		<!-- 	<ul class=c-nav__submenu> -->
+		<!-- 		<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Apple</span></a> -->
+		<!-- 			<ul class=c-nav__submenu> -->
+		<!-- 				<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Green</span></a></li> -->
+		<!-- 				<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Red</span></a></li> -->
+		<!-- 			</ul></li> -->
+		<!-- 			<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Pear</span></a></li> -->
+		<!-- 		<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Orange</span></a></li> -->
+		<!-- 			<li class=c-nav__separator></li> -->
+		<!-- 			<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Strawberry</span></a></li> -->
+		<!-- 		<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Banana</span></a> -->
+		<!-- 			<ul class=c-nav__submenu> -->
+		<!-- 				<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Native</span></a></li> -->
+		<!-- 				<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Imported</span></a></li> -->
+		<!-- 			</ul></li> -->
+		<!-- 			<li class=c-nav__item><a class=c-nav__anchor href=#!><span>Raspberry</span></a></li> -->
+		<!-- 	</ul> -->
+		<!-- </li> -->
+		<li class="c-nav__separator -leanEnd"></li>
+		<li class="c-nav__item -viewIconOnly -leanEnd">
+			<!-- <a class=c-nav__anchor onclick="javascript:event.target.port=8080" href=/index.html> -->
+			<a class=c-nav__anchor href=/index.html>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#ssg-11ty>
+				</svg><span>Go&nbsp;to&nbsp;11ty environment</span></a>
+			</a>
+		</li>
+		<li class="c-nav__item -leanEnd">
+			<a class=c-nav__anchor aria-expanded=false href=#!>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#symbol-at>
+					</use>
+				</svg><span>Contact</span>
+			</a>
+			<ul class="c-nav__submenu -typeStack">
+				<li class="c-nav__item -styleShining -viewIconOnly">
+					<a class=c-nav__anchor href=//discord.com/users/209017622682009600 title="Direct link to my Discord profile. DMs are currently open. Please don't send friend request unless you need to make Group DM. Thanks.">
+						<svg class=pi viewBox="0 0 18 18" width=18px>
+							<use href=/pi.svg#site-discord></use>
+						</svg><span>Discord</span>
+					</a>
+				</li>
+				<li class="c-nav__item -viewIconOnly">
+					<a class=c-nav__anchor href=//github.com/egeesin title="Direct link to my main GitHub profile">
+						<svg class=pi viewBox="0 0 18 18" width=18px>
+							<use href=/pi.svg#site-github>
+							</use>
+						</svg><span>GitHub</span>
+					</a>
+				</li>
+				<li class="c-nav__item">
+					<a class=c-nav__anchor href=mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109; title="Direct link to compose new message to my address via default e-mail client">
+						<svg class=pi viewBox="0 0 18 18" width=18px>
+							<use href=/pi.svg#general-letterbox></use>
+						</svg><span>Email</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li class="c-nav__separator -leanEnd"></li>
+		<li class="c-nav__item -viewIconOnly -leanEnd">
+			<a class=c-nav__anchor href=#! data-drkmd-toggle title="Toggle dark mode" aria-label="Toggle dark mode">
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#sun></use>
+				</svg><span>Toggle Theme</span>
+				<!-- <a href>🌗</a> -->
+			</a>
+		</li>
+	</ul>
+</nav>

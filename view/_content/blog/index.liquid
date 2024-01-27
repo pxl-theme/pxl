@@ -1,0 +1,16 @@
+---
+layout: default
+title: Blog
+custom_header_title: Blog
+priority: 1
+pagination:
+  data: collections.homepage
+  size: 9
+permalink: "blog/{% if pagination.pageNumber > 0 %}p/{{ pagination.pageNumber | plus:1 }}{% else %}index{% endif %}.html"
+---
+{%- assign post_count = collections.homepage | default: pagination.items -%}
+{%- include 'post/container.liquid'
+	view:masonry
+	load_more_button: true
+	items: post_count
+-%}

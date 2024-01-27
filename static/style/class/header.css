@@ -1,0 +1,70 @@
+/***** Header Component
+ */
+.c-header {
+	/* margin-block-end:var(--rhythmUnit); */
+	background-position: center;
+	background-size: cover;
+	/* & :where(h1,h2,h3,h4,h5,h6) { */
+	/* 	margin-block-start: 0 */
+	/* } */
+	a:not(.c-nav__anchor) {
+		color: currentColor;
+		text-decoration-line: none;
+		@media (any-hover: hover) {
+			&:hover, &:focus-visible {
+				text-decoration-line: underline;
+			}
+		}
+	}
+}
+.c-header:not(:has(.c-nav)) {
+	color: var(--colorTextBolder);
+}
+
+/***** Header Component with Media View
+ */
+/* .c-header.-viewMedia { */
+.c-header:has(> img, > picture, > video, > figure) {
+	/* Warning: Make sure box-sizing set as border-box */
+
+	/* background-color: var(--colorBackmost); */
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+	/* padding-left: 1em; */
+	/* padding-right: 1em; */
+	position: relative;
+	overflow: hidden;
+
+	/* > * { */
+	> *:not(img,video,picture,figure) {
+		position: relative;
+	}
+	> img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		/* opinionated */
+		height: 100%;
+		object-fit: cover;
+		/*-opinionated */
+	}
+	&:before {
+		position: relative;
+		content: '';
+		display: block;
+	}
+}
+/*** Opinionated Header/Page Title
+	*/
+/* opinionated */
+/* .c-header__title { */
+/* 	/1* Title divider *1/ */
+/* 	&:before { */
+/* 		content: "/"; */
+/* 		font-weight: 100; */
+/* 		--fontWeight: 100; */
+/* 		text-decoration-line: none; */
+/* 	} */
+/* } */
+/* -opinionated */

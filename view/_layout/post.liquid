@@ -1,0 +1,30 @@
+---
+layout: default
+html-classes-append: "-stylesetAcetate -borderValNone"
+---
+<main id=content class=s-cmsContent aria-label=Content itemprop=mainContentOfPage>
+	<article class="o-box -viewCard o-center" itemscope itemtype="https://schema.org/BlogPosting">
+		<header class=c-header>
+			{%- if page.date != nil -%}
+				<h5 class="o-box__meta{%- if topics != empty and nil -%} -alignStart@wrist-gt{%- endif -%}" alt="{{ page.date | localDateFull }}">
+					<time datetime="{{ page.date | htmlDateString }}" itemprop=datePublished>
+						{{ page.date | localDMY }}, {{ page.date | localDayOfWeek }}
+					</time>
+				</h5>
+			{%- endif -%}
+			{%- if topics != empty and nil -%}
+				<h6 class="o-box__meta -alignEnd@wrist-gt" itemprop=keywords>
+				{%- for topic in topics %}{{topic}}{% unless forloop.last %}, {% endunless %}{% endfor %}
+				</h6>
+			{%- endif -%}
+			{%- if title != nil -%}
+				<h1 class=o-box__title>{{ title | escape }}</h1>
+			{%- endif -%}
+		</header>
+		<section itemprop=articleBody>
+		{{ content }}
+		</section>
+		<a class=url itemprop=url href="{{ page.url | url }}" hidden></a>
+	</article>
+	{% comment %} {%- include "webmention/container" %} {% endcomment %}
+</main>

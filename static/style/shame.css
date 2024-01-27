@@ -1,0 +1,261 @@
+/* .feather{ */
+/* 	vertical-align: -.666ex; */
+/* } */
+
+/*** Button that loads new posts
+ */
+._loadMore {
+	border-radius: 50%;
+	width:calc(var(--rhythmUnit)*6);
+	height:calc(var(--rhythmUnit)*6);
+	display: block;
+	margin: auto;
+	margin-block-end: 1em;
+	padding: 1px;
+	position: relative;
+	&::after {
+		position: absolute;
+		top:0;
+		left:0;
+		width:100%;
+		text-align: center;
+		content: "•••";
+		/* font-size: 2em; */
+		--fontWeight: 900;
+		line-height:calc(var(--rhythmUnit)*6);
+	}
+	/* &.loading { */
+	/* 	&::after { */
+	/* 		content: ""; */
+	/* 	} */
+	/* } */
+}
+
+/*** Sticky Footer Compatible Body
+ */
+body._stickyFooter{
+	/* https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/ */
+	display: flex;
+	min-height: 100svh;
+	flex-direction: column;
+	justify-content: space-between;
+	&:not(.c-bodygrid) > [aria-label=Content], :not(.c-bodygrid) > [aria-label=Content]{
+		/* flex-grow: 1; */
+		flex-grow: 0;
+		width: 100%
+		/* INFO: This is necessary in order to prevent stop child elements
+		 * like pre/code widen the parent container. */
+	}
+}
+
+/*** Apply fade-in animation to lazyloaded elements
+ */
+.lazyload,
+.lazyloading {
+	opacity: 0;
+}
+.lazyloaded {
+	opacity: 1;
+	transition: opacity 300ms;
+}
+
+/*** (Experimental) WordPress Compatible Comment Form IDs & Classes
+ *
+ * Note: These haven't tested with new styles.
+ */
+#comment-form {
+	textarea {
+		min-width: 100%;
+		max-width: 100%;
+	}
+	input:not([type=checkbox]) {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		border-width: 0 0 var(--borderS) 0;
+	}
+	input:not([type=checkbox]), textarea {
+		width: 100%;
+		/* margin: 0 0 .5em 0; */
+		margin-block-end: var(--rhythmUnit);
+	}
+	/* Name area */
+	> input:nth-child(2) {
+		--fontWeight: 700;
+	}
+	/* Name and E-Mail */
+	> input:nth-child(2), > input:nth-child(3) {
+		width: 50%;
+	}
+	/* Name, E-Mail, Website */
+	> input:nth-child(2), > input:nth-child(3), > input:nth-child(4) {
+		@media (--lap-or-gt) {
+			width: 33.33%;
+		}
+	}
+	button {
+		float: right;
+		float: inline-end;
+	}
+	.g-recaptcha {
+		margin: calc(var(--rhythmUnit)*2) 0;
+	}
+}
+.js-form.form--loading button{
+	position: relative;
+	overflow: hidden;
+
+	&:after {
+		content: '';
+		height: calc(var(--rhythmUnit)/2);
+		position: absolute;
+		bottom:0;
+		margin: 0;
+		width: 0;
+		background-color: var(--colorAccent);
+		animation: ball 2s ease-in-out infinite;
+	}
+}
+.comment__content-wrapper {
+	h4 a, h5 a{
+		color: currentColor;
+		text-decoration: none;
+	}
+}
+.comment {
+	margin-block-start: calc(var(--rhythmUnit)*2);
+}
+.comment.child {
+	margin-inline-start: calc(var(--rhythmUnit)*2);
+	/* margin-top: 0; */
+	border-left: var(--borderS) solid currentColor;
+	padding-inline-start: .8em;
+}
+.comment__avatar{
+	border-radius: 50%;
+	margin: .66em .66em 0 0;
+}
+
+/* An ellipsis link for redirecting full content of truncated blog post.
+ * Check Eleventy config and search for "truncate_content" to modify the markup. */
+:where(a[href]:is([title="Read more…"],[title="Devamını oku…"])){ /* opinionated */
+	--fontWeight: 900;
+	text-decoration: none;
+	/* opinionated */
+	font-size: 1.75em;
+	line-height: .75;
+	vertical-align: -.35ex;
+	padding: 0 .5ch;
+	/* -opinionated */
+}
+
+._faviconAnimated { /* opinionated */
+	--imgSize:48px;
+
+	width: var(--imgSize);
+	height: var(--imgSize);
+
+	margin-inline-start: .5rem;
+	margin-block: calc((var(--lineHeight) - var(--imgSize))/2);
+
+	/* border-radius: var(--radiusInnerDefault); */
+	border-radius: var(--radiusS);
+	/* -opinionated */
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+	float: inline-start;
+	& > img {
+		vertical-align: unset;
+		white-space: nowrap /* In case of unloaded img, make sure alt text doesn't overflow off the intended space. */
+	}
+	&:before{
+		background-image: var(--faviconAnimated);
+		background-size: 100%;
+		font-size: inherit;
+		/* background-color: red; */
+		width: 100%;
+		height: 100%;
+		top:0;
+		left:0;
+		content: "";
+		z-index: 99;
+		display: block;
+		position: absolute;
+		opacity: 0;
+		/* Closing transition */
+		transition: opacity .5s ease-in-out .25s;
+	}
+}
+@media (any-hover: hover) {
+	._faviconAnimated:hover:before,
+	a:hover > ._faviconAnimated:before,
+	a:focus-visible > ._faviconAnimated:before{
+		opacity: 1;
+		/* Opening transition */
+		transition: opacity .15s ease-in-out 0s;
+	}
+}
+
+._pxlTheLogo {
+	display: block;
+	margin: auto;
+	width: 8em;
+	height: 5em;
+	vertical-align: middle;
+	stroke: currentColor;
+	stroke-width: 2.888;
+	-webkit-tap-highlight-color: transparent;
+	transition: stroke-width .2s ease;
+	&:hover, &:focus-visible {
+		stroke-width: 4.666;
+	}
+	&:active {
+		stroke-width: 1.444;
+	}
+}
+/* Keyframe gets activated everytime relocating the element interacting address bar. (Also iOS version has that problem) */
+/* Page transitions coming soon, use this instead when it's going to be globally adopted: https://www.youtube.com/watch?v=JCJUPJ_zDQ4 */
+/* .js-post { */
+/* 	@keyframes getPost { */
+/* 		0% {opacity: 0; transform: scale(0.66) translateY(100px);} */
+/* 		100% {opacity: 1; transform: scale(1) translateY(0);} */
+/* 	} */
+/* 	animation: getPost .5s cubic-bezier(.68,0,.69,1.18); */
+/* 	/1* , moveUp 2s cubic-bezier(.68,0,.69,1.18); *1/ */
+/* } */
+
+/* This is for markdown-it-spoiler, might not work anywhere outside 11ty/Markdown It */
+/* Example: !!spoiler!! */
+span.spoiler {
+	/* opacity: 0; */
+	background: var(--colorBack);
+	color: var(--colorBack);
+	border: var(--borderM) solid var(--colorTextOpac20);
+	margin-inline: calc(var(--borderM) * -1);
+	border-radius: var(--radiusDefault);
+	position: relative;
+	&:hover {
+		color: var(--colorText);
+		background: transparent;
+		&::selection {
+			color: transparent;
+		}
+		&:before{
+			display: none;
+		}
+	}
+	&::selection {
+		color: transparent;
+	}
+	&:before{ /* opinionated */
+		content: "Spoilers!";
+		position: absolute;
+		color: var(--colorText);
+		/* display: inline-block; */
+		display: inline;
+		text-transform: uppercase;
+		font-variant-caps: all-small-caps;
+		/* @mixin fontSize6; */
+	}
+}

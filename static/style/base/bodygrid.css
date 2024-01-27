@@ -1,0 +1,55 @@
+/* .c-bodygrid:is(._stickyFooter) { */
+@media (--palm-or-gt){
+	.c-bodygrid {
+		min-height: 100svh;
+		display: grid;
+		justify-content: center;
+		/* grid-gap: 0 var(--gridGutter); */
+		grid-gap: calc(var(--rhythmUnit) * 2) var(--gridGutter);
+		> * {min-width: 0}
+
+		--mainWidth: calc(var(--maxTextWidth) + calc(var(--boxViewCard-padSide) * 2) + calc(var(--border, 0px) * 2));
+
+		/* Single Column/Full Body Grid (Default) */
+		/* grid-template-columns: [main] minmax(10rem, var(--mainWidth)) [end] minmax(4rem, var(--sidebarWidth)); */
+		grid-template-columns: [main] 100%;
+		grid-template-rows: repeat(7,min-content) 1fr repeat(3,min-content);
+
+		/* opinionated */
+		/* Header and footer should cover full page */
+		/* > :is(header,footer) {grid-row: 1; grid-column: outer;} */
+		> :is(header,footer) {grid-row: 1; grid-column: 1 / -1;}
+		> footer {grid-row: -2;}
+		> main {grid-row: 2/-3}
+		> aside { align-self: start; }
+		/* @media (--desk-or-gt){ */
+		@media (--wall-or-gt){
+			> aside {grid-column: end}
+			/* > main {grid-row: 2; grid-column: 2/-2;} */
+		}
+
+		/* Triple Column Body Grid */
+		/* opinionated */
+		&.-colTriple {
+			grid-template-columns:
+				[start] var(--sidebarWidth)
+				[main]  minmax(0, var(--mainWidth))
+				[end]   var(--sidebarWidth);
+			/* > :is(header,footer) {grid-column: 1/} */
+			> main { grid-column: start/end;justify-self:end}
+			> aside { grid-column: end}
+			/* @media (--desk-or-gt){ */
+			@media (--wall-or-gt){
+				grid-template-columns:
+					1fr
+					[start] var(--sidebarWidth)
+					[main]  minmax(0, var(--mainWidth))
+					[end]   var(--sidebarWidth)
+					1fr;
+				> main {grid-column: main}
+				> aside { grid-column: start}
+				> aside:first-of-type { grid-column:end; grid-row:2}
+			}
+		}
+	}
+}

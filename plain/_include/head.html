@@ -1,0 +1,45 @@
+<head>
+	<meta charset="utf-8">
+
+	<meta name=color-scheme content="dark light">
+	<meta name=theme-color content="var(--colorBg)">
+	<meta name=darkreader-lock>
+
+	<meta content='width=device-width, initial-scale=1, viewport-fit=cover' name=viewport>
+	<meta name=disabled-adaptations content=watch>
+
+	<!-- All Stylesheets with Relevant Media Queries -->
+	<!-- Make sure it's synchronized with the media queries from css/abstract/00-media.css -->
+	<link rel=stylesheet href=/static/style/index.css>
+	<link rel=stylesheet href=/static/style/index.mq-cur.css media="(any-hover:hover),(any-pointer:fine)">
+	<!-- <link rel=stylesheet href=/static/style/index.mq-dark.css media="(prefers-color-scheme:dark)"> -->
+	<link rel=stylesheet href=/static/style/index.mq-m.css media="screen and (min-width:calc(calc(640/16)*1em))">
+	<link rel=stylesheet href=/static/style/index.mq-l.css media="screen and (min-width:calc(calc(960/16)*1em))">
+	<link rel=stylesheet href=/static/style/index.mq-xl.css media="screen and (min-width:calc(calc(1600/16)*1em))">
+
+	<title>{{ title }}・Site Title (Plain Version)</title>
+	<meta property=og:title content="{{ title }}・Site Title">
+	<meta property=og:description name=description content="{{ description }}">
+	<meta property=og:url content="">
+	<!-- <meta property=og:url content="localhost:3000"> -->
+
+	<!-- <meta property=og:image content="{ site.icon.512 | prepend: site.url }"> -->
+	<!-- <meta name=twitter:card content=summary> -->
+	<meta name=robots content="noindex, follow">
+	<meta name=pinterest content=nopin>
+	<!-- <meta name=google content=notranslate> -->
+
+	<link rel=alternate href=/feed.json type=application/json title="RSS (JSON) Feed ">
+	<!-- <link rel=alternate href=/feed.xml type=application/atom+xml title="RSS (Atom) Feed"> -->
+
+	<link rel=icon href=/static/asset/fav/icon.webp>
+	<link rel=apple-touch-icon sizes=180x180 href=/static/asset/fav/icon.webp>
+	<!-- <meta name=msapplication-square70x70logo content="{ site.icon.70 }"> -->
+	<!-- <link rel=manifest href=/app.webmanifest> -->
+
+	<!-- <link rel=me href="{ site.me_url }"> -->
+	<!-- <link rel=pingback href="{ site.pingback_url }"> -->
+	<!-- <link rel=webmention href="{ site.webmention_url }"> -->
+	<!-- <link rel=token_endpoint href="{ site.token_endpoint_url }"> -->
+	<!-- <link rel=authorization_endpoint href="{ site.authorization_endpoint_url }"> -->
+</head>

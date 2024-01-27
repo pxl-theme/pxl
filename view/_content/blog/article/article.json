@@ -1,0 +1,8 @@
+{
+	"layout": "post",
+	"author": "Name Surname",
+	"permalink": "blog/article/{{ page.fileSlug }}/",
+	"vocab": "entry",
+	"changefreq": "monthly",
+	"priority": "0.8"
+}

@@ -1,0 +1,30 @@
+<header aria-label=Main class="t-color -forceDark -schemeInherit" style="background-color: var(--colorBack);">
+	<div class="o-rustygrid --noGutter">
+		{% if custom_header_title %}
+		{% comment %} <div class="o-rustygrid__item -col0 -col1-12@palm"></div> {% endcomment %}
+		<div class="o-rustygrid__item -col1-12@palm"></div>
+		<div class="o-rustygrid__item -col1 -col5-12@palm" style="user-select:none">
+			<h1 class="u-txtOnImg">
+				<a href="./">{{custom_header_title}}</a> <!-- directs to current page -->
+			</h1>
+		</div>
+		{% endif %}
+		{% comment %} {% if site.title %}<h1 style="text-align:center"><a href="{{ "/" | url }}">{{ site.title | escape }}</a></h1>{% endif %} {% endcomment %}
+		{% comment %} {% if site.description %}<h4 style="text-align:center">{{ site.description }}</h4>{% endif %} {% endcomment %}
+		<div class="o-rustygrid --noGutter u-hidden@lap">
+			<div class="o-rustygrid__item -col1 t-modRoot -stylesetAcetate -borderNone">
+			<!-- <div class="o-rustygrid__item -col1 -col1-2@palm t-modRoot -stylesetAcetate -borderNone"> -->
+				<ul class="c-nav -typeFlyout -layoutHorizontal -alignStart" role=tree style=z-index:2>
+					<li class="c-nav__item u-hidden@lap" >
+					<label class=c-nav__anchor for=toggleNav-000 onclick>
+						<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#general-list>
+						</svg><span>Show Menu</span>
+					</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+		{%- include "nav/menu.liquid" %}
+	</div>
+</header>

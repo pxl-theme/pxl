@@ -1,0 +1,289 @@
+/* Custom Media Queries
+ * Note: Make sure it's synchronized with HTML stylesheet meta tags and
+ * postcss-extract-media-query config in gulfile.js
+ */
+
+/* Media Breakpoints
+ * Breakpoints in the media queries based on human ergonomics.
+ * Source: https://x.com/lukew/status/273453112902172672
+ */
+
+/* gt = greater than, lt = lesser than */
+
+/* for smartwatches */
+@custom-media --wrist-or-lt only screen and (max-width: 2in);
+@custom-media --wrist-or-gt only screen and (min-width: 2in);
+
+/* for phablets */
+/* @custom-media --palm-or-lt screen and (max-width: calc((640/16)*1em-1px)); */
+@custom-media --palm-or-lt screen and (max-width: calc((640/16)*1em));
+@custom-media --palm-or-gt screen and (min-width: calc((640/16)*1em));
+
+/* for tablets in portrait mode */
+@custom-media --lap-or-gt screen and (min-width: calc((960/16)*1em));
+
+/* for laptops and tablets in landscape mode */
+@custom-media --desk-or-gt screen and (min-width: calc((1280/16)*1em));
+
+/* for desktops */
+@custom-media --wall-or-gt screen and (min-width: calc((1600/16)*1em));
+
+/* for wide screen monitors and TVs */
+@custom-media --mall-or-gt screen and (min-width: calc((1920/16)*1em));
+
+/* for 4K, 8K, VR?... */
+/* @custom-media --gigamall-or-gt screen and (min-width: calc((2100/16)*1em)); */
+@custom-media --titan-or-gt screen and (min-width: calc((2400/16)*1em));
+
+/* HiDPI Screen */
+@custom-media --hidpi screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi);
+
+/* Font sizes based on modular scale values and
+ * compatible vertical rhythm metrics */
+
+/* Vertical rhythm, offsetting type:
+ * Source: https://www.smashingmagazine.com/2012/12/css-baseline-the-good-the-bad-and-the-ugly/#the-ugly-offsetting-type
+ */
+
+/* Mixins instead of extends considering the compression delta.
+ * Source: https://speakerdeck.com/csswizardry/facsst-css-and-performance
+ */
+
+@define-mixin fontSize1 {
+	font-size: var(--typeScale3); /* 32,929px */
+	--lineHeight: calc(5 * var(--rhythmUnit)); /* 40px */
+	line-height: var(--lineHeight); /* 40px */
+	--iconSize: var(--typeScale3);
+	/* Total height: 40px */
+
+	/* TODO: Lines below doesn't work with postcss-calc (cssnano).
+	 * Even in the docs says otherwise, there's no way to disable this in cssnano.
+	 * Need to test this in a separate test repo later. */
+	/* padding-top: calc((5 * var(--rhythmUnit) - 1ex) / 2.4); */
+	/* padding-bottom: calc(var(--lineHeight) - calc(((5 * var(--lineHeight)) - 1ex) / 2.4)); */
+}
+@define-mixin fontSize2 {
+	font-size: var(--typeScale2); /* 25,8877px */
+	--lineHeight: calc(var(--rhythmUnit) * 4); /* 32px */
+	line-height: var(--lineHeight); /* 40px */
+	/* padding-block: calc(var(--rhythmUnit) / 2); */
+	--iconSize: var(--typeScale2);
+	/* Total height: 40px */
+}
+@define-mixin fontSize3 {
+	font-size: var(--typeScale1); /* 20,352px */
+	--lineHeight: calc(var(--rhythmUnit) * 3); /* 24px */
+	line-height: var(--lineHeight); /* 40px */
+	/* padding-block: calc(var(--rhythmUnit) / 2); */
+	--iconSize: var(--typeScale1);
+	/* Total height: 32px */
+}
+@define-mixin fontSize4 {
+	font-size: var(--typeScaleBase);
+	--lineHeight: calc(var(--rhythmUnit) * 3); /* 24px */
+	line-height: var(--lineHeight); /* 40px */
+	/* padding-block: calc(var(--rhythmUnit) / 2); */
+	--iconSize: var(--typeScaleBase);
+	/* Total height: 32px */
+}
+@define-mixin fontSize5 {
+	font-size: var(--typeScale-1); /* 12,578px */
+	--lineHeight: calc(var(--rhythmUnit) * 2); /* 16px */
+	line-height: var(--lineHeight); /* 40px */
+	/* padding-block: calc(var(--rhythmUnit) / 2); */
+	--iconSize: var(--typeScale-1);
+	/* Total height: 24px */
+}
+@define-mixin fontSize6 {
+	font-size: var(--typeScale-2); /* 9,888px */
+	--lineHeight: calc(var(--rhythmUnit) * 2); /* 16px */
+	line-height: var(--lineHeight); /* 40px */
+	/* padding-block: 0; */
+	--iconSize: var(--typeScale-2);
+	/* Total height: 16px */
+
+	@media (--wrist-or-lt) {
+		@mixin fontSize5;
+		/* opinionated */
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		--fontWeight: 700;
+		/* opinionated */
+	}
+}
+
+@define-mixin wrongCombination {
+	position: relative !important;
+	display: block !important;
+	height: 120px !important;
+	&:after {
+		z-index: 9999;
+		position: absolute;
+		top: 0;
+		left: 0;
+		content: "This combination doesn't supported and look good.";
+		--fontWeight: 700;
+		font-variation-settings: "wght" 700;
+		text-align: center;
+		width: 100%;
+		height: 100%;
+		line-height: 100%;
+		background-color: brown;
+		color: #fff;
+	}
+}
+
+/* Animations (https://github.com/argyleink/open-props/blob/main/src/props.animations.css)*/
+@keyframes fadeIn {
+	to { opacity: 1 }
+}
+@keyframes fadeInBloom {
+	  0% { opacity: 0; filter: brightness(1) blur(20px) }
+	 10% { opacity: 1; filter: brightness(2) blur(10px) }
+	100% { opacity: 1; filter: brightness(1) blur(0) }
+}
+@keyframes fadeOut {
+	to { opacity: 0 }
+}
+@keyframes fadeOutBloom {
+	100% { opacity: 0; filter: brightness(1) blur(20px) }
+	 10% { opacity: 1; filter: brightness(2) blur(10px) }
+	  0% { opacity: 1; filter: brightness(1) blur(0) }
+}
+@keyframes scaleUp {
+	to { transform: scale(1.25) }
+}
+@keyframes scaleDown {
+	to { transform: scale(.75) }
+}
+@keyframes slideOutUp {
+	to { transform: translateY(-100%) }
+}
+@keyframes slideOutDown {
+	to { transform: translateY(100%) }
+}
+@keyframes slideOutRight {
+	to { transform: translateX(100%) }
+}
+@keyframes slideOutLeft {
+	to { transform: translateX(-100%) }
+}
+@keyframes slideInUp {
+	from { transform: translateY(100%) }
+}
+@keyframes slideInDown {
+	from { transform: translateY(-100%) }
+}
+@keyframes slideInRight {
+	from { transform: translateX(-100%) }
+}
+@keyframes slideInLeft {
+	from { transform: translateX(100%) }
+}
+@keyframes shakeX {
+	0%, 100% { transform: translateX(0%) }
+	20% { transform: translateX(-5%) }
+	40% { transform: translateX(5%) }
+	60% { transform: translateX(-5%) }
+	80% { transform: translateX(5%) }
+}
+@keyframes shakeY {
+	0%, 100% { transform: translateY(0%) }
+	20% { transform: translateY(-5%) }
+	40% { transform: translateY(5%) }
+	60% { transform: translateY(-5%) }
+	80% { transform: translateY(5%) }
+}
+@keyframes spin {
+	to { transform: rotate(1turn) }
+}
+@keyframes ping {
+	90%, 100% {
+		transform: scale(2);
+		opacity: 0;
+	}
+}
+@keyframes blink {
+	0%, 100% {
+		opacity: 1
+	}
+	50% {
+		opacity: .5
+	}
+}
+@keyframes float {
+	50% { transform: translateY(-25%) }
+}
+@keyframes bounce {
+	25% { transform: translateY(-20%) }
+	40% { transform: translateY(-3%) }
+	0%, 60%, 100% { transform: translateY(0) }
+}
+@keyframes pulse {
+	50% { transform: scale(.9,.9) }
+}
+/* Combined Animation Examples:
+.u-slideFade {
+	animation:
+		var(--animation-fade-out) forwards,
+		var(--animation-slide-out-down);
+	animation-timing-function: var(--ease-squish-3);
+	animation-duration: 1s;
+}
+.u-shakeIn {
+	animation:
+		var(--animation-shake-y),
+		var(--animation-fade-in),
+		var(--animation-slide-in-left);
+}
+.u-pushOut {
+	animation:
+		var(--animation-scale-down),
+		var(--animation-fade-out);
+	animation-timing-function: var(--ease-squish-4);
+}
+*/
+
+/*** Other Animations
+ */
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@keyframes ball {
+	0% {
+		left: 0;
+		width: 0%;
+	}
+	25% {
+		left: 0;
+		width: 100%;
+	}
+	50% {
+		left: 100%;
+		width: 0%;
+	}
+	75% {
+		left: 0;
+		width: 100%;
+	}
+	100% {
+		left: 0;
+		width: 0%;
+	}
+}
+@keyframes gradientBackgroundLoop {
+	0% {
+		background-position: 0%;
+	}
+	50% {
+		background-position: 100%;
+	}
+	100% {
+		background-position: 0%;
+	}
+}

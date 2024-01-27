@@ -1,0 +1,21 @@
+<article id="webmention-{{ item.wm-id }}">
+	<div>
+		<!--TODO: Need a randomized avatar placeholder URL here instead of single local file-->
+		<img class="avatar | u-photo" src="{{ item.author.photo | default: '/static/asset/filler/avatar.webp' }}" alt="" width="48" height="48">
+	</div>
+	<header>
+		<h4>
+		{%- if item.author.url %}<a class="u-url" href="{{ item.author.url }}" target="_blank" rel="noopener noreferrer">{% endif -%}
+			<span>{{ item.author.name | default: 'Anon' }}</span>
+			{%- if item.author.url %}</a>{% endif -%}
+		</h4>
+		<p class="remark__meta">
+			<a class="u-url" rel="bookmark" href="{{ item.url }}">
+				<time class="dt-published" datetime="{{ item.published | date: dates.iso }}">{{ item.published | date: dates.datetime_full }}</time>
+			</a>
+		</p>
+	</header>
+	<div>
+		{{- item.content.value }}
+	</div>
+</article>

@@ -1,0 +1,19 @@
+{% assign page_paths = site.header_pages | default: default_paths %}
+
+{% assign navurl = page.url | remove: 'index.html' %}
+
+{% if page_paths %}
+<ul id=nav class="c-nav -responsive -typeTree -expandFromBlockStart js-visible">
+	<a id=toggleNav-000 class=c-toggleExpand></a>
+	{% for path in page_paths %}
+		{% assign my_page = site.pages | where: "path", path | first %}
+		{% if my_page.data.title %}
+			<li class=c-nav__item {% if item.url == page.url %}aria-current=page{% endif %}>
+				<a href="{{ my_page.url | url }}">
+					{{- my_page.data.title | escape }}
+				</a>
+			</li>
+		{% endif %}
+	{% endfor %}
+</ul>
+{% endif %}

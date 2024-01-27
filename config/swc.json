@@ -1,0 +1,11 @@
+{
+  "minify": true,
+  "jsc": {
+    "minify": {
+      "compress": {
+		  "ecma": "6"
+	  },
+	  "mangle": true
+    }
+  }
+}

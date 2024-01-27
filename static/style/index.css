@@ -1,0 +1,27 @@
+/*!
+Theme Name: pxl-theme
+Theme URI: https://github.com/egeesin/pxl
+Author: Ege Esin
+Author URI: https://egeesin.com
+Description: An adjustable framework-ish website theme with sensible defaults and nice looks.
+Version: 0.5
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: pxl-theme
+Tags: css, html, theme, css-framework, customizable, 11ty, SSG */
+
+/* Vendors, resets, syntax highlight themes */
+@import-glob "../../node_modules/sanitize.css/{sanitize,system-ui,ui-monospace,typography,forms,reduce-motion}.css";
+/* @import-glob "_vendor/*.css"; */
+
+/* Configurations, mixins, helpers, utilities */
+@import-glob "abstract/*.css";
+
+/* Base stuff */
+@import-glob "base/*.css";
+
+/* Objects, components */
+@import-glob "class/*.css";
+
+/* Hacky solutions, uncategorized stuff to be organized later */
+@import-glob "shame.css";

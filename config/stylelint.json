@@ -1,0 +1,14 @@
+{
+	"extends": "stylelint-config-recommended",
+	"rules": {
+		"no-duplicate-selectors": null,
+		"no-irregular-whitespace": null,
+		"function-calc-no-unspaced-operator": null,
+		"no-descending-specificity": null,
+		"custom-property-no-missing-var-function": null,
+		"function-no-unknown": null,
+		"selector-type-no-unknown": null,
+		"media-feature-name-no-unknown": null,
+		"unit-no-unknown": null
+	}
+}

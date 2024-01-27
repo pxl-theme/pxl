@@ -1,0 +1,17 @@
+---
+permalink: /app.webmanifest
+---
+{
+	"lang": "en",
+	"name": "{{ site.title }}",
+	"short_name": "{{ site.short_title }}",
+	"icons": [{
+		"src": "{{ site.icon.512 }}",
+		"sizes": "512x512",
+		"type": "image/png"
+	}],
+	"theme_color": "{{ site.pwa_fg_color }}",
+	"background_color": "{{ site.pwa_bg_color }}",
+	"display": "minimal-ui",
+	"start_url": "./"
+}

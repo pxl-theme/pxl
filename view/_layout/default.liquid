@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html
+	lang="{{ page.lang | default: site.lang | default: "en" }}"
+	dir=ltr
+	class="{{ html-classes | default: site.html-classes }} {{ html-classes-append }}"
+	prefix="og: http://ogp.me/ns#"
+	data-theme=dark>
+	<head>
+		<meta charset="utf-8">
+
+		<meta name=color-scheme content="dark light">
+		<meta name=theme-color content=var(--colorBg)>
+		<meta name=darkreader-lock>
+		{% comment %} <meta name=theme-color content={{ site.pwa_bg_color }}> {% endcomment %}
+
+		<meta content='width=device-width, initial-scale=1, viewport-fit=cover' name=viewport>
+		<meta name=disabled-adaptations content=watch>
+
+		<!-- All Stylesheets with Relevant Media Queries -->
+		<!-- Make sure it's synchronized with the media queries from css/abstract/00-media.css -->
+		<link rel=stylesheet href="{{ "/static/style/index.css" | url }}">
+		<link rel=stylesheet href="{{ "/static/style/index.mq-cur.css" | url }}" media="(any-hover:hover),(any-pointer:fine)">
+
+		<!-- <link rel=stylesheet href=/static/style/index.mq-dark.css media="(prefers-color-scheme:dark)"> -->
+		<link rel=stylesheet href="{{ "/static/style/index.mq-m.css" | url }}"  media="screen and (min-width:calc(calc(640/16)*1em))">
+		<link rel=stylesheet href="{{ "/static/style/index.mq-l.css" | url }}"  media="screen and (min-width:calc(calc(960/16)*1em))">
+		<!-- <style media=all> -->
+		<!-- 	@import "a.m.mq-l.css"; -->
+		<!-- </style> -->
+		<link rel=stylesheet href="{{ "/static/style/index.mq-xl.css" | url }}" media="screen and (min-width:calc(calc(1600/16)*1em))">
+
+		<title>{%- if type != 'homepage' -%}{%- if title -%}{{- title | strip_html -}}{{- site.separator -}}{%- else -%}{% endif %}{%- endif -%}{{- site.title -}}</title>
+		<meta property=og:title content="{% if title != '' %}{{ title | strip_html }}{% else %}{{ site.title }}{% endif %}">
+		<meta property=og:description name=description content="{% if summary %}{{ summary | markdownify | strip_html | strip_newlines | strip }}{% else %}{{ site.description }}{% endif %}">
+		<meta property=og:url content="{% if url %}{{ url }}{% else %}{{ page.url | prepend: site.url | clearindex }}{% endif %}">
+		{%- if image -%}
+		<meta name=twitter:card content=summary_large_image>
+		{%- else -%}
+		<meta property=og:image content="{{ site.icon.512 | prepend: site.url }}">
+		<meta name=twitter:card content=summary>
+		{%- endif -%}
+		<meta name=twitter:site content="{{ site.author.twitter }}">
+		<meta name=robots content="{% if hidden == true %}noindex{% else %}index{% endif %}, follow">
+
+		<meta name=generator type="{{ eleventy.generator }}">
+
+		<link rel=alternate href=/feed.xml type=application/atom+xml title="RSS (Atom) Feed">
+		<link rel=alternate href=/feed.json type=application/json title="JSON Feed">
+
+		<link rel=icon href="{{ site.icon.32 }}">
+		<link rel=apple-touch-icon sizes=180x180 href="{{ site.icon.180 }}">
+		<meta name=msapplication-square70x70logo content="{{ site.icon.70 }}">
+		<link rel=manifest href=/app.webmanifest>
+		{%- if site.me_url %}
+			<link rel=me href="{{ site.me_url }}">
+		{%- endif %}
+		{%- if site.pingback_url %}
+			<link rel=pingback href="{{ site.pingback_url }}">
+		{%- endif %}
+		{%- if site.webmention_url %}
+			<link rel=webmention href="{{ site.webmention_url }}">
+		{%- endif %}
+		{%- if site.token_endpoint_url %}
+			<link rel=token_endpoint href="{{ site.token_endpoint_url }}">
+		{%- endif %}
+		{%- if site.authorization_endpoint_url %}
+			<link rel=authorization_endpoint href="{{ site.authorization_endpoint_url }}">
+		{%- endif %}
+	</head>
+	<body class="js-preload _stickyFooter o-stack {{ body-classes | default: site.body-classes }} {{ body-classes-append }}" data-type="{{ type }}" itemscope itemtype="https://schema.org/WebPage">
+		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
+		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
+		{%- include "page-header.liquid" %}
+		{{ content }}
+		{%- include "page-footer.liquid" %}
+		<script src="{{ "/static/script/vendor.js" | url }}"></script>
+		<script src="{{ "/static/script/main.js" | url }}"></script>
+	</body>
+</html>

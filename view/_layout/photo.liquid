@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<main id=content class="s-cmsContent u-clearFix o-rustygrid -alignCenter" aria-label=Content>
+	<article class="o-box -viewCard o-center">
+		<a class=url href="{{ page.url | url }}" hidden></a>
+		{{ content }}
+		<h5 class=o-box__meta alt="{{ page.date | localDateFull }}">
+			<time datetime="{{ page.date | htmlDateString }}">
+				{{ page.date | localDMY }}, {{ page.date | localDayOfWeek }}
+			</time>
+			{{ site.separator }}<b>{{ title | escape }}</b>
+			{% if post.data.location %}{{ site.separator }} {{post.data.location}}{% endif %}
+		</h5>
+		{%- if page.data.tags != empty %}
+		<footer class=o-box__footer>
+			<ul class="c-nav -typeTag" style=float:right>
+				{% comment %} <span class="c-nav__item"><b>Etiketler:</b></span> {% endcomment %}
+				{% for tag in page.data.tags %}
+					<li class=c-nav__item>{{ tag }}</a></li>
+				{% endfor %}
+			</ul>
+		</footer>
+		{%- endif %}
+	</article>
+	{% comment %} {%- include "webmention/container" %} {% endcomment %}
+</main>
