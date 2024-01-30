@@ -3,9 +3,9 @@
   "jsc": {
     "minify": {
       "compress": {
-		  "ecma": "6"
-	  },
-	  "mangle": true
+        "ecma": "6"
+      },
+      "mangle": true
     }
   }
 }
