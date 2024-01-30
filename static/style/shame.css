@@ -234,28 +234,23 @@ span.spoiler {
 	border: var(--borderM) solid var(--colorTextOpac20);
 	margin-inline: calc(var(--borderM) * -1);
 	border-radius: var(--radiusDefault);
-	position: relative;
+	/* position: relative; */
 	&:hover {
 		color: var(--colorText);
 		background: transparent;
-		&::selection {
-			color: transparent;
-		}
-		&:before{
-			display: none;
-		}
+		/* &:before{ */
+		/* 	display: none; */
+		/* } */
 	}
 	&::selection {
 		color: transparent;
 	}
-	&:before{ /* opinionated */
-		content: "Spoilers!";
-		position: absolute;
-		color: var(--colorText);
-		/* display: inline-block; */
-		display: inline;
-		text-transform: uppercase;
-		font-variant-caps: all-small-caps;
-		/* @mixin fontSize6; */
-	}
+	/* &:before{  */
+	/* 	content: "Spoilers!"; */
+	/* 	position: absolute; */
+	/* 	color: var(--colorText); */
+	/* 	display: inline; */
+	/* 	text-transform: uppercase; */
+	/* 	font-variant-caps: all-small-caps; */
+	/* } */
 }
