@@ -20,10 +20,9 @@ jobs:
           node-version: 20
 
       - name: Install pnpm
-        # uses: pnpm/action-setup@v2.2.2
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: latest 
           run_install: false
 
       - name: Get pnpm store directory
@@ -40,13 +39,15 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm i --frozen-lockfile
 
       - name: Build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
-          pnpm build
+          set -o braceexpand
+          npm config set script-shell bash
+          pnpm run build
       - name: Fix permissions
         run: |
           chmod -c -R +rX ./dist | while read line; do
