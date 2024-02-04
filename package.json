@@ -79,6 +79,13 @@
     "debug:11tyall": "DEBUG=* pnpm exec eleventy --dryrun --config=config/eleventy.js",
     "upmod": "pnpm up -i -L && pnpm exec update-browserslist-db"
   },
+  "packageManager": "pnpm@8.15.1",
+  "outputDirectory": "dist",
+  "devCommand": "pnpm build",
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm i",
+  "framework": "eleventy",
+
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-fetch": "^4.0.0",

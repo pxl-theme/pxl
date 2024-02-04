@@ -1,4 +1,5 @@
 # pxl [![Build](https://github.com/egeesin/pxl/actions/workflows/build.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/build.yml) [![Deploy to GH Pages](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml) <img class=left src=static/asset/logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
+# pxl [![Build](https://github.com/egeesin/pxl/actions/workflows/build.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/build.yml) [![Deploy to GH Pages](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/egeesin/pxl) <img class=left src=static/asset/logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
 
 > An adjustable framework-ish website theme (and an 11ty boilerplate) with sensible defaults and nice looks.
 
@@ -47,13 +48,23 @@ pnpm start # or "npm start"
 # Once server is running, type "http://localhost:3000" or "http://127.0.0.1:3000" in the address bar of a web browser. For testing dev server in different devices on local network, check the terminal log to access alternative host (usually begins with 192.168.1.1XX:3000)
 ```
 
-#### Build Artifacts from GitHub Actions
+### ☁️  Deploy to Your Site
+
+> Production branch: `main`
+> Build command: `pnpm build`
+> Development command: `pnpm build`
+> Install command: `pnpm i`
+> Build directory: `dist`
+
+[![Deploy to CloudCannon](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/egeesin/pxl)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fegeesin%2Fpxl)
+[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/egeesin/pxl)
+[Deploy to Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-an-eleventy-site/#deploy-with-cloudflare-pages)
 
 1. Select [**Actions**](https://github.com/egeesin/pxl/actions) tab in main [repository](https://github.com/egeesin/pxl) page.
 2. Find and click on the latest successful workflow run with the green checkmark at the top of the list.
 3. Scroll to the bottom and download build artifacts (`dist/`).
 
-#### Deploy from Various CMSes
 
 (TBA)
 
