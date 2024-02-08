@@ -23,7 +23,7 @@
 		"avatar": "static/asset/filler/avatar.png",
 		"mail": "info@example.com"
 	},
-	"html-classes": "t-color t-modRoot -borderColorBack -borderValNormal -borderStyleOutset -embossSmooth -cornerRoundedInner -shadowTypeSmooth",
+	"root-classes": "t-color t-modRoot -borderColorBack -borderValNormal -borderStyleOutset -embossSmooth -cornerRoundedInner -shadowTypeSmooth",
 	"body-classes": "t-modBody",
 	"separator": "・",
 	"webmention_url": "https://webmention.io/example.com/webmention",

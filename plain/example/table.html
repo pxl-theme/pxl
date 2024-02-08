@@ -5,7 +5,7 @@
 	class="t-color t-modRoot"
 	data-theme=dark
 	prefix="og: http://ogp.me/ns#">
-	<include src='_include/head.html'>{
+	<include src='meta/head.html'>{
 		"title":"Table Element",
 		"description": "All table styles"
 	}</include>
@@ -16,7 +16,7 @@
 		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
 		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
 		<div class="c-bodygrid -typeArticle">
-			<include src='_include/page-header.html'></include>
+			<include src='part/header.html'></include>
 			<main id=content class=s-cmsContent aria-label=Content>
 				<article class="o-box -viewCard o-center">
 					<header class=c-header>
@@ -501,8 +501,8 @@
 				</article>
 			</main>
 		</div>
-	<include src='_include/page-footer.html'></include>
-	<include src='_include/ext-bg-frame.html'></include>
-	<include src='_include/footscript.html'></include>
+	<include src='part/footer.html'></include>
+	<include src='part/extra-background.html'></include>
+	<include src='meta/script.html'></include>
 </body>
 </html>

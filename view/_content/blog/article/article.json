@@ -1,5 +1,5 @@
 {
-	"layout": "post",
+	"layout": "post-single",
 	"author": "Name Surname",
 	"permalink": "blog/article/{{ page.fileSlug }}/",
 	"vocab": "entry",

@@ -5,7 +5,7 @@
 	class="t-color t-modRoot"
 	data-theme=dark
 	prefix="og: http://ogp.me/ns#">
-	<include src='_include/head.html'>{
+	<include src='meta/head.html'>{
          "title":"Documentation",
 		"description": ""
 	}</include>
@@ -16,7 +16,7 @@
 		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
 		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
 		<div class="c-bodygrid -colTriple">
-			<include src='_include/page-header.html'></include>
+			<include src='part/header.html'></include>
 			<!-- <div class="o-rustygrid -reversed@palm"> -->
 			<aside class="c-nav__wrapper u-sticky@palm" aria-labelledby=navTitle style="top:0;overflow:auto;max-height:100vh;max-height:100dvh">
 				<details open>
@@ -178,7 +178,7 @@ By chronologic order, BEM (`block--element__modifier`) naming convention, ITCSS 
 - `config/` is a place to keep all configurations of Node modules capable of checking, watching, building and optimizing source files there.
 
 - *Plain* HTML files in `plain/` directory are for development and partials to processed by PostHTML plugins in order to decrease repeating markup and ease editing header/footer. The directory includes basic structures of various components, layouts with dummy content, color table, kitchen sink of all HTML elements. This directory is optional for production if you want to review or tinker with existing plain HTML files to make custom designs on a template language other than Liquid.
-	- `plain/_include/` are the partials I mentioned earlier.
+	- `plain/` are the partials I mentioned earlier.
 	- Templates in `plain/class/` contains the markup of reusable components, grids and layout primitives.
 	- `plain/example/` includes examples of color scheme table, all classless HTML5 elements and icon preview.
 
@@ -231,9 +231,9 @@ This project is under [GNU GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.html) l
 					</md>
 				</article>
 			</main>
-			<include src='_include/page-footer.html'></include>
+			<include src='part/footer.html'></include>
 		</div>
-		<include src='_include/ext-bg-frame.html'></include>
-		<include src='_include/footscript.html'></include>
+		<include src='part/extra-background.html'></include>
+		<include src='meta/script.html'></include>
 	</body>
 </html>

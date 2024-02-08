@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post-single
 priority: 1
 type: homepage
 permalink: "/index.html"

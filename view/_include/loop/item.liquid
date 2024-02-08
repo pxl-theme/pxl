@@ -1,8 +1,8 @@
 {%- comment %} Variables for localized date/time format {% endcomment -%}
 {%- assign currentYear = 'now' | date: '%Y' -%}
 {%- assign postYear = post.date | date: '%Y' -%}
-<div class="o-rustygrid__item js-post">
-	<article class='o-box -viewCard'>
+<div class="o-rustygrid__item js-loop__item">
+	<article class='o-box -viewCard o-center'>
 		{%- comment %} If post content doesn't include "more" HTML comment and has image, add -viewMedia modifier class to Header Component {% endcomment -%}
 		<header class="c-header">
 			{%- unless post.templateContent contains '<!--more-->' -%}

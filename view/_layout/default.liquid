@@ -70,9 +70,9 @@
 	<body class="js-preload _stickyFooter o-stack {{ body-classes | default: site.body-classes }} {{ body-classes-append }}" data-type="{{ type }}" itemscope itemtype="https://schema.org/WebPage">
 		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
 		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
-		{%- include "page-header.liquid" %}
+		{%- include "part/header" %}
 		{{ content }}
-		{%- include "page-footer.liquid" %}
+		{%- include "part/footer" %}
 		<script src="{{ "/static/script/vendor.js" | url }}"></script>
 		<script src="{{ "/static/script/main.js" | url }}"></script>
 	</body>

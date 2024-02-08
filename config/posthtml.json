@@ -1,7 +1,7 @@
 {
 	"plugins": {
 		"posthtml-include": {
-			"root": "plain/"
+			"root": "plain/_include/"
 		},
 		"posthtml-lorem":{},
 		"posthtml-md":{},

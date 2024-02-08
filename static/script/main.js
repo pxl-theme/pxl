@@ -9,10 +9,10 @@ const navRespo = document.querySelector(".c-nav.-responsive");
 const rsgridRespo = document.querySelector(".o-rustygrid.-responsive");
 const rsgridMasonry = document.querySelector(".o-rustygrid.-viewMasonry");
 
-const postContainer = document.getElementById("js-postContainer");
-// .js-postContainer > .js-postContainer > .js-post
+const loopContainer = document.getElementById("js-loop");
+// .js-loop > .js-loop > .js-loop__item
 
-const loadMoreButton = document.getElementById("js-load-more-posts");
+const loadMoreButton = document.getElementById("js-loop__loadButton");
 // const toggleExpand = document.querySelector(
 // 	".c-nav.-responsive .c-toggleExpand",
 // );
@@ -261,45 +261,51 @@ if (grids.length && !CSS.supports("grid-template-rows: masonry")) {
 function masonry(a) {
 	const value = new Colcade(a, {
 		columns: ".o-rustygrid__masonryCol",
-		items: ".js-post",
+		items: ".js-loop__item",
 	});
 	return value;
 }
 // If masonry exists in the DOM, initialize Colcade.js plugin.
 // If rustygrid with responsive modifier exists in the DOM and viewport size is
 // greater than "lap" media breakpoint, initialize Colcade.js plugin.
+
+// const colcade = new Colcade(loopContainer, {
+// 	columns: ".o-rustygrid__masonryCol",
+// 	items: ".js-loop__item",
+// });
+
+// let colcade;
 if (rsgridRespo) {
-	const handleLapMatch = () => {
+	// colcade = new Colcade(loopContainer, {
+	// 	columns: ".o-rustygrid__masonryCol",
+	// 	items: ".js-loop__item",
+	// });
+	function handleLapMatch() {
 		rsgridRespo.classList.add("-viewMasonry");
-		postContainer && masonry(postContainer);
+		loopContainer && masonry(loopContainer);
 		debugMode &&
 			console.log(
 				"[pxl] Enabled masonry layout in main responsive rustygrid",
 			);
-	};
-	const handleLapUnmatch = () => {
+		// loopContainer && masonry(loopContainer);
+	}
+	function handleLapUnmatch() {
 		rsgridRespo.classList.remove("-viewMasonry");
-		postContainer && masonry(postContainer).destroy();
+		loopContainer && masonry(loopContainer).destroy();
 		debugMode &&
 			console.log(
 				"[pxl] Disabled masonry layout in main responsive rustygrid",
 			);
-	};
+	}
 
 	// Apply functions in matching media queries
 	mqLapOrGT.addEventListener("change", (e) => {
-		if (e.matches) {
-			handleLapMatch();
-		} else {
-			handleLapUnmatch();
-		}
+		e.matches ? handleLapMatch() : handleLapUnmatch();
 	});
 	// Initial setup
-	if (mqLapOrGT.matches) {
-		handleLapMatch();
-	}
+	mqLapOrGT.matches ? handleLapMatch() : handleLapUnmatch();
 } else if (rsgridMasonry) {
-	masonry(postContainer);
+	masonry(loopContainer);
 	debugMode &&
 		console.log("[pxl] Enabled masonry layout in masonry view rustygrid");
 }
@@ -311,7 +317,7 @@ function reloadThings() {
 	); /* opinionated */
 	addResponsiveAttr();
 	makeUnselectable();
-	// if (postContainer) masonry(postContainer);
+	// if (loopContainer) colcade;
 }
 function toggleClass(e, c) {
 	if (!e.classList.contains(c)) {
@@ -327,7 +333,7 @@ function toggleClass(e, c) {
 if (navRespo) {
 	// Change navigation type to Fly-out
 	// if average window size inside any device is suitable for palms or bigger
-	function handlePalmMatch() {
+	function handlePalmMatchForNav() {
 		navRespo.className = navRespo.className.replace(
 			/(^|\s)-type\S+/g,
 			"$1-typeFlyout",
@@ -346,7 +352,7 @@ if (navRespo) {
 			);
 	}
 
-	function handlePalmUnmatch() {
+	function handlePalmUnmatchForNav() {
 		navRespo.className = navRespo.className.replace(
 			/(^|\s)-type\S+/g,
 			"$1-typeTree",
@@ -367,7 +373,7 @@ if (navRespo) {
 
 	// Change navigation layout, alignment and remove expandability
 	// if average window size inside any device is suitable for laps or bigger.
-	function handleLapMatch() {
+	function handleLapMatchForNav() {
 		navRespo.className = navRespo.className.replace(
 			/(^|\s)-layout\S+/g,
 			"$1-layoutHorizontal",
@@ -380,7 +386,7 @@ if (navRespo) {
 			);
 	}
 
-	function handleLapUnmatch() {
+	function handleLapUnmatchForNav() {
 		navRespo.className = navRespo.className.replace(
 			/(^|\s)-layout\S+/g,
 			"$1-layoutVertical",
@@ -394,7 +400,7 @@ if (navRespo) {
 
 	// Change navigation layout
 	// if average window size inside any device is suitable for desks or bigger
-	function handleDeskMatch() {
+	function handleDeskMatchForNav() {
 		navRespo.className = navRespo.className.replace(
 			/(^|\s)-layout\S+/g,
 			"$1-layoutHorizontal",
@@ -406,27 +412,27 @@ if (navRespo) {
 			);
 	}
 
-	function handleDeskUnmatch() {
+	function handleDeskUnmatchForNav() {
 		// Handle unmatch for desk breakpoint if needed
 	}
 
 	// Apply functions in matching media queries
 	mqPalmOrGT.addEventListener("change", (e) => {
-		e.matches ? handlePalmMatch() : handlePalmUnmatch();
+		e.matches ? handlePalmMatchForNav() : handlePalmUnmatchForNav();
 	});
 
 	mqLapOrGT.addEventListener("change", (e) => {
-		e.matches ? handleLapMatch() : handleLapUnmatch();
+		e.matches ? handleLapMatchForNav() : handleLapUnmatchForNav();
 	});
 
 	mqDeskOrGT.addEventListener("change", (e) => {
-		e.matches ? handleDeskMatch() : handleDeskUnmatch();
+		e.matches ? handleDeskMatchForNav() : handleDeskUnmatchForNav();
 	});
 
 	// Initial setup
-	if (mqPalmOrGT.matches) handlePalmMatch();
-	if (mqLapOrGT.matches) handleLapMatch();
-	if (mqDeskOrGT.matches) handleDeskMatch();
+	mqPalmOrGT.matches && handlePalmMatchForNav();
+	mqLapOrGT.matches && handleLapMatchForNav();
+	mqDeskOrGT.matches && handleDeskMatchForNav();
 }
 
 //--- .o-reel Just an Immediately Invoked Function Expression (IIFE):
@@ -470,8 +476,8 @@ if (navRespo) {
 function bindUIEvents() {
 	window.addEventListener("load", () => {
 		// Loading content from previous pages
-		if (postContainer?.dataset.paginatorCurrent > 1) {
-			const firstPost = document.querySelector(".js-post");
+		if (loopContainer?.dataset.paginatorCurrent > 1) {
+			const firstPost = document.querySelector(".js-loop__item");
 			const initialOffset = firstPost.offsetTop;
 
 			loadPosts(() => {
@@ -500,7 +506,7 @@ function bindUIEvents() {
 		return false;
 	});
 
-	// document.querySelector(".js-post-navigation-arrow").addEventListener("click", () => {
+	// document.querySelector(".js-loop__item-navigation-arrow").addEventListener("click", () => {
 	//     sendGAEvent("Posts", "Post navigation");
 	// });
 }
@@ -510,7 +516,7 @@ function fetchPages(pageNumbers, callback) {
 
 	// pageNumbers.forEach((pageNumber, index) => {
 	for (const [index, pageNumber] of pageNumbers.entries()) {
-		const pagePath = postContainer.getAttribute("data-path");
+		const pagePath = loopContainer.getAttribute("data-path");
 		// const endpoint = pageNumber === 1 ? "/" : `/p/${pageNumber}`;
 		const endpoint =
 			pageNumber === 1 ? pagePath : `${pagePath}p/${pageNumber}.html`;
@@ -546,13 +552,13 @@ function getRangeArray(from, to) {
 function loadPosts(callback, previousPages) {
 	// Set variables for required data attributes and container target
 	const currentPage = parseInt(
-		postContainer.getAttribute("data-paginator-current"),
+		loopContainer.getAttribute("data-paginator-current"),
 	);
 	const totalPages = parseInt(
-		postContainer.getAttribute("data-paginator-total"),
+		loopContainer.getAttribute("data-paginator-total"),
 	);
-	// const existingPosts = postContainer;
-	const existingPosts = postContainer.querySelector("#js-postContainerInner");
+	// const existingPosts = loopContainer;
+	const existingPosts = loopContainer.querySelector("#js-loop__inner");
 
 	// let pageNumbers;
 	// if (previousPages) {
@@ -576,14 +582,14 @@ function loadPosts(callback, previousPages) {
 
 	// Get URL of paginator subpath (from data-path attr) and update the address.
 	if (typeof window.history !== "undefined") {
-		const pagePath = postContainer.getAttribute("data-path");
+		const pagePath = loopContainer.getAttribute("data-path");
 		window.history.pushState({}, "", `${pagePath}p/${nextPage}`);
 	}
 	// }
 
 	fetchPages(pageNumbers, (pages) => {
 		// Select all posts
-		const posts = pages.querySelectorAll(".js-post");
+		const posts = pages.querySelectorAll(".js-loop__item");
 
 		// if (previousPages) {
 		// 	// Add posts from previous page if there's any
@@ -592,7 +598,7 @@ function loadPosts(callback, previousPages) {
 		// 		debugMode && console.log( "[pxl] Insert a post from previous page as first child of container");
 		// 	}
 		// 	// Refresh masonry layout
-		// 	if (postContainer) masonry(postContainer).prepend(posts);
+		// 	if (loopContainer) colcade.prepend(posts);
 		// 	debugMode && console.log( "[pxl] Prepended fetched posts from previous page to the masonry layout");
 		// 	// Callback when it's done
 		// 	// document.addEventListener("layoutComplete", callback, {
@@ -605,14 +611,14 @@ function loadPosts(callback, previousPages) {
 			debugMode && console.log("[pxl] Insert a post from next page");
 		}
 		// Refresh masonry layout
-		if (postContainer) masonry(postContainer).append(posts);
+		if (loopContainer) colcade.append(posts);
 		debugMode &&
 			console.log(
 				"[pxl] Appended fetched posts from next page to the masonry layout",
 			);
 
 		// Update data attribute to the value of current page
-		postContainer.setAttribute("data-paginator-current", currentPage + 1);
+		loopContainer.setAttribute("data-paginator-current", currentPage + 1);
 
 		// Callback
 		if (typeof callback === "function") {
