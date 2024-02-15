@@ -2,7 +2,13 @@
 title: "Stockholm: A Journey into Scandinavian Splendor"
 author: "WanderlustExplorer"
 date: 2020-03-09T09:45:00+02:00
-topics: travel, Stockholm, Scandinavia, culture, food, landmarks
+topics: 
+  - travel
+  - Stockholm
+  - Scandinavia
+  - culture
+  - food
+  - landmarks
 ---
 
 ![](/media/stockholm.jpg)

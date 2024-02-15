@@ -1,7 +1,10 @@
 ---
 title: Unraveling the Marvels of Quartz Watches
 date: 2018-03-05T12:30:00+00:00
-topics: quartz-watches, timekeeping, watch-technology
+topics:
+  - Quartz
+  - Timekeeping
+  - Technology
 ---
 
 ![](/media/greg-rakozy-Vwi2hXmC-jQ-unsplash.jpg)

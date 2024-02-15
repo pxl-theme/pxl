@@ -1,4 +1,4 @@
-const debugMode = true;
+const debugMode = false;
 debugMode && console.log("[pxl] Beginning of script");
 
 //--- Global Variables

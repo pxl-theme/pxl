@@ -2,10 +2,10 @@
 title: "Funky Fish & Raina - Artificial Sweetener: A Chiptune Delight"
 date: 2020-06-11T12:30:00+00:00
 topics:
-  - chiptune
-  - music review
-  - electronic
-  - video game music
+  - Chiptune
+  - Music Review
+  - Electronic
+  - Video Game Music
   - Funky Fish
   - Raina
 ---

@@ -2,7 +2,7 @@
 <html
 	lang="{{ page.lang | default: site.lang | default: "en" }}"
 	dir=ltr
-	class="{{ html-classes | default: site.html-classes }} {{ html-classes-append }}"
+	class="{{ root-classes | default: site.root-classes }} {{ append-class-to-root }}"
 	prefix="og: http://ogp.me/ns#"
 	data-theme=dark>
 	<head>
@@ -67,7 +67,7 @@
 			<link rel=authorization_endpoint href="{{ site.authorization_endpoint_url }}">
 		{%- endif %}
 	</head>
-	<body class="js-preload _stickyFooter o-stack {{ body-classes | default: site.body-classes }} {{ body-classes-append }}" data-type="{{ type }}" itemscope itemtype="https://schema.org/WebPage">
+	<body class="js-preload _stickyFooter o-stack {{ body-classes | default: site.body-classes }} {{ append-class-to-body }}" data-type="{{ type }}" itemscope itemtype="https://schema.org/WebPage">
 		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
 		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
 		{%- include "part/header" %}

@@ -1,7 +1,12 @@
 ---
 title: "Navigating the Paradox: A Philosophical Exploration of the Ship of Theseus"
 date: 2021-08-21T12:30:00+00:00
-topics: Philosophy, "Ship of Theseus", Identity, Metaphysics, "Thought Experiment"
+topics: 
+  - Philosophy
+  - Ship of Theseus
+  - Identity
+  - Metaphysics
+  - Thought Experiment
 ---
 The Ship of Theseus[^1], a classic thought experiment in metaphysics, poses intriguing questions about identity and continuity. Imagine a ship whose every part is replaced over time. Is it still the same ship? I recently delved into the heart of this paradox, pondering its implications on existence and transformation.
 

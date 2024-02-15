@@ -2,15 +2,15 @@
 title: "Level Up Your Game: A Deep Dive into Video Game Development"
 date: 2015-01-01T12:00:00+00:00
 topics:
-  - "Game Development"
+  - Game Development
   - Unity
-  - "Unreal Engine"
-  - "Game Design"
+  - Unreal Engine
+  - Game Design
   - Programming
-  - "Video Games"
-  - "Indie Game Dev"
-  - "Interactive Narratives"
-  - "Gaming Community"
+  - Video Games
+  - Indie Game Dev
+  - Interactive Narratives
+  - Gaming Community
   - Playtesting
 ---
 

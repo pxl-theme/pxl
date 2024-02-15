@@ -1,7 +1,11 @@
 ---
 title: "Timeless Journey with Camel: A Musical Odyssey"
 date: "2023-04-15T12:00:00+00:00"
-topics: Camel, Progressive Rock, Music History, Band Biography
+topics:
+  - Camel
+  - Progressive Rock
+  - Music History
+  - Band Biography
 ---
 
 ![Vinyl cover of Moonmadness album by Camel](/media/camel-moonmadness-vinyl-cover.webp "Camel - Moonmadness")

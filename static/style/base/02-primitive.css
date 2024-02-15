@@ -1,14 +1,14 @@
-/* source: every-layout.dev */
+/* Source: Every Layout by Heydon Pickering (every-layout.dev) */
 
-/* stack layout primitive
+/* Stack Layout Primitive
  */
 .o-stack {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 }
-.o-stack > *:not(.u-visuallyHidden) { /* Don't apply margin to first child */
 /* Don't apply any top or down margin to direct children primitive as default */
+.o-stack > :not(.u-visuallyHidden) {
 	margin-block: 0;
 }
 

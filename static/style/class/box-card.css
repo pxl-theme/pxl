@@ -2,8 +2,8 @@
  * Note: Check base/02-primitive.css for box styles.
  */
 .o-box.-viewCard.o-center {
-	/* o-center has content-box sizing */
 	width: calc(100% - calc(var(--boxViewCard-padSide)*2) - calc(var(--border, 0px)*2));
+	/* o-center has content-box sizing, width needs adjustment in boxes*/
 
 }
 .o-box.-viewCard {

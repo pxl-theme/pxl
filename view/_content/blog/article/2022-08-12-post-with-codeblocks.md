@@ -1,7 +1,12 @@
 ---
 title: "Exploring the @scope Feature in CSS for Modular Styling"
-topics: CSS, web development, front-end, @scope, modular styling
 date: 2022-08-12T10:30:00+00:00
+topics:
+  - CSS
+  - Web Development
+  - Front-End
+  - "@scope"
+  - Modular Styling
 ---
 
 CSS, the cornerstone of web styling, constantly evolves to meet the demands of modern web development. One of the recent additions that has caught the attention of developers is the `@scope` feature. This feature introduces a new way of handling styles, promoting modular and encapsulated styling practices.
