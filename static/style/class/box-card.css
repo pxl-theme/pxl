@@ -182,7 +182,7 @@
 .o-box__meta {
 	text-transform:uppercase;
 	inline-size: 100%;
-	display: inline-block;
+	/* display: inline-block; */
 	&:is(.-alignStart,.-alignEnd) {
 		inline-size: 50%;
 	}
@@ -216,5 +216,6 @@
 /* Trim extra space between meta and title. */
 .o-box__meta + .o-box__title {
 	margin-block-start: 0;
-	display: inline-block;
+	clear: both;
+	/* display: inline-block;  */
 }

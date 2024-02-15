@@ -5,7 +5,8 @@
 		display: grid;
 		justify-content: center;
 		/* grid-gap: 0 var(--gridGutter); */
-		grid-gap: calc(var(--rhythmUnit) * 2) var(--gridGutter);
+		/* grid-gap: calc(var(--rhythmUnit) * 2) var(--gridGutter); */
+		grid-gap: var(--rhythmUnit) var(--gridGutter);
 		> * {min-width: 0}
 
 		--mainWidth: calc(var(--maxTextWidth) + calc(var(--boxViewCard-padSide) * 2) + calc(var(--border, 0px) * 2));

@@ -10,7 +10,7 @@ permalink: "photo/{% if pagination.pageNumber > 0 %}p/{{ pagination.pageNumber |
 ---
 {% assign post_count = collections.photo | default: pagination.items %}
 {%- include 'loop/container'
-	view: "responsive"
+	view: "masonry"
 	load_more_button: true
 	items: post_count
 %}

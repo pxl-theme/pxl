@@ -10,7 +10,7 @@ permalink: "blog/article/{% if pagination.pageNumber > 0 %}p/{{ pagination.pageN
 ---
 {% assign post_count = collections.article | default: pagination.items %}
 {%- include 'loop/container'
-	view: "responsive"
+	view: "masonry"
 	load_more_button: true
 	items: post_count
 	item_type: default

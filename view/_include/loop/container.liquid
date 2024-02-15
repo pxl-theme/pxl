@@ -1,6 +1,6 @@
 <main
 	id=js-loop
-	class="s-cmsContent o-stack o-rustygrid{% case view %}{% when "responsive" %} -responsive{% when "masonry" %} -viewMasonry{% else %}{% endcase %} -alignCenter"
+	class="s-cmsContent {% if view == "masonry" %}o-rustygrid -viewMasonry{% else %}o-stack{% endif %}"
 	aria-label=Content
 	data-path="{{ page.url | paginator_link }}"
 	data-paginator-current="{{ pagination.pageNumber | plus:1}}"
@@ -10,11 +10,11 @@
 
 	{%- comment -%}
 	Prepare the markup if content container has masonry view. {%- endcomment -%}
-	{%- if view == "responsive" or "masonry" -%}
+	{%- if view == "masonry" -%}
 	{%- comment -%} 
 	Putting inline-block property to loop__inner,
 	so the button next to it doesn't shift inside masonry layout. {%- endcomment -%}
-	<div id=js-loop__inner class=o-stack style="display:inline-block">
+	<div id=js-loop__inner>
 		<div class="o-rustygrid__masonryCol"></div>
 		<div class="o-rustygrid__masonryCol"></div>
 		<div class="o-rustygrid__masonryCol"></div>
@@ -55,7 +55,7 @@
 
 	{%- comment -%}
 	End of masonry wrapper {%- endcomment -%}
-	{%- if view == "responsive" or "masonry" -%}
+	{%- if view == "masonry" -%}
 	</div>
 	{%- endif -%}
 

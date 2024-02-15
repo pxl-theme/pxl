@@ -6,7 +6,6 @@ const docHTML = document.documentElement;
 const docBody = document.body;
 
 const navRespo = document.querySelector(".c-nav.-responsive");
-const rsgridRespo = document.querySelector(".o-rustygrid.-responsive");
 const rsgridMasonry = document.querySelector(".o-rustygrid.-viewMasonry");
 
 const loopContainer = document.getElementById("js-loop");
@@ -257,6 +256,10 @@ if (grids.length && !CSS.supports("grid-template-rows: masonry")) {
 	- Requires bloated markup in HTML
 */
 
+// If masonry exists in the DOM, initialize Colcade.js plugin.
+// If rustygrid with responsive modifier exists in the DOM and viewport size is
+// greater than "lap" media breakpoint, initialize Colcade.js plugin.
+
 // Find rustygrid object with masonry view and initialize Colcade.js plugin.
 function masonry(a) {
 	const value = new Colcade(a, {
@@ -265,46 +268,7 @@ function masonry(a) {
 	});
 	return value;
 }
-// If masonry exists in the DOM, initialize Colcade.js plugin.
-// If rustygrid with responsive modifier exists in the DOM and viewport size is
-// greater than "lap" media breakpoint, initialize Colcade.js plugin.
-
-// const colcade = new Colcade(loopContainer, {
-// 	columns: ".o-rustygrid__masonryCol",
-// 	items: ".js-loop__item",
-// });
-
-// let colcade;
-if (rsgridRespo) {
-	// colcade = new Colcade(loopContainer, {
-	// 	columns: ".o-rustygrid__masonryCol",
-	// 	items: ".js-loop__item",
-	// });
-	function handleLapMatch() {
-		rsgridRespo.classList.add("-viewMasonry");
-		loopContainer && masonry(loopContainer);
-		debugMode &&
-			console.log(
-				"[pxl] Enabled masonry layout in main responsive rustygrid",
-			);
-		// loopContainer && masonry(loopContainer);
-	}
-	function handleLapUnmatch() {
-		rsgridRespo.classList.remove("-viewMasonry");
-		loopContainer && masonry(loopContainer).destroy();
-		debugMode &&
-			console.log(
-				"[pxl] Disabled masonry layout in main responsive rustygrid",
-			);
-	}
-
-	// Apply functions in matching media queries
-	mqLapOrGT.addEventListener("change", (e) => {
-		e.matches ? handleLapMatch() : handleLapUnmatch();
-	});
-	// Initial setup
-	mqLapOrGT.matches ? handleLapMatch() : handleLapUnmatch();
-} else if (rsgridMasonry) {
+if (rsgridMasonry) {
 	masonry(loopContainer);
 	debugMode &&
 		console.log("[pxl] Enabled masonry layout in masonry view rustygrid");
@@ -317,7 +281,6 @@ function reloadThings() {
 	); /* opinionated */
 	addResponsiveAttr();
 	makeUnselectable();
-	// if (loopContainer) colcade;
 }
 function toggleClass(e, c) {
 	if (!e.classList.contains(c)) {
@@ -558,7 +521,14 @@ function loadPosts(callback, previousPages) {
 		loopContainer.getAttribute("data-paginator-total"),
 	);
 	// const existingPosts = loopContainer;
-	const existingPosts = loopContainer.querySelector("#js-loop__inner");
+
+	let existingPosts;
+
+	if (rsgridMasonry) {
+		existingPosts = loopContainer.querySelector("#js-loop__inner");
+	} else {
+		existingPosts = loopContainer;
+	}
 
 	// let pageNumbers;
 	// if (previousPages) {
@@ -598,7 +568,7 @@ function loadPosts(callback, previousPages) {
 		// 		debugMode && console.log( "[pxl] Insert a post from previous page as first child of container");
 		// 	}
 		// 	// Refresh masonry layout
-		// 	if (loopContainer) colcade.prepend(posts);
+		// 	loopContainer && masonry(loopContainer).prepend(posts);
 		// 	debugMode && console.log( "[pxl] Prepended fetched posts from previous page to the masonry layout");
 		// 	// Callback when it's done
 		// 	// document.addEventListener("layoutComplete", callback, {
@@ -611,7 +581,7 @@ function loadPosts(callback, previousPages) {
 			debugMode && console.log("[pxl] Insert a post from next page");
 		}
 		// Refresh masonry layout
-		if (loopContainer) colcade.append(posts);
+		loopContainer && masonry(loopContainer).append(posts);
 		debugMode &&
 			console.log(
 				"[pxl] Appended fetched posts from next page to the masonry layout",

@@ -8,11 +8,15 @@
 	justify-content: flex-start;
 }
 .o-stack > *:not(.u-visuallyHidden) { /* Don't apply margin to first child */
+/* Don't apply any top or down margin to direct children primitive as default */
 	margin-block: 0;
 }
-.o-stack > *:not(.u-visuallyHidden) + *:not(.u-visuallyHidden) { /* Apply margin to all children except first one */
-	/* margin-block-start: var(--rhythmUnit); */
-	margin-block-start: calc(var(--rhythmUnit)*2);
+
+
+/* Only apply top margin if isn't the first direct child of stack layout */
+/* (Except visually hidden elements or rusty grid masonry column) */
+.o-stack > :not(.u-visuallyHidden) + :not(.u-visuallyHidden) {
+	margin-block-start: var(--rhythmUnit);
 }
 
 /* box layout primitive
