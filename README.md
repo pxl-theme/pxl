@@ -1,54 +1,69 @@
-# pxl [![Build](https://github.com/egeesin/pxl/actions/workflows/build.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/build.yml) [![Deploy to GH Pages](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml) <img class=left src=static/asset/logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
 # pxl [![Build](https://github.com/egeesin/pxl/actions/workflows/build.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/build.yml) [![Deploy to GH Pages](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/egeesin/pxl) <img class=left src=static/asset/logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
 
-> An adjustable framework-ish website theme (and an 11ty boilerplate) with sensible defaults and nice looks.
+> 👾 An adjustable framework-ish static site theme with sensible defaults and nice looks.
 
-<img class=center src=static/asset/preview.png alt="A screenshot of the website theme previewing both light and dark theme." />
+<img class=center src=static/asset/preview.png alt="A screenshot of the static site theme previewing multiple color schemes in both dark and light mode." />
 
-## <span style="font-weight:400">**p**retty e**x**treme **l**ist of features 'cause I ❤️ <span title="Confusing Specificity Sufferfest">CSS</span></span>
+## Features
 
-- Focused on HTML and CSS, leaving JavaScript for responsive design, a11y features and non-essential tasks only
-- CSS Reset with [Sanitize.css](https://github.com/csstools/sanitize.css)
-- Improved legibility with vertical rhythm and modular scale
-- Mobile-first responsive design
-- Auto or manual dark mode with lots of color palette options including [Solarized](https://github.com/altercation/solarized), [Gruvbox](https://github.com/morhetz/gruvbox), [One Dark UI](https://github.com/atom/one-dark-ui) and many more for each mode.
-- (Almost) every element has multiple designs to serve content in multiple ways
-	- Customizable and responsive navigation component
-	- Container make-ups like shadow/emboss effects, border and outer border thickness, adjustable corner roundness
-	- External background layers for adding blending grain/gradient effects
-- [BEM](https://getbem.com/naming/) class naming with chainable modifier and [other](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/) tweaks
-- Support for basic multidirectional writing mode with [logical properties](https://css-tricks.com/css-logical-properties-and-values/) (WIP)
+- 🥇 HTML & <span title="Confusing Specificity Sufferfest">CSS</span> first, JavaScript later for responsive layouts, accessibility features only
+	- Improved legibility with vertical rhythm, modular scale, responsive text contrast
+	- Basic bidirectional support with [logical properties](https://css-tricks.com/css-logical-properties-and-values/) (WIP)
+	- CSS reset by [Sanitize.css](https://github.com/csstools/sanitize.css)
+	- Plain version of templates are processed by [PostHTML](https://github.com/posthtml/posthtml) and compatible plugins
+	- Layout Primitives from [*Every Layout*](https://every-layout.dev)
+- 🎈 [11ty](https://11ty.dev)-compatible templates written in Liquid [template language](https://shopify.dev/docs/api/liquid#what_is_a_template_language)
+- 🌗 Light and dark mode support
+	- Auto selects based on system preference first, lets you toggle theme with [drkmode.js](https://github.com/BetaHuhn/drkmd.js)
+	- Each mode has their own color scheme preference like [Solarized](https://github.com/altercation/solarized), [Gruvbox](https://github.com/morhetz/gruvbox), [One Dark UI](https://github.com/atom/one-dark-ui)…
+	- Each color scheme has different shades and tones of layers and 6 + 2 hues that is converted and edited from [Tinted Theming](https://github.com/tinted-theming/schemes) base16 schemes
+- 🎛 Objects and components with lots of style modifiers
+	- Container make-ups like border/outline (as `box-shadow`) thickness, corner roundness, shadow/emboss effects,
+	- Responsive masonry layout and navigation component in homepage layout by default
+	- Optional external backgrounds for adding blending, grain/gradient effects that is [full-sized](https://css-tricks.com/perfect-full-page-background-image/) [fixed](https://css-tricks.com/the-fixed-background-attachment-hack/) in all platforms.
+	- [BEM](https://getbem.com/naming/) class naming with chainable modifier and [other](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/) tweaks for making code readable to both humans and computers
+- 👷 Building ([PostCSS + Lightning CSS](https://github.com/postcss/postcss-cli#usage), PostHTML), validation ([html-validate](https://html-validate.org/usage/cli.html)), [biome](https://biomejs.dev/analyzer/#import-sorting-via-cli)), optimization (htmlnano, swc, svgo, Lightning CSS, sharp) and file watching (via chokidar) tasks for markup, style, script and media files in NPM scripts
+- ⚡️ Local, live and minimal dev server from [11ty](https://www.11ty.dev/docs/watch-serve/#eleventy-dev-server)
 
-## Usage
+## Demos
+- [GitHub Pages](https://pxl.egeesin.com)
+- [Pagespeed Insight](https://pagespeed.web.dev/report?url=https://pxl.egeesin.com)
 
-### Installation
-#### Build from Source
+## Setup
 
-Tested on macOS, also should work on most GNU/Linux distros.
+### 📦 Build from Source
 
-**Dependencies:** [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [pnpm](https://pnpm.io/installation)
+**Prerequisities**
+- [Node.js 18 LTS or later](https://nodejs.org/en/download)
+- [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [`pnpm`](https://pnpm.io/installation) (or `npm` if you know what you're doing)
 
 **Note:** On Windows, install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or [Git for Windows](https://git-scm.com/download/win) to work with tasks that depends on Node modules and shell commands. If you go with Git for Windows, [set](https://pnpm.io/cli/run#script-shell) this configuration. `pnpm (or npm) config set script-shell "C:\\Program Files\\git\\bin\\bash.exe"`
 
-
-Open a terminal emulator and execute commands below:
+Open a terminal emulator (In Windows, right-click on start menu and select "Windows PowerShell" or in macOS, press `⌘+Space` and type "Terminal.app") and follow commands below:
 
 ```sh
 # Clone the repository and change directory
 git clone https://github.com/egeesin/pxl && cd pxl
 
-# 1.  Install local Node modules of the repository
+# Install local Node modules of the repository
 pnpm i # or "npm i"
 
-# If you're using npm, find and replace all "pnpm run" matches with "npm run" in package.json via a code editor or grep/sed CLI tool.
+# Note: If you're using npm, find and replace all "pnpm run" matches
+# with "npm run" in package.json via a code editor or grep/sed.
 
-# 2. Generate your first build (pnpm build) and start dev server
+# Generate your first build (pnpm build) and start dev server (pnpm watch)
 pnpm start # or "npm start"
 
-# Once server is running, type "http://localhost:3000" or "http://127.0.0.1:3000" in the address bar of a web browser. For testing dev server in different devices on local network, check the terminal log to access alternative host (usually begins with 192.168.1.1XX:3000)
+# Once server is running, type "http://localhost:3000" or
+# "http://127.0.0.1:3000" in the address bar of a web browser. For testing
+# dev server in different devices on local network, check the terminal log
+# to access alternative host (usually begins with 192.168.1.1XX:3000)
 ```
 
 ### ☁️  Deploy to Your Site
+
+**Warning:** None of those deployment options are tested yet. Use it if you're know what you're doing.
 
 > Production branch: `main`
 > Build command: `pnpm build`
@@ -61,16 +76,32 @@ pnpm start # or "npm start"
 [![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/egeesin/pxl)
 [Deploy to Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-an-eleventy-site/#deploy-with-cloudflare-pages)
 
+### 🐙 Download Build Artifact
+
 1. Select [**Actions**](https://github.com/egeesin/pxl/actions) tab in main [repository](https://github.com/egeesin/pxl) page.
 2. Find and click on the latest successful workflow run with the green checkmark at the top of the list.
 3. Scroll to the bottom and download build artifacts (`dist/`).
 
+## Usage
+
+### 🖥️ CLI Scripts
+- `pnpm build`: Build production/dev directory
+- `pnpm watch`: Watch production/dev directory and serve dev server
+- `pnpm upmod`: Update dependencies and package.json
+- `pnpm debug:11ty`: Output debug messages from Eleventy build task
+- `pnpm exec browserslist | pbcopy`: Copies the list of min. supported browser versions to your clipboard so you can easily import this to [Can I Use?](https://caniuse.com/ciu/settings#browsers) as a new set. (Works in macOS with shell env., use different clipboard tool replace "pbcopy" part)
+**Note:** Check more NPM run scripts in `package.json`
+
+### 🎨 Theme Modifier Options
 
 (TBA)
 
-### Storing/Editing Content
+### 📝 Storing/Editing Content
 
 (TBA)
+
+### 🔑 Environment Variable
+- `WEBMENTION_IO_TOKEN`
 
 ## Design
 
@@ -117,14 +148,14 @@ Default fonts are subset and OpenType feature/stylistic set frozen version of bo
 
 By default, mobile-first responsive design approach is being used and expand through different
 screen sizes that fits different [human ergonomics](https://x.com/lukew/status/273453112902172672).
-- wrist (smartwatches, <2inch),
-- palm (smartphones, "phablets", ≥640px),
-- lap (tablets on portrait mode, ≥960px),
-- desk (tablets on landscape mode, laptops, desktop PCs, ≥1280px) and,
+- 🤝 wrist (smartwatches, <2inch),
+- 🤲 palm (smartphones, "phablets", ≥640px),
+- 🦵 lap (tablets on portrait mode, ≥960px),
+- 🖥️ desk (tablets on landscape mode, laptops, desktop PCs, ≥1280px) and,
 - exaggarated custom media properties like:
-	- wall (desktop PCs, full HD monitors, ≥1600px)
-	- mall (2K monitors, ≥1920px) and,
-	- titan (ultra-wide monitors, 4K displays, ≥2400px)
+	- 🖼️ wall (desktop PCs, full HD monitors, ≥1600px)
+	- 🏬 mall (2K monitors, ≥1920px) and,
+	- 🦖 titan (ultra-wide monitors, 4K displays, ≥2400px)
 
 ### Browser Support
 
@@ -133,18 +164,3 @@ All web browsers that has 0.5% or higher global usage (except Opera Mini and any
 ## License
 
 This project is under [GNU GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.html) license.
-
-*[pxl]: Short for "pixel"
-*[npm]: Node Package Manager
-*[pnpm]: performant npm
-*[WSL]: Windows Subsystem for Linux
-*[GNU]: GNU's Not Unix!
-*[GPL]: General Public License
-*[BEM]: Block Element Modifier
-*[JS]: JavaScript
-*[CSS]: Cascading Style Sheets
-*[HTML5]: Hyper Text Markup Language 5
-*[HTML]: Hyper Text Markup Language
-*[a11y]: accessibility
-*[11ty]: Eleventy
-*[i18n]: internationalization
