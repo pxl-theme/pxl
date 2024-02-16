@@ -43,10 +43,7 @@
 						{%- endunless -%}
 						-alignEnd">
 						{%- for topic in post.data.topics limit:3 -%}
-							{{topic}}
-							{%- unless forloop.last -%}
-								,
-							{%- endunless -%}
+							{{- topic }}{% unless forloop.last %}, {% endunless -%}
 						{%- endfor -%}
 					</h6>
 				{%- endif -%}

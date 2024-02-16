@@ -847,7 +847,8 @@ ol.c-nav.-typeTree .c-nav__item {
 	min-inline-size: 3em; /* Minimum recommended thumb size (48px) */
 	max-inline-size: 8em; /* opinionated */
 	/* > svg { */
-	> :is(.pi) {
+	/* > :is(.pi) { */
+	> .pi {
 		/* 1.5x of pxl icon size */
 		--iconWeight: 1.25px;
 		--iconSize: 27px;

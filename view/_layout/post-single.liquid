@@ -6,13 +6,13 @@ append-class-to-root: "-stylesetAcetate -borderValNone"
 	<article class="o-box -viewCard o-center" itemscope itemtype="https://schema.org/BlogPosting">
 		<header class=c-header>
 			{%- if page.date != nil -%}
-				<h5 class="o-box__meta{%- if topics != empty and nil -%} -alignStart@wrist-gt{%- endif -%}" alt="{{ page.date | localDateFull }}">
+				<h5 class="o-box__meta{% if topics != nil %} -alignStart@wrist-gt{% endif %}" alt="{{ page.date | localDateFull }}">
 					<time datetime="{{ page.date | htmlDateString }}" itemprop=datePublished>
 						{{ page.date | localDMY }}, {{ page.date | localDayOfWeek }}
 					</time>
 				</h5>
 			{%- endif -%}
-			{%- if topics != empty and nil -%}
+			{%- if topics != nil -%}
 				<h6 class="o-box__meta -alignEnd@wrist-gt" itemprop=keywords>
 				{%- for topic in topics %}{{topic}}{% unless forloop.last %}, {% endunless %}{% endfor %}
 				</h6>
