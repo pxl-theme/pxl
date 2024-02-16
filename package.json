@@ -63,7 +63,7 @@
     "optimize:page": "run-p optimize:page:*",
     "optimize:page:view": "pnpm exec posthtml \"**/*.html\" -o dist/ -a -r tmp/view -c config/posthtml-optimize.json && cpy \"tmp/view/**/*.{txt,xml,json,webmanifest}\" dist/ && cpy \"tmp/view/media/**/*\" dist/media/",
     "optimize:page:plain": "pnpm exec posthtml \"plain/**/*.html\" -o dist/ -a -r tmp/ -c config/posthtml-optimize.json",
-    "optimize:script:vendor": "pnpm exec swc node_modules/{colcade/colcade.js,drkmd-js/dist/drkmd-js.min.js,lazysizes/lazysizes.min.js} -o dist/static/script/vendor.js --config-file config/swc.json",
+    "optimize:script:vendor": "pnpm exec swc node_modules/{colcade/colcade.js,drkmd-js/dist/drkmd-js.min.js} -o dist/static/script/vendor.js --config-file config/swc.json",
     "optimize:script": "pnpm exec swc static/script/main.js -d dist/ --config-file config/swc.json",
     "watch": "run-p -l serve watch:*",
     "serve": "pnpm exec eleventy --serve --dryrun --output=dist/ --config=config/eleventy.js",
@@ -85,7 +85,6 @@
   "buildCommand": "pnpm build",
   "installCommand": "pnpm i",
   "framework": "eleventy",
-
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-fetch": "^4.0.0",
@@ -166,7 +165,6 @@
   "dependencies": {
     "colcade": "^0.2.0",
     "drkmd-js": "^1.0.12",
-    "lazysizes": "^5.3.2",
     "prism-themes": "^1.9.0",
     "sanitize.css": "^13.0.0"
   }

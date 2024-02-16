@@ -97,20 +97,34 @@ function addLLClass(elements) {
 		return 0;
 	}
 }
-//--- Make youtube and vimeo video embeds intrinsically responsive.
-// Source: https://codepen.io/davatron5000/details/JjwzMWm
-const videoSources = [
-	'iframe[src*="youtube-nocookie.com"]',
-	'iframe[src*="youtube.com"]',
-	'iframe[src*="vimeo"]',
-];
 
-for (const video of document.querySelectorAll(videoSources.join(","))) {
-	video.style.maxWidth = "100%";
-	video.style.height = "auto";
-	video.style.aspectRatio = `${video.getAttribute(
+//--- Make video embeds intrinsically responsive.
+// FitVids in 2023 by Dave Rupert: https://codepen.io/davatron5000/details/JjwzMWm
+const embedSources = [
+	/* Streaming Platforms */
+	'iframe[src*="www.youtube-nocookie.com/"]',
+	'iframe[src*="www.youtube.com/"]',
+	'iframe[src*="www.dailymotion.com/"]',
+	'iframe[src*="player.vimeo.com/"]',
+	/* Live Streaming Platforms */
+	'iframe[src*="player.twitch.tv/"]',
+	'iframe[src*="player.kick.com/"]',
+	'iframe[src*="mastodon.social/"]',
+	'iframe[src*="mastodon.online/"]',
+	'iframe[src*="mastodon.gamedev.place/"]',
+	'iframe[src*="typo.social/"]',
+	'iframe[src*="infosec.exchange/"]',
+	'iframe[src*="tilvids.com/"]',
+];
+for (const embed of document.querySelectorAll(embedSources.join(","))) {
+	embed.style.maxWidth = "100%";
+	embed.style.height = "auto";
+	embed.style.aspectRatio = `${embed.getAttribute(
 		"width",
-	)} / ${video.getAttribute("height")}`;
+	)} / ${embed.getAttribute("height")}`;
+	//
+	// embed.removeAttribute("height");
+	// embed.removeAttribute("width");
 }
 
 //--- Add srcset and sizes attributes to all images inside CMS content.

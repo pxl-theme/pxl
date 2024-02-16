@@ -50,14 +50,15 @@ body._stickyFooter{
 
 /*** Apply fade-in animation to lazyloaded elements
  */
-.lazyload,
-.lazyloading {
-	opacity: 0;
-}
-.lazyloaded {
-	opacity: 1;
-	transition: opacity 300ms;
-}
+/* [loading=lazy], */
+/* .lazyload, */
+/* .lazyloading { */
+/* 	opacity: 0; */
+/* } */
+/* .lazyloaded { */
+/* 	opacity: 1; */
+/* 	transition: opacity 300ms; */
+/* } */
 
 /*** (Experimental) WordPress Compatible Comment Form IDs & Classes
  *
