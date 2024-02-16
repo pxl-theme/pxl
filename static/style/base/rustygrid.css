@@ -25,19 +25,35 @@
 	}
 
 	&.-reversed {
-		display: flex;
-		flex-direction: row-reverse;
-	}
-	&.-reversed\@palm{
-		@media (--palm-or-gt) {
-			display: flex;
-			flex-direction: row-reverse;
+		direction: rtl;
+		text-align: start;
+		> &.o-rustygrid__item {
+			direction: ltr;
+			text-align: start;
 		}
 	}
-	&.-reversed\@lap{
+	/* &.-reversed{ */
+	/* 	display: flex; */
+	/* 	flex-direction: row-reverse; */
+	/* } */
+	&.-reversed\@palm {
 		@media (--palm-or-gt) {
-			display: flex;
-			flex-direction: row-reverse;
+			direction: rtl;
+			text-align: start;
+			> &.o-rustygrid__item {
+				direction: ltr;
+				text-align: start;
+			}
+		}
+	}
+	&.-reversed\@lap {
+		@media (--palm-or-gt) {
+			direction: rtl;
+			text-align: start;
+			> &.o-rustygrid__item {
+				direction: ltr;
+				text-align: start;
+			}
 		}
 	}
 

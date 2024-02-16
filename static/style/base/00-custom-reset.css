@@ -18,6 +18,23 @@ input:is([type=password],[type=tel],[type=number],[type=date],[type=month],[type
 	font-variant-numeric: tabular-nums;
 }
 
+/* Change writing direction based on language attribute */
+/* Source: https://en.wikipedia.org/wiki/Writing_system#Directionality */
+/* Source: https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags */
+
+/* Left to Right in English and Turkish (add your language of choice too) */
+[lang=en],[lang=tr] {
+	direction: ltr;
+}
+/* Top to bottom (left to right) in Chinese and Mongolian */
+[lang^=zh-],[lang=zh],[lang=ja],[lang=ko],[lang=mn]{
+	writing-mode: vertical-lr;
+}
+/* Right to Left in Arabic, Persian, Hebrew, Syriac, */
+[lang=ar],[lang=fa],[lang=he], [lang=syc],[lang=ckb],[lang=az],[lang=ur]{
+	direction: rtl;
+}
+
 /**
 Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
 (Taken from modern-normalize.css)

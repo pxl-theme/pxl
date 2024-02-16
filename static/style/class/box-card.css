@@ -2,15 +2,16 @@
  * Note: Check base/02-primitive.css for box styles.
  */
 .o-box.-viewCard.o-center {
-	width: calc(100% - calc(var(--boxViewCard-padSide)*2) - calc(var(--border, 0px)*2));
 	/* o-center has content-box sizing, width needs adjustment in boxes*/
+	inline-size: calc(100% - calc(var(--boxViewCard-padSide)*2));
+	/* width: calc(100% - calc(var(--boxViewCard-padSide)*2) - calc(var(--border, 0px)*2)); */
 
 }
 .o-box.-viewCard {
 	overflow: hidden;
 	/* overflow-wrap: break-word; */
 	/* width: max-content; */
-	width: 100%;
+	inline-size: 100%;
 	position: relative;
 
 	padding: calc(var(--boxViewCard-padTop) - var(--border, 0px)) calc(var(--boxViewCard-padSide) - var(--border, 0px)) calc(var(--boxViewCard-padBottom) - var(--border, 0px));
@@ -49,8 +50,8 @@
 		padding: 0;
 		background-color: transparent;
 		display: block;
-		width: 100%;
-		height: calc(var(--rhythmUnit)*4);
+		inline-size: 100%;
+		block-size: calc(var(--rhythmUnit)*4);
 		border: 0;
 		/* grid-column: 12 / 1; */
 	}
@@ -86,20 +87,20 @@
 *:not(.-viewMasonry) > .js-posts .o-rustygrid__item{
 	.o-box.-viewCard .c-header:has(> img, > picture, > video, > figure) {
 		/* padding-bottom: 40%; */
-		padding-bottom: 30%;
+		padding-block-end: 30%;
 		@media (--palm-or-gt) {
 		/* 16:9 Space */
 			/* padding-bottom: 56.25%; */
 			/* padding-bottom: calc(9 / 16 * 100)% */
 
 			/* padding-bottom: 46.25%; */
-			padding-bottom: calc(9 / 16 * 100 - 10)%
+			padding-block-end: calc(9 / 16 * 100 - 10)%
 		}
 		@media (--lap-or-gt) {
 		/* 21:9 Ultra Wide Space */
 			/* padding-bottom: 42.85%; */
 			/* padding-bottom: 32.85%; */
-			padding-bottom: calc(9 / 21 * 100 - 10)%
+			padding-block-end: calc(9 / 21 * 100 - 10)%
 		}
 	}
 }
@@ -108,7 +109,7 @@
  */
 .o-box.-viewCard .c-header:has(> img, > picture, > video, > figure) {
 	/* Override parent(o-box) gap */
-	width: calc( var(--boxViewCard-padSide) * 2 + 100% );
+	inline-size: calc( var(--boxViewCard-padSide) * 2 + 100% );
 	inset-block-start: calc( var(--boxViewCard-padTop) * -1);
 	inset-inline-start: calc( var(--boxViewCard-padSide) * -1);
 
@@ -136,7 +137,7 @@
 	*:not(.-viewMasonry) > .js-posts .o-rustygrid__item & {
 		@media (--desk-or-gt) {
 			/* width: calc( 4rem + 100% ); */
-			width: calc( var(--c-crad-padSide)*4 + 100% );
+			inline-size: calc( var(--c-crad-padSide)*4 + 100% );
 			inset-inline-start: calc( var(--boxViewCard-padSide) * -2);
 		}
 	}
@@ -188,11 +189,13 @@
 	}
 	&.-alignStart {
 		float: left;
+		float: inline-start;
 		text-align: start;
 		padding-inline-end: 1ch;
 	}
 	&.-alignEnd {
 		float: right;
+		float: inline-end;
 		text-align: end;
 		padding-inline-start: 1ch;
 	}
@@ -205,9 +208,11 @@
 			padding-inline-end: 1ch;
 			text-align: start;
 			float: left;
+			float: inline-start;
 		}
 		&.-alignEnd\@wrist-gt {
 			float: right;
+			float: inline-end;
 			text-align: end;
 			padding-inline-start: 1ch;
 		}
