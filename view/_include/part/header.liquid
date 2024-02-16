@@ -1,9 +1,8 @@
-<header aria-label=Main class="t-color -forceDark -schemeInherit" style="background-color: var(--colorBack);">
-	<div class="o-rustygrid --noGutter">
+<header aria-label=Main class="c-header t-color -forceDark -schemeInherit" style="background-color: var(--colorBack);">
+	<div class=o-rustygrid>
 		{% if custom_header_title %}
 		{% comment %} <div class="o-rustygrid__item -col0 -col1-12@palm"></div> {% endcomment %}
-		<div class="o-rustygrid__item -col1-12@palm"></div>
-		<div class="o-rustygrid__item -col1 -col5-12@palm" style="user-select:none">
+		<div class="o-rustygrid__item -col1 -col5-12@palm -push1-12@palm" style="user-select:none">
 			<h1 class="u-txtOnImg">
 				<a href="./">{{custom_header_title}}</a> <!-- directs to current page -->
 			</h1>
@@ -25,6 +24,6 @@
 				</ul>
 			</div>
 		</div>
-		{%- include "part/nav-responsive" %}
 	</div>
+	{%- include "part/nav-responsive" %}
 </header>

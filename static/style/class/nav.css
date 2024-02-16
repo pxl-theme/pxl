@@ -407,14 +407,16 @@ ol.c-nav.-typeTree .c-nav__item {
 			/* font-size: 1.25rem; */
 			z-index: 555; /* opinionated */
 
-			position: absolute;
 			/* position: fixed; */
-			inset-block-start: 0;
-			/* left: 0; */
+			position: absolute;
+
+			/* inset-block-start: 0; */
 			inset-inline-start: -1px; /* Sometimes its reachable */
+
 			/* TODO: transform3d values needs to be included for different writing modes with logical properties */
 			transform: translate3d(-100%, 0, 0); /* Hide the element off-canvas */
 			transition: transform .5s cubic-bezier(.08,.82,.17,1);
+
 			/* > .c-toggleExpand { */
 			/* 	display: block; */
 			/* 	position: absolute; */

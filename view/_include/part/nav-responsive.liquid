@@ -3,6 +3,7 @@
 <nav class="c-nav__wrapper u-clearFix" aria-label=Main>
 	<input id=toggleNav-000 type=checkbox>
 	<ul class="c-nav -responsive -typeTree -layoutHorizontal -expandFromBlockStart -alignStart">
+		{%- comment -%}
 		<li class="c-nav__item -viewIconOnly u-hidden@lap">
 			<label class="c-nav__anchor" for=toggleNav-000 onclick>
 				<svg class=pi viewBox="0 0 18 18" width=18px>
@@ -10,6 +11,7 @@
 				</svg><span>Hide&nbsp;Menu</span>
 			</label>
 		</li>
+		{%- endcomment -%}
 		{%- for item in menu -%}
 			<li class="c-nav__item" {%- if item.url == page.url %} aria-current=page{%- endif -%}>
 				<a class="c-nav__anchor" href="{{ item.url }}" {%
