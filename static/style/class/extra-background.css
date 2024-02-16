@@ -69,7 +69,7 @@ body:has(.c-extraBackground.-viewStaticPageHeight) {
 	}
 
 	/* Gradient Filter, Parallel with Page Flow */
-	&.-filterGradient {
+	&:is(.-filterGradient,.-filterRainbow) {
 		background-image: linear-gradient(var(--angle, 180deg), var(--1, black), var(--2, gray));
 		/* 180deg = to bottom */
 		mix-blend-mode:color;
@@ -77,6 +77,9 @@ body:has(.c-extraBackground.-viewStaticPageHeight) {
 		:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) &{
 			opacity: .33;
 		}
+	}
+	&.-filterRainbow {
+		background-image: linear-gradient(var(--angle, 180deg), var(--red, red), var(--orange, orange), var(--yellow, yellow), var(--green, green),var(--cyan, cyan), var(--blue, blue), var(--hue01, purple));
 	}
 
 	&.-viewStatic {
