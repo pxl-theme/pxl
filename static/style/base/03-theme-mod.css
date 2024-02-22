@@ -188,7 +188,7 @@
 
 	/*** Acetate and Neumorphism Style
 	 */
-	:where(&:is(.-stylesetAcetate,.-stylesetNeumorphism)) {
+	&:is(.-stylesetAcetate,.-stylesetNeumorphism) {
 		--colorBg: var(--colorBase);
 		body {
 			background-color: var(--colorBase);
