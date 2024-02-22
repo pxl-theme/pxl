@@ -210,9 +210,20 @@ body {
 cite{ /* opinionated */
 	display:inline-block
 }
-p {
-	hyphens: auto
+/* Hyphenation for paragraphs (English and their derivatives only) */
+/* Relevant: https://clagnut.com/blog/2395/
+ *           https://caniuse.com/?search=hyphen
+ */
+:is([lang=en],[lang^=en-]) p {
+	hyphens: auto;
 }
+p {
+	hyphenate-limit-chars: 6 3 3;
+    hyphenate-limit-lines: 2;
+    hyphenate-limit-last: always;
+    hyphenate-limit-zone: 8%;
+}
+
 /* Make top margin bigger if heading placed after non-heading element */
 /* :not(blockquote) > :is(h1, h2, h3, h4, h5, h6):first-child */
 :not(h1,h2,h3,h4,h5,h6,legend,hr,img,figure,picture,video) + :where(h1, h2, h3, h4, h5, h6)
