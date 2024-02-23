@@ -144,9 +144,22 @@
 	/* 		--emboss: calc(var(--rhythmUnit)/-2) calc(var(--rhythmUnit)/-2) 0 0 var(--colorBackmost) inset, calc(var(--rhythmUnit)/2) calc(var(--rhythmUnit)/2) 0 0 var(--colorTextOpac20) inset; */
 	/* 	} */
 	/* } */
-	/* Affected elements */
+
+	/*** Box Layout Primitive with Card View inside Rounded Corner Theme Modifier
+	*/
+	&.-cornerRoundedTiny .o-box {
+		border-radius: var(--radiusS);
+	}
+	&:is(.-cornerRounded, .-cornerRoundedInner) .o-box {
+		border-radius: var(--radiusL);
+	}
+	&.-cornerRoundedInner .o-box :is(img,iframe,embed,video,audio,object){/* opinionated */
+		border-radius: var(--radiusS);
+	}
+
+	/* Apply all theme modifiers to those elements. */
 	:where(
-	.o-box.-viewCard,.c-nav.-typeFlyout.-layoutVertical.js-visible,
+	.o-box,.c-nav.-typeFlyout.-layoutVertical.js-visible,
 	[id^="toggleNav-"]:checked + .c-nav.-typeFlyout.-layoutVertical,
 	[id^="toggleNav-"]:checked + .c-nav.-typeTree[class*=-expand],
 	.c-nav.-typeFlyout.-layoutHorizontal,
@@ -193,7 +206,7 @@
 		body {
 			background-color: var(--colorBase);
 		}
-		:is(.o-box.-viewCard,.c-nav:not([class*=-expand])){
+		:is(.o-box,.c-nav:not([class*=-expand])){
 			background-color: initial;
 		}
 	}
@@ -205,7 +218,7 @@
 	/* Resets other presets (like Neumorphism) but the practice below must be something to avoid for. */
 	.-stylesetNeumorphism &:where(.-stylesetAcetate) {
 		:is(
-		.o-box.-viewCard,
+		.o-box,
 		.c-nav.-typeFlyout:not([class*=-expand]),
 		.c-nav:not(.-typeTree)[class*=-expand]:focus-within,
 		.c-nav:not(.-typeTree)[class*=-expand].js-visible,
@@ -224,7 +237,7 @@
 	/*** Neumorphism Style
 	*
 	*/
-		/* &[class^="-shadow"] .o-box.-viewCard{ */
+		/* &[class^="-shadow"] .o-box{ */
 		/* 	box-shadow: none; */
 		/* } */
 	&.-stylesetNeumorphism{
@@ -257,7 +270,7 @@
 			}
 		}
 
-		:is(.o-box.-viewCard, .c-nav.-typeFlyout){
+		:is(.o-box, .c-nav.-typeFlyout){
 			position: relative;
 			&:after, &:before {
 				content: "";
@@ -268,7 +281,7 @@
 			}
 		}
 		:is(
-		.o-box.-viewCard,
+		.o-box,
 		.c-nav.-typeFlyout:not([class*=-expand]),
 		.c-nav:not(.-typeTree)[class*=-expand]:focus-within,
 		.c-nav:not(.-typeTree)[class*=-expand].js-visible
@@ -313,7 +326,7 @@
 	}
 	&:where(.-stylesetBackdropBlur) {
 		:is(
-		.o-box.-viewCard,
+		.o-box,
 		.c-nav.-typeFlyout:not([class*=-expand]),
 		.c-nav:not(.-typeTree)[class*=-expand]:focus-within,
 		.c-nav:not(.-typeTree)[class*=-expand].js-visible

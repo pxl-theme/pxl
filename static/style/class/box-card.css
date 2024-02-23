@@ -63,18 +63,6 @@
 	}
 }
 
-/*** Box Layout Primitive with Card View inside Rounded Corner Theme Modifier
- */
-:where(.t-modRoot).-cornerRoundedTiny .o-box.-viewCard {
-	border-radius: var(--radiusS);
-}
-:where(.t-modRoot):is(.-cornerRounded, .-cornerRoundedInner) .o-box.-viewCard {
-	border-radius: var(--radiusL);
-}
-:where(.t-modRoot).-cornerRoundedInner .o-box.-viewCard :is(img,iframe,embed,video,audio,object){/* opinionated */
-	border-radius: var(--radiusS);
-}
-
 
 /*** Header Component inside Box Layout Primitive with Card View
  *
