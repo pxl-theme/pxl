@@ -4,8 +4,9 @@
 	"title": "Site Title",
 	"short_title": "Site",
 	"description": "Description of this website here…",
-	"url": "https://example.com",
-	"domain": "example.com",
+	"baseurl": "https://example.com",
+	"pwa_fg_color:": "#1998ee",
+	"pwa_bg_color:": "#000",
 	"repository": "example/repo",
 	"icon": {
 		"32": "/static/asset/fav/icon.webp",

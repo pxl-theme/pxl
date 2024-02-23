@@ -32,11 +32,11 @@
 		<title>{%- if type != 'homepage' -%}{%- if title -%}{{- title | strip_html -}}{{- site.separator -}}{%- else -%}{% endif %}{%- endif -%}{{- site.title -}}</title>
 		<meta property=og:title content="{% if title != '' %}{{ title | strip_html }}{% else %}{{ site.title }}{% endif %}">
 		<meta property=og:description name=description content="{% if summary %}{{ summary | markdownify | strip_html | strip_newlines | strip }}{% else %}{{ site.description }}{% endif %}">
-		<meta property=og:url content="{% if url %}{{ url }}{% else %}{{ page.url | prepend: site.url | clearindex }}{% endif %}">
+		<meta property=og:url content="{% if url %}{{ url }}{% else %}{{ page.url | prepend: site.baseurl | clearindex }}{% endif %}">
 		{%- if image -%}
 		<meta name=twitter:card content=summary_large_image>
 		{%- else -%}
-		<meta property=og:image content="{{ site.icon.512 | prepend: site.url }}">
+		<meta property=og:image content="{{ site.icon.512 | prepend: site.baseurl }}">
 		<meta name=twitter:card content=summary>
 		{%- endif -%}
 		<meta name=twitter:site content="{{ site.author.twitter }}">

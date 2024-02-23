@@ -24,7 +24,18 @@ append-class-to-root: "-stylesetAcetate -borderValNone"
 		<section itemprop=articleBody>
 		{{ content }}
 		</section>
-		<a class=url itemprop=url href="{{ page.url | url }}" hidden></a>
+		<hr>
+		<b>
+		<svg class=pi viewBox='0 0 18 18' width=18px>
+			<use href='/pi.svg#paper-send'></use>
+		</svg> Share This Page:</b>
+		{% comment %} TODO: Add https://github.com/zachleat/webcare-webshare here.{% endcomment %}
+		<a href="https://mastodon.social/share?text={{ title | escape }} by {{ site.author.mastodon }}&amp;url={{ page.url | prepend: site.baseurl }}"
+		data-src="{{ title | escape }} by {{ site.author.mastodon }}&amp;url={{ page.url | prepend: site.baseurl }}"
+		class="mastodonAskInstance">Comment on Mastodon</a>
+		<a href="https://twitter.com/intent/tweet?text={{ title | escape }} by {{ site.author.twitterx }} {{ page.url | prepend: site.baseurl }}"
+		>Comment on Twitter (X)</a>
+			<a class=url itemprop=url href="{{ page.url | prepend: site.baseurl }}" hidden></a>
 	</article>
 	{% comment %} {%- include "webmention/container" %} {% endcomment %}
 </main>
