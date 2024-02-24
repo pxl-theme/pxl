@@ -1,5 +1,5 @@
-{%- assign menu = menus.primary -%}
-{%- if menu -%}
+{%- assign navigation = nav.primary -%}
+{%- if navigation -%}
 <nav class="c-nav__wrapper u-clearFix" aria-label=Main>
 	<input id=toggleNav-000 type=checkbox>
 	<ul class="c-nav -responsive -typeTree -layoutHorizontal -expandFromBlockStart -alignStart">
@@ -12,8 +12,8 @@
 			</label>
 		</li>
 		{%- endcomment -%}
-		{%- for item in menu -%}
-			<li class="c-nav__item" {%- if item.url == page.url %} aria-current=page{%- endif -%}>
+		{%- for item in navigation -%}
+			<li class="c-nav__item {% if item.align == "right" %}-leanEnd{% endif %}" {%- if item.url == page.url %} aria-current=page{%- endif -%}>
 				<a class="c-nav__anchor" href="{{ item.url }}" {%
 					if item.alt -%} alt="{{ item.alt }}"{%- endif -%}{%- if item.url == page.url %} tabindex=-1{%- endif -%}>
 				{%- if item.pre -%}{{- item.pre }}{%- endif -%}
@@ -54,22 +54,22 @@
 														<use href=/pi.svg#{{ item.icon }}></use>
 													</svg>
 												{%- endif -%}
-												{{- item.label }}{{ item.post }}
+												{{- item.label }}{{ item.post -}}
 												</a>
 											</li>
-											{{- item.separator }}
+											{{- item.separator -}}
 										{%- endfor -%}
 									</ul>
 									{%- endif -%}
 								{%- endif -%}
 							</li>
-							{{- item.separator }}
+							{{- item.separator -}}
 						{%- endfor -%}
 					</ul>
 					{%- endif -%}
 				{%- endif -%}
 			</li>
-			{{- item.separator }}
+			{{- item.separator -}}
 		{%- endfor -%}
 		<li class="c-nav__item -viewIconOnly -leanEnd">
 			<a class="c-nav__anchor" href=#! data-drkmd-toggle title="Toggle dark mode" aria-label="Toggle dark mode">

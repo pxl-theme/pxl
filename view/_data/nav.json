@@ -15,7 +15,7 @@
 			"label": "Nav Example",
 			"url": "#!",
 			"icon": "general-drawer",
-			"separator": "<li class=c-nav__separator></li>",
+			"separator": "<li class='c-nav__separator -leanEnd'></li>",
 			"submenu": [
 				{
 					"label": "Old Stuff",
@@ -30,8 +30,43 @@
 		},
 		{
 			"label": "Plain Version",
-			"url": "/plain/"
+			"url": "/plain/",
+			"align": "right"
 		},
+		{
+			"label": "Contact",
+			"url": "#!",
+			"icon": "symbol-at",
+			"align": "right",
+			"submenu": [
+				{
+					"label": "Discord",
+					"url": "//discord.com/users/000000000000000000",
+					"icon": "site-discord",
+					"alt": "Direct link to my Discord profile. DMs are currently open. Please don't send friend request unless you need to make Group DM. Thanks."
+				},
+				{
+					"label": "Mastodon",
+					"url": "//mastodon.social/@username",
+					"icon": "site-mastodon",
+					"alt": "Direct link to my Mastodon profile on mastodon.social instance."
+				},
+				{
+					"label": "GitHub",
+					"url": "//github.com/username",
+					"icon": "site-github",
+					"alt": "Direct link to my Mastodon profile on mastodon.social instance."
+				},
+				{
+					"label": "E-Mail",
+					"url": "mailto:info@example.com",
+					"icon": "general-letterbox",
+					"alt": "Direct link to compose new message to my address via default e-mail client"
+				}
+			]
+		}
+	],
+	"secondary": [
 		{
 			"label": "Contact",
 			"url": "#!",
