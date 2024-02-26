@@ -66,7 +66,14 @@
 		{%- if site.authorization_endpoint_url %}
 			<link rel=authorization_endpoint href="{{ site.authorization_endpoint_url }}">
 		{%- endif %}
+		<style>
+		a:link[href^="//"]:not([href^="{{ site.baseurl }}"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
+			content:"↗";
+			white-space: nowrap;
+		}
+		</style>
 	</head>
+
 	<body class="js-preload _stickyFooter o-stack {{ body-classes | default: site.body-classes }} {{ append-class-to-body }}" data-type="{{ type }}" itemscope itemtype="https://schema.org/WebPage">
 		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
 		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>

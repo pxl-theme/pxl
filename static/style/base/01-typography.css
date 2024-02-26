@@ -447,10 +447,10 @@ a {
 	/* border-radius: var(--borderDefault); */
 
 	:where(&[href]):before{ /* opinionated */
-		display: inline-block;
-		transform: scale(.83333);
-		text-decoration-line: none;
+		/* display: inline-block; */
+		/* transform: scale(.83333); */
 
+		text-decoration-line: none;
 		filter: saturate(0.5);
 		mix-blend-mode: multiply;
 		/* .t-color[data-theme=dark] & { */
@@ -458,16 +458,26 @@ a {
 			mix-blend-mode: plus-lighter;
 		}
 	}
-	:where(&[href]:is(:hover,:focus):before),
-	:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) :where(&[href]:is(:hover,:focus):before){
+	:where(&[href]:is(:hover,:focus)):before,
+	:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) :where(&[href]:is(:hover,:focus)):before{
+		/* transform: scale(1); */
 		filter: none;
 		mix-blend-mode: none;
-		transform: scale(1);
 		transition: transform .25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 	}
 
-	:where(&[href][target="_blank"]:after){
-		content:'↗︎';
+	/* All external links (Should be appended inside <head> so template language can process baseurl) */
+	/* 	a:link[href*="//"]:not([href^="http://localhost:3000"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
+		content:"↗";
+		white-space: nowrap;
+	} */
+
+	/* Links that opens in new tab/window */
+	:where(&[target="_blank"]):after{
+		/* content:'↗︎'; */
+		/* content:'🚪'; */
+		/* content:'📑';  */
+		content: "⏩";
 		/* opacity:.66; */
 	}
 

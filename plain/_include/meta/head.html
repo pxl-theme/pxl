@@ -42,5 +42,10 @@
 	<!-- <link rel=webmention href="{ site.webmention_url }"> -->
 	<!-- <link rel=token_endpoint href="{ site.token_endpoint_url }"> -->
 	<!-- <link rel=authorization_endpoint href="{ site.authorization_endpoint_url }"> -->
+	<style>
+	a:link[href*="//"]:not([href^="http://localhost:3000"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
+		content:"↗";
+		white-space: nowrap;
+	}
+	</style>
 </head>
-<style>a:link[href*="//"]:not([href^="http://localhost:3000"]):not(:has( > img, > svg, > picture)):after{ content:"↗";display:inline-block;}</style>
