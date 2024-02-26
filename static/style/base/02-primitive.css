@@ -8,14 +8,14 @@
 	justify-content: flex-start;
 }
 /* Don't apply any top or down margin to direct children primitive as default */
-.o-stack > :not(.u-visuallyHidden) {
+.o-stack > :not(.u-visuallyHidden, .c-extraBackground) {
 	margin-block: 0;
 }
 
 
 /* Only apply top margin if isn't the first direct child of stack layout */
 /* (Except visually hidden elements or rusty grid masonry column) */
-.o-stack > :not(.u-visuallyHidden) + :not(.u-visuallyHidden) {
+.o-stack > :not(.u-visuallyHidden, .c-extraBackground) + :not(.u-visuallyHidden, .c-extraBackground) {
 	margin-block-start: var(--rhythmUnit);
 }
 
