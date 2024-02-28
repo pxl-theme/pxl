@@ -4,7 +4,7 @@ append-class-to-root: "-stylesetAcetate -borderValNone"
 ---
 <main id=content class=s-cmsContent aria-label=Content itemprop=mainContentOfPage>
 	<article class="o-box -viewCard o-center" itemscope itemtype="https://schema.org/BlogPosting">
-		<header class=c-header>
+		<hgroup class=c-header>
 			{%- if page.date != nil -%}
 				<h5 class="o-box__meta{% if topics != nil %} -alignStart@wrist-gt{% endif %}" alt="{{ page.date | localDateFull }}">
 					<time datetime="{{ page.date | htmlDateString }}" itemprop=datePublished>
@@ -20,7 +20,7 @@ append-class-to-root: "-stylesetAcetate -borderValNone"
 			{%- if title != nil -%}
 				<h1 class=o-box__title>{{ title | escape }}</h1>
 			{%- endif -%}
-		</header>
+		</hgroup>
 		<section itemprop=articleBody>
 		{{ content }}
 		</section>

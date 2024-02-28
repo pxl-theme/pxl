@@ -1,37 +1,5 @@
-/* .feather{ */
-/* 	vertical-align: -.666ex; */
-/* } */
-
-/*** Button that loads new posts
- */
-._loadMore {
-	border-radius: 50%;
-	width:calc(var(--rhythmUnit)*6);
-	height:calc(var(--rhythmUnit)*6);
-	display: block;
-	margin: auto;
-	margin-block-end: 1em;
-	padding: 1px;
-	position: relative;
-	&::after {
-		position: absolute;
-		top:0;
-		left:0;
-		width:100%;
-		text-align: center;
-		content: "•••";
-		/* font-size: 2em; */
-		--fontWeight: 900;
-		line-height:calc(var(--rhythmUnit)*6);
-	}
-	/* &.loading { */
-	/* 	&::after { */
-	/* 		content: ""; */
-	/* 	} */
-	/* } */
-}
-
-/*** Sticky Footer Compatible Body
+/*
+ * Sticky Footer Compatible Body
  */
 body._stickyFooter{
 	/* https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/ */
@@ -149,6 +117,9 @@ body._stickyFooter{
 	/* -opinionated */
 }
 
+/*
+ * Hover on favicon to see animated version of it
+ */
 ._faviconAnimated { /* opinionated */
 	--imgSize:48px;
 
@@ -198,6 +169,9 @@ body._stickyFooter{
 	}
 }
 
+/*
+ * Expandable pxl SVG Logo
+ */
 ._pxlTheLogo {
 	display: block;
 	margin: auto;
@@ -215,8 +189,12 @@ body._stickyFooter{
 		stroke-width: 1.444;
 	}
 }
-/* Keyframe gets activated everytime relocating the element interacting address bar. (Also iOS version has that problem) */
-/* Page transitions coming soon, use this instead when it's going to be globally adopted: https://www.youtube.com/watch?v=JCJUPJ_zDQ4 */
+
+/* Keyframe gets activated everytime relocating the element interacting 
+ * address bar. (Also iOS version has that problem)
+ * Page transitions coming soon, use this instead when it's going to be globally
+ * adopted: https://www.youtube.com/watch?v=JCJUPJ_zDQ4 */
+
 /* .js-post { */
 /* 	@keyframes getPost { */
 /* 		0% {opacity: 0; transform: scale(0.66) translateY(100px);} */

@@ -4,7 +4,7 @@
 <div class="o-rustygrid__item js-loop__item">
 	<article class='o-box -viewCard o-center'>
 		{%- comment %} If post content doesn't include "more" HTML comment and has image, add -viewMedia modifier class to Header Component {% endcomment -%}
-		<header class="c-header">
+		<hgroup class=c-header>
 			{%- unless post.templateContent contains '<!--more-->' -%}
 				{%- if post.templateContent contains '<img' or '<picture' or '<video' or '<figure' -%}
 					{%- first_image post -%}
@@ -75,7 +75,7 @@
 					{{- site.separator }}<b><a href="{{ post.url }}">{{ post.data.title | escape }}</a></b>{% if post.data.location %}{{ site.separator }} {{post.data.location}}{% endif %}
 				</h6>
 			{%- endif -%}
-		</header>
+		</hgroup>
 		{%- comment %} If post content does have "more" HTML comment, append an arrow hyperlink. {% endcomment -%}
 		{%- comment %}TODO: Find a way to configure ellipsis links in templates that replaces "more" tag remotely from Eleventy config {% endcomment -%}
 		{%- if post.templateContent contains '<!--more-->' %}
