@@ -1001,7 +1001,9 @@ table {
 	overflow: scroll;
 }
 
-:is(.-cornerRounded,.-cornerRoundedInner,.-cornerRoundedTiny){
+/* Border radius on top level of table won't work
+ * unless border-collapse is separate. */
+.t-modRoot[class*="-cornerRounded"]{
 	table{
 		border-collapse: separate;
 		overflow:hidden;

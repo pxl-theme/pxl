@@ -113,18 +113,16 @@ ul.c-nav, .c-nav ul {
 		margin-block-end: -.1777em;
 		/* margin-right:.3333em; */
 		margin-inline-start:-.5em;
-		border-radius: inherit;
+		border-radius: var(--radiusInnerDefault);
 		filter: none;
 		/* Desaturate and make translucent image inside nav item if it's possible to hover on */
 		@media (any-hover: hover) and (any-pointer: fine) {
 			filter: opacity(.75) saturate(.66);
 		}
 	}
-	.t-modRoot:is(.-cornerRounded,.-cornerRoundedInner,.-cornerRoundedTiny) & img {
-		/* Make the corners of image rounded if any relevant theme modifier class exists */
-		/* border-radius: var(--radiusS); */
-		border-radius: var(--radiusInnerDefault);
-	}
+	/* Make the corners of image rounded if any relevant theme modifier class exists */
+	/* .t-modRoot:is(.-cornerRounded,.-cornerRoundedInner,.-cornerRoundedTiny) & img { */
+
 	/* Reset filters inside nav item if it's possible to hover on */
 	@media (any-hover: hover) and (any-pointer: fine) { /* opinionated */
 		&:hover img{
@@ -1067,7 +1065,7 @@ ol.c-nav.-typeTree .c-nav__item {
 .c-nav.-typeTag {
 	display: inline-block;
 	/* TODO: margin-trim will be supported in Safari 16.4 or later, check this later. */
-	margin-trim: block-end;
+	/* margin-trim: block-end; */
 
 	@mixin fontSize5;
 
@@ -1097,56 +1095,44 @@ ol.c-nav.-typeTree .c-nav__item {
 
 /**** Nav Components with Rounded Corners Theme Modifier
  */
-.c-nav.-typeTree {
-	/* .c-nav__submenu { */
-	/* 	border-radius: .5em 0 0 0em; */
-	/* } */
-	&.-expandFromBlockStart {
-		border-radius: var(--radiusDefault);
-	}
+.c-nav.-typeTree.-expandFromBlockStart {
+	border-radius: var(--radiusInnerDefault);
 }
 .c-nav.-typeFlyout {
-	/* &.-layoutVertical.-expandFromStartStart > .c-toggleExpand { */
-	/* 	border-radius: var(--radiusDefault); */
-	/* } */
 	.c-nav__submenu {
-		/* padding: var(--radiusDefault) 0; */
-		padding-block: var(--radiusDefault);
+		/* padding-block: var(--radiusDefault); */
+		padding-block: var(--radiusInnerDefault);
 	}
 	&.-layoutVertical {
 		/* Radius set for the fly-out nav aligned to the top-left corner. */
 		/* border-radius: 0 0 var(--radiusDefault) 0; */
-		border-end-end-radius: var(--radiusDefault);
+		border-end-end-radius: var(--radiusInnerDefault);
 		/* padding: var(--radiusDefault) 0; */
-		padding-block: var(--radiusDefault);
+		padding-block: var(--radiusInnerDefault);
 		/* padding: var(--radiusDefault) 0 var(--radiusDefault); */
 		.c-nav__item > .c-nav__submenu {
-			inset-block-start: calc( var(--radiusDefault) * -1);
+			inset-block-start: calc( var(--radiusInnerDefault) * -1);
 			/* > .c-nav__submenu:focus-within { */
 			/* &:hover > .c-nav__submenu, > .c-nav__anchor:focus + .c-nav__submenu { */
 		}
 	}
 	&.-layoutHorizontal{
+		/* Side boundries of horizontal flyout nav component will be separated from
+		 * viewport after mall breakpoint, so it's better set to radius property here.
+		 */
 		@media (--mall-or-gt) {
-			border-radius: var(--radiusDefault);
+			border-radius: var(--radiusInnerDefault);
 		}
 		> .c-nav__item > .c-nav__submenu {
-			border-radius: 0 0 var(--radiusDefault) var(--radiusDefault);
-			.t-modRoot:where(.-cornerRoundedInner) & {
-				border-radius: var(--radiusDefault);
+			/* border-radius: 0 0 var(--radiusInnerDefault) var(--radiusDefault); */
+			border-radius: 0 0 var(--radiusInnerDefault) var(--radiusInnerDefault);
+			.t-modRoot:where(.-cornerRoundedInner,.-cornerRoundedMax) & {
+				border-radius: var(--radiusInnerDefault);
 			}
 		}
 	}
-	/* @media (--desk-or-gt){ */
-	/* 	border-radius: 0; */
-	/* 	padding: 0; */
-	/* 	> .c-nav__item > .c-nav__submenu { */
-	/* 		/1* padding-top: 0; *1/ */
-	/* 		border-radius: 0 0 var(--radiusM) var(--radiusM); */
-	/* 	} */
-	/* } */
 	.c-nav__submenu {
-		border-radius: var(--radiusDefault);
+		border-radius: var(--radiusInnerDefault);
 	}
 	/* :is(.c-nav__item:hover > .c-nav__submenu, .c-nav__item > .c-nav__anchor:focus-visible + .c-nav__submenu, .c-nav__item > .c-nav__submenu:focus-within){ */
 	> .c-nav__submenu{
@@ -1156,30 +1142,27 @@ ol.c-nav.-typeTree .c-nav__item {
 }
 /* Adjust top position of submenu in the 2nd depth or deeper depths
  * of Vertical Fly-out Type Nav while Rounded Corner theme mod is active.*/
-.t-modRoot:where([class*="-corner"]:not(.-cornerRoundedInner))
+.t-modRoot:where([class*="-corner"]:not(.-cornerRoundedInner,.-cornerRoundedMax))
 .c-nav.-typeFlyout.-layoutHorizontal
 > .c-nav__item
 > .c-nav__submenu .c-nav__submenu{
 	inset-block-start: calc( var(--radiusDefault) * -1);
 }
 .c-nav.-typeTag .c-nav__item > .c-nav__anchor {
-	border-radius: var(--radiusInnerDefault);
+	border-radius: var(--radiusDefault);
 }
-/**** Nav Component with Inner Rounded Corners Theme Modifier
+/**** Nav Component with Inner & Max Rounded Corners Theme Modifier
  */
-.t-modRoot.-cornerRoundedInner {
+.t-modRoot:where(.-cornerRoundedInner,.-cornerRoundedMax) {
 /* Is this in the right file? */
 	/* --bleedSize: .25em; */
 	/* --bleedSize: 4px; */
 	--bleedSize: calc(var(--rhythmUnit)/2);
 }
-/* Theme Modifier for Navigation Components */
-.t-modRoot:where(.-cornerRoundedInner) {
-	/* .c-nav__item > .c-nav__anchor { */
-	/* 	border-radius: var(--bleedSize); */
-		/* padding: .25em calc(.8em - var(--bleedSize)) */
-		/* padding: .25em .8em; */
-	/* } */
+/*
+ * Other Theme Modifiers for Nav Component
+ */
+.t-modRoot:where(.-cornerRoundedInner,.-cornerRoundedMax) {
 	.c-nav.-typeFlyout {
 		&:is(.-layoutHorizontal, .-layoutVertical) {
 			.c-nav__separator {
@@ -1190,18 +1173,12 @@ ol.c-nav.-typeTree .c-nav__item {
 		}
 		.c-nav__item > .c-nav__anchor{
 			/* border-radius: calc(var(--radiusM) + .15rem - var(--bleedSize)); */
-			border-radius: calc(var(--radiusDefault) + .15rem - var(--bleedSize));
+			border-radius: calc(var(--radiusInnerDefault) + .15rem - var(--bleedSize));
 		}
-		/* >.c-nav__item>.c-nav__submenu{ */
-		/* 	border-radius: var(--radiusM); */
-		/* 	padding: var(--bleedSize); */
-		/* } */
 		.c-nav__submenu{
 			padding: calc(var(--bleedSize) - var(--border, 0px));
 		}
 		&.-layoutHorizontal:not(.-alignStart,.-alignEnd) {
-			/* padding: 0 calc(1.5em + var(--bleedSize) * 0.5); */
-			/* padding: 0 calc(var(--bleedSize) * 2); */
 			padding-inline: calc(var(--bleedSize) * 2 - var(--border, 0px)));
 		}
 		&.-layoutHorizontal > .c-nav__item > .c-nav__submenu{

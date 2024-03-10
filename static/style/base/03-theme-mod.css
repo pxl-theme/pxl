@@ -6,17 +6,21 @@
 /* Default theme modifier values */
 .t-modRoot {
 	:where(&){
-		--outline: 0 0 transparent;
 		--border: var(--borderHairline);
+		--borderStyle: solid;
+		--outline: 0 0 transparent;
 		--emboss: 0 0 transparent;
 		--shadow: 0 0 transparent;
-		--borderStyle: solid;
+
+		--radiusInnerDefault: 0px;
+		--radiusDefault: 0px;
+		--radiusOuterDefault: 0px;
 	}
 	:where(&, & .t-color[class*=-force]:not([data-theme])) {
-		/* --outlineColor: transparent; */
-		--outlineColor: var(--colorBack);
-		/* --borderColor: var(--colorText); */
 		--borderColor: var(--colorBackmost);
+		/* --borderColor: var(--colorText); */
+		--outlineColor: var(--colorBack);
+		/* --outlineColor: transparent; */
 		--shadowColor: var(--colorBackmost);
 	}
 
@@ -27,21 +31,67 @@
 	}
 	:where(&.-outlineColorTextOpac .t-color[class*=-force]:not([data-theme])) {
 		--outlineColor: var(--colorTextOpac20)
+	/*
+	 * Corner Roundness
+	 */
+	:where(
+		&.-cornerSharp,
+		&.-cornerSharp &.-cornerInherit
+	) {
+		/* Sharp by defualt */
+		/* Adding px to avoid calc() issues */
+		--radiusInnerDefault: 0px;
+		--radiusDefault: 0px;
+		--radiusOuterDefault: 0px;
 	}
 	:where(&.-outlineColorBackmost) {
 		--outlineColor: var(--colorBackmost)
+	:where(
+		&.-cornerRoundedTiny,
+		&.-cornerRoundedTiny &.-cornerInherit
+	) {
+		--radiusInnerDefault: var(--radiusS);
+		--radiusDefault: var(--radiusS);
+		--radiusOuterDefault: var(--radiusS);
 	}
 	:where(&.-outlineColorBg){
 		--outlineColor: var(--colorBg)
+	:where(
+		&.-cornerRounded,
+		&.-cornerRounded &.-cornerInherit
+	) {
+		--radiusInnerDefault: var(--radiusS);
+		--radiusDefault: var(--radiusM);
+		--radiusOuterDefault: var(--radiusL);
 	}
 
 	/* Outline Thickness */
 	/* &.-outlineValNone { --outline: 0 0 transparent} */
 	:where(&.-outlineValHairline, &.-outlineValHairline .t-color[class*=-force]:not([data-theme])) {
 		--outline: 0 0 0 var(--borderHairline) var(--outlineColor)
+	:where(
+		&.-cornerRoundedInner,
+		&.-cornerRoundedInner &.-cornerInherit
+	) {
+		--radiusInnerDefault: var(--radiusM);
+		--radiusDefault: var(--radiusM);
+		--radiusOuterDefault: var(--radiusL);
+		& :is(img,iframe,embed,video,audio,object) {
+			border-radius: var(--radiusS);
+		}
 	}
 	:where(&.-outlineValNormal, &.-outlineValNormal .t-color[class*=-force]:not([data-theme])) {
 		--outline: 0 0 0 var(--borderS) var(--outlineColor)
+	:where(
+		&.-cornerRoundedMax,
+		&.-cornerRoundedMax &.-cornerInherit
+	) {
+		--radiusInnerDefault: var(--radiusL);
+		--radiusDefault: var(--radiusMax);
+		--radiusOuterDefault: var(--radiusL);
+		& :is(img,iframe,embed,video,audio,object) {
+			border-radius: var(--radiusM);
+		}
 	}
 	:where(&.-outlineValThicker, &.-outlineValThicker .t-color[class*=-force]:not([data-theme])) {
 		--outline: 0 0 0 var(--borderM) var(--outlineColor)
@@ -145,17 +195,6 @@
 	/* 	} */
 	/* } */
 
-	/*** Box Layout Primitive with Card View inside Rounded Corner Theme Modifier
-	*/
-	&.-cornerRoundedTiny .o-box {
-		border-radius: var(--radiusS);
-	}
-	&:is(.-cornerRounded, .-cornerRoundedInner) .o-box {
-		border-radius: var(--radiusL);
-	}
-	&.-cornerRoundedInner .o-box :is(img,iframe,embed,video,audio,object){/* opinionated */
-		border-radius: var(--radiusS);
-	}
 
 	/* Apply all theme modifiers to those elements. */
 	:where(
@@ -289,7 +328,6 @@
 		[id^=toggleNav-]:checked + .c-nav:not(.-typeTree)[class*=-expand]
 		{
 			overflow: visible; /* In order to show pseudo shadows. */
-			/* border-radius: .6em; */
 			/* box-shadow: none !important; */
 
 			&:after,&:before {

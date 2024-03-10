@@ -45,49 +45,22 @@
 	@media (--hidpi) {
 		--borderHairline: 0.5px;
 	}
-	--borderS:  1px;
-	--borderM:  2px;
-	--borderL:  4px;
-	--borderXL: 8px;
+	--borderS:   1px;
+	--borderM:   2px;
+	--borderL:   4px;
+	--borderXL:  8px;
 
-	/*TODO: Use these variables for -corner... theme modifiers.*/
-	--radiusS: .25rem;
-	--radiusM: .5rem;
-	--radiusL: .8rem;
+	--radiusS:   calc(var(--rhythmUnit) / 2); /* .25rem */
+	--radiusM:   var(--rhythmUnit); /* .5rem */
+	--radiusL:   calc( 2 * var(--rhythmUnit)); /* 0.8 or 1rem */
+	--radiusMax: 100vmax;
+	/* --radiusMax: calc(infinity * 1px); */
+
 	/* When container is full-screen (equal to viewport) remove border-radius */
-	/* Source: https://ishadeed.com/article/conditional-border-radius/ */
+	/* https://ishadeed.com/article/conditional-border-radius/ */
 	--radiusConditionalS: clamp(0px, calc(100vw - 100%) * 1e5, var(--radiusS));
 	--radiusConditionalM: clamp(0px, calc(100vw - 100%) * 1e5, var(--radiusM));
 	--radiusConditionalL: clamp(0px, calc(100vw - 100%) * 1e5, var(--radiusL));
-
-	--radiusInnerDefault: 0px;
-	--radiusDefault: 0px;
-	--radiusOuterDefault: 0px;
-}
-
-/** Radius Default Settings
-*/
-:where(html), :where(.t-modRoot.-cornerSharp){
-	/* Sharp by defualt */
-	/* Adding px to avoid calc() issues */
-	--radiusInnerDefault: 0px;
-	--radiusDefault: 0px;
-	--radiusOuterDefault: 0px;
-}
-:is(.-cornerRoundedTiny) {
-	--radiusInnerDefault: var(--radiusS);
-	--radiusDefault: var(--radiusS);
-	--radiusOuterDefault: var(--radiusS);
-}
-:is(.-cornerRounded) {
-	--radiusInnerDefault: var(--radiusS);
-	--radiusDefault: var(--radiusM);
-	--radiusOuterDefault: var(--radiusL);
-}
-:is(.-cornerRoundedInner) {
-	--radiusInnerDefault: var(--radiusM);
-	--radiusDefault: var(--radiusM);
-	--radiusOuterDefault: var(--radiusL);
 }
 /* Selected Properties from Open Props
  * Source: https://open-props.style/
