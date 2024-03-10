@@ -447,9 +447,10 @@ a {
 	/* border-radius: var(--borderDefault); */
 
 	:where(&[href]):before{ /* opinionated */
-		/* display: inline-block; */
 		/* transform: scale(.83333); */
 
+		padding-inline-end: .25ch;
+		display: inline-block;
 		text-decoration-line: none;
 		filter: saturate(0.5);
 		mix-blend-mode: multiply;
@@ -474,11 +475,12 @@ a {
 
 	/* Links that opens in new tab/window */
 	:where(&[target="_blank"]):after{
-		/* content:'↗︎'; */
-		/* content:'🚪'; */
-		/* content:'📑';  */
-		content: "⏩";
-		/* opacity:.66; */
+		content: "⧉";
+		transform: scale(75%) scaleX(-100%);
+		display: inline-block;
+		padding-inline-end: .25ch;
+		text-decoration: none;
+		opacity:.66;
 	}
 
 	/* TODO: Can't pass custom property inside background svg data, using a Unicode symbol might solve this instead. */
@@ -486,7 +488,6 @@ a {
 		/* iOS Mail Blue */
 		background-image: linear-gradient(180deg, #0a84ff00, #0a84ff40);
 		&:before {
-			/* content: "📧"; */
 			content: "✉️";
 		}
 	}
@@ -494,7 +495,6 @@ a {
 		/* iOS Phone/Message Green */
 		background-image: linear-gradient(180deg, #32d74b00, #32d74b40);
 		&:before {
-			/* content: "📱 " */
 			content: "📞";
 		}
 	}
@@ -503,7 +503,6 @@ a {
 	:where(&:is( [href*="//google.com/"], [href*="//bing.com/"], [href*="//kagi.com/"],
 	[href*="//duckduckgo.com/"], [href*="//duck.com/"], [href*="//lite.duckduckgo.com/"]) ){
 		&:before {
-			/* content: "🔍 "; */
 			content: "🔍";
 		}
 	}
@@ -653,8 +652,8 @@ a {
 	}
 
 	/* Git Hosts */
-	:where(&:is( [href*="//gitea.com/"], [href*="//github.com/"],
-	[href*="//gitlab.com/"], [href*="//codeberg.com/"], [href$=".git"])) {
+	:where(&:is( [href*="//gitea.com/"], [href^="https://github.com/"],
+	[href^="https://gitlab.com/"], [href*="//codeberg.com/"], [href$=".git"])) {
 		&:before{
 			/* content: "🐙📔"; */
 			content: "🐙";
@@ -665,13 +664,19 @@ a {
 	}
 	:where(&[href*="//gitlab.com/"]){
 		background-image: linear-gradient(180deg, #fc6d2700, #fc6d2740);
+		&:before{
+			content: "🦊";
+		}
 	}
 	:where(&[href*="//codeberg.com/"]){
 		background-image: linear-gradient(180deg, #2889d200, #2889d240);
+		&:before{
+			content: "⛰️";
+		}
 	}
 
 	/* Portfolio Pages */
-	:where( &:is([href*="//linkedin.com/"], [href*="//behance.com/"], [href*="//artstation.com/"],
+	:where( &:is([href*="//linkedin.com/"], [href*="//behance.net/"], [href*="//artstation.com/"],
 	[href*="//deviantart.com/"], [href*="//dribble.com/"])) {
 		&:before{
 			content: "📂";
@@ -683,8 +688,8 @@ a {
 			content: "💼";
 		}
 	}
-	:where( &[href*="//behance.com/"]){
-		background-image: linear-gradient(180deg, #0067ff00, #40067ff0);
+	:where(&[href*="//behance.net/"]){
+		background-image: linear-gradient(180deg, #0057ff00, #0057ff40);
 		&:before{
 			content: "🗃️";
 		}
@@ -709,7 +714,8 @@ a {
 	/* Archives */
 	:where( &:is([href*="//web.archive.org/"], [href*="//archive.md/"], [href*="//archive.is/"])) {
 		&:before{
-			content: "🗄️";
+			/* content: "🗄️"; */
+			content: "🏛️";
 		}
 	}
 

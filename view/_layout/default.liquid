@@ -66,10 +66,14 @@
 		{%- if site.authorization_endpoint_url %}
 			<link rel=authorization_endpoint href="{{ site.authorization_endpoint_url }}">
 		{%- endif %}
+		<!--🔧 Append arrow symbol to external links -->
 		<style>
-		a:link[href^="//"]:not([href^="{{ site.baseurl }}"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
-			content:"↗";
-			white-space: nowrap;
+		a:link:is([href^="//"],[href^="http://"],[href^="https://"]):not([href^="{{ url }}"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
+			content: "↗";
+			font-weight: 500;
+			display: inline-block;
+			text-decoration-line: none;
+			opacity:.66;
 		}
 		</style>
 	</head>
