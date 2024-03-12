@@ -8,25 +8,32 @@
  * each other like how adjustment layers/blending layers work in Photoshop.
  */
 
-/* Necessary for -viewStaticPageHeight */
-html:has(.c-extraBackground.-viewStaticPageHeight) {
+html:has(.c-extraBackground) {
 	min-height:100%;
 	position: relative;
 }
-body:has(.c-extraBackground.-viewStaticPageHeight) {
+body:has(.c-extraBackground) {
 	height: 100%;
 }
 
 .c-extraBackground {
+	/* background: var(--colorAccent); */
 	z-index: -999;
-	/* background: red; */
+	position:absolute;
+	inset:0;
+
+	/* &.-viewStaticPageHeight { */
+	/* 	position:absolute; */
+	/* 	inset:0; */
+	/* } */
+
 	&.-styleBlending {
 		mix-blend-mode: overlay;
 		img {
 			/* filter: contrast(1.2) brightness(5); /1* For light mode *1/ */
 		}
 	}
-	/* &.-stylePixelated { */
+	/* &.-stylePixelated, &.-stylePixelated.-viewFullFixed img { */
 	/* 	image-rendering: pixelated; */
 	/* } */
 	&.-filterGrainy {
@@ -43,8 +50,8 @@ body:has(.c-extraBackground.-viewStaticPageHeight) {
 		/* &::after,&::before{ */
 		&::before{
 			position:absolute;
-			left: 0;
 			top: 0;
+			left: 0;
 			content: '';
 			width: 100%;
 			height: 100%;
@@ -60,9 +67,6 @@ body:has(.c-extraBackground.-viewStaticPageHeight) {
 		}
 	}
 
-	&.-stylePixelated.-viewFullFixed img {
-		image-rendering: pixelated;
-	}
 	&.-filterBlur {
 	/* Warning: This might slow down scrolling/browsing experience for low-end/mid-end users. */
 		filter: blur(2px);
@@ -89,28 +93,14 @@ body:has(.c-extraBackground.-viewStaticPageHeight) {
 			display: inline;
 		}
 	}
-	&.-viewStaticPageHeight {
-		position:absolute; /* Relative to HTML */
-		inset:0;
-	}
-	/*** Perfectly positioned, full-size background
-	 * Based on this method:
-	 * https://css-tricks.com/perfect-full-page-background-image/#aa-css-only-technique-1
-	*/
-	&.-viewFullFixed {
-		position: fixed;
-		width: 800%;
-		height: 800%;
-		left: -350%;
-		top: -350%;
-		img {
-			position: absolute;
-			inset: 0;
-			margin: auto;
-			min-width: 12.5%;
-			min-height: 12.5%;
-		}
-	}
+}
+:where( :is(.t-color[data-theme=light], .t-color.-forceLight:not([data-theme=light])))
+.c-extraBackground.-viewThemeSensitiveImg {
+	--bgSrcSelected: var(--bgSrcLight, #ddd);
+}
+:where( :is(.t-color[data-theme=dark], .t-color.-forceDark:not([data-theme=dark])))
+.c-extraBackground.-viewThemeSensitiveImg {
+	--bgSrcSelected: var(--bgSrcDark, #222);
 }
 
 /* Source: https://grainy-gradients.vercel.app/ */

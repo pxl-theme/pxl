@@ -1,19 +1,65 @@
-<!-- Fixed, full-sized background image -->
-<!-- <div class="c-extraBackground -stylePixelated -styleBlending -viewFullFixed"><img src="/static/asset/filler/bg/darkforest.gif" alt=""></div> -->
-<!-- <div class="c-extraBackground -styleBlending -viewFullFixed"><img src="/static/asset/filler/bg/holographic.webp" alt=""></div> -->
-<!-- <div class="c-extraBackground -viewFullFixed"><img src="/static/asset/filler/bg/something.webp" alt=""></div> -->
+<!-- Fully covered, cross-platform fixed background image -->
+<!-- <div class="c-extraBackground -styleBlending u-pixelated" -->
+<!-- 	style=" -->
+<!-- 	background: url(/static/asset/filler/bg/darkforest.gif) top / cover; -->
+<!-- 	position: fixed; -->
+<!-- 	min-height: 100svh; -->
+<!-- 	" -->
+<!-- 	aria-disabled=true -->
+<!-- 	tabindex="-1"></div> -->
 
-<!-- Grain/Noise Effect -->
-<!-- <div class="c-extraBackground -viewStaticPageHeight -filterGrainy"></div> -->
+<!-- Grain/Noise Background (with SVG filter) -->
+<!-- <div class="c-extraBackground -filterGrainy" -->
+<!-- 	aria-disabled=true -->
+<!-- 	tabindex="-1"></div> -->
 
-<!-- Single Color Background -->
-<!-- <div class="c-extraBackground -viewStaticPageHeight" style=background-color:var(--colorAccent);mix-blend-mode:color;opacity:.66></div> -->
+<!-- Solid Color Background -->
+<!-- <div class="c-extraBackground" -->
+<!-- 	style=" -->
+<!-- 	background-color:var(--colorAccent); -->
+<!-- 	mix-blend-mode:color; -->
+<!-- 	opacity:.66 -->
+<!-- 	" -->
+<!-- 	aria-disabled=true -->
+<!-- 	tabindex="-1"></div> -->
 
-<!-- Gradient (135deg) Background -->
-<!-- <div class="c-extraBackground -viewStaticPageHeight -filterGradient" style="--angle:135deg;--1:var(--colorAccent);--2:var(--hue02);"></div> -->
+<!-- Diagonal (135deg) Gradient Background -->
+<!-- <div class="c-extraBackground -filterGradient" -->
+<!-- 	style=" -->
+<!-- 	--angle:135deg; -->
+<!-- 	--1:var(--colorAccent); -->
+<!-- 	--2:var(--hue02); -->
+<!-- 	" -->
+<!-- 	aria-disabled=true -->
+<!-- 	tabindex="-1"></div> -->
 
-<!-- Rainbow Gradient (135deg) Background -->
-<div class="c-extraBackground -viewStaticPageHeight -filterRainbow" style="--angle:135deg;"></div>
+<!-- Diagonal (135deg) Rainbow Gradient Background -->
+<!-- <div class="c-extraBackground -filterRainbow" -->
+<!-- 	style="--angle:135deg;" -->
+<!-- 	aria-disabled=true -->
+<!-- 	tabindex="-1"></div> -->
 
-<!-- Gradient (Parallel with page flow) Background -->
-<!-- <div class="c-extraBackground -viewStaticPageHeight -filterGradient" style=--1:var(--colorAccent);--2:var(--hue02)></div> -->
+<!-- Page-long, Top to Bottom Gradient Background -->
+<!-- <div class="c-extraBackground -filterGradient" -->
+<!-- 	style=" -->
+<!-- 	--1:var(--colorAccent); -->
+<!-- 	--2:var(--hue02) -->
+<!-- 	" -->
+<!-- 	aria-disabled=true -->
+<!-- 	tabindex="-1"></div> -->
+
+<!-- Pixelated and Upscaled Tile Background (Image rendering on background images won't work in Safari)-->
+<!-- <div class="c-extraBackground -viewThemeSensitiveImg u-pixelated"  -->
+<!-- 	style="background: var(--bgSrcSelected, gray) repeat top / calc(var(--rhythmUnit)*16); -->
+<!-- 	--bgSrcDark: url(/static/asset/filler/bg/mc-old-bg-tile.webp); -->
+<!-- 	--bgSrcLight: url(/static/asset/filler/bg/mc-sandstone_top-tile.webp);" -->
+<!-- 	aria-disabled=true tabindex="-1" -->
+<!-- 	></div> -->
+
+<!-- 
+	For more custom gradients or patterns check those pages:
+	https://doodad.dev/gradient-generator/
+	https://doodad.dev/pattern-generator/
+	https://webgradients.com/
+	https://rec0de.net/var/papertiles/
+-->
