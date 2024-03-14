@@ -2,16 +2,28 @@
 permalink: /app.webmanifest
 ---
 {
-	"lang": "en",
+	"lang": "{{ site.lang }}",
 	"name": "{{ site.title }}",
-	"short_name": "{{ site.short_title }}",
-	"icons": [{
-		"src": "{{ site.icon.512 }}",
-		"sizes": "512x512",
-		"type": "image/png"
-	}],
-	"theme_color": "{{ site.pwa_fg_color }}",
-	"background_color": "{{ site.pwa_bg_color }}",
-	"display": "minimal-ui",
+	"short_name": "{{ site.pwa.titleShort }}",
+	"icons": [
+		{
+			"src": "{{ site.favicon.ico32 }}",
+			"sizes": "32x32",
+			"type": "image/x-icon"
+		},
+		{
+			"src": "{{ site.favicon.webp192 }}",
+			"sizes": "180x180",
+			"type": "image/webp"
+		},
+		{
+			"src": "{{ site.favicon.webp512 }}",
+			"sizes": "512x512",
+			"type": "image/webp"
+		}
+	],
+	"theme_color": "{{ site.pwa.colorTheme }}",
+	"background_color": "{{ site.pwa.colorBg }}",
+	"display": {{ site.pwa.display }},
 	"start_url": "./"
 }

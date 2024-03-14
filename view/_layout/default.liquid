@@ -2,70 +2,39 @@
 <html
 	lang="{{ page.lang | default: site.lang | default: "en" }}"
 	dir=ltr
-	class="{{ root-classes | default: site.root-classes }} {{ append-class-to-root }}"
+	class="{{ options.rootClasses | default: site.options.rootClasses }} {{ options.appendRootClass }}"
 	prefix="og: http://ogp.me/ns#"
 	data-theme=dark>
 	<head>
+		<!--🥇 Essentials-->
 		<meta charset="utf-8">
 
-		<meta name=color-scheme content="dark light">
-		<meta name=theme-color content=var(--colorBg)>
-		<meta name=darkreader-lock>
-		{% comment %} <meta name=theme-color content={{ site.pwa_bg_color }}> {% endcomment %}
-
+		<!--📱 Changes the logical window size used when displaying a page on iOS.
+			https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html#//apple_ref/doc/uid/TP40008193-SW6 -->
 		<meta content='width=device-width, initial-scale=1, viewport-fit=cover' name=viewport>
-		<meta name=disabled-adaptations content=watch>
 
-		<!-- All Stylesheets with Relevant Media Queries -->
-		<!-- Make sure it's synchronized with the media queries from css/abstract/00-media.css -->
+		<!--📣 Page Title -->
+		<title>
+		{%- if type != 'homepage' -%}
+			{%- if title -%}
+				{{- title | strip_html -}}{{- site.options.titleSeparator -}}
+			{%- endif -%}
+		{%- endif -%}{{- site.title -}}
+		</title>
+
+		<!--🎨 Cascading Style Sheets (CSS) -->
 		<link rel=stylesheet href="{{ "/static/style/index.css" | url }}">
-		<link rel=stylesheet href="{{ "/static/style/index.mq-cur.css" | url }}" media="(any-hover:hover),(any-pointer:fine)">
 
-		<!-- <link rel=stylesheet href=/static/style/index.mq-dark.css media="(prefers-color-scheme:dark)"> -->
+		<!--
+		Make sure the media breakpoints are synced with 
+		/static/style/abstract/00-mixin.css and /config/task/postcss-extract-mq.js 
+		-->
+		<link rel=stylesheet href="{{ "/static/style/index.mq-cur.css" | url }}" media="(any-hover:hover),(any-pointer:fine)">
 		<link rel=stylesheet href="{{ "/static/style/index.mq-m.css" | url }}"  media="screen and (min-width:calc(calc(640/16)*1em))">
 		<link rel=stylesheet href="{{ "/static/style/index.mq-l.css" | url }}"  media="screen and (min-width:calc(calc(960/16)*1em))">
-		<!-- <style media=all> -->
-		<!-- 	@import "a.m.mq-l.css"; -->
-		<!-- </style> -->
 		<link rel=stylesheet href="{{ "/static/style/index.mq-xl.css" | url }}" media="screen and (min-width:calc(calc(1600/16)*1em))">
+		<!-- <link rel=stylesheet href=/static/style/index.mq-dark.css media="(prefers-color-scheme:dark)"> -->
 
-		<title>{%- if type != 'homepage' -%}{%- if title -%}{{- title | strip_html -}}{{- site.separator -}}{%- else -%}{% endif %}{%- endif -%}{{- site.title -}}</title>
-		<meta property=og:title content="{% if title != '' %}{{ title | strip_html }}{% else %}{{ site.title }}{% endif %}">
-		<meta property=og:description name=description content="{% if summary %}{{ summary | markdownify | strip_html | strip_newlines | strip }}{% else %}{{ site.description }}{% endif %}">
-		<meta property=og:url content="{% if url %}{{ url }}{% else %}{{ page.url | prepend: site.baseurl | clearindex }}{% endif %}">
-		{%- if image -%}
-		<meta name=twitter:card content=summary_large_image>
-		{%- else -%}
-		<meta property=og:image content="{{ site.icon.512 | prepend: site.baseurl }}">
-		<meta name=twitter:card content=summary>
-		{%- endif -%}
-		<meta name=twitter:site content="{{ site.author.twitter }}">
-		<meta name=robots content="{% if hidden == true %}noindex{% else %}index{% endif %}, follow">
-
-		<meta name=generator type="{{ eleventy.generator }}">
-
-		<link rel=alternate href=/feed.xml type=application/atom+xml title="RSS (Atom) Feed">
-		<link rel=alternate href=/feed.json type=application/json title="JSON Feed">
-
-		<link rel=icon href="{{ site.icon.32 }}">
-		<link rel=apple-touch-icon sizes=180x180 href="{{ site.icon.180 }}">
-		<meta name=msapplication-square70x70logo content="{{ site.icon.70 }}">
-		<link rel=manifest href=/app.webmanifest>
-		{%- if site.me_url %}
-			<link rel=me href="{{ site.me_url }}">
-		{%- endif %}
-		{%- if site.pingback_url %}
-			<link rel=pingback href="{{ site.pingback_url }}">
-		{%- endif %}
-		{%- if site.webmention_url %}
-			<link rel=webmention href="{{ site.webmention_url }}">
-		{%- endif %}
-		{%- if site.token_endpoint_url %}
-			<link rel=token_endpoint href="{{ site.token_endpoint_url }}">
-		{%- endif %}
-		{%- if site.authorization_endpoint_url %}
-			<link rel=authorization_endpoint href="{{ site.authorization_endpoint_url }}">
-		{%- endif %}
 		<!--🔧 Append arrow symbol to external links -->
 		<style>
 		a:link:is([href^="//"],[href^="http://"],[href^="https://"]):not([href^="{{ url }}"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
@@ -76,15 +45,90 @@
 			opacity:.66;
 		}
 		</style>
+
+		<!--⌚ Do not alter viewport in Apple Watch -->
+		<meta name=disabled-adaptations content=watch>
+
+		<!--📣 Description, URL -->
+		<meta name="description" content="{% if summary %}{{ summary | markdownify | strip_html | strip_newlines | strip }}{% else %}{{ site.description }}{% endif %}">
+		<link rel="canonical" href={{ page.url | escape }}/>
+
+		<!--🎯 SEO (OpenGraph, Twitter) Meta Tags for Embed View
+			https://ogp.me/
+			https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started -->
+		<meta property=og:title content="{% if title != '' %}{{ title | strip_html }}{% else %}{{ site.title }}{% endif %}">
+		<meta property=og:description name=description content="{% if summary %}{{ summary | markdownify | strip_html | strip_newlines | strip }}{% else %}{{ site.description }}{% endif %}">
+		<meta property=og:url content="{% if url %}{{ url }}{% else %}{{ page.url | url | clearindex }}{% endif %}">
+		{%- if image -%}
+			<meta name=twitter:card content=summary_large_image>
+			{%- comment -%}Use favicon image as fallback to social media embed preview.{%- endcomment -%}
+			<meta property=og:image content="{{ site.favicon.webp512 | url }}">
+		{%- else -%}
+			<meta property=og:image content="{{ site.favicon.webp512 | url }}">
+			<meta name=twitter:card content=summary>
+		{%- endif -%}
+		<meta name=twitter:site content="{{ site.author.twitterx }}">
+		{%- comment -%}<meta name=twitter:creator content="{{ site.author.twitterx }}"> {%- endcomment -%}
+		
+		<!--🤖 Robots.txt & Pinterest
+			https://www.robotstxt.org/robotstxt.html
+			https://help.pinterest.com/en/business/article/prevent-saves-to-pinterest-from-your-site -->
+		<meta name=robots content="{% if options.discourageSearchEngine == true %}noindex{% else %}index{% endif %}, follow">
+		{% if options.noPinterest == true %}<meta name=pinterest content=nopin>{% endif %}
+
+		<!--📰 RSS/Atom/JSON Feeds
+			https://www.rssboard.org/rss-specification#whatIsRss
+			https://validator.w3.org/feed/docs/atom.html#whatIsAtom
+			https://www.jsonfeed.org/ -->
+		<link rel=alternate href=/feed.json type=application/json title="JSON Feed">
+		{%- comment -%} <link rel=alternate href=/feed.xml type=application/atom+xml title="Atom Feed">{%- endcomment -%}
+
+		<!--🖼️ Favicon, PWA Icons and Manifest
+			https://en.wikipedia.org/wiki/Favicon
+			https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+			https://w3c.github.io/manifest/ -->
+
+			{% if site.favicon.ico32 %}<link rel=icon href="{{ site.favicon.ico32 }}">{% endif %}
+		{% if site.favicon.webp192 %}<link rel=apple-touch-icon href="{{ site.favicon.webp192 }}">{% endif %}
+		<meta name="apple-mobile-web-app-title" content="{{ site.shortTitle }}">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		{% comment %} <link rel="apple-touch-startup-image" href="/launch.png"> {% endcomment %}
+		{% comment %} <meta name=msapplication-square70x70logo content="{{ site.favicon.webp70 }}"> {% endcomment %}
+		<link rel=manifest href=/app.webmanifest>
+
+		<!-- 🌗 Dark/Light Theme -->
+		<meta name=color-scheme content="dark light">
+		<meta name=theme-color media="(prefers-color-scheme: dark)" content={{ site.pwa.colorBgDark }}>
+		<meta name=theme-color media="(prefers-color-scheme: light)" content={{ site.pwa.colorBgLight }}>
+
+		<!-- 🌗 Disable Dark Reader by default 
+			https://github.com/darkreader/darkreader/blob/main/CONTRIBUTING.md#disabling-dark-reader-on-your-site -->
+		<meta name=darkreader-lock>
+
+		<!--🌎 IndieWeb -->
+		{% if site.indieweb.me %}<link rel=me href="{{ site.indieweb.me }}">{% endif %}
+		{% if site.indieweb.pingback %}<link rel=pingback href="{{ site.indieweb.pingback }}">{% endif %}
+		{% if site.indieweb.webmention %}<link rel=webmention href="{{ site.indieweb.webmention }}">{% endif %}
+		{% if site.indieweb.tokenEndpoint %}<link rel=token_endpoint href="{{ site.indieweb.tokenEndpoint }}">{% endif %}
+		{% if site.indieweb.authEndpoint %}<link rel=authorization_endpoint href="{{ site.indieweb.authEndpoint }}">{% endif %}
+
+		<!--🔡 Misc -->
+		<meta name=generator type="{{ eleventy.generator }}">
+		{% comment %} <meta name="fb:page_id" content="{{ site.author.fbpageid }}" /> {% endcomment %}
 	</head>
 
-	<body class="js-preload _stickyFooter o-stack {{ body-classes | default: site.body-classes }} {{ append-class-to-body }}" data-type="{{ type }}" itemscope itemtype="https://schema.org/WebPage">
-		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href=#content><b>Skip to the content</b> (Enter ↩︎)</a>
-		<a style="z-index:9999;text-decoration:none;position:absolute;top:0" class="o-box u-visuallyHidden" tabindex=0 href="mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109;?subject=Feedback%20About%20Accessibility"><b>Send feedback about accessibility</b> (Enter ↩︎)</a>
-		{%- include "part/header" %}
-		{{ content }}
-		{%- include "part/footer" %}
-		<script src="{{ "/static/script/vendor.js" | url }}"></script>
-		<script src="{{ "/static/script/main.js" | url }}"></script>
+	<body class="js-preload _stickyFooter o-stack {{ options.bodyClasses | default: site.options.bodyClasses }} {{ options.appendBodyClass }}" data-type="{{ type }}" itemscope itemtype="https://schema.org/WebPage">
+		{%- include "part/screen-reader-notice" -%}
+
+		<!--🙂 Page Header & Navigation -->
+		{%- include "part/header" -%}
+
+		<!--🫀 Main Content -->
+		{{- content -}}
+
+		<!--🦶 Page Footer -->
+		{%- include "part/footer" -%}
+		{%- include "part/script" -%}
 	</body>
 </html>

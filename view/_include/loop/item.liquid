@@ -22,16 +22,16 @@
 					{%- endif -%}
 				">
 					<time title="{{ post.date | localDateFull }}" datetime="{{ post.date | htmlDateString }}">
-						{%- comment %} If date published is in current year, show only localized day and month. {% endcomment %}
+						{%- comment %} If date published is in current year, show only localized day and month. {% endcomment -%}
 						{%- if currentYear == postYear %}
 							{{- post.date | localDayMonth -}}
-						{%- comment %} If isn't, show full localized day, month and year. {% endcomment %}
+						{%- comment %} If isn't, show full localized day, month and year. {% endcomment -%}
 						{%- else %}
 							{{- post.date | localDMY -}}
 						{% endif %}
 					</time>
 					{%- if site.data.comments[post.slug] -%}
-						{{- site.separator -}}<b><a href="{{ post.url }}#comments" title="Comment counter." itemprop=commentCount> {{ site.data.comments[post.slug] | size | prepend: '<i class="pi-comment"></i>' }}</a></b>
+						{{- site.options.titleSeparator -}}<b><a href="{{ post.url }}#comments" title="Comment counter." itemprop=commentCount> {{ site.data.comments[post.slug] | size | prepend: '<i class="pi-comment"></i>' }}</a></b>
 					{%- endif -%}
 				</h6>
 				{%- if post.data.topics != nil -%}
@@ -72,7 +72,7 @@
 							{{- post.date | localDMY -}}
 						{%- endif -%}
 					</time>
-					{{- site.separator }}<b><a href="{{ post.url }}">{{ post.data.title | escape }}</a></b>{% if post.data.location %}{{ site.separator }} {{post.data.location}}{% endif %}
+					{{- site.options.titleSeparator }}<b><a href="{{ post.url }}">{{ post.data.title | escape }}</a></b>{% if post.data.location %}{{ site.options.titleSeparator }} {{post.data.location}}{% endif %}
 				</h6>
 			{%- endif -%}
 		</hgroup>

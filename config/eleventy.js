@@ -127,8 +127,6 @@ module.exports = elevenCfg => {
 
 //---- Template Language Options
 
-	// elevenCfg.setDataDeepMerge(true);
-	// True by default -> https://github.com/11ty/eleventy/issues/1753
 	elevenCfg.setLiquidOptions({
 		cache: true,
 		root: ['view/_include/', 'view/_layout/'],

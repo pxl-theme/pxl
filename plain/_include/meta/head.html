@@ -1,59 +1,95 @@
 <head>
+	<!--🥇 Essentials-->
 	<meta charset="utf-8">
 
-	<meta name=color-scheme content="dark light">
-	<meta name=theme-color content="var(--colorBg)">
-
-	<!-- Disable Dark Reader plugin by default since dark theme is supported. -->
-	<meta name=darkreader-lock>
-
+	<!--📱 Changes the logical window size used when displaying a page on iOS.
+		https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html#//apple_ref/doc/uid/TP40008193-SW6 -->
 	<meta content='width=device-width, initial-scale=1, viewport-fit=cover' name=viewport>
-	<meta name=disabled-adaptations content=watch>
 
-	<!-- All Stylesheets with Relevant Media Queries -->
-	<!-- Make sure it's synchronized with the media queries from css/abstract/00-media.css -->
+	<!--📣 Page Title, Description, URL -->
+	<title>{{ title }}・Site Title (Plain Version)</title>
+
+	<!--🎨 Cascading Style Sheets (CSS) -->
 	<link rel=stylesheet href=/static/style/index.css>
+
+	<!-- Make sure the media breakpoints are synced with 
+	/static/style/abstract/00-mixin.css and /config/task/postcss-extract-mq.js -->
 	<link rel=stylesheet href=/static/style/index.mq-cur.css media="(any-hover:hover),(any-pointer:fine)">
-	<!-- <link rel=stylesheet href=/static/style/index.mq-dark.css media="(prefers-color-scheme:dark)"> -->
 	<link rel=stylesheet href=/static/style/index.mq-m.css media="screen and (min-width:calc(calc(640/16)*1em))">
 	<link rel=stylesheet href=/static/style/index.mq-l.css media="screen and (min-width:calc(calc(960/16)*1em))">
 	<link rel=stylesheet href=/static/style/index.mq-xl.css media="screen and (min-width:calc(calc(1600/16)*1em))">
+	<!-- <link rel=stylesheet href=/static/style/index.mq-dark.css media="(prefers-color-scheme:dark)"> -->
 
-	<title>{{ title }}・Site Title (Plain Version)</title>
-	<meta property=og:title content="{{ title }}・Site Title">
-	<meta property=og:description name=description content="{{ description }}">
-	<meta property=og:url content="">
-	<!-- <meta property=og:url content="localhost:3000"> -->
-
-	<!-- <meta property=og:image content="{ site.icon.512 | prepend: site.url }"> -->
-	<!-- <meta name=twitter:card content=summary> -->
-	<meta name=robots content="noindex, follow">
-	<meta name=pinterest content=nopin>
-	<!-- <meta name=google content=notranslate> -->
-
-	<link rel=alternate href=/feed.json type=application/json title="RSS (JSON) Feed ">
-	<!-- <link rel=alternate href=/feed.xml type=application/atom+xml title="RSS (Atom) Feed"> -->
-
-	<link rel=icon href=/static/asset/fav/icon.webp>
-	<link rel=apple-touch-icon sizes=180x180 href=/static/asset/fav/icon.webp>
-	<!-- <meta name=msapplication-square70x70logo content="{ site.icon.70 }"> -->
-	<!-- <link rel=manifest href=/app.webmanifest> -->
-
-	<!-- <link rel=me href="{ site.me_url }"> -->
-	<!-- <link rel=pingback href="{ site.pingback_url }"> -->
-	<!-- <link rel=webmention href="{ site.webmention_url }"> -->
-	<!-- <link rel=token_endpoint href="{ site.token_endpoint_url }"> -->
-	<!-- <link rel=authorization_endpoint href="{ site.authorization_endpoint_url }"> -->
 	<!--🔧 Append arrow symbol to external links -->
 	<style>
 	a:link:is([href^="//"],[href^="http://"],[href^="https://"]):not([href^="http://localhost:3000"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
 		content: "↗";
 		font-weight: 500;
-		/* transform: scaleX(-100%);  */
 		display: inline-block;
 		text-decoration-line: none;
 		opacity:.66;
 	}
-
 	</style>
+
+	<!--⌚ Do not alter viewport in Apple Watch -->
+	<meta name=disabled-adaptations content=watch>
+
+	<!--📣 Page Description, URL -->
+	<meta name=description content="A description of this site">
+	<link rel=canonical href=https://pxl.egeesin.com>
+
+	<!--🎯 SEO (OpenGraph, Twitter) Meta Tags for Embed View
+		https://ogp.me/
+		https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started -->
+	<meta property=og:title content="{{ title }}・Site Title">
+	<meta property=og:description name=description content="{{ description }}">
+	<!-- <meta property=og:url content="localhost:3000"> -->
+	<meta name=twitter:card content=summary_large_image>
+	<!-- <meta property=og:image content=""> -->
+	<meta name=twitter:card content=summary>
+	<!-- <meta name=twitter:site content=""> -->
+
+	<!--🤖 Robots.txt & Pinterest
+		https://www.robotstxt.org/robotstxt.html
+		https://help.pinterest.com/en/business/article/prevent-saves-to-pinterest-from-your-site -->
+	<meta name=robots content="noindex, follow">
+	<meta name=pinterest content=nopin>
+	<!-- <meta name=google content=notranslate> -->
+
+	<!--📰 RSS/Atom/JSON Feeds
+		https://www.rssboard.org/rss-specification#whatIsRss
+		https://validator.w3.org/feed/docs/atom.html#whatIsAtom
+		https://www.jsonfeed.org/ -->
+	<link rel=alternate href=/feed.json type=application/json title="JSON Feed">
+	<!-- <link rel=alternate href=/feed.xml type=application/atom+xml title="Atom Feed"> -->
+
+	<!-- 🖼️ Favicon, PWA Icons and Manifest
+		https://en.wikipedia.org/wiki/Favicon
+		https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+		https://w3c.github.io/manifest/ -->
+
+	<link rel=icon href=/favicon.ico sizes=32x32>
+	<!-- <link rel=icon href=/icon.svg type=image/svg+xml> -->
+	<link rel=apple-touch-icon href=/favicon@192.webp>
+	<link rel=manifest href=/app.webmanifest>
+	
+	<!-- 🌗 Dark/Light Theme & Android/Chrome Theme Color -->
+	<meta name=color-scheme content="dark light">
+	<meta name=theme-color media="(prefers-color-scheme: dark)" content=#000>
+	<meta name=theme-color media="(prefers-color-scheme: light)" content=#fff>
+
+	<!-- 🌗 Disable Dark Reader by default 
+	https://github.com/darkreader/darkreader/blob/main/CONTRIBUTING.md#disabling-dark-reader-on-your-site -->
+	<meta name=darkreader-lock>
+
+	<!--🌎 IndieWeb -->
+	<!-- <link rel=me href=""> -->
+	<!-- <link rel=pingback href=""> -->
+	<!-- <link rel=webmention href=""> -->
+	<!-- <link rel=token_endpoint href=""> -->
+	<!-- <link rel=authorization_endpoint href=""> -->
+
+	<!--🔡 Misc -->
+	<!-- <meta name=generator type=""> -->
+
 </head>

@@ -3,6 +3,9 @@ layout: post-single
 priority: 1
 type: homepage
 permalink: "/index.html"
+options:
+  showTitleInNav: false
+  forceDarkHeader: true
 ---
 ![Pixelated logo with flashy written letters 'pxl'.](/static/asset/logo.gif)
 ## Welcome to home page!

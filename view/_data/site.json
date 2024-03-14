@@ -1,37 +1,53 @@
 {
 	"lang": "en",
-	"lang-alt": "tr",
 	"title": "Site Title",
-	"short_title": "Site",
-	"description": "Description of this website here…",
+	"description": "Description of this site",
+	"repository": "github_name/repo_name",
 	"baseurl": "https://example.com",
-	"pwa_fg_color:": "#1998ee",
-	"pwa_bg_color:": "#000",
-	"repository": "example/repo",
-	"icon": {
-		"32": "/static/asset/fav/icon.webp",
-		"70": "/static/asset/fav/icon.webp",
-		"180": "/static/asset/fav/icon.webp",
-		"512": "/static/asset/fav/icon.webp"
+	"favicon": {
+		"ico32": "/favicon.ico",
+		"webp192": "/favicon@192.webp",
+		"webp512": "/favicon@512.webp"
+	},
+	"options": {
+		"titleSeparator": "・",
+		"rootClasses": "t-color t-modRoot -borderColorBack -borderValNormal -borderStyleOutset -embossSmooth -cornerRoundedMax -shadowTypeSmooth",
+		"bodyClasses": "t-modBody",
+		"appendRootClass": "",
+		"appendBodyClass": "",
+		"showTitleInNav": false,
+		"forceDarkHeader": true,
+		"discourageSearchEngine": true,
+		"noPinterest": true,
+		"showThemeSwitcher": true
+	},
+	"pwa": {
+		"titleShort": "Site",
+		"colorTheme": "#1998ee",
+		"colorBg": "#000",
+		"colorBgDark": "#000",
+		"colorBgLight": "#000",
+		"display": "minimal-ui"
 	},
 	"author": {
 		"name": "Name Surname",
-		"mastodon": "@handle@mastodon.social",
-		"instagram": "instagram_name",
-		"github": "github_name",
-		"behance": "behance_name",
-		"twitterx": "@socialtwitter",
+		"url": "https://example.com",
+		"mail": "info@example.com",
 		"avatar": "static/asset/filler/avatar.png",
-		"mail": "info@example.com"
+		"behance": "behance_name",
+		"discord": "000000000000000000",
+		"github": "github_name",
+		"itchio": "username",
+		"instagram": "instagram_name",
+		"mastodon": "@handle@mastodon.social",
+		"youtube": "@handle",
+		"twitterx": "@socialtwitter"
 	},
-	"root-classes": "t-color t-modRoot -borderColorBack -borderValNormal -borderStyleOutset -embossSmooth -cornerRoundedInner -shadowTypeSmooth",
-	"body-classes": "t-modBody",
-	"separator": "・",
-	"webmention_url": "https://webmention.io/example.com/webmention",
-	"pingback_url": "https://webmention.io/example.com/xmlrpc",
-	"me_url": "https://mastodon.social/@username",
-	"token_endpoint_url": "https://tokens.indieauth.com/token",
-	"authorization_endpoint_url": "https://indieauth.com/auth",
-	"comments_locked": false,
-	"staticman-api": "about:blank"
+	"indieweb": {
+		"webmention": "https://webmention.io/example.com/webmention",
+		"pingback": "https://webmention.io/example.com/xmlrpc",
+		"me": "https://mastodon.social/@username",
+		"tokenEndpoint": "https://tokens.indieauth.com/token",
+		"authEndpoint": "https://indieauth.com/auth"
+	}
 }

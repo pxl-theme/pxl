@@ -1,17 +1,36 @@
-<header aria-label=Main class="c-header t-color -forceDark -schemeInherit" style="background-color: var(--colorBack);">
+<header 
+	aria-label=Main
+	class="
+	c-header 
+	t-modRoot -cornerInherit -borderValNone -stylesetAcetate
+	{% if options.forceDarkHeader == true %}t-color -forceDark -schemeInherit{% endif %}
+	"
+	style="background-color: var(--colorBack);"
+	>
 	<div class=o-rustygrid>
-		{% if custom_header_title %}
-		{% comment %} <div class="o-rustygrid__item -col0 -col1-12@palm"></div> {% endcomment %}
-		<div class="o-rustygrid__item -col1 -col5-12@palm -push1-12@palm" style="user-select:none">
-			<h1 class="u-txtOnImg">
-				<a href="./">{{custom_header_title}}</a> <!-- directs to current page -->
-			</h1>
-		</div>
-		{% endif %}
-		{% comment %} {% if site.title %}<h1 style="text-align:center"><a href="{{ "/" | url }}">{{ site.title | escape }}</a></h1>{% endif %} {% endcomment %}
-		{% comment %} {% if site.description %}<h4 style="text-align:center">{{ site.description }}</h4>{% endif %} {% endcomment %}
+		{%- if options.showTitleInNav == false -%}
+			<div class="o-rustygrid__item -col1 -col5-12@palm -push1-12@palm" style="user-select:none">
+				<h1 class="u-txtOnImg">
+					<a href="/"
+						{%- if site.favicon.webp192 -%}
+							><img style="margin-inline-start:.5ch" src="{{ site.favicon.webp192 }}" width=48px alt=""
+						{%- else -%}
+							><svg class="pi -size2x" style="--iconWeight: 2px" viewBox='0 0 18 18' width="2rem"><use href='/pi.svg#house'></use></svg
+						{%- endif -%}
+						><span style="margin-inline-start:.5ch">{{ site.title }}</span></a
+					{%- comment -%} TODO: Add custom header title link to where it's been invoked from.{%- endcomment -%}
+					{%- if title -%}
+						>{{- options.titleSeparator | default: site.options.titleSeparator
+						-}}<a href="{{ page.url }}">{{- title -}}</a>
+						{%- comment -%} {% if site.title %}<h1 style="text-align:center"><a href="{{ "/" | url }}">{{ site.title | escape }}</a></h1>{% endif %} {%- endcomment -%}
+						{%- comment -%} {% if site.description %}<h 4 style="text-align:center">{{ site.description }}</h4>{% endif %} {%- endcomment -%}
+					{%- else -%}>
+					{%- endif -%}
+				</h1>
+			</div>
+		{%- endif -%}
 		<div class="o-rustygrid --noGutter u-hidden@lap">
-			<div class="o-rustygrid__item -col1 t-modRoot -stylesetAcetate -borderNone">
+			<div class="o-rustygrid__item -col1">
 			<!-- <div class="o-rustygrid__item -col1 -col1-2@palm t-modRoot -stylesetAcetate -borderNone"> -->
 				<ul class="c-nav -typeFlyout -layoutHorizontal -alignStart" role=tree style=z-index:2>
 					<li class="c-nav__item u-hidden@lap" >

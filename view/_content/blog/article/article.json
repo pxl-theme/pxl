@@ -1,6 +1,9 @@
 {
 	"layout": "post-single",
-	"author": "Name Surname",
+	"options": {
+		"forceDarkHeader": false,
+		"showTitleInNav": true
+	},
 	"permalink": "blog/article/{{ page.fileSlug }}/",
 	"vocab": "entry",
 	"changefreq": "monthly",

@@ -1,5 +1,5 @@
 ---
-permalink: blog/feed.json
+permalink: /blog/feed.json
 ---
 {
 	"version": "https://jsonfeed.org/version/1",
@@ -7,8 +7,8 @@ permalink: blog/feed.json
 	"description": "{{ site.description }}",
 	"home_page_url": "{{ site.baseurl }}",
 	"feed_url": "{{ '/feed.json' | prepend: site.baseurl }}",
-	"favicon": "{{ site.favicon | prepend: site.baseurl }}",
-	"icon": "{{ site.icon | prepend: site.baseurl }}",
+	"favicon": "{{ site.favicon.ico32 }}",
+	"icon": "{{ site.favicon.ico32 }}",
 	"author": {
 		"name": "{{ site.author.name }}",
 		"url": "{{ site.author.url }}",

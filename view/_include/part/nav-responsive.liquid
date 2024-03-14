@@ -12,6 +12,9 @@
 			</label>
 		</li>
 		{%- endcomment -%}
+		{%- comment -%}
+		FIRST LEVEL OF NAVIGATION
+		{%- endcomment -%}
 		{%- for item in navigation -%}
 			<li class="c-nav__item {% if item.align == "right" %}-leanEnd{% endif %}" {%- if item.url == page.url %} aria-current=page{%- endif -%}>
 				<a class="c-nav__anchor" href="{{ item.url }}" {%
@@ -25,6 +28,9 @@
 				{{- item.label -}}{{- item.post -}}
 				</a>
 				{%- if item.submenu -%}
+					{%- comment -%}
+					SECOND LEVEL OF NAVIGATION
+					{%- endcomment -%}
 					{%- assign submenu = item.submenu -%}
 					{%- if submenu -%}
 					<ul class=c-nav__submenu>
@@ -41,6 +47,9 @@
 								<span>{{- item.label }}</span>{{ item.post }}
 								</a>
 								{%- if item.submenu -%}
+									{%- comment -%}
+									THIRD (LAST) LEVEL OF NAVIGATION
+									{%- endcomment -%}
 									{%- assign submenu2 = item.submenu -%}
 									{%- if submenu2 -%}
 									<ul class=c-nav__submenu>
@@ -71,6 +80,7 @@
 			</li>
 			{{- item.separator -}}
 		{%- endfor -%}
+		{%- if site.options.showThemeSwitcher == true -%}
 		<li class="c-nav__item -viewIconOnly -leanEnd">
 			<a class="c-nav__anchor" href=#! data-drkmd-toggle title="Toggle dark mode" aria-label="Toggle dark mode">
 				<svg class=pi viewBox="0 0 18 18" width=18px>
@@ -79,6 +89,7 @@
 				<!-- <a href>🌗</a> -->
 			</a>
 		</li>
+		{%- endif %}
 	</ul>
 </nav>
 {%- endif -%}
