@@ -926,6 +926,10 @@ figcaption {
 	@mixin fontSize5;
 }
 
+/*
+ * Table Styles
+ */
+
 table {
 	/* --tableBorderColor: var(--colorText); */
 	--tableBorderColor: var(--colorTextOpac60);
@@ -937,6 +941,7 @@ table {
 	border: var(--tableBorder) solid var(--tableBorderColor);
 	/* border: var(--tableBorder) solid var(--colorTextOpac40); */
 	border-collapse: collapse;
+	border-radius: var(--radiusInnerDefault);
 	/* TODO: Find a way to overflow large table content without any container */
 	/* overflow-wrap: anywhere;  */
 	:is(td, th){
@@ -956,23 +961,38 @@ table {
 		padding: initial;
 	}
 	&.-rowZebra {
+		/* Distribute border between rows */
+		/* :not(tr:last-child) > :is(td){ */
+		/* tr > td{ */
+		td {
+			border-block-width:0;
+		}
+		/* Alternate background colors per row */
 		tbody tr:nth-child(odd) {
 			background-color: var(--colorTextOpac075) ;
 		}
 		/* No horizontal borders in zebra row table except first row */
-		:not(tr:first-of-type) > :is(td,th){
-			border-width: 0 var(--tableBorder);
-		}
+		/* :not(tr:first-of-type) > :is(td,th){ */
+		/* 	border-width: 0 var(--tableBorder); */
+		/* } */
 	}
 	&.-headerStickyBoth {
 		/* Source: https://css-tricks.com/idea-simple-responsive-spreadsheet/ */
+		position: relative;
+
+		:has(> &) { /* Container Selector */
+			overflow: scroll;
+		}
+		:is(td,th) {
+			white-space: nowrap;
+		}
 
 		/* Heading of the table */
 		th {
-			background-color: var(--colorTextOpac075) ;
+			background-color: var(--colorFront);
 			position: sticky;
-			inset-block-start: calc(var(--tableBorder) * -1));
 			z-index: 2;
+			inset-block-start: calc(var(--tableBorder) * -1);
 
 			/* The first cell that lives in the top left of our spreadsheet */
 			&:first-of-type {
@@ -982,17 +1002,35 @@ table {
 		}
 
 		/* The first column that we want to stick to the left */
-		tbody tr td:first-of-type {
-			background-color: var(--colorTextOpac075) ;
+		tbody tr :is(td,th):first-of-type {
 			position: sticky;
-			inset-inline-start: calc(var(--tableBorder) * -1));
 			z-index: 1;
+			inset-inline-start: calc( var(--tableBorder) * -1);
+			background-color: var(--colorFront);
 		}
 	}
-}
-/* This class name may not be final */
-.c-container__table-headerStickyBoth {
-	overflow: scroll;
+	&.-highlightAlignment {
+		position: relative;
+		z-index: 0;
+		overflow: hidden;
+		:is(td, th) {
+			/* min-inline-size: 3rem; */
+			position: relative;
+			outline: 0;
+		}
+		tbody tr:hover, :is(td, th):hover:after {
+			background-color: var(--colorTextOpac075);
+		}
+		:is(thead th:not(:empty), td):hover:after {
+			content: '';
+			height: 10000px;
+			left: 0;
+			position: absolute;
+			top: -5000px;
+			width: 100%;
+			z-index: -1;
+		}
+	}
 }
 
 /* Border radius on top level of table won't work
@@ -1000,16 +1038,19 @@ table {
 .t-modRoot[class*="-cornerRounded"]{
 	table{
 		border-collapse: separate;
-		overflow:hidden;
 		border-spacing: 0;
-		border-block-end-width:0;
-		border-inline-end-width:0
 	}
-	table.-rowZebra{
-		border-block-end-width:var(--tableBorder);
-		:is(td,th){
-			border-block-end-width:0;
-		}
+	table:not(.-headerStickyBoth){
+		overflow:hidden;
+	}
+	:has( > table.-headerStickyBoth){ 
+		border-radius: var(--radiusL);
+	}
+	tr > :is(td,th):last-child:not(:only-child) {
+		border-inline-end-width:0;
+	}
+	tr:last-of-type:not(:only-child) > :is(td,th) {
+		border-block-end-width:0;
 	}
 	:is(td,th){
 		border-block-start-width:0;
@@ -1019,22 +1060,48 @@ table {
 	/* 	overflow:hidden; */
 	/* } */
 }
-
-table{
-	border-radius: var(--radiusInnerDefault);
-}
 /* tr:first-child :is(td,th):first-child { border-top-left-radius:     var(--radiusInnerDefault)} */
 /* tr:first-child :is(td,th):last-child  { border-top-right-radius:    var(--radiusInnerDefault)} */
 /* tr:last-child  :is(td,th):first-child { border-bottom-left-radius:  var(--radiusInnerDefault)} */
 /* tr:last-child  :is(td,th):last-child  { border-bottom-right-radius: var(--radiusInnerDefault)} */
-:where(table, thead, tbody:not:first-child, :is(caption) + tbody) > tr:first-child :is(td,th):first-child { border-start-start-radius:  var(--radiusInnerDefault)}
-:where(table, thead, tbody:not:first-child, :is(caption) + tbody) > tr:first-child :is(td,th):last-child  { border-start-end-radius:    var(--radiusInnerDefault)}
-:where(table, tfoot, tbody:not:first-child, :is(caption) + tbody) > tr:last-child  :is(td,th):first-child { border-end-start-radius:    var(--radiusInnerDefault)}
-:where(table, tfoot, tbody:not:first-child, :is(caption) + tbody) > tr:last-child  :is(td,th):last-child  { border-end-end-radius:      var(--radiusInnerDefault)}
 
-/***** WP compatible, CMS exclusive
- *     inline article components
+/* Make top-left corner of table rounded */
+:where(
+	table,
+	:is(tbody,thead):first-child,
+	caption + :is(tbody,thead) 
+) > tr:first-child :is(td,th):first-child {
+	border-start-start-radius: var(--radiusInnerDefault);
+}
+/* Make top-right corner of table rounded */
+:where(
+	table,
+	:is(tbody,thead):first-child,
+	caption + :is(tbody,thead)
+) > tr:first-child :is(td,th):last-child {
+	border-start-end-radius: var(--radiusInnerDefault);
+}
+/* Make bottom-left corner of table rounded */
+:where(
+	table,
+	:is(tbody,tfoot):last-child,
+	caption + :is(tbody,tfoot)
+) > tr:last-child  :is(td,th):first-child {
+	border-end-start-radius: var(--radiusInnerDefault);
+}
+/* Make bottom-right corner of table rounded */
+:where(
+	table,
+	:is(tbody,tfoot):last-child,
+	caption + :is(tbody,tfoot) 
+) > tr:last-child :is(td,th):last-child {
+	border-end-end-radius: var(--radiusInnerDefault);
+}
+
+/*
+ * Inline Media Classes (for WordPress or any other CMS)
  */
+
 /* Image, Video, Picture Elements inside CMS Content */
 .s-cmsContent {
 	:is(img,video,picture) {
