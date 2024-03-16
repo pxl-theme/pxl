@@ -1,0 +1,436 @@
+<div id="t-modSwitcher">
+	<script>
+		document.addEventListener("DOMContentLoaded", (event) => {
+			// Class Lists of Scope Elements
+			const tModRoot = document.querySelector(".t-modRoot");
+			const tModBody = document.querySelector(".t-modBody");
+			// const tModRoot.classList = document.documentElement.classList;
+			// const tModBody.classList = document.body.classList;
+			// document.body.tagName.toLowerCase();
+			// const tModSwitcher = document.getElementById("t-mod-switcher");
+			const tModExport = document.getElementById("t-modExport");
+			const tModImport = document.getElementById("t-modImport");
+			const rootPrefixes = [
+				"-schemeLight",
+				"-schemeDark",
+				"-styleset",
+				"-corner",
+				"-borderVal",
+				"-borderStyle",
+				"-borderColor",
+				"-outlineVal",
+				"-outlineColor",
+				"-shadowType",
+				"-shadowColor",
+				"-emboss",
+			];
+			const bodyPrefixes = ["-bg"];
+			// Initializing select options based on existing classes
+			function initializeClasses(classlist, prefixes) {
+				for (const cls of classlist) {
+					for (const prefix of prefixes) {
+						if (cls.startsWith(prefix)) {
+							document.getElementById(`select${prefix}`).value =
+								cls.substring(prefix.length);
+						} else {
+							return false;
+						}
+					}
+				}
+			}
+			initializeClasses(tModRoot.classList, rootPrefixes);
+			initializeClasses(tModBody.classList, bodyPrefixes);
+			// Function to handle class changes
+			function handleClassChange(select, prefix, classlist) {
+				if (classlist.contains(prefix + select.value)) {
+					return;
+				}
+				for (const cls of classlist) {
+					if (cls.startsWith(prefix)) {
+						classlist.remove(cls);
+					}
+				}
+				classlist.add(prefix + select.value);
+			}
+			// Event listeners for select changes
+			function listenClassChange(prefixes, classlist) {
+				for (const prefix of prefixes) {
+					if (document.getElementById(`select${prefix}`)) {
+						document
+							.getElementById(`select${prefix}`)
+							.addEventListener("change", function () {
+								handleClassChange(this, prefix, classlist);
+								updateExportTextarea();
+							});
+					}
+				}
+			}
+			listenClassChange(rootPrefixes, tModRoot.classList);
+			listenClassChange(bodyPrefixes, tModBody.classList);
+			// Function to update the Export textarea
+			function updateExportTextarea() {
+				const filteredClasses = Array.from(tModRoot.classList).filter((cls) => {
+					return rootPrefixes.some((prefix) => cls.startsWith(prefix));
+				});
+				const exportText = `|root ${filteredClasses.join(
+					" ",
+				)} |body ${Array.from(tModBody.classList).find((cls) =>
+					bodyPrefixes.some((prefix) => cls.startsWith(prefix)),
+				)}`;
+				tModExport.value = exportText;
+			}
+			// Function to submit the import textarea
+			document.getElementById("submitImport").addEventListener("click", () => {
+				const regex = /\|root\s(.*?)\s\|body\s(.*?)$/;
+				const matches = tModImport.value.match(regex);
+				if (matches) {
+					const tModRootRegex = matches[1].split(" ");
+					const tModBodyRegex = matches[2].split(" ");
+					for (const cls of tModRootRegex) {
+						for (const prefix of rootPrefixes) {
+							if (cls.startsWith(prefix)) {
+								const selectMenu = document.getElementById(
+									`select${prefix}`,
+								);
+								if (selectMenu) {
+									selectMenu.value = cls.substring(prefix.length);
+									handleClassChange(
+										selectMenu,
+										prefix,
+										tModRoot.classList,
+									);
+								}
+							}
+						}
+					}
+					for (const cls of tModBodyRegex) {
+						for (const prefix of bodyPrefixes) {
+							if (cls.startsWith(prefix)) {
+								const selectMenu = document.getElementById(
+									`select${prefix}`,
+								);
+								if (selectMenu) {
+									selectMenu.value = cls.substring(prefix.length);
+									handleClassChange(
+										selectMenu,
+										prefix,
+										tModBody.classList,
+									);
+								}
+							}
+						}
+					}
+				}
+			});
+			// Function to randomize select menus
+			document
+				.getElementById("randomizeSelects")
+				.addEventListener("click", () => {
+					for (const select of document.querySelectorAll(
+						"select[id^=select-]:not([data-randomize=no])",
+					)) {
+						const options = select.querySelectorAll("option");
+						const randomIndex = Math.floor(Math.random() * options.length);
+						select.value = options[randomIndex].value;
+						console.log(
+							rootPrefixes.some((prefix) => {
+								return select.id.endsWith(prefix);
+							}),
+						);
+						// const prefix = rootPrefixes.some((prefix)=> {return (select.id.endsWith(prefix))}) ? rootPrefixes : bodyPrefixes;
+						const prefix = select.id.replace("select", "");
+						const classlist = rootPrefixes.some((prefix) => {
+							return select.id.endsWith(prefix);
+						})
+							? tModRoot.classList
+							: tModBody.classList;
+						handleClassChange(select, prefix, classlist);
+						updateExportTextarea();
+					}
+				});
+			// Function to reset select menus
+			document.getElementById("resetSelects").addEventListener("click", () => {
+				for (const select of document.querySelectorAll("select[id^=select-]")) {
+					select.selectedIndex = 0;
+					const prefix = select.id.replace("select", "");
+					const classlist = rootPrefixes.some((prefix) => {
+						return select.id.endsWith(prefix);
+					})
+						? tModRoot.classList
+						: tModBody.classList;
+					handleClassChange(select, prefix, classlist);
+					updateExportTextarea();
+				}
+			});
+			for (const checkbox of document.querySelectorAll(
+				'label[for^="select-"] + input[type=checkbox]',
+			)) {
+				checkbox.nextElementSibling.dataset.randomize = checkbox.checked
+					? "yes"
+					: "no";
+				checkbox.addEventListener("click", () => {
+					checkbox.nextElementSibling.dataset.randomize = checkbox.checked
+						? "yes"
+						: "no";
+				});
+			}
+		});
+	</script>
+	<button id="randomizeSelects">Randomize Checked</button>
+	<button id="resetSelects">Reset All</button>
+	<fieldset>
+		<h3><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#palette></use></svg> Color Scheme</h3>
+		<label for=select-schemeLight> Light:</label>
+		<input type=checkbox>
+		<select id=select-schemeLight>
+			<option selected value=SelenizedWhite>Default (Selenized White)</option>
+			<option value=AtelierCave>Atelier Cave</option>
+			<option value=AtelierDune>Atelier Dune</option>
+			<option value=AtelierForest>Atelier Forest</option>
+			<option value=AtelierHeath>Atelier Heath</option>
+			<option value=AtelierLakeside>Atelier Lakeside</option>
+			<option value=AtelierPlateau>Atelier Plateau Light</option>
+			<option value=AtelierSeaside>Atelier Seaside</option>
+			<option value=AtelierSulphurpool>Atelier Sulphurpool</option>
+			<option value=AtomOne>Atom One</option>
+			<option value=Ayu>Ayu</option>
+			<option value=Brushtrees>Brush Trees</option>
+			<option value=CatppuccinLatte>Catppuccin Latte</option>
+			<option value=Cupcake>Cupcake</option>
+			<option value=DaOnePaper>Da One Paper</option>
+			<option value=Everforest>Everforest Medium</option>
+			<option value=Flexoki>Flexoki</option>
+			<option value=GruvboxMaterialMedium>Gruvbox Material Medium</option>
+			<option value=GruvboxMedium>Gruvbox Medium</option>
+			<option value=Harmonic16>Harmonic16</option>
+			<option value=Humanoid>Humanoid</option>
+			<option value=Ia>iA</option>
+			<option value=LightOwl>Light Owl</option>
+			<option value=MaterialLighter>Material Lighter</option>
+			<option value=Sagelight>Sagelight</option>
+			<option value=Sakura>Sakura</option>
+			<option value=Selenized>Selenized</option>
+			<option value=Solarized>Solarized</option>
+			<option value=Standardized>Standardized</option>
+			<option value=Summerfruit>Summerfruit</option>
+			<option value=TokyoNight>Tokyo Night</option>
+			<option value=Tomorrow>Tomorrow</option>
+			<option value=Unikitty>Unikitty</option>
+		</select>
+		<br>
+		<label for=select-schemeDark>Dark:</label>
+		<input type=checkbox>
+		<select id=select-schemeDark>
+			<option selected value=SelenizedBlack>Default (Selenized Black)</option>
+			<option value=Ashes>Ashes</option>
+			<option value=AtelierCave>Atelier Cave</option>
+			<option value=AtelierDune>Atelier Dune</option>
+			<option value=AtelierForest>Atelier Forest</option>
+			<option value=AtelierHeath>Atelier Heath</option>
+			<option value=AtelierLakeside>Atelier Lakeside</option>
+			<option value=AtelierPlateau>Atelier Plateau</option>
+			<option value=AtelierSeaside>Atelier Seaside</option>
+			<option value=AtelierSulphurpool>Atelier Sulphurpool</option>
+			<option value=Atlas>Atlas</option>
+			<option value=AtomOne>Atom One</option>
+			<option value=AyuMirage>Ayu Mirage</option>
+			<option value=Ayu>Ayu</option>
+			<option value=Bespin>Bespin</option>
+			<option value=Brushtrees>Brush Trees</option>
+			<option value=C64>C64</option>
+			<option value=CatppuccinMacchiato>Catppuccin Macchiato</option>
+			<option value=Colors>Colors</option>
+			<option value=DaOneGray>Da One Gray</option>
+			<option value=DaOneOcean>Da One Ocean</option>
+			<option value=DaOneSea>Da One Sea</option>
+			<option value=Danqing>DanQing</option>
+			<option value=Darktooth>Darktooth</option>
+			<option value=Decaf>Decaf</option>
+			<option value=Dracula>Dracula</option>
+			<option value=Eighties>Eighties</option>
+			<option value=Eva>Eva</option>
+			<option value=Everforest>Everforest Medium</option>
+			<option value=Flat>Flat</option>
+			<option value=Flexoki>Flexoki</option>
+			<option value=Gruber>Gruber Darker</option>
+			<option value=GruvboxMaterialMedium>Gruvbox Material Medium</option>
+			<option value=GruvboxMedium>Gruvbox Medium</option>
+			<option value=Harmonic16>Harmonic16</option>
+			<option value=Helios>Helios</option>
+			<option value=Hopscotch>Hopscotch</option>
+			<option value=Humanoid>Humanoid</option>
+			<option value=Ia>iA</option>
+			<option value=Kanagawa>Kanagawa</option>
+			<option value=Marrakesh>Marrakesh</option>
+			<option value=Materia>Materia</option>
+			<option value=MaterialDarker>Material Darker</option>
+			<option value=MaterialPalenight>Material Palenight</option>
+			<option value=Material>Material</option>
+			<option value=Mocha>Mocha</option>
+			<option value=Monokai>Monokai</option>
+			<option value=Mountain>Mountain</option>
+			<option value=NightOwl>Night Owl</option>
+			<option value=Nord>Nord</option>
+			<option value=Nova>Nova</option>
+			<option value=Ocean>Ocean</option>
+			<option value=Oceanicnext>OceanicNext</option>
+			<option value=Outrun>Outrun</option>
+			<option value=Paraiso>Paraiso</option>
+			<option value=Phd>PhD</option>
+			<option value=Pop>Pop</option>
+			<option value=Selenized>Selenized</option>
+			<option value=Seti>Seti UI</option>
+			<option value=ShadesOfPurple>Shades of Purple</option>
+			<option value=Solarized>Solarized</option>
+			<option value=SonokaiAndromeda>Sonokai Andromeda</option>
+			<option value=SonokaiDefault>Sonokai Default</option>
+			<option value=SonokaiEspresso>Sonokai Espresso</option>
+			<option value=SonokaiMaia>Sonokai Maia</option>
+			<option value=Spaceduck>Spaceduck</option>
+			<option value=Spacemacs>Spacemacs</option>
+			<option value=Standardized>Standardized</option>
+			<option value=Summerfruit>Summerfruit</option>
+			<option value=TokyoNightStorm>Tokyo Night Storm</option>
+			<option value=TomorrowNightEighties>Tomorrow Night Eighties</option>
+			<option value=TomorrowNight>Tomorrow Night</option>
+			<option value=Twilight>Twilight</option>
+			<option value=Unikitty>Unikitty</option>
+			<option value=Woodland>Woodland</option>
+		</select>
+		<br>
+		<button data-drkmd-toggle title="Toggle dark mode" aria-label="Toggle dark mode" style=float:right><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#sun></use></svg> Toggle Theme</button>
+		<hr>
+		<label for=select-bg><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#page-background></use></svg> Background:</label>
+		<input type=checkbox checked>
+		<select id=select-bg>
+			<option selected value=None>Default (Solid Color)</option>
+			<option value=HGrid>Horizontal Grid</option>
+			<option value=CrossGrid>Cross Grid</option>
+			<option value=HorizontalStripesSM>Horizontal Stripes (Small)</option>
+			<option value=DiagonalStripesSM>Diagonal Stripes (Small)</option>
+			<option value=DiagonalStripesAltSM>Diagonal Stripes (Alt, Small)</option>
+			<option value=ZigZag>ZigZag</option>
+			<option value=MicrobialMat>Microbial Mat</option>
+			<option value=TriangleMosaic>Triangle Mosaic</option>
+			<option value=Weaves>Weaves</option>
+			<option value=Cross>Cross</option>
+			<option value=Shippo>Shippo</option>
+			<option value=Pyramid>Pyramid</option>
+			<option value=Seigaiha>Seigaiha</option>
+			<option value=Houndstooth>Houndstooth</option>
+			<option value=Checkerboard>Checkerboard</option>
+			<option value=IsometricCubes>Isometric Cubes</option>
+			<option value=ArrowTessellation>Arrow Tesellation</option>
+			<option value=Argyle>Argyle</option>
+			<option value=Tablecloth>Tablecloth</option>
+			<option value=Tartan>Tartan</option>
+		</select><br>
+		<label for=select-styleset><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#modifier></use></svg> Style Set:</label>
+		<input type=checkbox>
+		<select id=select-styleset>
+			<option selected value=None>Default (None)</option>
+			<option value=BackdropBlur>Backdrop Blur</option>
+			<option value=Acetate>Acetate Paper</option>
+			<option value=Neumorphism>Neumorphism</option>
+		</select><br>
+	</fieldset>
+	<fieldset>
+		<label for=select-corner><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#card-roundness></use></svg> Corner:</label>
+		<input type=checkbox checked>
+		<select id=select-corner>
+			<option selected value=Sharp>Default (Sharp)</option>
+			<option value=RoundedTiny>Tiny Rounded</option>
+			<option value=Rounded>Rounded</option>
+			<option value=RoundedInner>More Rounded</option>
+			<option value=RoundedMax>Max Rounded</option>
+		</select><br>
+		<hr>
+		<h3><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#card-border></use></svg> Border</h3>
+		<label for=select-borderVal>Size:</label>
+		<input type=checkbox checked>
+		<select id=select-borderVal>
+			<option selected value=Hairline>Default (Hairline)</option>
+			<option value=None>None</option>
+			<option value=Normal>Normal</option>
+			<option value=Thicker>Thicker</option>
+			<option value=Thick>Thick</option>
+			<option value=Rhythm>Rhythm Unit</option>
+			<option value=ExtraThick>Extra Thick</option>
+		</select><br>
+		<label for=select-borderStyle>Style:</label>
+		<input type=checkbox checked>
+		<select id=select-borderStyle>
+			<option selected value=Default>Default (Solid)</option>
+			<option value=Dashed>Dashed</option>
+			<option value=Dotted>Dotted</option>
+			<option value=Double>Double</option>
+			<option value=Outset>Outset</option>
+			<option value=Inset>Inset</option>
+		</select><br>
+		<label for=select-borderColor>Color:</label>
+		<input type=checkbox checked>
+		<select id=select-borderColor>
+			<option selected value=Default>Default (Backmost Color)</option>
+			<option value=Back>Back Color</option>
+			<option value=Text>Text Color</option>
+			<option value=Bg>Background Color</option>
+			<option value=Transparent>Transparent</option>
+		</select><br>
+		<hr>
+		<h3><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#card-border></use></svg> Outline</h3>
+		<label for=select-outlineVal>Size:</label>
+		<input type=checkbox>
+		<select id=select-outlineVal>
+			<option selected value=None>None</option>
+			<option value=Hairline>Hairline</option>
+			<option value=Normal>Normal</option>
+			<option value=Thicker>Thicker</option>
+			<option value=Thick>Thick</option>
+			<option value=Rhythm>Rhythm Unit</option>
+			<option value=ExtraThick>Extra Thick</option>
+		</select><br>
+		<label for=select-outlineColor>Color:</label>
+		<input type=checkbox>
+		<select id=select-outlineColor>
+			<option selected value=Default>Default (Back Color)</option>
+			<option value=Text>Text Color</option>
+			<option value=TextOpac>Translucent Text Color</option>
+			<option value=Backmost>Backmost</option>
+			<option value=Bg>Background Color</option>
+		</select><br>
+		<hr>
+		<h3><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#card-shadow></use></svg> Shadow</h3>
+		<label for=select-shadowType>Type:</label>
+		<input type=checkbox checked>
+		<select id=select-shadowType>
+			<option selected value=None>None</option>
+			<option value=Sharp>Sharp</option>
+			<option value=Smooth>Smooth</option>
+			<option value=Old>Old</option>
+			<option value=MaterialV1>Material Design 1</option>
+		</select><br>
+		<label for=select-shadowColor>Color:</label>
+		<input type=checkbox checked>
+		<select id=select-shadowColor>
+			<option value=Default>Default (Backmost Color)</option>
+			<option value=Text>Text Color</option>
+			<option value=TextOpac>Translucent Text Color</option>
+			<option value=Frontmost>Frontmost Color</option>
+			<option value=Bg>Background Color</option>
+		</select><br>
+		<hr>
+		<label for=select-emboss><svg class=pi viewBox="0 0 18 18" width=18px><use href=/pi.svg#card-emboss></use></svg> Emboss Type:</label>
+		<input type=checkbox checked>
+		<select id=select-emboss>
+			<option selected value=None>None</option>
+			<option value=Smooth>Smooth</option>
+		</select><br>
+	</fieldset>
+	<label for="t-modExport">Export:</label>
+	<textarea id="t-modExport" rows="6" cols="48" readonly onclick="this.select();" style="resize: none;" placeholder="No style selected"></textarea>
+	<br>
+	<label for="t-modImport">Import:</label>
+	<textarea id="t-modImport" rows="6" cols="48" style="resize: none;" placeholder="Paste styles here"></textarea>
+	<br>
+	<button id="submitImport" style="float:right">Apply Import</button>
+</div>
