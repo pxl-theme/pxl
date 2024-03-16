@@ -1,12 +1,6 @@
 {
 	"primary": [
 		{
-			"pre": "<span class=c-iconWrapper><img src='/static/asset/fav/icon.webp' alt=''></span>",
-			"label": "<b style='font:normal 900 1.1em'>Website Title</b>",
-			"alt": "Back to the home page.",
-			"url": "/"
-		},
-		{
 			"label": "Blog",
 			"url": "/blog/",
 			"icon": "paper-multiple-masonry"
@@ -29,6 +23,8 @@
 			]
 		},
 		{
+			"icon": "the-logo",
+			"view": "IconOnly",
 			"label": "Plain Version",
 			"url": "/plain/",
 			"align": "right"
@@ -38,21 +34,25 @@
 			"url": "#!",
 			"icon": "symbol-at",
 			"align": "right",
+			"submenuStyle": "stacked",
 			"submenu": [
 				{
 					"label": "Discord",
+					"view": "IconOnly",
 					"url": "//discord.com/users/000000000000000000",
 					"icon": "site-discord",
 					"alt": "Direct link to my Discord profile. DMs are currently open. Please don't send friend request unless you need to make Group DM. Thanks."
 				},
 				{
 					"label": "Mastodon",
+					"view": "IconOnly",
 					"url": "//mastodon.social/@username",
 					"icon": "site-mastodon",
 					"alt": "Direct link to my Mastodon profile on mastodon.social instance."
 				},
 				{
 					"label": "GitHub",
+					"view": "IconOnly",
 					"url": "//github.com/username",
 					"icon": "site-github",
 					"alt": "Direct link to my Mastodon profile on mastodon.social instance."

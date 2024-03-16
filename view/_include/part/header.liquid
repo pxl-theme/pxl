@@ -28,21 +28,21 @@
 					{%- endif -%}
 				</h1>
 			</div>
+			{%- if site.description != empty -%}
+				<div class="o-rustygrid__item -col1 -col1-2@palm" style="user-select:none">
+					<h4 id="js-randomDesc" class="u-txtOnImg" style=text-align:end>{{ site.description }}</h4>
+				</div>
+			{%- endif -%}
 		{%- endif -%}
-		<div class="o-rustygrid --noGutter u-hidden@lap">
-			<div class="o-rustygrid__item -col1">
-			<!-- <div class="o-rustygrid__item -col1 -col1-2@palm t-modRoot -stylesetAcetate -borderNone"> -->
-				<ul class="c-nav -typeFlyout -layoutHorizontal -alignStart" role=tree style=z-index:2>
-					<li class="c-nav__item u-hidden@lap" >
-					<label class=c-nav__anchor for=toggleNav-000 onclick>
-						<svg class=pi viewBox="0 0 18 18" width=18px>
-						<use href=/pi.svg#general-list>
-						</svg><span>Toggle Menu</span>
-					</label>
-					</li>
-				</ul>
-			</div>
-		</div>
 	</div>
+	<menu class="c-nav -typeFlyout -layoutHorizontal -alignStart u-hidden@print" role=tree>
+		<li class="c-nav__item u-hidden@lap" >
+		<label class=c-nav__anchor for=toggleNav-000 onclick>
+			<svg class=pi viewBox="0 0 18 18" width=18px>
+				<use href=/pi.svg#general-list>
+			</svg><span>Menu</span>
+		</label>
+		</li>
+	</menu>
 	{%- include "part/nav-responsive" %}
 </header>

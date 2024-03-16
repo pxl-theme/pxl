@@ -1,8 +1,14 @@
 /***** Nav Component *****/
 
+/* @media print {  */
+/* 	.c-nav { */
+/* 		display: none !important */
+/* 	} */
+/* } */
+
 /* Reset box values if Nav Component is(or parent of) an Unordered or Ordered List */
-:where(ul,ol):is(.c-nav),
-:where(.c-nav) :is(ul,ol) {
+.c-nav:where(ul,ol,menu),
+.c-nav :where(ul,ol,menu) {
 	margin: 0;
 	padding: 0;
 	&::marker {
@@ -10,6 +16,12 @@
 		/* font-variant-numeric: oldstyle-nums; */
 	}
 }
+
+/* Hide bullet points if Nav Component is an Unordered List element.*/
+.c-nav:where(ul,menu), .c-nav :where(ul,menu) {
+	list-style: none;
+}
+
 /* Padding value of all nav items */
 .c-nav__anchor{
 	cursor: pointer;
@@ -32,7 +44,7 @@ ol.c-nav .c-nav__item > .c-nav__anchor {
 }
 ol.c-nav__submenu {
 	margin-inline-start: 0;
-	padding-inline-start: calc(var(--listMarkerSpace)*1.75);
+	padding-inline-start: calc( var(--listMarkerSpace) * 1.75 ); /* opinionated */
 	li::marker{
 		font-weight: 450;
 	}
@@ -56,11 +68,6 @@ ol.c-nav__submenu {
 /* 		} */
 /* 	} */
 /* } */
-
-/* Hide bullet points if Nav Component is an Unordered List element.*/
-ul.c-nav, .c-nav ul {
-	list-style: none;
-}
 
 /* Hide summary marker if Nav Anchor is <summary> */
 /* summary.c-nav__anchor::-webkit-details-marker{ */
@@ -169,7 +176,7 @@ ul.c-nav, .c-nav ul {
 }
 
 /* [Experimental] Stack Type Nav Submenu */
-.c-nav.-typeFlyout.-layoutHorizontal .c-nav__submenu.-typeStack {
+.c-nav.-typeFlyout.-layoutHorizontal .c-nav__submenu.-viewStack {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -210,9 +217,9 @@ ul.c-nav, .c-nav ul {
 	}
 }
 
-.c-nav:not([class*="-expand"]) > .c-toggleExpand {
-	display: none;
-}
+/* .c-nav:not([class*="-expand"]) > .c-toggleExpand { */
+/* 	display: none; */
+/* } */
 
 /**** Tree-Type Nav Component
  *
@@ -221,7 +228,7 @@ ul.c-nav, .c-nav ul {
 
 /** Set default padding values for non-expandable and *expanded* tree type navigation components
  */
-.c-nav.-typeTree:not([class*=-expand]),:is(.c-nav.-typeTree[class*=-expand]:focus-within, .c-nav.-typeTree[class*=-expand].js-visible), [id^="toggleNav-"]:checked + .c-nav.-typeTree[class*="-expand"] {
+.c-nav.-typeTree:not([class*=-expand]) {
 	padding-block-start: calc(var(--boxViewCard-padTop) - var(--border, 0px));
 	padding-block-end: calc(var(--boxViewCard-padBottom) - var(--border, 0px));
 
@@ -231,7 +238,6 @@ ul.c-nav, .c-nav ul {
 
 .c-nav.-typeTree {
 	border-radius: var(--radiusInnerDefault);
-
 
 	/* Every Nav Item inside Tree-Type Nav */
 	.c-nav__item {
@@ -351,7 +357,9 @@ ol.c-nav.-typeTree .c-nav__item {
 		padding-inline-end: calc(var(--nav-item-padSide)/4);
 		content: "▶︎";
 		/* content: "▼"; */
-		/* content: "◀︎"; */
+		[dir=rtl] & {
+			content: "◀︎";
+		}
 		line-height: 2;
 		display: block;
 		font-weight: 600;
@@ -415,16 +423,6 @@ ol.c-nav.-typeTree .c-nav__item {
 			transform: translate3d(-100%, 0, 0); /* Hide the element off-canvas */
 			transition: transform .5s cubic-bezier(.08,.82,.17,1);
 
-			/* > .c-toggleExpand { */
-			/* 	display: block; */
-			/* 	position: absolute; */
-			/* 	inset-block-start: 0; */
-			/* 	inset-inline-start: 100%; */
-			/* 	width: auto; */
-			/* 	/1* opinionated *1/ */
-			/* 	margin: var(--rhythmUnit); */
-			/* 	/1* -opinionated *1/ */
-			/* } */
 		}
 		&:is(.-expandFromStartStart:focus-visible, .-expandFromStartStart:focus-within, .-expandFromStartStart.js-visible), [id^="toggleNav-"]:checked + & {
 			transform: translate3d(0,0,0);/* Reset transform/Reveal the element from the off-canvas */
@@ -473,6 +471,10 @@ ol.c-nav.-typeTree .c-nav__item {
 			/* --fontWeight: 600; */
 			font-weight: 600;
 			/* background-color: red; */
+
+			[dir=rtl] & {
+				content: "⟨";
+			}
 		}
 		/* Submenu inside every nav item of Fly-out Type Nav*/
 		> .c-nav__submenu {
@@ -664,10 +666,6 @@ ol.c-nav.-typeTree .c-nav__item {
 			/* float: right; */
 			/* float: inline-end; */
 		}
-
-		/* .c-toggleExpand { */
-		/* 	display: none; */
-		/* } */
 
 		/** Every submenu inside Horizontal Fly-out Type Nav
 		 */
@@ -938,24 +936,6 @@ ol.c-nav.-typeTree .c-nav__item {
 	/* 	} */
 	/* } */
 }
-/* If parent nav item (icon view) is leaning, align the label.*/
-@media (any-hover: hover) {
-	.c-nav.-typeFlyout.-layoutHorizontal
-	.c-nav__item.-viewIconOnly.-leanEnd
-	> .c-nav__anchor {
-		> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
-			inset-inline-end: 0;
-		}
-	}
-	.c-nav.-typeFlyout.-layoutHorizontal
-	.c-nav__item.-viewIconOnly.-leanEnd:has(.c-nav__submenu)
-	> .c-nav__anchor {
-		> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
-			inset-inline-start: auto;
-			inset-inline-end: 100%;
-		}
-	}
-}
 
 /* Adjust the min-height, so both Submenu Indicator and icon won't be too close each other */
 .c-nav.-typeFlyout.-layoutHorizontal
@@ -980,8 +960,7 @@ ol.c-nav.-typeTree .c-nav__item {
 	}
 	/* Set the position of icon label of parent nav item next to the icon
 	 * in icon-only navigation bar. (Devices with cursor input only) */
-	.c-nav.-typeFlyout.-layoutHorizontal
-	.c-nav__item:has(.c-nav__submenu).-viewIconOnly
+	.c-nav.-typeFlyout.-layoutHorizontal .c-nav__item:has(.c-nav__submenu).-viewIconOnly
 	> .c-nav__anchor {
 		/* If item has submenu, show label next to the icon and make adjustments to typography.*/
 		> :is(:is(svg,.c-iconWrapper)
@@ -991,8 +970,10 @@ ol.c-nav.-typeTree .c-nav__item {
 			/* border:var(--borderHairline) solid var(--colorTextOpac20); */
 			/* height: 100%; */
 			/* font-size: 1em; */
-			inset-block-start: 0;
-			inset-inline-start: calc(var(--bleedSize)*-3+100%); /* TODO: Need fallback to the bleedSize variable when there's not cornerRoundedInner. */
+			/* inset-block-start: 0; */
+			inset-inline-start: calc( var(--bleedSize) * -3 + 100%);
+			inset-block: auto 0;
+			inline-size: max-content; /* opinionated */
 			z-index:2;
 		}
 	}
@@ -1003,6 +984,22 @@ ol.c-nav.-typeTree .c-nav__item {
 	/* 		left: auto; */
 	/* 	} */
 	/* } */
+
+	/* 
+	 * If parent nav item (icon view) is leaning, align the label.
+	 */
+	.c-nav.-typeFlyout.-layoutHorizontal .c-nav__item.-viewIconOnly.-leanEnd
+	> .c-nav__anchor {
+		> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
+			inset-inline-end: 0;
+		}
+	}
+	.c-nav.-typeFlyout.-layoutHorizontal .c-nav__item.-viewIconOnly.-leanEnd:has(.c-nav__submenu)
+	> .c-nav__anchor {
+		> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
+			inset-inline: auto 100%;
+		}
+	}
 }
 
 /***** Common Nav Styles for Tree and Fly-out Type
@@ -1046,11 +1043,12 @@ ol.c-nav.-typeTree .c-nav__item {
  *
  * Required ID for CSS only approach to toggle menus.
  *
- * Not to be confused with ".c-toggleExpand"
  *
  */
-[id^="toggleNav-"] {
-	display: none;
+@media screen {
+	[id^="toggleNav-"] {
+		display: none;
+	}
 }
 
 /**** Tag Type Nav Component
@@ -1151,8 +1149,15 @@ ol.c-nav.-typeTree .c-nav__item {
 .c-nav.-typeTag .c-nav__item > .c-nav__anchor {
 	border-radius: var(--radiusDefault);
 }
+
 /**** Nav Component with Inner & Max Rounded Corners Theme Modifier
  */
+.t-modRoot {
+	--bleedSize: 0px;
+}
+.t-modRoot.-cornerInherit{
+	--bleedSize: inherit;
+}
 .t-modRoot:where(.-cornerRoundedInner,.-cornerRoundedMax) {
 /* Is this in the right file? */
 	/* --bleedSize: .25em; */
@@ -1217,16 +1222,6 @@ ol.c-nav.-typeTree .c-nav__item {
 	}
 }
 
-/* TODO: Check here later. */
-/* .t-modRoot:is(.-cornerRounded,.-cornerRoundedInner) { */
-/* 	:is([id^="toggleNav-"]:checked + .c-nav.-typeTree.-expandFromBlockStart, .c-nav.-typeTree.-expandFromBlockStart.js-visible, .c-nav.-typeTree.-expandFromBlockStart:focus-within) { */
-/* 		border-radius: 0; */
-/* 		.c-toggleExpand { */
-/* 			border-radius: var(--radiusM) var(--radiusM); */
-/* 		} */
-/* 	} */
-/* } */
-
 /* .t-modRoot:is(.-cornerRounded,.-stylesetNeumorphism,.-embossWinClassic):not(.-cornerRoundedInner) .c-nav.-typeFlyout { */
 .t-modRoot:is(.-cornerRoundedTiny,
     .-cornerRounded)
@@ -1250,7 +1245,4 @@ ol.c-nav.-typeTree .c-nav__item {
 /* 	} */
 /* } */
 /* .t-modRoot:is(.-stylesetAcetate, .-stylesetNeumorphism) .c-nav.-typeTree.-expandFromBlockStart { */
-/* 	:is(a.c-toggleExpand:hover,a.c-toggleExpand:focus-visible){ */
-/* 		color: currentColor; */
-/* 	} */
 /* } */

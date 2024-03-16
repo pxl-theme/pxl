@@ -23,36 +23,39 @@
 
 /***** Header Component with Media View
  */
-/* .c-header.-viewMedia { */
-.c-header:has(> img, > picture, > video, > figure) {
-	/* Warning: Make sure box-sizing set as border-box */
 
-	/* background-color: var(--colorBackmost); */
-	border-top-left-radius: inherit;
-	border-top-right-radius: inherit;
-	/* padding-left: 1em; */
-	/* padding-right: 1em; */
-	position: relative;
-	overflow: hidden;
+@media screen {
+	/* .c-header.-viewMedia { */
+	.c-header:has(> img, > picture, > video, > figure) {
+		/* Warning: Make sure box-sizing set as border-box */
 
-	/* > * { */
-	> *:not(img,video,picture,figure) {
+		/* background-color: var(--colorBackmost); */
+		border-top-left-radius: inherit;
+		border-top-right-radius: inherit;
+		/* padding-left: 1em; */
+		/* padding-right: 1em; */
 		position: relative;
-	}
-	> img {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		/* opinionated */
-		height: 100%;
-		object-fit: cover;
-		/*-opinionated */
-	}
-	&:before {
-		position: relative;
-		content: '';
-		display: block;
+		overflow: hidden;
+
+		/* > * { */
+		> *:not(img,video,picture,figure) {
+			position: relative;
+		}
+		> img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			/* opinionated */
+			height: 100%;
+			object-fit: cover;
+			/*-opinionated */
+		}
+		&:before {
+			position: relative;
+			content: '';
+			display: block;
+		}
 	}
 }
 /*** Opinionated Header/Page Title
