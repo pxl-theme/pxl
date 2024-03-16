@@ -17,10 +17,7 @@
       },
       "complexity": {
         "noForEach": "off"
-	  },
-      "nursery": {
-        "noEmptyBlockStatements": "off"
-      }
+	  }
     }
   },
   "formatter" : {

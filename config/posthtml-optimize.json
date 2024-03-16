@@ -1,5 +1,8 @@
 {
 	"plugins": {
-		"htmlnano":{}
+		"htmlnano":{
+			"collapseWhitespace": "aggressive",
+			"removeAttributeQuotes": true
+		}
 	}
 }
