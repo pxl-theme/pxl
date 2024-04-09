@@ -2,8 +2,10 @@
  */
 .c-header {
 	/* margin-block-end:var(--rhythmUnit); */
-	background-position: center;
-	background-size: cover;
+	&:not(.t-modBody) { /* Don't distort background pattern of header when its specified */
+		background-position: center;
+		background-size: cover;
+	}
 	/* & :where(h1,h2,h3,h4,h5,h6) { */
 	/* 	margin-block-start: 0 */
 	/* } */
@@ -26,7 +28,8 @@
 
 @media screen {
 	/* .c-header.-viewMedia { */
-	.c-header:has(> img, > picture, > video, > figure) {
+	/* .c-header:has(> img, > picture, > video, > figure) { */
+	.c-header:has(> img, > picture) {
 		/* Warning: Make sure box-sizing set as border-box */
 
 		/* background-color: var(--colorBackmost); */
@@ -41,7 +44,7 @@
 		> *:not(img,video,picture,figure) {
 			position: relative;
 		}
-		> img {
+		> :is(img,picture) {
 			position: absolute;
 			top: 0;
 			left: 0;

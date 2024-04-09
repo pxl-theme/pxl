@@ -62,6 +62,7 @@
 	--fontWeightMultiplier: 1;
 	--letterSpacing: 0ch;
 	/* Make variable fonts thinner overall and add subtle letter spacing in dark theme */
+	/* https://css-tricks.com/using-css-custom-properties-to-adjust-variable-font-weights-in-dark-mode/ */
 	/* &[data-theme=dark] { */
 	&:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) {
 	/* @media (prefers-color-scheme: dark) { */
@@ -226,12 +227,9 @@ h1 { @mixin fontSize1;}
 h2 { @mixin fontSize2;}
 h3 { @mixin fontSize3;}
 h4 { @mixin fontSize4;}
-h5 { @mixin fontSize5;}
+h5, figcaption, small { @mixin fontSize5;}
 h6 { @mixin fontSize6;}
 
-small {
-	@mixin fontSize5;
-}
 /* opinionated */
 h1,h2,h3 {
 	font-family: var(--fontHeading);
@@ -420,6 +418,14 @@ a[href]:not([class]) {
 /*** Colorful/Emojiful Anchor Links Based on Known Hostnames of The Internet
  */
 /* a:not([class]) { */
+@media print {
+	a:link[href]:after {
+		content: " ("attr(href)")";
+		@mixin fontSize5;
+		opacity: .66;
+	}
+}
+@media screen {
 a {
 	/* background-clip: border-box; */
 
@@ -435,7 +441,8 @@ a {
 	/* border-radius: var(--borderDefault); */
 
 	:where(&[href]):before{ /* opinionated */
-		/* transform: scale(.83333); */
+		transform: scale(.83333);
+		transition: transform .25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 
 		padding-inline-end: .25ch;
 		display: inline-block;
@@ -449,10 +456,9 @@ a {
 	}
 	:where(&[href]:is(:hover,:focus)):before,
 	:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) :where(&[href]:is(:hover,:focus)):before{
-		/* transform: scale(1); */
+		transform: scale(1);
 		filter: none;
-		mix-blend-mode: none;
-		transition: transform .25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+		mix-blend-mode: unset; /* "none" isn't valid for some reason 🤷 */
 	}
 
 	/* All external links (Should be appended inside <head> so template language can process baseurl) */
@@ -828,13 +834,16 @@ a {
 			content: "📥";
 		}
 	}
-
 }
+
 /* Hide pseudo emojis in navigation anchor links */
 .c-nav__anchor:before{
 	display: none !important;
 	content: "" !important;
 }
+
+} /* end of @media screen */
+
 
 
 
@@ -894,7 +903,7 @@ pre {
 }
 pre code{
 	font-size: 1em;
-	/* Overriding sanitize.css... */
+	/* Overriding sanitize.css, ugh… */
 	white-space: pre-wrap
 	/* Somehow normal white-space doesn't go well
 	 * with auto sizable grid container. So I had to go with pre-wrap
@@ -921,9 +930,6 @@ figure{
 	margin-block: calc(var(--rhythmUnit) * 2);
 	/* margin: 0; */
 	/* padding: var(--rhythmUnit); */
-}
-figcaption {
-	@mixin fontSize5;
 }
 
 /*

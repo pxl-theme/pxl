@@ -1,5 +1,59 @@
 /* Main theme scope for colors (t-color) for both light and dark modes
  */
+@media print {
+:where(html) {
+	--colorFront:         white;
+	--colorBack:          white;
+	--colorBackmost:      white;
+	--colorText:          black;
+	--red:                red;
+	--orange:             orange;
+	--yellow:             yellow;
+	--green:              green;
+	--cyan:               cyan;
+	--blue:               blue;
+	--hue01:              purple;
+	--hue02:              pink;
+	--colorFrontmost:     white;
+	--colorTextBolder:    black;
+	--colorTextOpac80:    black;
+	--colorTextOpac60:    black;
+	--colorTextOpac40:    black;
+	--colorTextOpac20:    black;
+	--colorTextOpac075:   black;
+	--colorBaseOpac80:    white;
+	--colorBaseOpac0:     white;
+	/* Uncomment this when Color Module 5 arrives. */
+	/*
+	--colorBaseVal:       0 0 0 0;
+	--colorFront:         device-cmyk(0 0 0 0);
+	--colorBack:          device-cmyk(0 0 0 0);
+	--colorBackmost:      device-cmyk(0 0 0 0);
+	--colorTextVal:       0 0 0 100%;
+	--colorText:          device-cmyk(0 0 0 100%);
+	--red:                device-cmyk(0 100% 100% 100%);
+	--orange:             device-cmyk(0 50% 100% 0);
+	--yellow:             device-cmyk(0 20% 100% 0);
+	--green:              device-cmyk(100% 0 100% 0);
+	--cyan:               device-cmyk(100% 0 0 0);
+	--blue:               device-cmyk(100% 50% 0 0);
+	--hue01:              device-cmyk(50% 50% 0 0);
+	--hue02:              device-cmyk(0% 100% 0 0);
+	--colorFrontmost:     device-cmyk(0 0 0 0);
+	--colorTextBolder:    device-cmyk(0 0 0 100%);
+	--colorText:          device-cmyk(var(--colorTextVal));
+	--colorTextOpac80:    device-cmyk(var(--colorTextVal) / .8);
+	--colorTextOpac60:    device-cmyk(var(--colorTextVal) / .6);
+	--colorTextOpac40:    device-cmyk(var(--colorTextVal) / .4);
+	--colorTextOpac20:    device-cmyk(var(--colorTextVal) / .2);
+	--colorTextOpac075:   device-cmyk(var(--colorTextVal) / .075);
+	--colorBase:          device-cmyk(var(--colorBaseVal));
+	--colorBaseOpac80:    device-cmyk(var(--colorBaseVal) / .8);
+	--colorBaseOpac0:     device-cmyk(var(--colorBaseVal) / 0);
+	*/
+}
+} /* end of @media print */
+@media screen {
 :where(html, .t-color.-forceLight:not([data-theme=light]))  {
 	/*
 	 *
@@ -76,6 +130,7 @@
 	--colorTextBolder: #fff;
 
 }
+} /* end of @media screen */
 :where(
 	html,
 	.t-color[class*=-force]:not([data-theme])
@@ -99,6 +154,16 @@
 
 	/* --colorTextBolder:  var(--colorText); */
 
+	/*** Set font and accent color
+	 */
+	color: var(--colorText);
+	accent-color: var(--colorAccent);
+}
+@media screen {
+:where(
+	html,
+	.t-color[class*=-force]:not([data-theme])
+	){
 	/* Text color with different transparency/alpha values */
 	--colorText:        rgb(var(--colorTextVal));
 	--colorTextOpac80:  rgb(var(--colorTextVal) / .8);
@@ -106,6 +171,7 @@
 	--colorTextOpac40:  rgb(var(--colorTextVal) / .4);
 	--colorTextOpac20:  rgb(var(--colorTextVal) / .2);
 	--colorTextOpac075: rgb(var(--colorTextVal) / .075);
+	/* TODO: Get rid of multiple opacities of text color variables with color-mix/relative-color syntax in 2025. (Once Safari 18 arrives.)
 
 	/* Base color with different transparency/alpha values */
 	--colorBase:        rgb(var(--colorBaseVal));
@@ -113,12 +179,8 @@
 	--colorBaseOpac0:   rgb(var(--colorBaseVal) / 0);
 
 	--colorLinkDead: var(--red, #F00); /* Red as default dead link color */
-
-	/*** Set font and accent color
-	 */
-	color: var(--colorText);
-	accent-color: var(--colorAccent);
 }
+
 /* .t-color { */
 /* 	:where( */
 /* 		:is(&[data-theme=light],&.-forceLight:not([data-theme=light])) .-schemeLightAtelierCave), */
@@ -2255,3 +2317,4 @@
 			--hue02:rgb(180 147 104);
 	}
 }
+} /* end of @media screen */

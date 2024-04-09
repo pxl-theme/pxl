@@ -1,7 +1,15 @@
 /* Heavily opinionated reset additions of pxl-theme */
 
-/* Exception-based styling, opinionated */
-*:not(html, body, div, header, nav, main, footer) {
+/* Add animated scroll whenever redirected to hash link etc. */
+@media (prefers-reduced-motion: no-preference) {
+	:root {
+		/* background: red !important; */
+		scroll-behavior: smooth;
+	}
+}
+
+/* Set maximum width to all elements with exception-based styling */
+*:not(html, body, img, video, audio, object, iframe, div, header, nav, main, footer) {
 	max-inline-size: var(--maxTextWidth);
 }
 
@@ -91,13 +99,13 @@ input:focus::-webkit-slider-thumb {
 	cursor: not-allowed;
 }
 /* Default Selection Styles */
-::selection{
+:root ::selection{
 	/* Inverted Color Selection Style */
 	/* background-color: var(--colorText); */
 	/* color: var(--colorBase); */
 
 	/* Light Color Selection Style */
-	background-color: var(--colorTextOpac20 );
+	background-color: var(--colorTextOpac20, initial);
 	color: inherit;
 	text-decoration: inherit;
 	/* color: var(--colorTextBolder); */

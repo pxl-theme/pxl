@@ -5,18 +5,25 @@
 /* @import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap') */
+
+/* Useful tool to get and self-host a font from Google Fonts
+ * https://labs.binaryunit.com/localgfonts/
+ */
 
 :root {
 	/* https://modernfontstacks.com/#font-stacks */
 
 	/* Sans Serif Stacks */
-	--fontStackSystemUI: ui-sans-serif, system-ui, sans-serif, color-emoji;
+	--fontStackSystemUI: ui-sans-serif, system-ui, sans-serif;
 	--fontStackHumanist: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
 	--fontStackGeoHumanist: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
 	--fontStackClassicHumanist: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
 	--fontStackNeoGrotesque: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
 	--fontStackIndustrial: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
 	--fontStackRounded: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
+	/* Force fully pixelated fonts and image */
+	--fontStackSansPixelated: "MS UI Gothic", Verdana, sans-serif;
 
 	/* Serif Stacks */
 	/* --fontStackSerif: Charter, Georgia, Cambria, "Times New Roman", Times, serif; */
@@ -27,7 +34,7 @@
 	--fontStackDidone: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif;
 
 	/* Monospaced Stacks */
-	--fontStackMono: ui-monospace, Consolas, 'Liberation Mono', Menlo, Courier, monospace, color-emoji;
+	--fontStackMono: ui-monospace, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 	--fontStackMonoSlab: 'Nimbus Mono PS', 'Courier New', monospace;
 	--fontStackMonoCode: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
@@ -36,11 +43,14 @@
 
 	/* Verdana is alr too but not sure if all operating systems on the market have that one... */
 
-	/* Font Properties in Use */
-	/* --fontMain: "Recursive", var(--fontStackNeoGrotesque); */
-	/* --fontMain: var(--fontStackOldStyle); */
-	--fontMain: "Inter V", var(--fontStackNeoGrotesque);
-	/* --fontMain: var(--fontStackSystemUI); */
+	/* 
+	 * Font Properties in Use
+	 */
+	/* --fontMain: "Recursive", var(--fontStackNeoGrotesque), color-emoji; */
+	/* --fontMain: var(--fontStackOldStyle), color-emoji; */
+	--fontMain: "Inter V", var(--fontStackNeoGrotesque), color-emoji;
+	/* --fontMain: var(--fontStackSansPixelated), color-emoji; */
+	/* --fontMain: var(--fontStackSystemUI), color-emoji; */
 	--fontMono: "Iosevka Aegean", var(--fontStackMono);
 	--fontHeading: var(--fontMain);
 	/* --fontParagraph: var(--fontMain); */

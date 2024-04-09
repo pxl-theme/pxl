@@ -8,115 +8,122 @@
  * each other like how adjustment layers/blending layers work in Photoshop.
  */
 
-html:has(.c-extraBackground) {
-	min-height:100%;
-	position: relative;
+@media print {
+	.c-extraBackground {
+		display: none;
+	}
 }
-body:has(.c-extraBackground) {
-	height: 100%;
-}
+@media screen {
+	html:has(.c-extraBackground) {
+		min-height:100%;
+		position: relative;
+	}
+	body:has(.c-extraBackground) {
+		height: 100%;
+	}
 
-.c-extraBackground {
-	/* background: var(--colorAccent); */
-	z-index: -999;
-	position:absolute;
-	inset:0;
+	.c-extraBackground {
+		/* background: var(--colorAccent); */
+		z-index: -999;
+		position:absolute;
+		inset:0;
 
-	/* &.-viewStaticPageHeight { */
-	/* 	position:absolute; */
-	/* 	inset:0; */
+		/* &.-viewStaticPageHeight { */
+		/* 	position:absolute; */
+		/* 	inset:0; */
+		/* } */
+
+		&.-styleBlending {
+			mix-blend-mode: overlay;
+			img {
+				/* filter: contrast(1.2) brightness(5); /1* For light mode *1/ */
+			}
+		}
+		/* &.-stylePixelated, &.-stylePixelated.-viewFullFixed img { */
+		/* 	image-rendering: pixelated; */
+		/* } */
+		&.-filterGrainy {
+			/* opacity: 100%; */
+			mix-blend-mode: color-burn;
+			:where(.t-color:is([data-theme=light],.-forceLight:not([data-theme=light]))) & {
+				filter:contrast(10)
+			}
+			/* @media (prefers-color-scheme: dark) { */
+			:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) & {
+				mix-blend-mode: color-dodge;
+			}
+			/* Targeted for body */
+			/* &::after,&::before{ */
+			&::before{
+				position:absolute;
+				top: 0;
+				left: 0;
+				content: '';
+				width: 100%;
+				height: 100%;
+				z-index:-9999;
+			}
+			&::before {
+				/* SVG Noise generated from https://fffuel.co/nnnoise/
+				* optimized it via https://jakearchibald.github.io/svgomg/
+				* and converted to Base64 from https://fffuel.co/eeencode/
+				*/
+				background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuZGV2L3N2Z2pzIiB2aWV3Qm94PSIwIDAgNzAwIDcwMCIgd2lkdGg9IjcwMCIgaGVpZ2h0PSI3MDAiIG9wYWNpdHk9IjAuNzIiPjxkZWZzPjxmaWx0ZXIgaWQ9Im5ubm9pc2UtZmlsdGVyIiB4PSItMjAlIiB5PSItMjAlIiB3aWR0aD0iMTQwJSIgaGVpZ2h0PSIxNDAlIiBmaWx0ZXJVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHByaW1pdGl2ZVVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJsaW5lYXJSR0IiPgoJPGZlVHVyYnVsZW5jZSB0eXBlPSJ0dXJidWxlbmNlIiBiYXNlRnJlcXVlbmN5PSIwLjE0MyIgbnVtT2N0YXZlcz0iNCIgc2VlZD0iMTUiIHN0aXRjaFRpbGVzPSJzdGl0Y2giIHg9IjAlIiB5PSIwJSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcmVzdWx0PSJ0dXJidWxlbmNlIj48L2ZlVHVyYnVsZW5jZT4KCTxmZVNwZWN1bGFyTGlnaHRpbmcgc3VyZmFjZVNjYWxlPSI4IiBzcGVjdWxhckNvbnN0YW50PSIxLjMiIHNwZWN1bGFyRXhwb25lbnQ9IjIwIiBsaWdodGluZy1jb2xvcj0iIzAwNzVmZiIgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBpbj0idHVyYnVsZW5jZSIgcmVzdWx0PSJzcGVjdWxhckxpZ2h0aW5nIj4KICAgIAkJPGZlRGlzdGFudExpZ2h0IGF6aW11dGg9IjMiIGVsZXZhdGlvbj0iMTIzIj48L2ZlRGlzdGFudExpZ2h0PgogIAk8L2ZlU3BlY3VsYXJMaWdodGluZz4KICA8ZmVDb2xvck1hdHJpeCB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIwIiB4PSIwJSIgeT0iMCUiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGluPSJzcGVjdWxhckxpZ2h0aW5nIiByZXN1bHQ9ImNvbG9ybWF0cml4Ij48L2ZlQ29sb3JNYXRyaXg+CjwvZmlsdGVyPjwvZGVmcz48cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjcwMCIgZmlsbD0idHJhbnNwYXJlbnQiPjwvcmVjdD48cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjcwMCIgZmlsbD0iIzAwNzVmZiIgZmlsdGVyPSJ1cmwoI25ubm9pc2UtZmlsdGVyKSI+PC9yZWN0Pjwvc3ZnPgo=");
+				background-repeat: repeat;
+			}
+		}
+
+		&.-filterBlur {
+		/* Warning: This might slow down scrolling/browsing experience for low-end/mid-end users. */
+			filter: blur(2px);
+		}
+
+		/* Gradient Filter, Parallel with Page Flow */
+		&:is(.-filterGradient,.-filterRainbow) {
+			background-image: linear-gradient(var(--angle, 180deg), var(--1, black), var(--2, gray));
+			/* 180deg = to bottom */
+			mix-blend-mode:color;
+			opacity:.66;
+			:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) &{
+				opacity: .33;
+			}
+		}
+		&.-filterRainbow {
+			background-image: linear-gradient(var(--angle, 180deg), var(--red, red), var(--orange, orange), var(--yellow, yellow), var(--green, green),var(--cyan, cyan), var(--blue, blue), var(--hue01, purple));
+		}
+
+		&.-viewStatic {
+			position: static;
+			img {
+				position: absolute;
+				display: inline;
+			}
+		}
+	}
+	:where( :is(.t-color[data-theme=light], .t-color.-forceLight:not([data-theme=light])))
+	.c-extraBackground.-viewThemeSensitiveImg {
+		--bgSrcSelected: var(--bgSrcLight, #ddd);
+	}
+	:where( :is(.t-color[data-theme=dark], .t-color.-forceDark:not([data-theme=dark])))
+	.c-extraBackground.-viewThemeSensitiveImg {
+		--bgSrcSelected: var(--bgSrcDark, #222);
+	}
+
+	/* Source: https://grainy-gradients.vercel.app/ */
+	/* ._conic-and-grainy-gradient { */
+	/* 	width: 250px; */
+	/* 	height: 250px; */
+	/* 	filter: contrast(190%) brightness(250%); */
+	/* 	background: */
+	/* 		conic-gradient(from 0deg at 50% -5%, #0000 60deg, var(--colorAccent) 290deg), */
+	/* 		url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
 	/* } */
 
-	&.-styleBlending {
-		mix-blend-mode: overlay;
-		img {
-			/* filter: contrast(1.2) brightness(5); /1* For light mode *1/ */
+	/* .t-variantDark { */
+	/* @media (prefers-color-scheme: dark) { */
+	:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) {
+		.c-extraBackground.-styleBlending {
+			mix-blend-mode:darken;
 		}
-	}
-	/* &.-stylePixelated, &.-stylePixelated.-viewFullFixed img { */
-	/* 	image-rendering: pixelated; */
-	/* } */
-	&.-filterGrainy {
-		/* opacity: 100%; */
-		mix-blend-mode: color-burn;
-		:where(.t-color:is([data-theme=light],.-forceLight:not([data-theme=light]))) & {
-			filter:contrast(10)
-		}
-		/* @media (prefers-color-scheme: dark) { */
-		:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) & {
-			mix-blend-mode: color-dodge;
-		}
-		/* Targeted for body */
-		/* &::after,&::before{ */
-		&::before{
-			position:absolute;
-			top: 0;
-			left: 0;
-			content: '';
-			width: 100%;
-			height: 100%;
-			z-index:-9999;
-		}
-		&::before {
-			/* SVG Noise generated from https://fffuel.co/nnnoise/
-			 * optimized it via https://jakearchibald.github.io/svgomg/
-			 * and converted to Base64 from https://fffuel.co/eeencode/
-			 */
-			background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuZGV2L3N2Z2pzIiB2aWV3Qm94PSIwIDAgNzAwIDcwMCIgd2lkdGg9IjcwMCIgaGVpZ2h0PSI3MDAiIG9wYWNpdHk9IjAuNzIiPjxkZWZzPjxmaWx0ZXIgaWQ9Im5ubm9pc2UtZmlsdGVyIiB4PSItMjAlIiB5PSItMjAlIiB3aWR0aD0iMTQwJSIgaGVpZ2h0PSIxNDAlIiBmaWx0ZXJVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHByaW1pdGl2ZVVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJsaW5lYXJSR0IiPgoJPGZlVHVyYnVsZW5jZSB0eXBlPSJ0dXJidWxlbmNlIiBiYXNlRnJlcXVlbmN5PSIwLjE0MyIgbnVtT2N0YXZlcz0iNCIgc2VlZD0iMTUiIHN0aXRjaFRpbGVzPSJzdGl0Y2giIHg9IjAlIiB5PSIwJSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcmVzdWx0PSJ0dXJidWxlbmNlIj48L2ZlVHVyYnVsZW5jZT4KCTxmZVNwZWN1bGFyTGlnaHRpbmcgc3VyZmFjZVNjYWxlPSI4IiBzcGVjdWxhckNvbnN0YW50PSIxLjMiIHNwZWN1bGFyRXhwb25lbnQ9IjIwIiBsaWdodGluZy1jb2xvcj0iIzAwNzVmZiIgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBpbj0idHVyYnVsZW5jZSIgcmVzdWx0PSJzcGVjdWxhckxpZ2h0aW5nIj4KICAgIAkJPGZlRGlzdGFudExpZ2h0IGF6aW11dGg9IjMiIGVsZXZhdGlvbj0iMTIzIj48L2ZlRGlzdGFudExpZ2h0PgogIAk8L2ZlU3BlY3VsYXJMaWdodGluZz4KICA8ZmVDb2xvck1hdHJpeCB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIwIiB4PSIwJSIgeT0iMCUiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGluPSJzcGVjdWxhckxpZ2h0aW5nIiByZXN1bHQ9ImNvbG9ybWF0cml4Ij48L2ZlQ29sb3JNYXRyaXg+CjwvZmlsdGVyPjwvZGVmcz48cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjcwMCIgZmlsbD0idHJhbnNwYXJlbnQiPjwvcmVjdD48cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjcwMCIgZmlsbD0iIzAwNzVmZiIgZmlsdGVyPSJ1cmwoI25ubm9pc2UtZmlsdGVyKSI+PC9yZWN0Pjwvc3ZnPgo=");
-			background-repeat: repeat;
-		}
-	}
-
-	&.-filterBlur {
-	/* Warning: This might slow down scrolling/browsing experience for low-end/mid-end users. */
-		filter: blur(2px);
-	}
-
-	/* Gradient Filter, Parallel with Page Flow */
-	&:is(.-filterGradient,.-filterRainbow) {
-		background-image: linear-gradient(var(--angle, 180deg), var(--1, black), var(--2, gray));
-		/* 180deg = to bottom */
-		mix-blend-mode:color;
-		opacity:.66;
-		:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) &{
-			opacity: .33;
-		}
-	}
-	&.-filterRainbow {
-		background-image: linear-gradient(var(--angle, 180deg), var(--red, red), var(--orange, orange), var(--yellow, yellow), var(--green, green),var(--cyan, cyan), var(--blue, blue), var(--hue01, purple));
-	}
-
-	&.-viewStatic {
-		position: static;
-		img {
-			position: absolute;
-			display: inline;
-		}
-	}
-}
-:where( :is(.t-color[data-theme=light], .t-color.-forceLight:not([data-theme=light])))
-.c-extraBackground.-viewThemeSensitiveImg {
-	--bgSrcSelected: var(--bgSrcLight, #ddd);
-}
-:where( :is(.t-color[data-theme=dark], .t-color.-forceDark:not([data-theme=dark])))
-.c-extraBackground.-viewThemeSensitiveImg {
-	--bgSrcSelected: var(--bgSrcDark, #222);
-}
-
-/* Source: https://grainy-gradients.vercel.app/ */
-/* ._conic-and-grainy-gradient { */
-/* 	width: 250px; */
-/* 	height: 250px; */
-/* 	filter: contrast(190%) brightness(250%); */
-/* 	background: */
-/* 		conic-gradient(from 0deg at 50% -5%, #0000 60deg, var(--colorAccent) 290deg), */
-/* 		url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
-/* } */
-
-/* .t-variantDark { */
-/* @media (prefers-color-scheme: dark) { */
-:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) {
-	.c-extraBackground.-styleBlending {
-		mix-blend-mode:darken;
 	}
 }

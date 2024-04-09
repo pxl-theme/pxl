@@ -119,18 +119,18 @@ input[type=file] {
 	color: currentColor; /* Text color needs to change if system color scheme is different than the theme */
 
 	/* Should be same as button style */
-	--sizeButton: calc(var(--rhythmUnit)*5);/* Base height of every button in touch interface */
+	--buttonHeight: calc(var(--rhythmUnit)*5);/* Base height of every button in touch interface */
 	border:0;
 	cursor: pointer;
-	--fontWeight: 550;
+	--fontWeight: 550; /* opinionated */
 	@mixin fontSize4;
-	padding-block: calc((var(--sizeButton) - var(--lineHeight))/2);
+	padding-block: calc((var(--buttonHeight) - var(--lineHeight))/2);
 	padding-inline: 1ch;
 	border-radius: var(--radiusDefault);
 	background-color: var(--colorFront);
 
 	@media (any-pointer: fine){
-		--sizeButton: calc(var(--rhythmUnit)*4); /* Base height of every button*/
+		--buttonHeight: calc(var(--rhythmUnit)*4); /* Base height of every button*/
 	}
 	/* &:hover, &:focus { */
 	&:hover, &:focus-visible {
@@ -185,16 +185,14 @@ input[type=color] {
 /* 	display: none; */
 /* } */
 
-/*** Button
- *
- * Info: Usually, c-button should has it's own style file in the component folder, but since extend will not function as intended, this is an exception.
+/*
+ * Button Styles
  */
-:is(input[type=button],input[type=submit],input[type=reset],button,.c-button) {
+:where(input:is([type=button],[type=submit],[type=reset]), button ) {
 	/* line-height: 2.5em;  */
-	--sizeButton: calc(var(--rhythmUnit)*5);/* Base height of every button in touch interface */
+	--buttonHeight: calc(var(--rhythmUnit)*5);/* Base height of every button in touch interface */
 	border:0;
-	cursor: pointer;
-	--fontWeight: 550;
+	--fontWeight: 550; /* opinionated */
 	/* opinionated */
 	/* margin-block-end: calc(var(--rhythmUnit) / 2); */
 	/* margin-block-end: var(--rhythmUnit); */
@@ -204,29 +202,31 @@ input[type=color] {
 	/* padding: 0 var(--radiusM); */
 	/* padding-block: ; */
 	@mixin fontSize4;
-	padding-block: calc((var(--sizeButton) - var(--lineHeight))/2);
+	padding-block: calc((var(--buttonHeight) - var(--lineHeight))/2);
 	padding-inline: 1ch;
 
 	border-radius: var(--radiusDefault);
 
 	background-color: var(--colorFront);
 	/* color: var(--colorBase); */
-
-	label {
+	&:not([disabled]) {
 		cursor: pointer;
-		/* display: block; */
-		/* position: relative; */
-		/* Negative of parent padding value */
-		/* top: calc( calc((var(--sizeButton) - var(--lineHeight))/2) * -1); */
-		/* left: calc( var(--nav-item-padSide) * -1); */
-
 	}
+
+	/* &.-viewHexagon { */
+	/* 	clip-path: polygon(.6em 0,calc(100% - .6em) 0,100% 50%,calc(100% - .6em) 100%,.6em 100%,0 50%); */
+	/* 	&:active { */
+	/* 		box-shadow: none; */
+	/* 	} */
+	/* } */
+
+	/* Set minimum height for buttons in mobile devices */
 	@media (any-pointer: fine){
-		--sizeButton: calc(var(--rhythmUnit)*4); /* Base height of every button*/
+		--buttonHeight: calc( var(--rhythmUnit) * 4); /* Base height of every button*/
 	}
-	&[disabled]{
-		user-select: none;
 
+	&[disabled]{ /* Disabled buttons */
+		user-select: none;
 	}
 	/* &:hover, &:focus { */
 	&:not([disabled]):hover, &:not([disabled]):focus-visible {
@@ -239,17 +239,8 @@ input[type=color] {
 
 	/* TODO: Button spacing needs rework */
 	& + & {
-		margin-left: .25em;
+		margin-left: .5ch;
 	}
-	/* experimental */
-	&.-viewHexagon {
-		/* Taken from polymc.com, I don't know the exact source but it deserves a credit! */
-		clip-path: polygon(.6em 0,calc(100% - .6em) 0,100% 50%,calc(100% - .6em) 100%,.6em 100%,0 50%);
-		&:active {
-			box-shadow: none;
-		}
-	}
-	/* -experimental */
 	/* experimental */
 
 	/*** Spinner Animation
@@ -270,21 +261,6 @@ input[type=color] {
 	}
 	/* -experimental */
 }
-.c-button.-primary {
-	/* Button style for the default/primary action of user */
-	background-color: var(--colorText);
-	color: var(--colorBase);
-	/* &:hover, &:focus { */
-	&:hover, &:focus-visible {
-		background-color: var(--colorTextBolder);
-	}
-	&:active {
-		box-shadow: inset 0 0 0 var(--borderM) currentColor;
-	}
-}
-/* .c-button--secondary, .c-button--tertiary { */
-/* } */
-
 /*** Default Select Box Style
  */
 /* select{ */
@@ -402,10 +378,24 @@ select {
 	}
 }
 input[type=checkbox] {
-	border-radius: var(--radiusInnerDefault);
-	&:after{
-		border-radius: calc(var(--radiusInnerDefault) - var(--borderM) );
+	:where(.t-modRoot[class*=-cornerRounded]) & {
+		/* RIP: https://tonsky.me/blog/checkbox/ */
+		border-radius: var(--radiusM); /* Otherwise it'd look a *radio button* */
+		&:after{
+			border-radius: calc(var(--radiusM) - var(--borderM) );
+			/* border-radius: calc(var(--radiusInnerDefault) - var(--borderM) ); */
+		}
+
+		/* border-radius: var(--radiusInnerDefault); */
 	}
+	/* .t-modRoot:where( */
+	/* 	:not( */
+	/* 		.-cornerImperfect, */
+	/* 		.-cornerImperfect .t-modRoot.-cornerInherit */
+	/* 		) */
+	/* 	) &:after{ */
+	/* 	border-radius: calc(var(--radiusM) - var(--borderM) ); */
+	/* } */
 }
 input[type=radio] {
 	border-radius: 50%;
@@ -476,9 +466,10 @@ input[type=range]::-moz-range-track {
 input[type=range]::-webkit-slider-thumb {
 	appearance: none;
 	/* margin-top: -12.5px; */
-	margin-top: calc(var(--sliderThumbHeight)/2*-1+calc(var(--sliderTrackThickness)/2));
+	margin-top: calc( var(--sliderThumbHeight) / 2 * -1 + calc( var(--sliderTrackThickness) / 2 ));
 	box-shadow:none; /* for iOS */
-	border: calc(var(--radiusInnerDefault) / 2) solid var(--colorBase);
+	/* border: calc( var(--radiusInnerDefault) / 2) solid var(--colorBase); */
+	border: var(--borderDefault) solid var(--colorBase);
 
 	width: var(--sliderTrackWidth, 1rem);
 	height: calc(var(--rhythmUnit) * 3);

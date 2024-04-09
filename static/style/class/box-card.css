@@ -73,7 +73,8 @@
 /* ^^ That's really a hard code but nice looking edit */
 /* *:not(.o-rustygrid.-viewMasonry) > .o-rustygrid__item */
 *:not(.-viewMasonry) > .js-posts .o-rustygrid__item{
-	.o-box.-viewCard .c-header:has(> img, > picture, > video, > figure) {
+	/* .o-box.-viewCard .c-header:has(> img, > picture, > video, > figure) { */
+	.o-box.-viewCard .c-header:has(> img, > picture) {
 		/* padding-bottom: 40%; */
 		padding-block-end: 30%;
 		@media (--palm-or-gt) {
@@ -95,10 +96,17 @@
 
 /*** Header Component with Media inside Box Layout Primitive with Card View
  */
-.o-box.-viewCard .c-header:has(> img, > picture, > video, > figure) {
+/* .o-box.-viewCard.o-center .c-header:has(> img, > picture, > video, > figure) { */
+.o-box.-viewCard.o-center .c-header:has(> img, > picture) {
+	box-sizing: inherit;
+	inline-size: 100%;
+	/* inset-block-start: calc( var(--boxViewCard-padTop) * -1); */
+}
+/* .o-box.-viewCard .c-header:has(> img, > picture, > video, > figure) { */
+.o-box.-viewCard .c-header:has(> img, > picture) {
 	/* Override parent(o-box) gap */
 	inline-size: calc( var(--boxViewCard-padSide) * 2 + 100% );
-	inset-block-start: calc( var(--boxViewCard-padTop) * -1);
+	/* inset-block-start: calc( var(--boxViewCard-padTop) * -1); */
 	inset-inline-start: calc( var(--boxViewCard-padSide) * -1);
 
 	/* Overriding/inheriting padding data
@@ -129,7 +137,7 @@
 			inset-inline-start: calc( var(--boxViewCard-padSide) * -2);
 		}
 	}
-	> img {
+	> :is(img, picture) {
 		/* Prevent image inside header section unselectable and draggable */
 		user-select: none;
 		-webkit-user-drag: none;
@@ -153,8 +161,8 @@
 	:is(.o-box__title,.o-box__meta) a[href] {
 		color: inherit;
 	}
-	:is(h4,h5,h6).o-box__meta {
-		--fontWeight: 900;
+	:is(h4,h5,h6).o-box__meta { /* opinionated */
+		--fontWeight: 700; 
 	}
 }
 /* .o-box.-viewCard .c-header:has(> img, > picture, > video, > figure) { */
@@ -169,12 +177,23 @@
  * Metadata like date of content, comment counter, SEO tags etc.
  */
 .o-box__meta {
-	text-transform:uppercase;
+	/* text-transform:uppercase; */
+	/* opinionated */
 	inline-size: 100%;
 	/* display: inline-block; */
-	&:is(.-alignStart,.-alignEnd) {
+	&:where(.-alignStart,.-alignEnd) {
 		inline-size: 50%;
+
+		&:has(time):has( + & ) {
+			inline-size: calc(100% / 3);
+		}
+		&:has(time) + & {
+			inline-size: calc(100% / 3 * 2);
+		}
 	}
+	/* Length estimation of date/time info is most likely shorter than 
+	 * half of the container width. */
+	/* &:has(time):not(:only-child) { */
 	&.-alignStart {
 		float: left;
 		float: inline-start;
@@ -189,7 +208,7 @@
 	}
 	/* Meta in devices that fits bigger than wrist */
 	@media (--wrist-or-gt) {
-		&:is(.-alignStart\@wrist-gt,.-alignEnd\@wrist-gt) {
+		&:where(.-alignStart\@wrist-gt,.-alignEnd\@wrist-gt) {
 			inline-size: 50%;
 		}
 		&.-alignStart\@wrist-gt {

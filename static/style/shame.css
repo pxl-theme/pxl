@@ -204,26 +204,73 @@ body._stickyFooter{
 /* 	/1* , moveUp 2s cubic-bezier(.68,0,.69,1.18); *1/ */
 /* } */
 
+/*
+ * Ellipses Loader
+ * Source: https://jongacnik.com/entries/ellipses-loader
+ */
+/* Example: <span class="ellipsesLoader">…</span> */
+._ellipsesLoader {
+	animation: ellipses-loader 2s linear infinite;
+}
+@keyframes ellipses-loader {
+	0% { clip-path: inset(0 100% 0 0) }
+	24.9% { clip-path: inset(0 100% 0 0) }
+	25% { clip-path: inset(0 66% 0 0) }
+	49.9% { clip-path: inset(0 66% 0 0) }
+	50% { clip-path: inset(0 33% 0 0) }
+	74.9% { clip-path: inset(0 33% 0 0) }
+	75% { clip-path: inset(0 0 0 0) }
+	100% { clip-path: inset(0 0 0 0) }
+}
+
+/* markdown-it-named-code-blocks
+ * https://github.com/tsutsu3/markdown-it-named-code-blocks
+ */
+
+.named-fence-block {
+	--gapTop: calc(var(--rhythmUnit) * 4);
+	position: relative;
+	padding-block-start: var(--gapTop);
+	.named-fence-filename {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: 0;
+		block-size: var(--gapTop);
+		padding: 0 1ch;
+		font-weight: bold;
+		/* color: var(--colorText); */
+		border-radius: var(--radiusInnerDefault);
+		background: var(--colorBack);
+		opacity: .5;
+	}
+}
+
+
+
+
+
 /* This is for markdown-it-spoiler, might not work anywhere outside 11ty/Markdown It */
 /* Example: !!spoiler!! */
+/* .u-txtSpoiler { */
 span.spoiler {
-	/* opacity: 0; */
-	background: var(--colorBack);
-	color: var(--colorBack);
-	border: var(--borderM) solid var(--colorTextOpac20);
-	margin-inline: calc(var(--borderM) * -1);
+	filter: blur( calc( var(--rhythmUnit) / 2.15) );
+	transition: .25s cubic-bezier(.08,.82,.17,1);
+	transition-property: text-decoration-thickness, text-underline-offset;
+	/* background: var(--colorBack); */
+	background: var(--colorFrontmost);
+	/* border: var(--borderM) solid var(--yellow); */
+	/* margin-inline: calc(var(--borderM) * -1); */
 	border-radius: var(--radiusDefault);
-	/* position: relative; */
 	&:hover {
-		color: var(--colorText);
-		background: transparent;
-		/* &:before{ */
-		/* 	display: none; */
-		/* } */
+		filter: blur(0);
 	}
-	&::selection {
-		color: transparent;
-	}
+
+	/* opacity: 0; */
+	/* &::selection { */
+	/* 	color: transparent; */
+	/* } */
+
+	/* position: relative; */
 	/* &:before{  */
 	/* 	content: "Spoilers!"; */
 	/* 	position: absolute; */
