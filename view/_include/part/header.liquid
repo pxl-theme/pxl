@@ -13,7 +13,7 @@
 				<h1 class="u-txtOnImg">
 					<a href="/"
 						{%- if site.favicon.webp192 -%}
-							><img style="margin-inline-start:.5ch" src="{{ site.favicon.webp192 }}" width=48px alt=""
+							><img eleventy:ignore style="margin-inline-start:.5ch" src="{{ site.favicon.webp192 }}" width=48px alt="" 
 						{%- else -%}
 							><svg class="pi -size2x" style="--iconWeight: 2px" viewBox='0 0 18 18' width="2rem"><use href='/pi.svg#house'></use></svg
 						{%- endif -%}

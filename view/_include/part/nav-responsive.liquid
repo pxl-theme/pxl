@@ -8,8 +8,8 @@
 				<a class="c-nav__anchor" href=/ alt="" title="Return to homepage" aria-label="Return to homepage">
 					{%- if site.favicon.webp192 -%}
 						<span class=c-iconWrapper>
-							<img src='{{ site.favicon.webp192 }}' alt=''>
-						</span
+							<img eleventy:ignore src='{{ site.favicon.webp192 }}' alt=''
+						></span
 					{%- else -%}
 						<svg class="pi" viewBox='0 0 18 18' width="2rem">
 							<use href='/pi.svg#house'></use>
