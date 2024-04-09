@@ -1,23 +1,29 @@
 <!-- <header class="c-frame t-modBody -bgDiagonalStripesAltSM" style="padding-block-start:calc(var(--rhythmUnit) * 2 );margin-block-end:calc(var(--rhythmUnit) * 2);" aria-label=Main> -->
 <!-- <header class="c-frame -viewMedia" style="background-image: url(/static/asset/filler/header.webp);"> -->
 <!-- <header class="c-frame -viewMedia" style="background-image: url(/static/asset/filler/header.webp);"> -->
-<header class="c-header t-modRoot -stylesetAcetate -borderValNone -cornerInherit t-color -forceDark -schemeInherit" style="background-image: url(/static/asset/filler/header.webp);background-color: var(--colorBack);" aria-label=Main>
+	<!-- style="background-color: var(--colorBack);background-image: url(/static/asset/filler/header.webp);" -->
+<header 
+	class="c-header t-modRoot -stylesetAcetate -borderValNone -cornerInherit t-color -forceDark -schemeInherit t-modBody -bgInherit"
+	style="background-color: var(--colorBase);"
+	aria-label=Main>
 	<div class=o-rustygrid>
 		<div class="o-rustygrid__item -col1 -col5-12@palm -push1-12@palm" style="user-select:none">
+			<!-- <h1 class="u-txtOnImg"> -->
 			<h1>
 				<a href=/plain/index.html>
-					><span class="u-txtOnImg" style="margin-inline-start:.5ch">Site&nbsp;Title</span>
 					<img style="margin-inline-start:.5ch" src=/icon-192.webp width=48px
+					><span style="margin-inline-start:.5ch;vertical-align:middle">Site&nbsp;Title</span>
 				</a>
 			</h1>
 		</div>
 		<div class="o-rustygrid__item -col1 -col1-2@palm" style="user-select:none">
 			<!-- Site Description -->
-			<h4 id="js-randomDesc" class="u-txtOnImg" style=text-align:end>Just a simple, customizable static site theme</h4>
+			<!-- <h4 id="js-randomDesc" class="u-txtOnImg" style=text-align:end>Just a simple, customizable static site theme</h4> -->
+			<h4 id="js-randomDesc" style=text-align:end>Just a simple, customizable static site theme</h4>
 		</div>
 	</div>
 	<!-- Putting "menu" tag here as it only contains interactive items + gives semantic meaning. -->
-	<menu class="c-nav -typeFlyout -layoutHorizontal -alignStart u-hidden@print" role=tree style="z-index: 2">
+	<menu class="c-nav -typeFlyout -flowHorizontal -alignStart u-hidden@print" role=tree style="z-index: 2">
 		<li class="c-nav__item u-hidden@lap" role=treeitem>
 			<label class=c-nav__anchor for=toggleNav-000 onclick>
 				<svg class=pi viewBox="0 0 18 18" width=18px>

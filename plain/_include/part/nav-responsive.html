@@ -3,14 +3,7 @@
 	<!-- Checkbox input/toggle button for CSS only expandable menu component -->
 	<input id=toggleNav-000 type=checkbox>
 
-	<ul class="c-nav -responsive -typeTree -layoutHorizontal -expandFromBlockStart -alignStart">
-
-		<!-- Available options for Toggle Trigger Component:
-			-viewIcon
-			-viewIconText
-			c-button
-		-->
-
+	<ul class="c-nav -responsive -typeTree -flowHorizontal -expandFromBlockStart -alignStart">
 		<!-- Search engine input -->
 		<!--TODO: details/summary CSS only modal searchbar here.-->
 		<!-- <input type=search class="-viewIconText -leanEnd" size=0 placeholder="🔍 Search…"> -->
@@ -61,6 +54,12 @@
 					<svg class=pi viewBox="0 0 18 18" width=18px>
 						<use href=/pi.svg#the-logo>
 					</svg><span>Colors</span></a>
+				</li>
+				<li class=c-nav__item>
+					<a class=c-nav__anchor href=/plain/example/links-n-buttons.html>
+					<svg class=pi viewBox="0 0 18 18" width=18px>
+						<use href=/pi.svg#file-data-alt>
+					</svg><span>Links & Buttons</span></a>
 				</li>
 				<li class=c-nav__item>
 					<a class=c-nav__anchor href=/plain/example/table.html>
@@ -227,14 +226,18 @@
 			</a>
 			<ul class="c-nav__submenu -viewStack">
 				<li class="c-nav__item -styleShining -viewIconOnly">
-					<a class=c-nav__anchor href=//discord.com/users/209017622682009600 title="Direct link to my Discord profile. DMs are currently open. Please don't send friend request unless you need to make Group DM. Thanks.">
+					<a class=c-nav__anchor
+						href=//discord.com/users/209017622682009600
+						title="Direct link to my Discord profile. DMs are currently open. Please don't send friend request unless you need to make Group DM. Thanks.">
 						<svg class=pi viewBox="0 0 18 18" width=18px>
 							<use href=/pi.svg#site-discord></use>
 						</svg><span>Discord</span>
 					</a>
 				</li>
 				<li class="c-nav__item -viewIconOnly">
-					<a class=c-nav__anchor href=//github.com/egeesin title="Direct link to my main GitHub profile">
+					<a class=c-nav__anchor
+						href=//github.com/egeesin
+						title="Direct link to my main GitHub profile">
 						<svg class=pi viewBox="0 0 18 18" width=18px>
 							<use href=/pi.svg#site-github>
 							</use>
@@ -242,7 +245,8 @@
 					</a>
 				</li>
 				<li class="c-nav__item">
-					<a class=c-nav__anchor href=mailto:&#97;&#101;&#103;&#101;&#97;&#110;&commat;&#100;&#117;&#99;&#107;&period;&#99;&#111;&#109; title="Direct link to compose new message to my address via default e-mail client">
+					<a class=c-nav__anchor href=mailto:info@example.com
+						title="Direct link to compose new message to my address via default e-mail client">
 						<svg class=pi viewBox="0 0 18 18" width=18px>
 							<use href=/pi.svg#general-letterbox></use>
 						</svg><span>Email</span>

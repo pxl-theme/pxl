@@ -2,7 +2,7 @@
 {%- if navigation -%}
 <nav class="c-nav__wrapper u-clearFix u-hidden@print" aria-label=Main>
 	<input id=toggleNav-000 type=checkbox>
-	<ul class="c-nav -responsive -typeTree -layoutHorizontal -expandFromBlockStart -alignStart">
+	<ul class="c-nav -responsive -typeTree -flowHorizontal -expandFromBlockStart -alignStart">
 		{%- if options.showTitleInNav == true -%}
 			<li class="c-nav__item">
 				<a class="c-nav__anchor" href=/ alt="" title="Return to homepage" aria-label="Return to homepage">
@@ -14,7 +14,7 @@
 						<svg class="pi" viewBox='0 0 18 18' width="2rem">
 							<use href='/pi.svg#house'></use>
 						</svg
-					{%- endif -%}><b style='font:normal 900 1.1em'>{{ site.title }}</b>
+					{%- endif -%}><b>{{ site.title }}</b>
 				</a>
 			</li>
 		{%- endif -%}

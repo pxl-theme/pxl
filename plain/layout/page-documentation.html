@@ -30,15 +30,45 @@
 							</a>
 						</li>
 						<li class=c-nav__item>
+							<a class=c-nav__anchor href=#demos>
+								Demos
+							</a>
+						</li>
+						<li class=c-nav__item>
+							<a class=c-nav__anchor href=#setup>
+								Setup
+							</a>
+							<ul class=c-nav__submenu role=group>
+								<li class=c-nav__item><a class=c-nav__anchor href=#-build-from-source>
+									📦 Build from Source
+								</a></li>
+								<li class=c-nav__item><a class=c-nav__anchor href=#-deployment>
+									☁️ Deployment
+								</a></li>
+								<li class=c-nav__item><a class=c-nav__anchor href=#-download-build-artifact>
+									🐙 Download Build Artifact
+								</a></li>
+							</ul>
+						</li>
+						<li class=c-nav__item>
 							<a class=c-nav__anchor href=#usage>
 								Usage
 							</a>
 							<ul class=c-nav__submenu role=group>
-								<li class=c-nav__item><a class=c-nav__anchor href=#build-from-source>
-									Build form Source
+								<li class=c-nav__item><a class=c-nav__anchor href=#-cleanup-steps>
+									📦 Cleanup Steps
 								</a></li>
-								<li class=c-nav__item><a class=c-nav__anchor href=#build-artifacts-from-github-actions>
-									Build Artifacts from GitHub Actions
+								<li class=c-nav__item><a class=c-nav__anchor href=#-essentials-checklist>
+									☁️ Essentials Checklist
+								</a></li>
+								<li class=c-nav__item><a class=c-nav__anchor href=#-theme-modification>
+									🎨 Theme Modification
+								</a></li>
+								<li class=c-nav__item><a class=c-nav__anchor href=#-cli-scripts>
+									🖥️ CLI Scripts
+								</a></li>
+								<li class=c-nav__item><a class=c-nav__anchor href=#-environment-variable>
+									🔑 Environment Variable
 								</a></li>
 							</ul>
 						</li>
@@ -47,9 +77,6 @@
 								Design
 							</a>
 							<ul class=c-nav__submenu role=group>
-								<li class=c-nav__item><a class=c-nav__anchor href=#directory-structure>
-									Directory Structure
-								</a></li>
 								<li class=c-nav__item>
 									<a class=c-nav__anchor href=#css-methodology>
 										CSS Methodology
@@ -59,23 +86,20 @@
 											Interpretation on Methodologies
 										</a></li>
 									</ul>
-
 								</li>
+								<li class=c-nav__item><a class=c-nav__anchor href=#directory-structure>
+									Directory Structure
+								</a></li>
 								<li class=c-nav__item><a class=c-nav__anchor href=#typography>
 									Typography
 								</a></li>
-								<li class=c-nav__item><a class=c-nav__anchor href=#media-breakpoints>
-									Media Breakpoints
+								<li class=c-nav__item><a class=c-nav__anchor href=#media-breakpoints-for-responsive-design>
+									Media Breakpoints for Responsive Design
 								</a></li>
 								<li class=c-nav__item><a class=c-nav__anchor href=#browser-support>
 									Browser Support
 								</a></li>
 							</ul>
-						</li>
-						<li class=c-nav__item>
-							<a class=c-nav__anchor href=#roadmap>
-								Roadmap
-							</a>
 						</li>
 						<li class=c-nav__item>
 							<a class=c-nav__anchor href=#license>
@@ -87,173 +111,194 @@
 			</aside>
 			<main id=content class=s-cmsContent aria-label=Content>
 				<article class="o-box -viewCard o-center">
-					<!-- <hgroup class=c-header> -->
-					<!-- <h1 class=o-box__title itemprop=heading id="pxl--minimal-theme--front-end-env">Documentation</h1> -->
-					<!-- </hgroup> -->
-					<md>
-# pxl [![Build](https://github.com/egeesin/pxl/actions/workflows/build.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/build.yml) [![Deploy to GH Pages](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/egeesin/pxl)
+					<!-- Converted README.md from https://markdowntohtml.com/ -->
+					<h1 id="pxl-build-https-github-com-egeesin-pxl-actions-workflows-build-yml-badge-svg-https-github-com-egeesin-pxl-actions-workflows-build-yml-deploy-to-gh-pages-https-github-com-egeesin-pxl-actions-workflows-deploy-gh-pages-yml-badge-svg-https-github-com-egeesin-pxl-actions-workflows-deploy-gh-pages-yml-open-in-stackblitz-https-developer-stackblitz-com-img-open_in_stackblitz-svg-https-stackblitz-com-github-egeesin-pxl-img-class-left-src-static-asset-logo-gif-width-71px-align-right-alt-pixelated-logo-with-flashy-written-letters-pxl-">pxl <a href="https://github.com/egeesin/pxl/actions/workflows/build.yml"><img src="https://github.com/egeesin/pxl/actions/workflows/build.yml/badge.svg" alt="Build"></a> <a href="https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml"><img src="https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg" alt="Deploy to GH Pages"></a> <a href="https://stackblitz.com/github/egeesin/pxl"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt="Open in StackBlitz"></a></h1>
+					<blockquote>
+					<p>👾 An adjustable framework-ish static site theme with sensible defaults and nice looks. <em>(ˈpik-səl)</em>
+					<img class=center src=/static/screenshot.webp alt="A screenshot of the static site theme previewing multiple color schemes in both dark and light mode." /></p>
+					</blockquote>
+					<p><strong>Note:</strong> This project is under heavy development, markup structure are subject to change till first major version bump. Expect to changes may break styles/scripts between version tags. Use it only if you know what you&#39;re doing.</p>
+					<h2 id="features">Features</h2>
+					<ul>
+					<li>🥇 <a href="https://www.youtube.com/watch?v=ok-plXXHlWw">HTML</a> &amp; Semantic <a href="https://www.youtube.com/watch?v=OEV8gMkCHXQ" title="Confusing Specificity Sufferfest">CSS</a> first, JavaScript with zero-framework later for responsive layouts, accessibility features only (a.k.a. <a href="https://en.wikipedia.org/wiki/Progressive_enhancement">Progressive Enchancement</a>)<ul>
+					<li>Improved legibility with vertical rhythm, modular scale, responsive text contrast</li>
+					<li>Basic bidirectional support with <a href="https://css-tricks.com/css-logical-properties-and-values/">CSS logical properties</a></li>
+					<li>CSS reset by <a href="https://github.com/csstools/sanitize.css">Sanitize.css</a></li>
+					<li>Layout Primitives from <a href="https://every-layout.dev"><em>Every Layout</em></a></li>
+					</ul>
+					</li>
+					<li>🎈 <a href="https://11ty.dev">11ty</a>-compatible templates written in Liquid <a href="https://shopify.dev/docs/api/liquid#what_is_a_template_language">template language</a><ul>
+					<li>Plain version of templates are processed by <a href="https://github.com/posthtml/posthtml#readme">PostHTML</a> and compatible plugins</li>
+					</ul>
+					</li>
+					<li>🌗 Light and dark mode support<ul>
+					<li>Auto selects based on system preference first, lets you toggle theme with <a href="https://github.com/BetaHuhn/drkmd.js#readme">drkmd.js</a></li>
+					<li>Each mode has their own color scheme preference like <a href="https://github.com/altercation/solarized#readme">Solarized</a>, <a href="https://github.com/morhetz/gruvbox">Gruvbox</a>, <a href="https://github.com/atom/one-dark-ui#readme">One Dark UI</a>…</li>
+					<li>Each color scheme has different shades and tones of layers and 6 + 2 hues that is converted and edited from <a href="https://github.com/tinted-theming/schemes">Tinted Theming</a> base16 schemes</li>
+					</ul>
+					</li>
+					<li>🎛 Objects and components with lots of style modifiers<ul>
+					<li>Container make-ups like border/outline (as <code>box-shadow</code>) thickness, corner roundness, shadow/emboss effects,</li>
+					<li>Responsive masonry layout and navigation component in homepage layout by default</li>
+					<li>Optional external backgrounds for adding blending, grain/gradient effects that is full-sized fixed in all platforms.</li>
+					<li><a href="https://getbem.com/naming/">BEM</a> class naming with chainable modifier and <a href="https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/">other</a> tweaks for making code readable to both humans and web browsers.</li>
+					</ul>
+					</li>
+					<li>👷 Building (<a href="https://github.com/postcss/postcss-cli#usage">PostCSS</a> + <a href="https://github.com/onigoetz/postcss-lightningcss#readme">Lightning CSS</a>, <a href="https://github.com/posthtml/posthtml-cli#readme">PostHTML</a>), validation (<a href="https://html-validate.org/usage/cli.html">html-validate</a>, <a href="https://biomejs.dev/analyzer/#import-sorting-via-cli">biome</a>), optimization (<a href="https://htmlnano.netlify.app/">htmlnano</a>, <a href="https://swc.rs/">swc</a>, <a href="https://github.com/svg/svgo">svgo</a>, Lightning CSS, <a href="https://sharp.pixelplumbing.com/">sharp</a>) and file watching (via <a href="https://github.com/paulmillr/chokidar#readme">chokidar</a>) tasks for markup, style, script and media files in NPM scripts</li>
+					<li>⚡️ Local, live and minimal dev server from <a href="https://www.11ty.dev/docs/watch-serve/#eleventy-dev-server">11ty</a></li>
+					</ul>
+					<h2 id="demos">Demos</h2>
+					<ul>
+					<li><a href="https://pxl.egeesin.com">GitHub Pages</a></li>
+					<li><a href="https://pagespeed.web.dev/report?url=https://pxl.egeesin.com">PageSpeed Insights</a></li>
+					</ul>
+					<h2 id="setup">Setup</h2>
+					<h3 id="-build-from-source">📦 Build from Source</h3>
+					<p><strong>Prerequisities</strong></p>
+					<ul>
+					<li><a href="https://nodejs.org/en/download">Node.js 18 LTS, 20 LTS or later</a></li>
+					<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"><code>git</code></a></li>
+					<li><a href="https://pnpm.io/installation"><code>pnpm</code></a> (or <code>npm</code> if you know what you&#39;re doing)</li>
+					</ul>
+					<p><strong>Note:</strong> On Windows, install <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a> or <a href="https://git-scm.com/download/win">Git for Windows</a> to work with tasks that depends on Node modules and shell commands. If you go with Git for Windows, <a href="https://pnpm.io/cli/run#script-shell">set</a> this configuration. <code>pnpm (or npm) config set script-shell &quot;C:\\Program Files\\git\\bin\\bash.exe&quot;</code></p>
+					<p>Open a terminal emulator (In Windows, right-click on start menu and select &quot;Windows PowerShell&quot; or in macOS, press <code>⌘+Space</code> and type &quot;Terminal.app&quot;) and follow commands below:</p>
+					<pre><code class="lang-sh"># Clone the repository <span class="hljs-keyword">and</span> change directory
+					git clone https://github.com/egeesin/pxl &amp;&amp; cd pxl
 
-> 👾 An adjustable framework-ish static site theme with sensible defaults and nice looks.
+# Install local Node modules <span class="hljs-keyword">of</span> the repository
+					pnpm i # <span class="hljs-keyword">or</span> <span class="hljs-string">"npm i"</span>
 
-![A screenshot of the static site theme previewing multiple color schemes in both dark and light mode.](/static/asset/preview.webp)
+# <span class="hljs-literal">Note</span>: <span class="hljs-keyword">If</span> you<span class="hljs-symbol">'re</span> using npm, find <span class="hljs-keyword">and</span> replace <span class="hljs-keyword">all</span> <span class="hljs-string">"pnpm run"</span> matches
+# <span class="hljs-keyword">with</span> <span class="hljs-string">"npm run"</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">package</span>.json via a code editor <span class="hljs-keyword">or</span> grep/sed.
 
-## Features
+# <span class="hljs-keyword">Generate</span> your first build (pnpm build) <span class="hljs-keyword">and</span> start dev server (pnpm watch)
+					pnpm start # <span class="hljs-keyword">or</span> <span class="hljs-string">"npm start"</span>
 
-- 🥇 HTML & CSS first, JavaScript later for responsive layouts, accessibility features only
-	- Improved legibility with vertical rhythm, modular scale, responsive text contrast
-	- Basic bidirectional support with [logical properties](https://css-tricks.com/css-logical-properties-and-values/) (WIP)
-	- CSS reset by [Sanitize.css](https://github.com/csstools/sanitize.css)
-	- Plain version of templates are processed by [PostHTML](https://github.com/posthtml/posthtml) and compatible plugins
-	- Layout Primitives from [*Every Layout*](https://every-layout.dev)
-- 🎈 [11ty](https://11ty.dev)-compatible templates written in Liquid [template language](https://shopify.dev/docs/api/liquid#what_is_a_template_language)
-- 🌗 Light and dark mode support
-	- Auto selects based on system preference first, lets you toggle theme with [drkmode.js](https://github.com/BetaHuhn/drkmd.js)
-	- Each mode has their own color scheme preference like [Solarized](https://github.com/altercation/solarized), [Gruvbox](https://github.com/morhetz/gruvbox), [One Dark UI](https://github.com/atom/one-dark-ui)…
-	- Each color scheme has different shades and tones of layers and 6 + 2 hues that is converted and edited from [Tinted Theming](https://github.com/tinted-theming/schemes) base16 schemes
-- 🎛 Objects and components with lots of style modifiers
-	- Container make-ups like border/outline (as `box-shadow`) thickness, corner roundness, shadow/emboss effects,
-	- Responsive masonry layout and navigation component in homepage layout by default
-	- Optional external backgrounds for adding blending, grain/gradient effects that is [full-sized](https://css-tricks.com/perfect-full-page-background-image/) [fixed](https://css-tricks.com/the-fixed-background-attachment-hack/) in all platforms.
-	- [BEM](https://getbem.com/naming/) class naming with chainable modifier and [other](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/) tweaks for making code readable to both humans and computers
-- 👷 Building ([PostCSS + Lightning CSS](https://github.com/postcss/postcss-cli#usage), PostHTML), validation ([html-validate](https://html-validate.org/usage/cli.html)), [biome](https://biomejs.dev/analyzer/#import-sorting-via-cli)), optimization (htmlnano, swc, svgo, Lightning CSS, sharp) and file watching (via chokidar) tasks for markup, style, script and media files in NPM scripts
-- ⚡️ Local, live and minimal dev server from [11ty](https://www.11ty.dev/docs/watch-serve/#eleventy-dev-server)
-
-## Demos
-- [GitHub Pages](https://pxl.egeesin.com)
-
-## Setup
-
-### 📦 Build from Source
-
-**Prerequisities**
-- [Node.js 18 LTS or later](https://nodejs.org/en/download)
-- [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- [`pnpm`](https://pnpm.io/installation) (or `npm` if you know what you're doing)
-
-**Note:** On Windows, install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or [Git for Windows](https://git-scm.com/download/win) to work with tasks that depends on Node modules and shell commands. If you go with Git for Windows, [set](https://pnpm.io/cli/run#script-shell) this configuration. `pnpm (or npm) config set script-shell "C:\\Program Files\\git\\bin\\bash.exe"`
-
-Open a terminal emulator (In Windows, right-click on start menu and select "Windows PowerShell" or in macOS, press `⌘+Space` and type "Terminal.app") and follow commands below:
-
-```sh
-# Clone the repository and change directory
-git clone https://github.com/egeesin/pxl && cd pxl
-
-# Install local Node modules of the repository
-pnpm i # or "npm i"
-
-# Note: If you're using npm, find and replace all "pnpm run" matches with "npm run" in package.json via a code editor or grep/sed.
-
-# Generate your first build (pnpm build) and start dev server (pnpm watch)
-pnpm start # or "npm start"
-
-# Once server is running, type "http://localhost:3000" or "http://127.0.0.1:3000" in the address bar of a web browser. For testing dev server in different devices on local network, check the terminal log to access alternative host (usually begins with 192.168.1.1XX:3000)
-```
-
-### ☁️  Deploy to Your Site
-
-> Production branch: `main`
-> Build command: `pnpm build`
-> Development command: `pnpm build`
-> Install command: `pnpm i`
-> Build directory: `dist`
-
-[![Deploy to CloudCannon](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/egeesin/pxl)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fegeesin%2Fpxl)
-
-[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/egeesin/pxl)
-
-[Deploy to Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-an-eleventy-site/#deploy-with-cloudflare-pages)
-
-### 🐙 Download Build Artifact
-
-1. Select [**Actions**](https://github.com/egeesin/pxl/actions) tab in main [repository](https://github.com/egeesin/pxl) page.
-2. Find and click on the latest successful workflow run with the green checkmark at the top of the list.
-3. Scroll to the bottom and download build artifacts (`dist/`).
-
-## Usage
-
-### 🖥️ CLI Scripts
-- `pnpm build`: Build production/dev directory
-- `pnpm watch`: Watch production/dev directory and serve dev server
-- `pnpm upmod`: Update dependencies and package.json
-- `pnpm debug:11ty`: Output debug messages from Eleventy build task
-- `pnpm exec browserslist | pbcopy`: Copies the list of min. supported browser versions to your clipboard so you can easily import this to [Can I Use?](https://caniuse.com/ciu/settings#browsers) as a new set. (Works in macOS with shell env., use different clipboard tool replace "pbcopy" part)
-**Note:** Check more NPM run scripts in `package.json`
-
-### 🎨 Theme Modifier Options
-
-(TBA)
-
-### 📝 Storing/Editing Content
-
-(TBA)
-
-### 🔑 Environment Variable
-- `WEBMENTION_IO_TOKEN`
-
-## Design
-
-Initially, pxl is built as a personal web theme for blogging, portfolio and various content types. But as development continued, different CSS methodologies and design systems has been applied to handle complexity and scalability.
-
-### CSS Methodology
-
-By chronologic order, BEM (`block--element__modifier`) naming convention, ITCSS (Inverted Triangle CSS) file structure, BEMIT (BEM + ITCSS) and other transparent UI namespaces from Harry Roberts, chainable modifiers from BEM (BEVM) and Intrinsic Web Design (influenced by Jen Simmons, Heydon Pickering & Andy Bell) are the designs pxl based of.
-
-### Directory Structure
-
-- Root directory contains information on metadata of this repository, which files to exclude, the license and this "README" page.
-
-- Inside `view/` directory, there are blog/website templates written with Liquid template language on top of HTML or Markdown content, JSON global website data, transform/filter scripts and CMS media files to be processed by framework-agnostic static site generator tool called [11ty](https://11ty.dev). This directory is required for production.
-- Inside `static/`, there are stylesheets, scripts, vector icons, and placeholder images. Stylesheets (`static/style`) are processed by PostCSS plugins + LightningCSS (as a PostCSS plugin) and also has sub-directories in order to emphasize and categorize different scopes of CSS.
-	- `static/style/index.css` is the main file of all styles. With postcss-import and postcss-import-glob plugins, each categorized styles in corresponding subdirectory that is specified with globs are *imported* and concatenated with alphabetical order into single CSS file while building.
-	- `static/style/_vendor/` or any other 3rd party CSS files sourced from `node_modules` are for including CSS Reset beforehand.
-	- Styles inside `static/style/abstract/` includes mixins, custom properties (variables), animation declarations and lots of color schemes for light/dark mode. These styles affects the look, spacing, typography of every page no matter what's inside the markup.
-	- `static/style/base/` includes opinionated CSS resets, theme modifiers, default HTML styles like forms, inline elements, grid layouts and reusable components.
-	- `static/style/class/` includes slightly concrete components like navigations, cards, frames, headers and external background frames.
-	- `static/style/shame.css` has bleeding edge, experimental, uncategorized styles. Style declarations from `shame.css` tend to be renamed, deleted or moved to relevant CSS file in the future.
-- `static/script/` has client-side functions and event listeners to apply certain style modifiers of navigation and *rusty* grid component based on viewport size or update ARIA attributes of essential elements for better accessibility in screen readers. `main.js` is for production and `test.js` is for development only.
-- `static/asset/` has essential media files such as favicon, webfont and placeholder images.
-- `static/icon/` has SVG vector files exported from a Affinity Designer template file (not included on this repository yet). Those are for processing into a single `symbol` spritesheet later.
-- `config/` is a place to keep all configurations of Node modules capable of checking, watching, building and optimizing source files there.
-
-- *Plain* HTML files in `plain/` directory are for development and partials to processed by PostHTML plugins in order to decrease repeating markup and ease editing header/footer. The directory includes basic structures of various components, layouts with dummy content, color table, kitchen sink of all HTML elements. This directory is optional for production if you want to review or tinker with existing plain HTML files to make custom designs on a template language other than Liquid.
-	- `plain/_include/` are the partials I mentioned earlier.
-	- Templates in `plain/class/` contains the markup of reusable components, grids and layout primitives.
-	- `plain/example/` includes examples of color scheme table, all classless HTML5 elements and icon preview.
-
-#### Interpretation on Methodologies
-The directory and specificity hierarchy from [ITCSS](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/), block and element namings from [BEM](https://getbem.com/naming/), chainable modifiers from [BEVM](https://www.slideshare.net/Jyaasa/bevm-blockelementvariation-modifier)), camelCase name groups from [ABEM](https://css-tricks.com/abem-useful-adaptation-bem/) are the chosen designs that are applied as it is.
-
-Harry Roberts' namespaces (for objects, components, utilities, theme, scope, JS states, hacks) from [BEMIT](https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/) and Intrinsic Web Design are influenced designs that needed to be tinkered with or picked only the distinctive parts of it for making it sensible to co-exist with other designs and making this project accessible.
-
-### Typography
-
-Most inline elements like paragraph and headings are sized based on a set modular scale. Each element has single vertical spacing unit or multiples (`var(--typeScale…)`) to keep vertical rhythm intact throughout the whole page.
-
-Default fonts are subset and OpenType feature/stylistic set frozen version of both [Inter](https://rsms.me/inter/) and [Iosevka](https://typeof.net/Iosevka/). Fallbacks are system font stack but there are different font stacks that should work on popular operating systems for different styles. Check `static/style/abstract/01-font.css` for different font stacks.
-
-### Media Breakpoints for Responsive Design
-
-By default, mobile-first responsive design approach is being used and expand through different
-screen sizes that fits different [human ergonomics](https://x.com/lukew/status/273453112902172672).
-- 🤝 wrist (smartwatches, smaller than 2 inches),
-- 🤲 palm (smartphones, phablets, ≥640px),
-- 🦵 lap (tablets on portrait mode, ≥960px),
-- 🖥️ desk (tablets on landscape mode, laptops, desktop PCs, ≥1280px) and,
-- exaggarated custom media properties like:
-	- 🖼️ wall (desktop PCs, full HD monitors, ≥1600px)
-	- 🏬 mall (2K monitors, ≥1920px) and,
-	- 🦖 titan (ultra-wide monitors, 4K displays, ≥2400px)
-
-### Browser Support
-
-All web browsers that has 0.5% or higher global usage (except Opera Mini and any other deprecated browsers) are supported. Review the query from `browserslist` key in package.json. The up-to-date list of supported browsers shown [here](https://browserslist.dev/?q=Pj0gLjUlIGFuZCBub3QgZGVhZCBhbmQgbm90IG9wX21pbmkgYWxs).
-
-## License
-
-This project is under [GNU GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.html) license.
-					</md>
+# Once server <span class="hljs-keyword">is</span> running, <span class="hljs-keyword">type</span> <span class="hljs-string">"http://localhost:3000"</span> <span class="hljs-keyword">or</span>
+# <span class="hljs-string">"http://127.0.0.1:3000"</span> <span class="hljs-keyword">in</span> the address bar <span class="hljs-keyword">of</span> a web browser. <span class="hljs-keyword">For</span> testing
+# dev server <span class="hljs-keyword">in</span> different devices <span class="hljs-keyword">on</span> local network, check the terminal log
+# <span class="hljs-keyword">to</span> <span class="hljs-keyword">access</span> alternative host (usually begins <span class="hljs-keyword">with</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">1.1</span>XX:<span class="hljs-number">3000</span>)
+					</code></pre>
+					<h3 id="-deployment">☁️  Deployment</h3>
+					<p><strong>Warning:</strong> None of those deployment options are tested yet. Use it if you know what you&#39;re doing.</p>
+					<ul>
+					<li>Production branch: <code>main</code></li>
+					<li>Build command: <code>pnpm build</code></li>
+					<li>Development command: <code>pnpm build</code></li>
+					<li>Install command: <code>pnpm i</code></li>
+					<li>Build directory: <code>dist</code></li>
+					</ul>
+					<p><a href="https://app.cloudcannon.com/register#sites/connect/github/egeesin/pxl"><img src="https://buttons.cloudcannon.com/deploy.svg" alt="Deploy to CloudCannon"></a>
+					<a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fegeesin%2Fpxl"><img src="https://vercel.com/button" alt="Deploy with Vercel"></a>
+					<a href="https://app.netlify.com/start/deploy?repository=https://github.com/egeesin/pxl"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify Button"></a>
+					<a href="https://developers.cloudflare.com/pages/framework-guides/deploy-an-eleventy-site/#deploy-with-cloudflare-pages">Deploy to Cloudflare Pages</a></p>
+					<h3 id="-download-build-artifact">🐙 Download Build Artifact</h3>
+					<ol>
+					<li>Select <a href="https://github.com/egeesin/pxl/actions"><strong>Actions</strong></a> tab in main <a href="https://github.com/egeesin/pxl">repository</a> page.</li>
+					<li>Find and click on the latest successful workflow run with the green checkmark at the top of the list.</li>
+					<li>Scroll to the bottom and download build artifacts (<code>dist/</code>).</li>
+					</ol>
+					<h2 id="usage">Usage</h2>
+					<p>After you&#39;ve cloned/forked this project in <em>Setup</em> section, follow the steps below:</p>
+					<h3 id="-cleanup-steps">🧹 Cleanup Steps</h3>
+					<ul>
+					<li>[ ] Clear author, repository, funding inside <code>package.json</code>.</li>
+					<li>[ ] Clear files inside <code>view/media/</code> and <code>view/_content/blog/article/</code> (Keep one if you need a dummy Markdown post to copy new posts from.)</li>
+					<li>[ ] (Optional) Remove <code>plain/</code> and set Node environment as &quot;production&quot; if you&#39;re not interested in testing with theme components. (All tasks contains &quot;plain&quot; must be skipped in build command!)</li>
+					<li>[ ] (Optional) If you&#39;re not using the built-in icon set, clear files inside <code>src/icon/</code> as well.</li>
+					<li>[ ] More steps coming soon…</li>
+					</ul>
+					<h3 id="-essentials-checklist">✅ Essentials Checklist</h3>
+					<ul>
+					<li>[ ] For global site info like title, favicon, author, social links, edit <code>view/_data/site.json</code>.</li>
+					<li>[ ] For navigation items, edit <code>view/_data/nav.json</code>.</li>
+					<li>[ ] For post content, import your Markdown files to <code>view/_content/blog/article/</code>. (e.g. <code>./2024-02-24-post-title.md</code>) Make sure it has identical front matter keys in example Markdown post. If you&#39;re migrating from WordPress, in admin dashboard, export XML backup of your posts to <a href="https://github.com/lonekorean/wordpress-export-to-markdown">convert</a> it as bulk Markdown files.</li>
+					<li>[ ] (Optional) For making site Progressive Web App (PWA), edit <code>view/app.webmanifest.liquid</code></li>
+					<li>[ ] (Optional) To override CSS styles, edit <code>static/style/shame.css</code>. Also, you can make another CSS file as long as you don&#39;t forget to <code>@import</code> it in <code>static/style/index.css</code>. <code>@import-glob</code> is also <a href="https://github.com/dimitrinicolas/postcss-import-ext-glob">allowed</a>.</li>
+					<li>[ ] More steps coming soon…</li>
+					</ul>
+					<h3 id="-theme-modification">🎨 Theme Modification</h3>
+					<ul>
+					<li>[ ] Discover modifications as seen in <a href="https://pxl.egeesin.com/plain/">here</a>.</li>
+					<li>[ ] Edit <code>html_classes</code> and <code>body_classes</code> part in <code>view/_data/site.json</code> according to your likings.</li>
+					<li>[ ] (Optional) Use front matter keys such as <code>append_html_class</code> or <code>append_body_class</code> to force theme modification per page.</li>
+					<li>[ ] More steps coming soon…</li>
+					</ul>
+					<h3 id="-cli-scripts">🖥️ CLI Scripts</h3>
+					<ul>
+					<li><code>pnpm build</code>: Build production/dev directory</li>
+					<li><code>pnpm watch</code>: Watch production/dev directory and serve dev server</li>
+					<li><code>pnpm upmod</code>: Update dependencies and package.json</li>
+					<li><code>pnpm debug:11ty</code>: Output debug messages from Eleventy build task</li>
+					<li><code>pnpm &quot;/^optimize:.*/&quot;</code>: Execute all run scripts that begins with &quot;optimize:&quot; in parallel with nice output.</li>
+					<li><code>pnpm exec browserslist | pbcopy</code>: Copies the list of min. supported browser versions to your clipboard so you can easily import this to <a href="https://caniuse.com/ciu/settings#browsers">Can I Use?</a> as a new set. (Works in macOS with shell env. To use different clipboard tool replace &quot;pbcopy&quot; part)
+					<strong>Note:</strong> Check more NPM run scripts in <code>package.json</code></li>
+					</ul>
+					<h4 id="related-3rd-party-commands">Related 3rd Party Commands</h4>
+					<ul>
+					<li><code>cloc &lt;path-to-directory&gt; --exclude-dir=node_modules,tmp,dist,.git,utility --exclude-ext=svg,png,jpg,jpeg,webp,tif,ico</code>: If you have <a href="https://github.com/AlDanial/cloc"><code>cloc</code></a>, calculate total count of lines of the input.</li>
+					</ul>
+					<h3 id="-environment-variable">🔑 Environment Variable</h3>
+					<ul>
+					<li><code>WEBMENTION_IO_TOKEN</code></li>
+					</ul>
+					<h2 id="design">Design</h2>
+					<p>Initially, pxl is built as a personal web theme for blogging, portfolio and various content types. But as development kept going, different CSS methodologies and design systems has been applied to handle complexity and scalability.</p>
+					<h3 id="css-methodology">CSS Methodology</h3>
+					<p>By chronologic order, BEM (<code>block--element__modifier</code>) naming convention, ITCSS (Inverted Triangle CSS) file structure, BEMIT (BEM + ITCSS) and other transparent UI namespaces from Harry Roberts, chainable modifiers from BEM (BEVM) and Intrinsic Web Design (influenced by Jen Simmons, Heydon Pickering &amp; Andy Bell) are the designs pxl based on.</p>
+					<h3 id="directory-structure">Directory Structure</h3>
+					<ul>
+					<li><p>Root directory contains information on metadata of this repository, which files to exclude, the license and this &quot;README&quot; page.</p>
+					</li>
+					<li><p>Inside <code>view/</code> directory, there are blog/website templates written with Liquid on top of HTML or Markdown content, JSON global website data, transform/filter scripts and CMS media files to be processed by framework-agnostic static site generator tool called <a href="https://11ty.dev">11ty</a>. This directory is required for production.</p>
+					</li>
+					<li>Inside <code>static/</code>, there are stylesheets, scripts, vector icons, and placeholder images. Stylesheets (<code>static/style</code>) are processed by PostCSS plugins + LightningCSS (as a PostCSS plugin) and also has sub-directories in order to emphasize and categorize different scopes of CSS.<ul>
+					<li><code>static/style/index.css</code> is the main file of all styles. With postcss-import and postcss-import-glob plugins, each categorized styles in corresponding subdirectory that is specified with globs are <em>imported</em> and concatenated with alphabetical order into single CSS file while building.</li>
+					<li><code>static/style/_vendor/</code> or any other 3rd party CSS files sourced from <code>node_modules</code> are for including CSS Reset beforehand.</li>
+					<li>Styles inside <code>static/style/abstract/</code> includes mixins, custom properties (variables), animation declarations and lots of color schemes for light/dark mode. These styles affects the look, spacing, typography of every page no matter what&#39;s inside the markup.</li>
+					<li><code>static/style/base/</code> includes opinionated CSS resets, theme modifiers, default HTML styles like forms, inline elements, grid layouts and reusable components.</li>
+					<li><code>static/style/class/</code> includes slightly concrete components like navigations, cards, frames, headers and external background frames.</li>
+					<li><code>static/style/shame.css</code> has bleeding edge, experimental, uncategorized styles. Style declarations from <code>shame.css</code> tend to be renamed, deleted or moved to relevant CSS file in the future.</li>
+					</ul>
+					</li>
+					<li><code>static/script/</code> has client-side functions and event listeners to apply certain style modifiers of navigation and <em>rusty</em> grid component based on viewport size or update ARIA attributes of essential elements for better accessibility in screen readers. <code>main.js</code> is for production and <code>test.js</code> is for development only.</li>
+					<li><code>static/asset/</code> has essential media files such as webfont and placeholder images.</li>
+					<li><code>static/icon/</code> has SVG vector files exported from a Affinity Designer template file (not included on this repository yet). Those are for processing into a single <code>&lt;symbol&gt;</code> spritesheet later.</li>
+					<li><p><code>config/</code> is a place to keep all configurations of Node modules capable of checking, watching, building and optimizing source files there.</p>
+					</li>
+					<li><p><em>Plain</em> HTML files in <code>plain/</code> directory are for development and partials to processed by PostHTML plugins in order to decrease repeating markup and ease editing header/footer. The directory includes basic structures of various components, layouts with dummy content, color table, kitchen sink of all HTML elements. This directory is optional for production if you want to review or tinker with existing plain HTML files to make custom designs on a template language other than Liquid.</p>
+					<ul>
+					<li><code>plain/_include/</code> are the partials I mentioned earlier.</li>
+					<li>Templates in <code>plain/class/</code> contains the markup of reusable components, grids and layout primitives.</li>
+					<li><code>plain/example/</code> includes examples of color scheme table, all classless HTML5 elements and icon preview.</li>
+					</ul>
+					</li>
+					</ul>
+					<h4 id="interpretation-on-methodologies">Interpretation on Methodologies</h4>
+					<p>The directory and specificity hierarchy from <a href="https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/">ITCSS</a>, block and element namings from <a href="https://getbem.com/naming/">BEM</a>, chainable modifiers from <a href="https://www.slideshare.net/Jyaasa/bevm-blockelementvariation-modifier">BEVM</a>), camelCase name groups from <a href="https://css-tricks.com/abem-useful-adaptation-bem/">ABEM</a> are the chosen designs that are applied as it is.</p>
+					<p>Harry Roberts&#39; namespaces (for objects, components, utilities, theme, scope, JS states, hacks) from <a href="https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/">BEMIT</a> and Intrinsic Web Design are influenced designs that needed to be tinkered with or picked only the distinctive parts of it for making it sensible to co-exist with other designs and making this project accessible.</p>
+					<h3 id="typography">Typography</h3>
+					<p>Most inline elements like paragraph and headings are sized based on a set modular scale. Each element has single vertical spacing unit or multiples (<code>var(--typeScale…)</code>) to keep vertical rhythm intact throughout the whole page.</p>
+					<p>Default fonts are subset and OpenType feature/stylistic set frozen version of both <a href="https://rsms.me/inter/">Inter</a> and <a href="https://typeof.net/Iosevka/">Iosevka</a>. Fallbacks are system font stack but there are different font stacks that should work on popular operating systems for different styles. Check <code>static/style/abstract/01-font.css</code> for different font stacks.</p>
+					<h3 id="media-breakpoints-for-responsive-design">Media Breakpoints for Responsive Design</h3>
+					<p>By default, mobile-first responsive design approach is being used and expand through different
+					screen sizes that fits different <a href="https://x.com/lukew/status/273453112902172672">human ergonomics</a>.</p>
+					<ul>
+					<li>🤝 wrist (smartwatches, &lt;2inch),</li>
+					<li>🤲 palm (smartphones, &quot;phablets&quot;, ≥640px),</li>
+					<li>🦵 lap (tablets on portrait mode, ≥960px),</li>
+					<li>🖥️ desk (tablets on landscape mode, laptops, desktop PCs, ≥1280px) and,</li>
+					<li>exaggarated custom media properties like:<ul>
+					<li>🖼️ wall (desktop PCs, full HD monitors, ≥1600px)</li>
+					<li>🏬 mall (2K monitors, ≥1920px) and,</li>
+					<li>🦖 titan (ultra-wide monitors, 4K displays, ≥2400px)</li>
+					</ul>
+					</li>
+					</ul>
+					<h3 id="browser-support">Browser Support</h3>
+					<p>All web browsers that has 0.5% or higher global usage (except Opera Mini and any other deprecated browsers) are supported. Review the query from <code>browserslist</code> key in package.json. The up-to-date list of supported browsers shown <a href="https://browserslist.dev/?q=Pj0gLjUlIGFuZCBub3QgZGVhZCBhbmQgbm90IG9wX21pbmkgYWxs">here</a>.</p>
+					<h2 id="license">License</h2>
+					<p>This project is under <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL 3.0</a> license.</p>
 				</article>
 			</main>
 			<include src='part/footer.html'></include>

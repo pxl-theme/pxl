@@ -17,13 +17,13 @@
 						{%- else -%}
 							><svg class="pi -size2x" style="--iconWeight: 2px" viewBox='0 0 18 18' width="2rem"><use href='/pi.svg#house'></use></svg
 						{%- endif -%}
-						><span style="margin-inline-start:.5ch">{{ site.title }}</span></a
+						><span style="margin-inline-start:.5ch;vertical-align:middle">{{ site.title }}</span></a
 					{%- comment -%} TODO: Add custom header title link to where it's been invoked from.{%- endcomment -%}
 					{%- if title -%}
-						>{{- options.titleSeparator | default: site.options.titleSeparator
-						-}}<a href="{{ page.url }}">{{- title -}}</a>
+						><span style="vertical-align:middle;">{{- options.titleSeparator | default: site.options.titleSeparator
+						-}}<a href="{{ page.url }}">{{- title -}}</a></span>
 						{%- comment -%} {% if site.title %}<h1 style="text-align:center"><a href="{{ "/" | url }}">{{ site.title | escape }}</a></h1>{% endif %} {%- endcomment -%}
-						{%- comment -%} {% if site.description %}<h 4 style="text-align:center">{{ site.description }}</h4>{% endif %} {%- endcomment -%}
+						{%- comment -%} {% if site.description %}<h4 style="text-align:center">{{ site.description }}</h4>{% endif %} {%- endcomment -%}
 					{%- else -%}>
 					{%- endif -%}
 				</h1>
@@ -35,7 +35,7 @@
 			{%- endif -%}
 		{%- endif -%}
 	</div>
-	<menu class="c-nav -typeFlyout -layoutHorizontal -alignStart u-hidden@print" role=tree>
+	<menu class="c-nav -typeFlyout -flowHorizontal -alignStart u-hidden@print" role=tree>
 		<li class="c-nav__item u-hidden@lap" >
 		<label class=c-nav__anchor for=toggleNav-000 onclick>
 			<svg class=pi viewBox="0 0 18 18" width=18px>
