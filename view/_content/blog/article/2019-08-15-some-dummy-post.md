@@ -2,11 +2,14 @@
 title: "Mastering Motion Design: A Creative Journey"
 date: 2019-08-15T12:30:00+00:00
 topics:
-  - Motion Design
+  - MotionDesign
   - Animation
-  - Creative Process
-  - Visual Storytelling
+  - CreativeProcess
+  - VisualStorytelling
 ---
+
+![](/media/flyhorse.gif)
+
 Motion design is a captivating realm where art meets technology, and creativity takes center stage. In the dynamic landscape of digital content, motion design plays a pivotal role in conveying messages and captivating audiences. Whether it's a sleek logo animation, a visually stunning video intro, or an immersive user interface transition, mastering motion design requires a blend of artistic prowess and technical finesse.
 
 <!--more-->

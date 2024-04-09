@@ -4,7 +4,7 @@ date: 2021-07-23T19:35:52+03:00
 author: "Ege Esin"
 topics:
   - Devlog
-  - Game Jam
+  - GameJam
 ---
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/FHjQLIaeWR8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

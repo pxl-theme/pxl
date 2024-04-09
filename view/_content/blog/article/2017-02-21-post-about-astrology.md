@@ -4,8 +4,8 @@ date: 2017-02-21T12:30:00+00:00
 topics:
   - Astrology
   - Horoscopes
-  - Celestial Insights
-  - Zodiac Signs
+  - CelestialInsights
+  - ZodiacSigns
 ---
 
 ![](/media/viva-luna-studios-r_-onuwuWAU-unsplash.jpg)

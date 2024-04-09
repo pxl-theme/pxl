@@ -3,9 +3,9 @@ title: "Timeless Journey with Camel: A Musical Odyssey"
 date: "2023-04-15T12:00:00+00:00"
 topics:
   - Camel
-  - Progressive Rock
-  - Music History
-  - Band Biography
+  - ProgressiveRock
+  - MusicHistory
+  - BandBiography
 ---
 
 ![Vinyl cover of Moonmadness album by Camel](/media/camel-moonmadness-vinyl-cover.webp "Camel - Moonmadness")
@@ -25,5 +25,3 @@ As the years unfolded, Camel continued to evolve. The album *Moonmadness* (1976)
 Camel's influence extends beyond their genre, inspiring generations of musicians and captivating audiences worldwide. With a discography that spans decades, the band's commitment to artistic expression has solidified their place in the pantheon of progressive rock. Whether revisiting the classics or discovering hidden gems, the journey with Camel is a testament to the timeless power of music.
 
 *Explore Camel's discography and embark on a musical odyssey that transcends generations. From the ethereal landscapes of their early works to the mature reflections of later albums, Camel's legacy is a testament to the enduring power of progressive rock.*
-
----

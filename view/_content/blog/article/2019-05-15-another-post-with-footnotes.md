@@ -2,12 +2,12 @@
 title: "Unlocking the Secrets to Optimal Body Health"
 date: 2019-05-15T10:30:00+00:00
 topics:
-  - Body Health
+  - BodyHealth
   - Wellness
   - Fitness
   - Nutrition
   - Exercise
-  - Mind-Body Connection
+  - MindBodyConnection
 
 ---
 

@@ -4,7 +4,7 @@ date: 2015-08-15T12:45:00-04:00
 topics:
   - Invincible
   - Thaedus
-  - Comic Books
+  - ComicBooks
   - Superheroes
 ---
 

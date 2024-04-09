@@ -3,12 +3,12 @@ title: "Stockholm: A Journey into Scandinavian Splendor"
 author: "WanderlustExplorer"
 date: 2020-03-09T09:45:00+02:00
 topics: 
-  - travel
+  - Travel
   - Stockholm
   - Scandinavia
-  - culture
-  - food
-  - landmarks
+  - Culture
+  - Food
+  - Landmarks
 ---
 
 ![](/media/stockholm.jpg)
@@ -26,6 +26,9 @@ Stockholm's culinary scene proved to be a gastronomic adventure. I savored class
 As the sun set over the archipelago, I embarked on a memorable dinner cruise, enjoying a delectable Nordic feast while sailing through the scenic waterways. The blend of traditional and modern experiences made my visit to Stockholm truly unforgettable.
 
 ### Practical Information:
+
+**Naval Ensign of Sweden:**
+![](/media/naval-ensign-of-sweden.svg)
 
 - **Currency:** Swedish Krona (SEK)
 - **Language:** Swedish, but English is widely spoken
