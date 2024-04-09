@@ -3,22 +3,22 @@ permalink: /sitemap.xml
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-{%- assign items = collections.sitemap | sort_by: 'data.priority' -%}
-{%- for item in items reversed -%}
-  {%- unless item.data.hidden == true -%}
-<url>
-  <loc>{{ item.url | prepend: site.baseurl | clearindex }}</loc>
-  <lastmod>{{ item.date | date: '%Y-%m-%d' }}</lastmod>
-  <changefreq>{{ item.data.changefreq }}</changefreq>
-  <priority>{{ item.data.priority }}</priority>
-  {%- comment %} {%- if item.data.image -%} {%- endcomment %}
-  {%- comment %} <image:image> {%- endcomment %}
-  {%- comment %}   <image:loc>{{- item.data.image | replace_first: '/images',site.imgcdn | append: '?w=1280&q=90&auto=format' | escape }}</image:loc> {%- endcomment %}
-  {%- comment %} </image:image> {%- endcomment %}
-  {%- comment %} {%- endif -%} {%- endcomment %}
-</url>
-  {%- endunless -%}
-{%- endfor -%}
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+	{%- assign items = collections.sitemap | sortBy: 'data.priority' -%}
+	{%- for item in items reversed -%}
+		{%- unless item.data.hidden == true -%}
+		<url>
+			<loc>{{ item.url | prepend: site.baseurl | clearIndex }}</loc>
+			<lastmod>{{ item.date | date: '%Y-%m-%d' }}</lastmod>
+			<changefreq>{{ item.data.changefreq }}</changefreq>
+			<priority>{{ item.data.priority }}</priority>
+			{%- comment %} {%- if item.data.image -%} {%- endcomment %}
+			{%- comment %} <image:image> {%- endcomment %}
+			{%- comment %}   <image:loc>{{- item.data.image | replace_first: '/images',site.imgcdn | append: '?w=1280&q=90&auto=format' | escape }}</image:loc> {%- endcomment %}
+			{%- comment %} </image:image> {%- endcomment %}
+			{%- comment %} {%- endif -%} {%- endcomment %}
+		</url>
+		{%- endunless -%}
+	{%- endfor -%}
 </urlset>

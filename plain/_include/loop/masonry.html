@@ -1,8 +1,10 @@
-<main id=js-loop
-	class="s-cmsContent o-rustygrid -alignCenter -viewMasonry"
+<!-- When main has masonry, load Colcade.js -->
+<script src="/static/script/_vendor/colcade.js"></script>
+<main id=content
+	class="js-loop s-cmsContent o-rustygrid -alignCenter -viewMasonry"
 	aria-label=Content
 	>
-	<div id=js-loop__inner>
+	<div class=js-loop__inner>
 		<!-- Requires "o-rustygrid" class in the parent. -->
 		<div class=o-rustygrid__masonryCol></div>
 		<div class=o-rustygrid__masonryCol></div>
@@ -27,21 +29,16 @@
 					<h6 class="o-box__meta -alignEnd@wrist-gt u-txtOnImg">Meaningless, Filler, Categories</h6>
 					<h2 class="o-box__title u-txtOnImg"><a href=#!>Post Example with Featured Image</a></h2>
 				</hgroup>
-				<md>
-	**A person who doesn't** make *any mistake* is ``a person`` who doesn't do anything. And biggest mistake in the world is to thought you're perfect.
-
-	I think we really should give a crap to these idioms, especially when I type meaningless paragraphs like these, I see a reason to explain [this](//google.com) sometimes. Thanks to me, I stretched my fingers a little and I am typing really something random things right now instead of being too lazy to copy-paste from Lorem Ipsum generators. Probably, this is should be longest sentence of the existence. I can't understand but that's really is.
-				</md>
-				<img class=alignstart src=//picsum.photos/128>
-				<md>
-	```html
-	So let's try to type longest paragraph of the world. To ease the process of breaking record I will make a list of names of all prime ministers irrelevently in here. Of course, I am too lazy to not remember name of prime ministers so I can make up this list. Let's see!
-	- John Jonathan
-	- Anne Anderson
-	- Jake Jackathon
-	- Michel Michelson
-	```
-				</md>
+				<p><strong>A person who doesn't</strong> make <em>any mistake</em> is <code>a person</code> who doesn't do anything. And biggest mistake in the world is to thought you're perfect.</p>
+				<p>I think we really should give a crap to these idioms, especially when I type meaningless paragraphs like these, I see a reason to explain <a href="//google.com">this</a> sometimes. Thanks to me, I stretched my fingers a little and I am typing really something random things right now instead of being too lazy to copy-paste from Lorem Ipsum generators. Probably, this is should be longest sentence of the existence. I can't understand but that's really is.</p>
+				<img class=alignleft src=//picsum.photos/128>
+				<p>So let's try to type longest paragraph of the world. To ease the process of breaking record I will make a list of names of all prime ministers irrelevently in here. Of course, I am too lazy to not remember name of prime ministers so I can make up this list. Let's see!</p>
+				<ul>
+					<li>John Jonathan</li>
+					<li>Anne Anderson</li>
+					<li>Jake Jackathon</li>
+					<li>Michel Michelson</li>
+				</ul>
 				<footer class=o-box__footer>
 					<span style=float:left>Tags:&nbsp;</span>
 					<ul class="c-nav -layoutHorizontal -typeTag">

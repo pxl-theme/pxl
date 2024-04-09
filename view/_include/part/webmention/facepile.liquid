@@ -1,4 +1,4 @@
-<div class="facepile">
+{% comment %}<div class="facepile">
   <h3 class="facepile__title">Show all {{ facepile_type }}</h3>
   <div class="facepile__main">
     {% for item in facepile reversed limit: 5 %}
@@ -9,4 +9,4 @@
       <span class="facepile__counter">+{{ items.size | minus: 5 }}</span>
     {% endif %}
   </div>
-</div>
+</div>{% endcomment %}

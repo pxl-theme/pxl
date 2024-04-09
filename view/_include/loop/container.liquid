@@ -1,26 +1,26 @@
+<!-- Load if masonry layout is present -->
+{% if view == "masonry" %}<script src="{{ "/static/script/_vendor/colcade.js" | url }}"></script>{% endif %}
 <main
-	id=js-loop
-	class="s-cmsContent {% if view == "masonry" %}o-rustygrid -viewMasonry{% else %}o-stack{% endif %}"
+	id=content
+	class="js-loop s-cmsContent {% if view == "masonry" %}o-rustygrid -viewMasonry{% else %}o-stack{% endif %}"
 	aria-label=Content
-	data-path="{{ page.url | paginator_link }}"
+	data-path="{{ page.url | paginatorLink }}"
 	data-paginator-current="{{ pagination.pageNumber | plus:1}}"
-	data-paginator-total="{{ items.size | divided_by: pagination.size | ceil }}"
+	data-paginator-total="{{ items.size | divided_by: pagination.size | ceil }}">
 	{%- comment -%} itemprop=mainContentOfPage {%- endcomment -%}
-	>
-
 	{%- comment -%}
-	Prepare the markup if content container has masonry view. {%- endcomment -%}
+	Prepare the markup if content container has masonry view.
+	{%- endcomment -%}
 	{%- if view == "masonry" -%}
 	{%- comment -%} 
 	Putting inline-block property to loop__inner,
 	so the button next to it doesn't shift inside masonry layout. {%- endcomment -%}
-	<div id=js-loop__inner>
+	<div class=js-loop__inner>
 		<div class="o-rustygrid__masonryCol"></div>
 		<div class="o-rustygrid__masonryCol"></div>
 		<div class="o-rustygrid__masonryCol"></div>
 		<div class="o-rustygrid__masonryCol"></div>
 	{%- endif -%}
-
 	{%- comment -%}
 	Start the loop if there's any post in the defined collection. {%- endcomment -%}
 	{%- if pagination.items.size > 0 -%}
@@ -44,7 +44,6 @@
 			{%- endif -%}
 		{%- endfor -%}
 		{%- comment -%} {%- include 'item/{{ items_component | default: item.data.layout }}' -%}  {%- endcomment -%}
-
 	{%- comment -%}
 	If there's no post in the defined collection, give placeholder message. {%- endcomment -%}
 	{%- else -%}
@@ -52,20 +51,15 @@
 			<p>No posts here yet…</p>
 		</div>
 	{%- endif -%}
-
 	{%- comment -%}
 	End of masonry wrapper {%- endcomment -%}
-	{%- if view == "masonry" -%}
-	</div>
-	{%- endif -%}
-
+	{%- if view == "masonry" %}</div>{% endif -%}
 </main>
 {%- comment -%}
 If contaier has more than one page, show "Load More…" button. {%- endcomment -%}
 {%- if load_more_button == true -%}
-	<button id=js-loop__loadButton
-			title="Loads more posts."
+	<button title="Loads more posts."
 			itemprop=pagination
-			class="js-paginator o-center"
-			style=position:relative>Load More…</button>
+			class="js-loop__loadButton js-paginator o-center"
+			style=position:relative><b>🛣️ Load More…</b></button>
 {%- endif -%}

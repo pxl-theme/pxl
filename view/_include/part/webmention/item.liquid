@@ -1,4 +1,4 @@
-<article id="webmention-{{ item.wm-id }}">
+{% comment %}<article id="webmention-{{ item.wm-id }}">
 	<div>
 		<!--TODO: Need a randomized avatar placeholder URL here instead of single local file-->
 		<img class="avatar | u-photo" src="{{ item.author.photo | default: '/static/asset/filler/avatar.webp' }}" alt="" width="48" height="48">
@@ -18,4 +18,4 @@
 	<div>
 		{{- item.content.value }}
 	</div>
-</article>
+</article>{% endcomment %}

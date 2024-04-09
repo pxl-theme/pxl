@@ -8,20 +8,25 @@ options:
 	<article class="o-box -viewCard o-center hentry" itemscope itemtype="https://schema.org/BlogPosting">
 		<hgroup class=c-header>
 			{%- if page.date != nil -%}
-				<h5 class="o-box__meta{% if author or topics != nil %} -alignStart@wrist-gt{% endif %}" alt="{{ page.date | localDateFull }}">
-					<time class="published" datetime="{{ page.date | htmlDateString }}" itemprop=datePublished>
-						<svg width="18" class="pi" viewBox="0 0 18 18">
-							<use href="/pi.svg#tool-clock"></use>
-						</svg
-						> {{ page.date | localDMY }}, {{ page.date | localDayOfWeek }}
-					</time>
-					{%- if author != nil -%}<br>{%- endif %}
+				<h5 class="o-box__meta{% if author or topics != nil %} -alignStart@wrist-gt{% endif %}" >
+					<svg width=18 class=pi viewBox="0 0 18 18">
+						<use href="/pi.svg#tool-clock"></use>
+					</svg>&nbsp;<relative-time
+						format=datetime
+						format-style=long
+						class=published
+						itemprop=datePublished
+						prefix=""
+						title="{{ page.date | localDateTimeHuge }}"
+						datetime="{{ page.date | dateInISO }}">
+						{{- page.date | localDateHuge -}}
+					</relative-time>
 					{%- if author != nil -%}
-						<span class="author vcard" itemprop=author>
+						<br><span class="author vcard" itemprop=author>
 							<svg width="18" class="pi" viewBox="0 0 18 18">
 								<use href="/pi.svg#general-person"></use>
 							</svg
-							> <a href="#!">{{ author -}}</a>
+							> <a href="#!">{{ author }}</a>
 							{% comment %} TODO: Add author urls{% endcomment %}
 						</span>
 					{%- endif -%}
@@ -43,16 +48,44 @@ options:
 		</section>
 		<hr>
 		<b>
+		<!-- Comment/Reply Buttons -->
 		<svg class=pi viewBox='0 0 18 18' width=18px>
-			<use href='/pi.svg#paper-send'></use>
-		</svg> Share This Page:</b>
-		{% comment %} TODO: Add https://github.com/zachleat/webcare-webshare here.{% endcomment %}
-		<a href="https://mastodon.social/share?text={{ title | escape }} by {{ site.author.mastodon }}&amp;url={{ page.url | prepend: site.baseurl }}"
-		data-src="{{ title | escape }} by {{ site.author.mastodon }}&amp;url={{ page.url | prepend: site.baseurl }}"
-		class="mastodonAskInstance">Comment on Mastodon</a>
-		<a href="https://twitter.com/intent/tweet?text={{ title | escape }} by {{ site.author.twitterx }} {{ page.url | prepend: site.baseurl }}"
-		>Comment on Twitter (X)</a>
-			<a class=url itemprop=url href="{{ page.url | prepend: site.baseurl }}" hidden></a>
+			<use href='/pi.svg#speech-balloon'></use>
+		</svg> Comment on:</b>
+		{%- if site.author.email -%}
+			<a title="Reply privately in a new email draft via default email client."
+			   href="mailto:{{ site.author.email | escape }}?subject=Re:{{ page.url | prepend: site.baseurl }}"
+			   >Email</a> 
+		{% endif -%}
+		{%- if site.author.mastodon -%}
+			<a title="Reply with the link to this post mentioning my profile on a Mastodon instance of your preference."
+				href="https://mastodon.social/share?text={{ title | escape }} by {{ site.author.mastodon }}&amp;url={{ page.url | prepend: site.baseurl }}"
+				data-ask-mastodon
+				data-src="{{ title | escape }} by {{ site.author.mastodon }}&amp;url={{ page.url | prepend: site.baseurl }}"
+				>Mastodon</a> 
+		{% endif -%}
+		{%- if site.author.twitterx %}
+			<a title="Reply with the link to this post mentioning my profile on Twitter (a.k.a. X)."
+				href="https://twitter.com/intent/tweet?text={{ title | escape }} by {{ site.author.twitterx }} {{ page.url | prepend: site.baseurl }}"
+				>Twitter (X)</a>
+		{% endif -%}
+		<!-- The Share Button (with Web Share API)-->
+		<script type=module src="{{ "/static/script/_vendor/webcare-webshare.js" | url }}"></script>
+		<webcare-webshare
+			share-text="{{ title | escape }}"
+			share-url="{{ page.url | prepend: site.baseurl }}"
+			label-copy="🔗 Copy Link"
+			label-after-copy="📋 Copied!"
+			>
+			<button 
+				title="Click to open share menu or copy permalink of this post to your clipboard." 
+				disabled>
+				<svg class=pi viewBox='0 0 18 18' width=18px>
+					<use href='/pi.svg#paper-send'></use>
+				</svg><b> Share Link</b>
+			</button>
+		</webcare-webshare>
+		<a class=url itemprop=url href="{{ page.url | prepend: site.baseurl }}" hidden></a>
 	</article>
 	{% comment %} {%- include "webmention/container" %} {% endcomment %}
 </main>

@@ -5,9 +5,9 @@ layout: default
 	<article class="o-box -viewCard o-center">
 		<a class=url href="{{ page.url | url }}" hidden></a>
 		{{ content }}
-		<h5 class=o-box__meta alt="{{ page.date | localDateFull }}">
-			<time datetime="{{ page.date | htmlDateString }}">
-				{{ page.date | localDMY }}, {{ page.date | localDayOfWeek }}
+		<h5 class=o-box__meta alt="{{ page.date | dateInRFC2822 }}">
+			<time datetime="{{ page.date | yearMonthDay }}">
+				{{ page.date | dayMonthYear }}, {{ page.date | dayOfWeek }}
 			</time>
 			{{ site.separator }}<b>{{ title | escape }}</b>
 			{% if post.data.location %}{{ site.separator }} {{post.data.location}}{% endif %}

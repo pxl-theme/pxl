@@ -6,7 +6,7 @@
 	data-theme=dark
 	prefix="og: http://ogp.me/ns#">
 	<include src='meta/head.html'>{
-		"title":"Embeds",
+		"title": "Embeds",
 		"description": ""
 	}</include>
 	<body
@@ -16,11 +16,13 @@
 		<!-- 🗨️ Screen Reader Notice -->
 		<include src='part/screen-reader-notice.html'></include>
 		<include src='part/header.html'></include>
-		<main id=js-loop
+
+		<script src="/static/script/_vendor/colcade.js"></script>
+		<main id=content
 			aria-label=Content
-			class="s-cmsContent u-clearFix o-rustygrid -viewMasonry"
+			class="js-loop s-cmsContent u-clearFix o-rustygrid -viewMasonry"
 			>
-			<div id=js-loop__inner>
+			<div class=js-loop__inner>
 				<div class=o-rustygrid__masonryCol></div>
 				<div class=o-rustygrid__masonryCol></div>
 				<div class=o-rustygrid__masonryCol></div>

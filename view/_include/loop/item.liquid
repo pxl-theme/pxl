@@ -1,88 +1,68 @@
 {%- comment %} Variables for localized date/time format {% endcomment -%}
-{%- assign currentYear = 'now' | date: '%Y' -%}
-{%- assign postYear = post.date | date: '%Y' -%}
-<div class="o-rustygrid__item js-loop__item">
-	<article class='o-box -viewCard o-center'>
-		{%- comment %} If post content doesn't include "more" HTML comment and has image, add -viewMedia modifier class to Header Component {% endcomment -%}
+{%- assign postHasImage = false -%}
+{%- unless post.templateContent contains '<!--more-->' -%}
+	{%- if post.templateContent contains '<img' -%}
+		{%- assign postHasImage = true -%}
+	{%- else -%}
+		{%- assign postHasImage = false -%}
+	{%- endif -%}
+{%- endunless -%}
+
+{% if view == "masonry" %}<div class="o-rustygrid__item js-loop__item">{% endif %}
+	<article class='o-box -viewCard o-center{% if view != "masonry" %} js-loop__item{% endif %}'>
 		<hgroup class=c-header>
-			{%- unless post.templateContent contains '<!--more-->' -%}
-				{%- if post.templateContent contains '<img' or '<picture' or '<video' or '<figure' -%}
-					{%- first_image post -%}
+			<h6 class="o-box__meta{% if post.data.topics != nil %} -alignStart{% endif -%}
+				{% comment %} {%- if postHasImage == true %} u-txtOnImg{% endif -%} {% endcomment %}
+				"><relative-time
+					class=published
+					itemprop=datePublished
+					prefix=""
+					title="{{ post.date | localDateTimeHuge }}"
+					datetime="{{ post.date | dateInISO }}">
+					{{- post.date | localDateMed -}}
+				</relative-time>
+				{%- comment -%} If the post contains "foto" tag, output dedicated meta markup. {%- endcomment -%}
+				{%- if post.data.tags contains "foto" -%}
+					{{ site.options.titleSeparator }}
+					<b><a href="{{ post.url }}">{{- post.data.title | escape | nbsp }}</a></b>
+					{%- if post.data.location -%}
+						{{ site.options.titleSeparator }}
+						{{ post.data.location }}
+					{%- endif -%}
 				{%- endif -%}
-			{%- endunless -%}
+				{% comment %} {%- if site.data.comments[post.slug] -%} {% endcomment %}
+				{% comment %} 	{{- site.options.titleSeparator -}} {% endcomment %}
+				{% comment %} 	<b><a href="{{ post.url }}#comments" title="Comment counter." itemprop=commentCount> {% endcomment %}
+				{% comment %} 		{{- site.data.comments[post.slug] | size | prepend: '<i class="pi-comment"></i>' -}} {% endcomment %}
+				{% comment %} 	</a></b> {% endcomment %}
+				{% comment %} {%- endif -%} {% endcomment %}
+			</h6>
+			{%- comment -%} If the post doesn't have "foto" tag, output rest of the meta markup. {%- endcomment -%}
 			{%- unless post.data.tags contains "foto" -%}
-				<h6 class="o-box__meta
-					{%- unless post.templateContent contains '<!--more-->' -%}
-						{%- if post.templateContent contains '<img' or '<picture' or '<video' or '<figure' -%}
-								u-txtOnImg
-						{%- endif -%}
-					{%- endunless %}
-					{%- if post.data.topics != nil -%}
-						-alignStart
-					{%- endif -%}
-				">
-					<time title="{{ post.date | localDateFull }}" datetime="{{ post.date | htmlDateString }}">
-						{%- comment %} If date published is in current year, show only localized day and month. {% endcomment -%}
-						{%- if currentYear == postYear %}
-							{{- post.date | localDayMonth -}}
-						{%- comment %} If isn't, show full localized day, month and year. {% endcomment -%}
-						{%- else %}
-							{{- post.date | localDMY -}}
-						{% endif %}
-					</time>
-					{%- if site.data.comments[post.slug] -%}
-						{{- site.options.titleSeparator -}}<b><a href="{{ post.url }}#comments" title="Comment counter." itemprop=commentCount> {{ site.data.comments[post.slug] | size | prepend: '<i class="pi-comment"></i>' }}</a></b>
-					{%- endif -%}
-				</h6>
 				{%- if post.data.topics != nil -%}
-					<h6 class="o-box__meta
-						{%- unless post.templateContent contains '<!--more-->' -%}
-							{%- if post.templateContent contains '<img' or '<picture' or '<video' or '<figure' -%}
-									u-txtOnImg
-							{%- endif -%}
-						{%- endunless -%}
-						-alignEnd">
+					<h6 class="o-box__meta -alignEnd">
+						{% comment %} {%- if postHasImage == true %} u-txtOnImg{% endif -%}"> {% endcomment %}
 						{%- for topic in post.data.topics limit:3 -%}
 							{{- topic }}{% unless forloop.last %}, {% endunless -%}
 						{%- endfor -%}
 					</h6>
 				{%- endif -%}
 				{%- if post.data.title != nil -%}
-					<h2 class="o-box__title
-						{%- unless post.templateContent contains '<!--more-->' -%}
-							{%- if post.templateContent contains '<img' or '<picture' or '<video' or '<figure' -%}
-								u-txtOnImg
-							{%- endif -%}
-						{%- endunless %}
-					">
-						<a href="{{ post.url }}">
-							{{- post.data.title | escape -}}
-						</a>
+					<h2 class="o-box__title">
+						{% comment %} {%- if postHasImage == true %} u-txtOnImg{% endif -%}"> {% endcomment %}
+						<a href="{{ post.url }}">{{ post.data.title | escape | nbsp }}</a>
 					</h2>
 				{%- endif -%}
 			{%- endunless -%}
-
-			{%- comment %} If the post contains "foto" tag, output dedicated meta markup. {% endcomment -%}
-			{%- if post.data.tags contains "foto" -%}
-				<h6 class=o-box__meta>
-					<time title="{{ post.date | localDateFull }}" datetime="{{ post.date | htmlDateString }}">
-						{%- if currentYear == postYear -%}
-							{{- post.date | localDayMonth -}}
-						{%- else -%}
-							{{- post.date | localDMY -}}
-						{%- endif -%}
-					</time>
-					{{- site.options.titleSeparator }}<b><a href="{{ post.url }}">{{ post.data.title | escape }}</a></b>{% if post.data.location %}{{ site.options.titleSeparator }} {{post.data.location}}{% endif %}
-				</h6>
-			{%- endif -%}
 		</hgroup>
+		{%- if postHasImage == true %}{% getFirstImage post -%}{% endif -%}
 		{%- comment %} If post content does have "more" HTML comment, append an arrow hyperlink. {% endcomment -%}
 		{%- comment %}TODO: Find a way to configure ellipsis links in templates that replaces "more" tag remotely from Eleventy config {% endcomment -%}
-		{%- if post.templateContent contains '<!--more-->' %}
-			{{- post.templateContent | split:'<!--more-->' | first }}<a href='{{ post.url }}' title='Read more…'>⇢</a>
-		{%- comment %} When "more" HTML comment doesn't exist, truncate the content. {% endcomment -%}
+		{%- if post.templateContent contains '<!--more-->' -%}
+			{{- post.templateContent | split:'<!--more-->' | first -}}
 		{%- else -%}
-			{%- truncate_content post %}
+			<p>{{ post.templateContent | excerptGenerator }}</p>
 		{%- endif -%}
+		<a href='{{ post.url }}' title='Read more…'>⇢</a>
 	</article>
-</div>
+{% if view == "masonry" %}</div>{% endif %}

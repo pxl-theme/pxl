@@ -2,16 +2,15 @@ const debugMode = false;
 debugMode && console.log("[pxl] Beginning of script");
 
 //--- Global Variables
-const docHTML = document.documentElement;
 const docBody = document.body;
 
 const navRespo = document.querySelector(".c-nav.-responsive");
 const rsgridMasonry = document.querySelector(".o-rustygrid.-viewMasonry");
 
-const loopContainer = document.getElementById("js-loop");
+const loopContainer = document.querySelector(".js-loop");
 // .js-loop > .js-loop > .js-loop__item
 
-const loadMoreButton = document.getElementById("js-loop__loadButton");
+const loadMoreButton = document.querySelector(".js-loop__loadButton");
 // const toggleExpand = document.querySelector(
 // 	".c-nav.-responsive .c-toggleExpand",
 // );
@@ -78,26 +77,6 @@ function makeUnselectable() {
 	}
 }
 
-//--- Just adds "lazyload" class to the given element
-function addLLClass(elements) {
-	if (elements) {
-		const cl = "lazyload";
-		for (let i = 0; i < elements.length; i++) {
-			const el = elements[i];
-			if (el.classlist)
-				if (
-					!el.classList.contains(cl) |
-					!el.classList.contains("lazyloaded")
-				)
-					el.classList.add(cl);
-				else return 0;
-			else el.className += ` ${cl}`;
-		}
-	} else {
-		return 0;
-	}
-}
-
 //--- Make video embeds intrinsically responsive.
 // FitVids in 2023 by Dave Rupert: https://codepen.io/davatron5000/details/JjwzMWm
 const embedSources = [
@@ -125,39 +104,6 @@ for (const embed of document.querySelectorAll(embedSources.join(","))) {
 	//
 	// embed.removeAttribute("height");
 	// embed.removeAttribute("width");
-}
-
-//--- Add srcset and sizes attributes to all images inside CMS content.
-function addResponsiveAttr() {
-	const imgsInMasonry = rsgridMasonry?.querySelectorAll("img[data-srcset]");
-	const imgsInMain = document.querySelectorAll(
-		"main:not(.s-cmsContent) img[data-srcset]",
-	);
-	if (imgsInMasonry) {
-		for (let i = 0; i < imgsInMasonry.length; i++) {
-			// For Masonry Layout
-			imgsInMasonry[i].setAttribute(
-				"data-sizes",
-				"(min-width: 120em) 480px, (min-width: 100em) 25vw, (min-width: 80em) 33.3vw, (min-width:60em) 50vw, (min-width:40em) 66.6vw, 100vw",
-			);
-			debugMode &&
-				console.log(
-					"[pxl] Added data-sizes attribute to an image inside masonry view rustygrid",
-				);
-		}
-	} else if (imgsInMain) {
-		for (let j = 0; j < imgsInMain.length; j++) {
-			// For Single Column Layout
-			imgsInMain[i].setAttribute(
-				"data-sizes",
-				"(min-width: 60em) 800px, (min-width: 40em) 66.6vw, 100vw",
-			);
-			debugMode &&
-				console.log(
-					"[pxl] Added data-sizes attribute to an image inside main container.",
-				);
-		}
-	}
 }
 
 //--- Responsive Layout
@@ -238,7 +184,7 @@ if (grids.length && !CSS.supports("grid-template-rows: masonry")) {
 	grids = grids.map((grid) => ({
 		_el: grid,
 		// gap: parseFloat(getComputedStyle(grid).gridRowGap),
-		gap: parseFloat(getComputedStyle(grid).rowGap),
+		gap: Number.parseFloat(getComputedStyle(grid).rowGap),
 		items: [...grid.childNodes].filter((c) => c.nodeType === 1),
 		ncol: 0,
 	}));
@@ -276,6 +222,7 @@ if (grids.length && !CSS.supports("grid-template-rows: masonry")) {
 
 // Find rustygrid object with masonry view and initialize Colcade.js plugin.
 function masonry(a) {
+	if (typeof Colcade === "undefined") return;
 	const value = new Colcade(a, {
 		columns: ".o-rustygrid__masonryCol",
 		items: ".js-loop__item",
@@ -290,21 +237,18 @@ if (rsgridMasonry) {
 
 // Refresh all necessary functions
 function reloadThings() {
-	addLLClass(
-		document.querySelectorAll("main img:not(.noLazy)"),
-	); /* opinionated */
-	addResponsiveAttr();
 	makeUnselectable();
 }
-function toggleClass(e, c) {
-	if (!e.classList.contains(c)) {
-		e.classList.add(c);
-		debugMode && console.log(`[pxl] Added ${c} class to ${e} element`);
-	} else {
-		e.classList.remove(c);
-		debugMode && console.log(`[pxl] Removed ${c} class from ${e} element`);
-	}
-}
+
+// function toggleClass(e, c) {
+// 	if (!e.classList.contains(c)) {
+// 		e.classList.add(c);
+// 		debugMode && console.log(`[pxl] Added ${c} class to ${e} element`);
+// 	} else {
+// 		e.classList.remove(c);
+// 		debugMode && console.log(`[pxl] Removed ${c} class from ${e} element`);
+// 	}
+// }
 
 // Make page navigation component responsive
 if (navRespo) {
@@ -316,8 +260,8 @@ if (navRespo) {
 			"$1-typeFlyout",
 		);
 		navRespo.className = navRespo.className.replace(
-			/(^|\s)-layout\S+/g,
-			"$1-layoutVertical",
+			/(^|\s)-flow\S+/g,
+			"$1-flowVertical",
 		);
 		navRespo.className = navRespo.className.replace(
 			/(^|\s)-expandFrom\S+/g,
@@ -335,8 +279,8 @@ if (navRespo) {
 			"$1-typeTree",
 		);
 		navRespo.className = navRespo.className.replace(
-			/(^|\s)-layout\S+/g,
-			"$1-layoutHorizontal",
+			/(^|\s)-flow\S+/g,
+			"$1-flowHorizontal",
 		);
 		navRespo.className = navRespo.className.replace(
 			/(^|\s)-expandFrom\S+/g,
@@ -352,8 +296,8 @@ if (navRespo) {
 	// if average window size inside any device is suitable for laps or bigger.
 	function handleLapMatchForNav() {
 		navRespo.className = navRespo.className.replace(
-			/(^|\s)-layout\S+/g,
-			"$1-layoutHorizontal",
+			/(^|\s)-flow\S+/g,
+			"$1-flowHorizontal",
 		);
 		navRespo.classList.remove("-expandFromStartStart");
 		navRespo.classList.add("-typeFlyout");
@@ -365,8 +309,8 @@ if (navRespo) {
 
 	function handleLapUnmatchForNav() {
 		navRespo.className = navRespo.className.replace(
-			/(^|\s)-layout\S+/g,
-			"$1-layoutVertical",
+			/(^|\s)-flow\S+/g,
+			"$1-flowVertical",
 		);
 		navRespo.classList.add("-expandFromStartStart");
 		debugMode &&
@@ -379,8 +323,8 @@ if (navRespo) {
 	// if average window size inside any device is suitable for desks or bigger
 	function handleDeskMatchForNav() {
 		navRespo.className = navRespo.className.replace(
-			/(^|\s)-layout\S+/g,
-			"$1-layoutHorizontal",
+			/(^|\s)-flow\S+/g,
+			"$1-flowHorizontal",
 		);
 		navRespo.classList.remove("-expandFromStartStart");
 		debugMode &&
@@ -479,16 +423,17 @@ function fetchPages(pageNumbers, callback) {
 	// });
 }
 
-function getRangeArray(from, to) {
-	return Array.from({ length: to - from + 1 }, (_, i) => from + i);
-}
+// function getRangeArray(from, to) {
+// 	return Array.from({ length: to - from + 1 }, (_, i) => from + i);
+// }
 
-function loadPosts(callback, previousPages) {
+// function loadPosts(callback, previousPages) {
+function loadPosts(callback) {
 	// Set variables for required data attributes and container target
-	const currentPage = parseInt(
+	const currentPage = Number.parseInt(
 		loopContainer.getAttribute("data-paginator-current"),
 	);
-	const totalPages = parseInt(
+	const totalPages = Number.parseInt(
 		loopContainer.getAttribute("data-paginator-total"),
 	);
 	// const existingPosts = loopContainer;
@@ -496,7 +441,7 @@ function loadPosts(callback, previousPages) {
 	let existingPosts;
 
 	if (rsgridMasonry) {
-		existingPosts = loopContainer.querySelector("#js-loop__inner");
+		existingPosts = loopContainer.querySelector(".js-loop__inner");
 	} else {
 		existingPosts = loopContainer;
 	}
@@ -519,7 +464,7 @@ function loadPosts(callback, previousPages) {
 	}
 
 	// Get an array of next page number(s)
-	pageNumbers = [nextPage];
+	const pageNumbers = [nextPage];
 
 	// Get URL of paginator subpath (from data-path attr) and update the address.
 	if (typeof window.history !== "undefined") {
@@ -606,16 +551,19 @@ function readCookie(name) {
 }
 
 /* Generate a share link for the user's Mastodon domain */
-function MastodonShare(e) {
+function mastodonShare(e) {
 	// Get the source text
-	src = e.target.getAttribute("data-src");
+	var src = e.target.getAttribute("data-src");
 
 	// see if a domain has been saved as a cookie
 	var cookieMastDom = readCookie("mastdom");
 	var mastdom = cookieMastDom ? cookieMastDom : "mastodon.social";
 
 	// Get the Mastodon domain
-	var domain = prompt("Enter your Mastodon domain", mastdom);
+	var domain = prompt(
+		"Enter the domain of your default Mastodon instance.",
+		mastdom,
+	);
 
 	// if (domain == "" || domain == null) {
 	if (domain === "" || domain == null) {
@@ -635,15 +583,41 @@ function MastodonShare(e) {
 	return false;
 }
 function enableMastodonShare() {
-	var eles = document.getElementsByClassName("mastodonAskInstance");
+	var eles = document.querySelectorAll("[data-ask-mastodon]");
 	for (var i = 0; i < eles.length; i++) {
-		eles[i].addEventListener("click", MastodonShare);
+		debugMode &&
+			console.log(
+				"[pxl] Found a [data-ask-mastodon] element, adding EventListener…",
+			);
+		eles[i].addEventListener("click", mastodonShare);
 	}
 }
+
+// Random Description Text
+// function generateRandomDesc(sel, dat) {
+// 	var e,
+// 		n,
+// 		r = Math.floor(Math.random() * dat.length);
+// 	do {
+// 		n = Math.floor(Math.random() * dat.length);
+// 	} while (n === r);
+// 	do {
+// 		e = Math.floor(Math.random() * dat.length);
+// 	} while (e === r || e === n);
+// 	do {
+// 		numberFour = Math.floor(Math.random() * dat.length);
+// 	} while (numberFour === r || numberFour === n || numberFour === e);
+// 	sel.innerHTML = dat[r];
+// }
 
 // --------------------------------------------------------------
 // Initialization
 // --------------------------------------------------------------
+
+// import data from "./randomDesc.json" assert { type: "json" };
+// var randomDescSlot = document.getElementById("js-randomDesc");
+// randomDescSlot && generateRandomDesc(randomDescSlot, data);
+
 window.addEventListener("load", () => {
 	// Loading content from previous pages
 	if (loopContainer?.dataset.paginatorCurrent > 1) {
@@ -658,10 +632,6 @@ window.addEventListener("load", () => {
 			document.documentElement.scrollTop = diff;
 		}, true);
 	}
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-	enableMastodonShare();
 });
 
 loadMoreButton?.addEventListener("click", () => {
@@ -684,5 +654,7 @@ loadMoreButton?.addEventListener("click", () => {
 //     sendGAEvent("Posts", "Post navigation");
 // });
 
+enableMastodonShare();
 reloadThings();
+
 debugMode && console.log("[pxl] End of script");

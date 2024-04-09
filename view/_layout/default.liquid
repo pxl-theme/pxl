@@ -58,7 +58,7 @@
 			https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started -->
 		<meta property=og:title content="{% if title != '' %}{{ title | strip_html }}{% else %}{{ site.title }}{% endif %}">
 		<meta property=og:description name=description content="{% if summary %}{{ summary | markdownify | strip_html | strip_newlines | strip }}{% else %}{{ site.description }}{% endif %}">
-		<meta property=og:url content="{% if url %}{{ url }}{% else %}{{ page.url | url | clearindex }}{% endif %}">
+		<meta property=og:url content="{% if url %}{{ url }}{% else %}{{ page.url | url | clearIndex }}{% endif %}">
 		{%- if image -%}
 			<meta name=twitter:card content=summary_large_image>
 			{%- comment -%}Use favicon image as fallback to social media embed preview.{%- endcomment -%}
