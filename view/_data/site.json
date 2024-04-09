@@ -6,8 +6,9 @@
 	"baseurl": "https://example.com",
 	"favicon": {
 		"ico32": "/favicon.ico",
-		"webp192": "/favicon@192.webp",
-		"webp512": "/favicon@512.webp"
+		"webp180": "/apple-touch-icon.webp",
+		"webp192": "/icon-192.webp",
+		"webp512": "/icon-512.webp"
 	},
 	"options": {
 		"titleSeparator": "・",
@@ -31,8 +32,8 @@
 	},
 	"author": {
 		"name": "Name Surname",
-		"url": "https://example.com",
-		"mail": "info@example.com",
+		"url": "https://example.com/about",
+		"email": "info@example.com",
 		"avatar": "static/asset/filler/avatar.png",
 		"behance": "behance_name",
 		"discord": "000000000000000000",

@@ -1,0 +1,30 @@
+---
+permalink: /feed.rss.xml
+eleventyExcludeFromCollections: true
+---
+{%- comment %} You can validate this file here: https://validator.w3.org/feed/ {% endcomment -%}
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:base="{{ site.baseurl }}" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>{{ site.title }}</title>
+		<link>{{ site.baseurl }}</link>
+		<atom:link href="{{ permalink | prepend: site.baseurl }}" rel="self" type="application/rss+xml" />
+		<description>{{ site.description }}</description>
+		<language>{{ site.lang }}</language>
+		{% for item in collections.homepage limit: 25 %}
+		<item>
+			<title>{{ item.data.title }}</title>
+			<link>{{ item.url | prepend: site.baseurl | clearIndex }}"</link>
+			<description>{%- capture content_html -%}
+				{{- item.templateContent -}}
+				{%- if item.data.photos -%}
+					{%- include 'photos' with item.data.photos image_class: 'u-photo' -%}
+				{%- endif -%}
+			{%- endcapture -%}{{ content_html | strip }}</description>
+			<pubDate>{{ item.date | dateToRfc822 }}</pubDate>
+			<dc:creator>{% if item.author.name %}{{ item.author.name }}{% else %}{{ site.author.name }}{% endif %}</dc:creator>
+			<guid>{{ item.url | prepend: site.baseurl | clearIndex }}"</guid>
+		</item>
+		{%- endfor %}
+	</channel>
+</rss>

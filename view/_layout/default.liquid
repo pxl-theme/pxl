@@ -37,12 +37,14 @@
 
 		<!--🔧 Append arrow symbol to external links -->
 		<style>
-		a:link:is([href^="//"],[href^="http://"],[href^="https://"]):not([href^="{{ url }}"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
-			content: "↗";
-			font-weight: 500;
-			display: inline-block;
-			text-decoration-line: none;
-			opacity:.66;
+		@media screen {
+			a:link:is([href^="//"],[href^="http://"],[href^="https://"]):not([href^="{{ url }}"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
+				content: "↗";
+				font-weight: 500;
+				display: inline-block;
+				text-decoration-line: none;
+				opacity:.66;
+			}
 		}
 		</style>
 
@@ -79,9 +81,32 @@
 		<!--📰 RSS/Atom/JSON Feeds
 			https://www.rssboard.org/rss-specification#whatIsRss
 			https://validator.w3.org/feed/docs/atom.html#whatIsAtom
-			https://www.jsonfeed.org/ -->
-		<link rel=alternate href=/feed.json type=application/json title="JSON Feed">
-		{%- comment -%} <link rel=alternate href=/feed.xml type=application/atom+xml title="Atom Feed">{%- endcomment -%}
+			https://www.jsonfeed.org/
+			https://blog.jim-nielsen.com/2021/feed-urls/
+			https://blog.jim-nielsen.com/2021/automatically-discoverable-rss-feeds/ -->
+
+		<link rel=alternate type=application/json
+			href=/feed.json
+			title="{{ site.title }} - JSON Feed">
+		<link rel=alternate type=application/atom+xml 
+			href=/feed.atom.xml
+			title="{{ site.title }} - Atom Feed">
+		<link rel=alternate type=application/rss+xml 
+			href=/feed.rss.xml
+			title="{{ site.title }} - RSS Feed">
+
+		<!-- Examples:
+		<link rel=alternate type=application/rss+xml 
+			href=/feed.rss.xml
+			title="Site - RSS Feed">
+		<link rel=alternate type=application/atom+xml 
+			href=/blog/article/feed.atom.xml
+			title="Article Feed">
+		<link rel=alternate type=application/atom+xml 
+			href=/blog/photo/feed.atom.xml 
+			title="Photo Feed">
+		-->
+
 
 		<!--🖼️ Favicon, PWA Icons and Manifest
 			https://en.wikipedia.org/wiki/Favicon
