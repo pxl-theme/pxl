@@ -1,10 +1,26 @@
 /** @type {import('postcss-load-config').Config} */
+
+import postcssImportExtGlob from "postcss-import-ext-glob";
+import postcssImport        from "postcss-import";
+import postcssLightningcss  from "postcss-lightningcss";
+// import autoprefixer from 'autoprefixer',
+// import postcssCustomMedia from 'postcss-custom-media',
+// Replaced by LightningCSS
+
+import postcssWillChange    from "postcss-will-change";
+import postcssMixins        from "postcss-mixins";
+import postcssNested        from "postcss-nested";
+import postcssPseudoAnyLink from "postcss-pseudo-class-any-link";
+// import postcssCSSValidator from 'postcss-w3c-css'
+
+// import * as postcssPseudoClassAnyLink from "postcss-pseudo-class-any-link";
+
+
 const config = {
 	plugins: [
-		require('postcss-import-ext-glob')({sort: 'asc'}),
-		require('postcss-import')({ from: "../static/style/index.css" }),
-		require('postcss-lightningcss')
-		({
+		postcssImportExtGlob({ sort: 'asc' }),
+		postcssImport({ from: "../static/style/index.css" }),
+		postcssLightningcss({
 			lightningcssOptions: {
 				errorRecovery: true,
 				sourceMap: false,
@@ -16,14 +32,10 @@ const config = {
 				}
 			}
 		}),
-		require('postcss-will-change'),
-		// require('autoprefixer'), // might got replaced by parcel-css in the future
-		require('postcss-mixins'),
-		require('postcss-nested'), // might got replaced by parcel-css in the future
-		// require('postcss-custom-media'), // might got replaced by parcel-css in the future
-		require('postcss-brand-colors'),
-		require('postcss-pseudo-class-any-link')
-		// require('postcss-w3c-css')
+		postcssWillChange,
+		postcssMixins,
+		postcssNested,
+		postcssPseudoAnyLink
 	]
-}
-module.exports = config
+};
+export default config;

@@ -1,12 +1,15 @@
+# Don't track Node modules and packages
 node_modules
 npm-debug.log
 
 package-lock.json
 yarn.lock
 
+# Don't track hidden cache directory and environment variable file
 .cache
 .env
 
+# Don't track temporary, distribution, utility and log directories
 tmp/
 dist/
 utility/

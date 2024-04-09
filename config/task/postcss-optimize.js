@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const postcss = require('postcss');
-const lightningcss = require('postcss-lightningcss');
+import fs from 'fs';
+import path from 'path';
+import { glob } from 'glob';
+import postcss from 'postcss';
+import lightningcss from 'postcss-lightningcss';
 
 // Input and output directories
 const inputDir = 'tmp/static/style/';
@@ -10,9 +10,7 @@ const outputDir = 'dist/static/style/';
 
 // Function to process CSS files
 async function processCSS(filePath) {
-
 	const cssContent = fs.readFileSync(filePath, 'utf8');
-
 	// PostCSS plugins
 	const plugins = [
 		lightningcss({
@@ -37,7 +35,6 @@ async function processCSS(filePath) {
 
 	// Ensure the output directory exists
 	fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-
 	fs.writeFileSync(outputPath, result.css);
 }
 

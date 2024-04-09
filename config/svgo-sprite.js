@@ -1,20 +1,19 @@
-module.exports = {
-	plugins: [
-		{
-			name: "preset-default",
-			params: {
-				overrides: {
-					cleanupIds:false,
-					removeHiddenElems:false,
-					convertColors: {
-						params: {
-							currentColor: true
-						}
+export const plugins = [
+	{
+		name: "preset-default",
+		params: {
+			overrides: {
+				cleanupIds: false,
+				removeHiddenElems: false,
+				convertColors: {
+					params: {
+						currentColor: true
 					}
 				}
 			}
-		},
-		"convertStyleToAttrs",
-		"reusePaths"
-	]
-}
+		}
+	},
+	"convertStyleToAttrs",
+	"reusePaths"
+];
+export default { plugins };

@@ -1,8 +1,7 @@
-module.exports = {
-	plugins: [
-		{
-			name: 'cleanupIds',
-			active: 'false'
-		}
-	]
-}
+export const plugins = [
+	{
+		name: 'cleanupIds',
+		active: 'false'
+	}
+];
+export default { plugins };

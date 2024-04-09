@@ -24,6 +24,7 @@
 	 "wcag/h30": "warn",
 	 "wcag/h63": "warn",
 	 "wcag/h71": "warn",
+	 "unique-landmark": "warn",
      "no-inline-style": "off"
   }
 }

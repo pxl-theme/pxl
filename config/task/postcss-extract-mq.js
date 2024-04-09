@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const postcss = require('postcss');
-const extractMedia = require('postcss-extract-media-query');
+import fs from 'fs';
+import path from 'path';
+import { glob } from 'glob';
+import postcss from 'postcss';
+import extractMedia from 'postcss-extract-media-query';
 
 // Input and output directories
 const inputDir = 'tmp/static/style/';
@@ -10,7 +10,6 @@ const outputDir = 'tmp/static/style/';
 
 // Function to process CSS files
 async function processCSS(filePath) {
-
 	const cssContent = fs.readFileSync(filePath, 'utf8');
 
 	// PostCSS plugins
@@ -65,7 +64,6 @@ async function processCSS(filePath) {
 			}
 		})
 	];
-
 	// Process CSS using PostCSS
 	const result = await postcss(plugins).process(cssContent, { from: filePath });
 
@@ -83,9 +81,7 @@ async function processCSS(filePath) {
 // const inputFiles = glob.sync(path.join(inputDir, '**/*.css'));
 const inputFiles = glob.sync(path.join(inputDir, '**/!(*.mq-*)*.css'));
 
-
 inputFiles.forEach(async (filePath) => {
 	await processCSS(filePath);
 });
-
 console.log('Media query extraction complete.');

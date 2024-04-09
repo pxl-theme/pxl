@@ -47,7 +47,7 @@ jobs:
         run: |
           set -o braceexpand
           npm config set script-shell bash
-          pnpm run build
+          pnpm build
       - name: Fix permissions
         run: |
           chmod -c -R +rX ./dist | while read line; do

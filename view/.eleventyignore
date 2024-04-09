@@ -1,2 +1,5 @@
+# Don't transform README.md, _draft directory and
+# hidden vault files (from Obsidian text editor) at project root directory.
 README.md
-content/.obsidian
+_draft/
+_content/.obsidian
