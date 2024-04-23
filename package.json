@@ -42,7 +42,7 @@
   "browserslist": [
     ">= .5% and not dead and not op_mini all"
   ],
-  "packageManager": "pnpm@8.15.6",
+  "packageManager": "pnpm@9.0.5",
   "outputDirectory": "dist",
   "devCommand": "pnpm build",
   "buildCommand": "pnpm build",
