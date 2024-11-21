@@ -1,7 +1,6 @@
 // vim: set ts=4 sw=4 tw=0 noet foldenable :
 
 // 📦 Imports from Packages
-	// import fs from 'fs'
 	import path from 'path'
 
 	// import { InputPathToUrlTransformPlugin } from "@11ty/eleventy"
@@ -16,6 +15,8 @@
 	import { DateTime }          from "luxon"
 	// import yaml                  from 'js-yaml'
 	// import pluginSchema          from '@quasibit/eleventy-plugin-schema'
+
+	const templateFormats = ["md", "liquid"]
 
 	import EleventyFetch from '@11ty/eleventy-fetch';
 
@@ -35,7 +36,7 @@
 	// adds shortcodes to embed SVG Sprite and SVG content in Eleventy templates
 
 	// https://github.com/gfscott/eleventy-plugin-embed-everything
-	// Automatically embed common media formats in your pages, 
+	// Automatically embed common media formats in your pages,
 	// requiring only a URL in your markdown files.
 
 	// https://github.com/tannerdolby/eleventy-plugin-social-img
@@ -55,7 +56,7 @@
 
 	// https://github.com/saneef/eleventy-plugin-git-commit-date
 	// Add filters for git commit date etc.
-	
+
 	// https://github.com/gregives/eleventy-critical-css
 	// Extracts and inlines critical (above-the-fold) CSS from your HTML templates
 
@@ -105,7 +106,7 @@ export default (cfg) => {
 	cfg.addFilter('paginatorLink', paginatorLink);
 
 // 📆 Date/Time Filters
-	// Add (non-Liquid to Liquid) filters of unique date formats that is compatible to 
+	// Add (non-Liquid to Liquid) filters of unique date formats that is compatible to
 	// RSS templates (via Eleventy RSS Plugin)
 	cfg.addLiquidFilter("dateToRfc3339", pluginRSS.dateToRfc3339); // for Atom feeds => 2024-01-08T12:30:00Z
 	cfg.addLiquidFilter("dateToRfc822", pluginRSS.dateToRfc822); // for RSS feeds => Mon, 08 Jan 2024 15:30:00 +0000
@@ -205,7 +206,7 @@ export default (cfg) => {
 	});
 
 	cfg.setLibrary('md', markdownIt); // Set default Markdown library (Markdown It) and its plugins
-	
+
 // 📄 Template Language Options
 	cfg.setLiquidOptions({
 		cache: true,
@@ -259,7 +260,7 @@ export default (cfg) => {
 	// 	}).reverse()
 	// 	return posts
 	// });
-	
+
 // 🙅 Ignores
 	// if (process.env.NODE_ENV === "production") {
 	// 	eleventyConfig.ignores.add("src/admin.md");
@@ -274,7 +275,7 @@ export default (cfg) => {
 	// Changes to passthrough file copies will not trigger an Eleventy build
 	// but will live reload appropriately in the dev server.
 
-	cfg.setWatchThrottleWaitTime(200); // in milliseconds
+	// cfg.setWatchThrottleWaitTime(200); // in milliseconds
 	// A hardcoded amount of time Eleventy will wait before triggering a new build
 	// when files have changes during --watch or --serve modes.
 	// Should be useful when using with other task runners.
@@ -293,7 +294,8 @@ export default (cfg) => {
 	// cfg.addPassthroughCopy("view/media");
 	return {
 		// templateFormats: ["liquid","md","jpg","png","gif","svg","webp"],
-		templateFormats: ["liquid", "md"],
+		// templateFormats: ["liquid", "md"],
+		templateFormats: templateFormats,
 		// pathPrefix: "/",
 		passthroughFileCopy: true,
 		dir: {

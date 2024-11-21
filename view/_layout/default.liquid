@@ -2,7 +2,7 @@
 <html
 	lang="{{ page.lang | default: site.lang | default: "en" }}"
 	dir=ltr
-	class="{{ options.rootClasses | default: site.options.rootClasses }} {{ options.appendRootClass }}"
+	class="{{ options.rootClasses | default: site.options.rootClasses }} {{ options.appendRootClass | default: site.options.appendRootClasses }}"
 	prefix="og: http://ogp.me/ns#"
 	data-theme=dark>
 	<head>
@@ -144,7 +144,7 @@
 		{% comment %} <meta name="fb:page_id" content="{{ site.author.fbpageid }}" /> {% endcomment %}
 	</head>
 
-	<body class="js-preload _stickyFooter o-stack {{ options.bodyClasses | default: site.options.bodyClasses }} {{ options.appendBodyClass }}" data-type="{{ type }}" itemscope itemtype="https://schema.org/WebPage">
+	<body class="js-preload _stickyFooter o-stack {{ options.bodyClasses | default: site.options.bodyClasses }} {{ options.appendBodyClass | default: site.options.appendBodyClasses }}" data-type="{{ type }}" itemscope itemtype="https://schema.org/WebPage">
 		{%- include "part/screen-reader-notice" -%}
 
 		<!--🙂 Page Header & Navigation -->
