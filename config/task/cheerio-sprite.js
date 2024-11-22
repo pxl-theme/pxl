@@ -1,5 +1,5 @@
 import fs from 'fs';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 const input = 'dist/pi.svg';
 const output = 'dist/pi.svg';
 fs.readFile(input, 'utf8', (err, data) => {
