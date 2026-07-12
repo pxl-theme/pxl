@@ -1,0 +1,11 @@
+{
+	"layout": "page",
+	"tags": "now",
+	"priority": "0.7",
+	"changefreq": "monthly",
+	"permalink": "/{{ lang }}/now/{{ page.date | date: '%Y-%m-%d' }}/index.html",
+	"eleventyComputed": {
+		"title": "Now ({{ page.date | date: '%m/%d/%Y' }})",
+		"translationKey": "now-{{ page.date | date: '%Y-%m-%d' }}"
+	}
+}

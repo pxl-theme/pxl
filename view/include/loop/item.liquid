@@ -1,0 +1,96 @@
+{%- comment %} Variables for localized date/time format {% endcomment -%}
+{%- comment %}
+{%- assign itemHasImage = false -%}
+{%- unless item.templateContent contains '<!--more-->' -%}
+	{%- if item.templateContent contains '<img' -%}
+		{%- assign itemHasImage = true -%}
+	{%- else -%}
+		{%- assign itemHasImage = false -%}
+	{%- endif -%}
+{%- endunless -%}
+{%- endcomment -%}
+
+{% if view == "masonry" %}<div class="o-rustygrid__item js-loop__item">{% endif %}
+	<article class='o-box -viewCard o-center{% if view != "masonry" %} js-loop__item{% endif %}' id="card-{{ item.fileSlug }}">
+		<hgroup class=c-header>
+			{% comment %} <h6 class="o-box__meta{% if item.data.tags != nil %} -alignStart{% endif -%} {% endcomment %}
+				<h6 class="o-box__meta">
+					{%- if item.data.metadata.type == "bluesky" -%}
+						<svg class=pi viewBox='0 0 18 18' width=18px><use href='/pi.svg#site-bluesky'></use></svg>&nbsp;
+					{%- endif -%}
+					{%- if item.data.metadata.type == "youtube" -%}
+						<svg class=pi viewBox='0 0 18 18' width=18px><use href='/pi.svg#site-youtube'></use></svg>&nbsp;
+					{%- endif -%}
+				<relative-time
+					class=published
+					itemprop=datePublished
+					prefix=""
+					title="{{ item.date | localDateTimeHuge }}"
+					datetime="{{ item.date | dateInISO }}">
+					{{- item.date | localDateMed -}}
+				</relative-time>
+				{%- unless item.data.metadata.type == "youtube" %}<span> • {{ item.templateContent | timeToRead }}</span>{% endunless -%}
+				{% comment %} {{- modifications.titleSeparator -}}{{- item | readingTime -}} {% endcomment %}
+				{%- comment -%} If the item contains "foto" tag, output dedicated meta markup. {%- endcomment -%}
+				{%- if item.data.tags contains "foto" -%}
+					{{ modifications.titleSeparator }}
+					<b><a href="{{ item.url }}">{{- item.data.title | nbsp }}</a></b>
+					{%- if item.data.location -%}
+						{{ modifications.titleSeparator }}
+						{{ item.data.location }}
+					{%- endif -%}
+				{%- endif -%}
+				{%- comment %}
+				{%- if site.data.comments[item.slug] -%}
+					{{- modifications.titleSeparator -}}
+					<b><a href="{{ item.url }}#comments" title="Comment counter." itemprop=commentCount>
+						{{- site.data.comments[item.slug] | size | prepend: '<i class="pi-comment"></i>' -}}
+					</a></b>
+				{%- endif -%}
+				{%- endcomment -%}
+			</h6>
+			{%- comment -%} If the item doesn't have "foto" tag, output rest of the meta markup. {%- endcomment -%}
+			{%- unless item.data.tags contains "foto" -%}
+				{%- comment %}
+				{%- if item.data.tags != nil -%}
+					<h6 class="o-box__meta -alignEnd">
+						{%- for tag in item.data.tags limit:3 -%}
+							{{- tag }}{% unless forloop.last %}, {% endunless -%}
+						{%- endfor -%}
+					</h6>
+				{%- endif -%}
+				{%- endcomment -%}
+				{%- if item.data.title != nil and item.data.metadata.type != "bluesky" -%}
+					<h2 class="o-box__title">
+						{% comment %} {%- if itemHasImage == true %} u-txtOnImg{% endif -%}"> {% endcomment %}
+						<a href="{{ item.url }}">{{ item.data.title | nbsp }}</a>
+					</h2>
+				{%- endif -%}
+			{%- endunless -%}
+		</hgroup>
+		{%- if item.data.metadata.type == "youtube" -%}
+			<lite-youtube videoid="{{ item.fileSlug }}"
+										playlabel="{{ item.data.title }}"
+										style="margin-inline:auto;background-image: url('https://i.ytimg.com/vi/{{ item.fileSlug }}/hqdefault.jpg');"
+										autopause>
+			{% comment %} Had to use both lyt and lty, will keep it till new release. https://github.com/paulirish/lite-youtube-embed/issues/65 {% endcomment %}
+					<a href="https://youtu.be/{{ item.fileSlug }}" class="lyt-playbtn lty-playbtn" title="Play Video">
+						<span class="lyt-visually-hidden">{{ item.data.title }}</span>
+					</a>
+			</lite-youtube>
+		{%- endif -%}
+		{%- comment %} If item content does have "more" HTML comment, append an arrow hyperlink. {% endcomment -%}
+		{%- unless item.data.modifications.showExcerptInItemlist == false -%}
+			{%- if item.templateContent contains '<!--more-->' -%}
+				{% comment %} {{- item.templateContent | split:'<!--more-->' | first -}} <a href='{{ item.url }}' title='Read more…'>⇢</a> {% endcomment %}
+				{{- item.templateContent | split:'<!--more-->' | first -}} <a href='{{ item.url }}' title='Read more…'>⇢</a>
+				{%- comment %} {{- item.excerpt -}} <a href='{{ item.url }}' title='Read more…'>⇢</a> {% endcomment -%}
+			{%- else -%}
+				{%- comment %} {%- if itemHasImage == true %}{% getFirstImage item -%}{% endif -%} {% endcomment -%}
+				{%- comment %} <p>{{ item.templateContent | excerptGenerator }}</p> {% endcomment -%}
+				{{- item | truncateContent -}} <a href='{{ item.url }}' title='Read more…'>⇢</a>
+				{% comment %} {{ item.content | renderTransforms: item.page, site.baseurl }} <a href='{{ item.url }}' title='Read more…'>⇢</a> {% endcomment %}
+			{%- endif -%}
+		{%- endunless -%}
+	</article>
+{%- if view == "masonry" %}</div>{% endif %}

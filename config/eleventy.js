@@ -1,22 +1,28 @@
-// vim: set ts=4 sw=4 tw=0 noet foldenable :
+// vim: set noet foldenable :
 
 // 📦 Imports from Packages
-	import path from 'path'
+	import path from 'node:path'
+	// import { execSync } from 'child_process'
+	// import { Liquid } from "liquidjs";
 
-	// import { InputPathToUrlTransformPlugin } from "@11ty/eleventy"
+	import { InputPathToUrlTransformPlugin, EleventyI18nPlugin } from "@11ty/eleventy"
 	import { eleventyImageTransformPlugin } from '@11ty/eleventy-img'
 
 	import pluginCacheBuster     from '@mightyplow/eleventy-plugin-cache-buster'
 	import pluginRSS             from '@11ty/eleventy-plugin-rss'
 	import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight'
+	import pluginTime2Read       from 'eleventy-plugin-time-to-read'
+
 	// TODO: Replace 11ty syntax highlighter plugin with Shiki Twoslash highlighter (as Markdown It Plugin) later.
 	import nbspFilter            from 'eleventy-nbsp-filter'
 	import pluginTargetSafe      from 'eleventy-plugin-target-safe'
-	import { DateTime }          from "luxon"
+	import { DateTime, Settings }          from "luxon"
 	// import yaml                  from 'js-yaml'
 	// import pluginSchema          from '@quasibit/eleventy-plugin-schema'
 
 	const templateFormats = ["md", "liquid"]
+	// import pluginReadingTime     from 'eleventy-plugin-reading-time'
+  	// Unfortunately reading time plugin doesn't support any template languages other than Nunjucks.
 
 	import EleventyFetch from '@11ty/eleventy-fetch';
 
@@ -68,42 +74,49 @@
 	// Creates a real hierarchical navigation, following folders and documents.
 
 // 📚 Imports from Local Library
-	import hostname         from "../view/_lib/hostname.js"
-	import includes         from "../view/_lib/includes.js"
-	import reject           from "../view/_lib/reject.js"
-	import select           from "../view/_lib/select.js"
-	import jsonify          from "../view/_lib/jsonify.js"
-	import markdownify      from "../view/_lib/markdownify.js"
-	import clearIndex       from "../view/_lib/clearIndex.js"
-	import sortBy           from "../view/_lib/sortBy.js"
-	import tokenize         from "../view/_lib/tokenize.js"
-	import ExcerptGenerator from "../view/_lib/excerptGenerator.js"
-	import getFirstImage    from "../view/_lib/getFirstImage.js"
-	import paginatorLink    from "../view/_lib/paginatorLink.js"
-	import markdownIt       from "../view/_lib/markdown-it.config.js"
+ 	import markdownify       from "../view/lib/markdownify.js"
+ 	import clearIndex        from "../view/lib/clearIndex.js"
+ 	import sortBy            from "../view/lib/sortBy.js"
+ 	import tokenize          from "../view/lib/tokenize.js"
+ 	import ExcerptGenerator  from "../view/lib/excerptGenerator.js"
+ 	import truncateContent   from "../view/lib/truncateContent.js"
+ 	import getFirstImage     from "../view/lib/getFirstImage.js"
+ 	import paginatorLink     from "../view/lib/paginatorLink.js"
+ 	import markdownIt        from "../view/lib/markdown-it.config.js"
+    import slugify           from "../view/lib/slugify.js"
 
-export default (cfg) => {
+export default async (cfg) => {
 // 🩳 Filters/Shortcodes
-	cfg.addFilter('hostname', hostname);
-	cfg.addFilter('includes', includes);
-	cfg.addFilter('reject', reject);
-	cfg.addFilter('select', select);
-	cfg.addFilter('jsonify', jsonify);
 	cfg.addFilter('markdownify', markdownify);
 	cfg.addFilter('clearIndex', clearIndex);
 	cfg.addFilter('sortBy', sortBy);
 	cfg.addFilter('tokenize', tokenize);
+	cfg.addFilter('paginatorLink', paginatorLink);
+	// Get first image of a content {{ getFirstImage content }}
+ 	cfg.addShortcode('getFirstImage', (content) => getFirstImage(content));
+ 	cfg.addFilter('jsonify', (str) => {
+		return JSON.stringify(str);
+ 	});
 	cfg.addFilter('excerptGenerator', (content) => {
 		return new ExcerptGenerator().getExcerpt(content, 500);
 	});
-	// Get first image of a post {{ getFirstImage post }}
-	cfg.addShortcode('getFirstImage', post => getFirstImage(post));
+	cfg.addFilter('truncateContent', content => truncateContent(content, 40));
+ 	/* getRandom Filter from https://www.raymondcamden.com/2020/10/26/selecting-random-posts-in-eleventy */
+ 	cfg.addFilter('getRandom', (items) => {
+		var selected = items[Math.floor(Math.random() * items.length)];
+		return selected;
+ 	});
+ 	// Return the keys used in an object
+ 	cfg.addFilter("getKeys", target => {
+		return Object.keys(target);
+ 	});
+ 	cfg.addFilter("filterTagList", function filterTagList(tags) {
+		return (tags || []).filter(tag => ["all", "posts"].indexOf(tag) === -1);
+ 	});
 
 	const numberOfWordsToJoin = 2;
 	const maxLength = 10;
 	cfg.addFilter('nbsp', nbspFilter(numberOfWordsToJoin, maxLength));
-
-	cfg.addFilter('paginatorLink', paginatorLink);
 
 // 📆 Date/Time Filters
 	// Add (non-Liquid to Liquid) filters of unique date formats that is compatible to
@@ -118,7 +131,7 @@ export default (cfg) => {
 	// https://nodejs.org/api/intl.html#embed-the-entire-icu-full-icu
 
 	// Set your default time zone:
-	// Settings.defaultLocale = "tr";
+	Settings.defaultLocale = "en";
 	// Settings.defaultZone = "Europe/Istanbul";
 	const jsDate = (a) => DateTime.fromJSDate(a);
 	cfg.addFilter("dateInRFC2822", (obj) => {
@@ -154,12 +167,20 @@ export default (cfg) => {
 		});
 	});
 
+// Preprocessors
+	// Drafts (posts that has draft: true) won't be included in the build
+	// but while watching/serving files to preview it.
+	cfg.addPreprocessor("drafts", "*", (data) => {
+		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
+			return false;
+		}
+	});
+
 // 🧩 Plugins
-	
 	cfg.addPlugin(pluginSyntaxHighlight); // Adds Prism.js syntax highlighter to code blocks
-	
-	if (process.env.NODE_ENV === "production" ) {
-		cfg.addPlugin(pluginTargetSafe); // Adds rel=noopener attr to target=_blank anchors
+
+	// if (process.env.NODE_ENV === "production" ) {
+		// cfg.addPlugin(pluginTargetSafe); // Adds rel=noopener attr to target=_blank anchors
 		// https://jakearchibald.com/2016/performance-benefits-of-rel-noopener/
 
 		cfg.addPlugin(pluginRSS); // Provides shortcodes to include valid timestamps for Atom/RSS XMLs.
@@ -169,19 +190,29 @@ export default (cfg) => {
 				return Date.now();
 			}
 		}));
-	}
+	// }
+	cfg.addPlugin(InputPathToUrlTransformPlugin);
+	cfg.addPlugin(EleventyI18nPlugin, {
+		defaultLanguage: "en",
+		// errorMode: "strict"
+		errorMode: "never"
+	});
+
 	cfg.addPlugin(eleventyImageTransformPlugin, { // Eleventy Transform method (for 11ty v3.0.0-alpha.5 or more)
 		extensions: 'html',
 		widths:
-			process.env.NODE_ENV === "production" ? [384, 768, 1536] : [768],
+			// process.env.NODE_ENV === "production" ? [384, 768, 1536] : [768],
+			[384, 768, 1536],
 		formats:
-			process.env.NODE_ENV === "production" ? ["webp", "svg"] : ["auto"],
+			// process.env.NODE_ENV === "production" ? ["webp", "svg"] : ["auto"],
+			["webp", "svg"],
 		sharpOptions: {
 			animated: true
 		},
 		// formats: "webp",
 		urlPath: '/media/',
 		outputDir: './tmp/view/media/',
+		// transformOnRequest: false,
 		svgShortCircuit: "size", // Transform and rasterize SVG only if rasterized version is smaller than vector file.
 		defaultAttributes: {
 			sizes: '100vw',
@@ -191,17 +222,23 @@ export default (cfg) => {
 		filenameFormat: (id, src, width, format, options) => {
 			const extension = path.extname(src);
 			const name = path.basename(src, extension);
-
-			return `${name}-${width}w.${format}`;
+			return `${name}-${width}.${format}`;
 		},
-		resolvePath: (filepath, env) => {
-			const isPostImage = filepath.startsWith('./');
-			if (isPostImage) {
-				// Resolve path to post-relative images
-				return path.join(path.dirname(env.page.inputPath), filepath);
-			}
-			// Resolve path to global images
-			return path.join('tmp/view', filepath);
+		// dryRun: true
+	});
+
+	cfg.addPlugin(pluginTime2Read, {
+		speed: '1000 characters per minute',
+		// language: 'en',
+		// style: 'narrow',
+		style: 'short',
+		type: 'unit',
+		hours: 'auto',
+		minutes: true,
+		seconds: false,
+		digits: 1,
+		output: (data) => {
+			return data.timing;
 		}
 	});
 
@@ -210,25 +247,90 @@ export default (cfg) => {
 // 📄 Template Language Options
 	cfg.setLiquidOptions({
 		cache: true,
-		root: ['view/_include/', 'view/_layout/'],
+		root: 'view/include/',
 		strictFilters: true,
 		greedy: false,
-		dynamicPartials: true
+		dynamicPartials: true,
+		// jekyllWhere: true
 	});
+
+ // cfg.setFrontMatterParsingOptions({
+ // 	excerpt: true,
+ // 	excerpt_separator: "<!--more-->",
+ // })
 
 // 🗃️ Collections
 	cfg.addCollection('homepage', collection => {
 		return collection.getFilteredByGlob(['**/blog/+(article|link|note)/**/*.md', '**/photo/**/*.md']).reverse();
 	});
-	cfg.addCollection('article', collection => {
-		return collection.getFilteredByGlob("**/blog/article/**/*.md").reverse();
+	cfg.addCollection('post', collection => {
+		return collection.getFilteredByGlob("view/_en/blog/post/**/*.md").reverse();
 	});
-	cfg.addCollection('photo', collection => {
-		return collection.getFilteredByGlob("**/photo/**/*.md").reverse();
+	cfg.addCollection('gönderi', collection => {
+  	return collection.getFilteredByGlob("view/_tr/blog/post/**/*.md").reverse();
+ 	});
+	cfg.addCollection('work', collection => {
+ 		return collection.getFilteredByGlob("view/_en/work/**/*.md").reverse();
+ 	});
+	cfg.addCollection('iş', collection => {
+		return collection.getFilteredByGlob("view/_tr/work/**/*.md").reverse();
 	});
-	cfg.addCollection('sitemap', collection => {
-		return collection.getFilteredByGlob('**/*.md');
+	cfg.addCollection('blog', collection => {
+		return collection.getFilteredByGlob([
+			'view/_en/blog/+(post|article|link|note)/**/*.md',
+			'view/_en/+(photo|video)/**/*.md',
+			'view/_imported/+(youtube|bluesky)/**/*.md'
+		]).reverse().filter(post => {
+			return !post.data.tags?.includes("now");
+		});
 	});
+	cfg.addCollection('günlük', collection => {
+		return collection.getFilteredByGlob([
+			'view/_tr/blog/+(post|article|link|note)/**/*.md',
+			'view/_imported/+(youtube|bluesky)/**/*.md'
+		]).reverse().filter(post => {
+			return !post.data.tags?.includes("şimdi");
+		});
+	});
+
+ 	cfg.addCollection('bluesky', collection => {
+ 		return collection.getFilteredByGlob("view/imported/from-bluesky/**/*.md").reverse();
+  });
+  cfg.addCollection('video', collection => {
+		return collection.getFilteredByGlob(["view/imported/from-youtube/**/*.md","view/_content/video/**/*.md"]).reverse();
+	});
+  // Compilations
+  cfg.addCollection('sitemap', collection => {
+  	return collection.getFilteredByGlob('view/**/*.md');
+  });
+  cfg.addCollection('tagList', collections => {
+  	const tags = collections
+  		.getAll()
+  		.reduce((tags, item) => tags.concat(item.data.tags), [])
+  		.filter(tag => !!tag && !["posts", "all"].includes(tag))
+  		.sort()
+  	return Array.from(new Set(tags)).map(tag => ({
+  		title: tag,
+  		slug: slugify(tag),
+  		count: collections.getFilteredByTag(tag).length,
+  		log: Math.log(collections.getFilteredByTag(tag).length)
+  	// There are more ways to provide tag properties:
+  	// https://github.com/nhoizey/nicolas-hoizey.com/blob/main/src/_11ty/getTags.js
+  	}))
+	})
+  // Multilingual
+  cfg.addCollection('page', collection => {
+  	return collection.getFilteredByGlob([
+  		"view/**/*.(md|liquid)",
+  	]).reverse().filter(post => {
+  		// return !post.data.layout?.includes("page");
+  		return post.data.tags?.includes("page");
+  	});
+  });
+  // cfg.addCollection('import', collection => {
+  // 	return collection.getFilteredByGlob("imported/**/*.md").reverse();
+  // });
+  //
 	// cfg.addCollection('post', collection => {
 	// 	let postsProcessed = 0
 	// 	// let posts = collection.getAllSorted().filter(item => {
@@ -261,6 +363,11 @@ export default (cfg) => {
 	// 	return posts
 	// });
 
+	// English-only
+	// cfg.addCollection('photo', collection => {
+	// 	return collection.getFilteredByGlob("view/_en/photo/**/*.md").reverse();
+	// });
+
 // 🙅 Ignores
 	// if (process.env.NODE_ENV === "production") {
 	// 	eleventyConfig.ignores.add("src/admin.md");
@@ -283,13 +390,16 @@ export default (cfg) => {
 	cfg.setServerOptions({
 		port: 3000,
 		showAllHosts: true,
-		watch: ["dist/**/*"]
+		// watch: ["dist/**/*"]
+		watch: ["dist/static/**/*", "dist/media/passthrough/**/*", "dist/**/*.{xml,xsl,txt,json,webmanifest}"]
 	});
 
 // 📁 Paths/Passthroughs
 	// cfg.addPassthroughCopy("./img");
 	// cfg.addPassthroughCopy("./asset");
 	cfg.addPassthroughCopy("view/media/**/*.{mp3,mp4,m4a,wav,flac,ogg,apng,webm}");
+	cfg.addPassthroughCopy("view/media/passthrough");
+	cfg.addPassthroughCopy("view/media/video");
 	// cfg.addPassthroughCopy("view/media/**/*.!{jpg,jpeg,png,gif,tif,svg,webp,avif,jxl}");
 	// cfg.addPassthroughCopy("view/media");
 	return {
@@ -301,10 +411,14 @@ export default (cfg) => {
 		dir: {
 			input: "view",
 			output: "tmp/view",
-			includes: "_include",
-			layouts: "_layout",
-			data: "_data"
+			includes: "include",
+			layouts: "include/layout",
+			data: "data"
 		}
 	};
 	// return cfg;
+
+//⤵️  After Eleventy
+	// cfg.on('eleventy.after', () => {
+	// })
 };

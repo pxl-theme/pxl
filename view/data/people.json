@@ -1,0 +1,285 @@
+{
+	"John Doe": {
+		"title": "Human Being",
+		"bio": "I'm just a simple man.",
+		"place": "World, Milkyway Galaxy",
+		"pronoun": "pxl/pxl",
+		"personality": "XXXX-X",
+		"pronunciation": "pixel",
+		"timezone": "UTC+0",
+		"avatar": "/icon-512.webp",
+		"url": "//EXAMPLE.COM/",
+		"links": {
+			"email": {
+				"label": "Email",
+				"label-tr": "Eposta",
+				"url": "mailto:USERNAME@gmail.com",
+				"uid": "",
+				"handle": "USERNAME@gmail.com",
+				"relMeAuth": true,
+				"icon": "general-letterbox",
+				"alt": "Direct link to compose new message to my address via default e-mail client",
+				"alt-tr": "Varsayılan e-posta istemcisi üzerinden yeni mesaj yazmak için doğrudan bağlantı.",
+				"tag": ["messaging", "contact"]
+			},
+			"discord": {
+				"label": "Discord",
+				"url": "//discord.com/users/000000000000000000",
+				"uid": "000000000000000000",
+				"handle": "@USERNAME",
+				"icon": "site-discord",
+				"alt": "Direct link to my Discord profile. DMs are open so please refrain from sending friend request unless you let me know that you're going to make Group DM. Thank you.",
+				"alt-tr": "Discord profilime doğrudan bağlantı. Özel mesajlar herkese açık, bu yüzden lütfen grup mesajlaşması yapacağınızı bilmemi sağlamadığınız müddetçe arkadaşlık isteği atmaktan kaçının. Teşekkür ederim.",
+				"tag": ["messaging", "contact", "entertainment"]
+			},
+			"github": {
+				"label": "GitHub",
+				"url": "//github.com/USERNAME",
+				"url-stars": "//github.com/USERNAME?tab=stars",
+				"uid": "",
+				"handle": "USERNAME",
+				"relMeAuth": true,
+				"icon": "site-github",
+				"alt": "Direct link to my GitHub profile.",
+				"alt-tr": "GitHub profilime doğrudan bağlantı.",
+				"tag": ["contact"]
+			},
+			"codepen": {
+				"label": "CodePen",
+				"url": "//codepen.io/USERNAME",
+				"url-loved": "//codepen.io/USERNAME/pens/loved",
+				"uid": "",
+				"handle": "USERNAME",
+				"icon": "",
+				"alt": "Direct link to my CodePen profile.",
+				"alt-tr": "CodePen profilime doğrudan bağlantı.",
+				"tag": ["webdev", "dev", "portfolio"]
+			},
+			"itchio": {
+				"label": "itch.io",
+				"url": "//USERNAME.itch.io",
+				"uid": "",
+				"handle": "USERNAME",
+				"icon": "gamestore-itch",
+				"alt": "Direct link to my itch.io portfolio homepage",
+				"alt-tr": "itch.io portfolyo ana sayfama doğrudan bağlantı.",
+				"tag": ["gamedev", "dev", "portfolio"]
+			},
+			"youtube": {
+				"label": "YouTube",
+				"url": "//youtube.com/@USERNAME",
+				"uid": "",
+				"handle": "@USERNAME",
+				"icon": "site-youtube",
+				"alt": "Direct link to my YouTube channel",
+				"alt-tr": "YouTube kanalıma doğrudan bağlantı.",
+				"tag": ["video", "livestream", "entertainment", "portfolio"]
+			},
+			"bluesky": {
+				"label": "Bluesky",
+				"url": "//bsky.app/profile/USERNAME",
+				"uid": "",
+				"handle": "USERNAME@bsky.app",
+				"icon": "site-bluesky",
+				"alt": "Direct link to my Bluesky profile.",
+				"alt-tr": "Bluesky profilime doğrudan bağlantı.",
+				"tag": ["microblogging", "personal"]
+			},
+			"mastodon": {
+				"label": "Mastodon",
+				"url": "//mastodon.social/@USERNAME",
+				"uid": "",
+				"handle": "@USERNAME@mastodon.social",
+				"icon": "site-mastodon",
+				"relMeAuth": true,
+				"alt": "Direct link to my Mastodon profile on mastodon.social instance.",
+				"alt-tr": "mastodon.social oluşumundaki Mastodon profilime doğrudan bağlantı.",
+				"tag": ["microblogging", "messaging", "personal", "inactive"]
+			},
+			"instagram": {
+				"label": "Instagram",
+				"url": "//instagram.com/USERNAME",
+				"uid": "",
+				"handle": "@USERNAME",
+				"icon": "site-instagram",
+				"alt": "Direct link to my Instagram profile.",
+				"alt-tr": "Instagram profilime doğrudan bağlantı.",
+				"tag": ["photoblogging", "messaging"]
+			},
+			"twitterx": {
+				"label": "Twitter&nbsp;(X)",
+				"url": "//x.com/USERNAME",
+				"url-likes": "//x.com/USERNAME/likes",
+				"uid": "",
+				"handle": "@USERNAME",
+				"icon": "site-twitterx",
+				"alt": "Direct link to my Twitter (X) profile.",
+				"alt-tr": "Twitter (X) profilime doğrudan bağlantı.",
+				"tag": ["microblogging", "personal"]
+			},
+			"linkedin": {
+				"label": "LinkedIn",
+				"url": "//linkedin.com/in/USERNAME",
+				"uid": "",
+				"handle": "@USERNAME",
+				"icon": "site-linkedin",
+				"alt": "Direct link to my LinkedIn portfolio.",
+				"alt-tr": "LinkedIn portfolyoma doğrudan bağlantı.",
+				"tag": ["portfolio"]
+			},
+			"behance": {
+				"label": "Behance",
+				"url": "//be.net/USERNAME",
+				"uid": "",
+				"handle": "USERNAME",
+				"icon": "site-behance",
+				"alt": "Direct link to my Behance portfolio.",
+				"alt-tr": "Behance portfolyoma doğrudan bağlantı.",
+				"tag": ["graphic design", "portfolio"]
+			},
+			"twitch": {
+				"label": "Twitch",
+				"url": "//twitch.tv/USERNAME",
+				"uid": "",
+				"handle": "USERNAME",
+				"icon": "site-twitch",
+				"alt": "Direct link to my Twitch channel.",
+				"alt-tr": "Twitch kanalıma doğrudan bağlantı.",
+				"tag": ["livestream", "video", "entertainment"]
+			},
+			"kick": {
+				"label": "Kick",
+				"url": "//kick.com/USERNAME",
+				"uid": "",
+				"handle": "USERNAME",
+				"icon": "",
+				"alt": "Direct link to my Kick channel.",
+				"alt-tr": "Kick kanalıma doğrudan bağlantı.",
+				"tag": ["livestream", "video", "entertainment"]
+			},
+			"reddit": {
+				"label": "reddit",
+				"url": "//reddit.com/u/USERNAME",
+				"url-upvoted": "//www.reddit.com/user/USERNAME/upvoted/",
+				"uid": "",
+				"handle": "USERNAME",
+				"icon": "site-reddit",
+				"alt": "Direct link to my Reddit user page.",
+				"alt-tr": "Reddit kullanıcı sayfama doğrudan bağlantı.",
+				"tag": ["forum", "entertainment", "personal"]
+			},
+			"steam": {
+				"label": "Steam",
+				"url": "//steamcommunity.com/id/USERNAME",
+				"uid": "00000000000000000",
+				"url-reviews": "//steamcommunity.com/id/USERNAME/reviews/",
+				"handle": "USERNAME",
+				"friend-code": "000000000",
+				"icon": "gamestore-steam",
+				"alt": "Direct link to my Steam game profile.",
+				"alt-tr": "Steam oyun profilime doğrudan bağlantı.",
+				"tag": ["gaming", "gamedev", "entertainment", "personal"]
+			},
+			"epicgames": {
+				"label": "Epic Games",
+				"url": "//store.epicgames.com/u/00000000000000000000000000000000",
+				"uid": "00000000000000000000000000000000",
+				"handle": "USERNAME",
+				"icon": "gamestore-epic",
+				"alt": "Direct link to my Epic Games game profile.",
+				"alt-tr": "Epic Games oyun profilime doğrudan bağlantı.",
+				"tag": ["gaming", "entertainment", "personal"]
+			},
+			"xbox": {
+				"label": "Xbox",
+				"url": "//xbox.com/play/user/USERNAME",
+				"uid": "",
+				"handle": "USERNAME",
+				"friend-code": "",
+				"icon": "gamestore-xbox",
+				"alt": "Direct link to my Xbox game profile.",
+				"alt-tr": "Xbox oyun profilime doğrudan bağlantı.",
+				"tag": ["gaming", "entertainment", "personal"]
+			},
+			"minecraftjava": {
+				"label": "Minecraft Java",
+				"url": "https://namemc.com/profile/USERNAME",
+				"uid": "00000000-0000-0000-0000-000000000000",
+				"handle": "USERNAME",
+				"alt": "Direct link to Minecraft Java Edition profile.",
+				"alt-tr": "Minecraft Java Edition profilime doğrudan bağlantı.",
+				"tag": ["gaming", "entertainment", "personal"]
+			},
+			"ludumdare": {
+				"label": "Ludum Dare",
+				"url": "https://ldjam.com/users/USERNAME/",
+				"url-following": "https://ldjam.com/users/USERNAME/following",
+				"handle": "USERNAME",
+				"alt": "Direct link to my Ludum Dare profile.",
+				"alt-tr": "Ludum Dare profilime doğrudan bağlantı.",
+				"tag": ["gaming", "gamedev", "personal"]
+			},
+			"letterboxd": {
+				"label": "Letterboxd",
+				"url": "//letterboxd.com/USERNAME/",
+				"url-likes": "//letterboxd.com/USERNAME/likes/films/",
+				"url-following": "//letterboxd.com/USERNAME/following/",
+				"uid": "",
+				"handle": "USERNAME",
+				"icon": "",
+				"alt": "Direct link to my Letterboxd profile.",
+				"alt-tr": "Letterboxd profilime doğrudan bağlantı.",
+				"tag": ["movie", "entertainment", "personal"]
+			},
+			"soundcloud": {
+				"label": "SoundCloud",
+				"url": "//soundcloud.com/USERNAME/",
+				"url-likes": "//soundcloud.com/USERNAME/likes",
+				"uid": "",
+				"handle": "USERNAME",
+				"alt": "Direct link to my SoundCloud profile.",
+				"alt-tr": "SoundCloud profilime doğrudan bağlantı.",
+				"tag": ["audio", "music", "entertainment", "personal"]
+			},
+			"spotify": {
+				"label": "Spotify",
+				"url": "//open.spotify.com/user/USERNAME",
+				"uid": "",
+				"handle": "USERNAME",
+				"icon": "",
+				"alt": "Direct link to my Spotify listener profile.",
+				"alt-tr": "Spotify dinleyici profilime doğrudan bağlantı.",
+				"tag": ["audio", "music", "entertainment", "personal"]
+			},
+			"stackoverflow": {
+				"label": "Stack&nbsp;Overflow",
+				"url": "//stackoverflow.com/users/0000000",
+				"uid": "0000000",
+				"handle": "USERNAME",
+				"icon": "",
+				"alt": "Direct link to my Stack Overflow profile.",
+				"alt-tr": "Stack Overflow profilime doğrudan bağlantı.",
+				"tag": ["webdev", "dev", "portfolio"]
+			},
+			"facebook": {
+				"label": "Facebook",
+				"fbpageid": "",
+				"url": "",
+				"alt": "I'm not on Facebook.",
+				"alt-tr": "Ben Facebook'ta değilim."
+			},
+			"skype": {
+				"label": "Skype",
+				"url": "",
+				"alt": "Skype is discontinued.",
+				"alt-tr": "Skype kapandı."
+			},
+			"tiktok": {
+				"label": "TikTok",
+				"url": "",
+				"alt": "I'm not on TikTok.",
+				"alt-tr": "TikTok'ta değilim."
+			}
+		}
+	}
+}

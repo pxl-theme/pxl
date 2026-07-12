@@ -1,0 +1,43 @@
+---
+layout: base
+tags: "tag page"
+eleventyExcludeFromCollections: ["post", "page"]
+baseLite: true
+lang: 'en'
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+  filter:
+    - all
+    - tagsToBeFilteredHere
+  addAllPagesToCollections: true
+eleventyImport:
+  collections: ["tagList"]
+eleventyComputed:
+  title: Items Tagged “{{ tag.title }}”
+  customHeaderTitle: "<svg width=18 class='pi -size2x' style='--iconWeight:1.5px' viewBox='0 0 18 18'><use href='/pi.svg#tool-tag'></use></svg>{{ tag.title }}"
+  translationKey: "tag-{{ tag.slug }}"
+permalink: "/tag/{{ tag.slug }}/index.html"
+---
+<section class="o-box -viewCard o-center">
+	{% comment %} <h1>Tagged “{{ tag.title }}”</h1> {% endcomment %}
+	{%- if tag.logo -%}<img src="/{{ tag.logo }}" alt="" />{%- endif -%}
+
+	{%- if tag.description -%}
+		{{- tag.description -}}
+	{%- endif -%}
+
+	{%- if tag.count > 1 -%}
+		<p><small>There are {{ tag.count }} posts with this tag:</small></p>
+	{%- else -%}
+		<p><small>There's only one post with this tag:</small></p>
+	{%- endif -%}
+
+	<ul>
+		{%- assign taggedPosts = collections[ tag.title ] -%}
+		{%- for post in taggedPosts | reverse -%}
+			<li><a href="{{ post.url }}" target="_blank">{{ post.data.title }}</a></li>
+		{%- endfor -%}
+	</ul>
+</section>

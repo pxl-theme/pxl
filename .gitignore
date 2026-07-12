@@ -14,3 +14,14 @@ tmp/
 dist/
 utility/
 reports/
+
+# Don't track Obsidian configs, plugins
+view/{_en,_tr,_content}/.obsidian
+view/{_en,_tr,_content}/.trash
+view/{_en,_tr,_content}/.obsidian.vimrc
+
+# Don't commit drafts yet
+view/draft/
+
+# I'd like my directory to have an icon but you do you.
+desktop.ini

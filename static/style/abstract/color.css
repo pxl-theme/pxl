@@ -16,13 +16,6 @@
 	--hue02:              pink;
 	--colorFrontmost:     white;
 	--colorTextBolder:    black;
-	--colorTextOpac80:    black;
-	--colorTextOpac60:    black;
-	--colorTextOpac40:    black;
-	--colorTextOpac20:    black;
-	--colorTextOpac075:   black;
-	--colorBaseOpac80:    white;
-	--colorBaseOpac0:     white;
 	/* Uncomment this when Color Module 5 arrives. */
 	/*
 	--colorBaseVal:       0 0 0 0;
@@ -42,14 +35,7 @@
 	--colorFrontmost:     device-cmyk(0 0 0 0);
 	--colorTextBolder:    device-cmyk(0 0 0 100%);
 	--colorText:          device-cmyk(var(--colorTextVal));
-	--colorTextOpac80:    device-cmyk(var(--colorTextVal) / .8);
-	--colorTextOpac60:    device-cmyk(var(--colorTextVal) / .6);
-	--colorTextOpac40:    device-cmyk(var(--colorTextVal) / .4);
-	--colorTextOpac20:    device-cmyk(var(--colorTextVal) / .2);
-	--colorTextOpac075:   device-cmyk(var(--colorTextVal) / .075);
 	--colorBase:          device-cmyk(var(--colorBaseVal));
-	--colorBaseOpac80:    device-cmyk(var(--colorBaseVal) / .8);
-	--colorBaseOpac0:     device-cmyk(var(--colorBaseVal) / 0);
 	*/
 }
 } /* end of @media print */
@@ -119,7 +105,6 @@
 
 		/* TODO: Need color-mix for brighter accent colors instead of fix values */
 		/* --colorAccentBrighter: hsl(198 82% 74%); */
-		/* --colorAccentBrighterOpac60: hsl(198 82% 74% / .6); */
 	/* } */
 	/* } */
 
@@ -147,9 +132,8 @@
 	/* --colorBg: #657185; /1* MacOSX Solid Color Grayscale *1/ */
 	/* --colorBg: #4A0640; /1* Ubuntu Solid Color Purple *1/ */
 
-	/* TODO: color-mix for colorAccentBrighter and Opac60 */
+	/* TODO: color-mix for colorAccentBrighter */
 	--colorAccentBrighter: var(--colorAccent);
-	--colorAccentBrighterOpac60: var(--colorAccent);
 	--colorBg: var(--colorBack, --colorBase);
 
 	/* --colorTextBolder:  var(--colorText); */
@@ -166,17 +150,10 @@
 	){
 	/* Text color with different transparency/alpha values */
 	--colorText:        rgb(var(--colorTextVal));
-	--colorTextOpac80:  rgb(var(--colorTextVal) / .8);
-	--colorTextOpac60:  rgb(var(--colorTextVal) / .6);
-	--colorTextOpac40:  rgb(var(--colorTextVal) / .4);
-	--colorTextOpac20:  rgb(var(--colorTextVal) / .2);
-	--colorTextOpac075: rgb(var(--colorTextVal) / .075);
 	/* TODO: Get rid of multiple opacities of text color variables with color-mix/relative-color syntax in 2025. (Once Safari 18 arrives.)
 
 	/* Base color with different transparency/alpha values */
 	--colorBase:        rgb(var(--colorBaseVal));
-	--colorBaseOpac80:  rgb(var(--colorBaseVal) / .8);
-	--colorBaseOpac0:   rgb(var(--colorBaseVal) / 0);
 
 	--colorLinkDead: var(--red, #F00); /* Red as default dead link color */
 }

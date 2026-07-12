@@ -1,8 +1,8 @@
-# pxl [![Oluştur](https://github.com/egeesin/pxl/actions/workflows/build.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/build.yml) [![GH Pages'e dağıt](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml) [![StackBlitz'te  aç](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/egeesin/pxl) <img class=left src=static/asset/logo.gif width=71px align=right alt="Gösterişli 'pxl' yazılı pikselli logo." />
+# pxl [![Oluştur](https://github.com/pxl-theme/pxl/actions/workflows/build.yml/badge.svg)](https://github.com/pxl-theme/pxl/actions/workflows/build.yml) [![GH Pages'e dağıt](https://github.com/pxl-theme/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/pxl-theme/pxl/actions/workflows/deploy-gh-pages.yml) [![StackBlitz'te  aç](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/pxl-theme/pxl) <img class=left src=static/asset/logo.gif width=71px align=right alt="Gösterişli 'pxl' yazılı pikselli logo." />
 > 👾 Uygun varsayılanlara ve güzel görünümlere sahip, ayarlanabilir taslak-ımsı bir statik site teması. *(ˈpik-səl)*
 <img class=center src=static/screenshot.webp alt="Her iki aydınlık ve karanlık temadaki birden fazla renk şemasının önizlemesini gösteren statik site temasının bir ekran görüntüsü." />
 
-[English 🇬🇧](https://github.com/egeesin/pxl/blob/main/README.md) | Türkçe 🇹🇷
+[English 🇬🇧](https://github.com/pxl-theme/pxl/blob/main/README.md) | Türkçe 🇹🇷
 
 **Not:** Bu proje ağır geliştirme sürecinde, biçimlendirme temelleri ilk büyük sürüm çıkışına kadar değişebilir. Sürüm etiketlerinin arasında stiller/betikler bozulabilir. Sadece ne yaptığınızı biliyorsanız kullanın.
 
@@ -27,8 +27,8 @@
 - ⚡️ [11ty](https://www.11ty.dev/docs/watch-serve/#eleventy-dev-server)'den yerel, canlı ve sade geliştirme sunucusu from [11ty](https://www.11ty.dev/docs/watch-serve/#eleventy-dev-server)
 
 ## Denemeler
-- [GitHub Pages](https://pxl.egeesin.com)
-- [PageSpeed Insights](https://pagespeed.web.dev/report?hl=tr&url=https://pxl.egeesin.com)
+- [GitHub Pages](https://pxl.esin.net)
+- [PageSpeed Insights](https://pagespeed.web.dev/report?hl=tr&url=https://pxl.esin.net)
 
 ## Kurulum
 
@@ -44,7 +44,7 @@ Bir terminal emülatörü aç (Windows'ta başlat tuşuna sağ tıklayıp, "Wind
 
 ```sh
 # Depoyu klonla ve dizini değiştir
-git clone https://github.com/egeesin/pxl && cd pxl
+git clone https://github.com/pxl-theme/pxl && cd pxl
 
 # Install local Node modules of the repository
 # Yerel Node modüllerini kur
@@ -65,13 +65,13 @@ pnpm start
 - Kurulum komutu: `pnpm i`
 - Yapım dizini: `dist`
 
-[![CloudCannon'a dağıt](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/egeesin/pxl)
+[![CloudCannon'a dağıt](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/pxl-theme/pxl)
 [![Vercel ile dağıt](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fegeesin%2Fpxl)
-[![Netlify'a dağıtma tuşu](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/egeesin/pxl)
+[![Netlify'a dağıtma tuşu](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/pxl-theme/pxl)
 [Cloudflare Pages'a dağıt](https://developers.cloudflare.com/pages/framework-guides/deploy-an-eleventy-site/#deploy-with-cloudflare-pages)
 
 ### 🐙 Yapım Eserini İndir
-1. Ana [depo](https://github.com/egeesin/pxl) sayfasından [**Actions**](https://github.com/egeesin/pxl/actions) sekmesini seç.
+1. Ana [depo](https://github.com/pxl-theme/pxl) sayfasından [**Actions**](https://github.com/pxl-theme/pxl/actions) sekmesini seç.
 2. Listenin en üstünde yeşil tikli en son başarılı iş akışı çalışmasını bul ve tıkla.
 3. En aşağı sürükle ve yapım eserlerini (`dist/`) indir.
 
@@ -95,7 +95,7 @@ pnpm start
 - [ ] Daha çok adım eklenecek…
 
 ### 🎨 Tema Tadilatı
-- [ ] [Burada](https://pxl.egeesin.com/plain/) görüldüğü üzere tadilatları keşfedin.
+- [ ] [Burada](https://pxl.esin.net/plain/) görüldüğü üzere tadilatları keşfedin.
 - [ ] Zevkinize göre `view/_data/site.json`'da `rootClasses` ve `bodyClasses` kısımlarını düzenleyin.
 - [ ] (Tercihen) Sayfa başına tema tadilatını zorlamak için `appendRootClass` veya `appendBodyClass` gibi Front Matter bilgilerini kullanın.
 - [ ] Daha çok adım eklenecek…

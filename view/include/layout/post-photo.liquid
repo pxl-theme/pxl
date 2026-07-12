@@ -1,0 +1,27 @@
+---
+layout: base
+type: photo
+---
+<main id=content class="s-cmsContent" aria-label=Content itemprop=mainContentOfPage>
+	<section class="o-box -viewCard o-center hentry">
+		<a class=url href="{{ page.url | url }}" hidden></a>
+		{{ content }}
+		<h5 class=o-box__meta alt="{{ page.date | dateInRFC2822 }}">
+			<time datetime="{{ page.date | yearMonthDay }}">
+				{{ page.date | localDateHuge }}
+			</time>
+			{{ modifications.titleSeparator }}<b>{{ title | escape }}</b>
+			{% if post.data.location %}{{ site.separator }} {{post.data.location}}{% endif %}
+		</h5>
+		{%- if page.data.tags != empty %}
+		<footer class=o-box__footer>
+			<ul class="c-nav -typeTag" style=float:right>
+				{% comment %} <span class="c-nav__item"><b>Etiketler:</b></span> {% endcomment %}
+				{% for tag in page.data.tags %}
+					<li class=c-nav__item>{{ tag }}</a></li>
+				{% endfor %}
+			</ul>
+		</footer>
+		{%- endif %}
+	</section>
+</main>

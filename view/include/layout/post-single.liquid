@@ -1,0 +1,173 @@
+---
+layout: base
+modifications:
+  compactHeader: true
+---
+<main id=content class=s-cmsContent aria-label=Content itemprop=mainContentOfPage>
+	{%- comment %}This markup supports HAtom schema: https://microformats.org/wiki/hatom#Schema{% endcomment -%}
+	<article class="o-box -viewCard o-center hentry" itemscope itemtype="https://schema.org/BlogPosting" id="card-{{ page.fileSlug }}" data-pagefind-body>
+		<hgroup class=c-header>
+			{%- if page.date != nil -%}
+				<h5 class="o-box__meta{% if page.author != nil %} -alignStart@wrist-gt{% endif %}" >
+					<svg width=18 class=pi viewBox="0 0 18 18">
+						<use href="/pi.svg#tool-clock"></use>
+					</svg>&nbsp;<relative-time
+						format=datetime
+						format-style=long
+						class=published
+						itemprop=datePublished
+						prefix=""
+						title="{{ page.date | localDateTimeHuge }}"
+						datetime="{{ page.date | dateInISO }}">
+						{{- page.date | localDateHuge -}}
+					</relative-time>
+					{%- unless metadata.type == "youtube" %}<span> • {{ content | timeToRead }}</span>{% endunless -%}
+					{%- if author != nil -%}
+						<br><span class="author vcard" itemprop=author>
+							<svg width="18" class="pi" viewBox="0 0 18 18">
+								<use href="/pi.svg#general-person"></use>
+							</svg
+						> <a href="{% if author.url %}{{ author.url }}{% else %}#!{% endif %}">{{ author }}</a>
+						</span>
+					{%- elsif metadata.authors.name != nil -%}
+						<br><span class="author vcard" itemprop=author>
+							<svg width="18" class="pi" viewBox="0 0 18 18">
+								<use href="/pi.svg#general-person"></use>
+							</svg
+							> <a href="{{ metadata.authors.url }}">{{ metadata.authors.name }}</a>
+						</span>
+					{%- elsif site.author != nil -%}
+						<br><span class="author vcard" itemprop=author>
+							<svg width="18" class="pi" viewBox="0 0 18 18">
+								<use href="/pi.svg#general-person"></use>
+							</svg
+							> <a href="{{ people[site.author].url }}">{{ site.author }}</a>
+						</span>
+					{%- endif -%}
+				</h5>
+			{%- endif -%}
+			{%- if title != nil and metadata.type != "bluesky" -%}
+				<h1 class="o-box__title entry-title">{{ title }}{% comment %}{{ title | escape }}{% endcomment %}</h1>
+			{%- endif -%}
+		</hgroup>
+		<section class="entry-content" itemprop=articleBody>
+		{%- if metadata.type == "youtube" -%}
+			<style>lite-youtube{--lite-youtube-frame-shadow-visible: no;}</style>
+			<lite-youtube videoid="{{ page.fileSlug }}"
+										playlabel="{{ title }}"
+										style="margin-inline:auto;background-image: url('https://i.ytimg.com/vi/{{ page.fileSlug }}/hqdefault.jpg');"
+										autopause>
+			{% comment %} Had to use both lyt and lty, will keep it till new release. https://github.com/paulirish/lite-youtube-embed/issues/65 {% endcomment %}
+				<a href="https://www.youtube.com/watch?v={{ page.fileSlug }}" class="lyt-playbtn lty-playbtn" title="Play Video">
+					<span class="lyt-visually-hidden">{{ title }}</span>
+				</a>
+			</lite-youtube>
+			{% comment %} <lite-youtube videoid="{{ page.fileSlug }}" style="background-image: url('https://i.ytimg.com/vi/{{ page.fileSlug }}/hqdefault.jpg');"> {% endcomment %}
+			{% comment %} 	<a href="https://www.youtube.com/watch?v={{ page.fileSlug }}" class="lyt-playbtn lty-playbtn" title="Play Video"> {% endcomment %}
+			{% comment %} 		<span class="lyt-visually-hidden">{{ title }}</span> {% endcomment %}
+			{% comment %} 	</a> {% endcomment %}
+			{% comment %} </lite-youtube> {% endcomment %}
+		{%- endif -%}
+		{{ content }}
+		</section>
+		{%- assign tagsSize = tags | size -%}
+		{% comment %} {%- if tags != nil -%} {% endcomment %}
+		{%- if tagsSize > 0 -%}
+			<small itemprop=keywords
+        ><svg width=18 class='pi' viewBox='0 0 18 18'><use href='/pi.svg#tool-tag'></use></svg> {{ translation[lang].tagLabel }} {% for tag in tags
+					%}<a href="/tag/{{ tag | slugify }}/" rel=tag>{{tag | replace: ' ', '&nbsp;'}}</a>{% unless forloop.last %}, {% endunless %}
+				{%- endfor -%}</small>
+		{%- endif -%}
+		<hr>
+		<footer style="text-wrap: auto">
+			<!-- Comment/Reply Buttons -->
+			{%- if metadata.type == "youtube" -%}
+				<a href="https://youtu.be/{{ page.fileSlug }}"><b>{{ translation[lang].viewOnYouTube }}</b></a><span> • </span>
+				<svg class=pi viewBox='0 0 18 18' width=18px>
+					<use href='/pi.svg#paper-send'></use>
+				</svg><span> {{ translation[lang].shareLabel }}</span>
+			{%- elsif metadata.type == "bluesky" -%}
+				<a href="{{ metadata.url }}"><b>{{ translation[lang].viewOnBluesky }}</b></a><span> • </span>
+				<svg class=pi viewBox='0 0 18 18' width=18px>
+					<use href='/pi.svg#paper-send'></use>
+				</svg><span> {{ translation[lang].shareLabel }}</span>
+			{%- else -%}
+				<svg class=pi viewBox='0 0 18 18' width=18px>
+					<use href='/pi.svg#speech-balloon'></use>
+				</svg><b> {{ translation[lang].replyLabel }}</b>
+			{%- endif -%}
+			{%- if people[site.author].links.email.handle -%}
+				<a style=white-space:nowrap title="{{ translation[lang].replyEmailDescription }}"
+					href="mailto:{{ people[site.author].links.email.handle | escape }}?subject=Re:{{ title | escape }}&body={{ translation[lang].replyEmailBody }}%20{{ page.url | prepend: site.baseurl | escape }}"
+					>{{ people[site.author].links.email.label }}</a>
+			{% endif -%}
+			{%- if people[site.author].links.bluesky.handle and metadata.type != "bluesky" -%}
+				<a target=_blank style=white-space:nowrap title="{{ translation[lang].replyBlueskyDescription }}"
+					href="https://bsky.app/intent/compose?text={{ title | cgi_escape }}+by+{{ people[site.author].links.bluesky.handle }}+{{ page.url | prepend: site.baseurl }}"
+					>{{ people[site.author].links.bluesky.label }}</a>
+			{% endif -%}
+			{%- if people[site.author].links.mastodon.handle -%}
+				<a target=_blank style=white-space:nowrap title="{{ translation[lang].replyMastodonDescription }}"
+					href="https://mastodon.social/share?text={{ title | cgi_escape }}+by+{{ people[site.author].links.mastodon.handle }}&amp;url={{ page.url | prepend: site.baseurl }}"
+					data-ask-mastodon
+					data-src="{{ title | cgi_escape }}+by+{{ people[site.author].links.mastodon.handle }}&amp;url={{ page.url | prepend: site.baseurl }}"
+					>{{ people[site.author].links.mastodon.label }}</a>
+			{% endif -%}
+			{%- if people[site.author].links.twitterx.handle %}
+				<a target=_blank style=white-space:nowrap title="{{ translation[lang].replyTwitterDescription }}"
+        href="https://twitter.com/intent/tweet?text={{ title | cgi_escape }}+by+{{ people[site.author].links.twitterx.handle }} {{ page.url | prepend: site.baseurl }}"
+        >{{ people[site.author].links.twitterx.label }}</a>
+			{%- endif -%}
+			<!-- The Share Button (with Web Share API)-->
+			<script type=module src="{{ "/static/script/_vendor/webcare-webshare.js" | url }}"></script>
+			<webcare-webshare
+				share-text="{{ title }}"
+				share-url="{{ page.url | prepend: site.baseurl }}"
+				label-copy="{{ translation[lang].linkCopy }}"
+				label-after-copy="{{ translation[lang].linkCopied }}"
+				>
+				<button
+					title="{{ translation[lang].linkShareDescription }}"
+					disabled>
+					<svg class=pi viewBox='0 0 18 18' width=18px>
+						<use href='/pi.svg#paper-send'></use>
+					</svg><b> {{ translation[lang].linkShare }}</b>
+				</button>
+			</webcare-webshare>
+		</footer>
+		<a class=url itemprop=url href="{{ page.url | prepend: site.baseurl }}" hidden></a>
+	</article>
+	{%- assign items = collections.blog %}
+	{%- if items %}
+		{%- assign previousItem = items | getPreviousCollectionItem %}
+		{%- assign nextItem = items | getNextCollectionItem %}
+		{%- assign randomItem = items | getRandom %}
+		{%- if nextItem or previousItem %}
+		<ul class="-alignCenter -flowHorizontal -typeFlyout c-nav t-modRoot -borderValNone -cornerInherit -stylesetAcetate" style="align-items:start">
+			{%- if previousItem -%}
+				<li class="c-nav__item" style="text-align:left;inline-size:26ch;">
+					<a class="c-nav__anchor" href="{{ previousItem.url }}">
+						<svg class=pi viewBox='0 0 18 18' width=18px>
+							<use href='/pi.svg#arrow-to-left'></use>
+						</svg><span>{{ translation[lang].postPrevious }}</span><br><small>{{ previousItem.data.title }}</small></a>
+				</li>
+			{%- endif -%}
+			<li class="c-nav__item" style="text-align:center;inline-size:26ch;">
+				<a class="c-nav__anchor" href="{{ randomItem.url }}">
+					<svg class="pi" viewBox="0 0 18 18" width=18px>
+						<use href="/pi.svg#paper-multiple-floating"></use>
+					</svg><span>{{ translation[lang].postRandom }}</span><br><small>{{ randomItem.data.title }}</small></a>
+			</li>
+			{%- if nextItem -%}
+			<li class="c-nav__item" style="text-align:right;inline-size:26ch;">
+				<a class="c-nav__anchor" href="{{ nextItem.url }}">
+					<b>{{ translation[lang].postNext }}</b><svg class=pi viewBox='0 0 18 18' width=18px>
+						<use href='/pi.svg#arrow-to-right'></use>
+					</svg><br><small>{{ nextItem.data.title }}</small></a>
+			</li>
+			{%- endif -%}
+		</ul>
+		{%- endif %}
+	{%- endif %}
+	{% comment %} {%- include "webmention/container" %} {% endcomment %}
+</main>

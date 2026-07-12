@@ -1,0 +1,220 @@
+---
+layout: base
+tag: page
+eleventyExcludeFromCollections: ["post"]
+title: "All"
+translationKey: "archive"
+description: "An archive of all content of this website."
+lang: "en"
+baseLite: true
+customHeaderTitle: "<svg width=18 class='pi -size2x' style='--iconWeight:1.5px' viewBox='0 0 18 18'><use href='/pi.svg#place-library'></use></svg>All"
+permalink: '/all/index.html'
+---
+<main id=content class=s-cmsContent aria-label=Content itemprop=mainContentOfPage>
+	<section id=search class="o-box -viewCard o-center">
+		<h2><svg width="18" class="pi -size2x" viewBox="0 0 18 18"><use href="/pi.svg#tool-magnifier"></use></svg> Search by Keywords</h2>
+		<details open>
+			<summary>via built-in search</summary>
+			{%- comment %} <link href="/static/pagefind/pagefind-ui.css" rel="stylesheet"> {% endcomment -%}
+			{%- comment %} <style> {% endcomment -%}
+			{%- comment %} --pagefind-ui-scale: 1; {% endcomment -%}
+			{%- comment %} --pagefind-ui-primary: var(--colorAccent); {% endcomment -%}
+			{%- comment %} --pagefind-ui-text: var(--colorText); {% endcomment -%}
+			{%- comment %} --pagefind-ui-background: var(--colorBg); {% endcomment -%}
+			{%- comment %} --pagefind-ui-border: var(--colorText); {% endcomment -%}
+			{%- comment %} --pagefind-ui-tag: var(--colorBase); {% endcomment -%}
+			{%- comment %} --pagefind-ui-border-width: var(--border); {% endcomment -%}
+			{%- comment %} --pagefind-ui-border-radius: var(--radiusDefault); {% endcomment -%}
+			{%- comment %} --pagefind-ui-image-border-radius: var(--radiusDefault); {% endcomment -%}
+			{%- comment %} --pagefind-ui-font: var(--fontMain); {% endcomment -%}
+			{%- comment %} </style> {% endcomment -%}
+			<div id="searchBar" class="search"></div>
+			<script src="/pagefind/pagefind-ui.js"></script>
+			<script>
+				window.addEventListener('DOMContentLoaded', (event) => {
+					new PagefindUI(
+						{
+							element: '#searchBar',
+							resetStyles: true,
+							translations: {
+								placeholder: 'Type to list matching results…',
+								zeroResults: 'No results for [SEARCH_TERM]'},
+								autofocus: true,
+								showImages: false
+							}
+					);
+				});
+			</script>
+		</details>
+		<script>
+		/* Redirect a search form to a site scoped search
+			* Source: https://css-tricks.com/how-to-redirect-a-search-form-to-a-site-scoped-google-search
+			*/
+		document.addEventListener("DOMContentLoaded", () => {
+			var form = document.querySelector("form#thirdPartySearch");
+			form.addEventListener("submit", function (e) {
+				e.preventDefault();
+				var search = form.querySelector("input[type=search]");
+				search.value = "site:{{ site.baseurl }} " + search.value;
+				form.submit();
+			})
+		});
+		</script>
+		<details>
+			<summary>via 3rd-party search</summary>
+			<form id="thirdPartySearch" action="//unduck.link" role=search target="_blank" type="GET">
+				<input type=search
+								name=q
+								size=0
+								placeholder="Type here and enter…"
+								style="max-inline-size:calc(100% - 10ch)">
+				<input type="submit" value="Search…" style="inline-size:9ch">
+			</form>
+			<small><b>💡 Tip:</b> Add <a href="https://duckduckgo.com/bangs?c=Online+Services&sc=Search"><i>bangs</i></a> like <code>!ddg</code> to search in a different search engine.</small>
+		</details>
+	</section>
+	<section id=tag class="o-box -viewCard o-center">
+		<h2><svg width="18" class="pi -size2x" viewBox="0 0 18 18"><use href="/pi.svg#tool-tag"></use></svg> Browse by Tags</h2>
+		<script>
+			/* By Nicholas Hoizey's Tag Cloud Script
+			 * Source: https://github.com/nhoizey/nicolas-hoizey.com/blob/ba2b12ba791e20e38cb43173874b0ead166a2cd4/assets/js/tagscloud.js
+			 */
+			document.addEventListener("DOMContentLoaded", () => {
+				const rangeInput = document.querySelector('#minTags');
+				const currentLabel = document.querySelector('#tagCount');
+				const cloud = document.querySelector('#tagsCloud');
+
+				let max = 0;
+				const tags = document.querySelectorAll('[data-number]');
+				tags.forEach((tag) => {
+					max = Math.max(max, parseInt(tag.dataset.number, 10));
+				});
+				rangeInput.max = max;
+				cloud.style.setProperty('--max-log', Math.log(max));
+
+				const updateLabel = () => {
+					let currentValue = rangeInput.value;
+					currentLabel.innerHTML = `Displaying tags with at least <code style=font-weight:900>${currentValue}</code> post${
+						currentValue > 1 ? 's' : ''
+					}`;
+					let newMinLog = 100;
+					tags.forEach((tag) => {
+						if (parseInt(tag.dataset.number, 10) >= currentValue) {
+							tag.closest("li").style.display = 'inline-block';
+							newMinLog = Math.min(newMinLog, tag.style.getPropertyValue('--log'));
+						} else {
+							tag.closest("li").style.display = 'none';
+						}
+					});
+					cloud.style.setProperty('--min-log', newMinLog);
+				};
+
+				rangeInput.addEventListener('input', updateLabel);
+				updateLabel();
+
+				document.querySelector('#dynamic').style.display = 'block';
+
+			});
+		</script>
+		<style>
+			:has(> li a[rel=tag]){
+			/*#tagscloud{*/
+				--min-log: 0; /* log(1) */
+				--max-log: 5; /* ~log(150) */
+				--min-size: 0.8;
+				--max-size: 1.8;
+				/*
+				--min-weight: 300;
+				--max-weight: 900;
+				--min-l: 30;
+				--max-l: 60;
+				*/
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				justify-content: center;
+				padding: 0;
+			}
+			a[rel=tag]{
+				display: inline-block;
+				white-space: nowrap;
+				text-decoration: none;
+				margin: .5rem;
+				padding: 0 1rem;
+				background-color: color-mix(in srgb, var(--colorText) 5%, transparent);
+				--group: calc(var(--log) - var(--min-log));
+				--group2: calc(var(--max-log) - var(--min-log) + 1);
+				--group3: calc(var(--max-size) - var(--min-size));
+				--factor: calc(var(--group) /  var(--group2));
+				font-size: calc( calc(var(--group3) * var(--factor) + var(--min-size)) * 1em)
+			}
+		</style>
+		<nav>
+			<div id=dynamic style=display:none>
+				<small id=tagCount></small><br>
+				<input type=range id=minTags size=4 min=1 max=11 step=1 value=5 />
+			</div>
+			{%- comment -%}
+			{%- assign filteredTagCollection = collections | getKeys | filterTagList -%}
+			{% for tag in filteredTagCollection -%}
+				<a href="/tags/{{ tag | slugify }}/" class="post-tag">{{ tag }}</a>{% if  forloop.last == false %}<span>, </span>{% endif -%}
+			{%- endfor %}
+			{%- endcomment -%}
+			<ul id=tagsCloud style="overflow: auto; max-block-size: 60vh">
+			{%- for tag in collections.tagList -%}
+				{%- if tag.count > 0 -%}
+					<li><a href="/tag/{{ tag.slug }}/"
+						aria-label="{{ tag.count }} content{% if tag.count > 1 %}s{% endif %} with tag {{ tag.title }}"
+						data-number="{{ tag.count }}"
+						style="--log: {{ tag.log }}"
+						rel="tag">{{ tag.title }}</a></li>
+				{%- endif %}
+			{%- endfor -%}
+			</ul>
+		</nav>
+	</section>
+	<section id=archive class="o-box -viewCard o-center">
+		<style>
+		#archive {overflow:visible !important}
+    .year-container {margin-block-end: calc(5 * var(--rhythmUnit))}
+		.year-container summary {position:sticky;top:0;}
+		#archive summary h2 {display: inline}
+		#archive hr{align-self: end;border-style:dashed;width:100%;padding-block-end:0}
+		#archive a{display:grid;grid-template-columns: auto 1fr auto;grid-gap: .5ch;}
+		#archive a span{text-align: left;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;width:100%;text-wrap:nowrap/*text-wrap pretty behaves weird in safari as it overflows the paranthesis ending*/}
+		#archive details h3{ display: flex; align-items: center;}
+		#archive h3 span{margin-left: auto}
+		</style>
+		<h2><svg width="18" class="pi -size2x" viewBox="0 0 18 18"><use href="/pi.svg#calendar"></use></svg> Browse by Date</h2>
+		<!-- Archive list design from Manu (manuelmoreale.com) and data frastructure from Mike Street (mikestreety.co.uk) -->
+		{%- for year in allArchive() -%}
+			<details class="year-container"{% if forloop.index <= 5 %} open{% endif %}>
+			<summary>
+				<h2 id="{{ year.title }}"><span>{{ year.title }} </span> <span><small>({{ year.count }}×)</small></span></h2>
+			</summary>
+			{%- for month in year.months -%}
+        {% comment %} {%- assign next_i = forloop.index0 | plus: 1 -%} {% endcomment %}
+        {% comment %} {%- assign prev_i = forloop.index0 | minus: 1 -%} {% endcomment %}
+				{%- if month.title %}<h3><span id="{{ year.title }}-{{ month.number }}">{{ month.title }}</span></h3>{%- endif -%}
+				{%- for item in month.entries reversed -%}
+          <a class="{{ item.type }}" title="{% if item.description %}{{ item.description }} • {% endif %}Published on {{ item.date | localDateTimeHuge }}" href="{{ item.url }}">
+						<span>
+							{%- if item.metadata.type == "bluesky" -%}
+								<svg class=pi viewBox='0 0 18 18' width=18px><use href='/pi.svg#site-bluesky'></use></svg>
+							{%- endif -%}
+							{%- if item.metadata.type == "youtube" -%}
+								<svg class=pi viewBox='0 0 18 18' width=18px><use href='/pi.svg#site-youtube'></use></svg>
+							{%- endif -%}
+              {{- item.title | escape | nbsp -}}{%- if item.language -%}&nbsp;<small style="text-transform: uppercase">({{ item.language }})</small>{%- endif -%}
+						</span>
+						<hr>
+            {% comment %} <span>{{ item.dayordinal }}+{{ month.entries[prev_i].dayordinal }}</span> {% endcomment %}
+            <span>{{ item.dayordinal }}</span>
+						{% comment %} <span>{{ item.dayordinal }}</span> {% endcomment %}
+					</a>
+				{%- endfor %}
+			{%- endfor %}
+			</details>
+		{%- endfor %}
+	</section>
+</main>

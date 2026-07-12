@@ -1,10 +1,10 @@
 /***** Nav Component *****/
 
-/* @media print {  */
-/* 	.c-nav { */
-/* 		display: none !important */
-/* 	} */
-/* } */
+@media print {
+	.c-nav {
+		display: none !important
+	}
+}
 
 /* Reset box values if Nav Component is(or parent of) an Unordered or Ordered List */
 .c-nav:where(ul,ol,menu),
@@ -79,33 +79,18 @@ ol.c-nav__submenu {
 	> .c-nav__anchor {
 		user-select:none;
 		opacity: 1;
-		/* pointer-events: auto; */
 		display: block;
 
-		/* text-decoration: none; */
 		text-decoration-line: none;
-
-		/* text-decoration-color: currentColor; */
-		/* text-decoration-thickness: 1px; */
-		/* text-underline-offset: 1px; */
-
 		padding-inline: var(--nav-item-padSide);
-
-		/* border: var(--borderS) solid transparent; /1* TODO: Find out why this exists… *1/ */
-
-		/* white-space: nowrap; /1* force to single line *1/ */
-		/* padding: calc(.25em - var(--borderWidth)) calc(.8em - var(--borderWidth)); */
-		/* overflow: hidden; */
-		/* background-color: var(--colorBase); */
 	}
 	/* First SVG child inside nav item */
 	svg:first-child{
 		margin-inline-start:0; /* opinionated */
 	}
-	:is(svg,.c-iconWrapper) + :is(span,b) {
-		/* Space between icon and label in the nav item*/
-		/* margin-inline-start: .3333rem; */
-		margin-inline-start: .5ch;
+	/* Space between icon and label in the nav item*/
+	:is(svg,img) + :is(span,b), :is(span,b) + :is(svg,img) {
+		margin-inline-start: .66ch; /* opinionated */
 	}
 	/* Every Image of Every Nav Item
 	 *
@@ -123,15 +108,15 @@ ol.c-nav__submenu {
 		border-radius: var(--radiusInnerDefault);
 		filter: none;
 		/* Desaturate and make translucent image inside nav item if it's possible to hover on */
-		@media (any-hover: hover) and (any-pointer: fine) {
+		@media (pointer: fine) {
 			filter: opacity(.75) saturate(.66);
 		}
 	}
-	/* Make the corners of image rounded if any relevant theme modifier class exists */
+	/* TODO: Make the corners of image rounded if any relevant theme modifier class exists */
 	/* .t-modRoot:is(.-cornerRounded,.-cornerRoundedInner,.-cornerRoundedTiny) & img { */
 
 	/* Reset filters inside nav item if it's possible to hover on */
-	@media (any-hover: hover) and (any-pointer: fine) { /* opinionated */
+	@media (pointer: fine) { /* opinionated */
 		&:hover img{
 			filter: opacity(1) saturate(1);
 		}
@@ -140,11 +125,6 @@ ol.c-nav__submenu {
 	:is(.c-nav__anchor, .c-nav__anchor:hover, .c-nav__anchor:focus-visible, .c-nav__anchor:active){
 		color: currentColor;
 	}
-	/* TODO: Test -styleShining option with social media buttons. */
-	/* &.-styleShining .c-nav__anchor { */
-	/* 	filter: drop-shadow(0px 0px 2px twitter-color); */
-	/* 	position: relative; */
-	/* } */
 }
 
 /*** Make nav item of label italic when it's indicating the current page
@@ -154,21 +134,13 @@ ol.c-nav__submenu {
 	font-style: italic;
 	pointer-events: none; /* opinionated */
 }
-/* .c-nav__item > .c-nav__submenu{ */
-/* 	font-style: unset; */
-/* } */
 
 .c-nav {
-	/* Add spacing to Horizontal Fly-out Type and Tree Type Nav*/
-	/* &:is(.-typeTree, .-typeFlyout.-flowHorizontal) { */
-	/* 	margin-block-end: calc(var(--rhythmUnit)*2); */
-	/* } */
 	/* *Opinionated* Search-Type Input inside Horizontal Fly-out Type and Tree Type Nav*/
 	&:is(.-typeTree, .-typeFlyout.-flowVertical) { /* opinionated */
 		input[type=search] {
 			inline-size:90%;
 			margin-inline: auto;
-			/* padding:var(--rhythmUnit) 0 !important; */
 			padding-block:var(--rhythmUnit) !important;
 			padding-inline:0 !important;
 		}
@@ -180,15 +152,12 @@ ol.c-nav__submenu {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	@media (any-hover: hover) {
-		padding-block-start: var(--rhythmUnit);
+	max-inline-size: 18ch; /* opinionated */
+	@media (pointer: fine) {
+		gap: var(--rhythmUnit) 0;
 	}
 	> .c-nav__item.-viewIconOnly {
 		box-shadow: none !important;
-		padding-block-end: 0;
-		@media (any-hover: hover) {
-			padding-block-end: var(--rhythmUnit); /* Add some space for tooltip */
-		}
 	}
 }
 
@@ -198,21 +167,17 @@ ol.c-nav__submenu {
 :is(.c-nav.-typeTree,
     .c-nav.-typeFlyout.-flowVertical,
 	.c-nav.-typeFlyout.-flowHorizontal .c-nav__submenu) .c-nav__separator {
-	/* margin: 0 0 .05em; */
 	padding: 0;
-	/* border-top: .2em solid; */
 	background-color: currentColor;
 	--separatorSpace: calc(var(--rhythmUnit)/2);
 	--separatorWeight: .2rem;
 	block-size: var(--separatorWeight);
-	/* margin: calc( (var(--separatorSpace) - var(--separatorWeight)) / 2 ) 0; */
 	margin-block: calc( (var(--separatorSpace) - var(--separatorWeight)) / 2 );
 	background-color: currentColor;
-	/* border-top: .2em solid; */
 }
 :is(.c-nav.-typeFlyout.-flowVertical,
     .c-nav.-typeFlyout.-flowHorizontal .c-nav__submenu) .c-nav__separator {
-	@media (any-hover: hover) and (any-pointer: fine) {
+	@media (pointer: fine) {
 		--separatorWeight: 1px;
 	}
 }
@@ -243,9 +208,9 @@ ol.c-nav__submenu {
 	.c-nav__item {
 
 		/* List Row Separators similar to iOS/iPadOS (Only visible to touch devices)*/
-		/* box-shadow: .5em calc(-.5em - var(--borderHairline)) 0 -.5em var(--colorTextOpac40); */
-		box-shadow: var(--rhythmUnit) calc(var(--rhythmUnit)*-1 - var(--borderHairline)) 0 calc(var(--rhythmUnit)*-1) var(--colorTextOpac40);
-		@media (any-pointer: fine) {
+		/* box-shadow: .5em calc(-.5em - var(--borderHairline)) 0 -.5em color-mix(in srgb, var(--colorText) 40%, transparent); */
+		box-shadow: var(--rhythmUnit) calc(var(--rhythmUnit)*-1 - var(--borderHairline)) 0 calc(var(--rhythmUnit)*-1) color-mix(in srgb, var(--colorText) 40%, transparent);
+		@media (pointer: fine) {
 			box-shadow: none;
 		}
 	}
@@ -257,7 +222,7 @@ ol.c-nav__submenu {
 		text-decoration-color: currentColor;
 		text-decoration-thickness: 1px;
 		text-underline-offset: 1px;
-		@media (any-hover: hover) {
+		@media (pointer: fine) {
 			text-decoration-line: none;
 			&:hover, &:focus-visible {
 				text-decoration-line: underline;
@@ -277,64 +242,37 @@ ol.c-nav__submenu {
 	/* Every Submenu (except ordered lists) inside Tree-Type Nav */
 	.c-nav__submenu:not(ol) {
 		margin-inline-start: 1.75rem; /* Indent every submenu to right in Tree-Type Nav */
-		@media (any-pointer: fine) {
+		@media (pointer: fine) {
 			margin-inline-start: 1.5rem; /* Indent a little less */
 		}
 	}
 	.c-nav__submenu {
-		/* overflow: hidden; */
-		box-shadow: calc(var(--borderHairline) * -1) 0 var(--colorTextOpac40);
-		/* Font size and vertical alignment of SECOND or MORE depth navigation item in Tree  Nav Component */
-		/* .c-nav__item > .c-nav__anchor { */
-			/* @mixin fontSize4;/1* opinionated *1/ */
-		/* } */
+		box-shadow: calc(var(--borderHairline) * -1) 0 color-mix(in srgb, var(--colorText) 40%, transparent);
 	}
 	/* Tree-Type Nav Expandable From Block Start (Top)*/
 	&.-expandFromBlockStart {
-		/* Align to center */
-		/* margin-inline: auto; */
-		/* margin-inline-start: -50%; */
-		/* inline-start: 50%; */
-		/* font-size: 1.25rem; */
 		padding: 0;
 		position: absolute;
-		z-index:1;
+		z-index: 2;
 		overflow-y: auto; /* Hidden by default */
-		overscroll-behavior-y: contain; /* Prevent scrolling site body after you reach the end of the menu.
-		/* max-height: 2.5rem; /1* Size of button in touch interface *1/ */
-		max-block-size: 0; /* Size of button in touch interface */
+		overscroll-behavior-y: contain; /* Prevent scrolling site body after you reach the end of the menu. */
+		max-inline-size: 0%;
+		max-block-size: 0svh; /* Size of button in touch interface */
 		transition: none .5s cubic-bezier(.08,.82,.17,1);
-		transition-property: width, min-width, max-height, padding;
-
-		inline-size: 0%;
-		/* Minimized Width opinionated */
-		/* min-width: 12.5em; */
-		/* @media (--palm-or-gt) { */
-		/* 	width: 36ch; */
-		/* } */
-		/* -opinionated */
-
+		transition-property: max-inline-size, max-block-size, padding;
 		/* Expand Tree-Type Nav Component from top when its focused.*/
 		:is(&:focus-within, &.js-visible), input[type=checkbox][id]:has( + .c-nav[class*="-expand"]):checked + & {
-			/* inline-size: 100%; */
-			inline-size: 100%;
+			inline-size: max-content;
+			max-inline-size: 100%;
 			max-block-size: 70svh; /* opinionated */
-			/* @media (--palm-or-gt) { */
-			/* 	/1* padding: 0 15%; *1/ */
-			/* 	/1* 24em isn't really connected to another value or any variable so the line below must be opinionated for now. *1/ */
-			/* 	/1* opinionated *1/ */
-			/* 	padding: 0 calc( ( 100vw - 24em ) / 2 ); */
-			/* 	/1* -opinionated *1/ */
-			/* } */
-			/* max-height: var(--maxHeight-h-expand); */
 		}
 	}
 }
 
 ol.c-nav.-typeTree .c-nav__item {
 	/* List Row Separators in Ordered List Tree-Type Nav*/
-	box-shadow: 0 calc(-1 * var(--borderHairline)) 0 0 var(--colorTextOpac40);
-	@media (any-pointer: fine) {
+	box-shadow: 0 calc(-1 * var(--borderHairline)) 0 0 color-mix(in srgb, var(--colorText) 40%, transparent);
+	@media (pointer: fine) {
 		box-shadow: none;
 	}
 }
@@ -396,7 +334,7 @@ ol.c-nav.-typeTree .c-nav__item {
  */
 	/* Affects every depth */
 	&.-flowVertical {
-		inline-size: 12em; /* opinionated */
+		max-inline-size: 12em; /* opinionated */
 		/* max-width: var(--sidebarWidth); */
 
 		/* Font Size and Box Values of Nav Item Label, Submenu Indicator */
@@ -404,20 +342,11 @@ ol.c-nav.-typeTree .c-nav__item {
 		/* 	@mixin fontSize4; */
 		/* } */
 		.c-nav__submenu {
-			inline-size: 12em; /* opinionated */
-			/* max-width: var(--sidebarWidth); */
+			max-inline-size: 12em; /* opinionated */
 		}
-		/* > .c-nav__item { */
-		/* 	inline-size: 100%; */
-		/* } */
 		&.-expandFromStartStart {
-			/* font-size: 1.25rem; */
 			z-index: 555; /* opinionated */
-
-			/* position: fixed; */
 			position: absolute;
-
-			/* inset-block-start: 0; */
 			inset-inline-start: -1px; /* Sometimes its reachable */
 
 			/* TODO: transform3d values needs to be included for different writing modes with logical properties */
@@ -428,12 +357,9 @@ ol.c-nav.-typeTree .c-nav__item {
 		&:is(.-expandFromStartStart:focus-visible, .-expandFromStartStart:focus-within, .-expandFromStartStart.js-visible), input[type=checkbox][id]:has( + .c-nav[class*="-expand"]):checked + & {
 			transform: translate3d(0,0,0);/* Reset transform/Reveal the element from the off-canvas */
 		}
-
-		/* .c-nav__item:not(.c-toggleExpand):not(.c-nav__separator):not(input[type=search]) { */
 		.c-nav__item:not(.c-nav__separator):not(input[type=search]) {
-			/* box-shadow: .5em calc(-.5em - var(--borderHairline)) 0 -.5em var(--colorTextOpac40); */
-			box-shadow: var(--rhythmUnit) calc(var(--rhythmUnit)*-1 - var(--borderHairline)) 0 calc(var(--rhythmUnit)*-1) var(--colorTextOpac40);
-			@media (any-hover: hover) and (any-pointer: fine) {
+			box-shadow: var(--rhythmUnit) calc(var(--rhythmUnit)*-1 - var(--borderHairline)) 0 calc(var(--rhythmUnit)*-1) color-mix(in srgb, var(--colorText) 40%, transparent);
+			@media (pointer: fine) {
 				box-shadow: none;
 			}
 
@@ -466,16 +392,18 @@ ol.c-nav.-typeTree .c-nav__item {
 			}
 		}
 		&:has(.c-nav__submenu):after{
-			position: absolute;
-			content: "⟩";
-			display: block;
+			/* content: "⟩"; */
 			/* --fontWeight: 600; */
-			font-weight: 600;
-			/* background-color: red; */
-
-			[dir=rtl] & {
-				content: "⟨";
-			}
+			content: "";
+			position: absolute;
+			background: color-mix(in srgb, var(--colorText) 50%, transparent);
+			clip-path: polygon(48% 0, 73% 50%, 48% 100%, 34% 93%, 55% 50%, 34% 7%);
+			block-size: 1rem;
+			inline-size: 1rem;
+			display: block;
+			/* [dir=rtl] & { */
+			/* 	content: "⟨"; */
+			/* } */
 		}
 		/* Submenu inside every nav item of Fly-out Type Nav*/
 		> .c-nav__submenu {
@@ -522,15 +450,15 @@ ol.c-nav.-typeTree .c-nav__item {
 
 		/* Lighter Indication
 		 */
-		background-color: var(--colorTextOpac20);
+		background-color: color-mix(in srgb, var(--colorText) 20%, transparent);
 		/*TODO: need more brighter/darker color for hovered on navigation*/
 		color: var(--colorTextBolder);
 		/* @media (prefers-color-scheme: dark) { */
 		:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) & {
-			background-color: var(--colorTextOpac40);
+			background-color: color-mix(in srgb, var(--colorText) 40%, transparent);
 		}
 
-		/* background-color: var(--colorTextOpac20); */
+		/* background-color: color-mix(in srgb, var(--colorText) 20%, transparent); */
 		/* border-color: currentColor; */
 		/* border-width: var(--borderWidth); */
 	}
@@ -541,7 +469,7 @@ ol.c-nav.-typeTree .c-nav__item {
 	}
 	/* Highlight while clicking on any nav item (except submenu parents)
 	 * inside flyout navigation component */
-	/* @media (any-hover: hover) and (any-pointer: fine) { */
+	/* @media (pointer: fine) { */
 		.c-nav__item:not([aria-current=page],:has(.c-nav__submenu)):active > .c-nav__anchor{
 			transform: scale(.95);
 			color: var(--colorTextBolder);
@@ -573,42 +501,39 @@ ol.c-nav.-typeTree .c-nav__item {
 		/* max-height: 60svh; */
 		/* overflow: auto; */
 		position: absolute;
+		inline-size: max-content;
 		--fontWeight: 400;
 		z-index: calc(444 + var(--bringForward));
 	}
 	/* First depth of submenu indicator inside Fly-out Type Nav Component
 	 */
 	> .c-nav__item:has(.c-nav__submenu):after, > .c-nav__item:has(.c-nav__submenu) :has(.c-nav__submenu):after {
-		inset-block-start: 0;
+		inset-block-start: 50%;
+		margin-block-start: -.5rem;
 		inset-inline-end: 0;
-		/* width: .8em; */
-		/* padding-left: .1em; */
-		/* padding-right: .1em; */
-		block-size: 100%;
-		/* text-align: center; */
-		/* line-height: 1.75; */
 		transform: rotate(0);
+		/* block-size: 100%; */
+		/* inset-block-start: 0; */
+		/* inset-inline-end: 0; */
 	}
 	/**** Horizontal Fly-out Type Nav Component
 	*
 	*/
 	&.-flowHorizontal {
-		inline-size: 100%;
+		/*inline-size: fit-content;*/
 		max-inline-size: var(--maxContainerWidth);
 		/* margin-top: 1em; */
-		margin-inline: auto;
-		/* padding: 0 var(--boxViewCard-padSide); */
+		&:not([class*=-align]){
+			margin-inline: auto;
+		}
 		padding-inline: calc(var(--boxViewCard-padSide) - var(--border, 0px));
 
 		display: flex;
 		flex-wrap: wrap;
-
-		/* align-items:baseline; */
-
 		align-items:center;
-
-		/* justify-content:space-around; */
-
+		&.-alignEnd {
+			margin-left: auto;
+		}
 		/* Fix clickable area of arrow */
 		/* overflow: hidden; */
 		/* &:hover, &:focus-visible { */
@@ -622,7 +547,7 @@ ol.c-nav.-typeTree .c-nav__item {
 
 		/* Align every descendant items of Horizontal Fly-out Type Nav to the center */
 		&.-alignCenter {
-			justify-content: space-around;
+			margin-inline: auto;
 			justify-content: center;
 			/* & * { */
 			/* 	margin: auto; */
@@ -632,6 +557,7 @@ ol.c-nav.-typeTree .c-nav__item {
 			/* } */
 		}
 		&:is(.-alignStart,.-alignEnd) { /* opinionated */
+			/*display: inline flex;*/
 			padding-inline: 2ch;
 			/* @media (--palm-or-gt){; */
 			/* 	padding-inline: 6ch; */
@@ -673,12 +599,14 @@ ol.c-nav.-typeTree .c-nav__item {
 		 */
 		.c-nav__submenu {
 			/* min-inline-size: 100%; */
-			min-inline-size: 18ch; /* opinionated */
+			/* min-inline-size: 18ch; */
+			min-inline-size: 6ch; /* opinionated */
+			max-inline-size: 22ch;
 			.c-nav__item {
 				/* List Row Separators similar to iOS/iPadOS (Only visible to touch devices)*/
-				/* box-shadow: .5em calc(-.5em - var(--borderHairline)) 0 -.5em var(--colorTextOpac40); */
-				box-shadow: var(--rhythmUnit) calc(var(--rhythmUnit)*-1 - var(--borderHairline)) 0 calc(var(--rhythmUnit)*-1) var(--colorTextOpac40);
-				@media (any-pointer: fine) {
+				/* box-shadow: .5em calc(-.5em - var(--borderHairline)) 0 -.5em color-mix(in srgb, var(--colorText) 40%, transparent); */
+				box-shadow: var(--rhythmUnit) calc(var(--rhythmUnit)*-1 - var(--borderHairline)) 0 calc(var(--rhythmUnit)*-1) color-mix(in srgb, var(--colorText) 40%, transparent);
+				@media (pointer: fine) {
 					/* When input device is able to hover over links precisely,
 					 * hide lines between nav items and make submenus smaller.
 					 */
@@ -689,7 +617,7 @@ ol.c-nav.-typeTree .c-nav__item {
 			.c-nav__item > .c-nav__anchor,
 			> .c-nav__item:has(.c-nav__submenu):after,
 			> .c-nav__item:has(.c-nav__submenu) :has(.c-nav__submenu):after{
-				@media (any-hover: hover) and (any-pointer: fine) {
+				@media (pointer: fine) {
 					@mixin fontSize5;
 					/* --iconSize: 18; */
 				}
@@ -752,11 +680,10 @@ ol.c-nav.-typeTree .c-nav__item {
 				inset-inline-start: 0;
 
 				/* First depth of submenus open beneath the related nav item */
-
 				transform: translate(0, calc(var(--rhythmUnit) * -3)); /* opinionated */
 
 				/* Adjusting top position a little bit for different border modifiers */
-				@media (any-hover:none) { /* For mobile */
+				@media (pointer: coarse) { /* For mobile */
 					.t-modRoot:is(.-borderNormal,.-borderThick) :is(&) {
 						inset-block-start: calc(100% + var(--borderS));
 					}
@@ -767,16 +694,21 @@ ol.c-nav.-typeTree .c-nav__item {
 			}
 			&:has(.c-nav__submenu):after {
 			/* The arrow indicator (Affects first depth only)*/
-				line-height: 0;
-				padding: 0;
-				text-align: center;
 
-				/* bottom: .2em; */
-				inset-block-start: auto;
-				inset-block-end: calc(var(--rhythmUnit)/2);
-				inset-inline-start: 0;
-				inline-size: 100%;
-				block-size: 0;
+				/* line-height: 0; */
+				/* text-align: center; */
+				/* block-size: 0; */
+				/* inline-size: 100%; */
+				/* inset-block-start: auto; */
+				/* inset-block-end: calc(var(--rhythmUnit)/2); */
+
+				/* inset-inline-start: 0; */
+
+				inset-block: auto -.2rem;
+				inset-inline: 50% auto;
+				margin-inline-start: -.5rem;
+				margin-block-start: auto;
+
 				transform: rotate(90deg);
 				pointer-events: none;
 			}
@@ -785,21 +717,22 @@ ol.c-nav.-typeTree .c-nav__item {
 			/* 	transform: rotate(270deg); */
 			/* } */
 
-			/* All depths of submenus inside leaning nav item */
-			&.-leanEnd .c-nav__submenu {
+			/* Second or deeper layer of submenus inside leaning nav item */
+			/* Had to use :where to lower the specificity there */
+			&.-leanEnd :where(.c-nav__submenu) .c-nav__submenu {
 				/* Submenu expands to left */
 				inset-inline-start: auto;
 				inset-inline-end: 100%;
 				transform: translate(calc(var(--rhythmUnit) * 3), 0);
-				/* transform: auto; */
 			}
 
 			/* First depth of submenus inside leaning nav item */
 			&.-leanEnd > .c-nav__submenu {
 				/* Submenu expands to left */
+				inset-inline-start: auto;
 				inset-inline-end: 0;
 				/* Opens sideways (To the left) */
-				transform: auto;
+				/* transform: unset; */
 			}
 
 		}
@@ -812,11 +745,11 @@ ol.c-nav.-typeTree .c-nav__item {
 		> .c-nav__separator {
 			/* padding-top: 1em; */
 			border: 0;
-			/* border-left: var(--borderS) solid var(--colorTextOpac40); */
+			/* border-left: var(--borderS) solid color-mix(in srgb, var(--colorText) 40%, transparent); */
 			inline-size: var(--borderS);
 			/* min-height:.8em; */
 			min-block-size:calc(var(--rhythmUnit)*1.5);
-			background-color: var(--colorTextOpac40);
+			background-color: color-mix(in srgb, var(--colorText) 40%, transparent);
 			margin-inline: calc(var(--rhythmUnit)/1.66667);
 		}
 
@@ -839,7 +772,7 @@ ol.c-nav.-typeTree .c-nav__item {
 > .c-nav__anchor {
 	/* IMPORTANT: Every declaration inside the block must be affected to FIRST DEPTH only */
 
-	position:relative;
+	position: relative;
 
 	/* Might cause specificity war*/
 	padding-inline: 0;
@@ -855,20 +788,20 @@ ol.c-nav.-typeTree .c-nav__item {
 		/* Icon is in the top of the item label, so no need for the spacing next to it.*/
 		margin-inline: auto;
 		display: block;
-		@media (any-hover: hover) {
+		@media (pointer: fine) {
 			/* Default size of pxl icons */
 			--iconWeight: 1.5px;
 			--iconSize: 18px;
 		}
 	}
-	/* > :is(svg,.c-iconWrapper) { */
+	/* > :is(svg,img) { */
 	/* 	padding-bottom: 1em; */
 	/* } */
 
-	/* > :is(svg,.c-iconWrapper) + :is(span,b), > :is(span:not(.c-iconWrapper), b):first-child { */
+	/* > :is(svg,img) + :is(span,b), > :is(span:not(img), b):first-child { */
 
 	/* Tooltip Nav Item Label */
-	> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
+	> :is(:is(svg,img) + :is(span,b), :is(span:not(img), b):first-child) {
 
 		/* Global+Mobile */
 		display: block;
@@ -888,7 +821,7 @@ ol.c-nav.-typeTree .c-nav__item {
 		pointer-events: none;
 
 		/* For devices with mouse/stylus input */
-		@media (any-hover: hover) {
+		@media (pointer: fine) {
 			--bringForward: 0;
 			inset-block-start: 100%;
 			/* margin-left: .25em; */
@@ -923,14 +856,14 @@ ol.c-nav.-typeTree .c-nav__item {
 		}
 	}
 	/* TODO: If there isn't icon with the nav items in the first depth, create a pseudo placeholder icon (if possible )*/
-	/* > :is(span:not(.c-iconWrapper),b):first-child { */
+	/* > :is(span:not(img),b):first-child { */
 	/* 	&:before { */
 	/* 		/1* Encoded from pxl icons (multiple icon) *1/ */
 	/* 		content: url('data:image/svg+xml;%20charset=utf8,%3Csvg%20id%3D%22general-plus%22%3E%3Cg%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20stroke-linecap%3D%22square%22%20stroke-miterlimit%3D%225%22%3E%3Cpath%20d%3D%22M9%2C4.5L9%2C13.5%22%20fill%3D%22none%22%20stroke%3D%22var%28--iconColor%29%22%20stroke-width%3D%22var%28--iconWeight%29%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M13.5%2C9L4.5%2C9%22%20fill%3D%22none%22%20stroke%3D%22var%28--iconColor%29%22%20stroke-width%3D%22var%28--iconWeight%29%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E'); */
 	/* 		position: absolute; */
 	/* 		display: block; */
 	/* 		block-size: 27px; */
-	/* 		@media (any-hover: hover) { */
+	/* 		@media (pointer: fine) { */
 	/* 			/1* Default size of pxl icons *1/ */
 	/* 			block-size: 18px; */
 	/* 		} */
@@ -945,14 +878,14 @@ ol.c-nav.-typeTree .c-nav__item {
 > .c-nav__anchor {
 	min-block-size: 1.85em; /* opinionated */
 }
-@media (any-hover:hover) {
+@media (pointer: fine) {
 	/* Show icon label below the icon when hovered in Nav with Icon-Only View.
 	 * (Devices with cursor input only) */
 	.c-nav.-typeFlyout.-flowHorizontal
 	:is(.c-nav__item.-viewIconOnly:hover > .c-nav__anchor,
 	    .c-nav__item.-viewIconOnly > .c-nav__anchor:focus-visible) {
-		> :is(:is(svg,.c-iconWrapper) + :is(span,b),
-		  :is(span:not(.c-iconWrapper), b):first-child) {
+		> :is(:is(svg,img) + :is(span,b),
+		  :is(span:not(img), b):first-child) {
 			--bringForward: 5; /* Bring forward icon label when hovered */
 			visibility: visible; /* Show label when hovered with mouse/stylus */
 			opacity:1;
@@ -965,11 +898,11 @@ ol.c-nav.-typeTree .c-nav__item {
 	.c-nav.-typeFlyout.-flowHorizontal .c-nav__item:has(.c-nav__submenu).-viewIconOnly
 	> .c-nav__anchor {
 		/* If item has submenu, show label next to the icon and make adjustments to typography.*/
-		> :is(:is(svg,.c-iconWrapper)
+		> :is(:is(svg,img)
 		+ :is(span,b),
-		:is(span:not(.c-iconWrapper), b):first-child) {
+		:is(span:not(img), b):first-child) {
 			@mixin fontSize4;
-			/* border:var(--borderHairline) solid var(--colorTextOpac20); */
+			/* border:var(--borderHairline) solid color-mix(in srgb, var(--colorText) 20%, transparent); */
 			/* height: 100%; */
 			/* font-size: 1em; */
 			/* inset-block-start: 0; */
@@ -981,25 +914,26 @@ ol.c-nav.-typeTree .c-nav__item {
 	}
 	/* TODO: Align the label to right, when parent nav item is leaning. */
 	/* .c-nav.-typeFlyout.-flowHorizontal .c-nav__item.-leanEnd-viewIconOnly > .c-nav__anchor { */
-	/* 	> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) { */
+	/* 	> :is(:is(svg,img) + :is(span,b), :is(span:not(img), b):first-child) { */
 	/* 		right: 0; */
 	/* 		left: auto; */
 	/* 	} */
 	/* } */
 
-	/* 
+	/*
 	 * If parent nav item (icon view) is leaning, align the label.
 	 */
 	.c-nav.-typeFlyout.-flowHorizontal .c-nav__item.-viewIconOnly.-leanEnd
 	> .c-nav__anchor {
-		> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
+		> :is(:is(svg,img) + :is(span,b), :is(span:not(img), b):first-child) {
 			inset-inline-end: 0;
 		}
 	}
 	.c-nav.-typeFlyout.-flowHorizontal .c-nav__item.-viewIconOnly.-leanEnd:has(.c-nav__submenu)
 	> .c-nav__anchor {
-		> :is(:is(svg,.c-iconWrapper) + :is(span,b), :is(span:not(.c-iconWrapper), b):first-child) {
+		> :is(:is(svg,img) + :is(span,b), :is(span:not(img), b):first-child) {
 			inset-inline: auto 100%;
+			text-align: end;
 		}
 	}
 }
@@ -1021,7 +955,7 @@ ol.c-nav.-typeTree .c-nav__item {
 		/* } */
 	}
 	.c-nav__separator {
-		color: var(--colorTextOpac40);
+		color: color-mix(in srgb, var(--colorText) 40%, transparent);
 	}
 	/* Main Separator for Leaning Items */
 	> {
@@ -1052,7 +986,7 @@ ol.c-nav.-typeTree .c-nav__item {
 	input[type=checkbox][id]:has( + .c-nav) {
 		display: none;
 	}
-	
+
 }
 
 /**** Tag Type Nav Component
@@ -1082,7 +1016,7 @@ ol.c-nav.-typeTree .c-nav__item {
 			border-width: var(--border);
 			padding-block: calc((var(--rhythmUnit)/2) - var(--border));
 			padding-inline: calc((var(--rhythmUnit)*1.5) - var(--border));
-			background-color: var(--colorTextOpac075);
+			background-color: color-mix(in srgb, var(--colorText) 0.75%, transparent);
 		}
 		> :is(.c-nav__anchor:hover, .c-nav__anchor:focus) {
 			--border: var(--borderS);
@@ -1101,13 +1035,8 @@ ol.c-nav.-typeTree .c-nav__item {
 	border-radius: var(--radiusInnerDefault);
 }
 .c-nav.-typeFlyout {
-	/* :is(.c-nav__item:hover > .c-nav__submenu, .c-nav__item > .c-nav__anchor:focus-visible + .c-nav__submenu, .c-nav__submenu:focus-within) { */
-	/* > .c-nav__submenu{ */
-	/* 	inset-block-start: calc(calc(var(--border) + var(--radiusInnerDefault))* -1); */
-	/* } */
 	.c-nav__submenu {
 		border-radius: var(--radiusInnerDefault);
-		/* padding-block: var(--radiusDefault); */
 		padding-block: var(--radiusInnerDefault);
 	}
 	&.-flowVertical {
@@ -1177,12 +1106,12 @@ ol.c-nav.-typeTree .c-nav__item {
 }
 /* Adjust top position of submenu in the 2nd depth or deeper depths
  * of Vertical Fly-out Type Nav while Rounded Corner theme mod is active.*/
-.t-modRoot:where([class*="-corner"]:not(.-cornerImperfect,.-cornerRoundedInner,.-cornerRoundedMax))
-.c-nav.-typeFlyout.-flowHorizontal
-> .c-nav__item
-> .c-nav__submenu .c-nav__submenu{
-	inset-block-start: calc( calc(var(--border) + var(--radiusInnerDefault)) * -1);
-}
+/* .t-modRoot:where([class*="-corner"]:not(.-cornerImperfect,.-cornerRoundedInner,.-cornerRoundedMax)) */
+/* .c-nav.-typeFlyout.-flowHorizontal */
+/* > .c-nav__item */
+/* > .c-nav__submenu .c-nav__submenu{ */
+/* 	inset-block-start: calc( calc(var(--border) + var(--radiusInnerDefault)) * -1); */
+/* } */
 .c-nav.-typeTag .c-nav__item > .c-nav__anchor {
 	border-radius: var(--radiusDefault);
 }
@@ -1211,7 +1140,8 @@ ol.c-nav.-typeTree .c-nav__item {
 	/* border-radius: calc(var(--radiusM) + .15rem - var(--bleedSize)); */
 	border-radius: calc(var(--radiusInnerDefault) + .15rem - var(--bleedSize));
 }
-	
+
+/* Horizontal/Vertical Flyout Nav inside Inner or Max Rounded Corners modification scope */
 .t-modRoot:where(.-cornerRoundedInner,.-cornerRoundedMax) {
 	.c-nav.-typeFlyout {
 		&:is(.-flowHorizontal, .-flowVertical) {

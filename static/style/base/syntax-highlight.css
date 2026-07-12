@@ -5,7 +5,7 @@
  */
 
 /* Set the main properties of the code, code blocks, and inline code */
-[class*="language-"]:is(pre,code){
+[class*="language-"]:is(pre, code) {
 	/* background: var(--colorBase); */
 	/* color: var(--colorText); */
 	/* font-family: var(--fontStackMonospace); */
@@ -35,8 +35,8 @@ pre[class*="language-"] {
 }
 
 /* Properties specific to inline code */
-:not(pre) > code[class*="language-"] {
-	padding: 0.1rem;
+:not(pre)>code[class*="language-"] {
+	padding: .1rem;
 	border-radius: unset;
 	white-space: normal;
 }
@@ -47,7 +47,7 @@ pre[class*="language-"] {
 /* 	border-radius: .3rem; */
 /* } */
 
-.token:is(.important,.bold){
+.token:is(.important, .bold) {
 	font-weight: bold;
 }
 
@@ -60,15 +60,16 @@ pre[class*="language-"] {
 }
 
 
-.token:is(.comment,.prolog,.doctype,.cdata){
-	color: var(--colorFrontmost);
+.token:is(.comment, .prolog, .doctype, .cdata) {
+	/* color: var(--colorFrontmost); */
+	color: color-mix(in srgb, var(--colorText) 50%, transparent);
 }
 
-.token:is(.punctuation,.namespace) {
+.token:is(.punctuation, .namespace) {
 	opacity: .7;
 }
 
-.token:is(.property,.keyword,.tag,.symbol,.deleted) {
+.token:is(.property, .keyword, .tag, .symbol, .deleted) {
 	color: var(--orange);
 }
 
@@ -77,7 +78,7 @@ pre[class*="language-"] {
 	text-decoration: underline;
 }
 
-.token:is(.boolean,.constant,.number) {
+.token:is(.boolean, .constant, .number) {
 	color: var(--cyan);
 }
 
@@ -85,11 +86,12 @@ pre[class*="language-"] {
 	color: var(--green);
 }
 
-.token:is(.operator,.entity,.url,.variable), :is(.language-css,.style) .token.string {
+.token:is(.operator, .entity, .url, .variable),
+:is(.language-css, .style) .token.string {
 	color: var(--cyan);
 }
 
-.token:is(.atrule,.attr-value,.function) {
+.token:is(.atrule, .attr-value, .function) {
 	color: var(--yellow);
 }
 
@@ -97,24 +99,24 @@ pre[class*="language-"] {
 	color: var(--cyan);
 }
 
-.token:is(.regex,.important) {
+.token:is(.regex, .important) {
 	color: var(--yellow);
 }
 
 
 @media screen and (-ms-high-contrast: active) {
-	[class*="language-"]:is(code,pre){
-		color: windowText;
-		background: window;
+	[class*="language-"]:is(code, pre) {
+		color: CanvasText;
+		background: Canvas;
 	}
 
-	:not(pre) > [class*="language-"]:is(code,pre){
-		background: window;
+	:not(pre)>[class*="language-"]:is(code, pre) {
+		background: Canvas;
 	}
 
 	.token.important {
-		background: highlight;
-		color: window;
+		background: Highlight;
+		color: Canvas;
 		font-weight: normal;
 	}
 
@@ -123,10 +125,10 @@ pre[class*="language-"] {
 	}
 
 	.token:is(.attr-value, .comment, .doctype, .function, .keyword, .operator, .property, .string) {
-		color: highlight;
+		color: Highlight;
 	}
 
-	.token:is(.attr-value,.url) {
+	.token:is(.attr-value, .url) {
 		font-weight: normal;
 	}
 }

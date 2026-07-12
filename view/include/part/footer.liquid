@@ -1,0 +1,10 @@
+<footer class="o-box o-center" aria-label=Main>
+	<small style="text-align: center;display:block;">
+        {%- for item in nav[lang].tertiary -%}
+			{% if forloop.first %}<p>{% endif %}
+				<a href="{{ item.url }}">{{ item.label }}</a>{% unless forloop.last %} • {% endunless %}
+			{%- if forloop.last %}</p>{% endif -%}
+		{%- endfor %}<br>
+		<a href="//github.com/pxl-theme/pxl">Source</a> • <a href="//github.com/pxl-theme/pxl/blob/main/LICENSE" itemprop=license>License</a> • <span title="Last updated" itemprop=dateModified>{{ 'now' | date: '%Y' }}</span>
+	</small>
+</footer>

@@ -112,7 +112,7 @@
 			<main id=content class=s-cmsContent aria-label=Content>
 				<article class="o-box -viewCard o-center">
 					<!-- Converted README.md from https://markdowntohtml.com/ -->
-					<h1 id="pxl-build-https-github-com-egeesin-pxl-actions-workflows-build-yml-badge-svg-https-github-com-egeesin-pxl-actions-workflows-build-yml-deploy-to-gh-pages-https-github-com-egeesin-pxl-actions-workflows-deploy-gh-pages-yml-badge-svg-https-github-com-egeesin-pxl-actions-workflows-deploy-gh-pages-yml-open-in-stackblitz-https-developer-stackblitz-com-img-open_in_stackblitz-svg-https-stackblitz-com-github-egeesin-pxl-img-class-left-src-static-asset-logo-gif-width-71px-align-right-alt-pixelated-logo-with-flashy-written-letters-pxl-">pxl <a href="https://github.com/egeesin/pxl/actions/workflows/build.yml"><img src="https://github.com/egeesin/pxl/actions/workflows/build.yml/badge.svg" alt="Build"></a> <a href="https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml"><img src="https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg" alt="Deploy to GH Pages"></a> <a href="https://stackblitz.com/github/egeesin/pxl"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt="Open in StackBlitz"></a></h1>
+					<h1 id="pxl-build-https-github-com-egeesin-pxl-actions-workflows-build-yml-badge-svg-https-github-com-egeesin-pxl-actions-workflows-build-yml-deploy-to-gh-pages-https-github-com-egeesin-pxl-actions-workflows-deploy-gh-pages-yml-badge-svg-https-github-com-egeesin-pxl-actions-workflows-deploy-gh-pages-yml-open-in-stackblitz-https-developer-stackblitz-com-img-open_in_stackblitz-svg-https-stackblitz-com-github-egeesin-pxl-img-class-left-src-static-asset-logo-gif-width-71px-align-right-alt-pixelated-logo-with-flashy-written-letters-pxl-">pxl <a href="https://github.com/pxl-theme/pxl/actions/workflows/build.yml"><img src="https://github.com/pxl-theme/pxl/actions/workflows/build.yml/badge.svg" alt="Build"></a> <a href="https://github.com/pxl-theme/pxl/actions/workflows/deploy-gh-pages.yml"><img src="https://github.com/pxl-theme/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg" alt="Deploy to GH Pages"></a> <a href="https://stackblitz.com/github/pxl-theme/pxl"><img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt="Open in StackBlitz"></a></h1>
 					<blockquote>
 					<p>👾 An adjustable framework-ish static site theme with sensible defaults and nice looks. <em>(ˈpik-səl)</em>
 					<img class=center src=/static/screenshot.webp alt="A screenshot of the static site theme previewing multiple color schemes in both dark and light mode." /></p>
@@ -131,8 +131,7 @@
 					<li>Plain version of templates are processed by <a href="https://github.com/posthtml/posthtml#readme">PostHTML</a> and compatible plugins</li>
 					</ul>
 					</li>
-					<li>🌗 Light and dark mode support<ul>
-					<li>Auto selects based on system preference first, lets you toggle theme with <a href="https://github.com/BetaHuhn/drkmd.js#readme">drkmd.js</a></li>
+					<li>🌗 System theme by default<ul>
 					<li>Each mode has their own color scheme preference like <a href="https://github.com/altercation/solarized#readme">Solarized</a>, <a href="https://github.com/morhetz/gruvbox">Gruvbox</a>, <a href="https://github.com/atom/one-dark-ui#readme">One Dark UI</a>…</li>
 					<li>Each color scheme has different shades and tones of layers and 6 + 2 hues that is converted and edited from <a href="https://github.com/tinted-theming/schemes">Tinted Theming</a> base16 schemes</li>
 					</ul>
@@ -149,8 +148,8 @@
 					</ul>
 					<h2 id="demos">Demos</h2>
 					<ul>
-					<li><a href="https://pxl.egeesin.com">GitHub Pages</a></li>
-					<li><a href="https://pagespeed.web.dev/report?url=https://pxl.egeesin.com">PageSpeed Insights</a></li>
+					<li><a href="https://pxl.esin.net">GitHub Pages</a></li>
+					<li><a href="https://pagespeed.web.dev/report?url=https://pxl.esin.net">PageSpeed Insights</a></li>
 					</ul>
 					<h2 id="setup">Setup</h2>
 					<h3 id="-build-from-source">📦 Build from Source</h3>
@@ -163,7 +162,7 @@
 					<p><strong>Note:</strong> On Windows, install <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a> or <a href="https://git-scm.com/download/win">Git for Windows</a> to work with tasks that depends on Node modules and shell commands. If you go with Git for Windows, <a href="https://pnpm.io/cli/run#script-shell">set</a> this configuration. <code>pnpm (or npm) config set script-shell &quot;C:\\Program Files\\git\\bin\\bash.exe&quot;</code></p>
 					<p>Open a terminal emulator (In Windows, right-click on start menu and select &quot;Windows PowerShell&quot; or in macOS, press <code>⌘+Space</code> and type &quot;Terminal.app&quot;) and follow commands below:</p>
 					<pre><code class="lang-sh"># Clone the repository <span class="hljs-keyword">and</span> change directory
-					git clone https://github.com/egeesin/pxl &amp;&amp; cd pxl
+					git clone https://github.com/pxl-theme/pxl &amp;&amp; cd pxl
 
 # Install local Node modules <span class="hljs-keyword">of</span> the repository
 					pnpm i # <span class="hljs-keyword">or</span> <span class="hljs-string">"npm i"</span>
@@ -188,13 +187,13 @@
 					<li>Install command: <code>pnpm i</code></li>
 					<li>Build directory: <code>dist</code></li>
 					</ul>
-					<p><a href="https://app.cloudcannon.com/register#sites/connect/github/egeesin/pxl"><img src="https://buttons.cloudcannon.com/deploy.svg" alt="Deploy to CloudCannon"></a>
+					<p><a href="https://app.cloudcannon.com/register#sites/connect/github/pxl-theme/pxl"><img src="https://buttons.cloudcannon.com/deploy.svg" alt="Deploy to CloudCannon"></a>
 					<a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fegeesin%2Fpxl"><img src="https://vercel.com/button" alt="Deploy with Vercel"></a>
-					<a href="https://app.netlify.com/start/deploy?repository=https://github.com/egeesin/pxl"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify Button"></a>
+					<a href="https://app.netlify.com/start/deploy?repository=https://github.com/pxl-theme/pxl"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify Button"></a>
 					<a href="https://developers.cloudflare.com/pages/framework-guides/deploy-an-eleventy-site/#deploy-with-cloudflare-pages">Deploy to Cloudflare Pages</a></p>
 					<h3 id="-download-build-artifact">🐙 Download Build Artifact</h3>
 					<ol>
-					<li>Select <a href="https://github.com/egeesin/pxl/actions"><strong>Actions</strong></a> tab in main <a href="https://github.com/egeesin/pxl">repository</a> page.</li>
+					<li>Select <a href="https://github.com/pxl-theme/pxl/actions"><strong>Actions</strong></a> tab in main <a href="https://github.com/pxl-theme/pxl">repository</a> page.</li>
 					<li>Find and click on the latest successful workflow run with the green checkmark at the top of the list.</li>
 					<li>Scroll to the bottom and download build artifacts (<code>dist/</code>).</li>
 					</ol>
@@ -219,7 +218,7 @@
 					</ul>
 					<h3 id="-theme-modification">🎨 Theme Modification</h3>
 					<ul>
-					<li>[ ] Discover modifications as seen in <a href="https://pxl.egeesin.com/plain/">here</a>.</li>
+					<li>[ ] Discover modifications as seen in <a href="https://pxl.esin.net/plain/">here</a>.</li>
 					<li>[ ] Edit <code>html_classes</code> and <code>body_classes</code> part in <code>view/_data/site.json</code> according to your likings.</li>
 					<li>[ ] (Optional) Use front matter keys such as <code>append_html_class</code> or <code>append_body_class</code> to force theme modification per page.</li>
 					<li>[ ] More steps coming soon…</li>

@@ -1,8 +1,8 @@
-# pxl [![Build](https://github.com/egeesin/pxl/actions/workflows/build.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/build.yml) [![Deploy to GH Pages](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/egeesin/pxl/actions/workflows/deploy-gh-pages.yml) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/egeesin/pxl) <img class=left src=static/asset/logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
+# pxl [![Build](https://github.com/pxl-theme/pxl/actions/workflows/build.yml/badge.svg)](https://github.com/pxl-theme/pxl/actions/workflows/build.yml) [![Deploy to GH Pages](https://github.com/pxl-theme/pxl/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/pxl-theme/pxl/actions/workflows/deploy-gh-pages.yml) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/pxl-theme/pxl) <img class=left src=static/asset/logo.gif width=71px align=right alt="Pixelated logo with flashy written letters 'pxl'." />
 > 👾 An adjustable framework-ish static site theme with sensible defaults and nice looks. *(ˈpik-səl)*
 <img class=center src=static/screenshot.webp alt="A screenshot of the static site theme previewing multiple color schemes in both dark and light mode." />
 
-English 🇬🇧 | [Türkçe 🇹🇷](https://github.com/egeesin/pxl/blob/main/README.tr.md)
+English 🇬🇧 | [Türkçe 🇹🇷](https://github.com/pxl-theme/pxl/blob/main/README.tr.md)
 
 **Note:** This project is under heavy development, markup structure are subject to change till first major version bump. Expect to changes may break styles/scripts between version tags. Use it only if you know what you're doing.
 
@@ -14,8 +14,7 @@ English 🇬🇧 | [Türkçe 🇹🇷](https://github.com/egeesin/pxl/blob/main/
 	- Layout Primitives from [*Every Layout*](https://every-layout.dev)
 - 🎈 [11ty](https://11ty.dev)-compatible templates written in Liquid [template language](https://shopify.dev/docs/api/liquid#what_is_a_template_language)
 	- Plain version of templates are processed by [PostHTML](https://github.com/posthtml/posthtml#readme) and compatible plugins
-- 🌗 Light and dark mode support
-	- Auto selects based on system preference first, lets you toggle theme with [drkmd.js](https://github.com/BetaHuhn/drkmd.js#readme)
+- 🌗 System theme by default
 	- Each mode has their own color scheme preference like [Solarized](https://github.com/altercation/solarized#readme), [Gruvbox](https://github.com/morhetz/gruvbox), [One Dark UI](https://github.com/atom/one-dark-ui#readme)…
 	- Each color scheme has different shades and tones of layers and 6 + 2 hues that is converted and edited from [Tinted Theming](https://github.com/tinted-theming/schemes) base16 schemes
 - 🎛 Objects and components with lots of style modifiers
@@ -27,8 +26,8 @@ English 🇬🇧 | [Türkçe 🇹🇷](https://github.com/egeesin/pxl/blob/main/
 - ⚡️ Local, live and minimal dev server from [11ty](https://www.11ty.dev/docs/watch-serve/#eleventy-dev-server)
 
 ## Demos
-- [GitHub Pages](https://pxl.egeesin.com)
-- [PageSpeed Insights](https://pagespeed.web.dev/report?url=https://pxl.egeesin.com)
+- [GitHub Pages](https://pxl.esin.net)
+- [PageSpeed Insights](https://pagespeed.web.dev/report?url=https://pxl.esin.net)
 
 ## Setup
 
@@ -44,7 +43,7 @@ Open a terminal emulator (In Windows, right-click on start menu and select "Wind
 
 ```sh
 # Clone the repository and change directory
-git clone https://github.com/egeesin/pxl && cd pxl
+git clone https://github.com/pxl-theme/pxl && cd pxl
 
 # Install local Node modules of the repository
 pnpm i
@@ -67,13 +66,13 @@ pnpm start
 - Install command: `pnpm i`
 - Build directory: `dist`
 
-[![Deploy to CloudCannon](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/egeesin/pxl)
+[![Deploy to CloudCannon](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/pxl-theme/pxl)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fegeesin%2Fpxl)
-[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/egeesin/pxl)
+[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/pxl-theme/pxl)
 [Deploy to Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-an-eleventy-site/#deploy-with-cloudflare-pages)
 
 ### 🐙 Download Build Artifact
-1. Select [**Actions**](https://github.com/egeesin/pxl/actions) tab in main [repository](https://github.com/egeesin/pxl) page.
+1. Select [**Actions**](https://github.com/pxl-theme/pxl/actions) tab in main [repository](https://github.com/pxl-theme/pxl) page.
 2. Find and click on the latest successful workflow run with the green checkmark at the top of the list.
 3. Scroll to the bottom and download build artifacts (`dist/`).
 
@@ -96,7 +95,7 @@ After you've cloned/forked this project in *Setup* section, follow the steps bel
 - [ ] More steps coming soon…
 
 ### 🎨 Theme Modification
-- [ ] Discover modifications as seen in [here](https://pxl.egeesin.com/plain/).
+- [ ] Discover modifications as seen in [here](https://pxl.esin.net/plain/).
 - [ ] Edit `html_classes` and `body_classes` part in `view/_data/site.json` according to your likings.
 - [ ] (Optional) Use front matter keys such as `append_html_class` or `append_body_class` to force theme modification per page.
 - [ ] More steps coming soon…

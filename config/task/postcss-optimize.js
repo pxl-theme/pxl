@@ -5,12 +5,17 @@ import postcss from 'postcss';
 import lightningcss from 'postcss-lightningcss';
 
 // Input and output directories
-const inputDir = 'tmp/static/style/';
-const outputDir = 'dist/static/style/';
+const inputDir = path.resolve('tmp/static/style/');
+const outputDir = path.resolve('dist/static/style/');
+
+// Process all CSS files in the input directory
+// const inputFiles = glob.sync(path.join(inputDir, '**/*.css'));
+const inputFiles = glob.sync(`${inputDir.replace(/\\/g, '/')}/**/*.css`);
 
 // Function to process CSS files
 async function processCSS(filePath) {
 	const cssContent = fs.readFileSync(filePath, 'utf8');
+
 	// PostCSS plugins
 	const plugins = [
 		lightningcss({
@@ -27,7 +32,8 @@ async function processCSS(filePath) {
 	];
 
 	// Process CSS using PostCSS
-	const result = await postcss(plugins).process(cssContent, { from: filePath });
+	const result = await postcss(plugins).process(cssContent, { from: filePath })
+		.catch(err => console.error('PostCSS Error:', err));
 
 	// Write processed CSS to the output directory with the same subdirectory structure
 	const relativePath = path.relative(inputDir, filePath);
@@ -38,11 +44,14 @@ async function processCSS(filePath) {
 	fs.writeFileSync(outputPath, result.css);
 }
 
-// Process all CSS files in the input directory
-const inputFiles = glob.sync(path.join(inputDir, '**/*.css'));
+// console.log('Resolved Input Directory:', inputDir);
+// console.log('Resolved Output Directory:', outputDir);
+// console.log('Found Files:', inputFiles);
 
-inputFiles.forEach(async (filePath) => {
+// inputFiles.forEach(async (filePath) => {
+for (const filePath of inputFiles) {
 	await processCSS(filePath);
-});
+}
+// });
 
-console.log('CSS minification complete.');
+console.log('CSS files are optimized.');

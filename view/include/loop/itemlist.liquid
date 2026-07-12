@@ -1,0 +1,123 @@
+<!-- Load if masonry layout is present -->
+{%- assign current_page = pagination.pageNumber | plus: 1 -%}
+{%- assign total_page = item_count | divided_by: pagination.size | ceil -%}
+{% if view == "masonry" %}<script src="{{ "/static/script/_vendor/colcade.js" | url }}"></script>{% endif %}
+{%- if pagination.pageNumber > 0 -%}
+  <p style="display: block; text-align: center; margin-inline: auto">
+    <small><i>{{ translation[lang].pageLabel }} {{ pagination.pageNumber | plus:1 }}</i></small>
+    {% comment %} <small><i>Page {{ pagination.pageNumber | plus:1 }} of {{ collections.blog.size | divided_by:pagination.size | ceil }}</i></small> {% endcomment %}
+  </p>
+{%- endif -%}
+<main
+	id=content
+	class="js-loop s-cmsContent {% if view == "masonry" %}o-rustygrid -viewMasonry{% else %}o-stack{% endif %}"
+	aria-label=Content
+	{% if paging == "continuous" %}data-path="{{ page.url }}"
+	{% comment %} {% if paging == "continuous" %}data-path="{{ page.url | paginatorLink }}" {% endcomment %}
+	data-paginator-current="{{ current_page }}"
+	data-paginator-total="{{ total_page }}"{% endif %}>
+	{%- comment -%} {%- if current_page == 1 -%}<p>Stuff for the first page</p>{%-endif -%} {%- endcomment -%}
+	{%- if view == "masonry" -%}
+	<div class=js-loop__inner>
+		<div class="o-rustygrid__masonryCol"></div>
+		<div class="o-rustygrid__masonryCol"></div>
+		<div class="o-rustygrid__masonryCol"></div>
+		<div class="o-rustygrid__masonryCol"></div>
+	{%- endif -%}
+	{%- if item_count > 0 -%}
+		{%- for item in pagination.items -%}
+			{%- include 'loop/item', item:item -%}
+			{% comment %} {%- if forloop.first == true -%} {% endcomment %}
+			{% comment %} {%- elsif forloop.last == true -%} {% endcomment %}
+			{% comment %} {%- else -%} {% endcomment %}
+			{% comment %} {%- endif -%} {% endcomment %}
+		{%- endfor -%}
+		{%- comment -%} {%- include 'item/{{ items_component | default: item.data.layout }}' -%}  {%- endcomment -%}
+	{%- else -%}
+		<div class="o-box -viewCard -alignCenter">
+			<p>No posts here yet…</p>
+		</div>
+	{%- endif -%}
+	{%- comment -%}
+	End of masonry wrapper {%- endcomment -%}
+	{%- if view == "masonry" %}</div>{% endif -%}
+	{%- comment %}{%- if current_page == total_page -%}<p>Stuff for the last page</p>{%-endif -%}{% endcomment -%}
+	{%- if current_page == total_page -%}
+	<div class="js-loop__item o-box -viewCard {% if view == "masonry" %}-alignCenter{% else %}o-center{% endif %}">
+    <h2 style="text-align:center">
+      <svg class="pi -size2x" viewBox="0 0 18 18" width=18px>
+        <use href=/pi.svg#dir-valid></use>
+      </svg><br>{{ translation[lang].endOfPosts }}</h2>
+		{% comment %} <ul> {% endcomment %}
+		{% comment %} 	<li>Page: {{ current_page }} of {{ total_page }}</li> {% endcomment %}
+		{% comment %} 	<li>Data: {{ pagination.data }}</li> {% endcomment %}
+		{% comment %} 	<li>Pagination Size: {{ pagination.size }}</li> {% endcomment %}
+		{% comment %} 	<li>Item Count: {{ item_count }}</li> {% endcomment %}
+		{% comment %} </ul> {% endcomment %}
+	</div>
+	{%- endif -%}
+</main>
+{%- comment -%}
+If container has more than one page and isn't the last page, show "Load More…" button. {%- endcomment -%}
+{%- if paging == "continuous" and item_count > pagination.size and current_page != total_page -%}
+	<button title="{{ translation[lang].paginationContinuousLoadDescription }}"
+			itemprop=pagination
+			class="js-loop__loadButton js-paginator o-center"
+			style=position:relative><b>{{ translation[lang].paginationContinuousLoad }}</b></button>
+{%- endif -%}
+{%- if paging != "continuous" and total_page > 1 %}
+	<nav aria-labelledby="pagination" class="t-modRoot -borderValNone -cornerInherit -stylesetAcetate">
+		<ul class="c-nav -alignCenter -flowHorizontal -typeFlyout">
+			{%- if page.url != pagination.href.first %}
+			<li class="c-nav__item -viewIconOnly">
+				<a class="c-nav__anchor" href="{{ pagination.href.first }}" rel="first">
+					<svg class=pi viewBox='0 0 18 18' width=18px>
+						<use href='/pi.svg#arrow-to-left-double'></use>
+					</svg><span>{{ translation[lang].paginationNewest }}</span>
+				</a>
+			</li>
+			{%- endif %}
+			{%- if pagination.href.previous and pagination.href.previous != pagination.href.first %}
+			<li class="c-nav__item -viewIconOnly">
+				<a class="c-nav__anchor" href="{{ pagination.href.previous }}" rel="prev">
+					<svg class=pi viewBox='0 0 18 18' width=18px>
+						<use href='/pi.svg#arrow-to-left'></use>
+					</svg><span>{{ translation[lang].paginationNewer }}</span>
+				</a>
+			</li>
+			<li class="c-nav__separator"></li>
+			{%- endif %}
+			{%- for pageEntry in pagination.pages %}
+				<li class="c-nav__item"{% if page.url == pagination.hrefs[ forloop.index0 ] %} aria-current="page"{% endif %}>
+					<a class="c-nav__anchor" href="{{ pagination.hrefs[ forloop.index0 ] }}">{{ forloop.index }}</a>
+				</li>
+			{%- endfor %}
+			{%- if pagination.href.next and pagination.href.next != pagination.href.last %}
+			<li class="c-nav__separator"></li>
+			<li class="c-nav__item -leanEnd -viewIconOnly">
+				<a class="c-nav__anchor" href="{{ pagination.href.next }}" rel="next">
+					<svg class=pi viewBox='0 0 18 18' width=18px>
+						<use href='/pi.svg#arrow-to-right'></use>
+					</svg><span>{{ translation[lang].paginationOlder }}</span>
+				</a>
+			</li>
+			{%- endif %}
+			{%- if page.url != pagination.href.last -%}
+			<li class="c-nav__item -leanEnd -viewIconOnly">
+				<a class="c-nav__anchor" href="{{ pagination.href.last }}" rel="last">
+					<svg class=pi viewBox='0 0 18 18' width=18px>
+						<use href='/pi.svg#arrow-to-right-double'></use>
+					</svg><span>{{ translation[lang].paginationOldest }}</span>
+				</a>
+			</li>
+			{%- else -%}
+			<li class="c-nav__separator"></li>
+			<li class="c-nav__item">
+				<a class="c-nav__anchor" href="/all/"> <svg width="18" class="pi" viewBox="0 0 18 18">
+						<use href="/pi.svg#place-library"></use>
+					</svg><span>{{ translation[lang].paginationArchive }}</span></a>
+			</li>
+			{%- endif -%}
+		</ul>
+	</nav>
+{%- endif %}

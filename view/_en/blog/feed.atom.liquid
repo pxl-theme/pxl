@@ -1,0 +1,41 @@
+---
+permalink: "/{{ lang }}/blog/feed.atom.xml"
+eleventyExcludeFromCollections: ["post"]
+---
+{%- comment %} Validate here: https://validator.w3.org/feed/ {% endcomment -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/{{ lang }}/feed.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ site.lang }}" xml:base="{{ site.baseurl }}/{{lang }}">
+	<title>{{ site.title }}{{ translation[lang].feedTitleAppend}}</title>
+	{%- if site.description != empty %}<subtitle>{{ site.description }}</subtitle>{% endif -%}
+	<link href="{{ permalink | prepend: site.baseurl }}" rel="self" />
+	<link href="{{ site.baseurl }}/{{ lang }}" />
+	<updated>{{ collections.blog | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+	<id>{{ site.baseurl }}/{{ lang }}</id>
+	<author>
+		<name>{{ site.author }}</name>
+		<email>{{ people[site.author].links.email.handle }}</email>
+	</author>
+	{%- for item in collections.blog limit: 10 %}<entry>
+		<title>{{ item.data.title }}</title>
+		<link href="{{ item.url | prepend: site.baseurl | clearIndex }}" />
+		<updated>{{ item.date | dateToRfc3339 }}</updated>
+		<id>{{ item.url | prepend: site.baseurl | clearIndex }}</id>
+		{%- comment %} {%- if item.content != empty %}<content  xml:lang="{{ site.lang }}" type="html" {% endcomment -%}
+			{%- if item.templateContent != empty %}<content type="html">
+				{%- unless item.data.modifications.showExcerptInItemlist == false -%}
+					{%- if item.templateContent contains '<!--more-->' -%}
+						{{- item.templateContent | split:'<!--more-->' | first | renderTransforms: item.data.page, site.baseurl | escape | strip -}}
+					{%- else -%}
+						{{- item | truncateContent | renderTransforms: item.data.page, site.baseurl | escape | strip -}}
+					{%- endif -%}
+				{%- endunless -%}
+				{%- comment %} 
+				{{- item.templateContent | renderTransforms: item.data.page, site.baseurl | escape | strip -}}
+				{%- if item.data.photos -%}
+					{%- include 'photos' with item.data.photos image_class: 'u-photo' -%}
+				{%- endif -%}
+				{%- endcomment -%}
+			</content>{% endif -%}
+	</entry>{% endfor -%}
+</feed>

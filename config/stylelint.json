@@ -1,4 +1,5 @@
 {
+	"$schema": "https://json.schemastore.org/stylelintrc.json",
 	"extends": "stylelint-config-recommended",
 	"rules": {
 		"no-duplicate-selectors": null,
@@ -9,6 +10,7 @@
 		"function-no-unknown": null,
 		"selector-type-no-unknown": null,
 		"media-feature-name-no-unknown": null,
-		"unit-no-unknown": null
+		"unit-no-unknown": null,
+		"declaration-property-value-no-unknown": null
 	}
 }

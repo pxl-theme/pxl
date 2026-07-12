@@ -6,7 +6,9 @@
 	scroll-snap-type: y mandatory; /* opinionated */
 	&.--horizontal{
 		scroll-snap-type: x mandatory;
-		max-height:auto;
+		/* max-height: auto; */
+		/* ✖  Unexpected unknown value "auto" for property "max-height" (declaration-property-value-no-unknown) */
+		max-height: unset;
 		.c-frame{
 			float: left;
 		}

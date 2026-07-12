@@ -1,0 +1,22 @@
+---
+layout: base
+modifications:
+  appendRootClass: "-stylesetAcetate -borderValNone"
+  compactHeader: false
+  showTitleInNav: false
+  forceDarkHeader: true
+---
+<main id=content class=s-cmsContent aria-label=Content itemprop=mainContentOfPage>
+	{%- comment %}This markup supports HAtom schema: https://microformats.org/wiki/hatom#Schema{% endcomment -%}
+	<article class="o-box -viewCard o-center hentry" itemscope itemtype="https://schema.org/BlogPosting" data-pagefind-body>
+		<hgroup class=c-header>
+			{%- if title != nil and customHeaderTitle == nil and modifications.compactHeader == true -%}
+				<h1 class="o-box__title entry-title">{{ title | escape }}</h1>
+			{%- endif -%}
+		</hgroup>
+		<section class="entry-content" itemprop=articleBody>
+		{{ content }}
+		</section>
+		<a class=url itemprop=url href="{{ page.url | prepend: site.baseurl }}" hidden></a>
+	</section>
+</main>

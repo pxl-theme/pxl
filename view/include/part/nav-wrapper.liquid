@@ -1,0 +1,152 @@
+{% assign localized_page_url = page.url | locale_url %}
+<nav class="c-nav__wrapper u-clearFix u-hidden@print" aria-label=Main style="display:grid;
+						grid-template-columns: auto auto;
+						align-items:start;
+						max-inline-size: var(--maxContainerWidth);
+						margin-inline: auto;
+						">
+	<menu class="c-nav -typeFlyout -flowHorizontal -alignStart u-hidden@lap" role=tree>
+		<li class="c-nav__item" role=treeitem>
+			<label class=c-nav__anchor for={{ toggleNavID }} onclick>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#general-list>
+				</svg><span>{{ translation[lang].menuLabel }}</span>
+			</label>
+		</li>
+	</menu>
+	<input id={{ toggleNavID }} type=checkbox>
+	<!--Don't add any element between <input#toggleNav> and <ul.c-nav> for expandable menu to function.-->
+	<ul class="c-nav {% if navResponsive == true %}-responsive {% endif %}{{ navClass }}">
+		<li class="c-nav__item u-hidden@lap" role=treeitem>
+			<label class=c-nav__anchor for={{ toggleNavID }} onclick>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#list-to-left>
+				</svg><span>{{ translation[lang].menuHideLabel }}</span>
+			</label>
+		</li>
+		{%- if modifications.compactHeader == true -%}
+		<li class="c-nav__item" role=treeitem>
+			<a class="c-nav__anchor" href={{ '/' | locale_url }} alt="" title="{{ translation[lang].homeDescription }}"
+				aria-label="{{ translation[lang].homeLabel }}">
+				{%- if site.favicon.webp192 -%}
+				<img eleventy:ignore src='{{ site.favicon.webp192 }}' alt='' height=32px {%- else -%} <svg class="pi"
+					viewBox='0 0 18 18' width="2rem">
+				<use href='/pi.svg#house'></use>
+				</svg {% comment %} {%- endif -%}><b>{{ site.title }}</b> {% endcomment %}
+				{% comment %} {%- endif -%}><b
+					style="font:normal 700 1em var(--fontHeading);letter-spacing:-1.25px;">{{
+					site.pwa.titleShort }}</b> {% endcomment %}
+				{%- endif -%}><b style="font:normal 700 1em var(--fontHeading);letter-spacing:-.5px;">{{ site.pwa.titleShort
+					}}</b>
+			</a>
+		</li>
+		{%- endif -%}
+		{% include 'part/nav-item'
+		navSource: nav[lang].primary %}
+	</ul>
+	{%- if nav[lang].secondary -%}
+	<ul class="c-nav -typeFlyout -flowHorizontal -alignEnd">
+		{% include 'part/nav-item'
+		navSource: nav[lang].secondary %}
+		<!-- Nav Item Appends -->
+		{%- if modifications.showContactInMainNav -%}
+		<li class="c-nav__item -leanEnd" role=treeitem>
+			<a class=c-nav__anchor aria-expanded=false href=#!>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#symbol-at>
+					</use>
+				</svg><span>{{ translation[lang].contactLabel }}</span>
+			</a>
+			{%- assign selectedItems = people[site.author].links -%}
+			{%- for link in selectedItems -%}
+			{% comment %} {%- if forloop.first %}<ul class="c-nav__submenu -viewStack" role=group>{% endif -%} {% endcomment
+				%}
+				{%- if forloop.first %}<ul class=c-nav__submenu role=group>{% endif -%}
+					{%- if link[1].tag contains "contact" -%}
+					<li class="c-nav__item -leanEnd" role=treeitem>
+						<a class=c-nav__anchor href="{{ link[1].url }}">
+							<svg class=pi viewBox="0 0 18 18" width=18px>
+								<use href=/pi.svg#{{ link[1].icon }}></use>
+							</svg><span>{% unless lang == tr and link[1].label-tr != empty %}{{ link[1].label }}{% else %}{{
+								link[1].label-tr }}{% endunless %}</span></a>
+					</li>
+					{%- endif -%}
+					{%- if forloop.last -%}
+					{%- comment %}
+					<li class="c-nav__item -leanEnd" role=treeitem>
+						<a class=c-nav__anchor {% unless lang=="tr" %}href="/en/verify/" hreflang="en"
+							alt="Double-check my online presence." {% else %}href="/tr/verify/" hreflang="tr"
+							alt="Çevrimiçi varlığımı bir daha kontrol et." {% endunless %}>
+							<svg class=pi viewBox="0 0 18 18" width=18px>
+								<use href=/pi.svg#paper-valid></use>
+							</svg><span>{{ translation[lang].verifyLabel }}</span>
+						</a>
+					</li>
+					{%- endcomment %}
+					<li class="c-nav__item -leanEnd" role=treeitem>
+						<a class=c-nav__anchor {% unless lang=="tr" %}href="/en/contact/" hreflang="en"
+							alt="More contact information…" {% else %}href="/tr/contact/" hreflang="tr"
+							alt="Daha fazla iletişim bilgisi…" {% endunless %}>
+							<svg class=pi viewBox="0 0 18 18" width=18px>
+								<use href=/pi.svg#sign-info></use>
+							</svg><span>{{ translation[lang].moreContactLabel }}</span>
+						</a>
+					</li>
+				</ul>
+				{%- endif -%}
+				{%- endfor -%}
+		</li>
+		{%- endif -%}
+		{%- if modifications.showLanguageInMainNav -%}
+		<li class="c-nav__item -viewIconOnly -leanEnd" role=treeitem>
+			<a class=c-nav__anchor aria-expanded=false href=#!>
+				<svg class=pi viewBox="0 0 18 18" width=18px>
+					<use href=/pi.svg#general-globe>
+					</use>
+				</svg><span>{{ translation[lang].languageLabel }}{% if langCount > 1 %}<small>&nbsp;({{ langCount }}×)</small>{%
+					endif %}</span>
+			</a>
+			{%-
+			# Forked from Jérôme Coupé's language switcher
+			# Source: https://www.webstoemp.com/blog/multilingual-sites-eleventy/
+			-%}
+			{%- for lgg in translation -%}
+			{%- if forloop.first %}<ul class=c-nav__submenu role=group>{% endif -%}
+				{%- assign translatedURL = lgg[0] | prepend: "/" | append: "/" -%}
+				{%- assign noTranslation = true -%}
+				{% comment %} {%- for item in collections.all -%} {% endcomment %}
+
+				{%- assign mltlingualCollections = collections.page | concat: collections.post -%}
+				{%- comment -%} {%- assign mltlingualCollections = collections.page -%} {%- endcomment -%}
+				{% comment %} {%- for item in collections.page -%} {% endcomment %}
+				{%- for item in mltlingualCollections -%}
+					{% comment %} {%- if item.fileSlug == page.fileSlug and item.data.lang == lgg[0] -%} {% endcomment %}
+					{%- if item.data.translationKey == translationKey and item.data.lang == lgg[0] -%}
+						{%- assign translatedURL = item.url -%}
+						{%- assign noTranslation = false -%}
+					{%- endif -%}
+				{%- endfor -%}
+				<li class=c-nav__item role=treeitem {% if lgg[0]==lang %}aria-current="page" {% endif %}>
+					<a class=c-nav__anchor hreflang="{{ lgg[0] }}" href="{{ translatedURL }}">
+						<svg class=pi viewBox="0 0 18 18" width=18px>
+							<use href=/pi.svg#{{ translation[lgg[0]].languageIcon }}></use>
+						</svg><span>{{ translation[lgg[0]].label }}{% if noTranslation == true %} - {{ translation[lgg[0]].homeLabel }}{%
+							endif %}</span></a>
+				</li>
+				{%- comment -%} <span>lgg[0] = {{lgg[0]}}</span><br><span>lang = {{lang}}</span><br><span>noTranslation: {{ noTranslation }}</span> {%- endcomment -%}
+				{% if noTranslation == true and lgg[0] != lang %}
+				<li class=c-nav__item role=treeitem>
+					<a class=c-nav__anchor href="https://translate.google.com/translate?tl={{ lgg[0] }}&u={{ site.baseurl }}{{ page.url }}">
+						<svg class=pi viewBox="0 0 18 18" width=18px>
+							<use href=/pi.svg#{{ translation[lgg[0]].languageIcon }}></use>
+						</svg><span>{{ translation[lgg[0]].label }} - {{ translation[lgg[0]].machineTranslationLabel }}</span></a>
+				</li>
+				{% endif %}
+				{% if forloop.last %}
+			</ul>{% endif %}
+			{% endfor %}
+		</li>
+		{%- endif -%}
+	</ul>
+	{%- endif -%}
+</nav>

@@ -1,0 +1,21 @@
+---
+layout: base
+tags: page
+eleventyExcludeFromCollections: ["post"]
+description: "Kişisel ve mesleki yazıların ortaya karışık zaman çizelgesi."
+priority: 1.0
+changefreq: yearly
+eleventyImport:
+  collections: ["günlük"]
+pagination:
+  data: collections.günlük
+  size: 12
+permalink: "/{{ lang }}/blog/{% if pagination.pageNumber > 0 %}p/{{ pagination.pageNumber | plus:1 }}{% else %}index{% endif %}.html"
+eleventyComputed:
+  title: Ağ Günlüğü{% if pagination.pageNumber > 0 %} ({{ pagination.pageNumber | plus:1 }}. syf.){% endif %}
+  translationKey: "blog{% if pagination.pageNumber > 0 %}-page{{ pagination.pageNumber | plus:1 }}{% endif %}"
+---
+{%- include 'loop/itemlist'
+  item_count: collections.günlük.size
+  view: "masonry"
+-%}

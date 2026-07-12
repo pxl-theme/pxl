@@ -7,12 +7,11 @@ import getGravatar from 'get-gravatar';
 
 // Favicon maker: https://www.favicon.cc/
 	//
-// Order of input favicon files to check inside inputDir 
+// Order of input favicon files to check inside inputDir
 const inputDir = 'static/';
-// const gravatarEmail = 'info@example.com';
+const gravatarEmail = 'USERNAME@gmail.com';
 const favIn = [
 		'favicon.svg',
-		'favicon.jxl',
 		'favicon.jxl',
 		'favicon.webp',
 		'favicon.png',

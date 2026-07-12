@@ -1,0 +1,186 @@
+<!DOCTYPE html><html
+	lang="{{ lang }}"
+	dir="{{ translation[lang].dir | default: "ltr"}}"
+	class="{{ modifications.rootClasses }} {{ modifications.appendRootClass }}"
+	prefix="og: http://ogp.me/ns#"
+	data-theme=dark>
+	<head>
+		<!--🥇 Essentials-->
+		<meta charset="utf-8">
+
+		<!--📱 Changes the logical window size used when displaying a page on iOS.
+			https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html#//apple_ref/doc/uid/TP40008193-SW6 -->
+		<meta content='width=device-width, initial-scale=1, viewport-fit=cover' name=viewport>
+
+		<!--📣 Page Title -->
+		{%- capture descriptionBlock %}{%- if summary -%}{{- summary | markdownify | strip_html | strip_newlines | strip -}} {%- elsif description %}{{- description -}}{%- endif -%}{%- endcapture -%}
+
+		<title>{%- if type != 'homepage' -%}
+			{%- if title -%}{{- title | strip_html -}}{{- modifications.titleSeparator -}}{%- endif -%}
+		{%- endif -%}{{- site.title -}}</title>
+
+		<!--🎨 Cascading Style Sheets (CSS) -->
+		<link rel=stylesheet href="{{ "/static/style/index.css" | url }}">
+
+		<!--
+		Make sure the media breakpoints are synced with 
+		/static/style/abstract/00-mixin.css and /config/task/postcss-extract-mq.js 
+		-->
+		<link rel=stylesheet href="{{ "/static/style/index.mq-cur.css" | url }}" media="(pointer:fine)">
+		<link rel=stylesheet href="{{ "/static/style/index.mq-m.css" | url }}"  media="screen and (min-width:calc(calc(640/16)*1em))">
+		<link rel=stylesheet href="{{ "/static/style/index.mq-l.css" | url }}"  media="screen and (min-width:calc(calc(960/16)*1em))">
+		<link rel=stylesheet href="{{ "/static/style/index.mq-xl.css" | url }}" media="screen and (min-width:calc(calc(1600/16)*1em))">
+		<!-- <link rel=stylesheet href=/static/style/index.mq-dark.css media="(prefers-color-scheme:dark)"> -->
+
+		<!--🔧 Append arrow symbol to external links -->
+		<style>
+			@media screen {
+				a:link:is([href^="//"],[href^="http://"],[href^="https://"],[rel*="external"]):not([href^="{{ url }}"]):not(:has(img,video,svg,picture),[target=_blank]):after{
+					content: "↗";
+					font-family: sans-serif;
+					font-weight: 900;
+					display: inline-block;
+					text-decoration-line: none;
+					opacity:.66;
+				}
+			}
+		</style>
+
+		<!--⌚ Do not alter viewport in Apple Watch -->
+		<meta name=disabled-adaptations content=watch>
+
+		<!--📣 Description, URL -->
+
+		<meta name="description" content="{{- descriptionBlock -}}">
+		<link rel="canonical" href="{{ site.baseurl }}{{ page.url | escape }}">
+
+		<!--🎯 SEO (OpenGraph, Twitter) Meta Tags for Embed View
+			https://ogp.me/
+			https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started -->
+		<meta property=og:type content="{% case page.data.type -%}
+			{%- when "video" %}video.other
+			{%- when "music" %}music.song
+			{%- when "profile" %}profile
+			{%- when "book" %}book
+			{%- else -%}website{%- endcase %}">
+
+		<meta property=og:site_name content ="{{ site.title }}">
+		<meta property=og:title content="{{ title | strip_html }}">
+		<meta property=og:description name=description content="{{ descriptionBlock }}">
+		<meta property=og:url content="{% if url %}{{ url }}{% else %}{{ page.url | url | clearIndex }}{% endif %}">
+		{%- if coverImage -%}
+			<meta name=twitter:card content=summary_large_image>
+			{%- comment -%}Use favicon image as fallback to social media embed preview.{%- endcomment -%}
+			<meta property=og:image content="{{ site.favicon.webp512 | url }}">
+		{%- else -%}
+			<meta property=og:image content="{{ site.favicon.webp512 | url }}">
+			<meta name=twitter:card content=summary>
+		{%- endif -%}
+		<meta name=twitter:site content="@{{ people[site.author].links.twitterx.handle | replace: '@', '' }}">
+		
+		<!--🤖 Robots.txt & Pinterest
+			https://www.robotstxt.org/robotstxt.html
+			https://help.pinterest.com/en/business/article/prevent-saves-to-pinterest-from-your-site -->
+		{%- if site.discourageSearchEngine == true -%}<meta name=robots content="noindex, nofollow">{% endif -%}
+		{%- if site.noPinterest == true -%}<meta name=pinterest content=nopin>{% endif -%}
+
+		<!--📰 RSS/Atom/JSON Feeds & Alternative Languages
+			https://www.rssboard.org/rss-specification#whatIsRss
+			https://validator.w3.org/feed/docs/atom.html#whatIsAtom
+			https://www.jsonfeed.org/
+			https://blog.jim-nielsen.com/2021/feed-urls/
+			https://blog.jim-nielsen.com/2021/automatically-discoverable-rss-feeds/ -->
+		{% assign langCount = 0 %}
+		{%- unless baseLite == true -%}
+			{% for lgg in translation %}
+				{% assign translatedURL = lgg[0] | prepend: "/" | append: "/" %}
+				{% for item in collections.all %}
+					{% if item.fileSlug == page.fileSlug and item.data.lang == lgg[0] %}
+						{% assign translatedURL = item.url %}
+						{% assign langCount = langCount | plus: 1 %}
+					{% endif %}
+				{% endfor %}
+				<link rel=alternate hreflang={{ lgg[0] }} href="{{ site.baseurl }}{{ translatedURL }}">
+				<link rel=alternate type=application/atom+xml 
+					hreflang={{ lgg[0] }}
+					href=/{{ lgg[0] }}/blog/feed.atom.xml
+					title="{{ site.title }}{{ translation[lgg[0]].feedTitleAppend }}">
+			{% endfor %}
+		{%- endunless -%}
+		{%- comment -%}
+		<link rel=alternate type=application/json
+			href=/blog/feed.json
+			title="{{ site.title }} - JSON Feed">
+		<link rel=alternate type=application/rss+xml 
+			href=/blog/feed.rss.xml
+			title="{{ site.title }} - RSS Feed">
+		{%- endcomment -%}
+
+		<!-- Examples:
+		<link rel=alternate type=application/rss+xml 
+			href=/feed.rss.xml
+			title="Site - RSS Feed">
+		<link rel=alternate type=application/atom+xml 
+			href=/blog/article/feed.atom.xml
+			title="Article Feed">
+		<link rel=alternate type=application/atom+xml 
+			href=/blog/photo/feed.atom.xml 
+			title="Photo Feed">
+		-->
+
+		<!--🖼️ Favicon, PWA Icons and Manifest
+			https://en.wikipedia.org/wiki/Favicon
+			https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+			https://w3c.github.io/manifest/
+			https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs -->
+
+		{% if site.favicon.ico32 %}<link rel=icon href="{{ site.favicon.ico32 }}">{% endif %}
+		{% if site.favicon.webp192 %}<link rel=apple-touch-icon href="{{ site.favicon.webp180 }}">{% endif %}
+		<meta name="apple-mobile-web-app-title" content="{{ site.shortTitle | default: site.title }}">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		{% comment %} <link rel="apple-touch-startup-image" href="/launch.png"> {% endcomment %}
+		{% comment %} <meta name=msapplication-square70x70logo content="{{ site.favicon.webp70 }}"> {% endcomment %}
+		<link rel=manifest href=/app.webmanifest>
+
+		<!--🌗 Dark/Light Theme -->
+		<meta name=color-scheme content="dark light">
+		<meta name=theme-color media="(prefers-color-scheme: dark)" content={{ site.pwa.colorBgDark }}>
+		<meta name=theme-color media="(prefers-color-scheme: light)" content={{ site.pwa.colorBgLight }}>
+
+		<!--🌗 Disable Dark Reader by default 
+			https://github.com/darkreader/darkreader/blob/main/CONTRIBUTING.md#disabling-dark-reader-on-your-site -->
+		<meta name=darkreader-lock>
+
+		<!--🌎 IndieWeb -->
+		{%- assign selectedItems = people[site.author].links -%}
+		{%- for link in selectedItems -%}
+			{%- if link[1].relMeAuth == true -%}
+			<link rel=me href="{{ link[1].url }}">
+			{%- endif -%}
+		{%- endfor -%}
+		{%- if site.indieweb.pingback %}<link rel=pingback href="{{ site.indieweb.pingback }}">{% endif -%}
+		{%- if site.indieweb.webmention %}<link rel=webmention href="{{ site.indieweb.webmention }}">{% endif -%}
+		{%- if site.indieweb.tokenEndpoint %}<link rel=token_endpoint href="{{ site.indieweb.tokenEndpoint }}">{% endif -%}
+		{%- if site.indieweb.authEndpoint %}<link rel=authorization_endpoint href="{{ site.indieweb.authEndpoint }}">{% endif -%}
+
+		<!--🔡 Misc -->
+		<meta name=generator type="{{ eleventy.generator }}">
+		{%- if people[site.author].links.mastodon.handle %}<meta name="fediverse:creator" content="{{ people[site.author].links.mastodon.handle }}">{% endif -%}
+		<!-- Make sure to include your website domain at <YOUR-MASTODON-INSTANCE>/settings/verification -->
+		{% comment %} <meta name="fb:page_id" content="{{ people[site.author].facebook.fbpageid }}" /> {% endcomment %}
+	</head>
+	<body class="js-preload _stickyFooter o-stack {{ modifications.bodyClasses }} {{ modifications.appendBodyClass }}" data-type="{{ type }}" itemscope itemtype="https://schema.org/WebPage">
+  {% comment %}<h1>File Slug: {{ page.fileSlug }}</h1>{% endcomment %}
+  {%- comment -%} <h1>Translation Key: {{ translationKey }}</h1> {%- endcomment -%}
+		{%- include "part/screen-reader-notice" -%}
+		<!--🙂 Page Header & Navigation -->
+		{%- include "part/header" -%}
+		<!--🫀 Main Content -->
+		{{- content -}}
+		<!--🦶 Page Footer -->
+		{%- include "part/extra-background" -%}
+		{%- include "part/footer" -%}
+		{%- include "part/script" -%}
+	</body>
+</html>

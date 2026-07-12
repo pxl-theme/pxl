@@ -1,0 +1,27 @@
+---
+layout: page
+tags: page
+eleventyExcludeFromCollections: ["now"]
+title: "What I'm Doing Now?"
+translationKey: "now"
+description: "What I did recently."
+priority: 1.0
+changefreq: never
+customHeaderTitle: Now
+permalink: "/{{ lang }}/now/index.html"
+eleventyImport:
+  collections: ["now"]
+---
+{%- assign rightNow = collections.now | reverse -%}
+{%- for item in rightNow limit: 1 -%}
+	{{ item.templateContent }}
+	<hr>
+	<p>Last updated <a href="{{ item.url }}"><relative-time
+		class=published
+		itemprop=datePublished
+		prefix=""
+		title="{{ item.date | localDateTimeHuge }}"
+		datetime="{{ item.date | dateInISO }}">
+		{{- item.date | localDateMed -}}
+		</relative-time></a> &bull; <a href="/tag/now/">Previous Entries</a> &bull; <a href="//nownownow.com/about">About "Now"</a></p>
+{%- endfor -%}

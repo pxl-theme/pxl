@@ -1,10 +1,17 @@
 root = true
 
 [*]
-end_of_line = lf
 insert_final_newline = true
+end_of_line = lf
+charset = utf-8
+
+[*.js]
 indent_style = tab
-indent_size = 4
+indent_size = 2
+
+[*.json]
+indent_style = tab
+indent_size = 2
 
 [*.svg]
 insert_final_newline = false
@@ -13,4 +20,4 @@ insert_final_newline = false
 insert_final_newline = false
 
 [*.yml]
-indent_style = "space"
+indent_style = space

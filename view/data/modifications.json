@@ -1,0 +1,13 @@
+{
+	"titleSeparator": " - ",
+	"rootClasses": "t-color t-modRoot -borderColorBack -borderValNormal -borderStyleOutset -embossSmooth -cornerRoundedMax -shadowTypeSmooth",
+	"bodyClasses": "t-modBody",
+	"appendRootClass": "",
+	"appendBodyClass": "",
+	"showTitleInNav": true,
+	"compactHeader": false,
+	"forceDarkHeader": true,
+	"showThemeSwitcher": true,
+	"showContactInMainNav": true,
+	"showLanguageInMainNav": false
+}

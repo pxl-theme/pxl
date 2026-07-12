@@ -126,16 +126,25 @@ body._stickyFooter{
 	width: var(--imgSize);
 	height: var(--imgSize);
 
+	margin-block-start: max(
+		calc( calc(var(--imgSize) - min(var(--imgSize), 1lh)) * -.5),
+		round( down, calc( calc(1lh - var(--imgSize) ) * .5 ), 1px )
+		); /* opinionated */
+	/* border-right: 1lh solid red */
+	/* For debugging and comparing inherited line height unit. */
+
+	/* margin-block-start: calc( calc(1lh - var(--imgSize)) / 3 ); */
+	/* margin-block-start: calc(1ex - 1cap); */
+
 	margin-inline-start: .5rem;
-	margin-block: calc((var(--lineHeight) - var(--imgSize))/2);
+	/* margin-block: calc((var(--lineHeight) - var(--imgSize))/2); */
 
 	/* border-radius: var(--radiusInnerDefault); */
-	border-radius: var(--radiusS);
+	/* border-radius: var(--radiusS); */
+	border-radius: var(--radiusM);
 	/* -opinionated */
 	position: relative;
 	overflow: hidden;
-	display: inline-block;
-	float: left;
 	float: inline-start;
 	& > img {
 		vertical-align: unset;
@@ -159,7 +168,7 @@ body._stickyFooter{
 		transition: opacity .5s ease-in-out .25s;
 	}
 }
-@media (any-hover: hover) {
+@media (pointer: fine) {
 	._faviconAnimated:hover:before,
 	a:hover > ._faviconAnimated:before,
 	a:focus-visible > ._faviconAnimated:before{
@@ -190,7 +199,7 @@ body._stickyFooter{
 	}
 }
 
-/* Keyframe gets activated everytime relocating the element interacting 
+/* Keyframe gets activated everytime relocating the element interacting
  * address bar. (Also iOS version has that problem)
  * Page transitions coming soon, use this instead when it's going to be globally
  * adopted: https://www.youtube.com/watch?v=JCJUPJ_zDQ4 */
@@ -280,3 +289,15 @@ span.spoiler {
 	/* 	font-variant-caps: all-small-caps; */
 	/* } */
 }
+
+@view-transition {
+	navigation: auto;
+}
+::view-transition {
+	pointer-events: none;
+}
+/* Chrome 133+ */
+/* .o-card[id] { */
+/* 	view-transition-name: attr(id type(<custom-ident>), none); */
+/* 	view-transition-class: card; */
+/* } */

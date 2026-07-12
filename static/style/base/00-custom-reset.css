@@ -9,8 +9,18 @@
 }
 
 /* Set maximum width to all elements with exception-based styling */
-*:not(html, body, img, video, audio, object, iframe, div, header, nav, main, footer) {
+*:not(html, body, img, video, audio, object, iframe, lite-youtube, div, header, nav, main, section, footer, small) {
 	max-inline-size: var(--maxTextWidth);
+}
+
+/* Add blur to dialog backdrop and disable page scrolling when a <dialog> is open
+ * https://cassidoo.co/post/css-for-dialogs/
+ * */
+dialog::backdrop {
+	backdrop-filter: blur(2px);
+}
+body:has(dialog[open]){
+	overflow: hidden;
 }
 
 /* Reset default input, textarea, button, select styles
@@ -95,6 +105,20 @@ input:focus::-webkit-slider-thumb {
 	outline: none;
 }
 
+/* Poor Man's Vertical Slider */
+/* Has a poor browser support + might not work well on mobile
+ * as it vertical swipes on slider just scrolls the page instead of
+ * sliding the thumb. Touching on a track to change value kinda
+ * works on Android (Firefox+Chrome) but not on WebKit (iOS Safari) */
+input[type=range][orient=vertical] {
+	/* appearance: slider-vertical; */
+	/* Chrome says slider-vertical isn't standardized and will be removed in the future */
+	writing-mode: vertical-lr;
+	direction: rtl;
+	width: 16px;
+	vertical-align: middle;
+}
+
 :where(input[type],button)[disabled], :where(button:disabled) {
 	cursor: not-allowed;
 }
@@ -105,7 +129,7 @@ input:focus::-webkit-slider-thumb {
 	/* color: var(--colorBase); */
 
 	/* Light Color Selection Style */
-	background-color: var(--colorTextOpac20, initial);
+	background-color: color-mix(in srgb, var(--colorText, initial) 20%, transparent);
 	color: inherit;
 	text-decoration: inherit;
 	/* color: var(--colorTextBolder); */
@@ -116,7 +140,7 @@ input:focus::-webkit-slider-thumb {
 	/* color: var(--colorBase); */
 
 	/* Light Accent Color Selection Style */
-	/* background-color: var(--colorAccentBrighterOpac60); */
+	/* background-color: color-mix(in srgb, var(--colorAccentBrighter) 60%, transparent); */
 	/* color: inherit; */
 	/* text-decoration: inherit; */
 
@@ -252,9 +276,13 @@ option:focus {
 summary :where(h1,h2,h3,h4,h5,h6,p){
 	display: inline;
 }
+/* summary ::marker { */
+/* 	margin-inline-end: 1ch; */
+/* } */
+
 /* Make headings and texts wraps itself on specific algorythms. */
-:where(h1,h2,h3) {
-	text-wrap: balanced;
+:where(h1,h2,h3), :is(h1,h2,h3) a {
+	text-wrap: balance;
 }
 :not(pre,code) {
 /* p { */
@@ -364,11 +392,11 @@ meter, progress {
 }
 meter::-webkit-meter-bar{
 	background-color: var(--colorBase);
-	border-color: var(--colorTextOpac40);
+	border-color: color-mix(in srgb, var(--colorText) 40%, transparent);
 }
 progress::-webkit-progress-bar {
 	background-color: var(--colorBase);
-	border-color: var(--colorTextOpac40);
+	border-color: color-mix(in srgb, var(--colorText) 40%, transparent);
 }
 meter::-webkit-meter-optimum-value, progress::-webkit-progress-value {
 	background-color: var(--green);
@@ -380,7 +408,7 @@ meter::-webkit-meter-optimum-value, progress::-webkit-progress-value {
 /* 	/1* Setting variables for scrollbar size and color *1/ */
 /* 	--scrollbarBg: var(--colorBack); */
 /* 	--scrollbarFg: var(--colorFrontmost); */
-/* 	--scrollbarColorBorder: var(--colorTextOpac20); */
+/* 	--scrollbarColorBorder: color-mix(in srgb, var(--colorText) 20%, transparent); */
 
 /* 	/1* TODO: If grid gutter is 0px, then think of something else for scrolbar width. *1/ */
 /* 	/1* --scrollbarWidth: calc(--gridGutter); *1/ */
@@ -392,7 +420,7 @@ meter::-webkit-meter-optimum-value, progress::-webkit-progress-value {
 /* 	width: var(--scrollbarWidth); */
 /* 	height: var(--scrollbarWidth); */
 /* 	background-color: var(--scrollbarBg); */
-/* 	/1* @media (any-pointer: fine) { *1/ */
+/* 	/1* @media (pointer: fine) { *1/ */
 /* 	/1* 	width: calc(var(--gridGutter) * .75); *1/ */
 /* 	/1* 	height: calc(var(--gridGutter) * .75); *1/ */
 /* 	/1* } *1/ */

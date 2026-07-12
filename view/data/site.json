@@ -1,0 +1,44 @@
+{
+	"title": "Site Title",
+	"author": "John Doe",
+	"description": "Description of this site",
+	"dateCreated": "2019",
+	"baseurl": "https://example.com",
+	"favicon": {
+		"ico32": "/favicon.ico",
+		"webp180": "/apple-touch-icon.webp",
+		"webp192": "/icon-192.webp",
+		"webp512": "/icon-512.webp"
+	},
+	"options": {
+		"titleSeparator": " • ",
+		"rootClasses": "t-color t-modRoot -borderColorBack -borderValNormal -borderStyleOutset -embossSmooth -cornerRoundedMax -shadowTypeSmooth",
+		"bodyClasses": "t-modBody",
+		"appendRootClass": "",
+		"appendBodyClass": "",
+		"showTitleInNav": false,
+		"compactHeader": false,
+		"forceDarkHeader": true,
+
+
+		"showThemeSwitcher": true
+	},
+	"pwa": {
+		"titleShort": "Site",
+		"colorTheme": "#1998ee",
+		"colorBg": "#000",
+		"colorBgDark": "#000",
+		"colorBgLight": "#000",
+		"display": "minimal-ui"
+	},
+	"indieweb": {
+		"webmention": "https://webmention.io/EXAMPLE.COM/webmention",
+		"pingback": "https://webmention.io/EXAMPLE.COM/xmlrpc",
+		"me": "https://mastodon.social/@USERNAME",
+		"tokenEndpoint": "https://tokens.indieauth.com/token",
+		"authEndpoint": "https://indieauth.com/auth"
+	},
+	"repository": "USERNAME/REPO",
+	"discourageSearchEngine": true,
+	"noPinterest": true
+}

@@ -5,8 +5,13 @@ import postcss from 'postcss';
 import extractMedia from 'postcss-extract-media-query';
 
 // Input and output directories
-const inputDir = 'tmp/static/style/';
-const outputDir = 'tmp/static/style/';
+const inputDir = path.resolve('tmp/static/style/');
+const outputDir = path.resolve('tmp/static/style/');
+
+// Process all CSS files in the input directory
+// const inputFiles = glob.sync(path.join(inputDir, '**/*.css'));
+// const inputFiles = glob.sync(path.join(inputDir, '**/!(*.mq-*)*.css'));
+const inputFiles = glob.sync(`${inputDir.replace(/\\/g, '/')}/**/!(*.mq-*)*.css`);
 
 // Function to process CSS files
 async function processCSS(filePath) {
@@ -16,56 +21,30 @@ async function processCSS(filePath) {
 	const plugins = [
 		extractMedia({
 			output: {
-				path: 'tmp/static/style/',
+				path: outputDir,
 				name: '[name].mq-[query].[ext]'
 			},
 			stats: false,
 			extractAll: false,
+
 			queries: {
 				// make sure it's synchronized with the media queries from css/abstract/00-media.css
-
-				// for wrist or smaller
-				// "screen and (max-width:2in)": "s",
-
-				// for palm or smaller
-				// "screen and (max-width:calc(calc(640/16)*1em)-1px)": "s",
-
-				// for palm or bigger
-				// "screen and (min-width:calc((640/16)*1em))": "m",
-				"screen and (min-width: 40em)": "m",
-
-				// for lap or bigger
-				// "screen and (min-width:calc((960/16)*1em))": "l",
-				"screen and (min-width: 60em)": "l",
-
-				// for desk or bigger
-				// "screen and (min-width:calc((1280/16)*1em))": "l",
-				"screen and (min-width: 80em)": "l",
-
-				// for wall or bigger
-				// "screen and (min-width:calc((1600/16)*1em))": "xl",
-				"screen and (min-width: 100em)": "xl",
-
-				// for mall or bigger
-				// "screen and (min-width:calc((1920/16)*1em))": "xl",
-				"screen and (min-width: 120em)": "xl",
-
-				// for titan or bigger
-				// "screen and (min-width:calc((2400/16)*1em))": "xl",
-				"screen and (min-width: 150em)": "xl",
-
-				// inputs with cursor
-				"(any-hover: hover)": "cur",
-				"(any-pointer: fine)": "cur",
-				"(any-hover: hover) and (any-pointer:fine)": "cur",
-
-				// dark color scheme
-				"(prefers-color-scheme: dark)": "dark"
+				// "screen and (max-width:2in)": "s", // for wrist or smaller
+				// "screen and (max-width:calc(calc(640/16)*1em)-1px)": "s", // for palm or smaller
+				"screen and (width >= 40em)": "m", // for palm or bigger
+				"screen and (width >= 60em)": "l", // for lap or bigger
+				"screen and (width >= 80em)": "l", // for desk or bigger
+				"screen and (width >= 100em)": "xl", // for wall or bigger
+				"screen and (width >= 120em)": "xl", // for mall or bigger
+				"screen and (width >= 150em)": "xl", // for titan or bigger
+				"(pointer: fine)": "cur", // inputs with cursor
+				"(prefers-color-scheme: dark)": "dark" // dark color scheme
 			}
 		})
 	];
 	// Process CSS using PostCSS
-	const result = await postcss(plugins).process(cssContent, { from: filePath });
+	const result = await postcss(plugins).process(cssContent, { from: filePath })
+		.catch(err => console.error('PostCSS Error:', err));
 
 	// Write processed CSS to the output directory with the same subdirectory structure
 	const relativePath = path.relative(inputDir, filePath);
@@ -73,15 +52,15 @@ async function processCSS(filePath) {
 
 	// Ensure the output directory exists
 	fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-
 	fs.writeFileSync(outputPath, result.css);
 }
 
-// Process all CSS files in the input directory
-// const inputFiles = glob.sync(path.join(inputDir, '**/*.css'));
-const inputFiles = glob.sync(path.join(inputDir, '**/!(*.mq-*)*.css'));
+console.log('Resolved Input Directory:', inputDir);
+console.log('Resolved Output Directory:', outputDir);
+console.log('Found Files:', inputFiles);
 
-inputFiles.forEach(async (filePath) => {
+for (const filePath of inputFiles) {
 	await processCSS(filePath);
-});
+}
+
 console.log('Media query extraction complete.');

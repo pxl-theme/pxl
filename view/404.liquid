@@ -1,0 +1,27 @@
+---
+layout: base
+tags: page
+eleventyExcludeFromCollections: true
+baseLite: true
+title: "Page Not Found"
+translationKey: "404-not-found"
+description: "404"
+lang: "en"
+permalink: '/404.html'
+hidden: true
+---
+<section id=content class=s-cmsContent aria-label=Content>
+	<div class="o-box -viewCard o-center">
+		<div style="text-align:center">
+			<h1>404</h1>
+			<svg width="18" class="pi -size4x" viewBox="0 0 18 18"><use href="/pi.svg#general-bench"></use></svg>
+			<p><strong>The number says this page can't be found.</strong></p>
+		</div>
+		<p>Steps to find the current page:</p>
+		<ul>
+			<li>Browse the <a href="{{ '/all/' | url }}">archive</a> to search by keywords, tags, date or title with <kbd>ctrl</kbd>+<kbd>F</kbd> shortcut.</li>
+			<li>Check older snapshots of the page in archives like <a href="https://web.archive.org/" target="_blank">The Internet Archive</a> or <a href="https://archive.md/" target="_blank">archive.today</a>.</li>
+		</ul>
+		<p>PS Cool <abbr>URIs</abbr> (uniform resource identifiers) don't <a href="https://www.w3.org/Provider/Style/URI" rel="external">change.</a></p>
+	</div>
+</section>

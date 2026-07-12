@@ -29,9 +29,15 @@
   /* height: 1cap; */
   height: var(--iconSize);
 
-  --iconVMiddle: calc(var(--iconSize)/2);
-  --capitalVMiddle: calc(var(--fontCapitalHeight)/2 * 1em);
-  vertical-align: calc(var(--capitalVMiddle) - var(--iconVMiddle));
+	/* :not(.c-nav__item.-viewIconOnly .c-nav__anchor) > &:has(+ *){ */
+	:not(.c-nav.-typeFlyout.-flowHorizontal .c-nav__item.-viewIconOnly .c-nav__anchor) > &{
+		vertical-align: middle;
+		margin-block-start: calc( 1ex - 1cap);
+		/* From: https://blog.kizu.dev/cap-height-align/#known-size-just-vertical-align */
+	}
+  /* --iconVMiddle: calc(var(--iconSize)/2); */
+  /* --capitalVMiddle: calc(var(--fontCapitalHeight)/2 * 1em); */
+  /* vertical-align: calc(var(--capitalVMiddle) - var(--iconVMiddle)); */
 
   /* margin-block-start: calc((var(--lineHeight) - var(--iconSize))/2.5); */
   /* margin-block-end: calc((var(--lineHeight) - var(--iconSize))/1.5); */
@@ -57,7 +63,7 @@
   &.-size2x {
     --iconSize: 36px;
     --iconWeight: 1px;
-    height: 2rem;
+    /* height: 2rem; */
   }
   &.-size4x {
     --iconSize: 72px;

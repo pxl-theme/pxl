@@ -1,0 +1,78 @@
+{%- comment -%}
+<li class="c-nav__item -viewIconOnly u-hidden@lap">
+	<label class="c-nav__anchor" for=toggleNav-000 onclick>
+		<svg class=pi viewBox="0 0 18 18" width=18px>
+			<use href=/pi.svg#list-to-left>
+		</svg><span>Hide&nbsp;Menu</span>
+	</label>
+</li>
+{%- endcomment -%}
+{%- comment -%}
+FIRST LEVEL OF NAVIGATION
+{%- endcomment -%}
+{%- for item in navSource -%}
+	<li class="c-nav__item
+		{% if item.view %} -view{{ item.view }}{% endif %}
+		{% if item.align == "right" %} -leanEnd{% endif %}"
+	{% if item.url == localized_page_url %} aria-current="page"{%- endif %}
+	 role=treeitem>
+		<a class="c-nav__anchor"
+		href="{{ item.url }}"
+		{%- if item.target == "_blank" %} target=_blank{% endif -%}
+		{%- if item.alt -%} alt="{{ item.alt }}"{%- endif -%}
+		{%- if item.url == localized_page_url %} tabindex=-1{%- endif %}>{%- if item.pre -%}{{- item.pre }}{%- endif -%}
+		{%- if item.img -%}<img eleventy:ignore src='{{ item.img }}' alt='' height=32px>{%- endif -%}
+		{%- if item.icon -%}<svg class=pi viewBox='0 0 18 18' width=18px>
+			<use href=/pi.svg#{{ item.icon }}></use>
+		</svg>{%- endif -%}<span>{{- item.label -}}</span>{{- item.post -}}</a>
+		{%- if item.submenu -%}
+			{%- comment -%}
+			SECOND LEVEL OF NAVIGATION
+			{%- endcomment -%}
+			{%- assign submenu = item.submenu -%}
+			{%- if submenu -%}
+				<ul class="c-nav__submenu{% if item.submenuStyle == "stacked" %} -viewStack{% endif %}">
+				{%- for item in submenu -%}
+					<li class="c-nav__item{% if item.view %} -view{{ item.view }}{% endif %}{% if item.align == "right" %} -leanEnd{% endif %}" {%- if item.url == localized_page_url %} aria-current="page"{%- endif -%} role=treeitem>
+					<a class="c-nav__anchor" href="{{ item.url }}" {% if item.target == "_blank" %}target=_blank{% endif %} {%
+						if item.alt -%} alt="{{ item.alt }}"{%- endif -%}{%-
+						if item.url == localized_page_url %} tabindex=-1{%- endif %}>
+						{%- if item.pre -%}{{- item.pre }}{%- endif -%}
+						{%- if item.icon -%}
+						<svg class=pi viewBox='0 0 18 18' width=18px>
+							<use href=/pi.svg#{{ item.icon }}></use>
+						</svg>{%- endif 
+						-%}<span>{{- item.label -}}</span>{{- item.post -}}</a>
+						{%- if item.submenu -%}
+							{%- comment -%}
+							THIRD (LAST) LEVEL OF NAVIGATION
+							{%- endcomment -%}
+							{%- assign submenu2 = item.submenu -%}
+							{%- if submenu2 -%}
+								<ul class="c-nav__submenu{% if item.submenuStyle == "stacked" %} -viewStack{% endif %}">
+								{%- for item in submenu2 -%}
+									<li class="c-nav__item{% if item.view %} -view{{ item.view }}{% endif %}{% if item.align == "right" %} -leanEnd{% endif %}" {%- if item.url == localized_page_url %} aria-current="page"{%- endif -%} role=treeitem>
+									<a class="c-nav__anchor" href="{{ item.url }}" {% if item.target == "_blank" %}target=_blank{% endif %} {%
+										if item.alt -%} alt="{{ item.alt }}"{%- endif -%}{%-
+										if item.url == localized_page_url %} tabindex=-1{%- endif %}>
+										{%- if item.pre -%}{{- item.pre }}{%- endif -%}
+										{%- if item.icon -%}
+										<svg class=pi viewBox='0 0 18 18' width=18px>
+											<use href=/pi.svg#{{ item.icon }}></use>
+										</svg>{%- endif 
+										-%}<span>{{- item.label -}}</span>{{- item.post -}}</a>
+									</li>
+									{{- item.separator -}}
+								{%- endfor -%}
+							</ul>
+							{%- endif -%}
+						{%- endif -%}
+					</li>
+					{{- item.separator -}}
+				{%- endfor -%}
+			</ul>
+			{%- endif -%}
+		{%- endif -%}
+	</li>
+	{{- item.separator -}}
+{%- endfor -%}

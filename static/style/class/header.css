@@ -12,7 +12,7 @@
 	a:not(.c-nav__anchor) {
 		color: currentColor;
 		text-decoration-line: none;
-		@media (any-hover: hover) {
+		@media (pointer: fine) {
 			&:hover, &:focus-visible {
 				text-decoration-line: underline;
 			}

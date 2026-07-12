@@ -1,118 +1,145 @@
 :where(html) {
-	/**** Type Scale
+    /**** Type Scale
 	 **/
-	/** 1. Set global values */
+    /** 1. Set global values */
+    --typeScaleRoot: 16px;
+    /* Default font size: 16px */
+    --typeScaleBase: 16px;
+    --typeScaleRatio: 1.25;
+    /* Modular Scale Ratio */
 
-	--typeScaleRoot: 16px;/* Default font size: 16px */
-	--typeScaleBase: 16px;
-	--typeScaleRatio: 1.25; /* Modular Scale Ratio */
+    /** 2. Set different root font sizes in order to get diff value */
+    @media (--wrist-or-lt) {
+        --typeScaleBase: 12px;
+        /* 12px */
+    }
 
-	/** 2. Set different root font sizes in order to get diff value */
-	@media (--wrist-or-lt) {
-		--typeScaleBase: 12px; /* 12px */
-	}
-	@media (--lap-or-gt) {
-		--typeScaleBase: 18px;
+    @media (--lap-or-gt) {
+        --typeScaleBase: 18px;
+        /* --typeScaleBase: clamp(16px, 0.556rem + 0.69vw, 22px) /1* from 16px (at 1024px) to 22px (at 1888px) *1/ */
+        /* Generated via https://min-max-calculator.9elements.com */
+        /* Warning: It renders really slow if you try to resize on older devices! */
+    }
 
-		/* --typeScaleBase: clamp(16px, 0.556rem + 0.69vw, 22px) /1* from 16px (at 1024px) to 22px (at 1888px) *1/ */
-		/* Generated via https://min-max-calculator.9elements.com */
-		/* Warning: It renders really slow if you try to resize on older devices! */
-	}
-	@media (--wall-or-gt) {
-		--typeScaleBase: 22px;
-	}
-	/* @media (--titan-or-gt) { */
-	/* 	--typeScaleBase: 24px; */
-	/* } */
+    @media (--wall-or-gt) {
+        --typeScaleBase: 22px;
+    }
 
-	--typeScaleDiff: calc(var(--typeScaleBase) - var(--typeScaleRoot));/* Equation of diff value */
+    /* @media (--titan-or-gt) { */
+    /* 	--typeScaleBase: 24px; */
+    /* } */
 
-	/* Multiply with several powers of the ratio for bigger values */
-	/* --typeScale3: calc( var(--typeScaleRoot) * pow(var(--typeScaleRatio), 3) + var(--typeScaleDiff)); */
-	--typeScale3: calc( var(--typeScaleRoot) * var(--typeScaleRatio) * var(--typeScaleRatio) * var(--typeScaleRatio) + var(--typeScaleDiff));
-	/* --typeScale2: calc( var(--typeScaleRoot) * pow(var(--typeScaleRatio), 2) + var(--typeScaleDiff)); */
-	--typeScale2: calc( var(--typeScaleRoot) * var(--typeScaleRatio) * var(--typeScaleRatio) + var(--typeScaleDiff));
-	/* --typeScale1: calc( var(--typeScaleRoot) * pow(var(--typeScaleRatio), 1) + var(--typeScaleDiff)); */
-	--typeScale1: calc( var(--typeScaleRoot) * var(--typeScaleRatio) + var(--typeScaleDiff));
+    --typeScaleDiff: calc(var(--typeScaleBase) - var(--typeScaleRoot));
+    /* Equation of diff value */
 
-	/* Divide with several powers of the ratio for smaller values */
-	/* --typeScale-1: calc( var(--typeScaleRoot) * pow(var(--typeScaleRatio), -1) + var(--typeScaleDiff)); */
-	--typeScale-1: calc( var(--typeScaleRoot) / var(--typeScaleRatio) + var(--typeScaleDiff));
-	/* --typeScale-2: calc( var(--typeScaleRoot) * pow(var(--typeScaleRatio), -2) + var(--typeScaleDiff)); */
-	--typeScale-2: calc( var(--typeScaleRoot) / var(--typeScaleRatio) / var(--typeScaleRatio) + var(--typeScaleDiff));
+    /* Multiply with several powers of the ratio for bigger values */
+    --typeScale3: calc(
+        var(--typeScaleRoot) * pow(var(--typeScaleRatio), 3) +
+            var(--typeScaleDiff)
+    );
+    --typeScale2: calc(
+        var(--typeScaleRoot) * pow(var(--typeScaleRatio), 2) +
+            var(--typeScaleDiff)
+    );
+    --typeScale1: calc(
+        var(--typeScaleRoot) * pow(var(--typeScaleRatio), 1) +
+            var(--typeScaleDiff)
+    );
 
-	/**** Vertical Rhythm/Baseline Grid
+    /* Divide with several powers of the ratio for smaller values */
+    --typeScale-1: calc(
+        var(--typeScaleRoot) * pow(var(--typeScaleRatio), -1) +
+            var(--typeScaleDiff)
+    );
+    --typeScale-2: calc(
+        var(--typeScaleRoot) * pow(var(--typeScaleRatio), -2) +
+            var(--typeScaleDiff)
+    );
+
+    /**** Vertical Rhythm/Baseline Grid
 	 */
-	--lineHeight: 1.5rem; /* 24px */
+    --lineHeight: 1.5rem;
+    /* 24px */
+    --rhythmUnit: calc(var(--lineHeight) / 3);
+    /* 8px */
+    /* opinionated */
 
-	--rhythmUnit: calc(var(--lineHeight) / 3); /* 8px */ /* opinionated */
-
-	/*** Set font size
+    /*** Set font size
 	 */
-	font-size: var(--typeScaleBase);
+    font-size: var(--typeScaleBase);
 
-	/*** Set font and accent color (Moved to color.css)
+    /*** Set font and accent color (Moved to color.css)
 	 */
-	/* color: var(--colorText); */
-	/* accent-color: var(--colorAccent); */
+    /* color: var(--colorText); */
+    /* accent-color: var(--colorAccent); */
 
-	/*** Theme dependant font weight defaults
+    /*** Theme dependant font weight defaults
 	 * */
-	--fontWeight: 400;
-	--fontWeightMultiplier: 1;
-	--letterSpacing: 0ch;
-	/* Make variable fonts thinner overall and add subtle letter spacing in dark theme */
-	/* https://css-tricks.com/using-css-custom-properties-to-adjust-variable-font-weights-in-dark-mode/ */
-	/* &[data-theme=dark] { */
-	&:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) {
-	/* @media (prefers-color-scheme: dark) { */
-		--fontWeightMultiplier: .85;
-		--letterSpacing: .02ch;
-	}
-	font-weight: calc( var(--fontWeight, 400) * var(--fontWeightMultiplier, 1) );
+    --fontWeight: 400;
+    --fontWeightMultiplier: 1;
+    --letterSpacing: 0ch;
+
+    /* Make variable fonts thinner overall and add subtle letter spacing in dark theme */
+    /* https://css-tricks.com/using-css-custom-properties-to-adjust-variable-font-weights-in-dark-mode/ */
+    /* &[data-theme=dark] { */
+    &:where(
+        .t-color:is([data-theme="dark"], .-forceDark:not([data-theme="dark"]))
+    ) {
+        /* @media (prefers-color-scheme: dark) { */
+        --fontWeightMultiplier: 0.85;
+        --letterSpacing: 0.02ch;
+    }
+
+    font-weight: calc(var(--fontWeight, 400) * var(--fontWeightMultiplier, 1));
 }
 
 html {
-	/* Set font family */
+    /* Set font family */
+    font-family: var(--fontMain);
+    /* font-weight: calc(400 * var(--fontWeightMultiplier, 1)); */
 
-	font-family: var(--fontMain);
-	/* font-weight: calc(400 * var(--fontWeightMultiplier, 1)); */
-
-	/* Set a highlight color for tabbed elements in iOS/iPadOS touch interfaces */
-	-webkit-tap-highlight-color: var(--colorAccentBrighterOpac60);
+    /* Set a highlight color for tabbed elements in iOS/iPadOS touch interfaces */
+    -webkit-tap-highlight-color: color-mix(
+        in srgb,
+        var(--colorAccent) 60%,
+        transparent
+    );
 }
 
 body {
-	/* Set line height here (if value unit is rem,
+    /* Set line height here (if value unit is rem,
 	 * line-height should be specified since
 	 * it's one level lower than root element (HTML),
 	 * because of Safari. */
-	line-height: var(--lineHeight);
+    line-height: var(--lineHeight);
 
-	/* Set the font rendering options
+    /* Set the font rendering options
 	*/
-	-moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased; /* disables subpixel antialias */
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    /* disables subpixel antialias */
     /* text-rendering: optimizeLegibility; */
 
-/* Set the background of the webpage
+    /* Set the background of the webpage
 	/* height: auto; */
 
-	/* Dynamic background color based on current theme */
-	/* background-color: var(--colorBack); */
-	background-color: var(--colorBg, gray);
+    /* Dynamic background color based on current theme */
+    /* background-color: var(--colorBack); */
+    background-color: var(--colorBg, gray);
 
-	/* Noise Texture (PNG) */
-	/* background: var(--colorBg) repeat top left; */
-	/* background-image: url(/static/asset/filler/noise.webp); */
-	/* @media (--hidpi) { */
-	/* 	background-size: 180px 180px; */
-	/* } */
+    /* Noise Texture (PNG) */
+    /* background: var(--colorBg) repeat top left; */
+    /* background-image: url(/static/asset/filler/noise.webp); */
+    /* @media (--hidpi) { */
+    /* 	background-size: 180px 180px; */
+    /* } */
 }
+
 /* .t-modRoot:where(-stylesetAcetate, .-stylesetNeumorphism) body { */
 .t-modRoot:where(-stylesetAcetate, .-stylesetNeumorphism) body {
-	background-color: var(--colorBase);
+    background-color: var(--colorBase);
 }
+
 /*** Page-Wide Gradient Background + Contour Line
  */
 
@@ -135,746 +162,1140 @@ body {
 /* 	} */
 /* } */
 
-
 /* Set VF font weight every element except codeblock, variable, keyboard key and samples
  */
 :not(code, var, kbd, samp) {
-	/* --wght: calc(var(--fontWeight, 400) * var(--fontWeightMultiplier, 1)); */
-	/* font-variation-settings: "wght" var(--wght); */
+    /* --wght: calc(var(--fontWeight, 400) * var(--fontWeightMultiplier, 1)); */
+    /* font-variation-settings: "wght" var(--wght); */
 
-	/* TODO: This dark-mode friendly VF font-weight declaration might not work for non-VF fallbacks, need one. */
-	font-weight: calc(var(--fontWeight, 400) * var(--fontWeightMultiplier, 1));
-	letter-spacing: var(--letterSpacing, 0);
+    /* TODO: This dark-mode friendly VF font-weight declaration might not work for non-VF fallbacks, need one. */
+    font-weight: calc(var(--fontWeight, 400) * var(--fontWeightMultiplier, 1));
+    letter-spacing: var(--letterSpacing, 0);
 }
 
 /* Set VF font weight for bolder elements
  */
-:where(h1,h2,h3,h4,th){
-	--fontWeight:600
+:where(h1, h2, h3, h4, th) {
+    /* --fontWeight: 600 */
+    /* Good for Inter */
+    --fontWeight: 650 /* Good for National Park */;
 }
-/* :where(strong,b,h1,h2,h3,h4,h5,h6){ */
-:where(strong,b,h5,h6){
-	--fontWeight: 700;
+
+:where(strong, b, h5, h6) {
+    --fontWeight: 700;
 }
 
 /***** Global Margin/Padding Styles for Vertical Rhythm
  */
 :not(p) > :where(p, cite, blockquote, summary, address, audio, video) {
-	/* margin-block: var(--rhythmUnit); */
-	margin-block: calc(var(--rhythmUnit) * 2);
-	/* padding-block: calc(var(--rhythmUnit) / 2); */
+    margin-block: var(--rhythmUnit);
+    /* padding-block: calc(var(--rhythmUnit) / 2); */
 }
-:where(h1,h2,h3,h4,h5,h6,pre) {
-	margin-block: var(--rhythmUnit);
+
+:where(h1, h2, h3, h4, h5, h6, pre) {
+    margin-block: var(--rhythmUnit);
 }
-:where(caption,dl,ol,ul){
-	/* padding-top: .35em; */ /* 5,6px */
-	/* padding-bottom: .15em; */ /* 2,4px */
-	/* padding-block: calc(var(--rhythmUnit) / 2); */
 
-	/* padding-top: calc((var(--lineHeight) - 1ex) / 2.4); */
-	/* padding-bottom: calc(var(--lineHeight) - ((var(--lineHeight) - 1ex) / 2.4)); */
-	/* /1* Default division value is 2, but I adjusted to snap to baseline and keep the rhythm at the same time. *1/ */
+/* :where(caption,dl,ol,ul){ */
+/* padding-top: .35em; */
+/* 5,6px */
+/* padding-bottom: .15em; */
+/* 2,4px */
+/* padding-block: calc(var(--rhythmUnit) / 2); */
 
-	/* Total intended size: 32px */
+/* padding-top: calc((var(--lineHeight) - 1ex) / 2.4); */
+/* padding-bottom: calc(var(--lineHeight) - ((var(--lineHeight) - 1ex) / 2.4)); */
+/* /1* Default division value is 2, but I adjusted to snap to baseline and keep the rhythm at the same time. *1/ */
 
-	/* Notice the total amount (.35+.15=.5) dividable with (.25) which is an selected unit for vertical rhythm */
-}
+/* Total intended size: 32px */
+
+/* Notice the total amount (.35+.15=.5) dividable with (.25) which is an selected unit for vertical rhythm */
+/* } */
 
 /***** Header & Paragraph Styles
  */
-/* p { */
-/* 	max-inline-size: var(--maxTextWidth); */
-/* } */
-:where(h1,h2,h3,h4,h5,h6){
-	max-inline-size: var(--maxHeadingWidth);
-}
-:where(h4,h5,h6){
-	max-inline-size: calc(var(--maxHeadingWidth) * 1.5);
+:where(h1, h2, h3, h4, h5, h6) {
+    max-inline-size: var(--maxHeadingWidth);
 }
 
-:where(h1,h2,h3,h4,h5,h6,p){
-	position: relative;
-	overflow-wrap: break-word;
+:where(h4, h5, h6) {
+    max-inline-size: calc(var(--maxHeadingWidth) * 1.5);
 }
-cite{ /* opinionated */
-	display:inline-block
+
+:where(h1, h2, h3, h4, h5, h6, p) {
+    position: relative;
+    overflow-wrap: break-word;
 }
+
+cite {
+    /* opinionated */
+    display: inline-block;
+}
+
 /* Hyphenation for paragraphs (English and their derivatives only) */
 /* Relevant: https://clagnut.com/blog/2395/
  *           https://caniuse.com/?search=hyphen
  */
-:is([lang=en],[lang^=en-]) p {
-	hyphens: auto;
+:is([lang="en"], [lang^="en-"]) p {
+    hyphens: auto;
 }
+
 p {
-	font-family: var(--fontParagraph, inherit);
-	hyphenate-limit-chars: 6 3 3;
-	hyphenate-limit-lines: 2;
-	hyphenate-limit-last: always;
-	hyphenate-limit-zone: 8%;
+    hyphenate-limit-chars: 6 3 3;
+    hyphenate-limit-lines: 2;
+    hyphenate-limit-last: always;
+    hyphenate-limit-zone: 8%;
 }
 
 /* Make top margin bigger if heading placed after non-heading element */
 /* :not(blockquote) > :is(h1, h2, h3, h4, h5, h6):first-child */
-:not(h1,h2,h3,h4,h5,h6,legend,hr,img,figure,picture,video) + :where(h1, h2, h3, h4, h5, h6)
-{
-	margin-block-start: calc(var(--rhythmUnit) * 3);
+:not(
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        legend,
+        hr,
+        img,
+        figure,
+        picture,
+        video,
+        summary,
+        style,
+        script
+    )
+    + :where(h1, h2, h3, h4, h5, h6) {
+    margin-block-start: calc(var(--rhythmUnit) * 3);
 }
+
 /* Set heading sizes based on modular scale.
  *
  * Source: https://www.modularscale.com/
  */
-h1 { @mixin fontSize1;}
-h2 { @mixin fontSize2;}
-h3 { @mixin fontSize3;}
-h4 { @mixin fontSize4;}
-h5, figcaption, small { @mixin fontSize5;}
-h6 { @mixin fontSize6;}
+h1 {
+    @mixin fontSize1;
+}
+
+h2 {
+    @mixin fontSize2;
+}
+
+h3 {
+    @mixin fontSize3;
+}
+
+h4 {
+    @mixin fontSize4;
+}
+
+h5,
+figcaption,
+small {
+    @mixin fontSize5;
+}
+
+h6 {
+    @mixin fontSize6;
+}
 
 /* opinionated */
-h1,h2,h3 {
-	font-family: var(--fontHeading, inherit);
+h1,
+h2,
+h3 {
+    font-family: var(--fontHeading);
 }
+
 /* Make letter spacing adjustments to headers (except small devices). */
-@media not (--wrist-or-lt) { /* opinionated */
-	:where(h1,h2){
-		letter-spacing: -1px;
-		letter-spacing: calc(var(--letterSpacing) - 1px);
-	}
-	:where(h3) {
-		letter-spacing: -.5px;
-		letter-spacing: calc(var(--letterSpacing) - .5px);
-	}
+@media not (--wrist-or-lt) {
+    /* opinionated */
+    :where(h1, h2) {
+        letter-spacing: -1px;
+        letter-spacing: calc(var(--letterSpacing) - 1px);
+    }
+
+    :where(h3) {
+        letter-spacing: -0.5px;
+        letter-spacing: calc(var(--letterSpacing) - 0.5px);
+    }
 }
+
 /* -opinionated */
 
 /* Heading 5 and 6 styles for small (around 2 inch) smartwatch screens */
-@media (--wrist-or-lt) { /* opinionated */
-	:where(h5, h6) {
-		@mixin fontSize5;
-		/* font-variant-caps: all-small-caps; */
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		letter-spacing: calc(var(--letterSpacing) + 1px);
-		--fontWeight: 400;
-	}
+@media (--wrist-or-lt) {
+    /* opinionated */
+    :where(h5, h6) {
+        @mixin fontSize5;
+        /* font-variant-caps: all-small-caps; */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        letter-spacing: calc(var(--letterSpacing) + 1px);
+        --fontWeight: 400;
+    }
 }
-li > :where(ol,ul,menu) {
-	padding-block: 0;
-}
-hr{
-	margin-block-end: -1px;
-	/* margin-top: .5em; */
-	/* padding-top: .5em; */
-	/* margin-block-start: calc( var(--rhythmUnit) * 2 ); */
-	/* padding-block-end: calc( var(--rhythmUnit) * 2 ); */
-	margin-block-start: calc( var(--rhythmUnit) * 1.5 );
-	padding-block-end: calc( var(--rhythmUnit) * 1.5 );
-	border: 0;
-	border-block-start: 1px solid var(--colorText);
-}
-/* Unordered, Ordered and Definition List */
-:where(ul,menu,ol){ /* opinionated */
-	/* margin-inline: 0; */
-	/* padding-inline-start: calc(var(--rhythmUnit) * 5); */
-	padding-inline-start: 4ch;
-	li > & {
-		margin-block: 0;
-	}
-	::marker {
-		font-weight:bolder;
-	}
-}
-:where(ul,menu,ol,dl) {
-	margin-block: calc(var(--rhythmUnit) * 2);
-}
-dt {
-	font-weight: bolder;
-	&:after {
-		content: ": "
-	}
-}
-dd {
-	margin-inline-start: 4ch;
-}
-blockquote {
-	--border:var(--borderS);
-	margin-inline: calc(var(--rhythmUnit) * 1.618);
-	padding: 0;
-	padding-inline-start: calc(var(--rhythmUnit) * 1.618 - var(--border));
-	/* border-left: 2px solid currentColor; */
-	border-inline-start: var(--border) solid currentColor;
-	border-color: var(--red);
-	/* &:hover{ */
-	/* 	--border:var(--borderM); */
-	/* } */
 
-	& & {
-		margin-block:0;
-		border-color: var(--yellow);
-	}
-	& & & {
-		border-color: var(--blue);
-	}
-	& & & & {
-		border-color: var(--orange);
-		margin-inline-end: 0;
-	}
-	& & & & & {
-		border-color: var(--green);
-	}
-	& & & & & &{
-		border-color: var(--hue01);
-	}
-	& & & & & & &{
-		border-color: var(--hue01);
-	}
+li > :where(ol, ul, menu) {
+    padding-block: 0;
+}
+
+hr {
+    margin-block-end: -1px;
+    margin-block-start: calc(var(--rhythmUnit) * 1.5);
+    padding-block-end: calc(var(--rhythmUnit) * 1.5);
+    border: 0;
+    border-block-start: 1px solid var(--colorText);
+}
+
+/* Unordered, Ordered and Definition List */
+:where(ul, menu, ol) {
+    /* opinionated */
+    /* margin-inline: 0; */
+    /* padding-inline-start: calc(var(--rhythmUnit) * 5); */
+    padding-inline-start: 4ch;
+
+    li > & {
+        margin-block: 0;
+    }
+
+    ::marker {
+        font-weight: bolder;
+    }
+}
+
+:where(ul, menu, ol, dl) {
+    margin-block: calc(var(--rhythmUnit) * 2);
+}
+
+dt {
+    font-weight: bolder;
+
+    &:after {
+        content: ": ";
+    }
+}
+
+dd {
+    margin-inline-start: 4ch;
+}
+
+blockquote {
+    --border: var(--borderS);
+    margin-inline: calc(var(--rhythmUnit) * 1.618);
+    padding: 0;
+    padding-inline-start: calc(var(--rhythmUnit) * 1.618 - var(--border));
+    /* border-left: 2px solid currentColor; */
+    border-inline-start: var(--border) solid currentColor;
+    border-color: var(--red);
+    /* &:hover{ */
+    /* 	--border:var(--borderM); */
+    /* } */
+
+    /* opinionated */
+    & & {
+        margin-block: 0;
+        border-color: var(--yellow);
+    }
+
+    & & & {
+        border-color: var(--blue);
+    }
+
+    & & & & {
+        border-color: var(--orange);
+        margin-inline-end: 0;
+    }
+
+    & & & & & {
+        border-color: var(--green);
+    }
+
+    & & & & & & {
+        border-color: var(--hue01);
+    }
+
+    & & & & & & & {
+        border-color: var(--hue01);
+    }
 }
 
 /* Global Anchor Styles */
-:where(a[href]){
-	touch-action: manipulation;
-	/* Why are hyperlinks blue?:
+:where(a[href]) {
+    touch-action: manipulation;
+    /* Why are hyperlinks blue?:
 	 * https://blog.mozilla.org/en/internet-culture/deep-dives/why-are-hyperlinks-blue/ */
-	/* color: var(--colorAccent); */
-	/* color: currentColor; */
-	color: var(--colorAccent);
-	/* color: var(--colorTextBolder); */
+    /* color: var(--colorAccent); */
+    /* color: currentColor; */
+    color: var(--colorAccent);
+    /* color: var(--colorTextBolder); */
 }
+
 /* :where(a[href]:not([class])){ */
 /* } */
-a[href]:not([class]) {
-	:where(&) {
-		transition: .25s cubic-bezier(.08,.82,.17,1);
-		transition-property: text-decoration-thickness, text-underline-offset;
+a[href]:not([class], :has(img, video, iframe, picture)) {
+    :where(&) {
+        transition: 0.25s cubic-bezier(0.08, 0.82, 0.17, 1);
+        transition-property: text-decoration-thickness, text-underline-offset;
 
-		/* Style 1: Colored text with thin colored underline */
-		text-decoration-thickness: .0625em;
-		/* Make lines thinner in screens with higher DPI */
-		@media (--hidpi) {
-			text-decoration-thickness: .03125em;
-		}
-		text-underline-offset: .2em;
-		text-decoration-skip-ink: auto;
-		border-radius: var(--radiusInnerDefault);
-	}
-	/* :where(&:hover, &:focus-visible):not(.c-nav__anchor,.o-box__meta a[href],.o-box__title a[href]) { */
-	:where(&:hover, &:focus-visible):not(:where(.c-header,.o-box__meta,.o-box__title) &) {
-		color: var(--colorAccentBrighter);
-		background-color: var(--colorFrontmost);
-		box-shadow: 0 0 0 .1875em var(--colorFrontmost);
-		text-shadow: .0625em .0625em 0 var(--colorBase);
-	}
-	@media (any-hover: hover) {
-		:where(&:hover, &:visited:hover, &:focus-visible) {
-			text-decoration-skip-ink: none;
-			text-underline-offset: .125em;
-			text-decoration-thickness: .15em;
-			@media (--hidpi) {
-				text-decoration-thickness: .09375em;
-			}
-		}
-		:where(&:active) {
-			text-underline-offset: 0;
-			transition: none;
-		}
-	}
-	/* When a visited link is selected, keep underline color intact */
-	:where(&:visited, &:visited::selection) {
-		color: var(--hue01);
-	}
+        /* Style 1: Colored text with thin colored underline */
+        text-decoration-thickness: 0.0625em;
 
-	/* Style 2: Normal text color with thick colored underline */
-	/* text-decoration-thickness: .125em; */
-	/* text-underline-offset: .0625em; */
-	/* text-decoration-color: var(--colorAccent); */
-	/* text-decoration-skip-ink: auto; */
-	/* &:hover, &:focus-visible { */
-	/* 	color: var(--colorAccentBrighter); */
-	/**/
-	/* } */
-	/* @media (any-hover: hover) { */
-	/* 	&:hover, &:visited:hover, &:focus-visible { */
-	/* 		text-decoration-skip-ink: none; */
-	/* 		text-underline-offset: .125em; */
-	/* 		text-decoration-thickness: .25em; */
-	/* 	} */
-	/* 	&:active { */
-	/* 		text-underline-offset: 0; */
-	/* 		transition: none; */
-	/* 	} */
-	/* } */
-	/* &:visited, &:visited::selection { */
-	/* 	text-decoration-color: var(--hue01); */
-	/* } */
+        /* Make lines thinner in screens with higher DPI */
+        @media (--hidpi) {
+            text-decoration-thickness: 0.03125em;
+        }
 
+        text-underline-offset: 0.2em;
+        text-decoration-skip-ink: auto;
+        border-radius: var(--radiusInnerDefault);
+    }
 
-	/* TODO: Create different line colors based on href */
-	:where(& > svg){
-		pointer-events: none;
-	}
+    /* :where(&:hover, &:focus-visible):not(.c-nav__anchor,.o-box__meta a[href],.o-box__title a[href]) { */
+    :where(&:hover, &:focus-visible):not(
+        :where(.c-header, .o-box__meta, .o-box__title) &
+    ) {
+        color: var(--colorAccentBrighter);
+        background-color: var(--colorFrontmost);
+        box-shadow: 0 0 0 0.1875em var(--colorFrontmost);
+        text-shadow: 0.0625em 0.0625em 0 var(--colorBase);
+    }
+
+    @media (pointer: fine) {
+        :where(&:hover, &:visited:hover, &:focus-visible) {
+            text-decoration-skip-ink: none;
+            text-underline-offset: 0.125em;
+            text-decoration-thickness: 0.15em;
+
+            @media (--hidpi) {
+                text-decoration-thickness: 0.09375em;
+            }
+        }
+
+        :where(&:active) {
+            text-underline-offset: 0;
+            transition: none;
+        }
+    }
+
+    /* When a visited link is selected, keep underline color intact */
+    :where(&:visited, &:visited::selection) {
+        color: var(--hue01);
+    }
+
+    /* Style 2: Normal text color with thick colored underline */
+    /* text-decoration-thickness: .125em; */
+    /* text-underline-offset: .0625em; */
+    /* text-decoration-color: var(--colorAccent); */
+    /* text-decoration-skip-ink: auto; */
+    /* &:hover, &:focus-visible { */
+    /* 	color: var(--colorAccentBrighter); */
+    /**/
+    /* } */
+    /* @media (pointer: fine) { */
+    /* 	&:hover, &:visited:hover, &:focus-visible { */
+    /* 		text-decoration-skip-ink: none; */
+    /* 		text-underline-offset: .125em; */
+    /* 		text-decoration-thickness: .25em; */
+    /* 	} */
+    /* 	&:active { */
+    /* 		text-underline-offset: 0; */
+    /* 		transition: none; */
+    /* 	} */
+    /* } */
+    /* &:visited, &:visited::selection { */
+    /* 	text-decoration-color: var(--hue01); */
+    /* } */
+
+    /* TODO: Create different line colors based on href */
+    :where(& > svg) {
+        pointer-events: none;
+    }
 }
-
 
 /*** Colorful/Emojiful Anchor Links Based on Known Hostnames of The Internet
  */
 /* a:not([class]) { */
 @media print {
-	a:link[href]:after {
-		content: " ("attr(href)")";
-		@mixin fontSize5;
-		opacity: .66;
-	}
+    a:link[href]:not([href^="#"]):after {
+        content: " (" attr(href) ")";
+        @mixin fontSize5;
+        opacity: 0.66;
+    }
 }
+
 @media screen {
-a {
-	/* background-clip: border-box; */
+    a:not(:has(img, iframe, video, picture)) {
+        /* background-clip: border-box; */
 
-	/* &[href=""] { */
-	/* 	color: var(--colorLinkDead); */
-	/* } */
+        /* &[href=""] { */
+        /* 	color: var(--colorLinkDead); */
+        /* } */
 
-	/* TODO: Make a little sign for links that goes to external links */
-	/* This is from zachleat/11ty docs site, investigate script too. */
-	/* &[href^="//"]:not(.minilink):not(.elv-externalexempt)::after, a[href^="http://"]:not(.minilink):not(.elv-externalexempt)::after, a[href^="https://"]:not(.minilink):not(.elv-externalexempt)::after */
-	/* &[href^="//"]::after, &[href^="http://"]::after, &[href^="https://"]::after */
+        /* This is from zachleat/11ty docs site, investigate script too. */
+        /* &[href^="//"]:not(.minilink):not(.elv-externalexempt)::after, a[href^="http://"]:not(.minilink):not(.elv-externalexempt)::after, a[href^="https://"]:not(.minilink):not(.elv-externalexempt)::after */
+        /* &[href^="//"]::after, &[href^="http://"]::after, &[href^="https://"]::after */
 
-	/* border-radius: var(--borderDefault); */
+        /* border-radius: var(--borderDefault); */
 
-	:where(&[href]):before{ /* opinionated */
-		transform: scale(.83333);
-		transition: transform .25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        /* Forked from https://github.com/11ty/11ty-website/blob/main/src/_includes/components/external-links.css */
+        /* Also this is useful: https://www.jayfreestone.com/writing/wrapping-and-inline-pseudo-elements/ */
+        :where(&[href]):before {
+            /* opinionated */
+            transform: scale(0.83333);
+            transition: transform 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 
-		padding-inline-end: .25ch;
-		display: inline-block;
-		text-decoration-line: none;
-		filter: saturate(0.5);
-		mix-blend-mode: multiply;
-		/* .t-color[data-theme=dark] & { */
-		:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) & {
-			mix-blend-mode: plus-lighter;
-		}
-	}
-	:where(&[href]:is(:hover,:focus)):before,
-	:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) :where(&[href]:is(:hover,:focus)):before{
-		transform: scale(1);
-		filter: none;
-		mix-blend-mode: unset; /* "none" isn't valid for some reason 🤷 */
-	}
+            padding-inline-end: 0.25ch;
+            display: inline-block;
+            text-decoration-line: none;
+            filter: saturate(0.5);
+            mix-blend-mode: multiply;
 
-	/* All external links (Should be appended inside <head> so template language can process baseurl) */
-	/* 	a:link[href*="//"]:not([href^="http://localhost:3000"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
+            /* .t-color[data-theme=dark] & { */
+            :where(
+                    .t-color:is(
+                        [data-theme="dark"],
+                        .-forceDark:not([data-theme="dark"])
+                    )
+                )
+                & {
+                mix-blend-mode: plus-lighter;
+            }
+        }
+
+        :where(&[href]:is(:hover, :focus)):before,
+        :where(
+                .t-color:is(
+                    [data-theme="dark"],
+                    .-forceDark:not([data-theme="dark"])
+                )
+            )
+            :where(&[href]:is(:hover, :focus)):before {
+            transform: scale(1);
+            filter: none;
+            mix-blend-mode: unset;
+            /* "none" isn't valid for some reason 🤷 */
+        }
+
+        /* All external links (Should be appended inside <head> so template language can process baseurl) */
+        /* 	a:link[href*="//"]:not([href^="http://localhost:3000"]):not(:has( > img, > svg, > picture),[target=_blank]):after{
 		content:"↗";
 		white-space: nowrap;
 	} */
 
-	/* Links that opens in new tab/window */
-	:where(&[target="_blank"]):after{
-		content: "⧉";
-		transform: scale(75%) scaleX(-100%);
-		display: inline-block;
-		padding-inline-end: .25ch;
-		text-decoration: none;
-		opacity:.66;
-	}
+        /* Links that opens in new tab/window */
+        :not(.c-nav__item.-viewIconOnly) > :where(&[target="_blank"]):after {
+            content: "⧉";
+            transform: scale(75%) scaleX(-100%);
+            display: inline-block;
+            padding-inline-end: 0.25ch;
+            text-decoration: none;
+            opacity: 0.66;
+        }
 
-	/* TODO: Can't pass custom property inside background svg data, using a Unicode symbol might solve this instead. */
-	:where(&[href^="mailto:"], [href^="javascript:location='mailto:"]) {
-		/* iOS Mail Blue */
-		background-image: linear-gradient(180deg, #0a84ff00, #0a84ff40);
-		&:before {
-			content: "✉️";
-		}
-	}
-	:where(&[href^="tel:"]) {
-		/* iOS Phone/Message Green */
-		background-image: linear-gradient(180deg, #32d74b00, #32d74b40);
-		&:before {
-			content: "📞";
-		}
-	}
+        /* TODO: Can't pass custom property inside background svg data, using a Unicode symbol might solve this instead. */
+        :where(
+            &:is([href^="mailto:"], [href^="javascript:location='mailto:"])
+        ) {
+            /* iOS Mail Blue */
+            background-image: linear-gradient(180deg, #0a84ff00, #0a84ff40);
 
-	/* Search Engines */
-	:where(&:is( [href*="//google.com/"], [href*="//bing.com/"], [href*="//kagi.com/"],
-	[href*="//duckduckgo.com/"], [href*="//duck.com/"], [href*="//lite.duckduckgo.com/"]) ){
-		&:before {
-			content: "🔍";
-		}
-	}
-	:where(&[href*="//kagi.com/"]){
-		background-image: linear-gradient(180deg, #FFB31900, #FFB31940);
-	}
-	:where(&[href*="//google.com/"]){
-		background-image: linear-gradient(180deg, #4285f400, #4285f440);
-	}
-	:where(&:is([href*="//duckduckgo.com/"], [href*="//duck.com/"])){
-		background-image: linear-gradient(180deg, #de583300, #de583340);
-	}
+            &:before {
+                content: "✉️";
+            }
+        }
 
-	/* Centralized Social Media Websites, Pic Sharing */
-	:where( &:is([href*="//instagram.com/"], [href*="//www.instagram.com/"], [href*="//threads.net/"], [href*="//pixelfed.social/"])){
-		background-image: linear-gradient(180deg, #405de600, #c1358410, #fd1d1d30, #fcaf4540);
-		&:before{
-			content: "📸";
-		}
-	}
-	:where(&[href*="//threads.net/"]){
-		&:before{
-			content: "🧵";
-		}
-	}
+        :where(&[href^="tel:"]) {
+            /* iOS Phone/Message Green */
+            background-image: linear-gradient(180deg, #32d74b00, #32d74b40);
 
-	/* Video Streaming Platforms */
-	:where(&:is([href*="//www.youtube.com/"], [href*="//youtube.com/"], [href*="//youtu.be/"])){
-		background-image: linear-gradient(180deg, #f000, #f004);
-		&:before{
-			/* content: "⏯️"; */
-			content: "📺";
-		}
-	}
+            &:before {
+                content: "📞";
+            }
+        }
 
-	/* Live Streaming Platforms */
-	:where(&:is([href*="//twitch.tv/"], [href*="//kick.com/"],
-	[href*="//tilvids.com/"], [href*="//spectra.video/"])){
-		&:before{
-			content: "📹";
-		}
-	}
-	:where(&[href*="//twitch.tv/"]){
-		background-image: linear-gradient(180deg, #9146ff00, #9146ff40);
-	}
-	:where(&[href*="//kick.com/"]){
-		background-image: linear-gradient(180deg, #53fc1900, #53fc1940);
-	}
-	:where(&:is([href*="//tilvids.com/"], [href*="//spectra.video/"])){
-		background-image: linear-gradient(180deg, #f1680500, #f1680540);
-	}
+        /* Search Engines */
+        :where(
+            &:is(
+                [href*="//google.com/"],
+                [href*="//bing.com/"],
+                [href*="//kagi.com/"],
+                [href*="//duckduckgo.com/"],
+                [href*="//duck.com/"],
+                [href*="//lite.duckduckgo.com/"]
+            )
+        ) {
+            &:before {
+                content: "🔍";
+            }
+        }
 
-	/* Twitter (X)*/
-	:where( &:is([href*="//x.com/"], [href*="//fixupx.com/"], [href*="//twitter.com/"],
-	[href*="//twittpr.com/"], [href*="//t.co/"], [href*="//fxtwitter.com/"],
-	[href*="//vxtwitter.com/"])){
-		background-image: linear-gradient(180deg, #1d9bf000, #1d9bf040);
-		&:before{
-			/* content: "𝕏"; */
-			/* content: "💀"; */
-			content: "🕊️";
-		}
-	}
+        :where(&[href*="//kagi.com/"]) {
+            background-image: linear-gradient(180deg, #ffb31900, #ffb31940);
+        }
 
-	/* Bluesky and Other Social Webs */
-	:where( &:is([href*="//bsky.app/"], [href*="//bsky.social/"], [href*="//tildes.net/"])){
-		background-image: linear-gradient(180deg, #0886fe00, #0886fe40);
-		&:before{
-			content: "🦋";
-		}
-	}
+        :where(&[href*="//google.com/"]) {
+            background-image: linear-gradient(180deg, #4285f400, #4285f440);
+        }
 
-	/* Reddit Related */
-	:where( &:is([href*="//reddit.com/"], [href*="//old.reddit.com/"],
-	[href*="//sh.reddit.com/"], [href*="//new.reddit.com/"])){
-		background-image: linear-gradient(180deg, #ff450000, #ff450040);
-		&:before{
-			/* content: "💬"; */
-			content: "👽";
-		}
-	}
+        :where(&:is([href*="//duckduckgo.com/"], [href*="//duck.com/"])) {
+            background-image: linear-gradient(180deg, #de583300, #de583340);
+        }
 
-	/* Social News Aggregation (Reddit-like) Websites with ActivityPub Protocol */
-	:where(&:is([href*="//lemmy.ml/"], [href*="//lemmy.world/"],
-	[href*="//discuss.online/"],[href*="//kbin.social/"],[href*="//beehaw.social/"])){
-		background-image: linear-gradient(180deg, #ff450000, #ff450040);
-		&:before{
-			content: "💬";
-		}
-	}
+        /* Centralized Social Media Websites, Pic Sharing */
+        :where(
+            &:is(
+                [href*="//instagram.com/"],
+                [href*="//www.instagram.com/"],
+                [href*="//threads.net/"],
+                [href*="//pixelfed.social/"]
+            )
+        ) {
+            background-image: linear-gradient(
+                180deg,
+                #405de600,
+                #c1358410,
+                #fd1d1d30,
+                #fcaf4540
+            );
 
+            &:before {
+                content: "📸";
+            }
+        }
 
-	/* Discord */
-	:where( &:is([href*="//discord.com/"], [href*="//discord.gg/"], [href*="//discordapp.com/"])) {
-		background-image: linear-gradient(180deg, #5865f200, #5865f240);
-		&:before{
-			content: "💬";
-		}
-	}
+        :where(&[href*="//threads.net/"]) {
+            &:before {
+                content: "🧵";
+            }
+        }
 
-	/* Shopping Related */
-	:where( &:is([href*="//amazon.com/"], [href*="//amazon.de/"], [href*="//amazon.com.tr/"], [href*="//aliexpress.com/"], [href*=".aliexpress.com/"])) {
-		background-image: linear-gradient(180deg, #ff990000, #ff990040);
-		&:before{
-			content: "🛍️";
-		}
-	}
+        /* Video Streaming Platforms */
+        :where(
+            &:is(
+                [href*="//www.youtube.com/"],
+                [href*="//youtube.com/"],
+                [href*="//youtu.be/"]
+            )
+        ) {
+            background-image: linear-gradient(180deg, #f000, #f004);
 
-	/* Gaming Related */
-	:where(&:is([href*="//itch.io/"], [href*=".itch.io/"],
-	[href*="//store.steampowered.com/"], [href*="//steamcommunity.com/"], [href*="//s.team/"],
-	[href*="//epicgames.com/"], [href*="//store.epicgames.com/"],
-	[href*="//gog.com/"], [href*="//xbox.com/"], [href*="//minecraft.net/"],
-	[href*="//gaming.amazon.com/"], [href*="//monkeytype.com/"], [href*=".typeracer.com/"],
-	[href*="//humblebundle.com/"])) {
-		&:before{
-			content: "🎮";
-		}
-	}
+            &:before {
+                /* content: "⏯️"; */
+                content: "📺";
+            }
+        }
 
-	:where(&:is([href*="//itch.io/"], [href*=".itch.io"])){
-		background-image: linear-gradient(180deg, #ff244900, #ff244940);
-	}
-	:where(&:is([href*="//store.steampowered.com/"], [href*="//steamcommunity.com/"], [href*="//s.team/"])) {
-		background-image: linear-gradient(180deg, #00143000, #00235a20, #0087ba40);
-	}
-	:where(&:is([href*="//epicgames.com/"], [href*="//store.epicgames.com/"])){
-		/* Their brand colors are just simply black and white,
+        /* Live Streaming Platforms */
+        :where(
+            &:is(
+                [href*="//twitch.tv/"],
+                [href*="//kick.com/"],
+                [href*="//tilvids.com/"],
+                [href*="//spectra.video/"]
+            )
+        ) {
+            &:before {
+                content: "📹";
+            }
+        }
+
+        :where(&[href*="//twitch.tv/"]) {
+            background-image: linear-gradient(180deg, #9146ff00, #9146ff40);
+        }
+
+        :where(&[href*="//kick.com/"]) {
+            background-image: linear-gradient(180deg, #53fc1900, #53fc1940);
+        }
+
+        :where(&:is([href*="//tilvids.com/"], [href*="//spectra.video/"])) {
+            background-image: linear-gradient(180deg, #f1680500, #f1680540);
+        }
+
+        /* Twitter (X)*/
+        :where(
+            &:is(
+                [href*="//x.com/"],
+                [href*="//fixupx.com/"],
+                [href*="//twitter.com/"],
+                [href*="//twittpr.com/"],
+                [href*="//t.co/"],
+                [href*="//fxtwitter.com/"],
+                [href*="//vxtwitter.com/"]
+            )
+        ) {
+            background-image: linear-gradient(180deg, #1d9bf000, #1d9bf040);
+
+            &:before {
+                /* content: "𝕏"; */
+                /* content: "💀"; */
+                content: "🕊️";
+            }
+        }
+
+        /* Bluesky and Other Social Webs */
+        :where(
+            &:is(
+                [href*="//bsky.app/"],
+                [href*="//bsky.social/"],
+                [href*="//tildes.net/"]
+            )
+        ) {
+            background-image: linear-gradient(180deg, #0886fe00, #0886fe40);
+
+            &:before {
+                content: "🦋";
+            }
+        }
+
+        /* Reddit Related */
+        :where(
+            &:is(
+                [href*="//reddit.com/"],
+                [href*="//old.reddit.com/"],
+                [href*="//sh.reddit.com/"],
+                [href*="//new.reddit.com/"]
+            )
+        ) {
+            background-image: linear-gradient(180deg, #ff450000, #ff450040);
+
+            &:before {
+                /* content: "💬"; */
+                content: "👽";
+            }
+        }
+
+        /* Social News Aggregation (Reddit-like) Websites with ActivityPub Protocol */
+        :where(
+            &:is(
+                [href*="//lemmy.ml/"],
+                [href*="//lemmy.world/"],
+                [href*="//discuss.online/"],
+                [href*="//kbin.social/"],
+                [href*="//beehaw.social/"]
+            )
+        ) {
+            background-image: linear-gradient(180deg, #ff450000, #ff450040);
+
+            &:before {
+                content: "💬";
+            }
+        }
+
+        /* Discord */
+        :where(
+            &:is(
+                [href*="//discord.com/"],
+                [href*="//discordapp.com/"],
+                [href*="//discord.gg/"]
+            )
+        ) {
+            background-image: linear-gradient(180deg, #5865f200, #5865f240);
+
+            &:before {
+                content: "💬";
+            }
+        }
+
+        /* Shopping Related */
+        :where(
+            &:is(
+                [href*="//amazon.com/"],
+                [href*="//amazon.de/"],
+                [href*="//amazon.com.tr/"],
+                [href*="//aliexpress.com/"],
+                [href*=".aliexpress.com/"]
+            )
+        ) {
+            background-image: linear-gradient(180deg, #ff990000, #ff990040);
+
+            &:before {
+                content: "🛍️";
+            }
+        }
+
+        /* Gaming Related */
+        :where(
+            &:is(
+                [href*="//itch.io/"],
+                [href*=".itch.io/"],
+                [href*="//backloggd.com"],
+                [href*="//ldjam.com/"],
+                [href*="//ludumdare.com"],
+                [href*="//ldj.am/"],
+                [href*="//globalgamejam.org"],
+                [href*="//magarajam.com"],
+                [href*="//store.steampowered.com/"],
+                [href*="//steamcommunity.com/"],
+                [href*="//s.team/"],
+                [href*="//epicgames.com/"],
+                [href*="//store.epicgames.com/"],
+                [href*="//gog.com/"],
+                [href*="//xbox.com/"],
+                [href*="//minecraft.net/"],
+                [href*="//gaming.amazon.com/"],
+                [href*="//monkeytype.com/"],
+                [href*=".typeracer.com/"],
+                [href*="//humblebundle.com/"]
+            )
+        ) {
+            &:before {
+                content: "🎮";
+            }
+        }
+
+        :where(&:is([href*="//itch.io/"], [href*=".itch.io"])) {
+            background-image: linear-gradient(180deg, #ff244900, #ff244940);
+        }
+
+        :where(
+            &:is(
+                [href*="//store.steampowered.com/"],
+                [href*="//steamcommunity.com/"],
+                [href*="//s.team/"]
+            )
+        ) {
+            background-image: linear-gradient(
+                180deg,
+                #00143000,
+                #00235a20,
+                #0087ba40
+            );
+        }
+
+        :where(
+            &:is([href*="//epicgames.com/"], [href*="//store.epicgames.com/"])
+        ) {
+            /* Their brand colors are just simply black and white,
 		 * so I'm gonna do Uncommon Item Blue from Fortnite instead. */
-		background-image: linear-gradient(180deg, #4c51f700, #4c51f740);
-	}
+            background-image: linear-gradient(180deg, #4c51f700, #4c51f740);
+        }
 
-	/* Blog/SSG Related */
-	:where(&:is( [href*="//11ty.dev/"], [href*="//wordpress.com/"], [href*="//tumblr.com/"], [href*="//flipboard.com/"])) {
-		&:before{
-			content: "🎺";
-		}
-	}
+        /* Blog/SSG Related */
+        :where(
+            &:is(
+                [href*="//11ty.dev/"],
+                [href*="//wordpress.com/"],
+                [href*="//tumblr.com/"],
+                [href*="//flipboard.com/"]
+            )
+        ) {
+            &:before {
+                content: "🎺";
+            }
+        }
 
-	/* Movie/TV Related */
-	:where(&:is([href*="//letterboxd.com/"], [href*="//imdb.com/"], [href*="//www.imdb.com/"],
-	[href*="//themoviedb.org/"], [href*="//www.themoviedb.org/"])) {
-		&:before{
-			/* content: "🎟️"; */
-			content: "🎥";
-		}
-	}
+        /* Movie/TV Related */
+        :where(
+            &:is(
+                [href*="//letterboxd.com/"],
+                [href*="//imdb.com/"],
+                [href*="//www.imdb.com/"],
+                [href*="//themoviedb.org/"],
+                [href*="//www.themoviedb.org/"]
+            )
+        ) {
+            &:before {
+                /* content: "🎟️"; */
+                content: "🎥";
+            }
+        }
 
-	/* Git Hosts */
-	:where(&:is( [href*="//gitea.com/"], [href^="https://github.com/"],
-	[href^="https://gitlab.com/"], [href*="//codeberg.com/"], [href$=".git"])) {
-		&:before{
-			/* content: "🐙📔"; */
-			content: "🐙";
-		}
-	}
-	:where(&[href*="//github.com/"]){
-		background-image: linear-gradient(180deg, #73599700, #73599740);
-	}
-	:where(&[href*="//gitlab.com/"]){
-		background-image: linear-gradient(180deg, #fc6d2700, #fc6d2740);
-		&:before{
-			content: "🦊";
-		}
-	}
-	:where(&[href*="//codeberg.com/"]){
-		background-image: linear-gradient(180deg, #2889d200, #2889d240);
-		&:before{
-			content: "⛰️";
-		}
-	}
+        /* Git Hosts */
+        :where(
+            &:is(
+                [href*="//gitea.com/"],
+                [href^="https://github.com/"],
+                [href^="https://gitlab.com/"],
+                [href*="//codeberg.com/"],
+                [href$=".git"]
+            )
+        ) {
+            &:before {
+                /* content: "🐙📔"; */
+                content: "🐙";
+            }
+        }
 
-	/* Portfolio Pages */
-	:where( &:is([href*="//linkedin.com/"], [href*="//behance.net/"], [href*="//artstation.com/"],
-	[href*="//deviantart.com/"], [href*="//dribble.com/"])) {
-		&:before{
-			content: "📂";
-		}
-	}
-	:where( &[href*="//linkedin.com/"]){
-		background-image: linear-gradient(180deg, #0077b500, #0077b540);
-		&:before{
-			content: "💼";
-		}
-	}
-	:where(&[href*="//behance.net/"]){
-		background-image: linear-gradient(180deg, #0057ff00, #0057ff40);
-		&:before{
-			content: "🗃️";
-		}
-	}
+        /* Hosting */
+        :where(
+            &:is([href*=".digitalocean.com"], [href*="//digitalocean.com/"])
+        ) {
+            &:before {
+                content: "🦈";
+            }
+        }
 
-	/* Translation Services */
-	:where( &:is([href*="//crowdin.com/"], [href*="//hosted.weblate.org/"])) {
-		background-image: linear-gradient(180deg, #BACE2200, #BACE2240);
-		&:before{
-			content: "👅";
-		}
-	}
+        :where(&[href*="//github.com/"]) {
+            background-image: linear-gradient(180deg, #73599700, #73599740);
+        }
 
-	/* Wikis */
-	:where( &:is([href*="//en.wikipedia.org/"], [href*="//tr.wikipedia.org/"])) {
-		background-image: linear-gradient(180deg, #c8c8c800, #c8c8c840);
-		&:before{
-			content: "𝐖";
-		}
-	}
+        :where(&[href*="//gitlab.com/"]) {
+            background-image: linear-gradient(180deg, #fc6d2700, #fc6d2740);
 
-	/* Archives */
-	:where( &:is([href*="//web.archive.org/"], [href*="//archive.md/"], [href*="//archive.is/"])) {
-		&:before{
-			/* content: "🗄️"; */
-			content: "🏛️";
-		}
-	}
+            &:before {
+                content: "🦊";
+            }
+        }
 
-	/* Microblogging (Twitter-like) Websites with ActivityPub Protocol */
-	:where(&:is(
-	[href*="//mastodon.social/"], [href*="//front-end.social/"], [href*="//mastodon.gamedev.place/"],
-	[href*="//tech.lgbt/"], [href*="//wikis.world/"], [href*="//peoplemaking.games/"],
-	[href*="//indieweb.social/"], [href*="//fosstodon.org/"], [href*="//graphics.social/"],
-	[href*="//toot.cafe/"], [href*="//social.spicyweb.dev/"], [href*="//infra.social/"],
-	[href*="//infosec.exchange/"], [href*="//mastodon.world/"], [href*="//metasocial.com/"],
-	[href*="//fedi.software/"], [href*="//hachyderm.io/"], [href*="//flipboard.social"],
-	[href*="//mas.to/"], [href*="//indieapps.space/"], [href*="//social.growyourown.services/"],
-	[href*="//jammer.social/"], [href*="//tapbots.social/"], [href*="//techhub.social/"],
-	[href*="//mastodon.exok.com/"], [href*="//xoxo.zone/"], [href*="//mstdn.social/"],
-	[href*="//genart.social/"], [href*="//changelog.social/"], [href*="//mastodon.xyz/"],
-	[href*="//w3c.social/"], [href*="//mastodon.art/"], [href*="//floss.social/"],
-	[href*="//mastodon.online/"], [href*="//vis.social/"], [href*="//elk.zone/"])){
-		background-image: linear-gradient(180deg, #6364ff00, #6364ff40);
-		&:before{
-			/* content: "⚛️"; */
-			content: "🐘";
-		}
-	}
+        :where(&[href*="//codeberg.com/"]) {
+            background-image: linear-gradient(180deg, #2889d200, #2889d240);
 
-	/* Opinionated Favorites */
-	:where(&[href*="//gnu.org/"]){
-		/* background-image: linear-gradient(180deg, #81C14B00, #81C14B40); */
-		&:before{
-			content: "🐂";
-		}
-	}
-	:where(&:is([href*="//play.google.com/"],[href*="//apps.apple.com/"],[href*="//itunes.apple.com/"])){
-		/* background-image: linear-gradient(180deg, #81C14B00, #81C14B40); */
-		&:before{
-			content: "📱";
-		}
-	}
-	:where(&:is([href*="//apple.com/"],[href*=".apple.com/"])){
-		/* background-image: linear-gradient(180deg, #81C14B00, #81C14B40); */
-		&:before{
-			content: "🍏";
-		}
-	}
-	:where(&:is([href*="//microsoft.com/"],[href*=".microsoft.com/"])){
-		/* background-image: linear-gradient(180deg, #81C14B00, #81C14B40); */
-		&:before{
-			content: "🪟";
-		}
-	}
-	:where(&:is([href*="//eksisozluk.com/"],[href*="//eksisozluk1923.com/"],
-	[href*="//eksisozluk2023.com/"],[href*="//eksisozluk111.com/"])){
-		background-image: linear-gradient(180deg, #81C14B00, #81C14B40);
-		&:before{
-			content: "🍋";
-		}
-	}
-	:where(&:is([href*="//openai.com/"],[href*="//chat.openai.com/"],
-	[href*="//phind.com/"],[href*="//www.midjourney.com/"],[href*="//midjourney.com/"])){
-		background-image: linear-gradient(180deg, #0FA37F00, #0FA37F40);
-		&:before{
-			content: "🤖";
-		}
-	}
-	/* Image Files */
-	:where(&:is([href$=".png"],[href$=".jpg"],[href$=".jpeg"],
-	[href$=".webp"],[href$=".avif"],[href$=".jxl"],
-	[href$=".svg"],
-	[href$=".gif"],[href$=".apng"],[href$=".gifv"])){
-		&:before{
-			content: "🖼️";
-		}
-	}
-	/* Video Files */
-	:where(&:is([href$=".mp4"],[href$=".mov"],
-	[href$=".webm"],[href$=".mkv"])){
-		&:before{
-			content: "⏯️";
-		}
-	}
-	/* Audio Files */
-	:where(&:is([href$=".mp3"],[href$=".m4a"],
-	[href$=".flac"],[href$=".wav"],[href$=".ogg"])){
-		&:before{
-			content: "🎵";
-		}
-	}
-	/* Archive Files */
-	:where(&:is([href$=".zip"],[href$=".rar"],
-	[href$=".7z"],[href$=".tar.gz"])){
-		&:before{
-			content: "🗜️";
-		}
-	}
-	/* Misc Files */
-	:where(&:is([href$=".psd"],[href$=".ai"],[href$=".fla"],
-	[href$=".kra"],[href$=".afphoto"],[href$=".afdesign"],
-	[href$=".pdf"],[href$=".epub"],[href$=".cbr"],
-	[href$=".ods"],[href$=".figma"],[href$=".sketch"],
-	[href$=".docx"],[href$=".pptx"],[href$=".md"],[href$=".aseprite"])){
-		&:before{
-			content: "📄"
-		}
-	}
-	/* Package Files */
-	:where(&:is([href$=".msi"],[href$=".dmg"],[href$=".pkg"],[href$=".deb"])){
-		&:before{
-			content: "📦"
-		}
-	}
+            &:before {
+                content: "⛰️";
+            }
+        }
 
-	/* RSS Feeds */
-	:where(&:is(
-		[href$="/feed.xml"],[href$="/feed.json"],[href$="/atom.xml"],
-		[href$="/feed.rss.xml"],[href$="/feed.json"],[href$="/feed.atom.xml"],
-	)){
-		&:before{
-			content: "📰"
-		}
-	}
+        /* Portfolio Pages */
+        :where(
+            &:is(
+                [href*="//linkedin.com/"],
+                [href*="//behance.net/"],
+                [href*="//be.net/"],
+                [href*="//artstation.com/"],
+                [href*="//deviantart.com/"],
+                [href*="//dribble.com/"]
+            )
+        ) {
+            &:before {
+                content: "📂";
+            }
+        }
 
-	/* Humans.txt File */
-	:where([href$="/robots.txt"]){
-		&:before{
-			content: "🤖"
-		}
-	}
-	/* Humans.txt File */
-	:where([href$="/humans.txt"]){
-		&:before{
-			content: "🧑"
-		}
-	}
-	/* Sitemap File */
-	:where(&:is([href$="/sitemap.xml"],[href$="/sitemap.html"],[href$="/sitemap"])){
-		&:before{
-			content: "🌳"
-		}
-	}
+        :where(&[href*="//linkedin.com/"]) {
+            background-image: linear-gradient(180deg, #0077b500, #0077b540);
 
-	/* Storage/Cloud Services */
-	:where(&:is([href*="//dropbox.com/"], [href*="//drive.google.com/"])) {
-		background-image: linear-gradient(180deg, #0061fe00, #0061fe40);
-		&:before{
-			content: "📥";
-		}
-	}
+            &:before {
+                content: "💼";
+            }
+        }
+
+        :where(&:is([href*="//behance.net/"], [href*="//be.net"])) {
+            background-image: linear-gradient(180deg, #0057ff00, #0057ff40);
+
+            &:before {
+                content: "🗃️";
+            }
+        }
+
+        /* Translation Services */
+        :where(
+            &:is([href*="//crowdin.com/"], [href*="//hosted.weblate.org/"])
+        ) {
+            background-image: linear-gradient(180deg, #bace2200, #bace2240);
+
+            &:before {
+                content: "👅";
+            }
+        }
+
+        /* Wikis */
+        :where(
+            &:is([href*="//en.wikipedia.org/"], [href*="//tr.wikipedia.org/"])
+        ) {
+            background-image: linear-gradient(180deg, #c8c8c800, #c8c8c840);
+
+            &:before {
+                content: "𝐖";
+            }
+        }
+
+        /* Archives */
+        :where(
+            &:is(
+                [href*="//web.archive.org/"],
+                [href*="//archive.md/"],
+                [href*="//archive.is/"]
+            )
+        ) {
+            &:before {
+                /* content: "🗄️"; */
+                content: "🏛️";
+            }
+        }
+
+        /* Microblogging (Twitter-like) Websites with ActivityPub Protocol */
+        :where(
+            &:is(
+                [href*="//mastodon.social/"],
+                [href*="//front-end.social/"],
+                [href*="//mastodon.gamedev.place/"],
+                [href*="//tech.lgbt/"],
+                [href*="//wikis.world/"],
+                [href*="//peoplemaking.games/"],
+                [href*="//indieweb.social/"],
+                [href*="//fosstodon.org/"],
+                [href*="//graphics.social/"],
+                [href*="//toot.cafe/"],
+                [href*="//social.spicyweb.dev/"],
+                [href*="//infra.social/"],
+                [href*="//infosec.exchange/"],
+                [href*="//mastodon.world/"],
+                [href*="//metasocial.com/"],
+                [href*="//fedi.software/"],
+                [href*="//hachyderm.io/"],
+                [href*="//flipboard.social"],
+                [href*="//mas.to/"],
+                [href*="//indieapps.space/"],
+                [href*="//social.growyourown.services/"],
+                [href*="//jammer.social/"],
+                [href*="//tapbots.social/"],
+                [href*="//techhub.social/"],
+                [href*="//mastodon.exok.com/"],
+                [href*="//xoxo.zone/"],
+                [href*="//mstdn.social/"],
+                [href*="//genart.social/"],
+                [href*="//changelog.social/"],
+                [href*="//mastodon.xyz/"],
+                [href*="//w3c.social/"],
+                [href*="//mastodon.art/"],
+                [href*="//floss.social/"],
+                [href*="//mastodon.online/"],
+                [href*="//vis.social/"],
+                [href*="//elk.zone/"]
+            )
+        ) {
+            background-image: linear-gradient(180deg, #6364ff00, #6364ff40);
+
+            &:before {
+                /* content: "⚛️"; */
+                content: "🐘";
+            }
+        }
+
+        /* Opinionated Favorites */
+        :where(&[href*="//gnu.org/"]) {
+            /* background-image: linear-gradient(180deg, #81C14B00, #81C14B40); */
+            &:before {
+                content: "🐂";
+            }
+        }
+
+        :where(
+            &:is(
+                [href*="//play.google.com/"],
+                [href*="//apps.apple.com/"],
+                [href*="//itunes.apple.com/"]
+            )
+        ) {
+            /* background-image: linear-gradient(180deg, #81C14B00, #81C14B40); */
+            &:before {
+                content: "📱";
+            }
+        }
+
+        :where(&:is([href*="//apple.com/"], [href*=".apple.com/"])) {
+            /* background-image: linear-gradient(180deg, #81C14B00, #81C14B40); */
+            &:before {
+                content: "🍏";
+            }
+        }
+
+        :where(&:is([href*="//microsoft.com/"], [href*=".microsoft.com/"])) {
+            /* background-image: linear-gradient(180deg, #81C14B00, #81C14B40); */
+            &:before {
+                content: "🪟";
+            }
+        }
+
+        :where(
+            &:is(
+                [href*="//eksisozluk.com/"],
+                [href*="//eksisozluk1923.com/"],
+                [href*="//eksisozluk2023.com/"],
+                [href*="//eksisozluk111.com/"]
+            )
+        ) {
+            background-image: linear-gradient(180deg, #81c14b00, #81c14b40);
+
+            &:before {
+                content: "🍋";
+            }
+        }
+
+        :where(
+            &:is(
+                [href*="//openai.com/"],
+                [href*="//chat.openai.com/"],
+                [href*="//phind.com/"],
+                [href*="//www.midjourney.com/"],
+                [href*="//midjourney.com/"]
+            )
+        ) {
+            background-image: linear-gradient(180deg, #0fa37f00, #0fa37f40);
+
+            &:before {
+                content: "🤖";
+            }
+        }
+
+        /* Image Files */
+        :where(
+            &:is(
+                [href$=".png"],
+                [href$=".jpg"],
+                [href$=".jpeg"],
+                [href$=".webp"],
+                [href$=".avif"],
+                [href$=".jxl"],
+                [href$=".svg"],
+                [href$=".gif"],
+                [href$=".apng"],
+                [href$=".gifv"]
+            )
+        ) {
+            &:before {
+                content: "🖼️";
+            }
+        }
+
+        /* Video Files */
+        :where(
+            &:is(
+                [href$=".mp4"],
+                [href$=".mov"],
+                [href$=".webm"],
+                [href$=".mkv"]
+            )
+        ) {
+            &:before {
+                content: "⏯️";
+            }
+        }
+
+        /* Audio Files */
+        :where(
+            &:is(
+                [href$=".mp3"],
+                [href$=".m4a"],
+                [href$=".flac"],
+                [href$=".wav"],
+                [href$=".ogg"]
+            )
+        ) {
+            &:before {
+                content: "🎵";
+            }
+        }
+
+        /* Archive Files */
+        :where(
+            &:is(
+                [href$=".zip"],
+                [href$=".rar"],
+                [href$=".7z"],
+                [href$=".tar.gz"]
+            )
+        ) {
+            &:before {
+                content: "🗜️";
+            }
+        }
+
+        /* Misc Files */
+        :where(
+            &:is(
+                [href$=".psd"],
+                [href$=".ai"],
+                [href$=".fla"],
+                [href$=".kra"],
+                [href$=".afphoto"],
+                [href$=".afdesign"],
+                [href$=".pdf"],
+                [href$=".epub"],
+                [href$=".cbr"],
+                [href$=".ods"],
+                [href$=".figma"],
+                [href$=".sketch"],
+                [href$=".docx"],
+                [href$=".pptx"],
+                [href$=".md"],
+                [href$=".aseprite"]
+            )
+        ) {
+            &:before {
+                content: "📄";
+            }
+        }
+
+        /* Package Files */
+        :where(
+            &:is([href$=".msi"], [href$=".dmg"], [href$=".pkg"], [href$=".deb"])
+        ) {
+            &:before {
+                content: "📦";
+            }
+        }
+
+        /* RSS Feeds */
+        :where(
+            &:is(
+                [href$="/feed.xml"],
+                [href$=".rss.xml"],
+                [href$="/feed.json"],
+                [href$="/atom.xml"],
+                [href$=".atom.xml"]
+            )
+        ) {
+            &:before {
+                content: "📰";
+            }
+        }
+
+        /* Map Links */
+        :where(
+            &:is([href*="//www.google.com/maps/"], [href*="//maps.app.goo.gl/"])
+        ) {
+            &:before {
+                content: "📍";
+            }
+        }
+
+        /* Eleventy */
+        :where(&[href*="//11ty.dev/"]) {
+            &:before {
+                content: "🎈";
+            }
+        }
+
+        /* humans.txt */
+        :where(&[href$="/humans.txt"]) {
+            &:before {
+                content: "🫂";
+            }
+        }
+
+        /* Sitemap XML */
+        :where(&[href$="/sitemap.xml"]) {
+            &:before {
+                content: "🌳";
+            }
+        }
+
+        /* Storage/Cloud Services */
+        :where(&:is([href*="//dropbox.com/"], [href*="//drive.google.com/"])) {
+            background-image: linear-gradient(180deg, #0061fe00, #0061fe40);
+
+            &:before {
+                content: "📥";
+            }
+        }
+    }
+
+    /* Hide pseudo emojis in navigation anchor links */
+    .c-nav__anchor:before {
+        display: none !important;
+        content: "" !important;
+    }
 }
 
-/* Hide pseudo emojis in navigation anchor links */
-.c-nav__anchor:before{
-	display: none !important;
-	content: "" !important;
-}
-
-} /* end of @media screen */
-
-
-
+/* end of @media screen */
 
 /* Adjust line offset/thickness */
-abbr, acronym {
-	text-underline-offset: .0625em;
-	text-decoration-thickness: .125em;
+abbr,
+acronym {
+    text-underline-offset: 0.0625em;
+    text-decoration-thickness: 0.125em;
 }
 
 /* Deletion & Strikethrough */
@@ -888,72 +1309,101 @@ abbr, acronym {
 
 /* Realistic Marker Element*/
 /* Source: https://www.abeautifulsite.net/posts/a-clever-way-to-style-the-mark-element/ */
-mark {/* opinionated */
-	background: linear-gradient(-100deg, hsl(60 100% 50% / .3), hsl(60 100% 50% / .7) 95%, hsl(60 100% 50% / .1));
-	color: black;
-	box-shadow: 0 0 0 calc(var(--rhythmUnit) / 2) hsl(60 100% 50% / .1);
-	/* padding: calc(var(--rhythmUnit)/2); */
-	/* @media (prefers-color-scheme: dark) { */
-	:where(.t-color:is([data-theme=dark],.-forceDark:not([data-theme=dark]))) & {
-		color: hsl(60 100% 50%);
-		background: linear-gradient(-100deg, hsl(60 100% 50% / .1), hsl(60 100% 50% / .2) 95%, hsl(60 100% 50% / .1));
-	}
-	:where(.-cornerRoundedTiny) & {
-		border-radius: var(--radiusM) 0;
-	}
-	:where(.-cornerRounded, .-cornerRoundedInner) & {
-		border-radius: var(--radiusL) 0;
-	}
+:where(mark) {
+    /* opinionated */
+    background: linear-gradient(
+        -100deg,
+        hsl(60 100% 50% / 0.3),
+        hsl(60 100% 50% / 0.7) 95%,
+        hsl(60 100% 50% / 0.1)
+    );
+    color: black;
+    box-shadow: 0 0 0 calc(var(--rhythmUnit) / 2) hsl(60 100% 50% / 0.1);
+
+    /* padding: calc(var(--rhythmUnit)/2); */
+    /* @media (prefers-color-scheme: dark) { */
+    :where(
+            .t-color:is(
+                [data-theme="dark"],
+                .-forceDark:not([data-theme="dark"])
+            )
+        )
+        & {
+        color: hsl(60 100% 50%);
+        background: linear-gradient(
+            -100deg,
+            hsl(60 100% 50% / 0.1),
+            hsl(60 100% 50% / 0.2) 95%,
+            hsl(60 100% 50% / 0.1)
+        );
+    }
+
+    :where(.-cornerRoundedTiny) & {
+        border-radius: var(--radiusM) 0;
+    }
+
+    :where(.-cornerRounded, .-cornerRoundedInner) & {
+        border-radius: var(--radiusL) 0;
+    }
 }
 
-abbr[title],acronym[title]{
-	cursor: help;
+/* abbr[title],acronym[title]{ */
+[title]:where(abbr, acronym) {
+    cursor: help;
 }
 
-pre,code,kbd,samp{
-	font-family: var(--fontMono);
-}
 pre {
-	/* overflow: auto; */ /* Already exists in current reset */
-	background-color: var(--colorBack);
-	border-radius: var(--radiusInnerDefault);
-	padding: var(--rhythmUnit) calc(var(--rhythmUnit) * 1.5);
-	code, var {
-		/* overflow: auto; */
-		background-color: transparent;
-		font-size: initial;
-		padding: initial;
-	}
+    /* overflow: auto; */
+    /* Already exists in current reset */
+    background-color: var(--colorBack);
+    border-radius: var(--radiusInnerDefault);
+    padding: var(--rhythmUnit) calc(var(--rhythmUnit) * 1.5);
+
+    code,
+    var {
+        /* overflow: auto; */
+        background-color: transparent;
+        font-size: initial;
+        padding: initial;
+    }
 }
-pre code{
-	font-size: 1em;
-	/* Overriding sanitize.css, ugh… */
-	white-space: pre-wrap
-	/* Somehow normal white-space doesn't go well
+
+pre code {
+    font-size: 1em;
+    /* Overriding sanitize.css, ugh… */
+    white-space: pre-wrap;
+    /* Somehow normal white-space doesn't go well
 	 * with auto sizable grid container. So I had to go with pre-wrap
 	 * as a last resort. */
 }
 
-code, var, kbd, samp {/* opinionated */
-	background-color: var(--colorBack);
-	/* font-size:1em; */
-	padding-block: calc(var(--rhythmUnit) / 4);
-	padding-inline: calc(var(--rhythmUnit) / 2);
-	border-radius: var(--radiusInnerDefault);
+:where(code, var, kbd, samp) {
+    /* opinionated */
+    background-color: var(--colorBack);
+    /* font-size:1em; */
+    padding-block: calc(var(--rhythmUnit) / 4);
+    padding-inline: calc(var(--rhythmUnit) / 2);
+    border-radius: var(--radiusInnerDefault);
 }
 
-var {/* opinionated */
-	padding-inline-start: .2rem; /* Lower left padding because it seem off from the center while it's slanted by default. */
-	padding-inline-end: .3rem;
-	/* Sum of these are connected to vertical rhythm unit (.5) */
+:is(pre, code, kbd, samp) {
+    font-family: var(--fontMono);
 }
 
-figure{
-	/* margin-inline: calc(var(--rhythmUnit) * 4); */
-	margin-inline: 0;
-	margin-block: calc(var(--rhythmUnit) * 2);
-	/* margin: 0; */
-	/* padding: var(--rhythmUnit); */
+:where(var) {
+    /* opinionated */
+    padding-inline-start: 0.2rem;
+    /* Lower left padding because it seem off from the center while it's slanted by default. */
+    padding-inline-end: 0.3rem;
+    /* Sum of these are connected to vertical rhythm unit (.5) */
+}
+
+figure {
+    /* margin-inline: calc(var(--rhythmUnit) * 4); */
+    margin-inline: 0;
+    margin-block: calc(var(--rhythmUnit) * 2);
+    /* margin: 0; */
+    /* padding: var(--rhythmUnit); */
 }
 
 /*
@@ -961,171 +1411,192 @@ figure{
  */
 
 table {
-	/* --tableBorderColor: var(--colorText); */
-	--tableBorderColor: var(--colorTextOpac60);
-	/* --tableBorderColor: var(--colorBackmost); */
-	--tableBorder: var(--borderHairline); /* opinionated */
-	margin-block-end: var(--rhythmUnit);
-	margin-block-start: calc( var(--tableBorder) * -1);
-	/* padding-block-start: var(--rhythmUnit); */
-	border: var(--tableBorder) solid var(--tableBorderColor);
-	/* border: var(--tableBorder) solid var(--colorTextOpac40); */
-	border-collapse: collapse;
-	border-radius: var(--radiusInnerDefault);
-	/* TODO: Find a way to overflow large table content without any container */
-	/* overflow-wrap: anywhere;  */
-	:is(td, th){
-		/* border: var(--tableBorder) solid currentColor; */
-		border-style: solid;
-		border-color: var(--tableBorderColor);
-		border-width: var(--tableBorder);
-		/* border: 1px solid var(--colorTextOpac40); */
-		padding: calc(var(--rhythmUnit) / 2) .5ch;
+    /* --tableBorderColor: var(--colorText); */
+    --tableBorderColor: color-mix(in srgb, var(--colorText) 60%, transparent);
+    /* --tableBorderColor: color-mix(in srgb, var(--colorText) 40%, transparent); */
+    /* --tableBorderColor: var(--colorBackmost); */
+    --tableBorder: var(--borderHairline);
+    /* opinionated */
+    margin-block-end: var(--rhythmUnit);
+    margin-block-start: calc(var(--tableBorder) * -1);
+    /* padding-block-start: var(--rhythmUnit); */
+    border: var(--tableBorder) solid var(--tableBorderColor);
+    border-collapse: collapse;
+    border-radius: var(--radiusInnerDefault);
 
-		/* margin-block-start: calc(var(--tableBorder) * -1px); */
-		/* It seems that doesn't work in table-cell boxes 🤷 */
-	}
+    /* TODO: Find a way to overflow large table content without any container */
+    /* overflow-wrap: anywhere;  */
+    :is(td, th) {
+        border-style: solid;
+        border-color: var(--tableBorderColor);
+        border-width: var(--tableBorder);
+        padding: calc(var(--rhythmUnit) / 2) 0.5ch;
 
-	&.-noBorder :is(td, th) {
-		border: none;
-		padding: initial;
-	}
-	&.-rowZebra {
-		/* Distribute border between rows */
-		/* :not(tr:last-child) > :is(td){ */
-		/* tr > td{ */
-		td {
-			border-block-width:0;
-		}
-		/* Alternate background colors per row */
-		tbody tr:nth-child(odd) {
-			background-color: var(--colorTextOpac075) ;
-		}
-		/* No horizontal borders in zebra row table except first row */
-		/* :not(tr:first-of-type) > :is(td,th){ */
-		/* 	border-width: 0 var(--tableBorder); */
-		/* } */
-	}
-	&.-headerStickyBoth {
-		/* Source: https://css-tricks.com/idea-simple-responsive-spreadsheet/ */
-		position: relative;
+        /* margin-block-start: calc(var(--tableBorder) * -1px); */
+        /* It seems that doesn't work in table-cell boxes 🤷 */
+    }
 
-		:has(> &) { /* Container Selector */
-			overflow: scroll;
-		}
-		:is(td,th) {
-			white-space: nowrap;
-		}
+    &.-noBorder :is(td, th) {
+        border: none;
+        padding: initial;
+    }
 
-		/* Heading of the table */
-		th {
-			background-color: var(--colorFront);
-			position: sticky;
-			z-index: 2;
-			inset-block-start: calc(var(--tableBorder) * -1);
+    &.-rowZebra {
+        /* Distribute border between rows */
+        /* :not(tr:last-child) > :is(td){ */
+        /* tr > td{ */
+        td {
+            border-block-width: 0;
+        }
 
-			/* The first cell that lives in the top left of our spreadsheet */
-			&:first-of-type {
-				inset-inline-start: 0;
-				z-index: 3;
-			}
-		}
+        /* Alternate background colors per row */
+        tbody tr:nth-child(odd) {
+            background-color: color-mix(
+                in srgb,
+                var(--colorText) 5%,
+                transparent
+            );
+        }
 
-		/* The first column that we want to stick to the left */
-		tbody tr :is(td,th):first-of-type {
-			position: sticky;
-			z-index: 1;
-			inset-inline-start: calc( var(--tableBorder) * -1);
-			background-color: var(--colorFront);
-		}
-	}
-	&.-highlightAlignment {
-		position: relative;
-		z-index: 0;
-		overflow: hidden;
-		:is(td, th) {
-			/* min-inline-size: 3rem; */
-			position: relative;
-			outline: 0;
-		}
-		tbody tr:hover, :is(td, th):hover:after {
-			background-color: var(--colorTextOpac075);
-		}
-		:is(thead th:not(:empty), td):hover:after {
-			content: '';
-			height: 10000px;
-			left: 0;
-			position: absolute;
-			top: -5000px;
-			width: 100%;
-			z-index: -1;
-		}
-	}
+        /* No horizontal borders in zebra row table except first row */
+        /* :not(tr:first-of-type) > :is(td,th){ */
+        /* 	border-width: 0 var(--tableBorder); */
+        /* } */
+    }
+
+    &.-headerStickyBoth {
+        /* Source: https://css-tricks.com/idea-simple-responsive-spreadsheet/ */
+        position: relative;
+
+        :has(> &) {
+            /* Container Selector */
+            overflow: scroll;
+        }
+
+        :is(td, th) {
+            white-space: nowrap;
+        }
+
+        /* Heading of the table */
+        th {
+            background-color: var(--colorFront);
+            position: sticky;
+            z-index: 2;
+            inset-block-start: calc(var(--tableBorder) * -1);
+
+            /* The first cell that lives in the top left of our spreadsheet */
+            &:first-of-type {
+                inset-inline-start: 0;
+                z-index: 3;
+            }
+        }
+
+        /* The first column that we want to stick to the left */
+        tbody tr :is(td, th):first-of-type {
+            position: sticky;
+            z-index: 1;
+            inset-inline-start: calc(var(--tableBorder) * -1);
+            background-color: var(--colorFront);
+        }
+    }
+
+    &.-highlightAlignment {
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+
+        :is(td, th) {
+            /* min-inline-size: 3rem; */
+            position: relative;
+            outline: 0;
+        }
+
+        tbody tr:hover,
+        :is(td, th):hover:after {
+            background-color: color-mix(
+                in srgb,
+                var(--colorText) 5%,
+                transparent
+            );
+        }
+
+        :is(thead th:not(:empty), td):hover:after {
+            content: "";
+            height: 10000px;
+            left: 0;
+            position: absolute;
+            top: -5000px;
+            width: 100%;
+            z-index: -1;
+        }
+    }
 }
 
 /* Border radius on top level of table won't work
  * unless border-collapse is separate. */
-.t-modRoot[class*="-cornerRounded"]{
-	table{
-		border-collapse: separate;
-		border-spacing: 0;
-	}
-	table:not(.-headerStickyBoth){
-		overflow:hidden;
-	}
-	:has( > table.-headerStickyBoth){ 
-		border-radius: var(--radiusL);
-	}
-	tr > :is(td,th):last-child:not(:only-child) {
-		border-inline-end-width:0;
-	}
-	tr:last-of-type:not(:only-child) > :is(td,th) {
-		border-block-end-width:0;
-	}
-	:is(td,th){
-		border-block-start-width:0;
-		border-inline-start-width:0
-	}
-	/* :is(tr:first-child :is(td,th):last-child, tr:last-child  :is(td,th):first-child, tr:last-child  :is(td,th):last-child ) { */
-	/* 	overflow:hidden; */
-	/* } */
+.t-modRoot[class*="-cornerRounded"] {
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    table:not(.-headerStickyBoth) {
+        overflow: hidden;
+    }
+
+    :has(> table.-headerStickyBoth) {
+        border-radius: var(--radiusL);
+    }
+
+    tr > :is(td, th):last-child:not(:only-child) {
+        border-inline-end-width: 0;
+    }
+
+    tr:last-of-type:not(:only-child) > :is(td, th) {
+        border-block-end-width: 0;
+    }
+
+    :is(td, th) {
+        border-block-start-width: 0;
+        border-inline-start-width: 0;
+    }
+
+    /* :is(tr:first-child :is(td,th):last-child, tr:last-child  :is(td,th):first-child, tr:last-child  :is(td,th):last-child ) { */
+    /* 	overflow:hidden; */
+    /* } */
 }
+
 /* tr:first-child :is(td,th):first-child { border-top-left-radius:     var(--radiusInnerDefault)} */
 /* tr:first-child :is(td,th):last-child  { border-top-right-radius:    var(--radiusInnerDefault)} */
 /* tr:last-child  :is(td,th):first-child { border-bottom-left-radius:  var(--radiusInnerDefault)} */
 /* tr:last-child  :is(td,th):last-child  { border-bottom-right-radius: var(--radiusInnerDefault)} */
 
 /* Make top-left corner of table rounded */
-:where(
-	table,
-	:is(tbody,thead):first-child,
-	caption + :is(tbody,thead) 
-) > tr:first-child :is(td,th):first-child {
-	border-start-start-radius: var(--radiusInnerDefault);
+:where(table, :is(tbody, thead):first-child, caption + :is(tbody, thead))
+    > tr:first-child
+    :is(td, th):first-child {
+    border-start-start-radius: var(--radiusInnerDefault);
 }
+
 /* Make top-right corner of table rounded */
-:where(
-	table,
-	:is(tbody,thead):first-child,
-	caption + :is(tbody,thead)
-) > tr:first-child :is(td,th):last-child {
-	border-start-end-radius: var(--radiusInnerDefault);
+:where(table, :is(tbody, thead):first-child, caption + :is(tbody, thead))
+    > tr:first-child
+    :is(td, th):last-child {
+    border-start-end-radius: var(--radiusInnerDefault);
 }
+
 /* Make bottom-left corner of table rounded */
-:where(
-	table,
-	:is(tbody,tfoot):last-child,
-	caption + :is(tbody,tfoot)
-) > tr:last-child  :is(td,th):first-child {
-	border-end-start-radius: var(--radiusInnerDefault);
+:where(table, :is(tbody, tfoot):last-child, caption + :is(tbody, tfoot))
+    > tr:last-child
+    :is(td, th):first-child {
+    border-end-start-radius: var(--radiusInnerDefault);
 }
+
 /* Make bottom-right corner of table rounded */
-:where(
-	table,
-	:is(tbody,tfoot):last-child,
-	caption + :is(tbody,tfoot) 
-) > tr:last-child :is(td,th):last-child {
-	border-end-end-radius: var(--radiusInnerDefault);
+:where(table, :is(tbody, tfoot):last-child, caption + :is(tbody, tfoot))
+    > tr:last-child
+    :is(td, th):last-child {
+    border-end-end-radius: var(--radiusInnerDefault);
 }
 
 /*
@@ -1134,34 +1605,36 @@ table {
 
 /* Image, Video, Picture Elements inside CMS Content */
 .s-cmsContent {
-	:is(img,video,picture) {
-		max-width: 100%;
-		width: auto;
-		height: auto;
-		&:not([class*="align"]){
-			margin-inline: auto; /* Center the image if there's no align class */
-		}
-	}
-	.aligncenter {
-		clear: both;
-		display: block;
-		margin-inline: auto;
-	}
-	:where(.alignleft, .alignright) {
-		display: inline;
-	}
-	.alignleft {
-		float: left;
-		margin-inline-end: 1ch;
-		/* margin-inline-end: 1em; */
-		/* margin-inline-end: var(--boxViewCard-padSide); */
-	}
-	.alignright {
-		/* float: right; */
-		/*margin-left: 1em;*/
-		margin-inline-start: var(--boxViewCard-padSide);
-	}
-	/* If you're looking for aligning last line of paragraph with justified aligning
+    :is(img, video, picture) {
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .aligncenter {
+        clear: both;
+        display: block;
+        margin-inline: auto;
+    }
+
+    :where(.alignleft, .alignright) {
+        display: inline;
+    }
+
+    .alignleft {
+        float: left;
+        margin-inline-end: 1ch;
+        /* margin-inline-end: 1em; */
+        /* margin-inline-end: var(--boxViewCard-padSide); */
+    }
+
+    .alignright {
+        /* float: right; */
+        /*margin-left: 1em;*/
+        margin-inline-start: var(--boxViewCard-padSide);
+    }
+
+    /* If you're looking for aligning last line of paragraph with justified aligning
 	* https://www.stefanjudis.com/today-i-learned/how-to-align-the-text-of-the-last-paragraph-line/
 	* Warning: Min. support is Safari 16 both in desktop and mobile.
 	*/
@@ -1171,24 +1644,24 @@ table {
  */
 /* ._s-headingNestOffset { */
 /* 	/1* opinionated *1/ */
-	/* :is(h1,h2,h3,h4,h5) { */
-	/* 	position:relative; */
-	/* } */
-	/* h1 { */
-	/* 	left: -1.1rem */
-	/* } */
-	/* h2 { */
-	/* 	left: -0.92rem */
-	/* } */
-	/* h3 { */
-	/* 	left: -0.74rem */
-	/* } */
-	/* h4 { */
-	/* 	left: -0.56rem */
-	/* } */
-	/* h5 { */
-	/* 	left: -0.4rem */
-	/* } */
+/* :is(h1,h2,h3,h4,h5) { */
+/* 	position:relative; */
+/* } */
+/* h1 { */
+/* 	left: -1.1rem */
+/* } */
+/* h2 { */
+/* 	left: -0.92rem */
+/* } */
+/* h3 { */
+/* 	left: -0.74rem */
+/* } */
+/* h4 { */
+/* 	left: -0.56rem */
+/* } */
+/* h5 { */
+/* 	left: -0.4rem */
+/* } */
 /* 	/1* -opinionated *1/ */
 /* 	/1* .o-box.-viewCard{ *1/ */
 /* 	/1* 	padding-left: calc(var(--boxViewCard-padSide) * 1.6); *1/ */

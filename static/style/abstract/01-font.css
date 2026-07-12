@@ -3,9 +3,9 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Antonio&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Texturina&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap') */
+/* @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'); */
 
 /* Useful tool to get and self-host a font from Google Fonts
  * https://labs.binaryunit.com/localgfonts/
@@ -48,11 +48,13 @@
 	 */
 	/* --fontMain: "Recursive", var(--fontStackNeoGrotesque), color-emoji; */
 	/* --fontMain: var(--fontStackOldStyle), color-emoji; */
-	--fontMain: "Inter V", var(--fontStackNeoGrotesque), color-emoji;
+	--fontMain: "InterVariable", var(--fontStackNeoGrotesque), color-emoji;
 	/* --fontMain: var(--fontStackSansPixelated), color-emoji; */
 	/* --fontMain: var(--fontStackSystemUI), color-emoji; */
-	--fontMono: "Iosevka Aegean", var(--fontStackMono);
-	--fontHeading: var(--fontMain);
+	--fontMono: "Iosevka Aegean Mono", var(--fontStackMono);
+	/* --fontHeading: var(--fontMain); */
+	--fontHeading: "NationalPark-VariableVF", var(--fontMain);
+	/* --fontParagraph: var(--fontStackTransitional); */
 	/* --fontParagraph: var(--fontMain); */
 
 	/* Use default system font stack in smartwatches */
@@ -66,129 +68,133 @@
 @font-face {
 	font-family: "color-emoji";
 	src: local("Apple Color Emoji"),
-		 local("Segoe UI Emoji"),
-		 local("Segoe UI Symbol"),
-		 local("Noto Color Emoji");
+		local("Segoe UI Emoji"),
+		local("Segoe UI Symbol"),
+		local("Noto Color Emoji");
 }
 
 /* Variable Fonts */
-@font-face {
-	font-family: 'Inter V';
-	src: url('../asset/font/InterAegeanV.subset.woff2') format('woff2-variations'),
-		 url('../asset/font/InterAegeanV.subset.woff2') format('woff2'),
-		 local("Inter V");
-	font-weight: 1 999;
-	font-style: normal;
+@supports (font-variation-settings: normal) {
+	@font-face {
+		font-family: 'NationalPark-VariableVF';
+		font-weight: 100 900;
+		/* font-display: swap; */
+		font-style: normal;
+		src: url('../asset/font/NationalPark-VariableVF.subset.woff2') format('woff2-variations'),
+			url('../asset/font/NationalPark-VariableVF.subset.woff2') format('woff2'),
+			local("National Park");
+	}
+
+	@font-face {
+		font-family: 'InterVariable';
+		font-weight: 100 900;
+		/* font-display: swap; */
+		font-style: normal;
+		src: url('../asset/font/InterVariable.subset_freeze.woff2') format('woff2-variations'),
+			url('../asset/font/InterVariable.subset_freeze.woff2') format('woff2'),
+			local("Inter Variable Text");
+	}
+
+	@font-face {
+		font-family: 'InterVariable';
+		font-weight: 100 900;
+		/* font-display: swap; */
+		font-style: italic;
+		src: url('../asset/font/InterVariable-Italic.subset_freeze.woff2') format('woff2-variations'),
+			url('../asset/font/InterVariable-Italic.subset_freeze.woff2') format('woff2'),
+			local("Inter Variable Text");
+	}
 }
+
 @font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
+	font-family: 'Iosevka Aegean Mono';
+	/* font-display: swap; */
 	font-weight: 100;
 	font-stretch: normal;
 	font-style: normal;
-	src: url('../asset/font/iosevka-aegean-mono-thin.subset.woff2') format('woff2');
+	src: url('../asset/font/IosevkaAegeanMono-Thin.subset.woff2') format('woff2');
 }
 
 @font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
+	font-family: 'Iosevka Aegean Mono';
+	/* font-display: swap; */
 	font-weight: 100;
 	font-stretch: normal;
 	font-style: italic;
-	src: url('../asset/font/iosevka-aegean-mono-thinitalic.subset.woff2') format('woff2');
+	src: url('../asset/font/IosevkaAegeanMono-ThinItalic.subset.woff2') format('woff2');
 }
 
 @font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
+	font-family: 'Iosevka Aegean Mono';
+	/* font-display: swap; */
 	font-weight: 300;
 	font-stretch: normal;
 	font-style: normal;
-	src: url('../asset/font/iosevka-aegean-mono-light.subset.woff2') format('woff2');
+	src: url('../asset/font/IosevkaAegeanMono-Light.subset.woff2') format('woff2');
 }
 
 @font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
+	font-family: 'Iosevka Aegean Mono';
+	/* font-display: swap; */
 	font-weight: 300;
 	font-stretch: normal;
 	font-style: italic;
-	src: url('../asset/font/iosevka-aegean-mono-lightitalic.subset.woff2') format('woff2');
+	src: url('../asset/font/IosevkaAegeanMono-LightItalic.subset.woff2') format('woff2');
 }
 
 @font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
+	font-family: 'Iosevka Aegean Mono';
+	/* font-display: swap; */
 	font-weight: 400;
 	font-stretch: normal;
 	font-style: normal;
-	src: url('../asset/font/iosevka-aegean-mono-regular.subset.woff2') format('woff2');
+	src: url('../asset/font/IosevkaAegeanMono-Regular.subset.woff2') format('woff2');
 }
 
 @font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
+	font-family: 'Iosevka Aegean Mono';
+	/* font-display: swap; */
 	font-weight: 400;
 	font-stretch: normal;
 	font-style: italic;
-	src: url('../asset/font/iosevka-aegean-mono-italic.subset.woff2') format('woff2');
+	src: url('../asset/font/IosevkaAegeanMono-Italic.subset.woff2') format('woff2');
 }
 
 @font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
-	font-weight: 500;
-	font-stretch: normal;
-	font-style: normal;
-	src: url('../asset/font/iosevka-aegean-mono-medium.subset.woff2') format('woff2');
-}
-
-@font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
-	font-weight: 500;
-	font-stretch: normal;
-	font-style: italic;
-	src: url('../asset/font/iosevka-aegean-mono-mediumitalic.subset.woff2') format('woff2');
-}
-
-@font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
+	font-family: 'Iosevka Aegean Mono';
+	/* font-display: swap; */
 	font-weight: 700;
 	font-stretch: normal;
 	font-style: normal;
-	src: url('../asset/font/iosevka-aegean-mono-bold.subset.woff2') format('woff2');
+	src: url('../asset/font/IosevkaAegeanMono-Bold.subset.woff2') format('woff2');
 }
 
 @font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
+	font-family: 'Iosevka Aegean Mono';
+	/* font-display: swap; */
 	font-weight: 700;
 	font-stretch: normal;
 	font-style: italic;
-	src: url('../asset/font/iosevka-aegean-mono-bolditalic.subset.woff2') format('woff2');
+	src: url('../asset/font/IosevkaAegeanMono-BoldItalic.subset.woff2') format('woff2');
 }
 
 @font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
+	font-family: 'Iosevka Aegean Mono';
+	/* font-display: swap; */
 	font-weight: 900;
 	font-stretch: normal;
 	font-style: normal;
-	src: url('../asset/font/iosevka-aegean-mono-heavy.subset.woff2') format('woff2');
+	src: url('../asset/font/IosevkaAegeanMono-Heavy.subset.woff2') format('woff2');
 }
 
 @font-face {
-	font-family: 'Iosevka Aegean';
-	font-display: swap;
+	font-family: 'Iosevka Aegean Mono';
+	/* font-display: swap; */
 	font-weight: 900;
 	font-stretch: normal;
 	font-style: italic;
-	src: url('../asset/font/iosevka-aegean-mono-heavyitalic.subset.woff2') format('woff2');
+	src: url('../asset/font/IosevkaAegeanMono-HeavyItalic.subset.woff2') format('woff2');
 }
-
-
 
 /*----*/
 

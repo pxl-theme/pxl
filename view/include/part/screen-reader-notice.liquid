@@ -1,0 +1,19 @@
+<!--🗨️ Screen Reader Notice -->
+<a 
+	href=#content
+	class="o-box u-visuallyHidden"
+	style="z-index:9999;text-decoration:none;position:absolute;top:0"
+	tabindex=0
+	>
+	<b>{{ translation[lang].screenReaderNotice }}</b> <kbd>(enter ↩︎)</kbd>
+</a>
+{%- if people[site.author].links.email.handle -%}
+<a
+	href="mailto:{{ people[site.author].links.email.handle | escape }}?subject={{ translation[lang].screenReaderNoticeFeedbackSubject }}"
+	class="o-box u-visuallyHidden"
+	style="z-index:9999;text-decoration:none;position:absolute;top:0"
+	tabindex=0
+	>
+	<b>{{ translation[lang].screenReaderNoticeFeedback }}</b> <kbd>(enter ↩︎)</kbd>
+</a>
+{%- endif -%}

@@ -20,7 +20,7 @@ label {
 	/* padding-block: calc(var(--rhythmUnit) / 2); */
 
 	/* @media (--lap-or-gt) { */
-	/* 	@media (any-hover: hover) and (any-pointer: fine) { */
+	/* 	@media (pointer: fine) { */
 	/* 		@mixin fontSize5; */
 	/* 	} */
 	/* } */
@@ -51,7 +51,7 @@ select:not([multiple=multiple]), textarea
 	--inputInlineSize: 18ch;
 	block-size: var(--inputBlockSize);
 	min-inline-size: var(--inputInlineSize);
-	@media (any-hover: hover) and (any-pointer: fine) {
+	@media (pointer: fine) {
 		--inputBlockSize: calc(var(--rhythmUnit)*3);
 	}
 	/* opinionated */
@@ -61,7 +61,7 @@ select:not([multiple=multiple]), textarea
 
 	/* @mixin fontSize4; */
 
-	/* @media (any-hover: hover) and (any-pointer: fine) { */
+	/* @media (pointer: fine) { */
 	/* 	@mixin fontSize5; */
 	/* } */
 	/* &:focus { */
@@ -102,7 +102,7 @@ input[type=file] {
 	--border: var(--borderM);
 	/* border: none; */
 	padding: calc(var(--rhythmUnit) * 2 - var(--border));
-	border: var(--border) dashed var(--colorTextOpac40);
+	border: var(--border) dashed color-mix(in srgb, var(--colorText) 40%, transparent);
 	border-radius: var(--radiusInnerDefault);
 	/* margin-inline-end: calc(var(--border)*-2); */
 	/* padding: none; */
@@ -119,18 +119,18 @@ input[type=file] {
 	color: currentColor; /* Text color needs to change if system color scheme is different than the theme */
 
 	/* Should be same as button style */
-	--buttonHeight: calc(var(--rhythmUnit)*5);/* Base height of every button in touch interface */
+	--buttonHeight: calc(var(--rhythmUnit) * 5);/* Base height of every button in touch interface */
 	border:0;
 	cursor: pointer;
 	--fontWeight: 550; /* opinionated */
 	@mixin fontSize4;
-	padding-block: calc((var(--buttonHeight) - var(--lineHeight))/2);
+	padding-block: calc((var(--buttonHeight) - var(--lineHeight)) / 2 );
 	padding-inline: 1ch;
 	border-radius: var(--radiusDefault);
 	background-color: var(--colorFront);
 
-	@media (any-pointer: fine){
-		--buttonHeight: calc(var(--rhythmUnit)*4); /* Base height of every button*/
+	@media (pointer: fine){
+		--buttonHeight: calc(var(--rhythmUnit) * 4 ); /* Base height of every button*/
 	}
 	/* &:hover, &:focus { */
 	&:hover, &:focus-visible {
@@ -162,7 +162,7 @@ input::-webkit-calendar-picker-indicator{
 	/* Don't hide datalist arrow inside webkit datalist input when it's not hovered */
 	opacity: 1;
 	&:hover {
-		background-color: var(--colorTextOpac20);
+		background-color: color-mix(in srgb, var(--colorText) 20%, transparent);
 	}
 }
 /* Don't hide spin buttons inside webkit number input when it's not hovered */
@@ -179,7 +179,7 @@ input[type=color] {
 }
 ::placeholder{
 	/* color: currentColor; */
-	color: var(--colorTextOpac60);
+	color: color-mix(in srgb, var(--colorText) 60%, transparent);
 }
 /* ::-webkit-calendar-picker-indicator { */
 /* 	display: none; */
@@ -221,7 +221,7 @@ input[type=color] {
 	/* } */
 
 	/* Set minimum height for buttons in mobile devices */
-	@media (any-pointer: fine){
+	@media (pointer: fine){
 		--buttonHeight: calc( var(--rhythmUnit) * 4); /* Base height of every button*/
 	}
 
@@ -426,7 +426,7 @@ input[type=range] {
 	-webkit-tap-highlight-color: transparent;
 	background:none;
 	/* height: 2em; */
-	@media (any-hover: hover) and (any-pointer: fine) {
+	@media (pointer: fine) {
 		--sliderTrackWidth: 1.5rem;
 	}
 }

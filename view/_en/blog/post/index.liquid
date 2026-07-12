@@ -1,0 +1,21 @@
+---
+layout: base
+tags: page
+eleventyExcludeFromCollections: ["post"]
+description: "A mixed timeline of my personal and professional writings."
+customHeaderTitle: Posts
+priority: 0.9
+changefreq: yearly
+eleventyImport:
+  collections: ["post"]
+pagination:
+  data: collections.post
+  size: 12
+permalink: "/{{ lang }}/blog/post/{% if pagination.pageNumber > 0 %}p/{{ pagination.pageNumber | plus:1 }}{% else %}index{% endif %}.html"
+eleventyComputed:
+  title: Blog Posts{% if pagination.pageNumber > 0 %} (Pg. {{ pagination.pageNumber | plus:1 }}){% endif %}
+  translationKey: "blogPosts{% if pagination.pageNumber > 0 %}-page{{ pagination.pageNumber | plus:1 }}{% endif %}"
+---
+{%- include 'loop/itemlist'
+  item_count: collections.post.size
+-%}

@@ -1,0 +1,98 @@
+{
+	"en": {
+		"primary": [
+			{
+				"label": "Blog",
+				"url": "/en/blog/",
+				"icon": "paper-multiple-masonry"
+			},
+			{
+				"label": "Nav Example",
+				"url": "#!",
+				"icon": "general-drawer",
+				"separator": "<li class='c-nav__separator -leanEnd'></li>",
+				"submenu": [
+					{
+						"label": "Old Stuff",
+						"url": "#!"
+					},
+					{
+						"label": "Rocket",
+						"url": "#!",
+						"icon": "fun-rocket"
+					}
+				]
+			}
+		],
+		"secondary": [
+			{
+				"label": "Search",
+				"url": "/all/",
+				"icon": "tool-magnifier"
+			},
+			{
+				"icon": "the-logo",
+				"view": "IconOnly",
+				"label": "Plain Version",
+				"url": "/plain/",
+				"align": "right"
+			}
+		],
+		"tertiary": [
+			{
+				"label": "Feed",
+				"url": "/en/blog/feed.atom.xml"
+			},
+			{
+				"label": "Sitemap",
+				"url": "/sitemap.xml"
+			}
+		]
+	},
+	"tr": {
+		"primary": [
+			{
+				"label": "Blog",
+				"url": "/en/blog/",
+				"icon": "paper-multiple-masonry"
+			},
+			{
+				"label": "Navigasyon Örneği",
+				"url": "#!",
+				"icon": "general-drawer",
+				"separator": "<li class='c-nav__separator -leanEnd'></li>",
+				"submenu": [
+					{
+						"label": "Old Stuff",
+						"url": "#!"
+					},
+					{
+						"label": "Rocket",
+						"url": "#!",
+						"icon": "fun-rocket"
+					}
+				]
+			}
+		],
+		"secondary": [
+			{
+				"icon": "the-logo",
+				"view": "IconOnly",
+				"label": "Düz Versiyonu",
+				"url": "/plain/",
+				"align": "right"
+			}
+		],
+		"tertiary": [
+			{
+				"label": "Besleme",
+				"url": "/tr/blog/feed.atom.xml"
+			},
+			{
+				"label": "Site Haritası",
+				"url": "/sitemap.xml"
+			}
+		]
+	}
+
+}

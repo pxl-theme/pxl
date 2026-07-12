@@ -1,0 +1,24 @@
+---
+layout: base
+tags: page
+eleventyExcludeFromCollections: ["post"]
+description: "A mixed timeline of personal and professional writings."
+priority: 1.0
+changefreq: monthly
+eleventyImport:
+  collections: ["blog"]
+pagination:
+  data: collections.blog
+  size: 12
+modifications:
+   showTitleInNav: false
+   compactHeader: false
+permalink: "/{{ lang }}/blog/{% if pagination.pageNumber > 0 %}p/{{ pagination.pageNumber | plus:1 }}{% else %}index{% endif %}.html"
+eleventyComputed:
+  title: Blog{% if pagination.pageNumber > 0 %} (Pg. {{ pagination.pageNumber | plus:1 }}){% endif %}
+  translationKey: "blog{% if pagination.pageNumber > 0 %}-page{{ pagination.pageNumber | plus:1 }}{% endif %}"
+---
+{%- include 'loop/itemlist'
+  item_count: collections.blog.size
+  view: "masonry"
+-%}

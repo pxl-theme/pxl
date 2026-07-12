@@ -83,13 +83,13 @@
 			/* padding-bottom: calc(9 / 16 * 100)% */
 
 			/* padding-bottom: 46.25%; */
-			padding-block-end: calc(9 / 16 * 100 - 10)%
+			padding-block-end: calc(9 / 16 * 100% - 10%)
 		}
 		@media (--lap-or-gt) {
 		/* 21:9 Ultra Wide Space */
 			/* padding-bottom: 42.85%; */
 			/* padding-bottom: 32.85%; */
-			padding-block-end: calc(9 / 21 * 100 - 10)%
+			padding-block-end: calc(9 / 21 * 100% - 10%)
 		}
 	}
 }

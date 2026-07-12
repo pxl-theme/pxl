@@ -1,5 +1,11 @@
 # Don't transform README.md, _draft directory and
 # hidden vault files (from Obsidian text editor) at project root directory.
 README.md
-_draft/
-_content/.obsidian
+.obsidian
+.obsidian.vimrc
+.trash
+# Temporary Ignores for Shorter Build Time
+# (Add hashtag at the beginning of line to unignore)
+# tag.liquid
+# _imported/
+# _draft/

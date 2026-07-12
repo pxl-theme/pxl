@@ -1,0 +1,21 @@
+---
+layout: base
+tags: page
+eleventyExcludeFromCollections: ["post"]
+description: "Kişisel ve mesleki yazılarımın bir ortaya karışık zaman çizelgesi."
+customHeaderTitle: "Gönderiler"
+priority: 0.9
+changefreq: yearly
+eleventyImport:
+  collections: ["gönderi"]
+pagination:
+  data: collections.gönderi
+  size: 12
+permalink: "/{{ lang }}/blog/post/{% if pagination.pageNumber > 0 %}p/{{ pagination.pageNumber | plus:1 }}{% else %}index{% endif %}.html"
+eleventyComputed:
+  title: Günlük Gönderileri{% if pagination.pageNumber > 0 %} ({{ pagination.pageNumber | plus:1 }}. syf.){% endif %}
+  translationKey: "blogPosts{% if pagination.pageNumber > 0 %}-page{{ pagination.pageNumber | plus:1 }}{% endif %}"
+---
+{%- include 'loop/itemlist'
+  item_count: collections.gönderi.size
+-%}

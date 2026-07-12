@@ -2,8 +2,6 @@ const debugMode = false;
 debugMode && console.log("[pxl] Beginning of script");
 
 //--- Global Variables
-const docBody = document.body;
-
 const navRespo = document.querySelector(".c-nav.-responsive");
 const rsgridMasonry = document.querySelector(".o-rustygrid.-viewMasonry");
 
@@ -30,7 +28,7 @@ setTimeout(() => {
 	debugMode &&
 		console.log("[pxl] Set .js-preload class for a second in <body>");
 	document.querySelector(".js-preload") &&
-		docBody.classList.remove("js-preload");
+		document.body.classList.remove("js-preload");
 }, 1e3);
 // 1e3 = 1000 = 1 sec
 
@@ -57,10 +55,10 @@ setTimeout(() => {
 // time it loads. This function makes it disappear that.
 let resizeTimer;
 window.addEventListener("resize", () => {
-	docBody.classList.add("u-transitionNone");
+	document.body.classList.add("u-transitionNone");
 	clearTimeout(resizeTimer);
 	resizeTimer = setTimeout(() => {
-		docBody.classList.remove("u-transitionNone");
+		document.body.classList.remove("u-transitionNone");
 	}, 400);
 });
 
@@ -460,7 +458,7 @@ function loadPosts(callback) {
 
 	// If there's no multiple pages to paginate, remove paginator element
 	if (nextPage === totalPages) {
-		document.querySelector(".js-paginator").remove();
+		document.querySelector(".js-paginator")?.remove();
 	}
 
 	// Get an array of next page number(s)
@@ -653,6 +651,26 @@ loadMoreButton?.addEventListener("click", () => {
 // document.querySelector(".js-loop__item-navigation-arrow").addEventListener("click", () => {
 //     sendGAEvent("Posts", "Post navigation");
 // });
+//
+// Function to set the theme based on the user's system preference
+function setThemeBasedOnPreference() {
+	const prefersDarkScheme = window.matchMedia(
+		"(prefers-color-scheme: dark)",
+	).matches;
+	const htmlElement = document.documentElement; // The <html> element
+
+	// Set the data-theme attribute based on the preference
+	htmlElement.setAttribute(
+		"data-theme",
+		prefersDarkScheme ? "dark" : "light",
+	);
+}
+// Add an event listener to detect changes in the user's preference
+window
+	.matchMedia("(prefers-color-scheme: dark)")
+	.addEventListener("change", setThemeBasedOnPreference);
+// Initial theme setting
+setThemeBasedOnPreference();
 
 enableMastodonShare();
 reloadThings();

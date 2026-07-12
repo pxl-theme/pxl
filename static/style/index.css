@@ -2,7 +2,7 @@
 Theme Name: pxl-theme
 Theme URI: https://github.com/egeesin/pxl
 Author: Ege Esin
-Author URI: https://egeesin.com
+Author URI: https://ege.esin.net
 Description: An adjustable framework-ish website theme with sensible defaults and nice looks.
 Version: 0.5
 License: GPLv3
@@ -12,6 +12,7 @@ Tags: css, html, theme, css-framework, customizable, 11ty, SSG */
 
 /* Vendors, resets, syntax highlight themes */
 @import-glob "../../node_modules/sanitize.css/{sanitize,system-ui,ui-monospace,typography,forms,reduce-motion}.css";
+@import "../../node_modules/lite-youtube-embed/src/lite-yt-embed.css";
 /* @import-glob "_vendor/*.css"; */
 
 /* Configurations, mixins, helpers, utilities */

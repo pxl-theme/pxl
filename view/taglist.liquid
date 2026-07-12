@@ -1,0 +1,113 @@
+---
+layout: base
+tag: page
+eleventyExcludeFromCollections: ["post"]
+title: "Tags"
+translationKey: "tag"
+description: "List of tagged content"
+lang: "en"
+baseLite: true
+customHeaderTitle: "<svg width='18' class='pi -size2x' viewBox='0 0 18 18'><use href='/pi.svg#tool-tag'></use></svg>Tags"
+permalink: '/tag/index.html'
+---
+<main id=content class=s-cmsContent aria-label=Content itemprop=mainContentOfPage>
+	<section class="o-box -viewCard o-center">
+		<script>
+			/* By Nicholas Hoizey's Tag Cloud Script
+			 * Source: https://github.com/nhoizey/nicolas-hoizey.com/blob/ba2b12ba791e20e38cb43173874b0ead166a2cd4/assets/js/tagscloud.js
+			 */
+			document.addEventListener("DOMContentLoaded", () => {
+				const rangeInput = document.querySelector('#minTags');
+				const currentLabel = document.querySelector('#tagCount');
+				const cloud = document.querySelector('#tagsCloud');
+
+				let max = 0;
+				const tags = document.querySelectorAll('[data-number]');
+				tags.forEach((tag) => {
+					max = Math.max(max, parseInt(tag.dataset.number, 10));
+				});
+				rangeInput.max = max;
+				cloud.style.setProperty('--max-log', Math.log(max));
+
+				const updateLabel = () => {
+					let currentValue = rangeInput.value;
+					currentLabel.innerHTML = `Displaying tags with at least <code style=font-weight:900>${currentValue}</code> post${
+						currentValue > 1 ? 's' : ''
+					}`;
+					let newMinLog = 100;
+					tags.forEach((tag) => {
+						if (parseInt(tag.dataset.number, 10) >= currentValue) {
+							tag.closest("li").style.display = 'inline-block';
+							newMinLog = Math.min(newMinLog, tag.style.getPropertyValue('--log'));
+						} else {
+							tag.closest("li").style.display = 'none';
+						}
+					});
+					cloud.style.setProperty('--min-log', newMinLog);
+				};
+
+				rangeInput.addEventListener('input', updateLabel);
+				updateLabel();
+
+				document.querySelector('#dynamic').style.display = 'block';
+
+			});
+		</script>
+		<style>
+			:has(> li a[rel=tag]){
+			/*#tagscloud{*/
+				--min-log: 0; /* log(1) */
+				--max-log: 5; /* ~log(150) */
+				--min-size: 0.8;
+				--max-size: 1.8;
+				/*
+				--min-weight: 300;
+				--max-weight: 900;
+				--min-l: 30;
+				--max-l: 60;
+				*/
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				justify-content: center;
+				padding: 0;
+			}
+			a[rel=tag]{
+				display: inline-block;
+				white-space: nowrap;
+				text-decoration: none;
+				margin: .5rem;
+				padding: 0 1rem;
+				background-color: color-mix(in srgb, var(--colorText) 5%, transparent);
+				--group: calc(var(--log) - var(--min-log));
+				--group2: calc(var(--max-log) - var(--min-log) + 1);
+				--group3: calc(var(--max-size) - var(--min-size));
+				--factor: calc(var(--group) /  var(--group2));
+				font-size: calc( calc(var(--group3) * var(--factor) + var(--min-size)) * 1em)
+			}
+		</style>
+		<nav>
+			<div id=dynamic style=display:none>
+				<small id=tagCount></small><br>
+				<input type=range id=minTags size=4 min=1 max=11 step=1 value=5 />
+			</div>
+			{%- comment -%}
+			{%- assign filteredTagCollection = collections | getKeys | filterTagList -%}
+			{% for tag in filteredTagCollection -%}
+				<a href="/tags/{{ tag | slugify }}/" class="post-tag">{{ tag }}</a>{% if  forloop.last == false %}<span>, </span>{% endif -%}
+			{%- endfor %}
+			{%- endcomment -%}
+			<ul id=tagsCloud style="overflow: auto; max-block-size: 60vh">
+			{%- for tag in collections.tagList -%}
+				{%- if tag.count > 0 -%}
+					<li><a href="/tag/{{ tag.slug }}/"
+						aria-label="{{ tag.count }} content{% if tag.count > 1 %}s{% endif %} with tag {{ tag.title }}"
+						data-number="{{ tag.count }}"
+						style="--log: {{ tag.log }}"
+						rel="tag">{{ tag.title }}</a></li>
+				{%- endif %}
+			{%- endfor -%}
+			</ul>
+		</nav>
+	</section>
+</main>
