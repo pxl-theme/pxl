@@ -30,7 +30,6 @@ import { full as emoji } from "markdown-it-emoji";
 	// [[kbd]]
 	import markdownItMark             from "markdown-it-mark";
 	// ==marked text==
-	import markdownItMultimdTable     from "markdown-it-multimd-table";
 
 	import markdownItNamedCodeBlocks  from "markdown-it-named-code-blocks";
 	// ```js:hello.js \n (...) \n ```
@@ -84,14 +83,6 @@ export default (() => {
 		markdownItIns,
 		markdownItKbd,
 		markdownItMark,
-		[markdownItMultimdTable, {
-				// https://github.com/redbug312/markdown-it-multimd-table
-				multiline: true,
-				rowspan: true,
-				headerless: true,
-				multibody: true,
-				autolabel: true,
-			}],
 		markdownItNamedCodeBlocks,
 		markdownItSpoiler,
 		markdownItSub,

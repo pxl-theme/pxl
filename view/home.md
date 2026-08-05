@@ -3,7 +3,6 @@ lang: "en"
 type: homepage
 layout: page
 tags: page
-permalink: "/index.html"
 eleventyExcludeFromCollections: ["post"]
 title: "Home Page"
 translationKey: "homepage"
@@ -20,4 +19,4 @@ modifications:
 
 This is the preview of *pxl* – an adjustable framework-ish static site theme with sensible defaults and nice looks.
 
-<small>Check out dummy posts in the [blog](/blog) or go to [plain](/plain) version of this theme to observe smaller components to tinker with. Also here's a working redirect link to toggle [<label for=toggleNav-000 onclick>the menu</label>](#!) in mobile!</small>
+<small>Check out dummy posts in the [blog](/en/blog) or go to [plain](/plain) version of this theme to observe smaller components to tinker with. Also here's a working redirect link to toggle [<label for=toggleNav-000 onclick>the menu</label>](#!) in mobile!</small>

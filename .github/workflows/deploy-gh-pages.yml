@@ -3,65 +3,61 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+
 jobs:
   build:
     permissions:
       contents: write
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
+          cache: pnpm
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: latest 
+          version: latest
           run_install: false
 
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
-        run: pnpm i --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         env:
-          BASE_PATH: '/${{ github.event.repository.name }}'
+          BASE_PATH: "/${{ github.event.repository.name }}"
+        shell: bash
         run: |
           set -o braceexpand
           npm config set script-shell bash
           pnpm build
+
       - name: Fix permissions
         run: |
           chmod -c -R +rX ./dist | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
+
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
+
       - name: Check Files
         run: pwd && ls -lah
 
   deploy:
     needs: build
+
     runs-on: ubuntu-latest
 
     permissions:
@@ -75,4 +71,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4

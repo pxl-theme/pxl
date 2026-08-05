@@ -2,7 +2,6 @@
 type: homepage
 layout: page
 tags: page
-permalink: "/index.html"
 eleventyExcludeFromCollections: ["post"]
 title: "Ana Sayfa"
 translationKey: "homepage"
@@ -19,4 +18,4 @@ modifications:
 
 Bu, mantıklı varsayılan ayarları ve hoş bir görünümü olan, ayarlanabilir framework benzeri statik site teması *pxl*'in önizlemesidir.
 
-<small>Kurcalayabileceğiniz daha küçük bileşenleri görmek için [blog](/blog)'daki örnek gönderilere göz atabilir veya bu temanın [plain](/plain) sürümüne gidebilirsiniz. Ayrıca mobilde [<label for=toggleNav-000 onclick>menüyü</label>](#!) açıp kapatmak için çalışan bir yönlendirme bağlantısı da burada!</small>
+<small>Kurcalayabileceğiniz daha küçük bileşenleri görmek için [blog](/tr/blog)'daki örnek gönderilere göz atabilir veya bu temanın [plain](/plain) sürümüne gidebilirsiniz. Ayrıca mobilde [<label for=toggleNav-000 onclick>menüyü</label>](#!) açıp kapatmak için çalışan bir yönlendirme bağlantısı da burada!</small>

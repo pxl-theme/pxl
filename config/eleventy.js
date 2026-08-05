@@ -2,29 +2,39 @@
 
 // 📦 Imports from Packages
 	import path from 'node:path'
-	// import { execSync } from 'child_process'
+
+  // import { createHash } from "node:crypto";
+  // import { readFileSync } from "node:fs";
+  // import path from "node:path";
+
+  import { execSync } from 'child_process'
+
 	// import { Liquid } from "liquidjs";
 
 	import { InputPathToUrlTransformPlugin, EleventyI18nPlugin } from "@11ty/eleventy"
-	import { eleventyImageTransformPlugin } from '@11ty/eleventy-img'
+	import { eleventyImageTransformPlugin } from "@11ty/eleventy-img"
 
-	import pluginCacheBuster     from '@mightyplow/eleventy-plugin-cache-buster'
-	import pluginRSS             from '@11ty/eleventy-plugin-rss'
-	import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight'
-	import pluginTime2Read       from 'eleventy-plugin-time-to-read'
+	import pluginCacheBuster     from "@mightyplow/eleventy-plugin-cache-buster"
+  import pluginFeed, {
+  	dateToRfc3339,
+  	dateToRfc822,
+  	getNewestCollectionItemDate,
+	} from "@11ty/eleventy-plugin-rss"
+	import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight"
+	import pluginTime2Read       from "eleventy-plugin-time-to-read"
 
 	// TODO: Replace 11ty syntax highlighter plugin with Shiki Twoslash highlighter (as Markdown It Plugin) later.
-	import nbspFilter            from 'eleventy-nbsp-filter'
-	import pluginTargetSafe      from 'eleventy-plugin-target-safe'
+	import nbspFilter            from "eleventy-nbsp-filter"
+	import pluginTargetSafe      from "eleventy-plugin-target-safe"
 	import { DateTime, Settings }          from "luxon"
-	// import yaml                  from 'js-yaml'
-	// import pluginSchema          from '@quasibit/eleventy-plugin-schema'
+	// import yaml                  from "js-yaml"
+	// import pluginSchema          from "@quasibit/eleventy-plugin-schema"
 
 	const templateFormats = ["md", "liquid"]
 	// import pluginReadingTime     from 'eleventy-plugin-reading-time'
   	// Unfortunately reading time plugin doesn't support any template languages other than Nunjucks.
 
-	import EleventyFetch from '@11ty/eleventy-fetch';
+	import EleventyFetch from "@11ty/eleventy-fetch";
 
 // ℹ️ Other cool plugins:
 	// https://github.com/inframanufaktur/eleventy-plugin-clean-urls
@@ -85,6 +95,7 @@
  	import markdownIt        from "../view/lib/markdown-it.config.js"
     import slugify           from "../view/lib/slugify.js"
 
+/** @param {import("@11ty/eleventy").UserConfig} cfg */
 export default async (cfg) => {
 // 🩳 Filters/Shortcodes
 	cfg.addFilter('markdownify', markdownify);
@@ -97,10 +108,10 @@ export default async (cfg) => {
  	cfg.addFilter('jsonify', (str) => {
 		return JSON.stringify(str);
  	});
-	cfg.addFilter('excerptGenerator', (content) => {
+  cfg.addFilter('excerptGenerator', (content) => {
 		return new ExcerptGenerator().getExcerpt(content, 500);
 	});
-	cfg.addFilter('truncateContent', content => truncateContent(content, 40));
+  cfg.addFilter('truncateContent', content => truncateContent(content, 40));
  	/* getRandom Filter from https://www.raymondcamden.com/2020/10/26/selecting-random-posts-in-eleventy */
  	cfg.addFilter('getRandom', (items) => {
 		var selected = items[Math.floor(Math.random() * items.length)];
@@ -121,9 +132,9 @@ export default async (cfg) => {
 // 📆 Date/Time Filters
 	// Add (non-Liquid to Liquid) filters of unique date formats that is compatible to
 	// RSS templates (via Eleventy RSS Plugin)
-	cfg.addLiquidFilter("dateToRfc3339", pluginRSS.dateToRfc3339); // for Atom feeds => 2024-01-08T12:30:00Z
-	cfg.addLiquidFilter("dateToRfc822", pluginRSS.dateToRfc822); // for RSS feeds => Mon, 08 Jan 2024 15:30:00 +0000
-	cfg.addLiquidFilter("getNewestCollectionItemDate", pluginRSS.getNewestCollectionItemDate);
+	cfg.addLiquidFilter("dateToRfc3339", dateToRfc3339); // for Atom feeds => 2024-01-08T12:30:00Z
+	cfg.addLiquidFilter("dateToRfc822", dateToRfc822); // for RSS feeds => Mon, 08 Jan 2024 15:30:00 +0000
+	cfg.addLiquidFilter("getNewestCollectionItemDate", getNewestCollectionItemDate);
 
 	// Changing locale imports an access to the Intl APIs and the *full* ICU data.
 	// In case of having problems, check these links:
@@ -183,13 +194,37 @@ export default async (cfg) => {
 		// cfg.addPlugin(pluginTargetSafe); // Adds rel=noopener attr to target=_blank anchors
 		// https://jakearchibald.com/2016/performance-benefits-of-rel-noopener/
 
-		cfg.addPlugin(pluginRSS); // Provides shortcodes to include valid timestamps for Atom/RSS XMLs.
+		cfg.addPlugin(pluginFeed); // Provides shortcodes to include valid timestamps for Atom/RSS XMLs.
 
-		cfg.addPlugin(pluginCacheBuster({ // Adds a unique query parameter to CSS/JS resources
-			createResourceHash(outputDirectoy, url, target) {
-				return Date.now();
+		// Adds a unique query parameter to CSS/JS resources
+
+
+		const gitHash = execSync("git rev-parse --short HEAD")
+			.toString()
+			.trim();
+
+		cfg.addPlugin(pluginCacheBuster({
+			createResourceHash() {
+				return gitHash;
 			}
 		}));
+		// cfg.addPlugin(pluginCacheBuster({
+		// 	createResourceHash(outputDirectoy, url, target) {
+		// 		return Date.now();
+		// 	}
+		// }));
+
+  // 	cfg.addPlugin(pluginCacheBuster({
+		// 	createResourceHash(outputDirectory, url) {
+		// 		const file = path.join(outputDirectory, url);
+
+		// 		return createHash("sha256")
+  //     		.update(readFileSync(file))
+  //       	.digest("hex")
+  //        	.slice(0, 8);
+		// 	}
+		// }));
+
 	// }
 	cfg.addPlugin(InputPathToUrlTransformPlugin);
 	cfg.addPlugin(EleventyI18nPlugin, {
@@ -254,7 +289,7 @@ export default async (cfg) => {
 		// jekyllWhere: true
 	});
 
- // cfg.setFrontMatterParsingOptions({
+	// cfg.setFrontMatterParsingOptions({
  // 	excerpt: true,
  // 	excerpt_separator: "<!--more-->",
  // })
@@ -293,10 +328,10 @@ export default async (cfg) => {
 		});
 	});
 
- 	cfg.addCollection('bluesky', collection => {
+	cfg.addCollection('bluesky', collection => {
  		return collection.getFilteredByGlob("view/imported/from-bluesky/**/*.md").reverse();
   });
-  cfg.addCollection('video', collection => {
+	cfg.addCollection('video', collection => {
 		return collection.getFilteredByGlob(["view/imported/from-youtube/**/*.md","view/_content/video/**/*.md"]).reverse();
 	});
   // Compilations
@@ -370,11 +405,11 @@ export default async (cfg) => {
 
 // 🙅 Ignores
 	// if (process.env.NODE_ENV === "production") {
-	// 	eleventyConfig.ignores.add("src/admin.md");
+	// 	cfg.ignores.add("src/admin.md");
 	// } else {
-	// 	eleventyConfig.ignores.add("src/api/*");
-	// 	eleventyConfig.ignores.add("src/firehose.11ty.js");
-	// 	eleventyConfig.ignores.add("src/firehose-feed.11ty.js");
+	// 	cfg.ignores.add("src/api/*");
+	// 	cfg.ignores.add("src/firehose.11ty.js");
+	// 	cfg.ignores.add("src/firehose-feed.11ty.js");
 	// }
 
 // 🪛 Dev Server (eleventy --serve, not "eleventy-dev-server")

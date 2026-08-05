@@ -1,26 +1,29 @@
 {
-  "javascript" : {
-    "globals": [ "$", "jQuery", "enquire", "Colcade", "Darkmode"]
-  },
-  "linter" : {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "style": {
-        "useSingleVarDeclarator": "off",
-        "noParameterAssign": "off",
-        "noVar": "off"
-      },
-      "correctness": {
-        "noInnerDeclarations": "off",
-        "noUnusedVariables": "off"
-      },
-      "complexity": {
-        "noForEach": "off"
-	  }
-    }
-  },
-  "formatter" : {
-    "indentWidth": 4
-  }
+	"$schema": "../node_modules/@biomejs/biome/configuration_schema.json",
+	"javascript": {
+		"globals": ["$", "jQuery", "enquire", "Colcade", "Darkmode"]
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"preset": "recommended",
+			"style": {
+				"useSingleVarDeclarator": "off",
+				"noParameterAssign": "off"
+			},
+			"correctness": {
+				"noInnerDeclarations": "off",
+				"noUnusedVariables": "off"
+			},
+			"complexity": {
+				"noForEach": "off"
+			},
+			"suspicious": {
+				"noVar": "off"
+			}
+		}
+	},
+	"formatter": {
+		"indentWidth": 4
+	}
 }

@@ -17,7 +17,7 @@ eleventyExcludeFromCollections: ["post"]
 		<email>{{ people[site.author].links.email.handle }}</email>
 	</author>
 	{%- for item in collections.blog limit: 10 %}<entry>
-		<title>{{ item.data.title }}</title>
+		<title>{{ item.data.title | escape }}</title>
 		<link href="{{ item.url | prepend: site.baseurl | clearIndex }}" />
 		<updated>{{ item.date | dateToRfc3339 }}</updated>
 		<id>{{ item.url | prepend: site.baseurl | clearIndex }}</id>
@@ -30,7 +30,7 @@ eleventyExcludeFromCollections: ["post"]
 						{{- item | truncateContent | renderTransforms: item.data.page, site.baseurl | escape | strip -}}
 					{%- endif -%}
 				{%- endunless -%}
-				{%- comment %} 
+				{%- comment %}
 				{{- item.templateContent | renderTransforms: item.data.page, site.baseurl | escape | strip -}}
 				{%- if item.data.photos -%}
 					{%- include 'photos' with item.data.photos image_class: 'u-photo' -%}

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", (_event) => {
 	// Class Lists of Scope Elements
 	const tModRoot = document.querySelector(".t-modRoot");
 	const tModBody = document.querySelector(".t-modBody");

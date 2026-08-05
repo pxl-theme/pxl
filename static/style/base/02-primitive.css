@@ -157,8 +157,8 @@
 	/* ↓ Establish a grid context */
 	display: grid;
 	/* ↓ Set a gap between grid items  */
-	/* grid-gap: calc(var(--rhythmUnit)*2) var(--gridGutter); */
-	grid-gap: var(--rhythmUnit) var(--gridGutter);
+	/* gap: calc(var(--rhythmUnit)*2) var(--gridGutter); */
+	gap: var(--rhythmUnit) var(--gridGutter);
 	/* ↓ Set the minimum column width */
 	/* --minimum: 20ch; */
 	--minimum: 26ch; /* opinionated */

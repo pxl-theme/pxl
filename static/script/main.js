@@ -430,9 +430,11 @@ function loadPosts(callback) {
 	// Set variables for required data attributes and container target
 	const currentPage = Number.parseInt(
 		loopContainer.getAttribute("data-paginator-current"),
+		10,
 	);
 	const totalPages = Number.parseInt(
 		loopContainer.getAttribute("data-paginator-total"),
+		10,
 	);
 	// const existingPosts = loopContainer;
 

@@ -3,6 +3,7 @@
 	"extends": "stylelint-config-recommended",
 	"rules": {
 		"no-duplicate-selectors": null,
+		"property-no-deprecated": null,
 		"no-irregular-whitespace": null,
 		"function-calc-no-unspaced-operator": null,
 		"no-descending-specificity": null,

@@ -20,7 +20,7 @@ eleventyExcludeFromCollections: true
 	</author>
 	{% for item in collections.homepage limit: 25 %}
 	<entry>
-		<title>{{ item.data.title }}</title>
+		<title>{{ item.data.title | escape }}</title>
 		<link href="{{ item.url | prepend: site.baseurl | clearIndex }}" />
 		<updated>{{ item.date | dateToRfc3339 }}</updated>
 		<id>{{ item.url | prepend: site.baseurl | clearIndex }}</id>

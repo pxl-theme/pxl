@@ -289,7 +289,7 @@
 		opacity: .25; /* Default opacity for mobile devices */
 		transition: opacity .25s ease-in-out;
 	}
-	/* Opacity behavior for the inputs that can hover */ 
+	/* Opacity behavior for the inputs that can hover */
 	@media (pointer: fine) {
 		.header-anchor:after { opacity: 0; }
 		.header-anchor:hover:after { opacity: 1; }

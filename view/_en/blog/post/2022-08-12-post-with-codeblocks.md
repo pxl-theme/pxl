@@ -4,7 +4,7 @@ date: 2022-08-12T10:30:00+00:00
 tags:
   - CSS
   - Web Development
-  - Front End
+  - Front-End
   - "Scope"
   - Modular Styling
 ---
