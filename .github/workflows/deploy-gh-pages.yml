@@ -2,38 +2,35 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: ["main", "action-test"]
+  pull_request:
+    branches: ["main", "action-test"]
 
 jobs:
   build:
+    runs-on: catthehacker/ubuntu:runner-latest
+
     permissions:
       contents: write
 
-    runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Install Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: 20
-          cache: pnpm
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v4
         with:
           version: latest
           run_install: false
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - uses: actions/setup-node@v5
+        with:
+          node-version: latest
+          cache: pnpm
 
-      - name: Build
-        env:
+      - run: pnpm install --frozen-lockfile
+
+      - env:
           BASE_PATH: "/${{ github.event.repository.name }}"
         shell: bash
         run: |
@@ -41,24 +38,19 @@ jobs:
           npm config set script-shell bash
           pnpm build
 
-      - name: Fix permissions
-        run: |
+      - run: |
           chmod -c -R +rX ./dist | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
-
-      - name: Check Files
-        run: pwd && ls -lah
-
+      # - run: pwd && ls -lah
   deploy:
     needs: build
 
-    runs-on: ubuntu-latest
+    runs-on: catthehacker/ubuntu:runner-latest
 
     permissions:
       pages: write
