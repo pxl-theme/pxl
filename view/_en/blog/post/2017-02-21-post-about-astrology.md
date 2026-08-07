@@ -8,8 +8,6 @@ tags:
   - Zodiac Signs
 ---
 
-![](/media/viva-luna-studios-r_-onuwuWAU-unsplash.jpeg)
-
 Have you ever gazed up at the night sky and wondered about the celestial dance unfolding above? Astrology, an ancient and mystical practice, offers a unique lens through which we can explore the interconnectedness of the cosmos and our lives. Rooted in the belief that the positions and movements of celestial bodies influence human affairs and natural events, astrology has captivated minds for centuries.
 <!--more-->
 
