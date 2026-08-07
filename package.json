@@ -124,7 +124,7 @@
     "cheerio": "1.2.0",
     "chokidar-cli": "^3.0.0",
     "cpy-cli": "^7.0.0",
-    "cssnano": "^8.0.3",
+    "cssnano": "^8.0.4",
     "dotenv": "^17.4.2",
     "eleventy-nbsp-filter": "^0.1.0",
     "eleventy-plugin-target-safe": "^0.6.0",
@@ -156,7 +156,7 @@
     "markdown-it-task-lists": "^2.1.1",
     "markdown-it-toc-done-right": "^4.2.0",
     "pagefind": "^1.5.2",
-    "postcss": "^8.5.25",
+    "postcss": "^8.5.26",
     "postcss-cli": "^11.0.1",
     "postcss-custom-media": "^12.0.1",
     "postcss-extract-media-query": "^3.2.0",
@@ -190,11 +190,11 @@
     "update-browserslist-db": "^1.2.3"
   },
   "dependencies": {
-    "@github/relative-time-element": "^4.4.5",
+    "@github/relative-time-element": "^5.3.1",
     "@zachleat/snow-fall": "^1.0.3",
     "@zachleat/webcare-webshare": "^1.0.3",
     "colcade": "^0.2.0",
-    "lite-youtube-embed": "^0.3.3",
+    "lite-youtube-embed": "^0.3.4",
     "sanitize.css": "^13.0.0"
   },
   "overrides": {
@@ -202,5 +202,5 @@
     "got@<11.8.5": ">=11.8.5",
     "marked@<4.0.10": ">=4.0.10"
   },
-  "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad"
+  "packageManager": "pnpm@11.20.0+sha512.9a6f330a95b66446ea088faf1521405a8a01f07fde7124cc9958dfed52d4bb436737e65b08f85f37b46fcba375092558ac51262b816844b22f63406ed166bfee"
 }
