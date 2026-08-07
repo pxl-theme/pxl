@@ -1,0 +1,5 @@
+allowBuilds:
+  '@swc/core': true
+  sharp: true
+  "turndown@https://codeload.github.com/zachleat/fork-turndown/tar.gz/7c2b27875713d37d3eb079c001ecc0b2502539d2": true
+blockExoticSubdeps: false
