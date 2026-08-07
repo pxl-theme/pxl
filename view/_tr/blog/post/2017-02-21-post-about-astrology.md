@@ -8,7 +8,7 @@ tags:
   - Burçlar
 ---
 
-![](/media/viva-luna-studios-r_-onuwuWAU-unsplash.jpg)
+![](/media/viva-luna-studios-r_-onuwuWAU-unsplash.jpeg)
 
 Hiç gece gökyüzüne bakıp yukarıda gerçekleşen göksel dansı merak ettiniz mi? Kadim ve mistik bir uygulama olan astroloji, kozmos ile hayatlarımız arasındaki bağlantıyı keşfetmemiz için eşsiz bir bakış açısı sunar. Göksel cisimlerin konumlarının ve hareketlerinin insan yaşamını ve doğa olaylarını etkilediği inancına dayanan astroloji, yüzyıllardır insanların ilgisini çekmektedir.
 <!--more-->
