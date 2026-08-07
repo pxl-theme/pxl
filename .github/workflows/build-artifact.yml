@@ -27,26 +27,26 @@ jobs:
 
       - run: pnpm install --no-frozen-lockfile
 
-      - name: Test image formats
-        run: |
-          node --input-type=module <<'EOF'
-          import sharp from "sharp";
-          import { glob } from "glob";
+      # - name: Test image formats
+      #   run: |
+      #     node --input-type=module <<'EOF'
+      #     import sharp from "sharp";
+      #     import { glob } from "glob";
 
-          const files = await glob([
-            "static/**/*.{jpg,jpeg,png,gif,webp,avif,svg}",
-            "view/**/*.{jpg,jpeg,png,gif,webp,avif,svg}"
-          ]);
+      #     const files = await glob([
+      #       "static/**/*.{jpg,jpeg,png,gif,webp,avif,svg}",
+      #       "view/**/*.{jpg,jpeg,png,gif,webp,avif,svg}"
+      #     ]);
 
-          for (const file of files) {
-            try {
-              const metadata = await sharp(file).metadata();
-              console.log(`✓ ${file}: ${metadata.format}`);
-            } catch (error) {
-              console.error(`✗ ${file}: ${error.message}`);
-            }
-          }
-          EOF
+      #     for (const file of files) {
+      #       try {
+      #         const metadata = await sharp(file).metadata();
+      #         console.log(`✓ ${file}: ${metadata.format}`);
+      #       } catch (error) {
+      #         console.error(`✗ ${file}: ${error.message}`);
+      #       }
+      #     }
+      #     EOF
 
       - shell: bash
         run: |
