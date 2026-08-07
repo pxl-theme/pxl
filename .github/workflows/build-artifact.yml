@@ -31,6 +31,9 @@ jobs:
         run: |
           set -o braceexpand
           npm config set script-shell bash
+          pnpm list sharp @11ty/eleventy-img
+          node -p "process.platform + ' ' + process.arch"
+          find . -type f | grep -Ei '\.(avif|heic|heif|jxl|tiff?|bmp|ico|webp|jpe?g|png|gif|svg)$' | sort
           pnpm build
 
       - uses: actions/upload-artifact@v4
