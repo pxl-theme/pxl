@@ -70,7 +70,7 @@ jobs:
   deploy:
     needs: build
 
-    runs-on: catthehacker/ubuntu:runner-latest
+    runs-on: ubuntu-latest
 
     permissions:
       pages: write
