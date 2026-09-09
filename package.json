@@ -184,7 +184,7 @@
     "stylelint": "^17.14.1",
     "stylelint-config-recommended": "^18.0.0",
     "svg-sprite": "^2.0.4",
-    "svgo": "^4.0.2",
+    "svgo": "^4.1.0",
     "terser": "^5.50.0",
     "truncate-html": "^1.2.2",
     "update-browserslist-db": "^1.3.1"
