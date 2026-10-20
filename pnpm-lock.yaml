@@ -118,20 +118,20 @@ importers:
         specifier: ^3.7.2
         version: 3.7.2
       markdown-it:
-        specifier: ^15.0.0
-        version: 15.0.0
+        specifier: ^15.0.2
+        version: 15.0.2
       markdown-it-abbr:
         specifier: ^2.0.0
         version: 2.0.0
       markdown-it-anchor:
         specifier: ^9.2.1
-        version: 9.2.1(@types/markdown-it@14.1.2)(markdown-it@15.0.0)
+        version: 9.2.1(@types/markdown-it@14.1.2)(markdown-it@15.0.2)
       markdown-it-attrs:
         specifier: ^5.0.1
-        version: 5.0.1(markdown-it@15.0.0)
+        version: 5.0.1(markdown-it@15.0.2)
       markdown-it-collapsible:
         specifier: ^2.0.2
-        version: 2.0.2(markdown-it@15.0.0)
+        version: 2.0.2(markdown-it@15.0.2)
       markdown-it-container:
         specifier: ^4.0.0
         version: 4.0.0
@@ -140,7 +140,7 @@ importers:
         version: 4.0.0
       markdown-it-eleventy-img:
         specifier: ^0.10.2
-        version: 0.10.2(markdown-it@15.0.0)(supports-color@10.2.2)
+        version: 0.10.2(markdown-it@15.0.2)(supports-color@10.2.2)
       markdown-it-emoji:
         specifier: ^3.1.0
         version: 3.1.0
@@ -155,7 +155,7 @@ importers:
         version: 4.0.0
       markdown-it-kbd:
         specifier: ^3.0.2
-        version: 3.0.2(markdown-it@15.0.0)
+        version: 3.0.2(markdown-it@15.0.2)
       markdown-it-mark:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1393,8 +1393,8 @@ packages:
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
-  argparse@3.0.0:
-    resolution: {integrity: sha512-BOp5NMrHqKxmq/OLr+clzzrRxgOKSLkcjmkWuChp7Irqwn4s74WjOBPIgWfA/HMcBnVkZ5XEuf9uUqzlpfCQ6A==}
+  argparse@3.0.3:
+    resolution: {integrity: sha512-Sn98ftV3KfsO8xfLPHG6oT8y+b0yvbrLgZjgPDXsharNY15tTAjqIsIju4S32nl6/iEUNNE4v+yL2Zhm8ooP3w==}
 
   arrify@1.0.1:
     resolution: {integrity: sha512-3CYzex9M9FGQjCGMGyi6/31c8GJbgb0qGyrx5HWxPd0aCwh4cB2YjMb2Xf9UuoogrMrlO9cTqnB5rI5GHZTcUA==}
@@ -1612,6 +1612,7 @@ packages:
   clone-buffer@1.0.0:
     resolution: {integrity: sha512-KLLTJWrvwIP+OPfMn0x2PheDEP20RPUcGXj/ERegTgdmPEZylALQldygiqrPPu8P45uNuPs7ckmReLY6v/iA5g==}
     engines: {node: '>= 0.10'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   clone-response@1.0.3:
     resolution: {integrity: sha512-ROoL94jJH2dUVML2Y/5PEDNaSHgeOdSDicUyS7izcF63G6sTc/FTjLub4b8Il9S8S0beOfYt0TaA5qvFK+w0wA==}
@@ -2066,6 +2067,10 @@ packages:
 
   entities@8.0.0:
     resolution: {integrity: sha512-zwfzJecQ/Uej6tusMqwAqU/6KL2XaB2VZ2Jg54Je6ahNBGNH6Ek6g3jjNCF0fG9EWQKGZNddNjU5F1ZQn/sBnA==}
+    engines: {node: '>=20.19.0'}
+
+  entities@8.1.0:
+    resolution: {integrity: sha512-kxL7msIffSuh9aaFAMD7rxAIuTRMAHMeBtgHW2yUdWw732ZNh4MehkF2gdjvtdmikkaIP9bFDDJOPlsvm7avrA==}
     engines: {node: '>=20.19.0'}
 
   env-paths@2.2.1:
@@ -3095,8 +3100,8 @@ packages:
     resolution: {integrity: sha512-RCEsPjR+sr0x+AuYp601tKTkgFG4YEPLCzHST3cQ/fhlJkqAkz1L2/Qbp1j9qw5SBwQHFBoW8+hoN5xssOF0Tw==}
     hasBin: true
 
-  markdown-it@15.0.0:
-    resolution: {integrity: sha512-Lf8ajvVNdRpzSNB4VegxNy7gjs8gU35l4b4+ET49LrQC5PKYwLZ72u60LeJ9gv3qiaesuYjJWCyVeQmv/QWKQw==}
+  markdown-it@15.0.2:
+    resolution: {integrity: sha512-q4IGxMv56jCqT4OCRCADBoDP3LO4MhmTXjFbphHPXs4g3j9Xg5RDnxqN8IF/3vIWEU+VCnUq+7JUg/cfy2E6Qw==}
     hasBin: true
 
   marked@0.3.19:
@@ -5724,7 +5729,7 @@ snapshots:
 
   argparse@2.0.1: {}
 
-  argparse@3.0.0: {}
+  argparse@3.0.3: {}
 
   arrify@1.0.1: {}
 
@@ -6436,6 +6441,8 @@ snapshots:
   entities@7.0.1: {}
 
   entities@8.0.0: {}
+
+  entities@8.1.0: {}
 
   env-paths@2.2.1: {}
 
@@ -7345,27 +7352,27 @@ snapshots:
 
   markdown-it-abbr@2.0.0: {}
 
-  markdown-it-anchor@9.2.1(@types/markdown-it@14.1.2)(markdown-it@15.0.0):
+  markdown-it-anchor@9.2.1(@types/markdown-it@14.1.2)(markdown-it@15.0.2):
     dependencies:
       '@types/markdown-it': 14.1.2
-      markdown-it: 15.0.0
+      markdown-it: 15.0.2
 
-  markdown-it-attrs@5.0.1(markdown-it@15.0.0):
+  markdown-it-attrs@5.0.1(markdown-it@15.0.2):
     dependencies:
-      markdown-it: 15.0.0
+      markdown-it: 15.0.2
 
-  markdown-it-collapsible@2.0.2(markdown-it@15.0.0):
+  markdown-it-collapsible@2.0.2(markdown-it@15.0.2):
     dependencies:
-      markdown-it: 15.0.0
+      markdown-it: 15.0.2
 
   markdown-it-container@4.0.0: {}
 
   markdown-it-deflist@4.0.0: {}
 
-  markdown-it-eleventy-img@0.10.2(markdown-it@15.0.0)(supports-color@10.2.2):
+  markdown-it-eleventy-img@0.10.2(markdown-it@15.0.2)(supports-color@10.2.2):
     dependencies:
       '@11ty/eleventy-img': 4.0.2(supports-color@10.2.2)
-      markdown-it: 15.0.0
+      markdown-it: 15.0.2
       sharp: 0.33.5
     transitivePeerDependencies:
       - encoding
@@ -7379,9 +7386,9 @@ snapshots:
 
   markdown-it-ins@4.0.0: {}
 
-  markdown-it-kbd@3.0.2(markdown-it@15.0.0):
+  markdown-it-kbd@3.0.2(markdown-it@15.0.2):
     dependencies:
-      markdown-it: 15.0.0
+      markdown-it: 15.0.2
 
   markdown-it-mark@4.0.0: {}
 
@@ -7408,10 +7415,10 @@ snapshots:
       punycode.js: 2.3.1
       uc.micro: 2.1.0
 
-  markdown-it@15.0.0:
+  markdown-it@15.0.2:
     dependencies:
-      argparse: 3.0.0
-      entities: 8.0.0
+      argparse: 3.0.3
+      entities: 8.1.0
       linkify-it: 6.1.0
       mdurl: 2.1.0
       punycode.js: 2.3.1
